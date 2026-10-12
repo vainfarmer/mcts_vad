@@ -1,0 +1,59 @@
+{
+  "runId": "wf_f696a486-456",
+  "workflowName": "vad-team-map20-v19",
+  "scriptPath": "/Users/zzl/PycharmProjects/vad/.qoder/workflows/vad-team-map20-v19.js",
+  "source": "path",
+  "args": "v19: SNH (Supervised Normality Head) — the v17-mandated supervised successor for the Normal-video false-alarm objective. Offline-first honesty design: extract video-level features on ~50+50 TRAIN videos (zero VLM), train P(normal) head with CV, pre-registered GO gate (flag >=40% train normals at <=5% anomaly-flag). Only on GO: --snh_veto terminal confidence-veto reusing the CNV paired-log plumbing, one full-290 eval, gates = paired mAP delta >= -0.003 AND abs >= 0.16454 AND FA-rate relative reduction >= 25% AND <= 1 GT veto. NO-GO closes the direction with zero eval spend.",
+  "meta": {
+    "name": "vad-team-map20-v19",
+    "description": "VAD agent team v19 — SNH (Supervised Normality Head): the v17-record-mandated successor to CNV for the owner-directed NORMAL-video false-positive objective. v17 closed CNV on HARM (v171 paired -0.00969, FA -2.6%, 13 GT vetoes; v172 tighten: FA 0%, 6 GT vetoes) and its C-record ruled: any future Normal-FP lever must be a NEW SUPERVISED mechanism that FIRST demonstrates on TRAIN normals that its video-level gate fires on normals at all. SNH = a tiny supervised video-level P(normal) head (logistic regression / tiny MLP) trained on TRAIN-split videos ONLY, over ~15-25 aggregate features computed from the pipeline's OWN cached signal families (MIL snippet scores max/topk-mean/std/frac>0.5; fused CLIP category-curve stats incl. max-z and top-decile prominence; CLIP Normal-prompt similarity stats; motion-energy outlier fraction/max-z) — zero VLM calls at train AND eval time, all local compute. TWO-PHASE HONESTY DESIGN: PHASE 0 (offline, NO eval spend) extracts features for ~50 train-normal + ~50 train-anomaly videos (standalone extractor reusing pipeline modules: video preprocessing + CLIP ViT-L + model_mil.pth + frame-diff motion — the v17 council proved this is cheap local compute), trains with cross-validation, and applies the PRE-REGISTERED GO GATE: video-level gate (P(normal) >= tau, tau chosen on TRAIN ONLY at the largest value keeping CV anomaly-flag-rate <= 5%) must flag >= 40% of train NORMAL videos. NO-GO -> write the record closing the video-level-gate direction and STOP (no eval). GO -> implement --snh_veto (default OFF) as a terminal-slot confidence veto REUSING the v171 CNV veto plumbing (confidence := 0.0, detection kept, [SNH-FIRE] conf=old->new marker lines in the analysis_bootstrap_ab.py restore_pre_marker conf-mode format + unconditional [SNH-VID] per video incl. empty/early-return paths), eval ONCE on the full 290 (NO --categories; Normal videos are the subject), adjudicate with the PROVEN paired-log conf restore (exact paired, zero VLM noise). PROMOTION GATES (same as v17, pre-registered): paired mAP delta >= -0.003 AND abs >= 0.16454 AND Normal-video FA-rate relative reduction >= 25% AND <= 1 GT-overlapping (IoU>=0.1) detection vetoed. Committed pipeline = v137 + BUE + CBT + CBT-recal (all default-ON, full-290 ~0.173); cgr/ccr/cnv/kfd all default-OFF and stay so. Concurrency 2. NONE of the 10 banned families; this is judged on the FA-rate objective with mAP only as a non-inferiority constraint — NOT Normal-FP-for-mAP (banned 9).",
+    "phases": [
+      {
+        "title": "FeatExtract",
+        "detail": "offline: standalone extractor (no VLM) computes video-level feature vectors for ~50+50 TRAIN videos, nohup + poll"
+      },
+      {
+        "title": "TrainDemo",
+        "detail": "train the head with CV; PRE-REGISTERED GO gate (flag >=40% train normals AND <=5% train anomaly at TRAIN-chosen tau). NO-GO closes the direction with zero eval spend"
+      },
+      {
+        "title": "Implement",
+        "detail": "D1 wires --snh_veto (default OFF) reusing the CNV veto plumbing; self-test incl. forced-fire restore proof"
+      },
+      {
+        "title": "Eval290",
+        "detail": "one full-290 eval, paired-log conf bootstrap + Normal FA rates + GT-veto harm check"
+      },
+      {
+        "title": "Decide",
+        "detail": "promote default-ON iff all four legs pass; else archive-close; summary + ledger + state-of-the-union after three straight closures"
+      }
+    ]
+  },
+  "createdAt": "2026-08-15T05:51:18.205Z",
+  "updatedAt": "2026-08-15T07:10:24.146Z",
+  "status": "killed",
+  "outputPath": "/Users/zzl/PycharmProjects/vad/.qoder/sessions/8a41679a-dd00-46cd-9125-2da3de1f245a/workflows/runs/wf_f696a486-456/output.json",
+  "agents": [
+    {
+      "index": 1,
+      "label": "D0-featextract",
+      "phaseIndex": 1,
+      "phaseTitle": "FeatExtract",
+      "journalKey": "v2:fee519333c0b306fb82b849771b491804e6e60a6c3dc1a1f246332f74fd3c7e7",
+      "state": "error",
+      "attempts": 1,
+      "updatedAt": "2026-08-15T07:10:24.131Z"
+    },
+    {
+      "index": 2,
+      "label": "D0-featextract",
+      "phaseIndex": 1,
+      "phaseTitle": "FeatExtract",
+      "journalKey": "v2:619795da721f184dfa4b5532b4684b05e5aeb956f28eb0ffd4c49d50dcfd91f8",
+      "state": "progress",
+      "attempts": 1,
+      "updatedAt": "2026-08-15T07:10:24.131Z"
+    }
+  ]
+}

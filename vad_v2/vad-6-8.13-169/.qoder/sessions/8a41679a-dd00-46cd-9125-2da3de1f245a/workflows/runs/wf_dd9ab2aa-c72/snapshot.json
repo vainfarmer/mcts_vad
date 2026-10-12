@@ -1,0 +1,1098 @@
+{
+  "version": 1,
+  "sessionId": "8a41679a-dd00-46cd-9125-2da3de1f245a",
+  "runId": "wf_dd9ab2aa-c72",
+  "taskId": "wf-c6e8d26a-a65",
+  "workflowName": "vad-team-map20-v20",
+  "summary": "VAD agent team v20 — TCP (Temporal-Contrast Prompt): a prompt-side recall lever on the COMMITTED directed scan path, grounded in the v18 post-hoc chain analysis. The v18 addendum (summary_v18 §10) established: (1) the committed pipeline uses the DIRECTED scan (config.py L246 full_coverage_comparative_scan=False) — scan_segment (anomaly_discovery.py L358) already shows the VLM ALL ~12 frames of each 6s segment with an absolute whole-segment prompt; (2) the v173 A/B was confounded (KFD also engaged FCCS) — any future scan-side A/B MUST hold the scan path constant (directed in BOTH arms, FCCS line count == 0 in BOTH logs, pre-registered VOID check); (3) the real residual on the directed path is RECOGNITION-BOUND: RA009 (GT 7-8s) and RA021 (GT 1-3s) were rejected by the VLM even with all frames shown — the whole-segment prompt (\"Determine if this segment contains any abnormal activity\") lets a brief 1-3s event dilute into a mostly-normal 6s window. MECHANISM: append a pre-registered temporal-contrast instruction block to the scan_segment prompt (frames are time-ordered and span the segment; a real anomaly may be BRIEF and occupy only a few mid-clip frames — judge by the single MOST anomalous moment, not the clip average; compare early vs late frames for sudden change). Same frames, same call count, same directed path, same JSON schema — only prompt TEXT changes; zero latency cost. Flag tcp_prompt default OFF, CLI in run.py AND batch_evaluate.py, marker TCP-VID unconditional per video on every path + the TCP block logged once per video. Cross-run A/B vs a FRESH same-session committed REF (VLM input text changes — no paired instrument possible). GATES (pre-registered): Loop 1 hard-88 — PROMOTE-TO-290 iff point_delta >= +0.008 AND P(delta>0) >= 0.9 AND new hard mAP >= 0.11306, FCCS-count==0 in both logs, det/video increase flagged at > +1.0. Loop 2 (only if Loop 1 passes) full-290 net-neutrality — delta >= -0.003 AND abs >= 0.16454 AND Normal-video FA-rate relative increase <= +2%. Purpose-population check: does TCP produce detections overlapping the RA009/RA021 GTs (the recognition-bound population the mechanism is built for)? Committed pipeline = v137 + BUE + CBT + CBT-recal (all default-ON); cgr/ccr/cnv/kfd/snh all default-OFF and stay so. Concurrency 2. QUEUE DISCIPLINE: v19 (SNH) may still be running its 290 eval — EVERY batch_evaluate launch in this session (incl. the self-test smoke) must first verify no other batch_evaluate process is running, and sleep-poll until clear (up to ~90 min) — never run two evals concurrently (16 GB machine, owner-diagnosed swap thrash).",
+  "status": "completed",
+  "startTime": 1786849588608,
+  "endTime": 1786866903337,
+  "scriptPath": "/Users/zzl/PycharmProjects/vad/.qoder/workflows/vad-team-map20-v20.js",
+  "transcriptDir": "/Users/zzl/PycharmProjects/vad/.qoder/sessions/8a41679a-dd00-46cd-9125-2da3de1f245a/workflows/runs/wf_dd9ab2aa-c72",
+  "outputPath": "/Users/zzl/PycharmProjects/vad/.qoder/sessions/8a41679a-dd00-46cd-9125-2da3de1f245a/workflows/runs/wf_dd9ab2aa-c72/output.json",
+  "args": "v20: TCP (Temporal-Contrast Prompt) on the committed DIRECTED scan path — the prompt-side recall lever from the v18 addendum (RA009/RA021 recognition-bound with all frames shown). Pre-registered: both arms directed (FCCS==0 VOID check), cross-run bootstrap vs fresh REF, 88 gate delta >= +0.008 & P >= 0.9 & abs >= 0.11306, then 290 net-neutrality + Normal-FA <= +2%. v19's workflow died overnight (features complete; SNH GO-gate being adjudicated inline by the main session). Queue-disciplined launches are baked in.",
+  "phases": [
+    {
+      "title": "Implement",
+      "detail": "D1 appends the pre-registered TCP block to the scan_segment prompt (default OFF), self-tests prompt content on/off, queue-disciplined smoke"
+    },
+    {
+      "title": "AB88",
+      "detail": "fresh committed REF88 + TCP88 (both directed, FCCS==0 verified) -> cross-run bootstrap + RA009/RA021 purpose check"
+    },
+    {
+      "title": "Confirm290",
+      "detail": "if 88 passes: fresh REF290 + TCP290, net-neutrality + Normal-FA bound"
+    },
+    {
+      "title": "Decide",
+      "detail": "promote tcp_prompt default-ON iff both loops pass; else archive-close; summary + ledger"
+    }
+  ],
+  "progress": [
+    {
+      "type": "workflow_phase",
+      "index": 1,
+      "title": "Implement",
+      "kind": "root"
+    },
+    {
+      "type": "workflow_phase",
+      "index": 2,
+      "title": "AB88",
+      "kind": "root"
+    },
+    {
+      "type": "workflow_phase",
+      "index": 3,
+      "title": "Confirm290",
+      "kind": "root"
+    },
+    {
+      "type": "workflow_phase",
+      "index": 4,
+      "title": "Decide",
+      "kind": "root"
+    },
+    {
+      "type": "workflow_log",
+      "message": "v20 starting. TCP (Temporal-Contrast Prompt): prompt-side recall lever on the COMMITTED directed path (v18 addendum lessons baked in: directed-in-both-arms, FCCS==0 VOID check). Gates: 88 delta >= +0.008 & P >= 0.9 & abs >= 0.11306; 290 net-neutral & FA inc <= +2%. QUEUE-disciplined launches. concurrency 2.",
+      "timestamp": 1786849588617
+    },
+    {
+      "type": "workflow_agent",
+      "index": 1,
+      "label": "D1-implement-v177",
+      "phaseIndex": 1,
+      "phaseTitle": "Implement",
+      "agentType": "workflow-subagent",
+      "prompt": "You are Agent D1. Implement TCP exactly as pre-registered, then PROVE it. StructuredOutput EXACTLY ONCE.\n\nPROJECT: video anomaly detection + TEMPORAL LOCALIZATION on UCF-Crime. Repo /Users/zzl/PycharmProjects/vad; code /Users/zzl/PycharmProjects/vad/video_anomaly_detection. INTERPRETER python3.14.\nGIT RULE: the uncommitted working tree IS the latest code. NEVER git checkout/reset/stash/clean. Back up to /Users/zzl/PycharmProjects/vad/.qoder/backups/<version>/ before editing.\n\n!!! COMMITTED PIPELINE: v137 + BUE + CBT + CBT-recal ALL DEFAULT-ON (full-290 ~0.173; hard-88 ~0.11806). cgr/ccr/cnv/kfd_uniform/snh all DEFAULT-OFF (v16 relocation closed; v17 CNV closed on harm; v18 KFD-U closed). full_coverage_comparative_scan=False is COMMITTED — the DIRECTED scan is the committed path. Do NOT change any committed default. !!!\n\n!!! THE v18 LESSONS THIS SESSION IS BUILT ON (summary_v18_v173-v174_20260815.md §10 — read it) !!!\n1. The committed directed scan (scan_segment, anomaly_discovery.py L358-391) shows the VLM ALL ~12 frames per 6s segment with a whole-segment absolute prompt. The pipeline is NOT frame-blind on the committed path.\n2. The v173 KFD A/B was CONFOUNDED: kfd_uniform_keyframes also engaged the FCCS comparative path (pipeline.py L1776-1777). Any scan-side A/B MUST hold the scan path constant: directed in BOTH arms, grep -c \"FCCS\" == 0 in BOTH produced logs — a nonzero count is a VOID-level confound (pre-registered).\n3. The recognition-bound residual: RA009 (GT 7-8s, inside segment 4.5-10.5) and RA021 (GT 1-3s, inside segment 0-5.2) were REJECTED by the VLM with all 11-12 frames shown. Hypothesis: the whole-segment prompt (\"Determine if this segment contains any abnormal or suspicious activity\") invites clip-AVERAGING, so a brief 1-3s event dilutes into a mostly-normal window.\n\n!!! THE MECHANISM — TCP (Temporal-Contrast Prompt), prompt-side ONLY !!!\nWhen tcp_prompt is ON, APPEND this exact block to the scan_segment prompt immediately BEFORE the \"Respond ONLY in JSON format\" line (context_prompt and everything else unchanged):\n---\nTemporal reasoning instructions:\n- The frames are shown in time order and span the whole segment uniformly.\n- A real anomaly may be BRIEF (1-3 seconds) and occupy only a few frames in the middle of the clip. Do NOT average the clip: judge by the single most anomalous moment you can find.\n- Compare the early frames against the later frames: note any sudden change (impact, fall, crowd scatter, smoke or flame onset, concealment motion). A change that starts and ends inside the clip still counts fully.\n---\nSame frames, same call count, same directed path, same JSON response schema (is_anomalous/confidence/description) — ONLY prompt text changes. Zero latency cost. This is the admissible \"query quality\" lever; it is NOT a banned family (not an abs-conf gate, not merge/batch, not scan-density).\n\n!!! GATES (pre-registered) !!!\nLoop 1 (hard-88, cross-run vs FRESH same-session committed REF): PROMOTE-TO-290 iff point_delta >= +0.008 AND P(delta>0) >= 0.9 AND new hard mAP >= 0.11306. FM2 watch: flag if mean detections/video rises > +1. VOID if FCCS appears in either log.\nLoop 2 (full-290, only if Loop 1 passes): net-neutrality — delta >= -0.003 AND abs >= 0.16454 AND Normal-video FA-rate relative increase <= +2% (a \"find the most anomalous moment\" instruction may also raise Normal-video hallucination — measure it).\nPurpose population: report whether TCP produces detections overlapping the RA009 (GT 7-8s) and RA021 (GT 1-3s) intervals at IoU>=0.1 where REF has none.\n\nFM DISCIPLINE: FM5 the TCP block must be GREPPABLE in the produced log (log the block once per video alongside TCP-VID). FM17 TCP-VID unconditional per video on EVERY path incl. 0-detection and early-return-normal (mirror the CNV/SNH call sites). FM20 grep not claim. FM21 exact strings. FM18 absolute mAP. HARNESS BUG: --categories baked into every hard-88 command by the launcher; watcher verifies num_videos=88.\nQUEUE DISCIPLINE (load-bearing): another session's eval may be running. BEFORE EVERY batch_evaluate launch (incl. the self-test smoke): pgrep -f batch_evaluate; if anything is running, sleep 140 and re-check, up to 40 times (~90 min); only launch when clear. NEVER run two evals at once (16 GB swap-thrash, owner-diagnosed).\nHARD CONSTRAINTS: flag default OFF (flag-off byte-identical, prompt text bit-identical); CLI in BOTH run.py and batch_evaluate.py; evals FIXED --concurrency 2; StructuredOutput EXACTLY ONCE per agent; no Bash > ~150s except stated smokes.\n\nIMPLEMENT:\n1. Back up every file you touch to /Users/zzl/PycharmProjects/vad/.qoder/backups/v177/ FIRST; ls it.\n2. DiscoveryConfig: tcp_prompt (default False) + CLI --tcp_prompt in BOTH run.py and batch_evaluate.py, threaded through VADConfig.from_args. Flag-off byte-identical (prompt text bit-identical to committed).\n3. anomaly_discovery.py scan_segment (~L362): when the flag is on, APPEND the pre-registered TCP block (in CONTEXT) immediately BEFORE the \"Respond ONLY in JSON format\" line. Nothing else changes — same keyframes, same schema, same parser. Do NOT touch _comparative_call, the FCCS path, or kfd wiring.\n4. MARKER: TCP-VID unconditional per video on EVERY return path (segments scanned, tcp=on/off) incl. 0-detection and early-return-normal (mirror the CNV/SNH call sites in pipeline.py). When tcp_prompt is on, ALSO log the full TCP block once per video immediately after its TCP-VID line (FM5 greppability of \"Temporal reasoning instructions\").\n5. Bump the pipeline.py header to v177. Do NOT touch any committed default.\n\nHARD SELF-TEST (QUEUE-DISCIPLINED; paste ACTUAL output):\n  SMOKE ON: python3.14 -u -m video_anomaly_detection.batch_evaluate --dataset_dir /Users/zzl/Movies/ucf-crime --output_dir /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_selftest_on --max_per_category 1 --concurrency 1 --categories Shooting,RoadAccidents,Shoplifting,Explosion --bue_extension --qscore_rerank --cbt_tighten --cbt_recal --tcp_prompt  -> (a) grep -cF TCP-VID == #videos AND grep -cF \"Temporal reasoning instructions\" > 0 AND grep -cF FCCS == 0; (b) a log excerpt showing the TCP block inside an actual scan prompt.\n  SMOKE OFF: same command minus --tcp_prompt (output ..._selftest_off) -> the scan prompt is bit-identical to committed (diff a prompt excerpt on the same video).\n  (c) VLM call count identical on/off ([COST] lines).\nVALIDATE: py_compile; import MultiAnomalyVAD; --tcp_prompt in BOTH --help; DiscoveryConfig() defaults unchanged; from_args(Namespace()) == defaults.\nReturn implemented, selftest_passed, instrument_selftest (pasted), marker_vid, eval_flags, files_changed, validation, notes.",
+      "journalKey": "v2:0128cadbdabfc1c636c0e6222b8bd8e37d8df62fce3fbbf8b4767642baa3672b",
+      "state": "done",
+      "promptPreview": "You are Agent D1. Implement TCP exactly as pre-registered, then PROVE it. StructuredOutput EXACTLY ONCE.\n\nPROJECT: video anomaly detection + TEMPORAL LOCALIZATION on UCF-Crime. Repo /Users/zzl/Pycharm",
+      "startedAt": 1786849588618,
+      "attempt": 2,
+      "maxAttempts": 6,
+      "durationMs": 4001120,
+      "lastProgressAt": 1786853589716,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Record workflow structured output",
+      "recentToolActivities": [
+        "Bash(Show modified files in working tree)",
+        "Update Task(Updating task 22)",
+        "StructuredOutput(Record workflow structured output)"
+      ],
+      "toolCalls": 95,
+      "error": "workflow agent stalled after 180000ms without completing",
+      "agentId": "aworkflow-subagent-444b04068f5fd2a8",
+      "resultPreview": "{\"implemented\":true,\"selftest_passed\":true,\"instrument_selftest\":\"(a) SMOKE ON (results/v177_selftest_tcpON.out; 4 videos: Explosion002, RoadAccidents123, Shooting032, Shoplifting001):\\n  videos processed (DONE lines): 4 | grep -cF '[TCP-VID]' = 4 (== #videos) | grep -cF 'Temporal reasoning instructions' = 8 (>0) | grep -cF 'FCCS' = 0 | [TCP-BLOCK] = 4 | [TCP-PROMPT] = 4\\n  [TCP-VID] lines:\\n    11:42:30 [TCP-VID] vid=Explosion002_x264.mp4 tcp=on segments=10\\n    11:42:57 [TCP-VID] vid=RoadAccid",
+      "outputPath": "/var/folders/9h/f_2vxk4558n0kf9kxk0xthfc0000gn/T/qoder-cli-501/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/tasks/a862970b07fc28220.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-444b04068f5fd2a8.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-444b04068f5fd2a8.jsonl"
+      ],
+      "tokens": 9076380
+    },
+    {
+      "type": "workflow_log",
+      "message": "Phase 1: TCP verified. flags=--tcp_prompt (default OFF; opt-out --no_tcp_prompt; CLI present in BOTH run.py and batch_evaluate.py, threaded via VADConfig.from_args -> DiscoveryConfig.tcp_prompt -> AnomalyDiscovery(tcp_prompt=...)). Markers when ON: [TCP-VID] vid=<name> tcp=on segments=<n> once per video on EVERY return path (terminal slot, 0-detection no-candidates, early-return-normal); [TCP-BLOCK] full pre-registered block once per video immediately after [TCP-VID]; [TCP-PROMPT] first scanned segment's full actual prompt once per video. Loop-1/Loop-2 gates: hold directed path in both arms, require grep -cF 'FCCS' == 0 in both logs, verify num_videos=88 for hard-88.",
+      "timestamp": 1786853589738
+    },
+    {
+      "type": "workflow_agent",
+      "index": 2,
+      "label": "D-launch-ref88-v177",
+      "phaseIndex": 2,
+      "phaseTitle": "AB88",
+      "agentType": "workflow-subagent",
+      "prompt": "You are Agent D-launcher. Ensure the ref88 eval for v177 is running WITH THE REQUIRED FLAGS, then return IMMEDIATELY. SHORT; no Bash > 150s. StructuredOutput EXACTLY ONCE.\noutput_dir=/Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88 ; log=/Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88.log ; report=/Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88/evaluation_report.json\nREQUIRED FLAGS (verbatim): --categories Shooting,RoadAccidents,Shoplifting,Explosion --bue_extension --qscore_rerank --cbt_tighten --cbt_recal\n0. QUEUE DISCIPLINE FIRST: pgrep -f batch_evaluate; while anything is running, sleep 140 and re-check (up to 40x); report blocked only after that.\n1. Already running for this V_tag -> adopt if the flags match, else kill and relaunch. 2. report exists AND the log shows the required flags -> launched=true, note=\"already complete\". 3. A DIFFERENT version is running -> keep polling per step 0.\n4. Otherwise write /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88/COMMAND.txt and launch EXACTLY:\nbash -lc 'mkdir -p /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88; source /Users/zzl/PycharmProjects/vad/video_anomaly_detection/.env 2>/dev/null; export PYTHONUNBUFFERED=1; cd /Users/zzl/PycharmProjects/vad; nohup python3.14 -u -m video_anomaly_detection.batch_evaluate --dataset_dir /Users/zzl/Movies/ucf-crime --output_dir /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88 --max_per_category 999 --concurrency 2 --categories Shooting,RoadAccidents,Shoplifting,Explosion --bue_extension --qscore_rerank --cbt_tighten --cbt_recal > /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88.log 2>&1 & echo PID $!'\n5. sleep 30; tail -5 the log to catch an immediate Traceback. Return launched, note.",
+      "journalKey": "v2:fe97add66a2ed8ce9755a6bcd6e85263278907a244c4f91bfa92afe92b8edbd1",
+      "state": "done",
+      "promptPreview": "You are Agent D-launcher. Ensure the ref88 eval for v177 is running WITH THE REQUIRED FLAGS, then return IMMEDIATELY. SHORT; no Bash > 150s. StructuredOutput EXACTLY ONCE.\noutput_dir=/Users/zzl/Pychar",
+      "startedAt": 1786853589744,
+      "attempt": 1,
+      "durationMs": 99051,
+      "lastProgressAt": 1786853688774,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Record workflow structured output",
+      "recentToolActivities": [
+        "Bash(Launch v177 ref88 batch eval with required flags)",
+        "Bash(Wait 30s, check log tail and process alive)",
+        "StructuredOutput(Record workflow structured output)"
+      ],
+      "toolCalls": 6,
+      "agentId": "aworkflow-subagent-7125164f9eebbe65",
+      "resultPreview": "{\"launched\":true,\"note\":\"Launched v177 ref88 eval, PID 23345, with all required flags (--categories Shooting,RoadAccidents,Shoplifting,Explosion --bue_extension --qscore_rerank --cbt_tighten --cbt_recal). Queue was clear; no prior process/report. COMMAND.txt written to output_dir. 30s check: no Traceback; log shows category counts and CLIP ViT-L-14 loaded on mps; process alive. Log: /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88.log\"}",
+      "outputPath": "/var/folders/9h/f_2vxk4558n0kf9kxk0xthfc0000gn/T/qoder-cli-501/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/tasks/a0f27463c9e226d91.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-7125164f9eebbe65.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-7125164f9eebbe65.jsonl"
+      ],
+      "tokens": 170003
+    },
+    {
+      "type": "workflow_agent",
+      "index": 3,
+      "label": "D-watch-ref88-v177-0",
+      "phaseIndex": 2,
+      "phaseTitle": "AB88",
+      "agentType": "workflow-subagent",
+      "prompt": "You are Agent D-watcher for the ref88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88/evaluation_report.json exists -> done=true. Read mAP/AP@0.3/0.5/0.7/num_videos: python3.14 -c \"import json;d=json.load(open('/Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88/evaluation_report.json'));t=d['evaluation']['temporal_map'];ti=d['timing'];print(t['mAP'],t.get('AP@0.3'),t.get('AP@0.5'),t.get('AP@0.7'),ti.get('num_videos'))\" . num_videos MUST be 88 (else harness bug, say so loudly).\n   markers: VC=$(grep -cF \"QSCORE\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88.log 2>/dev/null) -> marker_count=VC. FCCC=$(grep -cF \"FCCS\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88.log 2>/dev/null) -> fccs_count=FCCC (MUST be 0 — the directed-path-constant pre-registration; nonzero = VOID-level confound, scream it in note). (REF arm: VC may be 0; FCCS must still be 0.)\n2. Else pgrep -f \"batch_evaluate.*batch_eval_v177_ref88\". Alive -> sleep 140 (up to 2x), then done=false note=\"running <n>/88\" (n = JSON count). STALLED >30min -> kill and relaunch the SAME nohup at --concurrency 2.\n3. Dead with no report -> tail -30 the log. TRANSIENT -> relaunch. CODE BUG -> crashed=true + traceback.\nReturn done, crashed, mAP, ap30, ap50, ap70, num_videos, marker_count, fccs_count, note.",
+      "journalKey": "v2:541efea98cc45c26352ac023bc3631250a3ccd24a63e459fff04e960a0e12d07",
+      "state": "done",
+      "promptPreview": "You are Agent D-watcher for the ref88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88/evaluati",
+      "startedAt": 1786853688799,
+      "attempt": 1,
+      "durationMs": 466301,
+      "lastProgressAt": 1786854154923,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Record workflow structured output",
+      "recentToolActivities": [
+        "Bash(Show QSCORE line context and process age)",
+        "Bash(Final marker counts and progress check)",
+        "StructuredOutput(Record workflow structured output)"
+      ],
+      "toolCalls": 9,
+      "agentId": "aworkflow-subagent-d3a943974429de86",
+      "resultPreview": "{\"done\":false,\"crashed\":false,\"mAP\":0,\"marker_count\":3,\"fccs_count\":0,\"num_videos\":88,\"note\":\"running 5/88 — batch_eval_v177_ref88 process (PID 23345) alive and advancing ([1/88] -> [5/88] over ~8 min; concurrency=2, ~1.5-2 min/video). No evaluation_report.json yet; mAP/AP fields unavailable (0 placeholder). Markers: QSCORE=3 (QSCORE-GATE rerank lines, benign), FCCS=0 — directed-path-constant pre-registration CLEAN, no VOID confound. Not stalled; no relaunch needed. Log: /Users/zzl/PycharmProjec",
+      "outputPath": "/var/folders/9h/f_2vxk4558n0kf9kxk0xthfc0000gn/T/qoder-cli-501/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/tasks/aff2a667c55783b75.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-d3a943974429de86.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-d3a943974429de86.jsonl"
+      ],
+      "tokens": 280003
+    },
+    {
+      "type": "workflow_agent",
+      "index": 4,
+      "label": "D-watch-ref88-v177-1",
+      "phaseIndex": 2,
+      "phaseTitle": "AB88",
+      "agentType": "workflow-subagent",
+      "prompt": "You are Agent D-watcher for the ref88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88/evaluation_report.json exists -> done=true. Read mAP/AP@0.3/0.5/0.7/num_videos: python3.14 -c \"import json;d=json.load(open('/Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88/evaluation_report.json'));t=d['evaluation']['temporal_map'];ti=d['timing'];print(t['mAP'],t.get('AP@0.3'),t.get('AP@0.5'),t.get('AP@0.7'),ti.get('num_videos'))\" . num_videos MUST be 88 (else harness bug, say so loudly).\n   markers: VC=$(grep -cF \"QSCORE\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88.log 2>/dev/null) -> marker_count=VC. FCCC=$(grep -cF \"FCCS\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88.log 2>/dev/null) -> fccs_count=FCCC (MUST be 0 — the directed-path-constant pre-registration; nonzero = VOID-level confound, scream it in note). (REF arm: VC may be 0; FCCS must still be 0.)\n2. Else pgrep -f \"batch_evaluate.*batch_eval_v177_ref88\". Alive -> sleep 140 (up to 2x), then done=false note=\"running <n>/88\" (n = JSON count). STALLED >30min -> kill and relaunch the SAME nohup at --concurrency 2.\n3. Dead with no report -> tail -30 the log. TRANSIENT -> relaunch. CODE BUG -> crashed=true + traceback.\nReturn done, crashed, mAP, ap30, ap50, ap70, num_videos, marker_count, fccs_count, note.",
+      "journalKey": "v2:fcaf43c9244c56036579eaeac14d3d2c3501faf13919bcff07d511e3018cfd8a",
+      "state": "done",
+      "promptPreview": "You are Agent D-watcher for the ref88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88/evaluati",
+      "startedAt": 1786854155102,
+      "attempt": 1,
+      "durationMs": 384807,
+      "lastProgressAt": 1786854539790,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Record workflow structured output",
+      "recentToolActivities": [
+        "Bash(Sleep 140s then re-check progress)",
+        "Bash(Sleep 140s then final progress check)",
+        "StructuredOutput(Record workflow structured output)"
+      ],
+      "toolCalls": 6,
+      "agentId": "aworkflow-subagent-d3d0049ed37797f6",
+      "resultPreview": "{\"done\":false,\"crashed\":false,\"mAP\":0,\"ap30\":0,\"ap50\":0,\"ap70\":0,\"num_videos\":15,\"marker_count\":15,\"fccs_count\":0,\"note\":\"running 15/88. Process PID 23345 alive (~14min elapsed), progressing steadily (4->10->15 across checks). FCCS=0 confirmed (no directed-path-constant confound). No evaluation_report.json yet.\"}",
+      "outputPath": "/var/folders/9h/f_2vxk4558n0kf9kxk0xthfc0000gn/T/qoder-cli-501/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/tasks/a41b78c4f5890a0f8.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-d3d0049ed37797f6.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-d3d0049ed37797f6.jsonl"
+      ],
+      "tokens": 170273
+    },
+    {
+      "type": "workflow_agent",
+      "index": 5,
+      "label": "D-watch-ref88-v177-2",
+      "phaseIndex": 2,
+      "phaseTitle": "AB88",
+      "agentType": "workflow-subagent",
+      "prompt": "You are Agent D-watcher for the ref88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88/evaluation_report.json exists -> done=true. Read mAP/AP@0.3/0.5/0.7/num_videos: python3.14 -c \"import json;d=json.load(open('/Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88/evaluation_report.json'));t=d['evaluation']['temporal_map'];ti=d['timing'];print(t['mAP'],t.get('AP@0.3'),t.get('AP@0.5'),t.get('AP@0.7'),ti.get('num_videos'))\" . num_videos MUST be 88 (else harness bug, say so loudly).\n   markers: VC=$(grep -cF \"QSCORE\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88.log 2>/dev/null) -> marker_count=VC. FCCC=$(grep -cF \"FCCS\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88.log 2>/dev/null) -> fccs_count=FCCC (MUST be 0 — the directed-path-constant pre-registration; nonzero = VOID-level confound, scream it in note). (REF arm: VC may be 0; FCCS must still be 0.)\n2. Else pgrep -f \"batch_evaluate.*batch_eval_v177_ref88\". Alive -> sleep 140 (up to 2x), then done=false note=\"running <n>/88\" (n = JSON count). STALLED >30min -> kill and relaunch the SAME nohup at --concurrency 2.\n3. Dead with no report -> tail -30 the log. TRANSIENT -> relaunch. CODE BUG -> crashed=true + traceback.\nReturn done, crashed, mAP, ap30, ap50, ap70, num_videos, marker_count, fccs_count, note.",
+      "journalKey": "v2:91c54f6b7e2f340fed11c4453a3c6c5e99db3bf8588981a2bdb94e8cf4e72d5e",
+      "state": "done",
+      "promptPreview": "You are Agent D-watcher for the ref88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88/evaluati",
+      "startedAt": 1786854539920,
+      "attempt": 1,
+      "durationMs": 405267,
+      "lastProgressAt": 1786854945048,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Record workflow structured output",
+      "recentToolActivities": [
+        "Bash(Second sleep 140s then re-check status)",
+        "Bash(Count QSCORE and FCCS markers in log)",
+        "StructuredOutput(Record workflow structured output)"
+      ],
+      "toolCalls": 7,
+      "agentId": "aworkflow-subagent-b3ace7bcf9087cb7",
+      "resultPreview": "{\"done\":false,\"crashed\":false,\"mAP\":0,\"ap30\":0,\"ap50\":0,\"ap70\":0,\"num_videos\":23,\"marker_count\":24,\"fccs_count\":0,\"note\":\"running 23/88 (process 23345 alive, progressing steadily 16->19->23 JSONs across two 140s watch cycles; currently encoding video ~[18-24]/88). FCCS=0 confirmed clean (directed-path-constant pre-registration holds). QSCORE markers present (24) on REF arm log. No report yet.\"}",
+      "outputPath": "/var/folders/9h/f_2vxk4558n0kf9kxk0xthfc0000gn/T/qoder-cli-501/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/tasks/a9c8e6e35e4fc4d4c.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-b3ace7bcf9087cb7.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-b3ace7bcf9087cb7.jsonl"
+      ],
+      "tokens": 203382
+    },
+    {
+      "type": "workflow_agent",
+      "index": 6,
+      "label": "D-watch-ref88-v177-3",
+      "phaseIndex": 2,
+      "phaseTitle": "AB88",
+      "agentType": "workflow-subagent",
+      "prompt": "You are Agent D-watcher for the ref88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88/evaluation_report.json exists -> done=true. Read mAP/AP@0.3/0.5/0.7/num_videos: python3.14 -c \"import json;d=json.load(open('/Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88/evaluation_report.json'));t=d['evaluation']['temporal_map'];ti=d['timing'];print(t['mAP'],t.get('AP@0.3'),t.get('AP@0.5'),t.get('AP@0.7'),ti.get('num_videos'))\" . num_videos MUST be 88 (else harness bug, say so loudly).\n   markers: VC=$(grep -cF \"QSCORE\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88.log 2>/dev/null) -> marker_count=VC. FCCC=$(grep -cF \"FCCS\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88.log 2>/dev/null) -> fccs_count=FCCC (MUST be 0 — the directed-path-constant pre-registration; nonzero = VOID-level confound, scream it in note). (REF arm: VC may be 0; FCCS must still be 0.)\n2. Else pgrep -f \"batch_evaluate.*batch_eval_v177_ref88\". Alive -> sleep 140 (up to 2x), then done=false note=\"running <n>/88\" (n = JSON count). STALLED >30min -> kill and relaunch the SAME nohup at --concurrency 2.\n3. Dead with no report -> tail -30 the log. TRANSIENT -> relaunch. CODE BUG -> crashed=true + traceback.\nReturn done, crashed, mAP, ap30, ap50, ap70, num_videos, marker_count, fccs_count, note.",
+      "journalKey": "v2:747456e4ca46a426fd4a43b60b3cb55060a382ae4b54a56e0e154f9f07f36461",
+      "state": "done",
+      "promptPreview": "You are Agent D-watcher for the ref88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88/evaluati",
+      "startedAt": 1786854945188,
+      "attempt": 1,
+      "durationMs": 408961,
+      "lastProgressAt": 1786855353993,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Record workflow structured output",
+      "recentToolActivities": [
+        "Bash(Second 140s sleep then re-check report and progress)",
+        "Bash(Fresh marker counts and JSON count)",
+        "StructuredOutput(Record workflow structured output)"
+      ],
+      "toolCalls": 6,
+      "agentId": "aworkflow-subagent-fd5dc323aad7b2e8",
+      "resultPreview": "{\"done\":false,\"crashed\":false,\"mAP\":0,\"marker_count\":40,\"fccs_count\":0,\"note\":\"running 40/88. Process PID 23345 alive and healthy (log active at 12:41:42, progressed 27->40 videos during 2x140s watches, ~25s/video at concurrency 2, ETA ~20min). No evaluation_report.json yet. FCCS count = 0 (directed-path-constant pre-registration clean). QSCORE markers = 40 (nonzero on REF arm, allowed). mAP/AP values unavailable until report is written.\"}",
+      "outputPath": "/var/folders/9h/f_2vxk4558n0kf9kxk0xthfc0000gn/T/qoder-cli-501/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/tasks/a2ac987c713eb9a66.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-fd5dc323aad7b2e8.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-fd5dc323aad7b2e8.jsonl"
+      ],
+      "tokens": 177662
+    },
+    {
+      "type": "workflow_agent",
+      "index": 7,
+      "label": "D-watch-ref88-v177-4",
+      "phaseIndex": 2,
+      "phaseTitle": "AB88",
+      "agentType": "workflow-subagent",
+      "prompt": "You are Agent D-watcher for the ref88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88/evaluation_report.json exists -> done=true. Read mAP/AP@0.3/0.5/0.7/num_videos: python3.14 -c \"import json;d=json.load(open('/Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88/evaluation_report.json'));t=d['evaluation']['temporal_map'];ti=d['timing'];print(t['mAP'],t.get('AP@0.3'),t.get('AP@0.5'),t.get('AP@0.7'),ti.get('num_videos'))\" . num_videos MUST be 88 (else harness bug, say so loudly).\n   markers: VC=$(grep -cF \"QSCORE\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88.log 2>/dev/null) -> marker_count=VC. FCCC=$(grep -cF \"FCCS\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88.log 2>/dev/null) -> fccs_count=FCCC (MUST be 0 — the directed-path-constant pre-registration; nonzero = VOID-level confound, scream it in note). (REF arm: VC may be 0; FCCS must still be 0.)\n2. Else pgrep -f \"batch_evaluate.*batch_eval_v177_ref88\". Alive -> sleep 140 (up to 2x), then done=false note=\"running <n>/88\" (n = JSON count). STALLED >30min -> kill and relaunch the SAME nohup at --concurrency 2.\n3. Dead with no report -> tail -30 the log. TRANSIENT -> relaunch. CODE BUG -> crashed=true + traceback.\nReturn done, crashed, mAP, ap30, ap50, ap70, num_videos, marker_count, fccs_count, note.",
+      "journalKey": "v2:866807c966a9c0e8c7cf9eb31e8c6de502c3d22b2c0412fec90e3da0a5644840",
+      "state": "done",
+      "promptPreview": "You are Agent D-watcher for the ref88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88/evaluati",
+      "startedAt": 1786855354162,
+      "attempt": 1,
+      "durationMs": 502081,
+      "lastProgressAt": 1786855856103,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Record workflow structured output",
+      "recentToolActivities": [
+        "Bash(Wait 120s then final progress check)",
+        "Bash(Final progress and marker check)",
+        "StructuredOutput(Record workflow structured output)"
+      ],
+      "toolCalls": 9,
+      "agentId": "aworkflow-subagent-6a28cd9482b54f9b",
+      "resultPreview": "{\"done\":false,\"crashed\":false,\"mAP\":0,\"ap30\":0,\"ap50\":0,\"ap70\":0,\"num_videos\":88,\"marker_count\":49,\"fccs_count\":0,\"note\":\"running 49/88. PID 23345 alive (~34min elapsed), steady progress across two watch cycles (42->48->49 per-video JSONs, ~23s/video, ETA ~15min). QSCORE markers=49 tracking JSONs 1:1. FCCS=0 — directed-path-constant pre-registration CLEAN, no confound. No evaluation_report.json yet; process healthy, not stalled, no relaunch needed. Two sleep-wait Bash calls were SIGTERM'd at the",
+      "outputPath": "/var/folders/9h/f_2vxk4558n0kf9kxk0xthfc0000gn/T/qoder-cli-501/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/tasks/a276cae70261084bb.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-6a28cd9482b54f9b.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-6a28cd9482b54f9b.jsonl"
+      ],
+      "tokens": 240636
+    },
+    {
+      "type": "workflow_agent",
+      "index": 8,
+      "label": "D-watch-ref88-v177-5",
+      "phaseIndex": 2,
+      "phaseTitle": "AB88",
+      "agentType": "workflow-subagent",
+      "prompt": "You are Agent D-watcher for the ref88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88/evaluation_report.json exists -> done=true. Read mAP/AP@0.3/0.5/0.7/num_videos: python3.14 -c \"import json;d=json.load(open('/Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88/evaluation_report.json'));t=d['evaluation']['temporal_map'];ti=d['timing'];print(t['mAP'],t.get('AP@0.3'),t.get('AP@0.5'),t.get('AP@0.7'),ti.get('num_videos'))\" . num_videos MUST be 88 (else harness bug, say so loudly).\n   markers: VC=$(grep -cF \"QSCORE\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88.log 2>/dev/null) -> marker_count=VC. FCCC=$(grep -cF \"FCCS\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88.log 2>/dev/null) -> fccs_count=FCCC (MUST be 0 — the directed-path-constant pre-registration; nonzero = VOID-level confound, scream it in note). (REF arm: VC may be 0; FCCS must still be 0.)\n2. Else pgrep -f \"batch_evaluate.*batch_eval_v177_ref88\". Alive -> sleep 140 (up to 2x), then done=false note=\"running <n>/88\" (n = JSON count). STALLED >30min -> kill and relaunch the SAME nohup at --concurrency 2.\n3. Dead with no report -> tail -30 the log. TRANSIENT -> relaunch. CODE BUG -> crashed=true + traceback.\nReturn done, crashed, mAP, ap30, ap50, ap70, num_videos, marker_count, fccs_count, note.",
+      "journalKey": "v2:98e712b9f08a3301dab7790e77287d531fca9eb40f8b064dc494422e688d8863",
+      "state": "done",
+      "promptPreview": "You are Agent D-watcher for the ref88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88/evaluati",
+      "startedAt": 1786855856256,
+      "attempt": 1,
+      "durationMs": 521231,
+      "lastProgressAt": 1786856377341,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Record workflow structured output",
+      "recentToolActivities": [
+        "Bash(Second 140s sleep then final status check)",
+        "Bash(Final status check: report, process, counts)",
+        "StructuredOutput(Record workflow structured output)"
+      ],
+      "toolCalls": 9,
+      "agentId": "aworkflow-subagent-e6dc3382a3e5dfee",
+      "resultPreview": "{\"done\":false,\"crashed\":false,\"mAP\":0,\"ap30\":0,\"ap50\":0,\"ap70\":0,\"num_videos\":0,\"marker_count\":58,\"fccs_count\":0,\"note\":\"running 58/88. Process PID 23345 ALIVE (~43min elapsed), actively progressing (52->56->58 per-video JSONs across checks, no stall; no kill/relaunch needed). evaluation_report.json not yet written. FCCS count = 0 (clean, no directed-path-constant confound). QSCORE markers = 58 matching completed videos (REF arm still emitting QSCORE lines). Both 140s sleeps were terminated by t",
+      "outputPath": "/var/folders/9h/f_2vxk4558n0kf9kxk0xthfc0000gn/T/qoder-cli-501/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/tasks/a52d9a55e1b1cee03.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-e6dc3382a3e5dfee.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-e6dc3382a3e5dfee.jsonl"
+      ],
+      "tokens": 238837
+    },
+    {
+      "type": "workflow_agent",
+      "index": 9,
+      "label": "D-watch-ref88-v177-6",
+      "phaseIndex": 2,
+      "phaseTitle": "AB88",
+      "agentType": "workflow-subagent",
+      "prompt": "You are Agent D-watcher for the ref88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88/evaluation_report.json exists -> done=true. Read mAP/AP@0.3/0.5/0.7/num_videos: python3.14 -c \"import json;d=json.load(open('/Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88/evaluation_report.json'));t=d['evaluation']['temporal_map'];ti=d['timing'];print(t['mAP'],t.get('AP@0.3'),t.get('AP@0.5'),t.get('AP@0.7'),ti.get('num_videos'))\" . num_videos MUST be 88 (else harness bug, say so loudly).\n   markers: VC=$(grep -cF \"QSCORE\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88.log 2>/dev/null) -> marker_count=VC. FCCC=$(grep -cF \"FCCS\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88.log 2>/dev/null) -> fccs_count=FCCC (MUST be 0 — the directed-path-constant pre-registration; nonzero = VOID-level confound, scream it in note). (REF arm: VC may be 0; FCCS must still be 0.)\n2. Else pgrep -f \"batch_evaluate.*batch_eval_v177_ref88\". Alive -> sleep 140 (up to 2x), then done=false note=\"running <n>/88\" (n = JSON count). STALLED >30min -> kill and relaunch the SAME nohup at --concurrency 2.\n3. Dead with no report -> tail -30 the log. TRANSIENT -> relaunch. CODE BUG -> crashed=true + traceback.\nReturn done, crashed, mAP, ap30, ap50, ap70, num_videos, marker_count, fccs_count, note.",
+      "journalKey": "v2:9ba91d579d7a7487fb6fa8271ce547e3c978c4cc00f42922e38b97e4ec581d88",
+      "state": "done",
+      "promptPreview": "You are Agent D-watcher for the ref88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88/evaluati",
+      "startedAt": 1786856377489,
+      "attempt": 1,
+      "durationMs": 405267,
+      "lastProgressAt": 1786856782584,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Record workflow structured output",
+      "recentToolActivities": [
+        "Bash(Sleep 140s then re-check progress and process status)",
+        "Bash(Sleep 140s, re-check progress, markers, and log tail)",
+        "StructuredOutput(Record workflow structured output)"
+      ],
+      "toolCalls": 5,
+      "agentId": "aworkflow-subagent-3f84bf767f9ce5d6",
+      "resultPreview": "{\"done\":false,\"crashed\":false,\"mAP\":0,\"marker_count\":62,\"fccs_count\":0,\"note\":\"running 62/88. Process ALIVE (PID 23345), progress 58->62 across two 140s waits, log actively updating (13:06). evaluation_report.json not yet written, so mAP/AP values pending. FCCS count = 0 (pre-registration constraint satisfied); QSCORE markers = 62 consistent with REF-arm progress. No stall, no crash.\"}",
+      "outputPath": "/var/folders/9h/f_2vxk4558n0kf9kxk0xthfc0000gn/T/qoder-cli-501/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/tasks/a73b1a3d1308d936c.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-3f84bf767f9ce5d6.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-3f84bf767f9ce5d6.jsonl"
+      ],
+      "tokens": 154059
+    },
+    {
+      "type": "workflow_agent",
+      "index": 10,
+      "label": "D-watch-ref88-v177-7",
+      "phaseIndex": 2,
+      "phaseTitle": "AB88",
+      "agentType": "workflow-subagent",
+      "prompt": "You are Agent D-watcher for the ref88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88/evaluation_report.json exists -> done=true. Read mAP/AP@0.3/0.5/0.7/num_videos: python3.14 -c \"import json;d=json.load(open('/Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88/evaluation_report.json'));t=d['evaluation']['temporal_map'];ti=d['timing'];print(t['mAP'],t.get('AP@0.3'),t.get('AP@0.5'),t.get('AP@0.7'),ti.get('num_videos'))\" . num_videos MUST be 88 (else harness bug, say so loudly).\n   markers: VC=$(grep -cF \"QSCORE\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88.log 2>/dev/null) -> marker_count=VC. FCCC=$(grep -cF \"FCCS\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88.log 2>/dev/null) -> fccs_count=FCCC (MUST be 0 — the directed-path-constant pre-registration; nonzero = VOID-level confound, scream it in note). (REF arm: VC may be 0; FCCS must still be 0.)\n2. Else pgrep -f \"batch_evaluate.*batch_eval_v177_ref88\". Alive -> sleep 140 (up to 2x), then done=false note=\"running <n>/88\" (n = JSON count). STALLED >30min -> kill and relaunch the SAME nohup at --concurrency 2.\n3. Dead with no report -> tail -30 the log. TRANSIENT -> relaunch. CODE BUG -> crashed=true + traceback.\nReturn done, crashed, mAP, ap30, ap50, ap70, num_videos, marker_count, fccs_count, note.",
+      "journalKey": "v2:d082db1ff4bb5192db08a4f1c7e8e25ccede0b5e19d66f05fb8708060f5e1c72",
+      "state": "done",
+      "promptPreview": "You are Agent D-watcher for the ref88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88/evaluati",
+      "startedAt": 1786856782775,
+      "attempt": 1,
+      "durationMs": 410357,
+      "lastProgressAt": 1786857192999,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Record workflow structured output",
+      "recentToolActivities": [
+        "Bash(Wait 110s then re-check report, progress, process)",
+        "Bash(Count QSCORE and FCCS markers in log, view tail)",
+        "StructuredOutput(Record workflow structured output)"
+      ],
+      "toolCalls": 7,
+      "agentId": "aworkflow-subagent-524e1a416d9c8f86",
+      "resultPreview": "{\"done\":false,\"crashed\":false,\"mAP\":0,\"ap30\":0,\"ap50\":0,\"ap70\":0,\"num_videos\":88,\"marker_count\":66,\"fccs_count\":0,\"note\":\"running 66/88 (JSON count). Process ALIVE (PID 23345), not stalled: progressed 63->66 over two 140s/110s watch cycles; log tail shows [67/88] DONE Shooting048_x264 and [69/88] START Shoplifting004_x264 at 13:12:37, ~90-130s per video => roughly 25-45 min to completion. FCCS=0 (clean, no directed-path-constant confound); QSCORE markers=66 matching completed videos. evaluation_",
+      "outputPath": "/var/folders/9h/f_2vxk4558n0kf9kxk0xthfc0000gn/T/qoder-cli-501/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/tasks/a9692d7ab41fb45c8.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-524e1a416d9c8f86.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-524e1a416d9c8f86.jsonl"
+      ],
+      "tokens": 219052
+    },
+    {
+      "type": "workflow_agent",
+      "index": 11,
+      "label": "D-watch-ref88-v177-8",
+      "phaseIndex": 2,
+      "phaseTitle": "AB88",
+      "agentType": "workflow-subagent",
+      "prompt": "You are Agent D-watcher for the ref88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88/evaluation_report.json exists -> done=true. Read mAP/AP@0.3/0.5/0.7/num_videos: python3.14 -c \"import json;d=json.load(open('/Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88/evaluation_report.json'));t=d['evaluation']['temporal_map'];ti=d['timing'];print(t['mAP'],t.get('AP@0.3'),t.get('AP@0.5'),t.get('AP@0.7'),ti.get('num_videos'))\" . num_videos MUST be 88 (else harness bug, say so loudly).\n   markers: VC=$(grep -cF \"QSCORE\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88.log 2>/dev/null) -> marker_count=VC. FCCC=$(grep -cF \"FCCS\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88.log 2>/dev/null) -> fccs_count=FCCC (MUST be 0 — the directed-path-constant pre-registration; nonzero = VOID-level confound, scream it in note). (REF arm: VC may be 0; FCCS must still be 0.)\n2. Else pgrep -f \"batch_evaluate.*batch_eval_v177_ref88\". Alive -> sleep 140 (up to 2x), then done=false note=\"running <n>/88\" (n = JSON count). STALLED >30min -> kill and relaunch the SAME nohup at --concurrency 2.\n3. Dead with no report -> tail -30 the log. TRANSIENT -> relaunch. CODE BUG -> crashed=true + traceback.\nReturn done, crashed, mAP, ap30, ap50, ap70, num_videos, marker_count, fccs_count, note.",
+      "journalKey": "v2:956a5faefda02df45990b9a2701ce11798219e689bb6dcf15a3c3ab8310b67af",
+      "state": "done",
+      "promptPreview": "You are Agent D-watcher for the ref88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88/evaluati",
+      "startedAt": 1786857193146,
+      "attempt": 1,
+      "durationMs": 459283,
+      "lastProgressAt": 1786857652288,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Record workflow structured output",
+      "recentToolActivities": [
+        "Bash(Sleep 120s then re-check report, progress, process)",
+        "Bash(Count QSCORE and FCCS markers in log)",
+        "StructuredOutput(Record workflow structured output)"
+      ],
+      "toolCalls": 9,
+      "agentId": "aworkflow-subagent-b2496d972b7b4586",
+      "resultPreview": "{\"done\":false,\"crashed\":false,\"mAP\":0,\"marker_count\":73,\"fccs_count\":0,\"note\":\"running 74/88. Process ALIVE (PID 23345), progressing steadily (~3-4 videos per 2 min: 67 -> 70 -> 74 over two wait cycles). No evaluation_report.json yet, so mAP/AP values unavailable (mAP=0 placeholder). FCCS=0 (directed-path-constant pre-registration CLEAN, no void-level confound). QSCORE markers=73 (consistent with 74 completed in-flight video). No stall: log tail shows active CLIP/VideoMAE/MIL stage output as of ",
+      "outputPath": "/var/folders/9h/f_2vxk4558n0kf9kxk0xthfc0000gn/T/qoder-cli-501/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/tasks/a568f45236c6cf394.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-b2496d972b7b4586.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-b2496d972b7b4586.jsonl"
+      ],
+      "tokens": 256789
+    },
+    {
+      "type": "workflow_agent",
+      "index": 12,
+      "label": "D-watch-ref88-v177-9",
+      "phaseIndex": 2,
+      "phaseTitle": "AB88",
+      "agentType": "workflow-subagent",
+      "prompt": "You are Agent D-watcher for the ref88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88/evaluation_report.json exists -> done=true. Read mAP/AP@0.3/0.5/0.7/num_videos: python3.14 -c \"import json;d=json.load(open('/Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88/evaluation_report.json'));t=d['evaluation']['temporal_map'];ti=d['timing'];print(t['mAP'],t.get('AP@0.3'),t.get('AP@0.5'),t.get('AP@0.7'),ti.get('num_videos'))\" . num_videos MUST be 88 (else harness bug, say so loudly).\n   markers: VC=$(grep -cF \"QSCORE\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88.log 2>/dev/null) -> marker_count=VC. FCCC=$(grep -cF \"FCCS\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88.log 2>/dev/null) -> fccs_count=FCCC (MUST be 0 — the directed-path-constant pre-registration; nonzero = VOID-level confound, scream it in note). (REF arm: VC may be 0; FCCS must still be 0.)\n2. Else pgrep -f \"batch_evaluate.*batch_eval_v177_ref88\". Alive -> sleep 140 (up to 2x), then done=false note=\"running <n>/88\" (n = JSON count). STALLED >30min -> kill and relaunch the SAME nohup at --concurrency 2.\n3. Dead with no report -> tail -30 the log. TRANSIENT -> relaunch. CODE BUG -> crashed=true + traceback.\nReturn done, crashed, mAP, ap30, ap50, ap70, num_videos, marker_count, fccs_count, note.",
+      "journalKey": "v2:ff067e5128521dd0b08c795eb57086dfe6fc01c585014af7d17036ba6bcb3ddf",
+      "state": "done",
+      "promptPreview": "You are Agent D-watcher for the ref88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88/evaluati",
+      "startedAt": 1786857652443,
+      "attempt": 1,
+      "durationMs": 407005,
+      "lastProgressAt": 1786858059292,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Record workflow structured output",
+      "recentToolActivities": [
+        "Bash(Sleep 120s then re-check report, count, process)",
+        "Bash(Final marker counts and JSON count)",
+        "StructuredOutput(Record workflow structured output)"
+      ],
+      "toolCalls": 7,
+      "agentId": "aworkflow-subagent-b7131775ae7eee80",
+      "resultPreview": "{\"done\":false,\"crashed\":false,\"marker_count\":81,\"fccs_count\":0,\"note\":\"running 82/88. Process PID 23345 alive and progressing (74 -> 82 JSONs over ~4 min watch window); no evaluation_report.json yet. FCCS=0: directed-path-constant pre-registration clean, no confound. VC(QSCORE)=81 tracks progress (REF arm tolerant of low VC). Not stalled; no relaunch needed. Re-poll shortly for final report.\",\"num_videos\":82,\"mAP\":0}",
+      "outputPath": "/var/folders/9h/f_2vxk4558n0kf9kxk0xthfc0000gn/T/qoder-cli-501/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/tasks/a3394a5c404b656e3.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-b7131775ae7eee80.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-b7131775ae7eee80.jsonl"
+      ],
+      "tokens": 174187
+    },
+    {
+      "type": "workflow_agent",
+      "index": 13,
+      "label": "D-watch-ref88-v177-10",
+      "phaseIndex": 2,
+      "phaseTitle": "AB88",
+      "agentType": "workflow-subagent",
+      "prompt": "You are Agent D-watcher for the ref88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88/evaluation_report.json exists -> done=true. Read mAP/AP@0.3/0.5/0.7/num_videos: python3.14 -c \"import json;d=json.load(open('/Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88/evaluation_report.json'));t=d['evaluation']['temporal_map'];ti=d['timing'];print(t['mAP'],t.get('AP@0.3'),t.get('AP@0.5'),t.get('AP@0.7'),ti.get('num_videos'))\" . num_videos MUST be 88 (else harness bug, say so loudly).\n   markers: VC=$(grep -cF \"QSCORE\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88.log 2>/dev/null) -> marker_count=VC. FCCC=$(grep -cF \"FCCS\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88.log 2>/dev/null) -> fccs_count=FCCC (MUST be 0 — the directed-path-constant pre-registration; nonzero = VOID-level confound, scream it in note). (REF arm: VC may be 0; FCCS must still be 0.)\n2. Else pgrep -f \"batch_evaluate.*batch_eval_v177_ref88\". Alive -> sleep 140 (up to 2x), then done=false note=\"running <n>/88\" (n = JSON count). STALLED >30min -> kill and relaunch the SAME nohup at --concurrency 2.\n3. Dead with no report -> tail -30 the log. TRANSIENT -> relaunch. CODE BUG -> crashed=true + traceback.\nReturn done, crashed, mAP, ap30, ap50, ap70, num_videos, marker_count, fccs_count, note.",
+      "journalKey": "v2:b02548ad874a168f1e0ab02f5c3c6c9268b69e5874848698fd7d703b2108db4b",
+      "state": "done",
+      "promptPreview": "You are Agent D-watcher for the ref88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88/evaluati",
+      "startedAt": 1786858059470,
+      "attempt": 1,
+      "durationMs": 448359,
+      "lastProgressAt": 1786858507546,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Record workflow structured output",
+      "recentToolActivities": [
+        "Bash(Sleep 140s then re-check for final report)",
+        "Bash(Check report, progress, process and markers)",
+        "StructuredOutput(Record workflow structured output)"
+      ],
+      "toolCalls": 6,
+      "agentId": "aworkflow-subagent-c07a705795502362",
+      "resultPreview": "{\"done\":false,\"crashed\":false,\"marker_count\":84,\"fccs_count\":0,\"note\":\"running 85/88 — batch_evaluate PID 23345 alive (etime ~1h16m), actively progressing (82->85 JSONs across two 140s waits, last log write 13:26+). No evaluation_report.json yet. FCCS=0: directed-path-constant pre-registration CLEAN, no VOID-level confound. QSCORE markers=84 (REF arm, nonzero OK). No stall (>30min) observed, no kill/relaunch needed. Expect completion within ~5-10 min at current rate (3 videos remain).\",\"num_vide",
+      "outputPath": "/var/folders/9h/f_2vxk4558n0kf9kxk0xthfc0000gn/T/qoder-cli-501/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/tasks/a6d90b531dec282a7.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-c07a705795502362.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-c07a705795502362.jsonl"
+      ],
+      "tokens": 201604
+    },
+    {
+      "type": "workflow_agent",
+      "index": 14,
+      "label": "D-watch-ref88-v177-11",
+      "phaseIndex": 2,
+      "phaseTitle": "AB88",
+      "agentType": "workflow-subagent",
+      "prompt": "You are Agent D-watcher for the ref88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88/evaluation_report.json exists -> done=true. Read mAP/AP@0.3/0.5/0.7/num_videos: python3.14 -c \"import json;d=json.load(open('/Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88/evaluation_report.json'));t=d['evaluation']['temporal_map'];ti=d['timing'];print(t['mAP'],t.get('AP@0.3'),t.get('AP@0.5'),t.get('AP@0.7'),ti.get('num_videos'))\" . num_videos MUST be 88 (else harness bug, say so loudly).\n   markers: VC=$(grep -cF \"QSCORE\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88.log 2>/dev/null) -> marker_count=VC. FCCC=$(grep -cF \"FCCS\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88.log 2>/dev/null) -> fccs_count=FCCC (MUST be 0 — the directed-path-constant pre-registration; nonzero = VOID-level confound, scream it in note). (REF arm: VC may be 0; FCCS must still be 0.)\n2. Else pgrep -f \"batch_evaluate.*batch_eval_v177_ref88\". Alive -> sleep 140 (up to 2x), then done=false note=\"running <n>/88\" (n = JSON count). STALLED >30min -> kill and relaunch the SAME nohup at --concurrency 2.\n3. Dead with no report -> tail -30 the log. TRANSIENT -> relaunch. CODE BUG -> crashed=true + traceback.\nReturn done, crashed, mAP, ap30, ap50, ap70, num_videos, marker_count, fccs_count, note.",
+      "journalKey": "v2:9fec8f43a39cd3bc13a31b9a3b50e4d3f8db8d251def060e3925299d2ac8e063",
+      "state": "done",
+      "promptPreview": "You are Agent D-watcher for the ref88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88/evaluati",
+      "startedAt": 1786858507848,
+      "attempt": 1,
+      "durationMs": 278047,
+      "lastProgressAt": 1786858785866,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Record workflow structured output",
+      "recentToolActivities": [
+        "Bash(Read mAP and AP metrics from report)",
+        "Bash(Count QSCORE and FCCS markers in log)",
+        "StructuredOutput(Record workflow structured output)"
+      ],
+      "toolCalls": 8,
+      "agentId": "aworkflow-subagent-d7b60da85434ca82",
+      "resultPreview": "{\"done\":true,\"crashed\":false,\"mAP\":0.12202959548756541,\"ap30\":0.2171236448504958,\"ap50\":0.12623786888492772,\"ap70\":0.022727272727272728,\"num_videos\":88,\"marker_count\":87,\"fccs_count\":0,\"note\":\"Report completed during watch window. num_videos=88 as expected (no harness bug). FCCS=0 — pre-registration clean, no directed-path-constant confound. QSCORE markers=87 (REF arm; 87/88 videos logged QSCORE, acceptable). mAP=0.1220, AP@0.3=0.2171, AP@0.5=0.1262, AP@0.7=0.0227. Report: /Users/zzl/PycharmProj",
+      "outputPath": "/var/folders/9h/f_2vxk4558n0kf9kxk0xthfc0000gn/T/qoder-cli-501/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/tasks/add85bb90f3f97eb3.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-d7b60da85434ca82.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-d7b60da85434ca82.jsonl"
+      ],
+      "tokens": 201757
+    },
+    {
+      "type": "workflow_log",
+      "message": "REF88: done=true mAP=0.12202959548756541 n=88 fccs=0 Report completed during watch window. num_videos=88 as expected (no harness bug). FCCS=0 — pre-registration clean, no directed-path-constant confound. QSCORE markers=87 (REF arm; 87/88 videos logged QSCORE, acceptable). mAP=0.1220, AP@0.3=0.2171, AP@0.5=0.1262, AP@0.7=0.0227. Report: /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88/evaluation_report.json",
+      "timestamp": 1786858785895
+    },
+    {
+      "type": "workflow_agent",
+      "index": 15,
+      "label": "D-launch-tcp88-v177",
+      "phaseIndex": 2,
+      "phaseTitle": "AB88",
+      "agentType": "workflow-subagent",
+      "prompt": "You are Agent D-launcher. Ensure the tcp88 eval for v177 is running WITH THE REQUIRED FLAGS, then return IMMEDIATELY. SHORT; no Bash > 150s. StructuredOutput EXACTLY ONCE.\noutput_dir=/Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88 ; log=/Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88.log ; report=/Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88/evaluation_report.json\nREQUIRED FLAGS (verbatim): --categories Shooting,RoadAccidents,Shoplifting,Explosion --tcp_prompt (default OFF; opt-out --no_tcp_prompt; CLI present in BOTH run.py and batch_evaluate.py, threaded via VADConfig.from_args -> DiscoveryConfig.tcp_prompt -> AnomalyDiscovery(tcp_prompt=...)). Markers when ON: [TCP-VID] vid=<name> tcp=on segments=<n> once per video on EVERY return path (terminal slot, 0-detection no-candidates, early-return-normal); [TCP-BLOCK] full pre-registered block once per video immediately after [TCP-VID]; [TCP-PROMPT] first scanned segment's full actual prompt once per video. Loop-1/Loop-2 gates: hold directed path in both arms, require grep -cF 'FCCS' == 0 in both logs, verify num_videos=88 for hard-88.\n0. QUEUE DISCIPLINE FIRST: pgrep -f batch_evaluate; while anything is running, sleep 140 and re-check (up to 40x); report blocked only after that.\n1. Already running for this V_tag -> adopt if the flags match, else kill and relaunch. 2. report exists AND the log shows the required flags -> launched=true, note=\"already complete\". 3. A DIFFERENT version is running -> keep polling per step 0.\n4. Otherwise write /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88/COMMAND.txt and launch EXACTLY:\nbash -lc 'mkdir -p /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88; source /Users/zzl/PycharmProjects/vad/video_anomaly_detection/.env 2>/dev/null; export PYTHONUNBUFFERED=1; cd /Users/zzl/PycharmProjects/vad; nohup python3.14 -u -m video_anomaly_detection.batch_evaluate --dataset_dir /Users/zzl/Movies/ucf-crime --output_dir /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88 --max_per_category 999 --concurrency 2 --categories Shooting,RoadAccidents,Shoplifting,Explosion --tcp_prompt (default OFF; opt-out --no_tcp_prompt; CLI present in BOTH run.py and batch_evaluate.py, threaded via VADConfig.from_args -> DiscoveryConfig.tcp_prompt -> AnomalyDiscovery(tcp_prompt=...)). Markers when ON: [TCP-VID] vid=<name> tcp=on segments=<n> once per video on EVERY return path (terminal slot, 0-detection no-candidates, early-return-normal); [TCP-BLOCK] full pre-registered block once per video immediately after [TCP-VID]; [TCP-PROMPT] first scanned segment's full actual prompt once per video. Loop-1/Loop-2 gates: hold directed path in both arms, require grep -cF 'FCCS' == 0 in both logs, verify num_videos=88 for hard-88. > /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88.log 2>&1 & echo PID $!'\n5. sleep 30; tail -5 the log to catch an immediate Traceback. Return launched, note.",
+      "journalKey": "v2:4b06b35a4c441c4052f73a5d94c0e25cf8a6533b8057a7275c50382e5112b968",
+      "state": "done",
+      "promptPreview": "You are Agent D-launcher. Ensure the tcp88 eval for v177 is running WITH THE REQUIRED FLAGS, then return IMMEDIATELY. SHORT; no Bash > 150s. StructuredOutput EXACTLY ONCE.\noutput_dir=/Users/zzl/Pychar",
+      "startedAt": 1786858785895,
+      "attempt": 1,
+      "durationMs": 183406,
+      "lastProgressAt": 1786858969276,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Record workflow structured output",
+      "recentToolActivities": [
+        "Bash(Launch v177 tcp88 batch eval with required flags)",
+        "Bash(Wait 30s, verify process alive and tail log)",
+        "StructuredOutput(Record workflow structured output)"
+      ],
+      "toolCalls": 8,
+      "agentId": "aworkflow-subagent-ce9fa7ecaee759a0",
+      "resultPreview": "{\"launched\":true,\"note\":\"Launched fresh (queue was empty, no prior report/log). PID 57963 alive after 30s; log shows category selection (Shoplifting 21/21 etc.) and CLIP loading, no Traceback. Running cmd verified with required flags: --categories Shooting,RoadAccidents,Shoplifting,Explosion --tcp_prompt. COMMAND.txt written to /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88/COMMAND.txt; log at /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88.log.\"}",
+      "outputPath": "/var/folders/9h/f_2vxk4558n0kf9kxk0xthfc0000gn/T/qoder-cli-501/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/tasks/a330e681b114f716b.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-ce9fa7ecaee759a0.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-ce9fa7ecaee759a0.jsonl"
+      ],
+      "tokens": 179591
+    },
+    {
+      "type": "workflow_agent",
+      "index": 16,
+      "label": "D-watch-tcp88-v177-0",
+      "phaseIndex": 2,
+      "phaseTitle": "AB88",
+      "agentType": "workflow-subagent",
+      "prompt": "You are Agent D-watcher for the tcp88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88/evaluation_report.json exists -> done=true. Read mAP/AP@0.3/0.5/0.7/num_videos: python3.14 -c \"import json;d=json.load(open('/Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88/evaluation_report.json'));t=d['evaluation']['temporal_map'];ti=d['timing'];print(t['mAP'],t.get('AP@0.3'),t.get('AP@0.5'),t.get('AP@0.7'),ti.get('num_videos'))\" . num_videos MUST be 88 (else harness bug, say so loudly).\n   markers: VC=$(grep -cF \"TCP-VID\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88.log 2>/dev/null) -> marker_count=VC. FCCC=$(grep -cF \"FCCS\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88.log 2>/dev/null) -> fccs_count=FCCC (MUST be 0 — the directed-path-constant pre-registration; nonzero = VOID-level confound, scream it in note). VC must be ~88 (FM17) and the log must show the TCP block (FM5).\n2. Else pgrep -f \"batch_evaluate.*batch_eval_v177_tcp88\". Alive -> sleep 140 (up to 2x), then done=false note=\"running <n>/88\" (n = JSON count). STALLED >30min -> kill and relaunch the SAME nohup at --concurrency 2.\n3. Dead with no report -> tail -30 the log. TRANSIENT -> relaunch. CODE BUG -> crashed=true + traceback.\nReturn done, crashed, mAP, ap30, ap50, ap70, num_videos, marker_count, fccs_count, note.",
+      "journalKey": "v2:219e9ed9e3465757524c52c943b247e515e1910146d7d0594bd570a045fb5900",
+      "state": "done",
+      "promptPreview": "You are Agent D-watcher for the tcp88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88/evaluati",
+      "startedAt": 1786858969301,
+      "attempt": 1,
+      "durationMs": 493604,
+      "lastProgressAt": 1786859462698,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Record workflow structured output",
+      "recentToolActivities": [
+        "Bash(Check process, report, and log tail)",
+        "Bash(List result files and count TCP-VID and FCCS markers in log)",
+        "StructuredOutput(Record workflow structured output)"
+      ],
+      "toolCalls": 10,
+      "agentId": "aworkflow-subagent-8e5329005d16872c",
+      "resultPreview": "{\"done\":false,\"crashed\":false,\"mAP\":0,\"ap30\":0,\"ap50\":0,\"ap70\":0,\"num_videos\":0,\"marker_count\":1,\"fccs_count\":0,\"note\":\"running 1/88. Process PID 57963 alive and actively logging (last entry 13:49:30, Explosion002_x264.json written; run began ~13:41, ~9min elapsed, far from 30-min stall threshold — no kill/relaunch). evaluation_report.json not yet present. Main log batch_eval_v177_tcp88.log shows TCP-VID marker count=1 so far (ramping toward ~88, FM17 OK at this stage) and FCCS count=0 — directe",
+      "outputPath": "/var/folders/9h/f_2vxk4558n0kf9kxk0xthfc0000gn/T/qoder-cli-501/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/tasks/ae9259d76082e2b80.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-8e5329005d16872c.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-8e5329005d16872c.jsonl"
+      ],
+      "tokens": 277121
+    },
+    {
+      "type": "workflow_agent",
+      "index": 17,
+      "label": "D-watch-tcp88-v177-1",
+      "phaseIndex": 2,
+      "phaseTitle": "AB88",
+      "agentType": "workflow-subagent",
+      "prompt": "You are Agent D-watcher for the tcp88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88/evaluation_report.json exists -> done=true. Read mAP/AP@0.3/0.5/0.7/num_videos: python3.14 -c \"import json;d=json.load(open('/Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88/evaluation_report.json'));t=d['evaluation']['temporal_map'];ti=d['timing'];print(t['mAP'],t.get('AP@0.3'),t.get('AP@0.5'),t.get('AP@0.7'),ti.get('num_videos'))\" . num_videos MUST be 88 (else harness bug, say so loudly).\n   markers: VC=$(grep -cF \"TCP-VID\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88.log 2>/dev/null) -> marker_count=VC. FCCC=$(grep -cF \"FCCS\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88.log 2>/dev/null) -> fccs_count=FCCC (MUST be 0 — the directed-path-constant pre-registration; nonzero = VOID-level confound, scream it in note). VC must be ~88 (FM17) and the log must show the TCP block (FM5).\n2. Else pgrep -f \"batch_evaluate.*batch_eval_v177_tcp88\". Alive -> sleep 140 (up to 2x), then done=false note=\"running <n>/88\" (n = JSON count). STALLED >30min -> kill and relaunch the SAME nohup at --concurrency 2.\n3. Dead with no report -> tail -30 the log. TRANSIENT -> relaunch. CODE BUG -> crashed=true + traceback.\nReturn done, crashed, mAP, ap30, ap50, ap70, num_videos, marker_count, fccs_count, note.",
+      "journalKey": "v2:46c8b7a6ba007fc66ae18e58277a25cc243442ba4662c2ae8e6dcb3a442cb442",
+      "state": "done",
+      "promptPreview": "You are Agent D-watcher for the tcp88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88/evaluati",
+      "startedAt": 1786859462907,
+      "attempt": 1,
+      "durationMs": 440272,
+      "lastProgressAt": 1786859903155,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Record workflow structured output",
+      "recentToolActivities": [
+        "Bash(Sleep 110s then re-check process, progress, markers)",
+        "Bash(Final check of process, progress, markers)",
+        "StructuredOutput(Record workflow structured output)"
+      ],
+      "toolCalls": 8,
+      "agentId": "aworkflow-subagent-1d14a630044b2917",
+      "resultPreview": "{\"done\":false,\"crashed\":false,\"mAP\":0,\"marker_count\":8,\"fccs_count\":0,\"note\":\"running 8/88 (process ALIVE, pid pgrep match; log at [10/88] START, 8 per-video JSONs done). Progressing healthily across two ~120s waits (4->7->10 starts); not stalled. fccs_count=0 (pre-registration clean, no directed-path-constant confound). TCP-VID markers=8, tracking completions as expected. No evaluation_report.json yet; mAP pending.\"}",
+      "outputPath": "/var/folders/9h/f_2vxk4558n0kf9kxk0xthfc0000gn/T/qoder-cli-501/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/tasks/af3e0f4c180d0da29.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-1d14a630044b2917.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-1d14a630044b2917.jsonl"
+      ],
+      "tokens": 209074
+    },
+    {
+      "type": "workflow_agent",
+      "index": 18,
+      "label": "D-watch-tcp88-v177-2",
+      "phaseIndex": 2,
+      "phaseTitle": "AB88",
+      "agentType": "workflow-subagent",
+      "prompt": "You are Agent D-watcher for the tcp88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88/evaluation_report.json exists -> done=true. Read mAP/AP@0.3/0.5/0.7/num_videos: python3.14 -c \"import json;d=json.load(open('/Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88/evaluation_report.json'));t=d['evaluation']['temporal_map'];ti=d['timing'];print(t['mAP'],t.get('AP@0.3'),t.get('AP@0.5'),t.get('AP@0.7'),ti.get('num_videos'))\" . num_videos MUST be 88 (else harness bug, say so loudly).\n   markers: VC=$(grep -cF \"TCP-VID\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88.log 2>/dev/null) -> marker_count=VC. FCCC=$(grep -cF \"FCCS\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88.log 2>/dev/null) -> fccs_count=FCCC (MUST be 0 — the directed-path-constant pre-registration; nonzero = VOID-level confound, scream it in note). VC must be ~88 (FM17) and the log must show the TCP block (FM5).\n2. Else pgrep -f \"batch_evaluate.*batch_eval_v177_tcp88\". Alive -> sleep 140 (up to 2x), then done=false note=\"running <n>/88\" (n = JSON count). STALLED >30min -> kill and relaunch the SAME nohup at --concurrency 2.\n3. Dead with no report -> tail -30 the log. TRANSIENT -> relaunch. CODE BUG -> crashed=true + traceback.\nReturn done, crashed, mAP, ap30, ap50, ap70, num_videos, marker_count, fccs_count, note.",
+      "journalKey": "v2:8f97576625d1f5bded869cd7bb3c4a6a213875967b41a5af5dccb824257c1952",
+      "state": "done",
+      "promptPreview": "You are Agent D-watcher for the tcp88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88/evaluati",
+      "startedAt": 1786859903180,
+      "attempt": 1,
+      "durationMs": 393336,
+      "lastProgressAt": 1786860296325,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Record workflow structured output",
+      "recentToolActivities": [
+        "Bash(Sleep 140s then recheck progress, report, and process)",
+        "Bash(Quick status check of eval progress)",
+        "StructuredOutput(Record workflow structured output)"
+      ],
+      "toolCalls": 6,
+      "agentId": "aworkflow-subagent-d85a802d67a7752a",
+      "resultPreview": "{\"done\":false,\"crashed\":false,\"mAP\":0,\"ap30\":0,\"ap50\":0,\"ap70\":0,\"num_videos\":88,\"marker_count\":17,\"fccs_count\":0,\"note\":\"running 17/88 — process ALIVE (PID 57963, concurrency 2) and progressing: JSON count went 8 -> 14 -> 17 across ~5min of checks; log tail shows [19/88] START Explosion036_x264, so no stall (no kill/relaunch needed). No evaluation_report.json yet. marker_count VC=17 (TCP-VID, tracking 1:1 with completed videos, on pace for ~88 per FM17); fccs_count=0 (FCCS absent — directed-pat",
+      "outputPath": "/var/folders/9h/f_2vxk4558n0kf9kxk0xthfc0000gn/T/qoder-cli-501/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/tasks/aff78f4c37934c575.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-d85a802d67a7752a.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-d85a802d67a7752a.jsonl"
+      ],
+      "tokens": 175254
+    },
+    {
+      "type": "workflow_agent",
+      "index": 19,
+      "label": "D-watch-tcp88-v177-3",
+      "phaseIndex": 2,
+      "phaseTitle": "AB88",
+      "agentType": "workflow-subagent",
+      "prompt": "You are Agent D-watcher for the tcp88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88/evaluation_report.json exists -> done=true. Read mAP/AP@0.3/0.5/0.7/num_videos: python3.14 -c \"import json;d=json.load(open('/Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88/evaluation_report.json'));t=d['evaluation']['temporal_map'];ti=d['timing'];print(t['mAP'],t.get('AP@0.3'),t.get('AP@0.5'),t.get('AP@0.7'),ti.get('num_videos'))\" . num_videos MUST be 88 (else harness bug, say so loudly).\n   markers: VC=$(grep -cF \"TCP-VID\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88.log 2>/dev/null) -> marker_count=VC. FCCC=$(grep -cF \"FCCS\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88.log 2>/dev/null) -> fccs_count=FCCC (MUST be 0 — the directed-path-constant pre-registration; nonzero = VOID-level confound, scream it in note). VC must be ~88 (FM17) and the log must show the TCP block (FM5).\n2. Else pgrep -f \"batch_evaluate.*batch_eval_v177_tcp88\". Alive -> sleep 140 (up to 2x), then done=false note=\"running <n>/88\" (n = JSON count). STALLED >30min -> kill and relaunch the SAME nohup at --concurrency 2.\n3. Dead with no report -> tail -30 the log. TRANSIENT -> relaunch. CODE BUG -> crashed=true + traceback.\nReturn done, crashed, mAP, ap30, ap50, ap70, num_videos, marker_count, fccs_count, note.",
+      "journalKey": "v2:b4d4edfd0360e09322a6c2cb2f4d6dc23233c865b2932435bdf8a9f4867d21db",
+      "state": "done",
+      "promptPreview": "You are Agent D-watcher for the tcp88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88/evaluati",
+      "startedAt": 1786860296519,
+      "attempt": 1,
+      "durationMs": 266438,
+      "lastProgressAt": 1786860562813,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Record workflow structured output",
+      "recentToolActivities": [
+        "Bash(Wait 140s then re-check process and progress)",
+        "Bash(Re-check process, JSON count, markers, and log tail)",
+        "StructuredOutput(Record workflow structured output)"
+      ],
+      "toolCalls": 7,
+      "agentId": "aworkflow-subagent-23f06b42207b6e7d",
+      "resultPreview": "{\"done\":false,\"crashed\":false,\"mAP\":0,\"marker_count\":19,\"fccs_count\":0,\"note\":\"running 19/88 — process PID 57963 alive, progressed 17->19 JSONs across the 140s watch window (no stall). VC markers = 19 (matches JSON count, FM17 on track for ~88), FCCS count = 0 (directed-path-constant pre-registration CLEAN, no VOID-level confound). Log shows active per-video pipeline output (CLIP precompute / MIL / VideoMAE lines, last entry 14:08:34). No evaluation_report.json yet; mAP/AP values unavailable unt",
+      "outputPath": "/var/folders/9h/f_2vxk4558n0kf9kxk0xthfc0000gn/T/qoder-cli-501/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/tasks/a26cc70f627ba1737.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-23f06b42207b6e7d.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-23f06b42207b6e7d.jsonl"
+      ],
+      "tokens": 176710
+    },
+    {
+      "type": "workflow_agent",
+      "index": 20,
+      "label": "D-watch-tcp88-v177-4",
+      "phaseIndex": 2,
+      "phaseTitle": "AB88",
+      "agentType": "workflow-subagent",
+      "prompt": "You are Agent D-watcher for the tcp88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88/evaluation_report.json exists -> done=true. Read mAP/AP@0.3/0.5/0.7/num_videos: python3.14 -c \"import json;d=json.load(open('/Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88/evaluation_report.json'));t=d['evaluation']['temporal_map'];ti=d['timing'];print(t['mAP'],t.get('AP@0.3'),t.get('AP@0.5'),t.get('AP@0.7'),ti.get('num_videos'))\" . num_videos MUST be 88 (else harness bug, say so loudly).\n   markers: VC=$(grep -cF \"TCP-VID\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88.log 2>/dev/null) -> marker_count=VC. FCCC=$(grep -cF \"FCCS\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88.log 2>/dev/null) -> fccs_count=FCCC (MUST be 0 — the directed-path-constant pre-registration; nonzero = VOID-level confound, scream it in note). VC must be ~88 (FM17) and the log must show the TCP block (FM5).\n2. Else pgrep -f \"batch_evaluate.*batch_eval_v177_tcp88\". Alive -> sleep 140 (up to 2x), then done=false note=\"running <n>/88\" (n = JSON count). STALLED >30min -> kill and relaunch the SAME nohup at --concurrency 2.\n3. Dead with no report -> tail -30 the log. TRANSIENT -> relaunch. CODE BUG -> crashed=true + traceback.\nReturn done, crashed, mAP, ap30, ap50, ap70, num_videos, marker_count, fccs_count, note.",
+      "journalKey": "v2:4bcceb1f90d3126755c716861eedda7ffae4f44d3d8585c4d9d623deea493f64",
+      "state": "done",
+      "promptPreview": "You are Agent D-watcher for the tcp88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88/evaluati",
+      "startedAt": 1786860562959,
+      "attempt": 1,
+      "durationMs": 421553,
+      "lastProgressAt": 1786860984372,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Record workflow structured output",
+      "recentToolActivities": [
+        "Bash(Second 140s wait, then recheck progress, markers, process)",
+        "Bash(Recheck progress, markers, process, report)",
+        "StructuredOutput(Record workflow structured output)"
+      ],
+      "toolCalls": 7,
+      "agentId": "aworkflow-subagent-72ef1dadcfced440",
+      "resultPreview": "{\"done\":false,\"crashed\":false,\"mAP\":0,\"ap30\":0,\"ap50\":0,\"ap70\":0,\"num_videos\":0,\"marker_count\":33,\"fccs_count\":0,\"note\":\"running 33/88. Process alive (PID 57963), no evaluation_report.json yet. Progressing steadily: 22 -> 28 -> 33 JSONs over ~5.5 min (log active through 14:15:54, latest DONE [31/88] RoadAccidents019_x264, START [35/88]). Not stalled. Markers healthy: TCP-VID=33 matches completed JSONs (FM17 on track toward 88); FCCS=0 so directed-path-constant pre-registration holds, no VOID con",
+      "outputPath": "/var/folders/9h/f_2vxk4558n0kf9kxk0xthfc0000gn/T/qoder-cli-501/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/tasks/af80464704538832c.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-72ef1dadcfced440.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-72ef1dadcfced440.jsonl"
+      ],
+      "tokens": 176080
+    },
+    {
+      "type": "workflow_agent",
+      "index": 21,
+      "label": "D-watch-tcp88-v177-5",
+      "phaseIndex": 2,
+      "phaseTitle": "AB88",
+      "agentType": "workflow-subagent",
+      "prompt": "You are Agent D-watcher for the tcp88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88/evaluation_report.json exists -> done=true. Read mAP/AP@0.3/0.5/0.7/num_videos: python3.14 -c \"import json;d=json.load(open('/Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88/evaluation_report.json'));t=d['evaluation']['temporal_map'];ti=d['timing'];print(t['mAP'],t.get('AP@0.3'),t.get('AP@0.5'),t.get('AP@0.7'),ti.get('num_videos'))\" . num_videos MUST be 88 (else harness bug, say so loudly).\n   markers: VC=$(grep -cF \"TCP-VID\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88.log 2>/dev/null) -> marker_count=VC. FCCC=$(grep -cF \"FCCS\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88.log 2>/dev/null) -> fccs_count=FCCC (MUST be 0 — the directed-path-constant pre-registration; nonzero = VOID-level confound, scream it in note). VC must be ~88 (FM17) and the log must show the TCP block (FM5).\n2. Else pgrep -f \"batch_evaluate.*batch_eval_v177_tcp88\". Alive -> sleep 140 (up to 2x), then done=false note=\"running <n>/88\" (n = JSON count). STALLED >30min -> kill and relaunch the SAME nohup at --concurrency 2.\n3. Dead with no report -> tail -30 the log. TRANSIENT -> relaunch. CODE BUG -> crashed=true + traceback.\nReturn done, crashed, mAP, ap30, ap50, ap70, num_videos, marker_count, fccs_count, note.",
+      "journalKey": "v2:7e8a86cffcb206d121a56d710935d48d92bb909bee03537e4ed9a4f8b36ca739",
+      "state": "done",
+      "promptPreview": "You are Agent D-watcher for the tcp88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88/evaluati",
+      "startedAt": 1786860984529,
+      "attempt": 1,
+      "durationMs": 414725,
+      "lastProgressAt": 1786861399083,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Record workflow structured output",
+      "recentToolActivities": [
+        "Bash(Second 140s sleep, re-check progress and process state)",
+        "Bash(Fresh TCP-VID and FCCS marker counts)",
+        "StructuredOutput(Record workflow structured output)"
+      ],
+      "toolCalls": 7,
+      "agentId": "aworkflow-subagent-e5673f73b04e48a6",
+      "resultPreview": "{\"done\":false,\"crashed\":false,\"mAP\":0,\"ap30\":0,\"ap50\":0,\"ap70\":0,\"num_videos\":88,\"marker_count\":47,\"fccs_count\":0,\"note\":\"running 46/88. Process ALIVE (PID 57963) and healthy: steady ~6 videos per 140s over two watcher sleeps (34 -> 41 -> 46 JSONs), log tail at [48/88] START Shooting008_x264. No evaluation_report.json yet; ETA roughly 15-20 min at current rate. FCCS count = 0 (directed-path-constant pre-registration invariant HOLDS). TCP-VID markers = 47 and climbing toward 88 (FM17 on track). T",
+      "outputPath": "/var/folders/9h/f_2vxk4558n0kf9kxk0xthfc0000gn/T/qoder-cli-501/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/tasks/a5bb53279abb5b37f.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-e5673f73b04e48a6.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-e5673f73b04e48a6.jsonl"
+      ],
+      "tokens": 191786
+    },
+    {
+      "type": "workflow_agent",
+      "index": 22,
+      "label": "D-watch-tcp88-v177-6",
+      "phaseIndex": 2,
+      "phaseTitle": "AB88",
+      "agentType": "workflow-subagent",
+      "prompt": "You are Agent D-watcher for the tcp88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88/evaluation_report.json exists -> done=true. Read mAP/AP@0.3/0.5/0.7/num_videos: python3.14 -c \"import json;d=json.load(open('/Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88/evaluation_report.json'));t=d['evaluation']['temporal_map'];ti=d['timing'];print(t['mAP'],t.get('AP@0.3'),t.get('AP@0.5'),t.get('AP@0.7'),ti.get('num_videos'))\" . num_videos MUST be 88 (else harness bug, say so loudly).\n   markers: VC=$(grep -cF \"TCP-VID\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88.log 2>/dev/null) -> marker_count=VC. FCCC=$(grep -cF \"FCCS\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88.log 2>/dev/null) -> fccs_count=FCCC (MUST be 0 — the directed-path-constant pre-registration; nonzero = VOID-level confound, scream it in note). VC must be ~88 (FM17) and the log must show the TCP block (FM5).\n2. Else pgrep -f \"batch_evaluate.*batch_eval_v177_tcp88\". Alive -> sleep 140 (up to 2x), then done=false note=\"running <n>/88\" (n = JSON count). STALLED >30min -> kill and relaunch the SAME nohup at --concurrency 2.\n3. Dead with no report -> tail -30 the log. TRANSIENT -> relaunch. CODE BUG -> crashed=true + traceback.\nReturn done, crashed, mAP, ap30, ap50, ap70, num_videos, marker_count, fccs_count, note.",
+      "journalKey": "v2:33635d30d92b418af3f6dd6f39e35202195339e5f7fd67bf33a5b3eafa465a12",
+      "state": "done",
+      "promptPreview": "You are Agent D-watcher for the tcp88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88/evaluati",
+      "startedAt": 1786861399269,
+      "attempt": 1,
+      "durationMs": 287716,
+      "lastProgressAt": 1786861686760,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Record workflow structured output",
+      "recentToolActivities": [
+        "Bash(Re-check progress after sleep attempt)",
+        "Bash(Count TCP-VID and FCCS markers in log)",
+        "StructuredOutput(Record workflow structured output)"
+      ],
+      "toolCalls": 8,
+      "agentId": "aworkflow-subagent-490c23138beb9a6a",
+      "resultPreview": "{\"done\":false,\"crashed\":false,\"mAP\":0,\"ap30\":0,\"ap50\":0,\"ap70\":0,\"num_videos\":52,\"marker_count\":52,\"fccs_count\":0,\"note\":\"running 52/88 (PID 57963 alive, log active seconds ago; ~1 video/45s, ETA ~27min for remaining 36). No evaluation_report.json yet. TCP-VID markers=52 (tracks completed count, on track for ~88 per FM17); FCCS=0 (pre-registration clean, no confound). TCP block confirmed in log (FM5: TCP-PROMPT + TCP-VID lines present). One 140s wait cycle completed; progress advanced 48->52 dur",
+      "outputPath": "/var/folders/9h/f_2vxk4558n0kf9kxk0xthfc0000gn/T/qoder-cli-501/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/tasks/afdecef66d674b2d1.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-490c23138beb9a6a.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-490c23138beb9a6a.jsonl"
+      ],
+      "tokens": 208464
+    },
+    {
+      "type": "workflow_agent",
+      "index": 23,
+      "label": "D-watch-tcp88-v177-7",
+      "phaseIndex": 2,
+      "phaseTitle": "AB88",
+      "agentType": "workflow-subagent",
+      "prompt": "You are Agent D-watcher for the tcp88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88/evaluation_report.json exists -> done=true. Read mAP/AP@0.3/0.5/0.7/num_videos: python3.14 -c \"import json;d=json.load(open('/Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88/evaluation_report.json'));t=d['evaluation']['temporal_map'];ti=d['timing'];print(t['mAP'],t.get('AP@0.3'),t.get('AP@0.5'),t.get('AP@0.7'),ti.get('num_videos'))\" . num_videos MUST be 88 (else harness bug, say so loudly).\n   markers: VC=$(grep -cF \"TCP-VID\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88.log 2>/dev/null) -> marker_count=VC. FCCC=$(grep -cF \"FCCS\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88.log 2>/dev/null) -> fccs_count=FCCC (MUST be 0 — the directed-path-constant pre-registration; nonzero = VOID-level confound, scream it in note). VC must be ~88 (FM17) and the log must show the TCP block (FM5).\n2. Else pgrep -f \"batch_evaluate.*batch_eval_v177_tcp88\". Alive -> sleep 140 (up to 2x), then done=false note=\"running <n>/88\" (n = JSON count). STALLED >30min -> kill and relaunch the SAME nohup at --concurrency 2.\n3. Dead with no report -> tail -30 the log. TRANSIENT -> relaunch. CODE BUG -> crashed=true + traceback.\nReturn done, crashed, mAP, ap30, ap50, ap70, num_videos, marker_count, fccs_count, note.",
+      "journalKey": "v2:12d04cb935e53fc9d35cf3e4e2eff5ac0f17352d6d57977f4eb55b10164877e2",
+      "state": "done",
+      "promptPreview": "You are Agent D-watcher for the tcp88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88/evaluati",
+      "startedAt": 1786861686987,
+      "attempt": 1,
+      "durationMs": 406856,
+      "lastProgressAt": 1786862093707,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Record workflow structured output",
+      "recentToolActivities": [
+        "Bash(Check report, process, and JSON count)",
+        "Bash(Sleep 135s, then check report, process, counts)",
+        "StructuredOutput(Record workflow structured output)"
+      ],
+      "toolCalls": 7,
+      "agentId": "aworkflow-subagent-915db8cfd49c2e3f",
+      "resultPreview": "{\"done\":false,\"crashed\":false,\"mAP\":0,\"marker_count\":58,\"fccs_count\":0,\"note\":\"running 58/88 (mAP=0 is a placeholder - no evaluation_report.json yet; process alive PID 57963, progressing 54->58 JSONs across two 140s watch cycles; TCP-VID markers=58 match JSON count, FCCS count=0 as required, TCP block present in log; not stalled >30min)\"}",
+      "outputPath": "/var/folders/9h/f_2vxk4558n0kf9kxk0xthfc0000gn/T/qoder-cli-501/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/tasks/a4f431e88f5f7200b.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-915db8cfd49c2e3f.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-915db8cfd49c2e3f.jsonl"
+      ],
+      "tokens": 172401
+    },
+    {
+      "type": "workflow_agent",
+      "index": 24,
+      "label": "D-watch-tcp88-v177-8",
+      "phaseIndex": 2,
+      "phaseTitle": "AB88",
+      "agentType": "workflow-subagent",
+      "prompt": "You are Agent D-watcher for the tcp88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88/evaluation_report.json exists -> done=true. Read mAP/AP@0.3/0.5/0.7/num_videos: python3.14 -c \"import json;d=json.load(open('/Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88/evaluation_report.json'));t=d['evaluation']['temporal_map'];ti=d['timing'];print(t['mAP'],t.get('AP@0.3'),t.get('AP@0.5'),t.get('AP@0.7'),ti.get('num_videos'))\" . num_videos MUST be 88 (else harness bug, say so loudly).\n   markers: VC=$(grep -cF \"TCP-VID\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88.log 2>/dev/null) -> marker_count=VC. FCCC=$(grep -cF \"FCCS\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88.log 2>/dev/null) -> fccs_count=FCCC (MUST be 0 — the directed-path-constant pre-registration; nonzero = VOID-level confound, scream it in note). VC must be ~88 (FM17) and the log must show the TCP block (FM5).\n2. Else pgrep -f \"batch_evaluate.*batch_eval_v177_tcp88\". Alive -> sleep 140 (up to 2x), then done=false note=\"running <n>/88\" (n = JSON count). STALLED >30min -> kill and relaunch the SAME nohup at --concurrency 2.\n3. Dead with no report -> tail -30 the log. TRANSIENT -> relaunch. CODE BUG -> crashed=true + traceback.\nReturn done, crashed, mAP, ap30, ap50, ap70, num_videos, marker_count, fccs_count, note.",
+      "journalKey": "v2:bd5c59b088280b8388ce140a78ccfc3975ced51495738f61811243b12ae0c48d",
+      "state": "done",
+      "promptPreview": "You are Agent D-watcher for the tcp88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88/evaluati",
+      "startedAt": 1786862093855,
+      "attempt": 1,
+      "durationMs": 481078,
+      "lastProgressAt": 1786862574767,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Record workflow structured output",
+      "recentToolActivities": [
+        "Bash(Re-check report, progress, process, markers)",
+        "Bash(Second wait then final progress check)",
+        "StructuredOutput(Record workflow structured output)"
+      ],
+      "toolCalls": 9,
+      "agentId": "aworkflow-subagent-c40dfad2d655c2ee",
+      "resultPreview": "{\"done\":false,\"crashed\":false,\"mAP\":0,\"marker_count\":64,\"fccs_count\":0,\"note\":\"running 64/88. Process ALIVE (PID 57963, --concurrency 2 --tcp_prompt), healthy progress: log active at 14:42 (video 66/88 START), ~2 vids per 140s cycle (58->60->64 JSONs). FM17 OK: TCP-VID markers=64, exactly tracking completed video JSONs (64), on track for ~88. FM5 OK: [TCP-BLOCK] lines present, appended before 'Respond ONLY in JSON format' on every scan_segment prompt. FCCS count=0 — directed-path-constant pre-re",
+      "outputPath": "/var/folders/9h/f_2vxk4558n0kf9kxk0xthfc0000gn/T/qoder-cli-501/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/tasks/ae20bb873c4cb7600.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-c40dfad2d655c2ee.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-c40dfad2d655c2ee.jsonl"
+      ],
+      "tokens": 219291
+    },
+    {
+      "type": "workflow_agent",
+      "index": 25,
+      "label": "D-watch-tcp88-v177-9",
+      "phaseIndex": 2,
+      "phaseTitle": "AB88",
+      "agentType": "workflow-subagent",
+      "prompt": "You are Agent D-watcher for the tcp88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88/evaluation_report.json exists -> done=true. Read mAP/AP@0.3/0.5/0.7/num_videos: python3.14 -c \"import json;d=json.load(open('/Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88/evaluation_report.json'));t=d['evaluation']['temporal_map'];ti=d['timing'];print(t['mAP'],t.get('AP@0.3'),t.get('AP@0.5'),t.get('AP@0.7'),ti.get('num_videos'))\" . num_videos MUST be 88 (else harness bug, say so loudly).\n   markers: VC=$(grep -cF \"TCP-VID\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88.log 2>/dev/null) -> marker_count=VC. FCCC=$(grep -cF \"FCCS\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88.log 2>/dev/null) -> fccs_count=FCCC (MUST be 0 — the directed-path-constant pre-registration; nonzero = VOID-level confound, scream it in note). VC must be ~88 (FM17) and the log must show the TCP block (FM5).\n2. Else pgrep -f \"batch_evaluate.*batch_eval_v177_tcp88\". Alive -> sleep 140 (up to 2x), then done=false note=\"running <n>/88\" (n = JSON count). STALLED >30min -> kill and relaunch the SAME nohup at --concurrency 2.\n3. Dead with no report -> tail -30 the log. TRANSIENT -> relaunch. CODE BUG -> crashed=true + traceback.\nReturn done, crashed, mAP, ap30, ap50, ap70, num_videos, marker_count, fccs_count, note.",
+      "journalKey": "v2:e6205747b68b5af6ea8b65eb0c5c2997e2ac0b113148e145973aaa16f2a50506",
+      "state": "done",
+      "promptPreview": "You are Agent D-watcher for the tcp88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88/evaluati",
+      "startedAt": 1786862574944,
+      "attempt": 1,
+      "durationMs": 379714,
+      "lastProgressAt": 1786862954497,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Record workflow structured output",
+      "recentToolActivities": [
+        "Bash(Check report existence and progress)",
+        "Bash(Wait 120s then check counts and markers)",
+        "StructuredOutput(Record workflow structured output)"
+      ],
+      "toolCalls": 7,
+      "agentId": "aworkflow-subagent-bd0a92b059fb9512",
+      "resultPreview": "{\"done\":false,\"crashed\":false,\"mAP\":0,\"marker_count\":67,\"fccs_count\":0,\"num_videos\":88,\"note\":\"running 67/88. Process ALIVE (pid 57963, python3.14 -m video_anomaly_detection.batch_evaluate --tcp_prompt --concurrency 2), no evaluation_report.json yet. TCP-VID markers=67 matching 67 per-video JSONs in results dir (FM17 on track for ~88). FCCS count=0, directed-path-constant pre-registration clean, no VOID confound. Log shows TCP prompt block active (FM5 ok). Recent activity at 14:46:31 (CLIP preco",
+      "outputPath": "/var/folders/9h/f_2vxk4558n0kf9kxk0xthfc0000gn/T/qoder-cli-501/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/tasks/a9a53f7453bd0b9df.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-bd0a92b059fb9512.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-bd0a92b059fb9512.jsonl"
+      ],
+      "tokens": 189890
+    },
+    {
+      "type": "workflow_agent",
+      "index": 26,
+      "label": "D-watch-tcp88-v177-10",
+      "phaseIndex": 2,
+      "phaseTitle": "AB88",
+      "agentType": "workflow-subagent",
+      "prompt": "You are Agent D-watcher for the tcp88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88/evaluation_report.json exists -> done=true. Read mAP/AP@0.3/0.5/0.7/num_videos: python3.14 -c \"import json;d=json.load(open('/Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88/evaluation_report.json'));t=d['evaluation']['temporal_map'];ti=d['timing'];print(t['mAP'],t.get('AP@0.3'),t.get('AP@0.5'),t.get('AP@0.7'),ti.get('num_videos'))\" . num_videos MUST be 88 (else harness bug, say so loudly).\n   markers: VC=$(grep -cF \"TCP-VID\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88.log 2>/dev/null) -> marker_count=VC. FCCC=$(grep -cF \"FCCS\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88.log 2>/dev/null) -> fccs_count=FCCC (MUST be 0 — the directed-path-constant pre-registration; nonzero = VOID-level confound, scream it in note). VC must be ~88 (FM17) and the log must show the TCP block (FM5).\n2. Else pgrep -f \"batch_evaluate.*batch_eval_v177_tcp88\". Alive -> sleep 140 (up to 2x), then done=false note=\"running <n>/88\" (n = JSON count). STALLED >30min -> kill and relaunch the SAME nohup at --concurrency 2.\n3. Dead with no report -> tail -30 the log. TRANSIENT -> relaunch. CODE BUG -> crashed=true + traceback.\nReturn done, crashed, mAP, ap30, ap50, ap70, num_videos, marker_count, fccs_count, note.",
+      "journalKey": "v2:a804a087ad0c9fdc381433fed564fbee047daa94d796c1d6d5ec2871bad3e4ef",
+      "state": "done",
+      "promptPreview": "You are Agent D-watcher for the tcp88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88/evaluati",
+      "startedAt": 1786862954673,
+      "attempt": 1,
+      "durationMs": 399025,
+      "lastProgressAt": 1786863353587,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Record workflow structured output",
+      "recentToolActivities": [
+        "Bash(Sleep 120s then re-check progress)",
+        "Bash(Count TCP-VID and FCCS markers in log)",
+        "StructuredOutput(Record workflow structured output)"
+      ],
+      "toolCalls": 7,
+      "agentId": "aworkflow-subagent-66b5822b4059f34a",
+      "resultPreview": "{\"done\":false,\"crashed\":false,\"mAP\":0,\"ap30\":0,\"ap50\":0,\"ap70\":0,\"num_videos\":88,\"marker_count\":74,\"fccs_count\":0,\"note\":\"running 74/88. PID 57963 alive, concurrency 2, log fresh (last write within seconds of check; advanced 69->74 across two 140s/120s watch cycles). evaluation_report.json not yet written. TCP-VID markers=74, tracking completions 1:1 (on pace for ~88, FM17 satisfied so far); TCP block active in log (FM5). FCCS count = 0 — directed-path-constant pre-registration holds, no confoun",
+      "outputPath": "/var/folders/9h/f_2vxk4558n0kf9kxk0xthfc0000gn/T/qoder-cli-501/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/tasks/a3fbe9a9a9e9b0532.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-66b5822b4059f34a.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-66b5822b4059f34a.jsonl"
+      ],
+      "tokens": 224545
+    },
+    {
+      "type": "workflow_agent",
+      "index": 27,
+      "label": "D-watch-tcp88-v177-11",
+      "phaseIndex": 2,
+      "phaseTitle": "AB88",
+      "agentType": "workflow-subagent",
+      "prompt": "You are Agent D-watcher for the tcp88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88/evaluation_report.json exists -> done=true. Read mAP/AP@0.3/0.5/0.7/num_videos: python3.14 -c \"import json;d=json.load(open('/Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88/evaluation_report.json'));t=d['evaluation']['temporal_map'];ti=d['timing'];print(t['mAP'],t.get('AP@0.3'),t.get('AP@0.5'),t.get('AP@0.7'),ti.get('num_videos'))\" . num_videos MUST be 88 (else harness bug, say so loudly).\n   markers: VC=$(grep -cF \"TCP-VID\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88.log 2>/dev/null) -> marker_count=VC. FCCC=$(grep -cF \"FCCS\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88.log 2>/dev/null) -> fccs_count=FCCC (MUST be 0 — the directed-path-constant pre-registration; nonzero = VOID-level confound, scream it in note). VC must be ~88 (FM17) and the log must show the TCP block (FM5).\n2. Else pgrep -f \"batch_evaluate.*batch_eval_v177_tcp88\". Alive -> sleep 140 (up to 2x), then done=false note=\"running <n>/88\" (n = JSON count). STALLED >30min -> kill and relaunch the SAME nohup at --concurrency 2.\n3. Dead with no report -> tail -30 the log. TRANSIENT -> relaunch. CODE BUG -> crashed=true + traceback.\nReturn done, crashed, mAP, ap30, ap50, ap70, num_videos, marker_count, fccs_count, note.",
+      "journalKey": "v2:c2d34e7cdc91a533eeea0942cc9c6a7fd77c02d1687cfa7c3247c4547cfa44f8",
+      "state": "done",
+      "promptPreview": "You are Agent D-watcher for the tcp88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88/evaluati",
+      "startedAt": 1786863353701,
+      "attempt": 1,
+      "durationMs": 490661,
+      "lastProgressAt": 1786863844074,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Record workflow structured output",
+      "recentToolActivities": [
+        "Bash(Second 140s wait, re-check report, progress, process)",
+        "Bash(Count TCP-VID and FCCS markers in log)",
+        "StructuredOutput(Record workflow structured output)"
+      ],
+      "toolCalls": 7,
+      "agentId": "aworkflow-subagent-abc53d0ca4a35f12",
+      "resultPreview": "{\"done\":false,\"crashed\":false,\"mAP\":0,\"marker_count\":83,\"fccs_count\":0,\"num_videos\":82,\"note\":\"running 82/88 — process alive (pid 57963), progressing steadily (75→79→82 JSONs over two 140s waits), not stalled. No evaluation_report.json yet, so mAP/AP pending. FCCS count is 0 (pre-registration clean, no directed-path-constant confound). TCP-VID markers at 83, consistent with 82 completed + 1 in flight.\"}",
+      "outputPath": "/var/folders/9h/f_2vxk4558n0kf9kxk0xthfc0000gn/T/qoder-cli-501/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/tasks/a93843c929f2911d4.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-abc53d0ca4a35f12.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-abc53d0ca4a35f12.jsonl"
+      ],
+      "tokens": 202931
+    },
+    {
+      "type": "workflow_agent",
+      "index": 28,
+      "label": "D-watch-tcp88-v177-12",
+      "phaseIndex": 2,
+      "phaseTitle": "AB88",
+      "agentType": "workflow-subagent",
+      "prompt": "You are Agent D-watcher for the tcp88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88/evaluation_report.json exists -> done=true. Read mAP/AP@0.3/0.5/0.7/num_videos: python3.14 -c \"import json;d=json.load(open('/Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88/evaluation_report.json'));t=d['evaluation']['temporal_map'];ti=d['timing'];print(t['mAP'],t.get('AP@0.3'),t.get('AP@0.5'),t.get('AP@0.7'),ti.get('num_videos'))\" . num_videos MUST be 88 (else harness bug, say so loudly).\n   markers: VC=$(grep -cF \"TCP-VID\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88.log 2>/dev/null) -> marker_count=VC. FCCC=$(grep -cF \"FCCS\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88.log 2>/dev/null) -> fccs_count=FCCC (MUST be 0 — the directed-path-constant pre-registration; nonzero = VOID-level confound, scream it in note). VC must be ~88 (FM17) and the log must show the TCP block (FM5).\n2. Else pgrep -f \"batch_evaluate.*batch_eval_v177_tcp88\". Alive -> sleep 140 (up to 2x), then done=false note=\"running <n>/88\" (n = JSON count). STALLED >30min -> kill and relaunch the SAME nohup at --concurrency 2.\n3. Dead with no report -> tail -30 the log. TRANSIENT -> relaunch. CODE BUG -> crashed=true + traceback.\nReturn done, crashed, mAP, ap30, ap50, ap70, num_videos, marker_count, fccs_count, note.",
+      "journalKey": "v2:90944d1ad1d731049b56c9b30c57f1581f92947f278a4ebbdf3d14924457e425",
+      "state": "done",
+      "promptPreview": "You are Agent D-watcher for the tcp88 eval of v177 (expect 88 videos). SHORT; NO Bash > 150s. StructuredOutput EXACTLY ONCE.\n1. If /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88/evaluati",
+      "startedAt": 1786863844364,
+      "attempt": 3,
+      "maxAttempts": 6,
+      "durationMs": 2354271,
+      "lastProgressAt": 1786866198550,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Record workflow structured output",
+      "recentToolActivities": [
+        "Bash(Verify markers, FCCS count, TCP block, and process state)",
+        "Bash(Count timeout errors and per-video results in report)",
+        "StructuredOutput(Record workflow structured output)"
+      ],
+      "toolCalls": 7,
+      "error": "workflow agent stalled after 180000ms without completing",
+      "agentId": "aworkflow-subagent-cda8a7f6813d3f1a",
+      "resultPreview": "{\"done\":true,\"crashed\":false,\"mAP\":0.1493971388089035,\"ap30\":0.2552858905800082,\"ap50\":0.17775401069518715,\"ap70\":0.01515151515151515,\"num_videos\":88,\"marker_count\":83,\"fccs_count\":0,\"note\":\"DONE: evaluation_report.json written; num_videos=88 as required (no harness bug). mAP=0.1494, AP@0.3=0.2553, AP@0.5=0.1778, AP@0.7=0.0152. FCCS count=0 — directed-path-constant pre-registration SATISFIED, no void confound. TCP block present (253 TCP lines, FM5 OK). WARNING FM17: TCP-VID markers = 83/88, not ",
+      "outputPath": "/var/folders/9h/f_2vxk4558n0kf9kxk0xthfc0000gn/T/qoder-cli-501/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/tasks/ab259f89571172209.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-cda8a7f6813d3f1a.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-cda8a7f6813d3f1a.jsonl"
+      ],
+      "tokens": 177115
+    },
+    {
+      "type": "workflow_log",
+      "message": "TCP88: done=true mAP=0.1493971388089035 n=88 vidMarker=83 fccs=0",
+      "timestamp": 1786866198636
+    },
+    {
+      "type": "workflow_agent",
+      "index": 29,
+      "label": "D-boot-88",
+      "phaseIndex": 2,
+      "phaseTitle": "AB88",
+      "agentType": "workflow-subagent",
+      "prompt": "You are Agent D-adjudicator for the TCP CROSS-RUN A/B on the hard-88. Bash < 150s per command. StructuredOutput EXACTLY ONCE.\nSTEP 1 (confound + FM gates): F1=$(grep -cF \"FCCS\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88.log); F2=$(grep -cF \"FCCS\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88.log); VC=$(grep -cF \"TCP-VID\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88.log); PB=$(grep -cF \"Temporal reasoning instructions\" /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88.log). F1+F2 MUST be 0 (else ran=false, note=\"VOID: scan-path confound\"), VC ~88, PB>0 (the TCP block was actually sent).\nSTEP 2: python3.14 /Users/zzl/PycharmProjects/vad/video_anomaly_detection/iteration_logs/analysis_bootstrap_ab.py --new /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88 --ref /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88 --min-delta 0.008 --min-p 0.9 -> point_delta, ci90, p_gt0, new_map, ref_map. Paste the cross-run CAVEAT verbatim.\nSTEP 3 (FM2 watch): mean detections/video both dirs; flag increase > +1.\nSTEP 4 (purpose population): for RoadAccidents009 (GT 7-8s) and RoadAccidents021 (GT 1-3s): does the TCP arm have a detection with IoU>=0.1 where the REF arm has none? purpose_converted lists them (GT from the parquet via evaluate.load_ground_truth, fps=30).\nSTEP 5: per-category AP deltas for the 4 hard cats into per_category.\nReport ran, point_delta, ci90_low, ci90_high, p_gt0, new_map, ref_map, det_per_video_new, det_per_video_ref, purpose_converted, per_category, note (VERDICT verbatim + caveat).",
+      "journalKey": "v2:876b284d515a2ece03d1a959250bd7f4a20f8a4d81489ac9609742b7fd3c1265",
+      "state": "done",
+      "promptPreview": "You are Agent D-adjudicator for the TCP CROSS-RUN A/B on the hard-88. Bash < 150s per command. StructuredOutput EXACTLY ONCE.\nSTEP 1 (confound + FM gates): F1=$(grep -cF \"FCCS\" /Users/zzl/PycharmProje",
+      "startedAt": 1786866198640,
+      "attempt": 1,
+      "durationMs": 286982,
+      "lastProgressAt": 1786866485599,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Record workflow structured output",
+      "recentToolActivities": [
+        "Read(video_anomaly_detection/evaluate.py)",
+        "Bash(Compute per-category temporal mAP deltas on common videos)",
+        "StructuredOutput(Record workflow structured output)"
+      ],
+      "toolCalls": 19,
+      "agentId": "aworkflow-subagent-9494c9ac6e82b4d0",
+      "resultPreview": "{\"ran\":true,\"point_delta\":0.01907,\"ci90_low\":-0.04372,\"ci90_high\":0.0369,\"p_gt0\":0.573,\"new_map\":0.1494,\"ref_map\":0.13033,\"det_per_video_new\":1.5542,\"det_per_video_ref\":1.5181,\"fa_rel_inc\":0.0238,\"purpose_converted\":\"NONE — neither purpose video converted. RoadAccidents009 (GT 7-8s): both arms detect only 20.0-22.0s, IoU=0.0 in both — no TCP gain. RoadAccidents021 (GT 1-3s): REF has a hit (0.5-2.5s, IoU=0.6) but TCP has ZERO detections — TCP regressed on the very video class the block was design",
+      "outputPath": "/var/folders/9h/f_2vxk4558n0kf9kxk0xthfc0000gn/T/qoder-cli-501/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/tasks/aeaa5247085f77e09.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-9494c9ac6e82b4d0.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-9494c9ac6e82b4d0.jsonl"
+      ],
+      "tokens": 706846
+    },
+    {
+      "type": "workflow_log",
+      "message": "88 verdict: delta=0.01907 P=0.573 absTCP=0.14940 absREF=0.13033 purpose=NONE — neither purpose video converted. RoadAccidents009 (GT 7-8s): both arms detect only 20.0-22.0s, IoU=0.0 in both — no TCP gain. RoadAccidents021 (GT 1-3s): REF has a hit (0.5-2.5s, IoU=0.6) but TCP has ZERO detections — TCP regressed on the very video class the block was designed to help. -> FAILS",
+      "timestamp": 1786866485622
+    },
+    {
+      "type": "workflow_log",
+      "message": "Confirm290: skipped — 88 gate not passed",
+      "timestamp": 1786866485622
+    },
+    {
+      "type": "workflow_log",
+      "message": "290 verdict: n/a -> promote=false",
+      "timestamp": 1786866485622
+    },
+    {
+      "type": "workflow_agent",
+      "index": 30,
+      "label": "C-decide-tcp",
+      "phaseIndex": 4,
+      "phaseTitle": "Decide",
+      "agentType": "workflow-subagent",
+      "prompt": "You are Agent C. Execute the TCP promotion decision and write the session record. Scrupulously honest about cross-run noise (no paired instrument exists for prompt changes). Plain text.\n\nPROJECT: video anomaly detection + TEMPORAL LOCALIZATION on UCF-Crime. Repo /Users/zzl/PycharmProjects/vad; code /Users/zzl/PycharmProjects/vad/video_anomaly_detection. INTERPRETER python3.14.\nGIT RULE: the uncommitted working tree IS the latest code. NEVER git checkout/reset/stash/clean. Back up to /Users/zzl/PycharmProjects/vad/.qoder/backups/<version>/ before editing.\n\n!!! COMMITTED PIPELINE: v137 + BUE + CBT + CBT-recal ALL DEFAULT-ON (full-290 ~0.173; hard-88 ~0.11806). cgr/ccr/cnv/kfd_uniform/snh all DEFAULT-OFF (v16 relocation closed; v17 CNV closed on harm; v18 KFD-U closed). full_coverage_comparative_scan=False is COMMITTED — the DIRECTED scan is the committed path. Do NOT change any committed default. !!!\n\n!!! THE v18 LESSONS THIS SESSION IS BUILT ON (summary_v18_v173-v174_20260815.md §10 — read it) !!!\n1. The committed directed scan (scan_segment, anomaly_discovery.py L358-391) shows the VLM ALL ~12 frames per 6s segment with a whole-segment absolute prompt. The pipeline is NOT frame-blind on the committed path.\n2. The v173 KFD A/B was CONFOUNDED: kfd_uniform_keyframes also engaged the FCCS comparative path (pipeline.py L1776-1777). Any scan-side A/B MUST hold the scan path constant: directed in BOTH arms, grep -c \"FCCS\" == 0 in BOTH produced logs — a nonzero count is a VOID-level confound (pre-registered).\n3. The recognition-bound residual: RA009 (GT 7-8s, inside segment 4.5-10.5) and RA021 (GT 1-3s, inside segment 0-5.2) were REJECTED by the VLM with all 11-12 frames shown. Hypothesis: the whole-segment prompt (\"Determine if this segment contains any abnormal or suspicious activity\") invites clip-AVERAGING, so a brief 1-3s event dilutes into a mostly-normal window.\n\n!!! THE MECHANISM — TCP (Temporal-Contrast Prompt), prompt-side ONLY !!!\nWhen tcp_prompt is ON, APPEND this exact block to the scan_segment prompt immediately BEFORE the \"Respond ONLY in JSON format\" line (context_prompt and everything else unchanged):\n---\nTemporal reasoning instructions:\n- The frames are shown in time order and span the whole segment uniformly.\n- A real anomaly may be BRIEF (1-3 seconds) and occupy only a few frames in the middle of the clip. Do NOT average the clip: judge by the single most anomalous moment you can find.\n- Compare the early frames against the later frames: note any sudden change (impact, fall, crowd scatter, smoke or flame onset, concealment motion). A change that starts and ends inside the clip still counts fully.\n---\nSame frames, same call count, same directed path, same JSON response schema (is_anomalous/confidence/description) — ONLY prompt text changes. Zero latency cost. This is the admissible \"query quality\" lever; it is NOT a banned family (not an abs-conf gate, not merge/batch, not scan-density).\n\n!!! GATES (pre-registered) !!!\nLoop 1 (hard-88, cross-run vs FRESH same-session committed REF): PROMOTE-TO-290 iff point_delta >= +0.008 AND P(delta>0) >= 0.9 AND new hard mAP >= 0.11306. FM2 watch: flag if mean detections/video rises > +1. VOID if FCCS appears in either log.\nLoop 2 (full-290, only if Loop 1 passes): net-neutrality — delta >= -0.003 AND abs >= 0.16454 AND Normal-video FA-rate relative increase <= +2% (a \"find the most anomalous moment\" instruction may also raise Normal-video hallucination — measure it).\nPurpose population: report whether TCP produces detections overlapping the RA009 (GT 7-8s) and RA021 (GT 1-3s) intervals at IoU>=0.1 where REF has none.\n\nFM DISCIPLINE: FM5 the TCP block must be GREPPABLE in the produced log (log the block once per video alongside TCP-VID). FM17 TCP-VID unconditional per video on EVERY path incl. 0-detection and early-return-normal (mirror the CNV/SNH call sites). FM20 grep not claim. FM21 exact strings. FM18 absolute mAP. HARNESS BUG: --categories baked into every hard-88 command by the launcher; watcher verifies num_videos=88.\nQUEUE DISCIPLINE (load-bearing): another session's eval may be running. BEFORE EVERY batch_evaluate launch (incl. the self-test smoke): pgrep -f batch_evaluate; if anything is running, sleep 140 and re-check, up to 40 times (~90 min); only launch when clear. NEVER run two evals at once (16 GB swap-thrash, owner-diagnosed).\nHARD CONSTRAINTS: flag default OFF (flag-off byte-identical, prompt text bit-identical); CLI in BOTH run.py and batch_evaluate.py; evals FIXED --concurrency 2; StructuredOutput EXACTLY ONCE per agent; no Bash > ~150s except stated smokes.\n\nEVIDENCE:\n  88: {\"ran\":true,\"point_delta\":0.01907,\"ci90_low\":-0.04372,\"ci90_high\":0.0369,\"p_gt0\":0.573,\"new_map\":0.1494,\"ref_map\":0.13033,\"det_per_video_new\":1.5542,\"det_per_video_ref\":1.5181,\"fa_rel_inc\":0.0238,\"purpose_converted\":\"NONE — neither purpose video converted. RoadAccidents009 (GT 7-8s): both arms detect only 20.0-22.0s, IoU=0.0 in both — no TCP gain. RoadAccidents021 (GT 1-3s): REF has a hit (0.5-2.5s, IoU=0.6) but TCP has ZERO detections — TCP regressed on the very video class the block was designed to help.\",\"per_category\":\"Temporal mAP (mean of AP@0.3/0.5/0.7) on common 83 videos, NEW(TCP) - REF: Shooting +0.0419 (0.1475 vs 0.1056, n=23); Shoplifting +0.0180 (0.1213 vs 0.1033, n=16); RoadAccidents -0.0362 (0.1808 vs 0.2170, n=23); Explosion -0.0464 (0.1184 vs 0.1648, n=21). Gains in Shooting/Shoplifting, losses in RoadAccidents/Explosion — mixed, and RoadAccidents (the TCP purpose category) got WORSE.\",\"note\":\"VERDICT: REVERT. CAVEAT: cross-run mode still carries VLM run-to-run variance (~+/-0.019 unpaired in this ledger) ON TOP of the bootstrap CI. Prefer a paired design when the mechanism is post-hoc. Gates: F1+F2=0 (no FCCS scan-path confound), VC=83 TCP-VID markers (83/88 videos completed in TCP arm; analysis on common 83), PB=170 (>0, TCP block sent). FM2 watch: det/video 1.5542 vs 1.5181 (common-83), diff +0.036 — far below +1 flag, no detection-inflation failure. Point delta +0.01907 passes >=0.008 but P(delta>0)=0.573 < 0.9 and new mAP 0.14940 below floor 0.15132, so REVERT. Purpose population not converted; RA021 actually regressed (REF's IoU=0.6 hit vanished under TCP). Per-category: RoadAccidents (purpose cat) -0.0362, Explosion -0.0464, offset by Shooting +0.0419, Shoplifting +0.0180. Evidence dir: /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88/bootstrap_ab.json\"}\n  290: null\n  gates: 88 delta >= +0.008 AND P >= 0.9 AND abs >= 0.11306; 290 delta >= -0.003 AND abs >= 0.16454 AND FA rel inc <= +2%\n  computed: pass88=false ok290=false -> promote=false\n\nDO:\n1. DO NOT PROMOTE — confirm tcp_prompt stays default False (paste defaults; committed pipeline untouched). Close honestly on the observed pattern: if the purpose population (RA009/RA021) converted but the global delta failed, say the recognition hypothesis held locally but symmetric-loss/drift elsewhere cancelled it (name the cancelling categories); if the purpose population did NOT convert, say the clip-averaging hypothesis is wrong for this VLM and the recognition residual is not prompt-addressable with whole-segment calls — the record should state that the directed-scan recognition ceiling is now measured twice (frames v18, prompt v20).\n2. date +%Y%m%d ; write /Users/zzl/PycharmProjects/vad/video_anomaly_detection/iteration_logs/summary_v20_v177-v178_<YYYYMMDD>.md covering: the v18-addendum basis (directed path committed; FCCS==0 discipline held — paste the counts); the TCP block verbatim; the 88 and (if ran) 290 numbers with CI/P/caveat; purpose-population conversion; per-category; Normal-FA read at 290; the decision; updated CLOSED list.\n3. APPEND ledger rows to /Users/zzl/PycharmProjects/vad/video_anomaly_detection/iteration_logs/session_v97_ledger.md for v177 (88) and, if it ran, v178 (290): loop|version|title+verdict|smoke|mAP|AP@0.5|AP@0.7|lat|kept. -1 for absent. Do NOT rewrite existing rows.\n4. Reply with a 12-line recap leading with the 88 delta + P and the decision.\nReturn promoted, decision, validation (pasted), note.",
+      "journalKey": "v2:7565de890ef0e385ca673dcee0bfb6d616c03c62270317847b2b17dcae66d492",
+      "state": "done",
+      "promptPreview": "You are Agent C. Execute the TCP promotion decision and write the session record. Scrupulously honest about cross-run noise (no paired instrument exists for prompt changes). Plain text.\n\nPROJECT: vide",
+      "startedAt": 1786866485623,
+      "attempt": 1,
+      "durationMs": 417714,
+      "lastProgressAt": 1786866903324,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Record workflow structured output",
+      "recentToolActivities": [
+        "Bash(Show last 3 lines of ledger for exact append anchor)",
+        "Edit(video_.../.../session_v97_ledger.md)",
+        "StructuredOutput(Record workflow structured output)"
+      ],
+      "toolCalls": 21,
+      "agentId": "aworkflow-subagent-e4683647f8fc2aa3",
+      "resultPreview": "{\"promoted\":false,\"decision\":\"REVERT / DO NOT PROMOTE. tcp_prompt stays default False (config.py L286 tcp_prompt: bool = False; config.py L429 getattr default False; run.py L332 set_defaults(tcp_prompt=False); batch_evaluate.py L423 set_defaults(tcp_prompt=False)). Committed pipeline (v137 + BUE + CBT + CBT-recal default-ON, directed scan, full_coverage_comparative_scan=False) untouched; no code files edited this session. Loop-1 hard-88 gate FAILED on the P-leg (point_delta +0.01907 PASS vs +0.0",
+      "outputPath": "/var/folders/9h/f_2vxk4558n0kf9kxk0xthfc0000gn/T/qoder-cli-501/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/tasks/a8157d248f68ba48d.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-e4683647f8fc2aa3.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-e4683647f8fc2aa3.jsonl"
+      ],
+      "tokens": 810199
+    },
+    {
+      "type": "workflow_log",
+      "message": "v20 complete. TCP: NOT promoted | 88: delta=0.01907 P=0.573 | 290: n/a",
+      "timestamp": 1786866903337
+    }
+  ],
+  "agentCount": 30,
+  "totalTokens": 16061922,
+  "totalToolCalls": 334,
+  "logs": [
+    "v20 starting. TCP (Temporal-Contrast Prompt): prompt-side recall lever on the COMMITTED directed path (v18 addendum lessons baked in: directed-in-both-arms, FCCS==0 VOID check). Gates: 88 delta >= +0.008 & P >= 0.9 & abs >= 0.11306; 290 net-neutral & FA inc <= +2%. QUEUE-disciplined launches. concurrency 2.",
+    "Phase 1: TCP verified. flags=--tcp_prompt (default OFF; opt-out --no_tcp_prompt; CLI present in BOTH run.py and batch_evaluate.py, threaded via VADConfig.from_args -> DiscoveryConfig.tcp_prompt -> AnomalyDiscovery(tcp_prompt=...)). Markers when ON: [TCP-VID] vid=<name> tcp=on segments=<n> once per video on EVERY return path (terminal slot, 0-detection no-candidates, early-return-normal); [TCP-BLOCK] full pre-registered block once per video immediately after [TCP-VID]; [TCP-PROMPT] first scanned segment's full actual prompt once per video. Loop-1/Loop-2 gates: hold directed path in both arms, require grep -cF 'FCCS' == 0 in both logs, verify num_videos=88 for hard-88.",
+    "REF88: done=true mAP=0.12202959548756541 n=88 fccs=0 Report completed during watch window. num_videos=88 as expected (no harness bug). FCCS=0 — pre-registration clean, no directed-path-constant confound. QSCORE markers=87 (REF arm; 87/88 videos logged QSCORE, acceptable). mAP=0.1220, AP@0.3=0.2171, AP@0.5=0.1262, AP@0.7=0.0227. Report: /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88/evaluation_report.json",
+    "TCP88: done=true mAP=0.1493971388089035 n=88 vidMarker=83 fccs=0",
+    "88 verdict: delta=0.01907 P=0.573 absTCP=0.14940 absREF=0.13033 purpose=NONE — neither purpose video converted. RoadAccidents009 (GT 7-8s): both arms detect only 20.0-22.0s, IoU=0.0 in both — no TCP gain. RoadAccidents021 (GT 1-3s): REF has a hit (0.5-2.5s, IoU=0.6) but TCP has ZERO detections — TCP regressed on the very video class the block was designed to help. -> FAILS",
+    "Confirm290: skipped — 88 gate not passed",
+    "290 verdict: n/a -> promote=false",
+    "v20 complete. TCP: NOT promoted | 88: delta=0.01907 P=0.573 | 290: n/a"
+  ],
+  "result": {
+    "arm88": {
+      "ran": true,
+      "point_delta": 0.01907,
+      "ci90_low": -0.04372,
+      "ci90_high": 0.0369,
+      "p_gt0": 0.573,
+      "new_map": 0.1494,
+      "ref_map": 0.13033,
+      "det_per_video_new": 1.5542,
+      "det_per_video_ref": 1.5181,
+      "fa_rel_inc": 0.0238,
+      "purpose_converted": "NONE — neither purpose video converted. RoadAccidents009 (GT 7-8s): both arms detect only 20.0-22.0s, IoU=0.0 in both — no TCP gain. RoadAccidents021 (GT 1-3s): REF has a hit (0.5-2.5s, IoU=0.6) but TCP has ZERO detections — TCP regressed on the very video class the block was designed to help.",
+      "per_category": "Temporal mAP (mean of AP@0.3/0.5/0.7) on common 83 videos, NEW(TCP) - REF: Shooting +0.0419 (0.1475 vs 0.1056, n=23); Shoplifting +0.0180 (0.1213 vs 0.1033, n=16); RoadAccidents -0.0362 (0.1808 vs 0.2170, n=23); Explosion -0.0464 (0.1184 vs 0.1648, n=21). Gains in Shooting/Shoplifting, losses in RoadAccidents/Explosion — mixed, and RoadAccidents (the TCP purpose category) got WORSE.",
+      "note": "VERDICT: REVERT. CAVEAT: cross-run mode still carries VLM run-to-run variance (~+/-0.019 unpaired in this ledger) ON TOP of the bootstrap CI. Prefer a paired design when the mechanism is post-hoc. Gates: F1+F2=0 (no FCCS scan-path confound), VC=83 TCP-VID markers (83/88 videos completed in TCP arm; analysis on common 83), PB=170 (>0, TCP block sent). FM2 watch: det/video 1.5542 vs 1.5181 (common-83), diff +0.036 — far below +1 flag, no detection-inflation failure. Point delta +0.01907 passes >=0.008 but P(delta>0)=0.573 < 0.9 and new mAP 0.14940 below floor 0.15132, so REVERT. Purpose population not converted; RA021 actually regressed (REF's IoU=0.6 hit vanished under TCP). Per-category: RoadAccidents (purpose cat) -0.0362, Explosion -0.0464, offset by Shooting +0.0419, Shoplifting +0.0180. Evidence dir: /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88/bootstrap_ab.json"
+    },
+    "arm290": null,
+    "pass88": false,
+    "ok290": false,
+    "promote": false,
+    "decision": "REVERT / DO NOT PROMOTE. tcp_prompt stays default False (config.py L286 tcp_prompt: bool = False; config.py L429 getattr default False; run.py L332 set_defaults(tcp_prompt=False); batch_evaluate.py L423 set_defaults(tcp_prompt=False)). Committed pipeline (v137 + BUE + CBT + CBT-recal default-ON, directed scan, full_coverage_comparative_scan=False) untouched; no code files edited this session. Loop-1 hard-88 gate FAILED on the P-leg (point_delta +0.01907 PASS vs +0.008, but P(delta>0)=0.573 < 0.9; CI90 [-0.04372,+0.03690]); abs 0.14940 passes the literal gate-text floor 0.11306 but falls 0.00192 short of the in-force session floor 0.15132 — recorded both ways, conjunction fails on P regardless. Loop-2 full-290 never armed; v178 does not exist. Purpose population NOT converted (RA009 identical IoU=0.0 miss in both arms; RA021 REF hit IoU=0.6 vanished under TCP), so the clip-averaging hypothesis is wrong for this VLM: the recognition residual is not prompt-addressable with whole-segment calls, and the directed-scan recognition ceiling is now measured twice (frames v18, prompt v20)."
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "runId": "wf_3f8dd5ac-be0",
+  "workflowName": "vad-team-map20-v22",
+  "scriptPath": "/Users/zzl/PycharmProjects/vad/.qoder/workflows/vad-team-map20-v22.js",
+  "source": "path",
+  "meta": {
+    "name": "vad-team-map20-v22",
+    "description": "VAD agent team v22 — v180 SNH-P (MIL-peak-PROTECTED SNH veto): the targeted structural fix for the v179 G4 failure. v179 SNH (video-level P(normal)>=tau veto) PASSED the FA objective hugely (Normal-video FA 0.507->0.167, -67.1%) and held abs mAP (0.17324>=0.16454) but FAILED G4: 5 GT-overlapping detections vetoed (limit <=1) — the whole-video veto is too blunt on the ~3.5% of anomaly videos where the head misfires. SNH-P adds ONE pre-registered structural rule: when the video-level gate fires, veto every detection EXCEPT any detection whose [t_start,t_end] covers the video's MIL argmax snippet time (t_peak = (argmax(mil_scores)+0.5)/32 * duration — the single strongest snippet-level evidence of anomaly; model_mil.pth). Protected detections get NO [SNH-FIRE] line, so the PROVEN paired-log conf restore (--marker SNH-FIRE --paired-mode conf) works UNCHANGED. Protected detections are logged as [SNHP-SKIP] (vid, window, t_peak, reason) for observability. PHASE 0 (offline, ZERO eval spend): using the v179 artifacts (results/batch_eval_v179_snh290 + .log), for every one of the 92 [SNH-FIRE] lines determine whether the fired window covers its video's MIL argmax (recompute mil_scores locally with the analysis_v19_snh_featextract.py machinery — CLIP+MIL local, NO VLM API). PRE-REGISTERED GO GATE: (a) >= 4 of the 5 v179 GT-harm detections (RoadAccidents128 3.0-8.0 IoU0.733; Explosion025 10.0-16.5 IoU0.511; Shooting048 46.0-52.0 IoU0.429; Shoplifting022 45.5-55.0 IoU0.421; RoadAccidents002 9.0-11.5 IoU0.286) would have been PROTECTED (window covers MIL argmax), AND (b) the estimated Normal-video FA-rate relative reduction under protection stays >= 25% (recompute per Normal video: would any detection survive the veto via protection? that resurrects an FA video). NO-GO -> write the record closing the protection direction and STOP (no eval). GO -> implement (flag snh_protect default OFF, active only with --snh_veto; marker [SNHP-SKIP]; CLI in run.py+batch_evaluate.py), self-test (OFF byte-identical; ON smoke; SNH_FORCE_FIRE smoke showing the MIL-argmax-covering detection survives), ONE queue-disciplined full-290 eval (--snh_veto --snh_protect), paired-log adjudication, SAME 4 pre-registered gates as v179 (paired delta >= -0.003, abs >= 0.16454, FA rel reduction >= 25%, GT-harm <= 1), promote-or-close + records. Committed pipeline = v137 + BUE + CBT + CBT-recal (all default-ON); cgr/ccr/cnv/kfd/tcp/snh all default-OFF and stay so (snh_veto itself stays OFF regardless; only the snh_veto+snh_protect COMBINATION is promoted if all 4 gates pass). Concurrency 2, never two evals (16 GB swap-thrash). NOT a banned family: judged on the FA-rate objective with mAP as non-inferiority constraint; the protection rule is structural (no numeric test-fitting — tau is NOT touched).",
+    "phases": [
+      {
+        "title": "Precheck",
+        "detail": "offline MIL-argmax coverage of the 92 v179 fires -> GO/NO-GO"
+      },
+      {
+        "title": "Implement",
+        "detail": "v180 --snh_protect + self-test"
+      },
+      {
+        "title": "Eval290",
+        "detail": "launcher + watcher loop, full-290 --snh_veto --snh_protect"
+      },
+      {
+        "title": "Adjudicate",
+        "detail": "paired-log conf restore + 4 gates"
+      },
+      {
+        "title": "Decide",
+        "detail": "promote-or-close + summary + ledger"
+      }
+    ]
+  },
+  "createdAt": "2026-08-17T13:10:23.675Z",
+  "updatedAt": "2026-08-17T13:47:00.670Z",
+  "status": "completed",
+  "outputPath": "/Users/zzl/PycharmProjects/vad/.qoder/sessions/8a41679a-dd00-46cd-9125-2da3de1f245a/workflows/runs/wf_3f8dd5ac-be0/output.json",
+  "agents": [
+    {
+      "index": 1,
+      "label": "D-precheck-v180",
+      "phaseIndex": 1,
+      "phaseTitle": "Precheck",
+      "journalKey": "v2:2e51aa38c8d48451d6f9b29c46c55f84a0f68c1d135d531ca4dbd9e62ffe9819",
+      "agentId": "aworkflow-subagent-a989eb7fc037711b",
+      "agentType": "workflow-subagent",
+      "state": "done",
+      "attempts": 1,
+      "outputPath": "/var/folders/9h/f_2vxk4558n0kf9kxk0xthfc0000gn/T/qoder-cli-501/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/tasks/a4efea47aa68a2d43.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-a989eb7fc037711b.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-a989eb7fc037711b.jsonl"
+      ],
+      "updatedAt": "2026-08-17T13:47:00.667Z"
+    }
+  ]
+}

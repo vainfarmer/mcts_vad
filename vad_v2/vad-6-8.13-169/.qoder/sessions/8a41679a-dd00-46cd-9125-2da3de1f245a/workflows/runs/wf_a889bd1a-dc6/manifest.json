@@ -1,0 +1,86 @@
+{
+  "runId": "wf_a889bd1a-dc6",
+  "workflowName": "vad-team-map20-v16",
+  "scriptPath": "/Users/zzl/PycharmProjects/vad/.qoder/workflows/vad-team-map20-v16.js",
+  "source": "project",
+  "args": "Continue v16 as written (CGR-M dual-arm A/B). The normal-video false-positive question is being handled separately in the main session as a design discussion; do not expand scope.",
+  "meta": {
+    "name": "vad-team-map20-v16",
+    "description": "VAD agent team v16 — settle the v167 CGR-M question with a CLEAN full-pipeline cgr-on vs cgr-off A/B, then promote or archive-close. Committed pipeline = v137 + BUE + CBT + CBT-recal (all default-ON, full-290 ~0.173); CGR-M (v167, --cgr_relocate) is code-present default-OFF. WHY THIS SESSION: v15 judged CGR with a paired field snapshotted PRE-BUE, so its +0.06105 \"paired marginal\" actually bundled BUE+CBT and was inflated. An offline reconstruction of the CGR-only step gave +0.01919 (P=0.886, CI90[-0.005,+0.051]) — promising but under the P>=0.90 bar, AND the offline method cannot see how BUE/CBT interact with a RELOCATED window (BUE grows from the new position; CBT clamps along a different curve region), which is exactly where CGR's real effect on FINAL mAP lives. v16 measures that interaction directly. KEY STRUCTURAL FACT (verified): CGR (pipeline.py ~L1790), CCR (~L1810), BUE (~L1818), CBT (~L1833) all run DOWNSTREAM of every VLM call, on cached motion-energy + CLIP curves — they are deterministic post-processing. So both A/B arms can be computed inside ONE eval run: arm-OFF = BUE+CBT applied to the pre-CGR detection snapshot; arm-ON = CGR then BUE+CBT. Same videos, same VLM outputs, same detection count -> an EXACT paired A/B with ZERO cross-run VLM noise, isolating CGR's true contribution to final mAP including the BUE/CBT interaction. The two arms differ by exactly one function call, so the comparison is sound by construction. CRITICAL IMPLEMENTATION HAZARD (verified): _cgr_motion_relocate / _bue_boundary_union_extension / _cbt_category_boundary_tighten all MUTATE a[\"t_start\"]/a[\"t_end\"] IN PLACE (pipeline.py L1298, L2174, L2378, L2532) — the dual-arm code MUST deep-copy the detection list before each arm or the arms corrupt each other. FALLBACK: if the dual-arm instrument fails its self-test, fall back to two REAL separate 88-video evals (cgr-on vs cgr-off) judged cross-run. Concurrency 2. All evals on the 88-video hard harness with --categories forced.",
+    "phases": [
+      {
+        "title": "Implement",
+        "detail": "D1 implements the --cgr_ab_diag dual-arm instrument (deep-copy discipline, persists arm-OFF boundaries), then runs a HARD self-test proving correctness by construction"
+      },
+      {
+        "title": "Verify88",
+        "detail": "one 88-video hard eval with cgr-on + dual-arm diag -> exact paired bootstrap (arm-ON vs arm-OFF), zero VLM noise"
+      },
+      {
+        "title": "Confirm290",
+        "detail": "if 88 clears the gate: same dual-arm on full 290 to measure the effect at ship scale (Normal videos must be arm-identical — a free sanity check)"
+      },
+      {
+        "title": "Decide",
+        "detail": "promote cgr_enabled default-ON iff paired delta >= +0.008 with P>=0.90 at 88 AND net-neutral-or-positive at 290; else archive-close CGR and record the closure"
+      }
+    ]
+  },
+  "createdAt": "2026-08-14T14:00:16.231Z",
+  "updatedAt": "2026-08-14T14:33:00.150Z",
+  "status": "completed",
+  "outputPath": "/Users/zzl/PycharmProjects/vad/.qoder/sessions/8a41679a-dd00-46cd-9125-2da3de1f245a/workflows/runs/wf_a889bd1a-dc6/output.json",
+  "agents": [
+    {
+      "index": 1,
+      "label": "D1-implement-v169",
+      "phaseIndex": 1,
+      "phaseTitle": "Implement",
+      "journalKey": "v2:fd0cb1becbbe9a12d9df09972558e869908770be3a52bcbd8e121992bcca2bb0",
+      "agentId": "aworkflow-subagent-e57529d2d6b0f9ae",
+      "agentType": "workflow-subagent",
+      "state": "done",
+      "attempts": 1,
+      "outputPath": "/var/folders/9h/f_2vxk4558n0kf9kxk0xthfc0000gn/T/qoder-cli-501/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/tasks/a66728d110b10f3f0.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-e57529d2d6b0f9ae.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-e57529d2d6b0f9ae.jsonl"
+      ],
+      "updatedAt": "2026-08-14T14:33:00.149Z"
+    },
+    {
+      "index": 2,
+      "label": "D-launch-ab88-v169",
+      "phaseIndex": 2,
+      "phaseTitle": "Verify88",
+      "journalKey": "v2:877c67cdc29ea26670c3fc9b500dbc6d762757a69ca8b9fae9efa540b544ed64",
+      "agentId": "aworkflow-subagent-ed02814f99200e35",
+      "agentType": "workflow-subagent",
+      "state": "done",
+      "attempts": 1,
+      "outputPath": "/var/folders/9h/f_2vxk4558n0kf9kxk0xthfc0000gn/T/qoder-cli-501/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/tasks/a8fa792a5ae66d6fc.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-ed02814f99200e35.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-ed02814f99200e35.jsonl"
+      ],
+      "updatedAt": "2026-08-14T14:33:00.149Z"
+    },
+    {
+      "index": 3,
+      "label": "C-decide-cgr",
+      "phaseIndex": 4,
+      "phaseTitle": "Decide",
+      "journalKey": "v2:5a1be6940f978c197403d4c2c9d16056698ad3cfa9960bacefc9e4033aa0e7ef",
+      "agentId": "aworkflow-subagent-5f27161548057166",
+      "agentType": "workflow-subagent",
+      "state": "done",
+      "attempts": 1,
+      "outputPath": "/var/folders/9h/f_2vxk4558n0kf9kxk0xthfc0000gn/T/qoder-cli-501/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/tasks/a350e1b195da8c8c3.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-5f27161548057166.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-5f27161548057166.jsonl"
+      ],
+      "updatedAt": "2026-08-14T14:33:00.149Z"
+    }
+  ]
+}

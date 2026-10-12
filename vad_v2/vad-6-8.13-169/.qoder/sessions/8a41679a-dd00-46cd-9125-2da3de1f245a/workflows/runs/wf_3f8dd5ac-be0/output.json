@@ -1,0 +1,22 @@
+{
+  "runId": "wf_3f8dd5ac-be0",
+  "taskId": "wf-ba0897c8-42b",
+  "workflowName": "vad-team-map20-v22",
+  "status": "completed",
+  "logs": [
+    "v22 phase 0: offline MIL-argmax coverage precheck on the 92 v179 fires",
+    "v22 precheck: go=false harm_protected=0/5 fa_rel_est=0.5789",
+    "v22 NO-GO: protection rule fails its offline gate — closing direction without eval spend. precheck={\"go\":false,\"harm_protected\":0,\"fires_total\":92,\"fires_protected\":13,\"fa_rel_est\":0.5789,\"normal_fa_videos_v179\":25,\"normal_fa_videos_est\":32,\"per_harm\":\"RoadAccidents128_x264 window=3.00-8.00 iou=0.733 mil_argmax_t=NA(22<32 frames) covered=False\\nExplosion025_x264 window=10.00-16.50 iou=0.511 mil_argmax_t=NA(21<32 frames) covered=False\\nShooting048_x264 window=46.00-52.00 iou=0.429 mil_argmax_t=61.39 covered=False\\nShoplifting022_x264 window=45.50-55.00 iou=0.421 mil_argmax_t=3.42 covered=False\\nRoadAccidents002_x264 window=9.00-11.50 iou=0.286 mil_argmax_t=NA(24<32 frames) covered=False\",\"note\":\"Method: parsed all 92 [SNH-FIRE] lines (60 distinct videos) from batch_eval_v179_snh290.log; recomputed 32-snippet MIL scores LOCALLY and pipeline-exactly (VideoPreprocessor fps=2/motion_threshold=1.0/min_motion_interval=2.0 -> CLIP ViT-L-14/openai on mps -> model_mil.pth, 32 consecutive-chunk mean-pool, one forward) via NEW script iteration_logs/analysis_v180_snhp_precheck.py (v19 script untouched); cache results/v180_mil_argmax.json, report results/v180_snhp_precheck_result.json. Validity checks: recomputed durations == eval-JSON durations for all 60 videos; all 6 undefined-argmax videos exactly reproduce the v179 eval's own '[MIL] Too few frames' lines with identical kept-frame counts (RoadAccidents128=22, Explosion025=21, RoadAccidents002=24, Explosion016=23, RoadAccidents004=26, Normal_Videos_889=18) -> treated as NOT protected per pre-registered caveat (no all-zero mil arrays occurred; degeneracy is exclusively n_frames<32 where the eval itself also had NO mil_scores). Gate (a) FAILS: 0/5 GT-harm dets covered (need >=4) — for the 3 short videos argmax is undefined, and for the 2 with valid MIL the peak sits far outside the harm window (Shooting048 peak 61.4s vs 46-52; Shoplifting022 peak 3.4s vs 45.5-55). Gate (b) passes: of 51 fully-vetoed Normal videos, 7 resurrect (Normal_Videos_003/010/041/606/873/882/898) -> est_fa=25+7=32, fa_rel_est=(76-32)/76=0.5789 >= 0.25. fires_protected=13/92 (12 Normal-video fires + Shoplifting022 idx0 t=0.50-6.50, which is NOT a GT-harm det). Both gates required -> NO-GO for the MIL-peak protection rule: it cannot rescue the G4 GT-harm regressions because short anomaly clips (<32 kept frames after motion filtering) have no MIL scores at all, and where MIL exists its argmax does not localize the v179-vetoed true-positive windows. Zero eval spend, zero VLM calls; no batch_evaluate launched; evaluator/GT/bootstrap untouched.\"}"
+  ],
+  "failures": [],
+  "agentCount": 1,
+  "totalToolCalls": 48,
+  "durationMs": 2196982,
+  "usage": {
+    "agents": 1,
+    "toolCalls": 48,
+    "durationMs": 2196982
+  },
+  "transcriptDir": "/Users/zzl/PycharmProjects/vad/.qoder/sessions/8a41679a-dd00-46cd-9125-2da3de1f245a/workflows/runs/wf_3f8dd5ac-be0",
+  "scriptPath": "/Users/zzl/PycharmProjects/vad/.qoder/workflows/vad-team-map20-v22.js"
+}

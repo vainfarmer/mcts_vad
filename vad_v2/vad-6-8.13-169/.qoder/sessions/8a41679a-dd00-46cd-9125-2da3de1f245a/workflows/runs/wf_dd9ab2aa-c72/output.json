@@ -1,0 +1,49 @@
+{
+  "runId": "wf_dd9ab2aa-c72",
+  "taskId": "wf-c6e8d26a-a65",
+  "workflowName": "vad-team-map20-v20",
+  "status": "completed",
+  "result": {
+    "arm88": {
+      "ran": true,
+      "point_delta": 0.01907,
+      "ci90_low": -0.04372,
+      "ci90_high": 0.0369,
+      "p_gt0": 0.573,
+      "new_map": 0.1494,
+      "ref_map": 0.13033,
+      "det_per_video_new": 1.5542,
+      "det_per_video_ref": 1.5181,
+      "fa_rel_inc": 0.0238,
+      "purpose_converted": "NONE — neither purpose video converted. RoadAccidents009 (GT 7-8s): both arms detect only 20.0-22.0s, IoU=0.0 in both — no TCP gain. RoadAccidents021 (GT 1-3s): REF has a hit (0.5-2.5s, IoU=0.6) but TCP has ZERO detections — TCP regressed on the very video class the block was designed to help.",
+      "per_category": "Temporal mAP (mean of AP@0.3/0.5/0.7) on common 83 videos, NEW(TCP) - REF: Shooting +0.0419 (0.1475 vs 0.1056, n=23); Shoplifting +0.0180 (0.1213 vs 0.1033, n=16); RoadAccidents -0.0362 (0.1808 vs 0.2170, n=23); Explosion -0.0464 (0.1184 vs 0.1648, n=21). Gains in Shooting/Shoplifting, losses in RoadAccidents/Explosion — mixed, and RoadAccidents (the TCP purpose category) got WORSE.",
+      "note": "VERDICT: REVERT. CAVEAT: cross-run mode still carries VLM run-to-run variance (~+/-0.019 unpaired in this ledger) ON TOP of the bootstrap CI. Prefer a paired design when the mechanism is post-hoc. Gates: F1+F2=0 (no FCCS scan-path confound), VC=83 TCP-VID markers (83/88 videos completed in TCP arm; analysis on common 83), PB=170 (>0, TCP block sent). FM2 watch: det/video 1.5542 vs 1.5181 (common-83), diff +0.036 — far below +1 flag, no detection-inflation failure. Point delta +0.01907 passes >=0.008 but P(delta>0)=0.573 < 0.9 and new mAP 0.14940 below floor 0.15132, so REVERT. Purpose population not converted; RA021 actually regressed (REF's IoU=0.6 hit vanished under TCP). Per-category: RoadAccidents (purpose cat) -0.0362, Explosion -0.0464, offset by Shooting +0.0419, Shoplifting +0.0180. Evidence dir: /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_tcp88/bootstrap_ab.json"
+    },
+    "arm290": null,
+    "pass88": false,
+    "ok290": false,
+    "promote": false,
+    "decision": "REVERT / DO NOT PROMOTE. tcp_prompt stays default False (config.py L286 tcp_prompt: bool = False; config.py L429 getattr default False; run.py L332 set_defaults(tcp_prompt=False); batch_evaluate.py L423 set_defaults(tcp_prompt=False)). Committed pipeline (v137 + BUE + CBT + CBT-recal default-ON, directed scan, full_coverage_comparative_scan=False) untouched; no code files edited this session. Loop-1 hard-88 gate FAILED on the P-leg (point_delta +0.01907 PASS vs +0.008, but P(delta>0)=0.573 < 0.9; CI90 [-0.04372,+0.03690]); abs 0.14940 passes the literal gate-text floor 0.11306 but falls 0.00192 short of the in-force session floor 0.15132 — recorded both ways, conjunction fails on P regardless. Loop-2 full-290 never armed; v178 does not exist. Purpose population NOT converted (RA009 identical IoU=0.0 miss in both arms; RA021 REF hit IoU=0.6 vanished under TCP), so the clip-averaging hypothesis is wrong for this VLM: the recognition residual is not prompt-addressable with whole-segment calls, and the directed-scan recognition ceiling is now measured twice (frames v18, prompt v20)."
+  },
+  "logs": [
+    "v20 starting. TCP (Temporal-Contrast Prompt): prompt-side recall lever on the COMMITTED directed path (v18 addendum lessons baked in: directed-in-both-arms, FCCS==0 VOID check). Gates: 88 delta >= +0.008 & P >= 0.9 & abs >= 0.11306; 290 net-neutral & FA inc <= +2%. QUEUE-disciplined launches. concurrency 2.",
+    "Phase 1: TCP verified. flags=--tcp_prompt (default OFF; opt-out --no_tcp_prompt; CLI present in BOTH run.py and batch_evaluate.py, threaded via VADConfig.from_args -> DiscoveryConfig.tcp_prompt -> AnomalyDiscovery(tcp_prompt=...)). Markers when ON: [TCP-VID] vid=<name> tcp=on segments=<n> once per video on EVERY return path (terminal slot, 0-detection no-candidates, early-return-normal); [TCP-BLOCK] full pre-registered block once per video immediately after [TCP-VID]; [TCP-PROMPT] first scanned segment's full actual prompt once per video. Loop-1/Loop-2 gates: hold directed path in both arms, require grep -cF 'FCCS' == 0 in both logs, verify num_videos=88 for hard-88.",
+    "REF88: done=true mAP=0.12202959548756541 n=88 fccs=0 Report completed during watch window. num_videos=88 as expected (no harness bug). FCCS=0 — pre-registration clean, no directed-path-constant confound. QSCORE markers=87 (REF arm; 87/88 videos logged QSCORE, acceptable). mAP=0.1220, AP@0.3=0.2171, AP@0.5=0.1262, AP@0.7=0.0227. Report: /Users/zzl/PycharmProjects/vad/results/batch_eval_v177_ref88/evaluation_report.json",
+    "TCP88: done=true mAP=0.1493971388089035 n=88 vidMarker=83 fccs=0",
+    "88 verdict: delta=0.01907 P=0.573 absTCP=0.14940 absREF=0.13033 purpose=NONE — neither purpose video converted. RoadAccidents009 (GT 7-8s): both arms detect only 20.0-22.0s, IoU=0.0 in both — no TCP gain. RoadAccidents021 (GT 1-3s): REF has a hit (0.5-2.5s, IoU=0.6) but TCP has ZERO detections — TCP regressed on the very video class the block was designed to help. -> FAILS",
+    "Confirm290: skipped — 88 gate not passed",
+    "290 verdict: n/a -> promote=false",
+    "v20 complete. TCP: NOT promoted | 88: delta=0.01907 P=0.573 | 290: n/a"
+  ],
+  "failures": [],
+  "agentCount": 30,
+  "totalToolCalls": 334,
+  "durationMs": 17314726,
+  "usage": {
+    "agents": 30,
+    "toolCalls": 334,
+    "durationMs": 17314726
+  },
+  "transcriptDir": "/Users/zzl/PycharmProjects/vad/.qoder/sessions/8a41679a-dd00-46cd-9125-2da3de1f245a/workflows/runs/wf_dd9ab2aa-c72",
+  "scriptPath": "/Users/zzl/PycharmProjects/vad/.qoder/workflows/vad-team-map20-v20.js"
+}

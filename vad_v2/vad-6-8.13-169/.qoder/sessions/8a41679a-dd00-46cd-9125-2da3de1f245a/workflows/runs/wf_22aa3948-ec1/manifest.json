@@ -1,0 +1,44 @@
+{
+  "runId": "wf_22aa3948-ec1",
+  "workflowName": "vad-team-map20-v21",
+  "scriptPath": "/Users/zzl/PycharmProjects/vad/.qoder/workflows/vad-team-map20-v21.js",
+  "source": "path",
+  "meta": {
+    "name": "vad-team-map20-v21",
+    "description": "VAD agent team v21 — SNH (Supervised Normality Head) EVAL session: implement --snh_veto (video-level P(normal) gate trained in v19, GO: CV AUC 0.996, tau 0.7894, 94% normal-flag @ 3.8% anomaly-flag), then ONE full-290 paired-log adjudication. v19 established the offline GO gate (summary_v19_snh-gate_20260816.md); the trained head is video_anomaly_detection/model_snh.json and the SHARED feature math is video_anomaly_detection/snh_features.py (compute_snh_features, FEATURE_NAMES — identical at train and eval, no train/eval skew). MECHANISM (pre-registered, mirroring the v171 CNV plumbing): at the SAME terminal slot where _cnv_veto is called (after merge/NMS/PostTighten/classify/curve-correction/MIL-sanity/conf-gate/ECE/EUBC/Q-score/BUE/CBT — count frozen), load model_snh.json, compute the 16 features for the current video from the pipeline's OWN cached signals (mil_scores, 13 cat curves, normal curve, motion_energy — the same signal families _cnv_stage1_bundle already reads at that slot), standardize with the saved scaler, P(normal)=sigmoid(w·x+b); if P(normal) >= tau veto ALL of the video's detections (confidence := 0.0, detection KEPT, count-frozen index-aligned, ONE-SIDED — never adds/moves/re-ranks). Markers: one [SNH-FIRE] per vetoed detection in the EXACT restore_pre_marker conf format (vid=<stem> ... t=<ts>.2f-<te>.2f ... conf=<old>.4f->0.0000) + exactly one unconditional [SNH-VID] per video on EVERY path incl. early-return-normal and 0-detection paths (FM17, mirroring _cnv_log_early_return). SNH_FORCE_FIRE=1 dev-only self-test hook (never set in committed runs). Flag snh_veto default OFF, CLI in run.py AND batch_evaluate.py. ADJUDICATION (the v171 proven path, NO new bootstrap code): analysis_bootstrap_ab.py --new <dir> --paired-log <run.log> --marker SNH-FIRE --paired-mode conf — EXACT paired arm-OFF rebuild, zero cross-run VLM noise. PROMOTION GATES (pre-registered, same as v17): paired mAP delta >= -0.003 AND abs mAP >= 0.16454 AND Normal-video FA-rate relative reduction >= 25% AND <= 1 GT-overlapping (IoU>=0.1) detection vetoed. Committed pipeline = v137 + BUE + CBT + CBT-recal (all default-ON, full-290 ~0.173, v160_full 0.17254); cgr/ccr/cnv/kfd/tcp all default-OFF and stay so. Concurrency 2. QUEUE DISCIPLINE: another session's batch_evaluate may still be running — EVERY batch_evaluate launch in this session (incl. self-test smokes) must first verify no other batch_evaluate process is running, and sleep-poll until clear (up to ~90 min) — never run two evals concurrently (16 GB machine, owner-diagnosed swap thrash). NONE of the 10 banned families; this is judged on the FA-rate objective with mAP only as a non-inferiority constraint — NOT Normal-FP-for-mAP (banned 9).",
+    "phases": [
+      {
+        "title": "Implement",
+        "detail": "v179 --snh_veto + markers + self-test incl. FORCE_FIRE restore proof"
+      },
+      {
+        "title": "Eval290",
+        "detail": "queue-disciplined full-290 eval, --snh_veto, concurrency 2"
+      },
+      {
+        "title": "Adjudicate",
+        "detail": "paired-log conf restore + 4 gates + FA rate + FM greps"
+      },
+      {
+        "title": "Decide",
+        "detail": "promote-or-close + summary + ledger"
+      }
+    ]
+  },
+  "createdAt": "2026-08-16T07:58:13.467Z",
+  "updatedAt": "2026-08-16T12:09:58.090Z",
+  "status": "failed",
+  "outputPath": "/Users/zzl/PycharmProjects/vad/.qoder/sessions/8a41679a-dd00-46cd-9125-2da3de1f245a/workflows/runs/wf_22aa3948-ec1/output.json",
+  "agents": [
+    {
+      "index": 1,
+      "label": "D1-implement-v179",
+      "phaseIndex": 1,
+      "phaseTitle": "Implement",
+      "journalKey": "v2:1dadb98b5686f50b07489367264fa2f1f308a4683cc16c8801f426015aa392eb",
+      "state": "error",
+      "attempts": 6,
+      "updatedAt": "2026-08-16T12:09:58.086Z"
+    }
+  ]
+}

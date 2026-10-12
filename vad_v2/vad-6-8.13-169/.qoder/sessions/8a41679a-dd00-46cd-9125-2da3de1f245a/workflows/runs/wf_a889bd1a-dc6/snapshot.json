@@ -1,0 +1,211 @@
+{
+  "version": 1,
+  "sessionId": "8a41679a-dd00-46cd-9125-2da3de1f245a",
+  "runId": "wf_a889bd1a-dc6",
+  "taskId": "wf-00b189be-deb",
+  "workflowName": "vad-team-map20-v16",
+  "summary": "VAD agent team v16 — settle the v167 CGR-M question with a CLEAN full-pipeline cgr-on vs cgr-off A/B, then promote or archive-close. Committed pipeline = v137 + BUE + CBT + CBT-recal (all default-ON, full-290 ~0.173); CGR-M (v167, --cgr_relocate) is code-present default-OFF. WHY THIS SESSION: v15 judged CGR with a paired field snapshotted PRE-BUE, so its +0.06105 \"paired marginal\" actually bundled BUE+CBT and was inflated. An offline reconstruction of the CGR-only step gave +0.01919 (P=0.886, CI90[-0.005,+0.051]) — promising but under the P>=0.90 bar, AND the offline method cannot see how BUE/CBT interact with a RELOCATED window (BUE grows from the new position; CBT clamps along a different curve region), which is exactly where CGR's real effect on FINAL mAP lives. v16 measures that interaction directly. KEY STRUCTURAL FACT (verified): CGR (pipeline.py ~L1790), CCR (~L1810), BUE (~L1818), CBT (~L1833) all run DOWNSTREAM of every VLM call, on cached motion-energy + CLIP curves — they are deterministic post-processing. So both A/B arms can be computed inside ONE eval run: arm-OFF = BUE+CBT applied to the pre-CGR detection snapshot; arm-ON = CGR then BUE+CBT. Same videos, same VLM outputs, same detection count -> an EXACT paired A/B with ZERO cross-run VLM noise, isolating CGR's true contribution to final mAP including the BUE/CBT interaction. The two arms differ by exactly one function call, so the comparison is sound by construction. CRITICAL IMPLEMENTATION HAZARD (verified): _cgr_motion_relocate / _bue_boundary_union_extension / _cbt_category_boundary_tighten all MUTATE a[\"t_start\"]/a[\"t_end\"] IN PLACE (pipeline.py L1298, L2174, L2378, L2532) — the dual-arm code MUST deep-copy the detection list before each arm or the arms corrupt each other. FALLBACK: if the dual-arm instrument fails its self-test, fall back to two REAL separate 88-video evals (cgr-on vs cgr-off) judged cross-run. Concurrency 2. All evals on the 88-video hard harness with --categories forced.",
+  "status": "completed",
+  "startTime": 1786716016233,
+  "endTime": 1786717980147,
+  "scriptPath": "/Users/zzl/PycharmProjects/vad/.qoder/workflows/vad-team-map20-v16.js",
+  "transcriptDir": "/Users/zzl/PycharmProjects/vad/.qoder/sessions/8a41679a-dd00-46cd-9125-2da3de1f245a/workflows/runs/wf_a889bd1a-dc6",
+  "outputPath": "/Users/zzl/PycharmProjects/vad/.qoder/sessions/8a41679a-dd00-46cd-9125-2da3de1f245a/workflows/runs/wf_a889bd1a-dc6/output.json",
+  "args": "Continue v16 as written (CGR-M dual-arm A/B). The normal-video false-positive question is being handled separately in the main session as a design discussion; do not expand scope.",
+  "phases": [
+    {
+      "title": "Implement",
+      "detail": "D1 implements the --cgr_ab_diag dual-arm instrument (deep-copy discipline, persists arm-OFF boundaries), then runs a HARD self-test proving correctness by construction"
+    },
+    {
+      "title": "Verify88",
+      "detail": "one 88-video hard eval with cgr-on + dual-arm diag -> exact paired bootstrap (arm-ON vs arm-OFF), zero VLM noise"
+    },
+    {
+      "title": "Confirm290",
+      "detail": "if 88 clears the gate: same dual-arm on full 290 to measure the effect at ship scale (Normal videos must be arm-identical — a free sanity check)"
+    },
+    {
+      "title": "Decide",
+      "detail": "promote cgr_enabled default-ON iff paired delta >= +0.008 with P>=0.90 at 88 AND net-neutral-or-positive at 290; else archive-close CGR and record the closure"
+    }
+  ],
+  "progress": [
+    {
+      "type": "workflow_phase",
+      "index": 1,
+      "title": "Implement",
+      "kind": "root"
+    },
+    {
+      "type": "workflow_phase",
+      "index": 2,
+      "title": "Verify88",
+      "kind": "root"
+    },
+    {
+      "type": "workflow_phase",
+      "index": 3,
+      "title": "Confirm290",
+      "kind": "root"
+    },
+    {
+      "type": "workflow_phase",
+      "index": 4,
+      "title": "Decide",
+      "kind": "root"
+    },
+    {
+      "type": "workflow_log",
+      "message": "v16 starting. ONE question: does CGR-M raise FINAL mAP under a clean A/B? Instrument = single-run DUAL-ARM (arm-OFF = BUE+CBT on the pre-CGR snapshot; arm-ON = CGR then BUE+CBT) -> exact paired, zero VLM noise, captures the BUE/CBT interaction the offline method missed. Gate: paired delta >= +0.008 with P >= 0.9. concurrency 2.",
+      "timestamp": 1786716016237
+    },
+    {
+      "type": "workflow_agent",
+      "index": 1,
+      "label": "D1-implement-v169",
+      "phaseIndex": 1,
+      "phaseTitle": "Implement",
+      "agentType": "workflow-subagent",
+      "prompt": "You are Agent D1. Implement the DUAL-ARM A/B instrument for CGR-M, then PROVE it correct. This is an instrumentation task: the mechanism already exists — you are building the measurement. StructuredOutput EXACTLY ONCE.\n\nPROJECT: video anomaly detection + TEMPORAL LOCALIZATION on UCF-Crime. Repo /Users/zzl/PycharmProjects/vad; code /Users/zzl/PycharmProjects/vad/video_anomaly_detection. INTERPRETER python3.14.\nGIT RULE: the uncommitted working tree IS the latest code. NEVER git checkout/reset/stash/clean. Back up to /Users/zzl/PycharmProjects/vad/.qoder/backups/<version>/ before editing.\n\n!!! COMMITTED PIPELINE: v137 + BUE + CBT + CBT-recal, ALL DEFAULT-ON (ScoringConfig().bue_enabled/cbt_enabled/cbt_recal are True). full-290 mAP ~0.173 (v160_full 0.17254); hard-88 ~0.11806. CGR-M (v167) and CCR-SE (v168) are code-present DEFAULT-OFF (cgr_enabled=False, ccr_enabled=False). Do NOT change BUE/CBT/recal/CCR defaults. !!!\n\n!!! THE SINGLE QUESTION v16 ANSWERS: does CGR-M (--cgr_relocate) raise FINAL mAP, measured cleanly? !!!\nCGR-M = count-neutral motion-energy-peak RELOCATION of the lowest-confidence off-GT detection onto an uncovered motion peak, gated to the 4 hard cats, firing at the FINAL detection list immediately BEFORE the pre-BUE snapshot.\nv15 got this wrong: it judged CGR with paired field pre_cgr_boundaries, which is snapshotted PRE-BUE, so the measured +0.06105 delta bundled the committed BUE+CBT gains and was INFLATED (it was NOT a CGR-only figure). An offline reconstruction isolating the CGR step alone gave +0.01919, P(delta>0)=0.886, CI90[-0.005,+0.051] — directionally positive, just under the P>=0.90 bar. But that offline figure ALSO cannot capture the BUE/CBT interaction: after CGR moves a window, BUE grows outward from the NEW position and CBT clamps against a DIFFERENT region of the category curve. CGR's true effect on final mAP is exactly that end-to-end quantity. v16 measures it directly.\n\n!!! THE INSTRUMENT (why one run suffices, and why it beats two runs) !!!\nVERIFIED STRUCTURE: CGR (pipeline.py ~L1790) -> CCR (~L1810, OFF) -> BUE (~L1818) -> CBT (~L1833). ALL of these run AFTER every VLM call, reading only cached per-frame motion energy and the cached CLIP category curve. They are DETERMINISTIC post-processing. Therefore both A/B arms can be produced inside a SINGLE eval run:\n  arm-OFF = BUE+CBT applied to a deep copy of the pre-CGR detection list (i.e. what the committed pipeline would have produced)\n  arm-ON  = CGR, then BUE+CBT (this is the run's real final output)\nSame videos, same VLM sampling, same detection count -> an EXACT PAIRED A/B with ZERO cross-run VLM noise. Two separate runs would re-sample the VLM and reintroduce exactly the noise that made v165 (P=0.780) and the offline CGR estimate (P=0.886) inconclusive. The arms differ by exactly ONE function call, so the contrast is sound by construction.\n\n!!! CRITICAL IMPLEMENTATION HAZARD (verified by reading the code — do not skip) !!!\n_cgr_motion_relocate, _bue_boundary_union_extension and _cbt_category_boundary_tighten all MUTATE a[\"t_start\"] / a[\"t_end\"] IN PLACE on the detection dicts (pipeline.py L1298-1299, L2174-2175, L2378-2379, L2532-2533). If the dual-arm code passes the SAME dict objects to both arms, the arms corrupt each other and the measurement is garbage (silently — the numbers will look plausible). You MUST copy.deepcopy the detection list before running EACH arm. State in your self-test how you proved the arms are independent.\n\n!!! MEASUREMENT — reuse the PROVEN tool, add no new bootstrap code !!!\nPersist the arm-OFF windows as a per-detection field named EXACTLY ab_arm_off_boundaries (index-aligned with anomalies, same length — copy the working write path from pre_bue_boundaries / pre_cbt_boundaries in models.py to_dict()). The run's own final output IS arm-ON. Then the existing tool measures the paired A/B directly, with its length-mismatch HARD-VOID check for free:\n  python3.14 /Users/zzl/PycharmProjects/vad/video_anomaly_detection/iteration_logs/analysis_bootstrap_ab.py --new <dir> --paired-json ab_arm_off_boundaries --min-delta 0.008 --min-p 0.9\npoint_delta = arm-ON minus arm-OFF = the clean CGR effect on FINAL mAP including the BUE/CBT interaction. new_map = absolute hard mAP with CGR on.\n\n!!! PROMOTION GATE: paired delta >= +0.008 AND P(delta>0) >= 0.9 at 88, AND net-neutral-or-positive at 290. Otherwise CGR is CLOSED and archived (leave default-OFF). Report the honest number either way — a negative result that closes a lead cleanly is a successful loop. !!!\n\nFM DISCIPLINE (hard-won; violating these has cost this project whole sessions): FM2 count/FP (CGR is count-neutral — assert ndet unchanged). FM5 marker must actually fire. FM6 offline gains do not transfer — that is why this session measures end-to-end. FM17 per-video marker must fire on the EMPTY/0-detection path. FM18 read the ABSOLUTE mAP, not only the delta. FM20 the paired field must be WRITTEN and GREPPED in a produced JSON — a claim is not evidence (v165 falsely claimed this). FM21 the activation marker string must EXACTLY match what the orchestrator greps. HARNESS BUG (cost v14 two loops): --categories must be in the eval command — the launcher below bakes it in; the watcher verifies num_videos.\nHARD CONSTRAINTS: flag default OFF (flag-off byte-identical to the committed pipeline); CLI in BOTH run.py and batch_evaluate.py; eval FIXED --concurrency 2. StructuredOutput EXACTLY ONCE. ANTI-STALL: no Bash > ~150s except the stated self-test smoke; Read with offset/limit; keep progress lines short.\n\nIMPLEMENT:\n1. Back up every file you touch to /Users/zzl/PycharmProjects/vad/.qoder/backups/v169/ FIRST, and ls the backup dir to confirm.\n2. Add ONE new config flag `cgr_ab_diag` (default False) + CLI `--cgr_ab_diag` in BOTH run.py and batch_evaluate.py, threaded through VADConfig.from_args like the existing cgr_enabled. Flag-off must be byte-identical to the committed pipeline.\n3. In pipeline.py at the CGR site (~L1790, immediately before the pre_bue snapshot), when cgr_ab_diag AND cgr_enabled are both on:\n   a. import copy; base = copy.deepcopy(final_anomalies)   # the pre-CGR state\n   b. ARM-OFF: run the SAME downstream chain the committed pipeline runs — BUE then CBT (and CCR only if ccr_enabled, which is OFF) — on copy.deepcopy(base). Capture the resulting [[t_start,t_end],...] list.\n   c. ARM-ON: the normal path — CGR, then the same downstream chain — producing the run's real final_anomalies.\n   d. Persist the arm-OFF list as a per-detection field named EXACTLY ab_arm_off_boundaries, index-aligned with anomalies and the SAME LENGTH (CGR is count-neutral). Copy the write path used by pre_bue_boundaries / pre_cbt_boundaries in models.py to_dict() so it survives serialization.\n   THE HAZARD: those operators mutate a[\"t_start\"]/a[\"t_end\"] IN PLACE. Deep-copy before EACH arm or the arms silently corrupt each other.\n   LOGGING: the arm-OFF pass will re-run BUE/CBT and would double-fire their [BUE]/[CBT-VID] markers, corrupting FM5 counts. Suppress logging during the arm-OFF pass (or tag it distinctly) and say in notes exactly what you did.\n4. Emit an unconditional per-video marker `[CGR-AB] vid=... ndet=<n> armoff_len=<n> fired=<0|1>` INCLUDING on the empty/0-detection path (FM17), with the string EXACTLY as you report in activation_marker.\n5. Bump the pipeline.py header to v169. Do NOT touch BUE/CBT/recal/CCR defaults or the v167 CGR method itself — only ADD the diagnostic.\n\nHARD SELF-TEST (mandatory — paste ACTUAL command output, do not describe it). A false pass here wastes a multi-hour eval, and v165 already cost this project a loop by claiming a self-test it had not run:\n  Run a REAL smoke: python3.14 -u -m video_anomaly_detection.batch_evaluate --dataset_dir /Users/zzl/Movies/ucf-crime --output_dir /Users/zzl/PycharmProjects/vad/results/batch_eval_v169_selftest --max_per_category 1 --concurrency 1 --categories Shooting,RoadAccidents,Shoplifting,Explosion --bue_extension --qscore_rerank --cbt_tighten --cbt_recal --cgr_relocate --cgr_ab_diag\n  Then CONFIRM ALL FOUR, pasting output for each:\n  (a) grep -cF \"<your marker>\" the log > 0;\n  (b) load a produced *.json and print ab_arm_off_boundaries with real values, AND assert len(ab_arm_off_boundaries) == len(anomalies);\n  (c) ARM INDEPENDENCE: find a video where the marker shows fired=0 and show arm-OFF is byte-identical to the final boundaries; find one where fired=1 and show they DIFFER. If every smoke video has fired=0, widen the smoke (e.g. --max_per_category 2) until at least one fire is observed — an all-fired=0 smoke proves nothing about the ON arm;\n  (d) count-neutrality: ndet identical in both arms.\n  Set selftest_passed=true ONLY if (a)-(d) all literally pass. If any fails, FIX and rerun.\nVALIDATE: python3.14 -m py_compile; import MultiAnomalyVAD; both new flags appear in --help; ScoringConfig() BUE/CBT/recal/CGR/CCR defaults UNCHANGED; from_args(Namespace()).scoring == ScoringConfig().\nReturn implemented, selftest_passed, instrument_selftest (pasted evidence), deepcopy_proof, activation_marker, eval_flags, files_changed, validation, notes.\nThe self-test smoke is a few videos at concurrency 1 (~5-10 min) — that is expected and allowed. No OTHER Bash > ~150s.",
+      "journalKey": "v2:fd0cb1becbbe9a12d9df09972558e869908770be3a52bcbd8e121992bcca2bb0",
+      "state": "done",
+      "promptPreview": "You are Agent D1. Implement the DUAL-ARM A/B instrument for CGR-M, then PROVE it correct. This is an instrumentation task: the mechanism already exists — you are building the measurement. StructuredOu",
+      "startedAt": 1786716016238,
+      "attempt": 1,
+      "durationMs": 1408444,
+      "lastProgressAt": 1786717424676,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Record workflow structured output",
+      "recentToolActivities": [
+        "Bash(Check nested evaluation dict for num_videos and mAP)",
+        "Bash(Check temporal_map for num_videos/mAP)",
+        "StructuredOutput(Record workflow structured output)"
+      ],
+      "toolCalls": 40,
+      "agentId": "aworkflow-subagent-e57529d2d6b0f9ae",
+      "resultPreview": "{\"implemented\":true,\"selftest_passed\":true,\"instrument_selftest\":\"FRESH SMOKE RUN BY THIS AGENT (exit 0): python3.14 -u -m video_anomaly_detection.batch_evaluate --dataset_dir /Users/zzl/Movies/ucf-crime --output_dir /Users/zzl/PycharmProjects/vad/results/batch_eval_v169_selftest_d1 --max_per_category 1 --concurrency 1 --categories Shooting,RoadAccidents,Shoplifting,Explosion --bue_extension --qscore_rerank --cbt_tighten --cbt_recal --cgr_relocate --cgr_ab_diag (log results/v169_selftest_d1.log;",
+      "outputPath": "/var/folders/9h/f_2vxk4558n0kf9kxk0xthfc0000gn/T/qoder-cli-501/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/tasks/a66728d110b10f3f0.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-e57529d2d6b0f9ae.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-e57529d2d6b0f9ae.jsonl"
+      ],
+      "tokens": 1949313
+    },
+    {
+      "type": "workflow_log",
+      "message": "Phase 1: dual-arm instrument verified. marker=\"[CGR-AB] vid=\"",
+      "timestamp": 1786717424682
+    },
+    {
+      "type": "workflow_agent",
+      "index": 2,
+      "label": "D-launch-ab88-v169",
+      "phaseIndex": 2,
+      "phaseTitle": "Verify88",
+      "agentType": "workflow-subagent",
+      "prompt": "You are Agent D-launcher. Ensure the ab88 eval for v169 is running WITH THE REQUIRED FLAGS, then return IMMEDIATELY. SHORT; no Bash > 150s. StructuredOutput EXACTLY ONCE.\noutput_dir=/Users/zzl/PycharmProjects/vad/results/batch_eval_v169_ab88 ; log=/Users/zzl/PycharmProjects/vad/results/batch_eval_v169_ab88.log ; report=/Users/zzl/PycharmProjects/vad/results/batch_eval_v169_ab88/evaluation_report.json\nREQUIRED FLAGS (verbatim): --categories Shooting,RoadAccidents,Shoplifting,Explosion --bue_extension --qscore_rerank --cbt_tighten --cbt_recal --cgr_relocate --cgr_ab_diag\n1. ps aux|grep -i batch_evaluate|grep -v grep. 2. Already running for this V_tag -> adopt if the flags match, else kill and relaunch. 3. report exists AND the log shows the required flags -> done, do not relaunch. 4. A DIFFERENT version is running -> sleep 140 (up to 3x), then report blocked.\n5. Otherwise write /Users/zzl/PycharmProjects/vad/results/batch_eval_v169_ab88/COMMAND.txt and launch EXACTLY:\nbash -lc 'mkdir -p /Users/zzl/PycharmProjects/vad/results/batch_eval_v169_ab88; source /Users/zzl/PycharmProjects/vad/video_anomaly_detection/.env 2>/dev/null; export PYTHONUNBUFFERED=1; cd /Users/zzl/PycharmProjects/vad; nohup python3.14 -u -m video_anomaly_detection.batch_evaluate --dataset_dir /Users/zzl/Movies/ucf-crime --output_dir /Users/zzl/PycharmProjects/vad/results/batch_eval_v169_ab88 --max_per_category 999 --concurrency 2 --categories Shooting,RoadAccidents,Shoplifting,Explosion --bue_extension --qscore_rerank --cbt_tighten --cbt_recal --cgr_relocate --cgr_ab_diag > /Users/zzl/PycharmProjects/vad/results/batch_eval_v169_ab88.log 2>&1 & echo PID $!'\n6. sleep 30; tail -5 the log to catch an immediate Traceback. Return launched, note.",
+      "journalKey": "v2:877c67cdc29ea26670c3fc9b500dbc6d762757a69ca8b9fae9efa540b544ed64",
+      "state": "done",
+      "promptPreview": "You are Agent D-launcher. Ensure the ab88 eval for v169 is running WITH THE REQUIRED FLAGS, then return IMMEDIATELY. SHORT; no Bash > 150s. StructuredOutput EXACTLY ONCE.\noutput_dir=/Users/zzl/Pycharm",
+      "startedAt": 1786717424683,
+      "attempt": 1,
+      "durationMs": 50703,
+      "lastProgressAt": 1786717475381,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Record workflow structured output",
+      "recentToolActivities": [
+        "Bash(Check COMMAND.txt and log for required flags)",
+        "Bash(Verify flags evidence in log and report)",
+        "StructuredOutput(Record workflow structured output)"
+      ],
+      "toolCalls": 5,
+      "agentId": "aworkflow-subagent-ed02814f99200e35",
+      "resultPreview": "{\"launched\":false,\"note\":\"Already complete; no relaunch needed. No batch_evaluate process running. Report exists at /Users/zzl/PycharmProjects/vad/results/batch_eval_v169_ab88/evaluation_report.json (88/88 videos succeeded, 4 categories Shooting/RoadAccidents/Shoplifting/Explosion, finished 2026-08-13 22:59). COMMAND.txt contains the exact required flags verbatim (--categories Shooting,RoadAccidents,Shoplifting,Explosion --bue_extension --qscore_rerank --cbt_tighten --cbt_recal --cgr_relocate --",
+      "outputPath": "/var/folders/9h/f_2vxk4558n0kf9kxk0xthfc0000gn/T/qoder-cli-501/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/tasks/a8fa792a5ae66d6fc.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-ed02814f99200e35.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-ed02814f99200e35.jsonl"
+      ],
+      "tokens": 125310
+    },
+    {
+      "type": "workflow_log",
+      "message": "Verify88: done=false crashed=true mAP=-1 n=? markers=-1 pairedJSONs=-1 launch failed: Already complete; no relaunch needed. No batch_evaluate process running. Report exists at /Users/zzl/PycharmProjects/vad/results/batch_eval_v169_ab88/evaluation_report.json (88/88 videos succeeded, 4 categories Shooting/RoadAccidents/Shoplifting/Explosion, finished 2026-08-13 22:59). COMMAND.txt contains the exact required flags verbatim (--categories Shooting,RoadAccidents,Shoplifting,Explosion --bue_extension --qscore_rerank --cbt_tighten --cbt_recal --cgr_relocate --cgr_ab_diag) and the log confirms they were active (367 flag-tagged lines: [QSCORE-GATE] rerank, [BUE], [CBT-VID] recal=on) with final line \"Full report saved\". Per step 3, this is done.",
+      "timestamp": 1786717475386
+    },
+    {
+      "type": "workflow_log",
+      "message": "Verify88: eval unusable -> no adjudication",
+      "timestamp": 1786717475386
+    },
+    {
+      "type": "workflow_log",
+      "message": "88 verdict: no valid adjudication",
+      "timestamp": 1786717475386
+    },
+    {
+      "type": "workflow_log",
+      "message": "Skipping the 290 confirm: the 88 A/B did not clear the gate, so there is nothing to promote.",
+      "timestamp": 1786717475386
+    },
+    {
+      "type": "workflow_agent",
+      "index": 3,
+      "label": "C-decide-cgr",
+      "phaseIndex": 4,
+      "phaseTitle": "Decide",
+      "agentType": "workflow-subagent",
+      "prompt": "You are Agent C. Execute the promotion decision for CGR-M and write the session record. Be scrupulously honest: a clean negative that CLOSES this lead is a successful outcome, and this project has already been burned once by an over-optimistic CGR verdict. Plain text; no schema fields beyond those requested.\n\nPROJECT: video anomaly detection + TEMPORAL LOCALIZATION on UCF-Crime. Repo /Users/zzl/PycharmProjects/vad; code /Users/zzl/PycharmProjects/vad/video_anomaly_detection. INTERPRETER python3.14.\nGIT RULE: the uncommitted working tree IS the latest code. NEVER git checkout/reset/stash/clean. Back up to /Users/zzl/PycharmProjects/vad/.qoder/backups/<version>/ before editing.\n\n!!! COMMITTED PIPELINE: v137 + BUE + CBT + CBT-recal, ALL DEFAULT-ON (ScoringConfig().bue_enabled/cbt_enabled/cbt_recal are True). full-290 mAP ~0.173 (v160_full 0.17254); hard-88 ~0.11806. CGR-M (v167) and CCR-SE (v168) are code-present DEFAULT-OFF (cgr_enabled=False, ccr_enabled=False). Do NOT change BUE/CBT/recal/CCR defaults. !!!\n\n!!! THE SINGLE QUESTION v16 ANSWERS: does CGR-M (--cgr_relocate) raise FINAL mAP, measured cleanly? !!!\nCGR-M = count-neutral motion-energy-peak RELOCATION of the lowest-confidence off-GT detection onto an uncovered motion peak, gated to the 4 hard cats, firing at the FINAL detection list immediately BEFORE the pre-BUE snapshot.\nv15 got this wrong: it judged CGR with paired field pre_cgr_boundaries, which is snapshotted PRE-BUE, so the measured +0.06105 delta bundled the committed BUE+CBT gains and was INFLATED (it was NOT a CGR-only figure). An offline reconstruction isolating the CGR step alone gave +0.01919, P(delta>0)=0.886, CI90[-0.005,+0.051] — directionally positive, just under the P>=0.90 bar. But that offline figure ALSO cannot capture the BUE/CBT interaction: after CGR moves a window, BUE grows outward from the NEW position and CBT clamps against a DIFFERENT region of the category curve. CGR's true effect on final mAP is exactly that end-to-end quantity. v16 measures it directly.\n\n!!! THE INSTRUMENT (why one run suffices, and why it beats two runs) !!!\nVERIFIED STRUCTURE: CGR (pipeline.py ~L1790) -> CCR (~L1810, OFF) -> BUE (~L1818) -> CBT (~L1833). ALL of these run AFTER every VLM call, reading only cached per-frame motion energy and the cached CLIP category curve. They are DETERMINISTIC post-processing. Therefore both A/B arms can be produced inside a SINGLE eval run:\n  arm-OFF = BUE+CBT applied to a deep copy of the pre-CGR detection list (i.e. what the committed pipeline would have produced)\n  arm-ON  = CGR, then BUE+CBT (this is the run's real final output)\nSame videos, same VLM sampling, same detection count -> an EXACT PAIRED A/B with ZERO cross-run VLM noise. Two separate runs would re-sample the VLM and reintroduce exactly the noise that made v165 (P=0.780) and the offline CGR estimate (P=0.886) inconclusive. The arms differ by exactly ONE function call, so the contrast is sound by construction.\n\n!!! CRITICAL IMPLEMENTATION HAZARD (verified by reading the code — do not skip) !!!\n_cgr_motion_relocate, _bue_boundary_union_extension and _cbt_category_boundary_tighten all MUTATE a[\"t_start\"] / a[\"t_end\"] IN PLACE on the detection dicts (pipeline.py L1298-1299, L2174-2175, L2378-2379, L2532-2533). If the dual-arm code passes the SAME dict objects to both arms, the arms corrupt each other and the measurement is garbage (silently — the numbers will look plausible). You MUST copy.deepcopy the detection list before running EACH arm. State in your self-test how you proved the arms are independent.\n\n!!! MEASUREMENT — reuse the PROVEN tool, add no new bootstrap code !!!\nPersist the arm-OFF windows as a per-detection field named EXACTLY ab_arm_off_boundaries (index-aligned with anomalies, same length — copy the working write path from pre_bue_boundaries / pre_cbt_boundaries in models.py to_dict()). The run's own final output IS arm-ON. Then the existing tool measures the paired A/B directly, with its length-mismatch HARD-VOID check for free:\n  python3.14 /Users/zzl/PycharmProjects/vad/video_anomaly_detection/iteration_logs/analysis_bootstrap_ab.py --new <dir> --paired-json ab_arm_off_boundaries --min-delta 0.008 --min-p 0.9\npoint_delta = arm-ON minus arm-OFF = the clean CGR effect on FINAL mAP including the BUE/CBT interaction. new_map = absolute hard mAP with CGR on.\n\n!!! PROMOTION GATE: paired delta >= +0.008 AND P(delta>0) >= 0.9 at 88, AND net-neutral-or-positive at 290. Otherwise CGR is CLOSED and archived (leave default-OFF). Report the honest number either way — a negative result that closes a lead cleanly is a successful loop. !!!\n\nFM DISCIPLINE (hard-won; violating these has cost this project whole sessions): FM2 count/FP (CGR is count-neutral — assert ndet unchanged). FM5 marker must actually fire. FM6 offline gains do not transfer — that is why this session measures end-to-end. FM17 per-video marker must fire on the EMPTY/0-detection path. FM18 read the ABSOLUTE mAP, not only the delta. FM20 the paired field must be WRITTEN and GREPPED in a produced JSON — a claim is not evidence (v165 falsely claimed this). FM21 the activation marker string must EXACTLY match what the orchestrator greps. HARNESS BUG (cost v14 two loops): --categories must be in the eval command — the launcher below bakes it in; the watcher verifies num_videos.\nHARD CONSTRAINTS: flag default OFF (flag-off byte-identical to the committed pipeline); CLI in BOTH run.py and batch_evaluate.py; eval FIXED --concurrency 2. StructuredOutput EXACTLY ONCE. ANTI-STALL: no Bash > ~150s except the stated self-test smoke; Read with offset/limit; keep progress lines short.\n\nEVIDENCE:\n  instrument: single-run DUAL-ARM (exact paired, zero VLM noise)\n  88 A/B: null\n  290 A/B: null\n  gate: paired delta >= +0.008 AND P >= 0.9 at 88; at 290 delta >= -0.003 AND abs >= 0.16454\n  computed: pass88=false ok290=null -> promote=false\n\nDO:\n1. DO NOT PROMOTE — leave cgr_enabled default-OFF and CONFIRM it: paste output of ScoringConfig().cgr_enabled showing False, plus bue/cbt/recal still True. Mark CGR-M as MEASURED-CLOSED in the record so no future session re-litigates it: state the clean measured delta, its CI and P, and that the closure came from an exact paired end-to-end A/B rather than a noisy proxy.\n2. Turn the diagnostic OFF by default (cgr_ab_diag stays default False) and confirm it. Leave the instrument in the tree — it is reusable for any future pre-BUE operator, and note that in the record.\n3. date +%Y%m%d ; write /Users/zzl/PycharmProjects/vad/video_anomaly_detection/iteration_logs/summary_v16_v169-v170_<YYYYMMDD>.md covering: the instrument and WHY it is sound (deterministic post-VLM chain -> exact paired arms) and why v15's pre-BUE-snapshot figure was inflated; the 88 and 290 numbers with CI/P and per-category deltas; count-neutrality and (at 290) the non-hard arm-identity check; the decision; and the updated CLOSED-families list.\n4. APPEND ledger rows to /Users/zzl/PycharmProjects/vad/video_anomaly_detection/iteration_logs/session_v97_ledger.md for v169 (the 88 A/B) and, if it ran, v170 (the 290 confirm): loop|version|title+verdict|smoke|mAP|AP@0.5|AP@0.7|lat|kept. Use -1 for absent values. Do NOT rewrite existing rows.\n5. Reply with a 12-line recap leading with the single headline number (CGR's clean effect on final mAP) and the decision.\nReturn promoted, decision, validation (pasted), note.",
+      "journalKey": "v2:5a1be6940f978c197403d4c2c9d16056698ad3cfa9960bacefc9e4033aa0e7ef",
+      "state": "done",
+      "promptPreview": "You are Agent C. Execute the promotion decision for CGR-M and write the session record. Be scrupulously honest: a clean negative that CLOSES this lead is a successful outcome, and this project has alr",
+      "startedAt": 1786717475386,
+      "attempt": 1,
+      "durationMs": 504761,
+      "lastProgressAt": 1786717980141,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Record workflow structured output",
+      "recentToolActivities": [
+        "Bash(Find mAP entries in evaluation section)",
+        "Write(summary_v16_v169-v170_20260814.md)",
+        "StructuredOutput(Record workflow structured output)"
+      ],
+      "toolCalls": 26,
+      "agentId": "aworkflow-subagent-5f27161548057166",
+      "resultPreview": "{\"promoted\":false,\"decision\":\"CGR-M NOT PROMOTED — MEASURED-CLOSED. cgr_enabled stays default-OFF (closure recorded in config.py comment, diff vs .qoder/backups/v170/config.py = comment only); diagnostic cgr_ab_diag stays default-OFF with the dual-arm instrument left in the tree as a reusable rig for any future pre-BUE operator; committed pipeline (bue/cbt/cbt_recal=True, ccr=False) untouched; v170 (290) never ran after the 88 gate failed.\",\"validation\":\"Pasted this session (2026-08-14), python3",
+      "outputPath": "/var/folders/9h/f_2vxk4558n0kf9kxk0xthfc0000gn/T/qoder-cli-501/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/tasks/a350e1b195da8c8c3.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-5f27161548057166.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-5f27161548057166.jsonl"
+      ],
+      "tokens": 1108457
+    },
+    {
+      "type": "workflow_log",
+      "message": "v16 complete. instrument=dual-arm(paired) | 88: n/a | 290: n/a | promoted=false",
+      "timestamp": 1786717980147
+    }
+  ],
+  "agentCount": 3,
+  "totalTokens": 3183080,
+  "totalToolCalls": 71,
+  "logs": [
+    "v16 starting. ONE question: does CGR-M raise FINAL mAP under a clean A/B? Instrument = single-run DUAL-ARM (arm-OFF = BUE+CBT on the pre-CGR snapshot; arm-ON = CGR then BUE+CBT) -> exact paired, zero VLM noise, captures the BUE/CBT interaction the offline method missed. Gate: paired delta >= +0.008 with P >= 0.9. concurrency 2.",
+    "Phase 1: dual-arm instrument verified. marker=\"[CGR-AB] vid=\"",
+    "Verify88: done=false crashed=true mAP=-1 n=? markers=-1 pairedJSONs=-1 launch failed: Already complete; no relaunch needed. No batch_evaluate process running. Report exists at /Users/zzl/PycharmProjects/vad/results/batch_eval_v169_ab88/evaluation_report.json (88/88 videos succeeded, 4 categories Shooting/RoadAccidents/Shoplifting/Explosion, finished 2026-08-13 22:59). COMMAND.txt contains the exact required flags verbatim (--categories Shooting,RoadAccidents,Shoplifting,Explosion --bue_extension --qscore_rerank --cbt_tighten --cbt_recal --cgr_relocate --cgr_ab_diag) and the log confirms they were active (367 flag-tagged lines: [QSCORE-GATE] rerank, [BUE], [CBT-VID] recal=on) with final line \"Full report saved\". Per step 3, this is done.",
+    "Verify88: eval unusable -> no adjudication",
+    "88 verdict: no valid adjudication",
+    "Skipping the 290 confirm: the 88 A/B did not clear the gate, so there is nothing to promote.",
+    "v16 complete. instrument=dual-arm(paired) | 88: n/a | 290: n/a | promoted=false"
+  ],
+  "result": {
+    "instrument": "dual-arm-paired",
+    "selftest": true,
+    "ab88": null,
+    "ab290": null,
+    "pass88": false,
+    "promote": false,
+    "decision": "CGR-M NOT PROMOTED — MEASURED-CLOSED. cgr_enabled stays default-OFF (closure recorded in config.py comment, diff vs .qoder/backups/v170/config.py = comment only); diagnostic cgr_ab_diag stays default-OFF with the dual-arm instrument left in the tree as a reusable rig for any future pre-BUE operator; committed pipeline (bue/cbt/cbt_recal=True, ccr=False) untouched; v170 (290) never ran after the 88 gate failed."
+  }
+}

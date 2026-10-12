@@ -1,0 +1,345 @@
+"""v102 HZG-FC PRE-LIVE GATE — hard precondition before any full-eval spend.
+
+Runs PASS 1 ONLY of the cascade (_scan_full_coverage_scored, real LLM,
+~4 calls/video) on the known wrong-location videos from the v97 per-video
+analysis (the 17 zero-IoU list; smoke names Stealing036 / Robbery050 /
+Vandalism015 verified present and prioritized), and reports:
+
+  (i)  rank-net recall — fraction of videos whose GT-overlapping segment
+       ranks in the coarse top-zoom_top_m (the cascade's recall ceiling:
+       it cannot recover what its rank-net never sees). KILL < 0.25.
+  (ii) coarse saturation stats (fraction of segments scored >= 0.9 —
+       reporting only; adjudicates the deferred coarse-ranking variant).
+  (iii) |Z| distribution (latency model input).
+  (iv) MANDATORY pass-2 fine-separation reporting (C reviewer mandate M3,
+       capped at +30 calls): does the forced-choice binary verdict at
+       8-frame density separate the GT segment from the best junk segment?
+       Also confirms the density premise by logging the ACTUAL shown-frame
+       counts per zoom call (SemanticFrameSampler dedup can return fewer
+       than zoom_keyframes).
+
+Artifact: iteration_logs/analysis_hzg_gate_report.json with
+{"rank_net_recall", "kill", ...} — batch_evaluate.py's FM5 M7 check refuses
+flag-on full-eval launches unless this file exists with kill == False.
+
+Usage:
+  cd video_anomaly_detection
+  DASHSCOPE_API_KEY=... python3 iteration_logs/analysis_hzg_gate.py
+"""
+import argparse
+import asyncio
+import json
+import logging
+import os
+import re
+import sys
+import time
+from pathlib import Path
+
+import numpy as np
+
+PKG_DIR = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(PKG_DIR))
+
+from evaluate import load_ground_truth  # noqa: E402
+from llm_client import DashScopeLLMClient  # noqa: E402
+from anomaly_discovery import AnomalyDiscovery  # noqa: E402
+from video_preprocessor import VideoPreprocessor  # noqa: E402
+import vad_logger  # noqa: E402
+
+_log = vad_logger.get("vad.hzg_gate")
+
+# 17 zero-IoU wrong-location videos from the v97 per-video analysis
+# (analysis_keyframe_coverage.py). The three named smoke videos are
+# prioritized so the gate always measures them.
+WRONG = ['Abuse028_x264', 'Burglary005_x264', 'Burglary079_x264',
+         'Fighting003_x264', 'Fighting018_x264', 'Fighting033_x264',
+         'RoadAccidents001_x264', 'RoadAccidents019_x264',
+         'Robbery050_x264', 'Robbery102_x264', 'Shooting018_x264',
+         'Shooting032_x264', 'Shoplifting004_x264', 'Shoplifting037_x264',
+         'Stealing036_x264', 'Stealing062_x264', 'Vandalism015_x264']
+NAMED_SMOKE = ['Stealing036_x264', 'Robbery050_x264', 'Vandalism015_x264']
+
+UCF_CATS = ["Abuse", "Arrest", "Arson", "Assault", "Burglary", "Explosion",
+            "Fighting", "RoadAccidents", "Robbery", "Shooting", "Shoplifting",
+            "Stealing", "Vandalism"]
+
+DEFAULT_OUT = PKG_DIR / "iteration_logs" / "analysis_hzg_gate_report.json"
+
+
+class CountingClient:
+    """Wraps the real LLM client to count pass-1 / pass-2 VLM calls."""
+
+    def __init__(self, inner):
+        self.inner = inner
+        self.pass1_calls = 0
+        self.pass2_calls = 0
+        self.phase = 1
+
+    async def generate(self, prompt, images=None, **kw):
+        if self.phase == 1:
+            self.pass1_calls += 1
+        else:
+            self.pass2_calls += 1
+        return await self.inner.generate(prompt, images, **kw)
+
+
+class ShownFramesCollector(logging.Handler):
+    """Parses '[HZG] zoom call: ... shown frames per segment: [k1, k2]' lines
+    to confirm the 0.75s-spacing density premise (C reviewer feedback: the
+    SemanticFrameSampler dedup can return fewer/non-uniform frames)."""
+
+    def __init__(self):
+        super().__init__()
+        self.counts = []
+
+    def emit(self, record):
+        m = re.search(r"shown frames per segment: \[([0-9, ]+)\]",
+                      record.getMessage())
+        if m:
+            self.counts.extend(int(x) for x in m.group(1).split(',')
+                               if x.strip())
+
+
+def gt_overlapping_indices(segments, gt_seconds):
+    """Indices of segments overlapping any GT interval (seconds)."""
+    idx = set()
+    for i, seg in enumerate(segments):
+        for (a, b) in gt_seconds:
+            if seg['t_end'] > a and seg['t_start'] < b:
+                idx.add(i)
+                break
+    return sorted(idx)
+
+
+async def run_gate(args):
+    ordered = [v for v in NAMED_SMOKE if v in WRONG] + \
+              [v for v in WRONG if v not in NAMED_SMOKE]
+    selected = ordered[:args.max_videos]
+
+    gt_all = load_ground_truth(str(Path(args.dataset_dir) / "data"),
+                               split='test')
+
+    # Resolve video paths up front; the three named smoke videos are a hard
+    # precondition (the proposal's smoke gate is defined on them).
+    paths = {}
+    for vid in selected:
+        found = list(Path(args.videos_root).glob(f"*/{vid}.mp4"))
+        if found:
+            paths[vid] = str(found[0])
+        else:
+            _log.warning(f"MISSING {vid} under {args.videos_root}")
+    missing_named = [v for v in NAMED_SMOKE if v not in paths]
+    if missing_named:
+        _log.error(f"FATAL: named smoke videos not found: {missing_named}")
+        sys.exit(2)
+
+    inner = DashScopeLLMClient(model=args.model, max_tokens=512,
+                               max_frames=200)
+    llm = CountingClient(inner)
+    pre = VideoPreprocessor(fps=2, segment_duration=6.0, motion_threshold=1.0,
+                            min_motion_interval=2.0, segment_overlap=0.25)
+
+    expert = None
+    sampler = None
+    if not args.no_clip:
+        from anomaly_expert import VideoAnomalyExpert
+        from token_compressor import SemanticFrameSampler
+        expert = VideoAnomalyExpert(anomaly_categories=UCF_CATS,
+                                    clip_model_name="ViT-L-14",
+                                    clip_pretrained="openai",
+                                    device=args.device)
+        sampler = SemanticFrameSampler(anomaly_expert=expert, tau=0.90,
+                                       max_frames=200, min_frames=3,
+                                       fps_sample=3.0)
+
+    discovery = AnomalyDiscovery(
+        llm_client=llm, anomaly_categories=UCF_CATS, clip_expert=expert,
+        frame_sampler=sampler,
+        zoom_top_m=args.zoom_top_m, zoom_max_segments=args.zoom_max_segments,
+        zoom_keyframes=args.zoom_keyframes, zoom_pair_size=args.zoom_pair_size)
+
+    from pipeline import CATEGORY_CUES
+    shown = ShownFramesCollector()
+    logging.getLogger("vad").addHandler(shown)
+
+    rows = []
+    pass2_budget_left = args.pass2_budget
+    for vi, vid in enumerate(selected):
+        if vid not in paths:
+            continue
+        gt = gt_all.get(vid)
+        if gt is None or not gt['segments']:
+            _log.warning(f"{vid}: no GT segments — skipped")
+            continue
+        gt_seconds = [(a / 30.0, b / 30.0) for a, b in gt['segments']]
+        gt_cat = gt['category']
+
+        t0 = time.time()
+        video_data = pre.process(paths[vid])
+        if expert is not None:
+            video_data['clip_features'] = expert.precompute_video_features(
+                video_data['all_frames'])
+
+        cue = CATEGORY_CUES.get(gt_cat, gt_cat)
+        category_hint = f"\nExpected anomaly type: {gt_cat} — {cue}\n"
+
+        # ---- PASS 1 (coarse field) ----
+        llm.phase = 1
+        segments, coarse = await discovery._scan_full_coverage_scored(
+            video_data, "This is a surveillance camera video.", category_hint)
+        n = len(segments)
+
+        gt_idx = gt_overlapping_indices(segments, gt_seconds)
+        order = sorted(range(n), key=lambda i: (-coarse[i], i))
+        rank_of = {idx: r for r, idx in enumerate(order)}
+        best_rank = min((rank_of[i] for i in gt_idx), default=None)
+        in_top_m = best_rank is not None and best_rank < args.zoom_top_m
+        Z = discovery._hzg_shortlist(coarse)
+        in_Z = any(i in Z for i in gt_idx)
+        saturation = float(np.mean([c >= 0.9 for c in coarse])) if n else 0.0
+
+        row = {
+            'video': vid, 'category': gt_cat, 'n_segments': n,
+            'gt_segments': [[round(a, 2), round(b, 2)] for a, b in gt_seconds],
+            'gt_overlapping_indices': gt_idx,
+            'gt_coarse': [round(coarse[i], 3) for i in gt_idx],
+            'best_gt_rank': best_rank, 'in_top_m': in_top_m, 'in_Z': in_Z,
+            'Z': Z, 'Z_size': len(Z), 'saturation_frac_ge_0.9': saturation,
+            'coarse_max': round(max(coarse), 3) if n else 0.0,
+        }
+
+        # ---- PASS 2 (mandatory bounded fine-separation reporting) ----
+        llm.phase = 2
+        p2 = {'ran': False, 'calls': 0}
+        if Z and pass2_budget_left > 0 and gt_idx:
+            all_frames = video_data['all_frames']
+            precomputed = video_data.get('clip_features')
+            pairs = [Z[k:k + args.zoom_pair_size]
+                     for k in range(0, len(Z), args.zoom_pair_size)]
+            fine = {}
+            calls_before = llm.pass2_calls
+            for pair in pairs:
+                if pass2_budget_left <= 0:
+                    _log.info(f"  pass-2 budget exhausted; skipping "
+                              f"remaining pair(s) of {vid}")
+                    break
+                pass2_budget_left -= 1  # budget is per scheduled pair call
+                _scores, _descs, judged = await discovery._zoom_pair_guarded(
+                    [segments[i] for i in pair], all_frames,
+                    "This is a surveillance camera video.", category_hint,
+                    precomputed)
+                for k, idx in enumerate(pair):
+                    if judged[k] and _scores[k] is not None:
+                        fine[idx] = _scores[k]
+            p2['calls'] = llm.pass2_calls - calls_before
+            final = list(coarse)
+            for idx, sc in fine.items():
+                final[idx] = sc
+            gt_final = [final[i] for i in gt_idx]
+            junk = [final[i] for i in Z if i not in gt_idx]
+            gt_best = max(gt_final) if gt_final else None
+            junk_best = max(junk) if junk else None
+            p2.update({
+                'ran': True,
+                'gt_fine_best': round(gt_best, 3) if gt_best is not None else None,
+                'junk_fine_best': round(junk_best, 3) if junk_best is not None else None,
+                'separated': (gt_best is not None and gt_best > 0.3 and
+                              (junk_best is None or gt_best > junk_best)),
+            })
+        row['pass2'] = p2
+        rows.append(row)
+        _log.info(
+            f"[{vi + 1}/{len(selected)}] {vid} ({gt_cat}): n={n}, "
+            f"gt_idx={gt_idx}, best_rank={best_rank}, in_top_m={in_top_m}, "
+            f"in_Z={in_Z}, |Z|={len(Z)}, sat={saturation:.2f}, "
+            f"pass2={p2} ({time.time() - t0:.1f}s)")
+
+    # ---- aggregate ----
+    k = len(rows)
+    recall = (sum(1 for r in rows if r['in_top_m']) / k) if k else 0.0
+    z_recall = (sum(1 for r in rows if r['in_Z']) / k) if k else 0.0
+    sat_mean = float(np.mean([r['saturation_frac_ge_0.9'] for r in rows])) \
+        if k else 0.0
+    z_sizes = [r['Z_size'] for r in rows]
+    p2_rows = [r['pass2'] for r in rows if r['pass2'].get('ran')]
+    p2_sep = ([p['separated'] for p in p2_rows])
+    kill = recall < args.kill_bar
+
+    artifact = {
+        'version': 'v102',
+        'date': time.strftime('%Y-%m-%d %H:%M:%S'),
+        'videos_measured': k,
+        'rank_net_recall': round(recall, 4),
+        'rank_net_top_m': args.zoom_top_m,
+        'kill_bar': args.kill_bar,
+        'kill': kill,
+        'z_membership_recall': round(z_recall, 4),
+        'saturation_mean_frac_ge_0.9': round(sat_mean, 4),
+        'z_size_distribution': {
+            'min': min(z_sizes) if z_sizes else 0,
+            'mean': float(np.mean(z_sizes)) if z_sizes else 0.0,
+            'max': max(z_sizes) if z_sizes else 0,
+        },
+        'pass1_calls': llm.pass1_calls,
+        'pass2': {
+            'budget': args.pass2_budget,
+            'calls_used': llm.pass2_calls,
+            'videos_ran': len(p2_rows),
+            'separated_frac': (sum(p2_sep) / len(p2_sep)) if p2_sep else None,
+            'shown_frames_per_segment': {
+                'min': min(shown.counts) if shown.counts else None,
+                'mean': (float(np.mean(shown.counts))
+                         if shown.counts else None),
+                'max': max(shown.counts) if shown.counts else None,
+            },
+        },
+        'rows': rows,
+    }
+    args.out.parent.mkdir(parents=True, exist_ok=True)
+    args.out.write_text(json.dumps(artifact, indent=2, ensure_ascii=False))
+
+    _log.info("=" * 60)
+    _log.info(f"HZG PRE-LIVE GATE: videos={k}, rank_net_recall={recall:.3f} "
+              f"(kill bar {args.kill_bar}), Z-recall={z_recall:.3f}, "
+              f"saturation(>=0.9)={sat_mean:.3f}, |Z| mean="
+              f"{artifact['z_size_distribution']['mean']:.1f}")
+    _log.info(f"pass-2: {len(p2_rows)} videos, calls={llm.pass2_calls}, "
+              f"separated_frac={artifact['pass2']['separated_frac']}, "
+              f"shown_frames={artifact['pass2']['shown_frames_per_segment']}")
+    _log.info(f"VERDICT: {'KILL (recall < bar)' if kill else 'PASS'} — "
+              f"artifact written to {args.out}")
+    return 0 if not kill else 1
+
+
+def main():
+    ap = argparse.ArgumentParser(description="v102 HZG-FC pre-live gate")
+    ap.add_argument('--dataset_dir', type=str,
+                    default='/Users/zzl/Movies/ucf-crime')
+    ap.add_argument('--videos_root', type=str,
+                    default='/Users/zzl/Movies/ucf-crime/videos')
+    ap.add_argument('--out', type=Path, default=DEFAULT_OUT)
+    ap.add_argument('--device', type=str, default='mps')
+    ap.add_argument('--model', type=str, default='qwen-vl-plus')
+    ap.add_argument('--max_videos', type=int, default=15)
+    ap.add_argument('--zoom_top_m', type=int, default=6)
+    ap.add_argument('--zoom_max_segments', type=int, default=6)
+    ap.add_argument('--zoom_keyframes', type=int, default=8)
+    ap.add_argument('--zoom_pair_size', type=int, default=2)
+    ap.add_argument('--pass2_budget', type=int, default=30)
+    ap.add_argument('--kill_bar', type=float, default=0.25)
+    ap.add_argument('--no_clip', action='store_true',
+                    help='skip CLIP feature precompute (keyframe selection '
+                         'degrades to uniform — NOT the faithful config)')
+    args = ap.parse_args()
+
+    vad_logger.setup(log_file=args.out.parent /
+                     (args.out.stem + '_run.log'))
+    if not os.environ.get('DASHSCOPE_API_KEY'):
+        print('ERROR: DASHSCOPE_API_KEY environment variable not set')
+        sys.exit(1)
+    sys.exit(asyncio.run(run_gate(args)))
+
+
+if __name__ == '__main__':
+    main()

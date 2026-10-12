@@ -1,0 +1,55 @@
+{
+  "runId": "wf_fb7143aa-1e6",
+  "workflowName": "vad-team-map20-v23",
+  "scriptPath": "/Users/zzl/PycharmProjects/vad/.qoder/workflows/vad-team-map20-v23.js",
+  "source": "path",
+  "meta": {
+    "name": "vad-team-map20-v23",
+    "description": "VAD agent team v23 — v181 PTE (Per-category prompt-Text Ensemble for the CLIP category curves): a SIGNAL-QUALITY lever on the curve substrate that BUE/CBT/frame_scores consume. The flat-in-span RoadAccidents/Shoplifting curves are the measured residual (v16 record: \"next levers must attack SIGNAL quality\"); the current single-text-prompt-per-category embedding is the weakest link. MECHANISM: for EACH of the 13 anomaly categories replace the ONE text prompt with K=4 pre-registered paraphrases (fixed in code, written down in the summary BEFORE any eval — no test-side tuning), text-encode all K, L2-normalize each, average, renormalize -> the category embedding. Frame features UNCHANGED (cached clip_features reused as-is); zero new VLM calls; only the text side of the CLIP similarity changes. Affects ONLY deterministic post-VLM consumers: get_category_scores curves -> BUE/CBT boundary ops + frame_scores + qscore. PHASE 0 (offline, ZERO eval spend): on TRAIN-split videos (4 per hard cat + 4 normals, local CLIP re-encode of frames; featextract machinery from analysis_v19_snh_featextract.py is the model), build each video's category curve with CURRENT prompts vs PTE prompts and measure GT-window prominence (max-z of the curve inside the GT interval vs the video median/MAD, the v18 recipe). PRE-REGISTERED GO GATE: mean GT-window prominence improves by >= +0.3 z on >= 3 of the 4 hard cats (Shooting/RoadAccidents/Shoplifting/Explosion) AND no hard cat regresses by > 0.1 AND normal-video curve max-z inflates by < +0.5 on average (curve-level FP guard). NO-GO -> record + STOP. GO -> implement flag pte_curves default OFF (CLI run.py+batch_evaluate.py, marker [PTE-VID] unconditional per video incl. early-return paths), self-test (OFF byte-identical curves — grep the curve hash; ON smoke shows PTE curves differ), then CROSS-RUN A/B on the hard-88 vs a FRESH same-session committed REF (VLM inputs unchanged but the boundary operators change, so no paired-log restore — pre-registered cross-run with the +/-0.019 VLM-variance caveat). GATES loop1 hard-88: point_delta >= +0.008 AND P(delta>0) >= 0.9 AND new hard mAP >= 0.11306, FCCS==0 in both logs (scan path constant), det/video increase flagged > +1.0. Loop2 (only if loop1 passes) full-290 net-neutrality: delta >= -0.003 AND abs >= 0.16454 AND Normal-FA rel increase <= +2%. Committed pipeline = v137 + BUE + CBT + CBT-recal (all default-ON; full-290 ~0.173); cgr/ccr/cnv/kfd/tcp/snh/snh_protect all default-OFF and stay so. Concurrency 2, never two evals. NONE of the 10 banned families (PTE changes the curve SIGNAL, not a within-video re-rank; not per-video normalization; not an abs-conf gate).",
+    "phases": [
+      {
+        "title": "Precheck",
+        "detail": "offline train-split curve prominence A/B -> GO/NO-GO"
+      },
+      {
+        "title": "Implement",
+        "detail": "v181 --pte_curves + self-test"
+      },
+      {
+        "title": "AB88",
+        "detail": "fresh REF88 + PTE88 cross-run bootstrap"
+      },
+      {
+        "title": "Confirm290",
+        "detail": "if 88 passes: REF290 + PTE290 net-neutrality"
+      },
+      {
+        "title": "Decide",
+        "detail": "promote-or-close + summary + ledger"
+      }
+    ]
+  },
+  "createdAt": "2026-08-17T13:48:46.953Z",
+  "updatedAt": "2026-08-17T14:03:45.328Z",
+  "status": "completed",
+  "outputPath": "/Users/zzl/PycharmProjects/vad/.qoder/sessions/8a41679a-dd00-46cd-9125-2da3de1f245a/workflows/runs/wf_fb7143aa-1e6/output.json",
+  "agents": [
+    {
+      "index": 1,
+      "label": "D-precheck-v181",
+      "phaseIndex": 1,
+      "phaseTitle": "Precheck",
+      "journalKey": "v2:5a5bbdd68da2914b933bbe6624ca71aac90dac3a276715543b2eae0d7457ae85",
+      "agentId": "aworkflow-subagent-f6d58ed93c9be2e3",
+      "agentType": "workflow-subagent",
+      "state": "done",
+      "attempts": 1,
+      "outputPath": "/var/folders/9h/f_2vxk4558n0kf9kxk0xthfc0000gn/T/qoder-cli-501/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/tasks/a19caa4ceef82f4f5.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-f6d58ed93c9be2e3.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-f6d58ed93c9be2e3.jsonl"
+      ],
+      "updatedAt": "2026-08-17T14:03:45.328Z"
+    }
+  ]
+}

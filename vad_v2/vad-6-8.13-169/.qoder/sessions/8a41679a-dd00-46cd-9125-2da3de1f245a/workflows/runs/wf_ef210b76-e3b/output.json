@@ -1,0 +1,52 @@
+{
+  "runId": "wf_ef210b76-e3b",
+  "taskId": "wf-af3d159b-e6e",
+  "workflowName": "vad-team-map20-v18",
+  "status": "completed",
+  "result": {
+    "arm88_k2": {
+      "ran": true,
+      "point_delta": -0.018,
+      "ci90_low": -0.04956,
+      "ci90_high": 0.05628,
+      "p_gt0": 0.449,
+      "new_map": 0.09945,
+      "ref_map": 0.11744,
+      "det_per_video_new": 1.5909,
+      "det_per_video_ref": 1.4886,
+      "per_category": "mAP deltas (KFD - REF, per-category subset): Shooting +0.00122 (new 0.08771 / ref 0.08648, n=23); RoadAccidents -0.00767 (0.17046 / 0.17813, n=23); Shoplifting -0.03989 (0.02324 / 0.06313, n=21); Explosion +0.06650 (0.23131 / 0.16481, n=21). INVISIBLE-GT CHECK (mechanism's stated purpose): NONE of the 8 previously-invisible GTs (RoadAccidents009/017/021/121/122/131, Shoplifting017/037) received ANY KFD detection at IoU>=0.1 — KFD hits = [] for all 8, identical to REF (also none). Zero newly-surfaced GTs; the mechanism did not do what it was built to do.",
+      "note": "VERDICT: REVERT\nCAVEAT: cross-run mode still carries VLM run-to-run variance (~+/-0.019 unpaired in this ledger) ON TOP of the bootstrap CI. Prefer a paired design when the mechanism is post-hoc.\nAdjudicator notes: FM5/FM20 PASS (KFD-VID=88/88, KFD-FIRE=277). Gate fails on all three legs: point_delta -0.01800 < +0.008, P(delta>0)=0.449 < 0.9, new mAP 0.09945 < floor 0.15132; 90% CI [-0.04956, +0.05628] straddles zero. Per-IoU deltas: AP@0.3 -0.05537, AP@0.5 -0.02387, AP@0.7 +0.02525 (loose-IoU gain, tight-IoU loss). FM2 watch OK: detections/video 1.5909 vs 1.4886 (+0.102, well under +1). Mechanism-purpose check NEGATIVE: no detection overlap on any of the 8 previously-invisible RoadAccidents/Shoplifting GTs. Category detail: Explosion +0.0665 and Shooting +0.0012 up, but Shoplifting -0.0399 and RoadAccidents -0.0077 down; net mAP -0.018. REVERT stands."
+    },
+    "arm88_k3": null,
+    "arm290": null,
+    "pass88": false,
+    "passK3": false,
+    "ok290": false,
+    "promote": false,
+    "bestK": null,
+    "decision": "REVERT — DO NOT PROMOTE. kfd_uniform_keyframes stays default False (kfd_k=2); the committed pipeline (v137 + BUE + CBT + CBT-recal, all default-ON; cgr/ccr/cnv default-OFF) is unchanged. The hard-88 Loop-1 gate failed on all three legs (point_delta -0.01800 < +0.008; P(delta>0)=0.449 < 0.9; new mAP 0.09945 < floor 0.11306), so the k=3 fallback arm and the full-290 net-neutrality loop were never armed. KFD-U is MEASURED-CLOSED as-wired: coverage was necessary but not sufficient — the VLM did not convert newly-visible mid-segment frames into detections. Records written: /Users/zzl/PycharmProjects/vad/video_anomaly_detection/iteration_logs/summary_v18_v173-v174_20260815.md and one appended ledger row (v173) in /Users/zzl/PycharmProjects/vad/video_anomaly_detection/iteration_logs/session_v97_ledger.md."
+  },
+  "logs": [
+    "v18 starting. KFD-U: the v17 council winner — uniform-spread keyframes fix a CODE-EXACT structural blindness (VLM sees only the leading ~0.5s of each 6s segment; 8/44 hard-cat GTs never shown). Zero-cost recall lever. Gates: 88 delta >= +0.008 & P >= 0.9 & abs >= 0.11306; 290 net-neutral & FA inc <= +2%. concurrency 2.",
+    "Phase 1: KFD-U verified. flags=--bue_extension --qscore_rerank --cbt_tighten --cbt_recal --kfd_uniform_keyframes (no --categories; the launcher adds it for 88 runs). Fallback arm adds: --kfd_k 3. REF arm: identical string minus --kfd_uniform_keyframes/--kfd_k. Fixed --concurrency 2 for the real evals.",
+    "REF88: done=true mAP=0.1174437060585068 n=88 vidMarker=88 fires=88. Report completed during watch (was 85/88 JSONs, proc alive; after 140s sleep report appeared). num_videos=88 as expected. mAP=0.11744 AP@0.3=0.21425 AP@0.5=0.11788 AP@0.7=0.02020. Report: /Users/zzl/PycharmProjects/vad/results/batch_eval_v173_ref88/evaluation_report.json",
+    "KFD88: done=true mAP=0.09944845188406219 n=88 vidMarker=88 fires=277",
+    "88 verdict: delta=-0.01800 P=0.449 absKFD=0.09945 absREF=0.11744 det/v 1.49->1.59 -> FAILS",
+    "Fallback: skipped (no positive sub-gate signal)",
+    "Best arm: none",
+    "Confirm290: skipped — no arm passed the 88 gate",
+    "290 verdict: n/a -> promote=false",
+    "v18 complete. KFD-U: NOT promoted | 88: delta=-0.01800 P=0.449 | k3: n/a | 290: n/a"
+  ],
+  "failures": [],
+  "agentCount": 26,
+  "totalToolCalls": 307,
+  "durationMs": 14258984,
+  "usage": {
+    "agents": 26,
+    "toolCalls": 307,
+    "durationMs": 14258984
+  },
+  "transcriptDir": "/Users/zzl/PycharmProjects/vad/.qoder/sessions/8a41679a-dd00-46cd-9125-2da3de1f245a/workflows/runs/wf_ef210b76-e3b",
+  "scriptPath": "/Users/zzl/PycharmProjects/vad/.qoder/workflows/vad-team-map20-v18.js"
+}

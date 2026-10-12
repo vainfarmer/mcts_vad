@@ -1,0 +1,123 @@
+{
+  "version": 1,
+  "sessionId": "8a41679a-dd00-46cd-9125-2da3de1f245a",
+  "runId": "wf_3f8dd5ac-be0",
+  "taskId": "wf-ba0897c8-42b",
+  "workflowName": "vad-team-map20-v22",
+  "summary": "VAD agent team v22 — v180 SNH-P (MIL-peak-PROTECTED SNH veto): the targeted structural fix for the v179 G4 failure. v179 SNH (video-level P(normal)>=tau veto) PASSED the FA objective hugely (Normal-video FA 0.507->0.167, -67.1%) and held abs mAP (0.17324>=0.16454) but FAILED G4: 5 GT-overlapping detections vetoed (limit <=1) — the whole-video veto is too blunt on the ~3.5% of anomaly videos where the head misfires. SNH-P adds ONE pre-registered structural rule: when the video-level gate fires, veto every detection EXCEPT any detection whose [t_start,t_end] covers the video's MIL argmax snippet time (t_peak = (argmax(mil_scores)+0.5)/32 * duration — the single strongest snippet-level evidence of anomaly; model_mil.pth). Protected detections get NO [SNH-FIRE] line, so the PROVEN paired-log conf restore (--marker SNH-FIRE --paired-mode conf) works UNCHANGED. Protected detections are logged as [SNHP-SKIP] (vid, window, t_peak, reason) for observability. PHASE 0 (offline, ZERO eval spend): using the v179 artifacts (results/batch_eval_v179_snh290 + .log), for every one of the 92 [SNH-FIRE] lines determine whether the fired window covers its video's MIL argmax (recompute mil_scores locally with the analysis_v19_snh_featextract.py machinery — CLIP+MIL local, NO VLM API). PRE-REGISTERED GO GATE: (a) >= 4 of the 5 v179 GT-harm detections (RoadAccidents128 3.0-8.0 IoU0.733; Explosion025 10.0-16.5 IoU0.511; Shooting048 46.0-52.0 IoU0.429; Shoplifting022 45.5-55.0 IoU0.421; RoadAccidents002 9.0-11.5 IoU0.286) would have been PROTECTED (window covers MIL argmax), AND (b) the estimated Normal-video FA-rate relative reduction under protection stays >= 25% (recompute per Normal video: would any detection survive the veto via protection? that resurrects an FA video). NO-GO -> write the record closing the protection direction and STOP (no eval). GO -> implement (flag snh_protect default OFF, active only with --snh_veto; marker [SNHP-SKIP]; CLI in run.py+batch_evaluate.py), self-test (OFF byte-identical; ON smoke; SNH_FORCE_FIRE smoke showing the MIL-argmax-covering detection survives), ONE queue-disciplined full-290 eval (--snh_veto --snh_protect), paired-log adjudication, SAME 4 pre-registered gates as v179 (paired delta >= -0.003, abs >= 0.16454, FA rel reduction >= 25%, GT-harm <= 1), promote-or-close + records. Committed pipeline = v137 + BUE + CBT + CBT-recal (all default-ON); cgr/ccr/cnv/kfd/tcp/snh all default-OFF and stay so (snh_veto itself stays OFF regardless; only the snh_veto+snh_protect COMBINATION is promoted if all 4 gates pass). Concurrency 2, never two evals (16 GB swap-thrash). NOT a banned family: judged on the FA-rate objective with mAP as non-inferiority constraint; the protection rule is structural (no numeric test-fitting — tau is NOT touched).",
+  "status": "completed",
+  "startTime": 1786972223676,
+  "endTime": 1786974420662,
+  "scriptPath": "/Users/zzl/PycharmProjects/vad/.qoder/workflows/vad-team-map20-v22.js",
+  "transcriptDir": "/Users/zzl/PycharmProjects/vad/.qoder/sessions/8a41679a-dd00-46cd-9125-2da3de1f245a/workflows/runs/wf_3f8dd5ac-be0",
+  "outputPath": "/Users/zzl/PycharmProjects/vad/.qoder/sessions/8a41679a-dd00-46cd-9125-2da3de1f245a/workflows/runs/wf_3f8dd5ac-be0/output.json",
+  "phases": [
+    {
+      "title": "Precheck",
+      "detail": "offline MIL-argmax coverage of the 92 v179 fires -> GO/NO-GO"
+    },
+    {
+      "title": "Implement",
+      "detail": "v180 --snh_protect + self-test"
+    },
+    {
+      "title": "Eval290",
+      "detail": "launcher + watcher loop, full-290 --snh_veto --snh_protect"
+    },
+    {
+      "title": "Adjudicate",
+      "detail": "paired-log conf restore + 4 gates"
+    },
+    {
+      "title": "Decide",
+      "detail": "promote-or-close + summary + ledger"
+    }
+  ],
+  "progress": [
+    {
+      "type": "workflow_phase",
+      "index": 1,
+      "title": "Precheck",
+      "kind": "root"
+    },
+    {
+      "type": "workflow_phase",
+      "index": 2,
+      "title": "Implement",
+      "kind": "root"
+    },
+    {
+      "type": "workflow_phase",
+      "index": 3,
+      "title": "Eval290",
+      "kind": "root"
+    },
+    {
+      "type": "workflow_phase",
+      "index": 4,
+      "title": "Adjudicate",
+      "kind": "root"
+    },
+    {
+      "type": "workflow_phase",
+      "index": 5,
+      "title": "Decide",
+      "kind": "root"
+    },
+    {
+      "type": "workflow_log",
+      "message": "v22 phase 0: offline MIL-argmax coverage precheck on the 92 v179 fires",
+      "timestamp": 1786972223693
+    },
+    {
+      "type": "workflow_agent",
+      "index": 1,
+      "label": "D-precheck-v180",
+      "phaseIndex": 1,
+      "phaseTitle": "Precheck",
+      "agentType": "workflow-subagent",
+      "prompt": "You are Agent D-precheck for v180 SNH-P. OFFLINE ONLY — zero eval spend, NO VLM API, NO batch_evaluate launches. NEVER edit the evaluator, GT labels, or /Users/zzl/PycharmProjects/vad/video_anomaly_detection/iteration_logs/analysis_bootstrap_ab.py.\nNEVER run two batch_evaluate processes concurrently (16 GB swap-thrash).\nNO Bash command may run > 150s in the foreground — the runtime kills stalled agents at 180s. Long work = nohup background + short polls.\ngrep claims must be GREPPED in produced artifacts, never asserted (FM20/FM21).\nDo NOT git-commit anything. StructuredOutput EXACTLY ONCE per agent (only where a schema is given).\nGOAL: decide GO/NO-GO for the MIL-peak protection rule using ONLY the v179 artifacts + local CLIP/MIL recomputation.\nContext: /Users/zzl/PycharmProjects/vad/results/batch_eval_v179_snh290.log carries 92 [SNH-FIRE] lines (vid=<stem> idx cat t=<ts>-<te> conf=...) — detections the v179 video-level SNH veto zeroed. The 5 GT-harm detections (G4 failure): RoadAccidents128 3.00-8.00 IoU0.733; Explosion025 10.00-16.50 IoU0.511; Shooting048 46.00-52.00 IoU0.429; Shoplifting022 45.50-55.00 IoU0.421; RoadAccidents002 9.00-11.50 IoU0.286.\nPROTECTION RULE (pre-registered): a fired detection is PROTECTED (would survive) iff its [t_start,t_end] covers its video's MIL argmax snippet time t_peak=(argmax(mil_scores)+0.5)/32*duration.\nSTEPS:\n1. Parse all 92 [SNH-FIRE] lines from /Users/zzl/PycharmProjects/vad/results/batch_eval_v179_snh290.log -> (vid, t_start, t_end). Also note each video's [SNH-VID] gate=1 lines.\n2. For every DISTINCT fired video, recompute mil_scores LOCALLY: reuse /Users/zzl/PycharmProjects/vad/video_anomaly_detection/iteration_logs/analysis_v19_snh_featextract.py machinery (it loads CLIP ViT-L + model_mil.pth and computes the 32-snippet MIL scores; run it as a library or adapt it into /Users/zzl/PycharmProjects/vad/video_anomaly_detection/iteration_logs/analysis_v180_snhp_precheck.py — a NEW script, do not edit the v19 one). Cache results to /Users/zzl/PycharmProjects/vad/results/v180_mil_argmax.json. This is local GPU/CPU compute, ~1-2 min/video; if the total distinct-video count is large (>60), you may run it as a nohup background job and poll (short Bash calls only).\n3. For each fired detection: covered = (t_start <= t_peak <= t_end).\n4. GO GATE (pre-registered): (a) >= 4 of the 5 GT-harm dets covered; AND (b) estimated Normal-video FA relative reduction >= 25%: for each Normal video that v179 made detection-free (all its dets fired), check whether ANY of its fired dets is protected (=> FA video resurrects). est_fa_videos = v179 FA-on count (25) + resurrected; fa_rel_est = (76 - est_fa_videos)/76 using the v179 numbers (FA off=76/150 -> on=25/150).\n5. Report go, harm_protected, fires_total, fires_protected, normal_fa_videos_v179 (=25), normal_fa_videos_est, fa_rel_est, per_harm (5 lines), note (method + any caveats, e.g. mil_scores all-zero videos where argmax is undefined -> treat as NOT protected and say so).",
+      "journalKey": "v2:2e51aa38c8d48451d6f9b29c46c55f84a0f68c1d135d531ca4dbd9e62ffe9819",
+      "state": "done",
+      "promptPreview": "You are Agent D-precheck for v180 SNH-P. OFFLINE ONLY — zero eval spend, NO VLM API, NO batch_evaluate launches. NEVER edit the evaluator, GT labels, or /Users/zzl/PycharmProjects/vad/video_anomaly_de",
+      "startedAt": 1786972223694,
+      "attempt": 1,
+      "durationMs": 2196967,
+      "lastProgressAt": 1786974420644,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Record workflow structured output",
+      "recentToolActivities": [
+        "Bash(Confirm eval log too-few-frames for the 6 degenerate videos)",
+        "Bash(List the 13 protected fires)",
+        "StructuredOutput(Record workflow structured output)"
+      ],
+      "toolCalls": 48,
+      "agentId": "aworkflow-subagent-a989eb7fc037711b",
+      "resultPreview": "{\"go\":false,\"harm_protected\":0,\"fires_total\":92,\"fires_protected\":13,\"fa_rel_est\":0.5789,\"normal_fa_videos_v179\":25,\"normal_fa_videos_est\":32,\"per_harm\":\"RoadAccidents128_x264 window=3.00-8.00 iou=0.733 mil_argmax_t=NA(22<32 frames) covered=False\\nExplosion025_x264 window=10.00-16.50 iou=0.511 mil_argmax_t=NA(21<32 frames) covered=False\\nShooting048_x264 window=46.00-52.00 iou=0.429 mil_argmax_t=61.39 covered=False\\nShoplifting022_x264 window=45.50-55.00 iou=0.421 mil_argmax_t=3.42 covered=False",
+      "outputPath": "/var/folders/9h/f_2vxk4558n0kf9kxk0xthfc0000gn/T/qoder-cli-501/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/tasks/a4efea47aa68a2d43.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-a989eb7fc037711b.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/8a41679a-dd00-46cd-9125-2da3de1f245a/subagents/agent-aworkflow-subagent-a989eb7fc037711b.jsonl"
+      ],
+      "tokens": 2591028
+    },
+    {
+      "type": "workflow_log",
+      "message": "v22 precheck: go=false harm_protected=0/5 fa_rel_est=0.5789",
+      "timestamp": 1786974420661
+    },
+    {
+      "type": "workflow_log",
+      "message": "v22 NO-GO: protection rule fails its offline gate — closing direction without eval spend. precheck={\"go\":false,\"harm_protected\":0,\"fires_total\":92,\"fires_protected\":13,\"fa_rel_est\":0.5789,\"normal_fa_videos_v179\":25,\"normal_fa_videos_est\":32,\"per_harm\":\"RoadAccidents128_x264 window=3.00-8.00 iou=0.733 mil_argmax_t=NA(22<32 frames) covered=False\\nExplosion025_x264 window=10.00-16.50 iou=0.511 mil_argmax_t=NA(21<32 frames) covered=False\\nShooting048_x264 window=46.00-52.00 iou=0.429 mil_argmax_t=61.39 covered=False\\nShoplifting022_x264 window=45.50-55.00 iou=0.421 mil_argmax_t=3.42 covered=False\\nRoadAccidents002_x264 window=9.00-11.50 iou=0.286 mil_argmax_t=NA(24<32 frames) covered=False\",\"note\":\"Method: parsed all 92 [SNH-FIRE] lines (60 distinct videos) from batch_eval_v179_snh290.log; recomputed 32-snippet MIL scores LOCALLY and pipeline-exactly (VideoPreprocessor fps=2/motion_threshold=1.0/min_motion_interval=2.0 -> CLIP ViT-L-14/openai on mps -> model_mil.pth, 32 consecutive-chunk mean-pool, one forward) via NEW script iteration_logs/analysis_v180_snhp_precheck.py (v19 script untouched); cache results/v180_mil_argmax.json, report results/v180_snhp_precheck_result.json. Validity checks: recomputed durations == eval-JSON durations for all 60 videos; all 6 undefined-argmax videos exactly reproduce the v179 eval's own '[MIL] Too few frames' lines with identical kept-frame counts (RoadAccidents128=22, Explosion025=21, RoadAccidents002=24, Explosion016=23, RoadAccidents004=26, Normal_Videos_889=18) -> treated as NOT protected per pre-registered caveat (no all-zero mil arrays occurred; degeneracy is exclusively n_frames<32 where the eval itself also had NO mil_scores). Gate (a) FAILS: 0/5 GT-harm dets covered (need >=4) — for the 3 short videos argmax is undefined, and for the 2 with valid MIL the peak sits far outside the harm window (Shooting048 peak 61.4s vs 46-52; Shoplifting022 peak 3.4s vs 45.5-55). Gate (b) passes: of 51 fully-vetoed Normal videos, 7 resurrect (Normal_Videos_003/010/041/606/873/882/898) -> est_fa=25+7=32, fa_rel_est=(76-32)/76=0.5789 >= 0.25. fires_protected=13/92 (12 Normal-video fires + Shoplifting022 idx0 t=0.50-6.50, which is NOT a GT-harm det). Both gates required -> NO-GO for the MIL-peak protection rule: it cannot rescue the G4 GT-harm regressions because short anomaly clips (<32 kept frames after motion filtering) have no MIL scores at all, and where MIL exists its argmax does not localize the v179-vetoed true-positive windows. Zero eval spend, zero VLM calls; no batch_evaluate launched; evaluator/GT/bootstrap untouched.\"}",
+      "timestamp": 1786974420661
+    }
+  ],
+  "agentCount": 1,
+  "totalTokens": 2591028,
+  "totalToolCalls": 48,
+  "logs": [
+    "v22 phase 0: offline MIL-argmax coverage precheck on the 92 v179 fires",
+    "v22 precheck: go=false harm_protected=0/5 fa_rel_est=0.5789",
+    "v22 NO-GO: protection rule fails its offline gate — closing direction without eval spend. precheck={\"go\":false,\"harm_protected\":0,\"fires_total\":92,\"fires_protected\":13,\"fa_rel_est\":0.5789,\"normal_fa_videos_v179\":25,\"normal_fa_videos_est\":32,\"per_harm\":\"RoadAccidents128_x264 window=3.00-8.00 iou=0.733 mil_argmax_t=NA(22<32 frames) covered=False\\nExplosion025_x264 window=10.00-16.50 iou=0.511 mil_argmax_t=NA(21<32 frames) covered=False\\nShooting048_x264 window=46.00-52.00 iou=0.429 mil_argmax_t=61.39 covered=False\\nShoplifting022_x264 window=45.50-55.00 iou=0.421 mil_argmax_t=3.42 covered=False\\nRoadAccidents002_x264 window=9.00-11.50 iou=0.286 mil_argmax_t=NA(24<32 frames) covered=False\",\"note\":\"Method: parsed all 92 [SNH-FIRE] lines (60 distinct videos) from batch_eval_v179_snh290.log; recomputed 32-snippet MIL scores LOCALLY and pipeline-exactly (VideoPreprocessor fps=2/motion_threshold=1.0/min_motion_interval=2.0 -> CLIP ViT-L-14/openai on mps -> model_mil.pth, 32 consecutive-chunk mean-pool, one forward) via NEW script iteration_logs/analysis_v180_snhp_precheck.py (v19 script untouched); cache results/v180_mil_argmax.json, report results/v180_snhp_precheck_result.json. Validity checks: recomputed durations == eval-JSON durations for all 60 videos; all 6 undefined-argmax videos exactly reproduce the v179 eval's own '[MIL] Too few frames' lines with identical kept-frame counts (RoadAccidents128=22, Explosion025=21, RoadAccidents002=24, Explosion016=23, RoadAccidents004=26, Normal_Videos_889=18) -> treated as NOT protected per pre-registered caveat (no all-zero mil arrays occurred; degeneracy is exclusively n_frames<32 where the eval itself also had NO mil_scores). Gate (a) FAILS: 0/5 GT-harm dets covered (need >=4) — for the 3 short videos argmax is undefined, and for the 2 with valid MIL the peak sits far outside the harm window (Shooting048 peak 61.4s vs 46-52; Shoplifting022 peak 3.4s vs 45.5-55). Gate (b) passes: of 51 fully-vetoed Normal videos, 7 resurrect (Normal_Videos_003/010/041/606/873/882/898) -> est_fa=25+7=32, fa_rel_est=(76-32)/76=0.5789 >= 0.25. fires_protected=13/92 (12 Normal-video fires + Shoplifting022 idx0 t=0.50-6.50, which is NOT a GT-harm det). Both gates required -> NO-GO for the MIL-peak protection rule: it cannot rescue the G4 GT-harm regressions because short anomaly clips (<32 kept frames after motion filtering) have no MIL scores at all, and where MIL exists its argmax does not localize the v179-vetoed true-positive windows. Zero eval spend, zero VLM calls; no batch_evaluate launched; evaluator/GT/bootstrap untouched.\"}"
+  ]
+}

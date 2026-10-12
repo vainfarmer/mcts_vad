@@ -1,0 +1,35 @@
+{
+  "runId": "wf_a889bd1a-dc6",
+  "taskId": "wf-00b189be-deb",
+  "workflowName": "vad-team-map20-v16",
+  "status": "completed",
+  "result": {
+    "instrument": "dual-arm-paired",
+    "selftest": true,
+    "ab88": null,
+    "ab290": null,
+    "pass88": false,
+    "promote": false,
+    "decision": "CGR-M NOT PROMOTED — MEASURED-CLOSED. cgr_enabled stays default-OFF (closure recorded in config.py comment, diff vs .qoder/backups/v170/config.py = comment only); diagnostic cgr_ab_diag stays default-OFF with the dual-arm instrument left in the tree as a reusable rig for any future pre-BUE operator; committed pipeline (bue/cbt/cbt_recal=True, ccr=False) untouched; v170 (290) never ran after the 88 gate failed."
+  },
+  "logs": [
+    "v16 starting. ONE question: does CGR-M raise FINAL mAP under a clean A/B? Instrument = single-run DUAL-ARM (arm-OFF = BUE+CBT on the pre-CGR snapshot; arm-ON = CGR then BUE+CBT) -> exact paired, zero VLM noise, captures the BUE/CBT interaction the offline method missed. Gate: paired delta >= +0.008 with P >= 0.9. concurrency 2.",
+    "Phase 1: dual-arm instrument verified. marker=\"[CGR-AB] vid=\"",
+    "Verify88: done=false crashed=true mAP=-1 n=? markers=-1 pairedJSONs=-1 launch failed: Already complete; no relaunch needed. No batch_evaluate process running. Report exists at /Users/zzl/PycharmProjects/vad/results/batch_eval_v169_ab88/evaluation_report.json (88/88 videos succeeded, 4 categories Shooting/RoadAccidents/Shoplifting/Explosion, finished 2026-08-13 22:59). COMMAND.txt contains the exact required flags verbatim (--categories Shooting,RoadAccidents,Shoplifting,Explosion --bue_extension --qscore_rerank --cbt_tighten --cbt_recal --cgr_relocate --cgr_ab_diag) and the log confirms they were active (367 flag-tagged lines: [QSCORE-GATE] rerank, [BUE], [CBT-VID] recal=on) with final line \"Full report saved\". Per step 3, this is done.",
+    "Verify88: eval unusable -> no adjudication",
+    "88 verdict: no valid adjudication",
+    "Skipping the 290 confirm: the 88 A/B did not clear the gate, so there is nothing to promote.",
+    "v16 complete. instrument=dual-arm(paired) | 88: n/a | 290: n/a | promoted=false"
+  ],
+  "failures": [],
+  "agentCount": 3,
+  "totalToolCalls": 71,
+  "durationMs": 1963912,
+  "usage": {
+    "agents": 3,
+    "toolCalls": 71,
+    "durationMs": 1963912
+  },
+  "transcriptDir": "/Users/zzl/PycharmProjects/vad/.qoder/sessions/8a41679a-dd00-46cd-9125-2da3de1f245a/workflows/runs/wf_a889bd1a-dc6",
+  "scriptPath": "/Users/zzl/PycharmProjects/vad/.qoder/workflows/vad-team-map20-v16.js"
+}

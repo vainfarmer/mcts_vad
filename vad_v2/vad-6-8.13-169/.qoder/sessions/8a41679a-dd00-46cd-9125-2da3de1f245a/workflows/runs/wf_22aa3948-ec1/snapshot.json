@@ -1,0 +1,96 @@
+{
+  "version": 1,
+  "sessionId": "8a41679a-dd00-46cd-9125-2da3de1f245a",
+  "runId": "wf_22aa3948-ec1",
+  "taskId": "wf-b5b767bd-b0e",
+  "workflowName": "vad-team-map20-v21",
+  "summary": "VAD agent team v21 — SNH (Supervised Normality Head) EVAL session: implement --snh_veto (video-level P(normal) gate trained in v19, GO: CV AUC 0.996, tau 0.7894, 94% normal-flag @ 3.8% anomaly-flag), then ONE full-290 paired-log adjudication. v19 established the offline GO gate (summary_v19_snh-gate_20260816.md); the trained head is video_anomaly_detection/model_snh.json and the SHARED feature math is video_anomaly_detection/snh_features.py (compute_snh_features, FEATURE_NAMES — identical at train and eval, no train/eval skew). MECHANISM (pre-registered, mirroring the v171 CNV plumbing): at the SAME terminal slot where _cnv_veto is called (after merge/NMS/PostTighten/classify/curve-correction/MIL-sanity/conf-gate/ECE/EUBC/Q-score/BUE/CBT — count frozen), load model_snh.json, compute the 16 features for the current video from the pipeline's OWN cached signals (mil_scores, 13 cat curves, normal curve, motion_energy — the same signal families _cnv_stage1_bundle already reads at that slot), standardize with the saved scaler, P(normal)=sigmoid(w·x+b); if P(normal) >= tau veto ALL of the video's detections (confidence := 0.0, detection KEPT, count-frozen index-aligned, ONE-SIDED — never adds/moves/re-ranks). Markers: one [SNH-FIRE] per vetoed detection in the EXACT restore_pre_marker conf format (vid=<stem> ... t=<ts>.2f-<te>.2f ... conf=<old>.4f->0.0000) + exactly one unconditional [SNH-VID] per video on EVERY path incl. early-return-normal and 0-detection paths (FM17, mirroring _cnv_log_early_return). SNH_FORCE_FIRE=1 dev-only self-test hook (never set in committed runs). Flag snh_veto default OFF, CLI in run.py AND batch_evaluate.py. ADJUDICATION (the v171 proven path, NO new bootstrap code): analysis_bootstrap_ab.py --new <dir> --paired-log <run.log> --marker SNH-FIRE --paired-mode conf — EXACT paired arm-OFF rebuild, zero cross-run VLM noise. PROMOTION GATES (pre-registered, same as v17): paired mAP delta >= -0.003 AND abs mAP >= 0.16454 AND Normal-video FA-rate relative reduction >= 25% AND <= 1 GT-overlapping (IoU>=0.1) detection vetoed. Committed pipeline = v137 + BUE + CBT + CBT-recal (all default-ON, full-290 ~0.173, v160_full 0.17254); cgr/ccr/cnv/kfd/tcp all default-OFF and stay so. Concurrency 2. QUEUE DISCIPLINE: another session's batch_evaluate may still be running — EVERY batch_evaluate launch in this session (incl. self-test smokes) must first verify no other batch_evaluate process is running, and sleep-poll until clear (up to ~90 min) — never run two evals concurrently (16 GB machine, owner-diagnosed swap thrash). NONE of the 10 banned families; this is judged on the FA-rate objective with mAP only as a non-inferiority constraint — NOT Normal-FP-for-mAP (banned 9).",
+  "status": "failed",
+  "startTime": 1786867093470,
+  "endTime": 1786882198034,
+  "scriptPath": "/Users/zzl/PycharmProjects/vad/.qoder/workflows/vad-team-map20-v21.js",
+  "transcriptDir": "/Users/zzl/PycharmProjects/vad/.qoder/sessions/8a41679a-dd00-46cd-9125-2da3de1f245a/workflows/runs/wf_22aa3948-ec1",
+  "outputPath": "/Users/zzl/PycharmProjects/vad/.qoder/sessions/8a41679a-dd00-46cd-9125-2da3de1f245a/workflows/runs/wf_22aa3948-ec1/output.json",
+  "phases": [
+    {
+      "title": "Implement",
+      "detail": "v179 --snh_veto + markers + self-test incl. FORCE_FIRE restore proof"
+    },
+    {
+      "title": "Eval290",
+      "detail": "queue-disciplined full-290 eval, --snh_veto, concurrency 2"
+    },
+    {
+      "title": "Adjudicate",
+      "detail": "paired-log conf restore + 4 gates + FA rate + FM greps"
+    },
+    {
+      "title": "Decide",
+      "detail": "promote-or-close + summary + ledger"
+    }
+  ],
+  "progress": [
+    {
+      "type": "workflow_phase",
+      "index": 1,
+      "title": "Implement",
+      "kind": "root"
+    },
+    {
+      "type": "workflow_phase",
+      "index": 2,
+      "title": "Eval290",
+      "kind": "root"
+    },
+    {
+      "type": "workflow_phase",
+      "index": 3,
+      "title": "Adjudicate",
+      "kind": "root"
+    },
+    {
+      "type": "workflow_phase",
+      "index": 4,
+      "title": "Decide",
+      "kind": "root"
+    },
+    {
+      "type": "workflow_log",
+      "message": "v21 Phase 1: implement --snh_veto (v179) + self-test",
+      "timestamp": 1786867093479
+    },
+    {
+      "type": "workflow_agent",
+      "index": 1,
+      "label": "D1-implement-v179",
+      "phaseIndex": 1,
+      "phaseTitle": "Implement",
+      "prompt": "You are Agent D (implementer/evaluator) of the UCF-Crime VAD agent team, session v21.\nProject root: /Users/zzl/PycharmProjects/vad (python3.14, package /Users/zzl/PycharmProjects/vad/video_anomaly_detection). Committed pipeline = v137 + BUE + CBT + CBT-recal\nALL default-ON (full-290 mAP ~0.173, v160_full 0.17254). All of cgr/ccr/cnv/kfd_uniform/tcp are\ndefault-OFF and MUST stay so. This session implements + evaluates SNH (Supervised Normality Head),\nthe v17-record-mandated, v19-GO-gated NORMAL-video false-positive lever.\n\nHARD RULES (every agent):\n- NEVER edit the evaluator, GT labels, or iteration_logs/analysis_bootstrap_ab.py.\n- NEVER run two batch_evaluate processes concurrently. BEFORE EVERY launch (incl. smokes):\n  pgrep -f \"batch_evaluate.py\" — if any PID is found that is NOT your own already-launched run,\n  sleep 140 and re-check, up to 40 iterations (~93 min); only launch when clear.\n- Evals: python3.14 /Users/zzl/PycharmProjects/vad/video_anomaly_detection/batch_evaluate.py with --concurrency 2, cwd=/Users/zzl/PycharmProjects/vad/video_anomaly_detection.\n- After EVERY edit: python3.14 -m py_compile <file> must pass.\n- grep claims must be GREPPED in produced artifacts, never asserted (FM20/FM21).\n- Do NOT git-commit anything.\n\nBACKGROUND you can rely on (verified by the main session, do not re-derive):\n- v19 GO record: /Users/zzl/PycharmProjects/vad/video_anomaly_detection/iteration_logs/summary_v19_snh-gate_20260816.md. Trained head: /Users/zzl/PycharmProjects/vad/video_anomaly_detection/model_snh.json\n  {version, cv_auc 0.996, tau 0.7894, feature_order (16 names), scaler_mean, scaler_scale,\n  weights, bias, clip 50.0}. P(normal) = sigmoid(weights · z + bias) where\n  z = (clip(nan_to_num(x, nan=0, posinf=50, neginf=-50), -50, 50) - scaler_mean) / scaler_scale,\n  x ordered by feature_order.\n- Feature math: /Users/zzl/PycharmProjects/vad/video_anomaly_detection/snh_features.py — compute_snh_features(mil_scores, cat_curves,\n  normal_curve, motion_energy, top_cat=None) -> (feats_dict, top_cat). This is the SHARED module\n  the train extractor used; importing it at eval time guarantees no train/eval skew. Map feats_dict\n  onto feature_order; any None feature -> 0.0 BEFORE standardization (matches the train-time\n  nan_to_num(0) sanitization).\n- CNV plumbing to MIRROR: pipeline.py _cnv_veto (~L3077-3171) + _cnv_log_early_return (~L3173),\n  its call sites (~L1658 early-return-normal, ~L1787 0-detection no-candidates, ~L2129 terminal),\n  config.py cnv_veto block (~L205), run.py (~L280) and batch_evaluate.py (~L371) CLI.\n- Paired restore tool: /Users/zzl/PycharmProjects/vad/video_anomaly_detection/iteration_logs/analysis_bootstrap_ab.py restore_pre_marker parses lines matching\n  <marker> ... vid=<stem> ... t=<ts>-<te> ... conf=<old>-><new>  (--paired-mode conf). The vid key\n  MUST be the STEM (Path(video_path).stem); t fields printed at .2f; conf at .4f.\n- The signals _cnv_stage1_bundle reads at the terminal slot (MIL top-k, fused category curve,\n  motion energy) prove the SNH feature inputs are reachable at that slot — verify the exact\n  video_data keys yourself (e.g. video_data['motion_energy'], the frame_scorer category curves,\n  the MIL snippet scores) and reuse the SAME cached arrays (zero recompute, zero VLM).\n\nTASK — implement SNH as flag snh_veto (default OFF), version tag v179, EXACTLY mirroring the\nCNV veto plumbing but with a VIDEO-LEVEL-ONLY gate (there is NO stage-2; the gate is whole-video):\n\n1. BACKUP first: cp pipeline.py config.py run.py batch_evaluate.py + anomaly_discovery.py into\n   /Users/zzl/PycharmProjects/vad/.qoder/backups/v179/ (mkdir -p). List what you copied.\n\n2. config.py: add snh_veto: bool = False to the SAME config dataclass/block that holds cnv_veto,\n   with a comment recording: mechanism = video-level P(normal)>=tau veto from model_snh.json;\n   paired adjudication = --paired-log --marker SNH-FIRE --paired-mode conf.\n\n3. pipeline.py — add _snh_veto(self, final_anomalies, video_data, category) placed NEXT TO\n   _cnv_veto, and call it at the SAME THREE sites _cnv_veto/_cnv_log_early_return are called\n   (terminal slot + early-return-normal + 0-detection paths), each guarded by\n   self.config.scoring.snh_veto (or the correct config path — match how cnv_veto is read) so\n   flag-off is byte-identical:\n   - Load /Users/zzl/PycharmProjects/vad/video_anomaly_detection/model_snh.json ONCE (module-level lazy cache; missing/corrupt file -> log [SNH-ERR] and treat\n     as flag-off for that video, NEVER crash the run).\n   - Compute the 16 features via snh_features.compute_snh_features from the SAME cached signal\n     arrays available at that slot (mil snippet scores, 13 category curves, normal curve,\n     motion_energy). If the MIL scores are unavailable for a video the extractor's convention is\n     the 5 mil_* features = None -> 0.0 after mapping (document which key you read and verify it\n     is populated on a normal test video by logging it in the smoke).\n   - z-standardize with the saved scaler, P(normal)=sigmoid(w·z+b). GATE: P(normal) >= tau\n     (video-level ONLY — no per-segment stage).\n   - If the gate fires: for EVERY detection, confidence := 0.0, detection KEPT (count-frozen,\n     index-aligned; assert len unchanged), and log one [SNH-FIRE] line in the EXACT restore format:\n       [SNH-FIRE] vid=<stem> idx=<di> cat=<cat> t=<t_start:.2f>-<t_end:.2f> conf=<old:.4f>->0.0000 p_normal=<p:.4f>\n   - ALWAYS log exactly one [SNH-VID] per call:\n       [SNH-VID] vid=<vid> ndet=<n> vetoed=<v> p_normal=<p:.4f> tau=<tau:.4f> gate=<0|1> force=<0|1>\n     and on the two early-return paths emit an [SNH-VID] with ndet=0 vetoed=0 and the computed\n     p_normal (mirroring _cnv_log_early_return), so grep -cF '[SNH-VID]' == #videos on every run.\n   - DEV-ONLY hook: SNH_FORCE_FIRE=1 forces the gate to fire (self-test; never set by default).\n   - If two vetoed detections share a rounded (t_start,t_end) key, log [SNH-COLLISION] like CNV\n     (the paired tool's M4 check will correctly VOID — transparency, not a mechanism change).\n\n4. CLI: add --snh_veto to run.py AND batch_evaluate.py (store_true dest snh_veto,\n   set_defaults(snh_veto=False)), threaded into the config exactly like cnv_veto.\n\n5. VALIDATE: py_compile all edited files; import the package; ScoringConfig()/from_args(empty)\n   show snh_veto False and bue/cbt/recal still True and cnv/cgr/ccr/kfd/tcp still False;\n   both --help show the flag.\n\n6. SELF-TEST SMOKES (queue-disciplined, cwd=/Users/zzl/PycharmProjects/vad/video_anomaly_detection):\n   a. OFF smoke: 1 normal + 1 anomaly video (--max_per_category 1, NO --categories, flag OFF) ->\n      grep -c 'SNH' run.log == 0 (byte-identical).\n   b. ON smoke (same 2 videos, --snh_veto): grep -cF '[SNH-VID]' == #videos; confirm p_normal is\n      computed on BOTH (paste the two lines). It is FINE if gate=0 here (no veto) — the forced\n      proof is next.\n   c. FORCE-FIRE restore proof (MANDATORY): SNH_FORCE_FIRE=1 python3.14 batch_evaluate.py on the same\n      2 videos --snh_veto -> every detection vetoed; then\n      python3.14 /Users/zzl/PycharmProjects/vad/video_anomaly_detection/iteration_logs/analysis_bootstrap_ab.py --new <smoke_dir> --paired-log <smoke.log>\n      --marker SNH-FIRE --paired-mode conf\n      and show the RESTORED arm-OFF mAP == the OFF-smoke mAP for the same videos EXACTLY\n      (paste both numbers + the matched/n_fires line). This proves the paired instrument.\n   Paste all commands + greps + numbers. End with a readiness verdict line: READY or NOT-READY\n   with reasons.",
+      "journalKey": "v2:1dadb98b5686f50b07489367264fa2f1f308a4683cc16c8801f426015aa392eb",
+      "state": "error",
+      "promptPreview": "You are Agent D (implementer/evaluator) of the UCF-Crime VAD agent team, session v21.\nProject root: /Users/zzl/PycharmProjects/vad (python3.14, package /Users/zzl/PycharmProjects/vad/video_anomaly_det",
+      "startedAt": 1786867093479,
+      "attempt": 6,
+      "maxAttempts": 6,
+      "durationMs": 15104554,
+      "lastProgressAt": 1786881789755,
+      "lastToolName": "Bash",
+      "lastToolSummary": "Check if SNH veto exists in pipeline.py",
+      "recentToolActivities": [
+        "Bash(Find cnv_veto in config/run/batch_evaluate)",
+        "Bash(Check git status and recent commits)",
+        "Bash(Check if SNH veto exists in pipeline.py)"
+      ],
+      "toolCalls": 8,
+      "error": "workflow agent stalled after 180000ms without completing"
+    }
+  ],
+  "agentCount": 1,
+  "totalTokens": 0,
+  "totalToolCalls": 8,
+  "logs": [
+    "v21 Phase 1: implement --snh_veto (v179) + self-test"
+  ],
+  "result": null,
+  "error": "workflow agent stalled after 180000ms without completing"
+}

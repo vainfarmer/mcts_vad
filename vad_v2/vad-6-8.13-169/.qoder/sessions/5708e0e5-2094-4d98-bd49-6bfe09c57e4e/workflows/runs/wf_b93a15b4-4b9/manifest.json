@@ -1,0 +1,661 @@
+{
+  "runId": "wf_b93a15b4-4b9",
+  "workflowName": "vad-team-map20-v2",
+  "scriptPath": "/Users/zzl/PycharmProjects/vad/.qoder/workflows/vad-team-map20-v2.js",
+  "source": "project",
+  "args": "继续迭代（从 v104 开始）。用户指令 + v103 smoke/full 差距分析结论如下，本轮优先攻克：\n\n【v103 结果】smoke mAP=0.1939，full mAP=0.0586（AP@0.3=0.1141, AP@0.5=0.0391, AP@0.7=0.0227），full frame AUC=0.677。full 结果远低于 v94 基线 0.1494。\n\n【根因分析（已完成，勿重复）】\n1. mAP 是全局按 confidence 排序的指标（evaluate.py:342）。v103 full 共 116 个预测段，仅 22 个 TP@0.3（precision 19%）；TP 与 FP 的 confidence 几乎无区分（均值都约 0.77），full 的 top-3 高置信预测全是 FP（rank 序列 fffTTfffTTT...），直接压垮 PR 曲线。smoke 的 0.1939 是小样本（13 个 GT 段）+ 头部排序运气，不可外推。\n2. 每个 GT 段只能匹配一个预测段（贪心匹配，evaluate.py:349-369）；同一视频多余的预测段全部变成 FP。v103 平均每视频 1.78 个预测段，但 recall@0.3 只有 33%。\n3. 高置信 FP 集中在：Arrest030、Fighting042、Arson007、Stealing019、Vandalism028 等。\n\n【用户指定的优化方向】控制/优化每个视频输出的预测区间数量，减少未匹配 FP 对 AP 的伤害。候选思路（团队自行研究、辩论取舍）：\n- 置信度校准：让真正命中的段排在前面（例如用 MIL 分数、验证信号、段长/覆盖率等特征重打分），这是全局排序指标下的最大杠杆。\n- 每视频 top-k 截断或置信度阈值过滤：只保留最可信的 1-2 个段（注意：删段会损失 recall，需在 full 分布上验证净收益；可先离线用 v103 full 的 116 个预测段做重打分/截断模拟，再决定是否上线）。\n- 段合并/NMS 加强：把同一事件的碎片段合并，减少互相竞争的 FP。\n- 离线模拟优先：v103 full 的预测 JSON 在 /Users/zzl/PycharmProjects/vad/results/batch_eval_v103_full/，GT 在 /Users/zzl/Movies/ucf-crime/data，可以零成本离线搜索最优 top-k/阈值/重打分策略，找到正收益后再跑真实 eval 确认。\n\n目标不变：full-eval temporal mAP>=0.20。注意 recall 只有 33%，纯删段有上限；置信度重排序 + 适度截断的组合可能是最优路径。",
+  "meta": {
+    "name": "vad-team-map20-v2",
+    "description": "VAD agent team v2 (FM5-hardened): A/B research+debate, C skeptical review, D implement+eval with mandatory activation gates. Continues at v103 after the v97-v102 session (6 loops done, true baseline still v94 mAP=0.1494). Target full-eval temporal mAP>=0.20.",
+    "phases": [
+      {
+        "title": "Research",
+        "detail": "A and B independently research papers + codebase, each proposes one architecture-level idea"
+      },
+      {
+        "title": "Debate",
+        "detail": "A and B cross-critique, then synthesize one joint consensus proposal"
+      },
+      {
+        "title": "Review",
+        "detail": "C approves or rejects with feedback; up to 3 cycles"
+      },
+      {
+        "title": "Implement",
+        "detail": "D implements (CLI-activatable + log marker), smoke+full eval with FM5 activation gate, keep/revert"
+      }
+    ]
+  },
+  "createdAt": "2026-07-20T12:55:21.269Z",
+  "updatedAt": "2026-07-21T02:16:33.913Z",
+  "status": "killed",
+  "outputPath": "/Users/zzl/PycharmProjects/vad/.qoder/sessions/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/workflows/runs/wf_b93a15b4-4b9/output.json",
+  "agents": [
+    {
+      "index": 1,
+      "label": "D-launch-smoke-v103",
+      "phaseIndex": 4,
+      "phaseTitle": "Implement",
+      "journalKey": "v2:e0b066e0858c9e4cd423d9ba8160b1747a9c3d8f50709570e6868367b712f09b",
+      "agentId": "aworkflow-subagent-bf8e97e34e016bdc",
+      "agentType": "workflow-subagent",
+      "state": "done",
+      "attempts": 1,
+      "outputPath": "/private/tmp/qoder-cli-501/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/tasks/aworkflow-subagent-bf8e97e34e016bdc.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-bf8e97e34e016bdc.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-bf8e97e34e016bdc.jsonl"
+      ],
+      "updatedAt": "2026-07-21T02:16:33.905Z"
+    },
+    {
+      "index": 2,
+      "label": "D-watch-smoke-v103-0",
+      "phaseIndex": 4,
+      "phaseTitle": "Implement",
+      "journalKey": "v2:a781d78fde5f8abbaf7a52558bb0b7091afb97f6d04315cbc60737af53c12e7a",
+      "agentId": "aworkflow-subagent-ef3e7aad6aa60d49",
+      "agentType": "workflow-subagent",
+      "state": "done",
+      "attempts": 6,
+      "outputPath": "/private/tmp/qoder-cli-501/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/tasks/aworkflow-subagent-ef3e7aad6aa60d49.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-ef3e7aad6aa60d49.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-ef3e7aad6aa60d49.jsonl"
+      ],
+      "updatedAt": "2026-07-21T02:16:33.905Z"
+    },
+    {
+      "index": 3,
+      "label": "D-launch-full-v103",
+      "phaseIndex": 4,
+      "phaseTitle": "Implement",
+      "journalKey": "v2:c58b63a16a789573c134806c4843951e807c37163db7b4daddefb0e2984dc878",
+      "agentId": "aworkflow-subagent-ca1ae1d71382dc2a",
+      "agentType": "workflow-subagent",
+      "state": "done",
+      "attempts": 1,
+      "outputPath": "/private/tmp/qoder-cli-501/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/tasks/aworkflow-subagent-ca1ae1d71382dc2a.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-ca1ae1d71382dc2a.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-ca1ae1d71382dc2a.jsonl"
+      ],
+      "updatedAt": "2026-07-21T02:16:33.905Z"
+    },
+    {
+      "index": 4,
+      "label": "D-watch-full-v103-0",
+      "phaseIndex": 4,
+      "phaseTitle": "Implement",
+      "journalKey": "v2:5fb44c2e03edcb5a84c78ca9df7528d1cbac64e47ef1dbf52e5f7d0da97bd492",
+      "state": "progress",
+      "attempts": 6,
+      "updatedAt": "2026-07-21T02:16:33.905Z"
+    },
+    {
+      "index": 5,
+      "label": "D-watch-full-v103-0",
+      "phaseIndex": 4,
+      "phaseTitle": "Implement",
+      "journalKey": "v2:38a84e2126a58fc4254bbbc89761bb9c61d0ae591aeebe77e9b862a6d23efe47",
+      "state": "progress",
+      "attempts": 6,
+      "updatedAt": "2026-07-21T02:16:33.905Z"
+    },
+    {
+      "index": 6,
+      "label": "D-watch-full-v103-0",
+      "phaseIndex": 4,
+      "phaseTitle": "Implement",
+      "journalKey": "v2:e1a7a4da995b73bacfd578268da254cec72c41cf77ffe62f67e92161ea25bd2d",
+      "agentId": "aworkflow-subagent-4e64cf93fd3a587e",
+      "agentType": "workflow-subagent",
+      "state": "done",
+      "attempts": 5,
+      "outputPath": "/private/tmp/qoder-cli-501/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/tasks/aworkflow-subagent-4e64cf93fd3a587e.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-4e64cf93fd3a587e.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-4e64cf93fd3a587e.jsonl"
+      ],
+      "updatedAt": "2026-07-21T02:16:33.905Z"
+    },
+    {
+      "index": 7,
+      "label": "D4-finalize-v103",
+      "phaseIndex": 4,
+      "phaseTitle": "Implement",
+      "journalKey": "v2:156443cd847ac98410c9acd4a6b0d1726b5a44d4bfafe54976f41aaea6c8e73a",
+      "agentId": "aworkflow-subagent-25305077474bda05",
+      "agentType": "workflow-subagent",
+      "state": "done",
+      "attempts": 1,
+      "outputPath": "/private/tmp/qoder-cli-501/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/tasks/aworkflow-subagent-25305077474bda05.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-25305077474bda05.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-25305077474bda05.jsonl"
+      ],
+      "updatedAt": "2026-07-21T02:16:33.905Z"
+    },
+    {
+      "index": 8,
+      "label": "A-research-v104",
+      "phaseIndex": 1,
+      "phaseTitle": "Research",
+      "journalKey": "v2:1c70665c87b14c94dbf5fcf8a91a6892ddc0980183dde586f6a997f1dee8d18b",
+      "state": "error",
+      "attempts": 4,
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-82c5e6ad57c95fac.jsonl"
+      ],
+      "updatedAt": "2026-07-21T02:16:33.905Z"
+    },
+    {
+      "index": 9,
+      "label": "B-research-v104",
+      "phaseIndex": 1,
+      "phaseTitle": "Research",
+      "journalKey": "v2:c554b2e0152e8afac7f979ee39250099209892cd9a73bfad6cd9e26f2ffdfe1b",
+      "state": "error",
+      "attempts": 2,
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-c58a2214f765f7de.jsonl"
+      ],
+      "updatedAt": "2026-07-21T02:16:33.905Z"
+    },
+    {
+      "index": 10,
+      "label": "B-research-v104",
+      "phaseIndex": 1,
+      "phaseTitle": "Research",
+      "journalKey": "v2:20db42995e698079770dcfbd745ab538e19eb0d60aa883217ba20c0f54664dd6",
+      "state": "error",
+      "attempts": 3,
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-e72a74053a05844b.jsonl"
+      ],
+      "updatedAt": "2026-07-21T02:16:33.905Z"
+    },
+    {
+      "index": 11,
+      "label": "A-research-v104",
+      "phaseIndex": 1,
+      "phaseTitle": "Research",
+      "journalKey": "v2:ed0256c2381708fe4184217895f2cd74b3ff6593b7f256e377fa15bfe5d56fbd",
+      "state": "error",
+      "attempts": 1,
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-55be3789b01184ab.jsonl"
+      ],
+      "updatedAt": "2026-07-21T02:16:33.905Z"
+    },
+    {
+      "index": 12,
+      "label": "B-research-v104",
+      "phaseIndex": 1,
+      "phaseTitle": "Research",
+      "journalKey": "v2:dec150244baf6b025ed0acf16600957414619239eb682bd2d14c852a3d331485",
+      "state": "error",
+      "attempts": 3,
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-a5a38e93cbdbd5b2.jsonl"
+      ],
+      "updatedAt": "2026-07-21T02:16:33.905Z"
+    },
+    {
+      "index": 13,
+      "label": "A-research-v104",
+      "phaseIndex": 1,
+      "phaseTitle": "Research",
+      "journalKey": "v2:0fab60a1a56971a226c93008936db82b8cb6d53fba639967a53b1890d4a9ab0f",
+      "state": "error",
+      "attempts": 1,
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-e42f92e74229fceb.jsonl"
+      ],
+      "updatedAt": "2026-07-21T02:16:33.905Z"
+    },
+    {
+      "index": 14,
+      "label": "A-research-v105",
+      "phaseIndex": 1,
+      "phaseTitle": "Research",
+      "journalKey": "v2:4d1c5c27332bd4ef1ed59b1544f05f3df58a15b7a5d4e3d317822ba4b935851c",
+      "agentId": "aworkflow-subagent-d30d3c48d61bc621",
+      "agentType": "workflow-subagent",
+      "state": "done",
+      "attempts": 2,
+      "outputPath": "/private/tmp/qoder-cli-501/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/tasks/aworkflow-subagent-d30d3c48d61bc621.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-d30d3c48d61bc621.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-d30d3c48d61bc621.jsonl"
+      ],
+      "updatedAt": "2026-07-21T02:16:33.905Z"
+    },
+    {
+      "index": 15,
+      "label": "B-research-v105",
+      "phaseIndex": 1,
+      "phaseTitle": "Research",
+      "journalKey": "v2:02b738e058d9e697fb5670100d2610ed03959b0ff41d2a04048753ad84d5043f",
+      "agentId": "aworkflow-subagent-dd9ec3e94fc156a0",
+      "agentType": "workflow-subagent",
+      "state": "done",
+      "attempts": 1,
+      "outputPath": "/private/tmp/qoder-cli-501/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/tasks/aworkflow-subagent-dd9ec3e94fc156a0.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-dd9ec3e94fc156a0.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-dd9ec3e94fc156a0.jsonl"
+      ],
+      "updatedAt": "2026-07-21T02:16:33.905Z"
+    },
+    {
+      "index": 16,
+      "label": "A-critiques-B-v105",
+      "phaseIndex": 2,
+      "phaseTitle": "Debate",
+      "journalKey": "v2:14718b74504db40a7efed24be3172d50a49d48a954e3b7ee8d466f6376f0cb5d",
+      "agentId": "aworkflow-subagent-1ceabc553df6888c",
+      "agentType": "workflow-subagent",
+      "state": "done",
+      "attempts": 1,
+      "outputPath": "/private/tmp/qoder-cli-501/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/tasks/aworkflow-subagent-1ceabc553df6888c.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-1ceabc553df6888c.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-1ceabc553df6888c.jsonl"
+      ],
+      "updatedAt": "2026-07-21T02:16:33.905Z"
+    },
+    {
+      "index": 17,
+      "label": "B-critiques-A-v105",
+      "phaseIndex": 2,
+      "phaseTitle": "Debate",
+      "journalKey": "v2:be1c3ce8117038ef665bc2cf220eafdfb0f5781e5725b359122a9c67eb4e1906",
+      "agentId": "aworkflow-subagent-eef92d60709ff8d4",
+      "agentType": "workflow-subagent",
+      "state": "done",
+      "attempts": 1,
+      "outputPath": "/private/tmp/qoder-cli-501/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/tasks/aworkflow-subagent-eef92d60709ff8d4.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-eef92d60709ff8d4.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-eef92d60709ff8d4.jsonl"
+      ],
+      "updatedAt": "2026-07-21T02:16:33.905Z"
+    },
+    {
+      "index": 18,
+      "label": "AB-consensus-v105",
+      "phaseIndex": 2,
+      "phaseTitle": "Debate",
+      "journalKey": "v2:221ec204214df28c1a357c4daa2d26636d1f32b1702042b994f70e0e8a5f5cf8",
+      "agentId": "aworkflow-subagent-346566856bd6a9f1",
+      "agentType": "workflow-subagent",
+      "state": "done",
+      "attempts": 1,
+      "outputPath": "/private/tmp/qoder-cli-501/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/tasks/aworkflow-subagent-346566856bd6a9f1.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-346566856bd6a9f1.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-346566856bd6a9f1.jsonl"
+      ],
+      "updatedAt": "2026-07-21T02:16:33.905Z"
+    },
+    {
+      "index": 19,
+      "label": "C-review-v105-r1",
+      "phaseIndex": 3,
+      "phaseTitle": "Review",
+      "journalKey": "v2:2af5f14788e21195675e78286804de69380349acdc7177d0ddbebdeff390c57d",
+      "agentId": "aworkflow-subagent-810bbff39ae4c7fd",
+      "agentType": "workflow-subagent",
+      "state": "done",
+      "attempts": 1,
+      "outputPath": "/private/tmp/qoder-cli-501/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/tasks/aworkflow-subagent-810bbff39ae4c7fd.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-810bbff39ae4c7fd.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-810bbff39ae4c7fd.jsonl"
+      ],
+      "updatedAt": "2026-07-21T02:16:33.905Z"
+    },
+    {
+      "index": 20,
+      "label": "D1-implement-v105",
+      "phaseIndex": 4,
+      "phaseTitle": "Implement",
+      "journalKey": "v2:9e64712be6df68f32f8735d4de13ae09c54e2a68fe7e5cc17ff5f1ad0ef5ab0d",
+      "state": "progress",
+      "attempts": 6,
+      "updatedAt": "2026-07-21T02:16:33.905Z"
+    },
+    {
+      "index": 21,
+      "label": "D1-implement-v105",
+      "phaseIndex": 4,
+      "phaseTitle": "Implement",
+      "journalKey": "v2:c8729bebe0d8a6a45396aa5ebacb84a539eeb5174ee5c3e3c809ac80e3a0229a",
+      "state": "progress",
+      "attempts": 6,
+      "updatedAt": "2026-07-21T02:16:33.905Z"
+    },
+    {
+      "index": 22,
+      "label": "D1-implement-v105",
+      "phaseIndex": 4,
+      "phaseTitle": "Implement",
+      "journalKey": "v2:6a84a6ba2bc87b573d537b300fad93d149fae2b22ad90c1fe69517d477094793",
+      "state": "progress",
+      "attempts": 6,
+      "updatedAt": "2026-07-21T02:16:33.905Z"
+    },
+    {
+      "index": 23,
+      "label": "A-research-v106",
+      "phaseIndex": 1,
+      "phaseTitle": "Research",
+      "journalKey": "v2:c5a6fb56388e012f2573339d80f67cbb1da3ec52c5e4487c232bfba0536a4f43",
+      "agentId": "aworkflow-subagent-40172fb9a634e8ff",
+      "agentType": "workflow-subagent",
+      "state": "done",
+      "attempts": 4,
+      "outputPath": "/private/tmp/qoder-cli-501/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/tasks/aworkflow-subagent-40172fb9a634e8ff.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-40172fb9a634e8ff.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-40172fb9a634e8ff.jsonl"
+      ],
+      "updatedAt": "2026-07-21T02:16:33.905Z"
+    },
+    {
+      "index": 24,
+      "label": "B-research-v106",
+      "phaseIndex": 1,
+      "phaseTitle": "Research",
+      "journalKey": "v2:9edf841a17b99e71e16987aad68379c76b763dea14ea5aff799ce5cadabe3c97",
+      "agentId": "aworkflow-subagent-cf29f617c4174a33",
+      "agentType": "workflow-subagent",
+      "state": "done",
+      "attempts": 4,
+      "outputPath": "/private/tmp/qoder-cli-501/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/tasks/aworkflow-subagent-cf29f617c4174a33.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-cf29f617c4174a33.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-cf29f617c4174a33.jsonl"
+      ],
+      "updatedAt": "2026-07-21T02:16:33.905Z"
+    },
+    {
+      "index": 25,
+      "label": "A-critiques-B-v106",
+      "phaseIndex": 2,
+      "phaseTitle": "Debate",
+      "journalKey": "v2:99fd890d725afe2a79bc9208aa752070ba782f86d50f150b38597e17b45c20e6",
+      "agentId": "aworkflow-subagent-bddc0c59c3e88b09",
+      "agentType": "workflow-subagent",
+      "state": "done",
+      "attempts": 1,
+      "outputPath": "/private/tmp/qoder-cli-501/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/tasks/aworkflow-subagent-bddc0c59c3e88b09.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-bddc0c59c3e88b09.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-bddc0c59c3e88b09.jsonl"
+      ],
+      "updatedAt": "2026-07-21T02:16:33.905Z"
+    },
+    {
+      "index": 26,
+      "label": "B-critiques-A-v106",
+      "phaseIndex": 2,
+      "phaseTitle": "Debate",
+      "journalKey": "v2:a294874a1a6cd39af0fd19574263bd13e1de529397000c9741843c89d7aba99e",
+      "agentId": "aworkflow-subagent-dd504a1d8839bc9d",
+      "agentType": "workflow-subagent",
+      "state": "done",
+      "attempts": 1,
+      "outputPath": "/private/tmp/qoder-cli-501/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/tasks/aworkflow-subagent-dd504a1d8839bc9d.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-dd504a1d8839bc9d.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-dd504a1d8839bc9d.jsonl"
+      ],
+      "updatedAt": "2026-07-21T02:16:33.905Z"
+    },
+    {
+      "index": 27,
+      "label": "AB-consensus-v106",
+      "phaseIndex": 2,
+      "phaseTitle": "Debate",
+      "journalKey": "v2:69f761dd65c1da6a50d9f1b9f73dae3aec3f294d26787204477f745616cb7ccb",
+      "agentId": "aworkflow-subagent-8b0c796f77ff51a9",
+      "agentType": "workflow-subagent",
+      "state": "done",
+      "attempts": 1,
+      "outputPath": "/private/tmp/qoder-cli-501/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/tasks/aworkflow-subagent-8b0c796f77ff51a9.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-8b0c796f77ff51a9.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-8b0c796f77ff51a9.jsonl"
+      ],
+      "updatedAt": "2026-07-21T02:16:33.905Z"
+    },
+    {
+      "index": 28,
+      "label": "C-review-v106-r1",
+      "phaseIndex": 3,
+      "phaseTitle": "Review",
+      "journalKey": "v2:75b6926c7cd3198b3948a56dec55416cd00bee400717487e41b8d8d1f660a1af",
+      "agentId": "aworkflow-subagent-f78f09d6fceb0272",
+      "agentType": "workflow-subagent",
+      "state": "done",
+      "attempts": 1,
+      "outputPath": "/private/tmp/qoder-cli-501/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/tasks/aworkflow-subagent-f78f09d6fceb0272.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-f78f09d6fceb0272.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-f78f09d6fceb0272.jsonl"
+      ],
+      "updatedAt": "2026-07-21T02:16:33.905Z"
+    },
+    {
+      "index": 29,
+      "label": "D1-implement-v106",
+      "phaseIndex": 4,
+      "phaseTitle": "Implement",
+      "journalKey": "v2:e34578f20192802e804832dbdb89cc6e589db7c3db3a821870935a2a0a8eebe9",
+      "state": "progress",
+      "attempts": 6,
+      "updatedAt": "2026-07-21T02:16:33.905Z"
+    },
+    {
+      "index": 30,
+      "label": "D1-implement-v106",
+      "phaseIndex": 4,
+      "phaseTitle": "Implement",
+      "journalKey": "v2:05190c43aeec5ac3abee78ecb011ded561615dc4e5d5c25b6489d7125ad0d207",
+      "state": "progress",
+      "attempts": 6,
+      "updatedAt": "2026-07-21T02:16:33.905Z"
+    },
+    {
+      "index": 31,
+      "label": "D1-implement-v106",
+      "phaseIndex": 4,
+      "phaseTitle": "Implement",
+      "journalKey": "v2:1473fcbc7be7631638d38dd2f3d57edfd31bbceaa087b6f2d696eac76c887468",
+      "state": "progress",
+      "attempts": 6,
+      "updatedAt": "2026-07-21T02:16:33.905Z"
+    },
+    {
+      "index": 32,
+      "label": "A-research-v107",
+      "phaseIndex": 1,
+      "phaseTitle": "Research",
+      "journalKey": "v2:91ef5e6174e5ec9c805c1e9bc6f0a43a41dce9bcd9c38e595bb9db15169cacef",
+      "state": "progress",
+      "attempts": 6,
+      "updatedAt": "2026-07-21T02:16:33.905Z"
+    },
+    {
+      "index": 33,
+      "label": "B-research-v107",
+      "phaseIndex": 1,
+      "phaseTitle": "Research",
+      "journalKey": "v2:d5eb4a6764e09566638d3753076a79d6370a7f1a43dc771024b8c5023ff9c857",
+      "state": "error",
+      "attempts": 3,
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-94927de2da3e8ce5.jsonl"
+      ],
+      "updatedAt": "2026-07-21T02:16:33.905Z"
+    },
+    {
+      "index": 34,
+      "label": "B-research-v107",
+      "phaseIndex": 1,
+      "phaseTitle": "Research",
+      "journalKey": "v2:07dfe446bfb913a6ad19791b9f173eba8c684ef52f5970edbaf4a258e88c8dd4",
+      "agentId": "aworkflow-subagent-d24f2a2b468af553",
+      "agentType": "workflow-subagent",
+      "state": "done",
+      "attempts": 6,
+      "outputPath": "/private/tmp/qoder-cli-501/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/tasks/aworkflow-subagent-d24f2a2b468af553.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-d24f2a2b468af553.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-d24f2a2b468af553.jsonl"
+      ],
+      "updatedAt": "2026-07-21T02:16:33.905Z"
+    },
+    {
+      "index": 35,
+      "label": "A-research-v107",
+      "phaseIndex": 1,
+      "phaseTitle": "Research",
+      "journalKey": "v2:2d7218e26fba864725cc839aa233db2e8f9f94623a9a5d4ecf46d4504b7ec0d3",
+      "agentId": "aworkflow-subagent-2363cc4a049765a0",
+      "agentType": "workflow-subagent",
+      "state": "done",
+      "attempts": 2,
+      "outputPath": "/private/tmp/qoder-cli-501/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/tasks/aworkflow-subagent-2363cc4a049765a0.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-2363cc4a049765a0.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-2363cc4a049765a0.jsonl"
+      ],
+      "updatedAt": "2026-07-21T02:16:33.905Z"
+    },
+    {
+      "index": 36,
+      "label": "A-critiques-B-v107",
+      "phaseIndex": 2,
+      "phaseTitle": "Debate",
+      "journalKey": "v2:86de6d234d18fe6f77e959f162455155d37013328e4d469d1cdcd74e08359297",
+      "agentId": "aworkflow-subagent-ad47aa4635f89627",
+      "agentType": "workflow-subagent",
+      "state": "done",
+      "attempts": 1,
+      "outputPath": "/private/tmp/qoder-cli-501/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/tasks/aworkflow-subagent-ad47aa4635f89627.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-ad47aa4635f89627.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-ad47aa4635f89627.jsonl"
+      ],
+      "updatedAt": "2026-07-21T02:16:33.905Z"
+    },
+    {
+      "index": 37,
+      "label": "B-critiques-A-v107",
+      "phaseIndex": 2,
+      "phaseTitle": "Debate",
+      "journalKey": "v2:a90c2310d6135814aa3377a7277e06faae07dd2b2e09edcc855e0222f1faab1c",
+      "agentId": "aworkflow-subagent-cee45dd04dddbb66",
+      "agentType": "workflow-subagent",
+      "state": "done",
+      "attempts": 1,
+      "outputPath": "/private/tmp/qoder-cli-501/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/tasks/aworkflow-subagent-cee45dd04dddbb66.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-cee45dd04dddbb66.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-cee45dd04dddbb66.jsonl"
+      ],
+      "updatedAt": "2026-07-21T02:16:33.905Z"
+    },
+    {
+      "index": 38,
+      "label": "AB-consensus-v107",
+      "phaseIndex": 2,
+      "phaseTitle": "Debate",
+      "journalKey": "v2:6fdd6ae2d64b168d61287d8b2c2cb73d35c24aeb9a029d0427d7392021380e12",
+      "agentId": "aworkflow-subagent-5a68677d0d8f54be",
+      "agentType": "workflow-subagent",
+      "state": "done",
+      "attempts": 1,
+      "outputPath": "/private/tmp/qoder-cli-501/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/tasks/aworkflow-subagent-5a68677d0d8f54be.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-5a68677d0d8f54be.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-5a68677d0d8f54be.jsonl"
+      ],
+      "updatedAt": "2026-07-21T02:16:33.905Z"
+    },
+    {
+      "index": 39,
+      "label": "C-review-v107-r1",
+      "phaseIndex": 3,
+      "phaseTitle": "Review",
+      "journalKey": "v2:04408d45417d85f24f1e9d90cbce2d48786cfdcb657fee81855b561ace117d84",
+      "agentId": "aworkflow-subagent-fbc15249aaea1dec",
+      "agentType": "workflow-subagent",
+      "state": "done",
+      "attempts": 1,
+      "outputPath": "/private/tmp/qoder-cli-501/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/tasks/aworkflow-subagent-fbc15249aaea1dec.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-fbc15249aaea1dec.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-fbc15249aaea1dec.jsonl"
+      ],
+      "updatedAt": "2026-07-21T02:16:33.905Z"
+    },
+    {
+      "index": 40,
+      "label": "D1-implement-v107",
+      "phaseIndex": 4,
+      "phaseTitle": "Implement",
+      "journalKey": "v2:523c544ac11699eb7ccd735895ee8c59b57937cadc4d216c5de406cd8ff5a733",
+      "agentId": "aworkflow-subagent-0a4e437508d34e94",
+      "agentType": "workflow-subagent",
+      "state": "done",
+      "attempts": 1,
+      "outputPath": "/private/tmp/qoder-cli-501/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/tasks/aworkflow-subagent-0a4e437508d34e94.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-0a4e437508d34e94.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-0a4e437508d34e94.jsonl"
+      ],
+      "updatedAt": "2026-07-21T02:16:33.905Z"
+    },
+    {
+      "index": 41,
+      "label": "D-launch-smoke-v107",
+      "phaseIndex": 4,
+      "phaseTitle": "Implement",
+      "journalKey": "v2:75d3114ecaf7cf63301a47827248e6fa76e83fbe4ec9ce774b1057ab1bd89b33",
+      "agentId": "aworkflow-subagent-a2957ed2d9c1a16a",
+      "agentType": "workflow-subagent",
+      "state": "done",
+      "attempts": 1,
+      "outputPath": "/private/tmp/qoder-cli-501/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/tasks/aworkflow-subagent-a2957ed2d9c1a16a.output",
+      "transcriptPath": "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-a2957ed2d9c1a16a.jsonl",
+      "attemptTranscriptPaths": [
+        "/Users/zzl/.qoder/projects/-Users-zzl-PycharmProjects-vad/5708e0e5-2094-4d98-bd49-6bfe09c57e4e/subagents/agent-aworkflow-subagent-a2957ed2d9c1a16a.jsonl"
+      ],
+      "updatedAt": "2026-07-21T02:16:33.905Z"
+    },
+    {
+      "index": 42,
+      "label": "D-watch-smoke-v107-0",
+      "phaseIndex": 4,
+      "phaseTitle": "Implement",
+      "journalKey": "v2:1155f993c9eefca334dcf2966c1a1eed3c86e5b6fa03a7f734212d6ff395ee2d",
+      "state": "progress",
+      "attempts": 6,
+      "updatedAt": "2026-07-21T02:16:33.905Z"
+    },
+    {
+      "index": 43,
+      "label": "D-watch-smoke-v107-0",
+      "phaseIndex": 4,
+      "phaseTitle": "Implement",
+      "journalKey": "v2:7d3ae70d25facaee97044ee143001b888d44ee65560d9b612ba267f6311018c0",
+      "state": "progress",
+      "attempts": 1,
+      "updatedAt": "2026-07-21T02:16:33.905Z"
+    }
+  ]
+}

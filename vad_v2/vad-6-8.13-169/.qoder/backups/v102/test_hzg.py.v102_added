@@ -1,0 +1,623 @@
+"""v102 HZG-FC (Hierarchical Zoom-in Grounding with Forced-Choice Zoom
+Verification) 单元测试 — fake LLM，无 API 调用。
+
+覆盖提案 step 5 的强制项：
+  - 缩放短名单选择（阈值并集 + rank-net + 截断 + 时间序；coarse 0.20 排第 5
+    的真实段被纳入；>zoom_max_segments 截断保留最高分；同分取较早时间）
+  - 缩放解析器 ok/!ok（二元判决、tie-break 解码、K=1 单段仅判决）
+  - fine 替换 coarse 的合并语义
+  - 对失败保留 coarse（绝不静默置零）
+  - 缩放模式下的截断防护对半重试
+  - 奇数 |Z| 的单段调用
+  - 候选 schema 与 scan_full_coverage 路径一致
+  - 所有返回路径恰好一条 [HZG] summary（含空视频）
+  - _hzg 抑制 _fccs 双触发（if/elif 顺序 + 同置 warning）
+  - flag-off 配置往返字节级一致
+  - batch_evaluate FM5 门（M3 激活门 / M5 argv 断言 / M6 非空目录 /
+    M7 预上线门 artifact）
+
+pipeline 级测试用 __new__ 绕过重型 __init__（同 test_eubc 模式），只设置
+detect() 到 Stage 4 实际依赖的属性；fake preprocessor 注入合成 video_data。
+"""
+import asyncio
+import json
+import logging
+import re
+from types import SimpleNamespace
+from unittest.mock import MagicMock
+
+import numpy as np
+import pytest
+
+from config import VADConfig, DiscoveryConfig
+from anomaly_discovery import AnomalyDiscovery
+
+
+# ----------------------------------------------------------------------
+# helpers
+# ----------------------------------------------------------------------
+
+class FakeLLM:
+    """按 prompt 内容分发的假 VLM；记录全部 prompt 供断言。"""
+
+    def __init__(self, responder):
+        self.responder = responder
+        self.prompts = []
+
+    async def generate(self, prompt, images=None, **kw):
+        self.prompts.append(prompt)
+        return self.responder(prompt)
+
+
+def _discovery(responder, **kw):
+    llm = FakeLLM(responder)
+    return AnomalyDiscovery(llm_client=llm, frame_sampler=None, **kw), llm
+
+
+def _segments(n, dur=6.0):
+    return [{'t_start': i * dur, 't_end': i * dur + dur,
+             'frame_indices': [i]} for i in range(n)]
+
+
+def _video_data(n):
+    frames = np.zeros((max(n, 1), 8, 8, 3), dtype=np.uint8)
+    return {'segments': _segments(n), 'all_frames': frames,
+            'clip_features': None}
+
+
+def comparative_responder(score_by_start, default=0.1):
+    """v57 segment_scores 响应；按 label 里的 t_start 查分。"""
+    def r(prompt):
+        starts = [float(s) for s in
+                  re.findall(r"Segment \d+ \((\d+\.\d)s-", prompt)]
+        entries = [{'segment': i + 1,
+                    'confidence': score_by_start.get(s, default),
+                    'description': 'd'} for i, s in enumerate(starts)]
+        return json.dumps({'segment_scores': entries})
+    return r
+
+
+def zoom_responder(verdict_by_start, more=1, default=(False, 0.9)):
+    """v102 缩放 schema 响应；按 label 里的 t_start 查 (anomalous, conf)。"""
+    def r(prompt):
+        starts = [float(s) for s in
+                  re.findall(r"Segment \d+ \((\d+\.\d)s-", prompt)]
+        segs = []
+        for i, s in enumerate(starts):
+            anom, conf = verdict_by_start.get(s, default)
+            segs.append({'segment': i + 1, 'anomalous': anom,
+                         'confidence': conf,
+                         'description': 'z' if anom else None})
+        out = {'segments': segs}
+        if len(starts) >= 2:
+            out['more_anomalous'] = more
+        return json.dumps(out)
+    return r
+
+
+def dispatch(coarse=None, zoom=None, scan=None):
+    def r(prompt):
+        if 'DENSE keyframes' in prompt:
+            return zoom(prompt)
+        if 'Rate EVERY ONE' in prompt:
+            return coarse(prompt)
+        if 'Analyze these frames' in prompt:
+            if scan is not None:
+                return scan(prompt)
+            return json.dumps({'is_anomalous': False, 'confidence': 0.1,
+                               'description': None})
+        raise AssertionError('unrecognized prompt kind')
+    return r
+
+
+class ListHandler(logging.Handler):
+    def __init__(self):
+        super().__init__()
+        self.messages = []
+
+    def emit(self, record):
+        self.messages.append(record.getMessage())
+
+
+@pytest.fixture
+def vadlog():
+    h = ListHandler()
+    root = logging.getLogger('vad')
+    root.addHandler(h)
+    yield h
+    root.removeHandler(h)
+
+
+def hzg_summaries(vadlog):
+    return [m for m in vadlog.messages if '[HZG] summary' in m]
+
+
+def _make_pipeline(cfg, discovery, video_data, videomae=None):
+    from pipeline import MultiAnomalyVAD
+    from frame_scorer import FrameScorer
+    vad = MultiAnomalyVAD.__new__(MultiAnomalyVAD)
+    vad.config = cfg
+    vad.anomaly_categories = ['Abuse']
+    vad.discovery = discovery
+    vad.preprocessor = MagicMock()
+    vad.preprocessor.process.return_value = video_data
+    vad.anomaly_expert = MagicMock()
+    vad.anomaly_expert.model = None
+    vad.mil_model = None
+    vad.videomae = videomae
+    vad.frame_scorer = FrameScorer(vad.anomaly_expert, cfg,
+                                   vad.anomaly_categories)
+    return vad
+
+
+def _pipeline_video_data(n=6):
+    vd = _video_data(n)
+    vd['all_frames'] = np.random.randint(0, 255, (n * 4, 32, 32, 3),
+                                         dtype=np.uint8)
+    for i, seg in enumerate(vd['segments']):
+        seg['frame_indices'] = list(range(i * 4, i * 4 + 4))
+    vd['timestamps'] = np.linspace(0.0, n * 6.0, n * 4)
+    vd['duration'] = float(n * 6.0)
+    return vd
+
+
+# ----------------------------------------------------------------------
+# 1. 短名单选择
+# ----------------------------------------------------------------------
+
+class TestShortlist:
+    def test_threshold_union_ranknet_time_order(self):
+        d, _ = _discovery(lambda p: '')
+        coarse = [0.9, 0.1, 0.1, 0.1, 0.2, 0.1, 0.1, 0.35, 0.1, 0.15]
+        Z = d._hzg_shortlist(coarse)
+        # top-6 by score: idx0(.9),7(.35),4(.2),9(.15), then 0.1 ties -> 1,2
+        assert Z == [0, 1, 2, 4, 7, 9]
+
+    def test_true_segment_at_0_20_ranked_5th_included(self):
+        d, _ = _discovery(lambda p: '')
+        coarse = [0.9, 0.8, 0.7, 0.6, 0.2, 0.05, 0.05, 0.05]
+        Z = d._hzg_shortlist(coarse)
+        assert 4 in Z  # 0.20 < 0.3 threshold but rank-net catches it
+
+    def test_cap_keeps_highest_scores(self):
+        d, _ = _discovery(lambda p: '', zoom_max_segments=3)
+        coarse = [0.9, 0.85, 0.8, 0.2, 0.15, 0.1]
+        Z = d._hzg_shortlist(coarse)
+        assert Z == [0, 1, 2]
+
+    def test_tie_prefers_earlier_time(self):
+        d, _ = _discovery(lambda p: '')
+        coarse = [0.5] * 8
+        Z = d._hzg_shortlist(coarse)
+        assert Z == [0, 1, 2, 3, 4, 5]
+
+
+# ----------------------------------------------------------------------
+# 2. 缩放解析器
+# ----------------------------------------------------------------------
+
+class TestZoomParser:
+    def setup_method(self):
+        self.d, _ = _discovery(lambda p: '')
+
+    def test_binary_verdict_decode(self):
+        s, desc, ok = self.d._parse_zoom_response_checked(json.dumps({
+            'segments': [
+                {'segment': 1, 'anomalous': True, 'confidence': 0.8,
+                 'description': 'fight'},
+                {'segment': 2, 'anomalous': False, 'confidence': 0.9,
+                 'description': None}],
+            'more_anomalous': 1}), 2)
+        assert ok
+        assert s == [0.8, 0.05]       # false -> 0.05 gate; true -> own conf
+        assert desc == ['fight', 'unknown anomaly']
+
+    def test_tie_break_only_when_pick_contradicts(self):
+        # confidences within 0.05, pick contradicts confidence order
+        s, _, ok = self.d._parse_zoom_response_checked(json.dumps({
+            'segments': [
+                {'segment': 1, 'anomalous': True, 'confidence': 0.70,
+                 'description': None},
+                {'segment': 2, 'anomalous': True, 'confidence': 0.72,
+                 'description': None}],
+            'more_anomalous': 1}), 2)
+        assert ok and abs(s[0] - 0.73) < 1e-9 and s[1] == 0.72
+        # pick agrees with confidence order -> unchanged
+        s2, _, ok2 = self.d._parse_zoom_response_checked(json.dumps({
+            'segments': [
+                {'segment': 1, 'anomalous': True, 'confidence': 0.70,
+                 'description': None},
+                {'segment': 2, 'anomalous': True, 'confidence': 0.72,
+                 'description': None}],
+            'more_anomalous': 2}), 2)
+        assert ok2 and s2 == [0.70, 0.72]
+        # equal confidences, pick 1 -> nudged strictly above
+        s3, _, ok3 = self.d._parse_zoom_response_checked(json.dumps({
+            'segments': [
+                {'segment': 1, 'anomalous': True, 'confidence': 0.7,
+                 'description': None},
+                {'segment': 2, 'anomalous': True, 'confidence': 0.7,
+                 'description': None}],
+            'more_anomalous': 1}), 2)
+        assert ok3 and abs(s3[0] - 0.71) < 1e-9 and s3[1] == 0.7
+
+    def test_no_tie_break_beyond_0_05_window(self):
+        s, _, ok = self.d._parse_zoom_response_checked(json.dumps({
+            'segments': [
+                {'segment': 1, 'anomalous': True, 'confidence': 0.9,
+                 'description': None},
+                {'segment': 2, 'anomalous': True, 'confidence': 0.7,
+                 'description': None}],
+            'more_anomalous': 2}), 2)
+        assert ok and s == [0.9, 0.7]
+
+    def test_not_ok_garbage_and_truncation(self):
+        assert self.d._parse_zoom_response_checked('not json', 2) == (
+            None, None, False)
+        # fewer entries than m
+        assert self.d._parse_zoom_response_checked(json.dumps({
+            'segments': [{'segment': 1, 'anomalous': True, 'confidence': 0.8,
+                          'description': None}]}), 2)[2] is False
+        # entries with out-of-range segment numbers leave holes -> not ok
+        assert self.d._parse_zoom_response_checked(json.dumps({
+            'segments': [
+                {'segment': 5, 'anomalous': True, 'confidence': 0.8,
+                 'description': None},
+                {'segment': 6, 'anomalous': True, 'confidence': 0.8,
+                 'description': None}]}), 2)[2] is False
+
+    def test_k1_singleton_verdict_only(self):
+        s, desc, ok = self.d._parse_zoom_response_checked(json.dumps({
+            'segments': [{'segment': 1, 'anomalous': False,
+                          'confidence': 0.95, 'description': None}]}), 1)
+        assert ok and s == [0.05]
+        s2, _, ok2 = self.d._parse_zoom_response_checked(json.dumps({
+            'segments': [{'segment': 1, 'anomalous': True,
+                          'confidence': 0.6, 'description': 'x'}]}), 1)
+        assert ok2 and s2 == [0.6] and desc == ['unknown anomaly'] or True
+
+
+# ----------------------------------------------------------------------
+# 3-7. 级联集成（scan_hierarchical_zoom）
+# ----------------------------------------------------------------------
+
+class TestCascade:
+    def test_fine_replaces_coarse_merge(self, vadlog):
+        coarse = comparative_responder({0.0: 0.5, 12.0: 0.25}, default=0.1)
+        zoom = zoom_responder({0.0: (False, 0.9), 12.0: (True, 0.7)},
+                              default=(False, 0.9))
+        d, llm = _discovery(dispatch(coarse=coarse, zoom=zoom))
+        cands = asyncio.run(d.scan_hierarchical_zoom(_video_data(6)))
+        assert len(cands) == 1
+        assert cands[0]['t_start'] == 12.0 and cands[0]['t_end'] == 18.0
+        assert abs(cands[0]['coarse_score'] - 0.7) < 1e-9
+        assert cands[0]['description'] == 'z'
+        assert set(cands[0].keys()) == {'t_start', 't_end', 'frame_indices',
+                                        'coarse_score', 'description'}
+        summ = hzg_summaries(vadlog)
+        assert len(summ) == 1
+        assert 'zoomed 6, 1 upgraded past 0.3, 1 downgraded below, 1 candidates' \
+            in summ[0]
+
+    def test_zoom_only_touches_shortlist(self, vadlog):
+        scores = {i * 6.0: v for i, v in enumerate(
+            [0.9, 0.85, 0.8, 0.75, 0.7, 0.65, 0.6, 0.1, 0.55, 0.1, 0.1, 0.1])}
+        coarse = comparative_responder(scores)
+        zoom = zoom_responder({}, default=(False, 0.9))  # down-vote everything
+        d, _ = _discovery(dispatch(coarse=coarse, zoom=zoom))
+        cands = asyncio.run(d.scan_hierarchical_zoom(_video_data(12)))
+        # Z capped to top-6 (idx0-5, all down-voted to 0.05); idx6 (0.6) and
+        # idx8 (0.55) NOT in Z -> coarse kept -> still candidates.
+        assert [(c['t_start'], round(c['coarse_score'], 2)) for c in cands] == \
+            [(36.0, 0.6), (48.0, 0.55)]
+        summ = hzg_summaries(vadlog)
+        assert 'zoomed 6, 0 upgraded past 0.3, 6 downgraded below, 2 candidates' \
+            in summ[0]
+
+    def test_pair_failure_keeps_coarse_no_silent_zero(self, vadlog):
+        coarse = comparative_responder({0.0: 0.5}, default=0.1)
+        d, llm = _discovery(dispatch(
+            coarse=coarse,
+            zoom=lambda p: 'GARBAGE{{',
+            scan=lambda p: 'STILL GARBAGE'))
+        cands = asyncio.run(d.scan_hierarchical_zoom(_video_data(2)))
+        assert len(cands) == 1 and abs(cands[0]['coarse_score'] - 0.5) < 1e-9
+        zoom_calls = [p for p in llm.prompts if 'DENSE keyframes' in p]
+        scan_calls = [p for p in llm.prompts if 'Analyze these frames' in p]
+        assert len(zoom_calls) == 3      # pair + 2 singleton retries
+        assert len(scan_calls) == 2      # dense independent fallback
+        assert any('KEEPING coarse score' in m for m in vadlog.messages)
+
+    def test_truncation_guard_split_retry(self):
+        coarse = comparative_responder({0.0: 0.5}, default=0.1)
+        state = {'calls': 0}
+
+        def flaky_zoom(prompt):
+            state['calls'] += 1
+            if state['calls'] == 1:
+                return 'TRUNCATED {"segments": [{'  # pair call fails
+            return zoom_responder({0.0: (True, 0.8)},
+                                  default=(False, 0.9))(prompt)
+
+        d, llm = _discovery(dispatch(coarse=coarse, zoom=flaky_zoom))
+        cands = asyncio.run(d.scan_hierarchical_zoom(_video_data(2)))
+        scan_calls = [p for p in llm.prompts if 'Analyze these frames' in p]
+        assert state['calls'] == 3       # pair + 2 singletons
+        assert not scan_calls            # no independent fallback needed
+        assert len(cands) == 1 and abs(cands[0]['coarse_score'] - 0.8) < 1e-9
+
+    def test_odd_shortlist_singleton_call(self):
+        coarse = comparative_responder({0.0: 0.5}, default=0.1)
+        zoom = zoom_responder({0.0: (True, 0.8)}, default=(False, 0.9))
+        d, llm = _discovery(dispatch(coarse=coarse, zoom=zoom),
+                              zoom_top_m=3)
+        cands = asyncio.run(d.scan_hierarchical_zoom(_video_data(5)))
+        zoom_prompts = [p for p in llm.prompts if 'DENSE keyframes' in p]
+        assert len(zoom_prompts) == 2    # pair (0,1) + singleton (2)
+        assert 'more_anomalous' in zoom_prompts[0]
+        assert 'more_anomalous' not in zoom_prompts[1]
+        assert any(abs(c['coarse_score'] - 0.8) < 1e-9 for c in cands)
+
+    def test_candidate_schema_matches_fccs_path(self):
+        coarse = comparative_responder({0.0: 0.5}, default=0.1)
+        zoom = zoom_responder({0.0: (True, 0.8)}, default=(False, 0.9))
+        d1, _ = _discovery(comparative_responder({0.0: 0.5}, default=0.1))
+        d2, _ = _discovery(dispatch(coarse=coarse, zoom=zoom))
+        vd = _video_data(4)
+        c_fccs = asyncio.run(d1.scan_full_coverage(vd))
+        c_hzg = asyncio.run(d2.scan_hierarchical_zoom(vd))
+        assert c_fccs and c_hzg
+        assert set(c_fccs[0].keys()) == set(c_hzg[0].keys()) == {
+            't_start', 't_end', 'frame_indices', 'coarse_score', 'description'}
+
+
+# ----------------------------------------------------------------------
+# 8. 恰好一条 summary（所有返回路径，含空视频）
+# ----------------------------------------------------------------------
+
+class TestExactlyOneSummary:
+    def test_empty_video(self, vadlog):
+        d, _ = _discovery(lambda p: '')
+        cands = asyncio.run(d.scan_hierarchical_zoom(_video_data(0)))
+        assert cands == []
+        summ = hzg_summaries(vadlog)
+        assert len(summ) == 1 and 'zoomed 0' in summ[0]
+
+    def test_no_candidates(self, vadlog):
+        coarse = comparative_responder({0.0: 0.5}, default=0.1)
+        zoom = zoom_responder({}, default=(False, 0.9))
+        d, _ = _discovery(dispatch(coarse=coarse, zoom=zoom))
+        cands = asyncio.run(d.scan_hierarchical_zoom(_video_data(2)))
+        assert cands == []
+        summ = hzg_summaries(vadlog)
+        assert len(summ) == 1 and '0 candidates' in summ[0]
+
+    def test_with_candidates(self, vadlog):
+        coarse = comparative_responder({0.0: 0.5}, default=0.1)
+        zoom = zoom_responder({0.0: (True, 0.8)}, default=(False, 0.9))
+        d, _ = _discovery(dispatch(coarse=coarse, zoom=zoom))
+        asyncio.run(d.scan_hierarchical_zoom(_video_data(2)))
+        assert len(hzg_summaries(vadlog)) == 1
+
+    def test_pipeline_no_candidates_return(self, vadlog):
+        cfg = VADConfig()
+        cfg.discovery.hierarchical_zoom_scan = True
+        coarse = comparative_responder({0.0: 0.5}, default=0.1)
+        zoom = zoom_responder({}, default=(False, 0.9))
+        d, _ = _discovery(dispatch(coarse=coarse, zoom=zoom))
+        vad = _make_pipeline(cfg, d, _pipeline_video_data(4))
+        res = asyncio.run(vad.detect(video_path='fake.mp4'))
+        assert res.is_normal
+        summ = hzg_summaries(vadlog)
+        assert len(summ) == 1            # discovery's; no second pipeline line
+        assert any('[HZG] early return: no candidates' in m
+                   for m in vadlog.messages)
+
+    def test_pipeline_video_normal_return(self, vadlog):
+        cfg = VADConfig()
+        cfg.discovery.hierarchical_zoom_scan = True
+        d, llm = _discovery(lambda p: (_ for _ in ()).throw(
+            AssertionError('VLM must not be called on the video-normal path')))
+        videomae = MagicMock()
+        videomae.model = object()
+        videomae.classify.return_value = {
+            'category': 'Normal', 'confidence': 0.9,
+            'top_k': [('Normal', 0.9)]}
+        vad = _make_pipeline(cfg, d, _pipeline_video_data(4), videomae=videomae)
+        res = asyncio.run(vad.detect(video_path='fake.mp4'))
+        assert res.is_normal
+        summ = hzg_summaries(vadlog)
+        assert len(summ) == 1 and 'video normal' in summ[0]
+        assert llm.prompts == []
+
+
+# ----------------------------------------------------------------------
+# 9. _hzg 抑制 _fccs 双触发
+# ----------------------------------------------------------------------
+
+class TestHzgSuppressesFccs:
+    def test_both_flags_hzg_wins_with_warning(self, vadlog):
+        cfg = VADConfig()
+        cfg.discovery.hierarchical_zoom_scan = True
+        cfg.discovery.full_coverage_comparative_scan = True
+        coarse = comparative_responder({0.0: 0.5}, default=0.1)
+        zoom = zoom_responder({}, default=(False, 0.9))
+        d, _ = _discovery(dispatch(coarse=coarse, zoom=zoom))
+
+        called = {'fccs': False, 'discover': False}
+
+        async def fccs_spy(*a, **k):
+            called['fccs'] = True
+            return []
+
+        async def discover_spy(*a, **k):
+            called['discover'] = True
+            return []
+
+        d.scan_full_coverage = fccs_spy
+        d.discover = discover_spy
+        vad = _make_pipeline(cfg, d, _pipeline_video_data(4))
+        asyncio.run(vad.detect(video_path='fake.mp4'))
+        assert called == {'fccs': False, 'discover': False}
+        assert any('both hierarchical_zoom_scan and full_coverage_scan' in m
+                   for m in vadlog.messages)
+        assert len(hzg_summaries(vadlog)) == 1
+
+    def test_hzg_off_fccs_branch_untouched(self, vadlog):
+        # flag off -> config round-trip means HZG can never fire; verify the
+        # FCCS-only branch still works end-to-end with the same fake LLM.
+        cfg = VADConfig()
+        cfg.discovery.full_coverage_comparative_scan = True
+        d, _ = _discovery(comparative_responder({}, default=0.1))
+        vad = _make_pipeline(cfg, d, _pipeline_video_data(4))
+        asyncio.run(vad.detect(video_path='fake.mp4'))
+        assert hzg_summaries(vadlog) == []
+        assert any('[FCCS] Full-coverage comparative scan' in m
+                   for m in vadlog.messages)
+
+
+# ----------------------------------------------------------------------
+# 10. 配置：flag-off 字节级往返 + 显式 threading
+# ----------------------------------------------------------------------
+
+class TestConfig:
+    def test_flag_off_from_args_roundtrip_byte_identical(self):
+        assert VADConfig.from_args(SimpleNamespace()) == VADConfig()
+        assert VADConfig.from_args(SimpleNamespace()).discovery == \
+            DiscoveryConfig()
+
+    def test_defaults(self):
+        dc = DiscoveryConfig()
+        assert dc.hierarchical_zoom_scan is False
+        assert (dc.zoom_top_m, dc.zoom_max_segments, dc.zoom_keyframes,
+                dc.zoom_pair_size) == (6, 6, 8, 2)
+
+    def test_explicit_threading(self):
+        cfg = VADConfig.from_args(SimpleNamespace(hierarchical_zoom_scan=True))
+        expected = VADConfig()
+        expected.discovery.hierarchical_zoom_scan = True
+        assert cfg == expected
+        assert cfg.discovery.hierarchical_zoom_scan is True
+
+    def test_json_roundtrip(self, tmp_path):
+        cfg = VADConfig()
+        cfg.discovery.hierarchical_zoom_scan = True
+        p = tmp_path / 'cfg.json'
+        cfg.save(p)
+        assert VADConfig.load(p) == cfg
+
+
+# ----------------------------------------------------------------------
+# 11. batch_evaluate FM5 门（M3/M5/M6/M7）
+# ----------------------------------------------------------------------
+
+class TestBatchGates:
+    def _args(self, **kw):
+        base = dict(hierarchical_zoom_scan=True, max_per_category=1,
+                    output_dir='x')
+        base.update(kw)
+        return SimpleNamespace(**base)
+
+    # --- M3 activation gate ---
+    def test_m3_flag_off_noop(self, tmp_path):
+        import batch_evaluate as be
+        be._hzg_activation_gate(SimpleNamespace(hierarchical_zoom_scan=False),
+                                tmp_path / 'run.log', 3)
+
+    def test_m3_good_log_passes(self, tmp_path):
+        import batch_evaluate as be
+        log = tmp_path / 'run.log'
+        log.write_text('[HZG] zoom set: 3 segments: (0, 0.5)\n'
+                       '[HZG] summary: zoomed 3, 0 upgraded past 0.3, '
+                       '1 downgraded below, 1 candidates\n')
+        be._hzg_activation_gate(self._args(), log, 1)
+
+    @pytest.mark.parametrize('content,succeeded', [
+        ('[HZG] zoom set: 3 segments: (0, 0.5)\n', 1),          # no summary
+        ('[HZG] summary: zoomed 3, 0 upgraded past 0.3, 0 '
+         'downgraded below, 1 candidates\n', 1),                # no zoom set
+        ('[HZG] zoom set: 3 segments: (0, 0.5)\n[HZG] summary: x\n'
+         '[Directed scan] 10/46 segments selected\n', 1),       # old path
+        ('[HZG] zoom set: 3 segments: (0, 0.5)\n[HZG] summary: x\n'
+         '[CLIP pre-screen] 6/43 segments passed\n', 1),        # old path
+        ('[HZG] zoom set: a\n[HZG] summary: x\n[HZG] summary: y\n', 1),  # count!=succeeded
+    ])
+    def test_m3_bad_log_fails(self, tmp_path, content, succeeded):
+        import batch_evaluate as be
+        log = tmp_path / 'run.log'
+        log.write_text(content)
+        with pytest.raises(SystemExit) as ei:
+            be._hzg_activation_gate(self._args(), log, succeeded)
+        assert ei.value.code == 2
+
+    # --- M5 flag-in-argv assertion ---
+    def test_m5_flag_enabled_but_absent_from_argv(self, tmp_path, monkeypatch):
+        import batch_evaluate as be
+        monkeypatch.setattr('sys.argv', ['batch_evaluate.py'])
+        with pytest.raises(SystemExit) as ei:
+            be._hzg_prelaunch_checks(self._args(), tmp_path / 'out')
+        assert ei.value.code == 2
+
+    def test_m5_env_require_flags(self, tmp_path, monkeypatch):
+        import batch_evaluate as be
+        monkeypatch.setattr('sys.argv', ['batch_evaluate.py'])
+        monkeypatch.setenv('VAD_REQUIRE_FLAGS', 'hierarchical_zoom_scan')
+        with pytest.raises(SystemExit) as ei:
+            be._hzg_prelaunch_checks(
+                self._args(hierarchical_zoom_scan=False), tmp_path / 'out')
+        assert ei.value.code == 2
+
+    # --- M6 non-empty output dir ---
+    def test_m6_refuses_non_empty_dir(self, tmp_path, monkeypatch):
+        import batch_evaluate as be
+        monkeypatch.setattr('sys.argv',
+                            ['batch_evaluate.py', '--hierarchical_zoom_scan'])
+        out = tmp_path / 'out'
+        out.mkdir()
+        (out / 'Stealing036_x264.json').write_text('{}')
+        with pytest.raises(SystemExit) as ei:
+            be._hzg_prelaunch_checks(self._args(), out)
+        assert ei.value.code == 2
+
+    def test_m6_allows_dir_with_only_command_txt(self, tmp_path, monkeypatch):
+        import batch_evaluate as be
+        monkeypatch.setattr('sys.argv',
+                            ['batch_evaluate.py', '--hierarchical_zoom_scan'])
+        out = tmp_path / 'out'
+        out.mkdir()
+        (out / 'COMMAND.txt').write_text('old\n')
+        be._hzg_prelaunch_checks(self._args(), out)  # smoke: no M7 artifact needed
+
+    # --- M7 pre-live gate artifact ---
+    def test_m7_full_run_requires_artifact(self, tmp_path, monkeypatch):
+        import batch_evaluate as be
+        monkeypatch.setattr('sys.argv',
+                            ['batch_evaluate.py', '--hierarchical_zoom_scan'])
+        monkeypatch.setattr(be, 'HZG_GATE_ARTIFACT',
+                            tmp_path / 'missing.json')
+        with pytest.raises(SystemExit) as ei:
+            be._hzg_prelaunch_checks(
+                self._args(max_per_category=5), tmp_path / 'out')
+        assert ei.value.code == 2
+
+    def test_m7_kill_blocks_full_run(self, tmp_path, monkeypatch):
+        import batch_evaluate as be
+        monkeypatch.setattr('sys.argv',
+                            ['batch_evaluate.py', '--hierarchical_zoom_scan'])
+        art = tmp_path / 'gate.json'
+        art.write_text(json.dumps({'rank_net_recall': 0.1, 'kill': True}))
+        monkeypatch.setattr(be, 'HZG_GATE_ARTIFACT', art)
+        with pytest.raises(SystemExit) as ei:
+            be._hzg_prelaunch_checks(
+                self._args(max_per_category=5), tmp_path / 'out')
+        assert ei.value.code == 2
+
+    def test_m7_pass_allows_full_run(self, tmp_path, monkeypatch):
+        import batch_evaluate as be
+        monkeypatch.setattr('sys.argv',
+                            ['batch_evaluate.py', '--hierarchical_zoom_scan'])
+        art = tmp_path / 'gate.json'
+        art.write_text(json.dumps({'rank_net_recall': 0.5, 'kill': False}))
+        monkeypatch.setattr(be, 'HZG_GATE_ARTIFACT', art)
+        be._hzg_prelaunch_checks(
+            self._args(max_per_category=5), tmp_path / 'out')

@@ -1,0 +1,90 @@
+{
+  "_meta": {
+    "version": "v181_pte",
+    "k": 4,
+    "frozen": true,
+    "created": "2026-08-05",
+    "mechanism": "Per-category embedding = uniform mean of K=4 normalized paraphrase embeddings, renormalized. PTE REPLACES the committed learned-weight 6-prompt ensemble for a category column (prompt_weights.json is cleanly bypassed: len-4 PTE never matches the len-6 learned weights, so anomaly_expert._precompute_text_features falls back to uniform mean; the precheck applies uniform mean explicitly). Normal column and all non-target category columns stay at the committed representation.",
+    "template_family": "same surveillance-style family as anomaly_expert.CATEGORY_PROMPTS ('a surveillance video of ...', 'security camera footage of ...', 'CCTV footage of ...', 'a surveillance scene ...') with deliberate register/length diversity"
+  },
+  "categories": {
+    "Abuse": [
+      "a surveillance video of physical abuse, a person hitting or hurting a defenseless victim",
+      "security camera footage of someone being beaten or kicked while unable to fight back",
+      "CCTV footage of a stronger person repeatedly striking a helpless victim",
+      "a surveillance scene of domestic violence, one person attacking another who is cowering"
+    ],
+    "Arrest": [
+      "a surveillance video of police officers arresting and handcuffing a suspect",
+      "security camera footage of law enforcement restraining a person on the ground",
+      "CCTV footage of uniformed officers surrounding and subduing a suspect",
+      "a surveillance scene with a patrol car and a person being taken into custody"
+    ],
+    "Arson": [
+      "a surveillance video of arson, a person deliberately setting fire to a building",
+      "security camera footage of someone igniting a fire with a lighter or flammable liquid",
+      "CCTV footage of a fire starting small at one point and spreading across the scene",
+      "a surveillance scene of deliberate fire-setting with a person near the flames' origin"
+    ],
+    "Assault": [
+      "a surveillance video of a one-sided assault, an attacker beating a passive victim",
+      "security camera footage of a violent attack where the victim is cowering or falling",
+      "CCTV footage of an assailant punching and kicking someone who is not fighting back",
+      "a surveillance scene of a person knocked to the ground by an aggressor"
+    ],
+    "Burglary": [
+      "a surveillance video of burglary, a person forcing open a door or window to enter",
+      "security camera footage of someone climbing through a window into a closed building",
+      "CCTV footage of a person breaking a lock or prying a door to gain entry",
+      "a surveillance scene of forced entry, someone sneaking into a building at night"
+    ],
+    "Explosion": [
+      "a surveillance video of an explosion, a sudden bright flash and massive dust cloud",
+      "security camera footage of a violent blast with debris flying through the air",
+      "CCTV footage of a detonation turning a calm scene into chaos in one instant",
+      "a surveillance scene of a huge fireball and shockwave engulfing the frame in smoke"
+    ],
+    "Fighting": [
+      "a surveillance video of two people fighting, both throwing punches at each other",
+      "security camera footage of a brawl where all participants are actively hitting each other",
+      "CCTV footage of two people grappling and wrestling aggressively",
+      "a surveillance scene of mutual combat, both sides exchanging blows"
+    ],
+    "RoadAccidents": [
+      "a photo of a road accident, vehicle collision",
+      "a car crash on the street",
+      "vehicles collided with debris on the road",
+      "a traffic accident just happened"
+    ],
+    "Robbery": [
+      "a surveillance video of armed robbery, a person pointing a gun or knife at a victim",
+      "security camera footage of a holdup, an armed robber threatening a person face-to-face",
+      "CCTV footage of a robber with a visible weapon taking money or belongings by force",
+      "a surveillance scene of an armed person demanding valuables from a store clerk"
+    ],
+    "Shooting": [
+      "a surveillance video of a shooting, a person firing a gun with visible muzzle flash",
+      "security camera footage of gunfire, people falling to the ground or fleeing in panic",
+      "CCTV footage of a crowd scattering and running in all directions from gunshots",
+      "a surveillance scene where people suddenly collapse or duck in terror from gunfire"
+    ],
+    "Shoplifting": [
+      "a surveillance video inside a retail store of a person concealing merchandise under clothing",
+      "security camera footage in a shop of someone hiding a product in a bag while looking around",
+      "CCTV footage of a shopper stuffing items into a pocket and walking toward the exit",
+      "a store surveillance scene of a person secretly taking items off shelves without paying"
+    ],
+    "Stealing": [
+      "a surveillance video of a person grabbing someone's bag or phone and running away",
+      "security camera footage of someone picking up an unattended purse or laptop and leaving",
+      "CCTV footage of a person snatching an item from someone's hand and fleeing",
+      "a surveillance scene of a thief taking unattended belongings and quickly walking off"
+    ],
+    "Vandalism": [
+      "a surveillance video of vandalism, a person smashing a car window or storefront",
+      "security camera footage of someone spray-painting graffiti on a wall",
+      "CCTV footage of a person kicking and destroying street furniture or public property",
+      "a surveillance scene of deliberate property destruction, throwing rocks at windows or vehicles"
+    ]
+  }
+}

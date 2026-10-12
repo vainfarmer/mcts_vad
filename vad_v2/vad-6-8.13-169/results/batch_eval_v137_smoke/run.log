@@ -1,0 +1,739 @@
+2026-07-26 21:54:03 [INFO   ] VAD batch evaluation started | output_dir=/Users/zzl/PycharmProjects/vad/results/batch_eval_v137_smoke | log=/Users/zzl/PycharmProjects/vad/results/batch_eval_v137_smoke/run.log
+2026-07-26 21:54:03 [INFO   ] Selected 14 videos from 14 categories:
+2026-07-26 21:54:03 [INFO   ]   Abuse               :   1 / 2
+2026-07-26 21:54:03 [INFO   ]   Arrest              :   1 / 5
+2026-07-26 21:54:03 [INFO   ]   Arson               :   1 / 9
+2026-07-26 21:54:03 [INFO   ]   Assault             :   1 / 3
+2026-07-26 21:54:03 [INFO   ]   Burglary            :   1 / 13
+2026-07-26 21:54:03 [INFO   ]   Explosion           :   1 / 21
+2026-07-26 21:54:03 [INFO   ]   Fighting            :   1 / 5
+2026-07-26 21:54:03 [INFO   ]   Normal              :   1 / 150
+2026-07-26 21:54:03 [INFO   ]   RoadAccidents       :   1 / 23
+2026-07-26 21:54:03 [INFO   ]   Robbery             :   1 / 5
+2026-07-26 21:54:03 [INFO   ]   Shooting            :   1 / 23
+2026-07-26 21:54:03 [INFO   ]   Shoplifting         :   1 / 21
+2026-07-26 21:54:03 [INFO   ]   Stealing            :   1 / 5
+2026-07-26 21:54:03 [INFO   ]   Vandalism           :   1 / 5
+2026-07-26 21:54:10 [INFO   ] [AnomalyExpert] Loaded learned prompt weights from /Users/zzl/PycharmProjects/vad/video_anomaly_detection/prompt_weights.json
+2026-07-26 21:54:11 [INFO   ] [AnomalyExpert] CLIP ViT-L-14 loaded on mps
+2026-07-26 21:54:18 [INFO   ] [VideoMAE] Loaded on mps
+2026-07-26 21:54:18 [INFO   ]   [MIL] Loaded MIL model from /Users/zzl/PycharmProjects/vad/video_anomaly_detection/model_mil.pth
+2026-07-26 21:54:18 [INFO   ] Starting batch processing: 14 videos, concurrency=3
+2026-07-26 21:54:18 [INFO   ] Detect model: qwen-vl-plus, Classify model: qwen3-vl-plus
+2026-07-26 21:54:18 [INFO   ] ============================================================
+2026-07-26 21:54:18 [INFO   ] [1/14] START Abuse030_x264 (Abuse)
+2026-07-26 21:54:18 [INFO   ]   [Motion filter] 103 -> 103 frames (0% removed, threshold=1.0)
+2026-07-26 21:54:41 [INFO   ]   [CLIP precompute] 103 frames encoded in 22.4s
+2026-07-26 21:54:42 [INFO   ]   [MIL] snippet scores: mean=0.999, max=1.000, min=0.977
+2026-07-26 21:54:49 [INFO   ]   [VideoMAE] Abuse(99%), RoadAccidents(1%), Vandalism(0%) -> Abuse@99%
+2026-07-26 21:54:56 [INFO   ]   [VideoMAE-window] 5 windows in 6.7s
+2026-07-26 21:54:56 [INFO   ]   [CLIP-loc] Category=Abuse, mean=0.413, std=0.116, range=0.595, cv=0.281
+2026-07-26 21:54:56 [INFO   ]   [CLIP-loc] Found 4 multi-scale regions:
+2026-07-26 21:54:56 [INFO   ]   [CLIP-loc] Category=Explosion, mean=0.437, std=0.166, range=0.824, cv=0.380
+2026-07-26 21:54:56 [INFO   ]   [CLIP-loc] Fused with motion energy for Explosion
+2026-07-26 21:54:56 [INFO   ]   [CLIP-loc] Found 5 multi-scale regions:
+2026-07-26 21:54:56 [INFO   ]   [Multi-CLIP-loc] 9 regions deduped to 1
+2026-07-26 21:54:56 [INFO   ]   [Directed scan] 10/12 segments selected for LLM scanning
+2026-07-26 21:54:56 [INFO   ] [2/14] START Arrest007_x264 (Arrest)
+2026-07-26 21:54:56 [INFO   ]   [Motion filter] 210 -> 130 frames (38% removed, threshold=1.0)
+2026-07-26 21:55:29 [INFO   ]   [CLIP precompute] 130 frames encoded in 33.1s
+2026-07-26 21:55:29 [INFO   ]   [MIL] snippet scores: mean=0.994, max=1.000, min=0.978
+2026-07-26 21:55:37 [INFO   ]   [VideoMAE] Arrest(68%), Abuse(10%), RoadAccidents(10%) -> Arrest@68%
+2026-07-26 21:55:46 [INFO   ]   [VideoMAE-window] 7 windows in 9.0s
+2026-07-26 21:55:46 [INFO   ]   [CLIP-loc] Category=Arrest, mean=0.295, std=0.297, range=0.990, cv=1.004
+2026-07-26 21:55:46 [INFO   ]   [CLIP-loc] Found 4 multi-scale regions:
+2026-07-26 21:55:46 [INFO   ]   [Multi-CLIP-loc] 4 regions deduped to 3
+2026-07-26 21:55:46 [INFO   ]   [Directed scan] 10/23 segments selected for LLM scanning
+2026-07-26 21:55:46 [INFO   ] [3/14] START Arson035_x264 (Arson)
+2026-07-26 21:55:46 [INFO   ]   [Motion filter] 96 -> 88 frames (8% removed, threshold=1.0)
+2026-07-26 21:55:58 [INFO   ]   [CLIP precompute] 88 frames encoded in 11.9s
+2026-07-26 21:56:01 [INFO   ]   [MIL] snippet scores: mean=1.000, max=1.000, min=0.996
+2026-07-26 21:56:08 [INFO   ]   [VideoMAE] Arson(98%), Arrest(1%), Explosion(0%) -> Arson@98%
+2026-07-26 21:56:13 [INFO   ]   [VideoMAE-window] 4 windows in 5.3s
+2026-07-26 21:56:13 [INFO   ]   [CLIP-loc] Category=Arson, mean=0.903, std=0.179, range=0.778, cv=0.198
+2026-07-26 21:56:13 [INFO   ]   [CLIP-loc] Found 2 multi-scale regions:
+2026-07-26 21:56:13 [INFO   ]   [Directed scan] 10/11 segments selected for LLM scanning
+2026-07-26 21:56:50 [INFO   ] Found 3 anomaly candidate(s):
+2026-07-26 21:56:50 [INFO   ]   Candidate 1: 4.5s-10.5s score=0.90
+2026-07-26 21:56:50 [INFO   ]   Candidate 2: 31.5s-37.5s score=0.85
+2026-07-26 21:56:50 [INFO   ]   Candidate 3: 40.5s-46.5s score=0.90
+2026-07-26 21:56:50 [INFO   ]     [CLIPBound] 4.5-10.5s -> 1.5-5.5s (contrast=0.023, cat=Abuse)
+2026-07-26 21:56:50 [INFO   ]     [CLIPBound] 31.5-37.5s -> 37.5-40.0s (contrast=0.328, cat=Abuse)
+2026-07-26 21:56:50 [INFO   ]     [CLIPBound] 40.5-46.5s -> 43.5-49.0s (contrast=0.366, cat=Abuse)
+2026-07-26 21:56:50 [INFO   ]   --- Pre-merge anomalies: 3 ---
+2026-07-26 21:56:50 [INFO   ]   --- Post-merge+NMS anomalies: 3 ---
+2026-07-26 21:56:50 [INFO   ]   [NOCLS-CA] classify VLM sub-tree skipped -> label='Abuse' (mAP-neutral; ~-7.5% VLM calls)
+2026-07-26 21:56:50 [INFO   ]   [QSCORE-GATE] reranked 3 detections (base=0.5, raw Q range [0.594,0.899])
+2026-07-26 21:56:50 [INFO   ] [COST] video=Abuse030_x264.mp4 vlm_calls=30 clip_calls=12 elapsed_s=151.3
+2026-07-26 21:56:50 [INFO   ] [1/14] DONE  Abuse030_x264: 51s video, 3 anomalies, 151.3s processing
+2026-07-26 21:56:50 [INFO   ] [4/14] START Assault006_x264 (Assault)
+2026-07-26 21:56:50 [INFO   ]   [Motion filter] 540 -> 540 frames (0% removed, threshold=1.0)
+2026-07-26 21:58:37 [INFO   ]   [CLIP precompute] 540 frames encoded in 106.8s
+2026-07-26 21:58:49 [INFO   ]   [MIL] snippet scores: mean=0.999, max=1.000, min=0.983
+2026-07-26 21:58:58 [INFO   ]   [VideoMAE] Assault(100%), Arrest(0%), RoadAccidents(0%) -> Assault@100%
+2026-07-26 22:04:21 [INFO   ]   [VideoMAE-window] 32 windows in 323.7s
+2026-07-26 22:04:22 [INFO   ]   [CLIP-loc] Category=Assault, mean=0.743, std=0.282, range=0.975, cv=0.380
+2026-07-26 22:04:22 [INFO   ]   [CLIP-loc] Found 5 multi-scale regions:
+2026-07-26 22:04:22 [INFO   ]   [CLIP-loc] Category=Arson, mean=0.385, std=0.172, range=0.862, cv=0.447
+2026-07-26 22:04:22 [INFO   ]   [CLIP-loc] Found 5 multi-scale regions:
+2026-07-26 22:04:22 [INFO   ]   [Multi-CLIP-loc] 10 regions deduped to 2
+2026-07-26 22:04:22 [INFO   ]   [Directed scan] 12/60 segments selected for LLM scanning
+2026-07-26 22:04:22 [INFO   ] Found 2 anomaly candidate(s):
+2026-07-26 22:04:22 [INFO   ]   Candidate 1: 49.5s-78.0s score=0.95
+2026-07-26 22:04:22 [INFO   ]   Candidate 2: 85.5s-91.5s score=0.95
+2026-07-26 22:04:22 [INFO   ]     [CLIPBound] 49.5-78.0s -> 53.5-74.5s (contrast=0.539, cat=Arrest)
+2026-07-26 22:04:22 [INFO   ]     [CLIPBound] 85.5-91.5s -> 87.0-95.0s (contrast=0.161, cat=Arrest)
+2026-07-26 22:04:22 [INFO   ]   --- Pre-merge anomalies: 2 ---
+2026-07-26 22:04:22 [INFO   ]   --- Post-merge+NMS anomalies: 2 ---
+2026-07-26 22:04:22 [INFO   ]   [NOCLS-CA] classify VLM sub-tree skipped -> label='Arrest' (mAP-neutral; ~-7.5% VLM calls)
+2026-07-26 22:04:22 [INFO   ]   [QSCORE-GATE] reranked 2 detections (base=0.5, raw Q range [0.772,0.841])
+2026-07-26 22:04:22 [INFO   ] [COST] video=Arrest007_x264.mp4 vlm_calls=42 clip_calls=25 elapsed_s=566.6
+2026-07-26 22:04:22 [INFO   ] [2/14] DONE  Arrest007_x264: 105s video, 2 anomalies, 566.6s processing
+2026-07-26 22:04:22 [INFO   ] Found 1 anomaly candidate(s):
+2026-07-26 22:04:22 [INFO   ]   Candidate 1: 18.0s-33.0s score=0.95
+2026-07-26 22:04:22 [INFO   ]     [CLIPBound] 18.0-33.0s -> 22.5-36.5s (contrast=0.117, cat=Arson)
+2026-07-26 22:04:22 [INFO   ] [5/14] START Burglary079_x264 (Burglary)
+2026-07-26 22:04:25 [INFO   ]   [Motion filter] 991 -> 678 frames (32% removed, threshold=1.0)
+2026-07-26 22:07:15 [INFO   ]   [CLIP precompute] 678 frames encoded in 170.9s
+2026-07-26 22:07:16 [INFO   ]   [MIL] snippet scores: mean=0.956, max=1.000, min=0.582
+2026-07-26 22:07:23 [INFO   ]   [VideoMAE] Vandalism(98%), Assault(1%), RoadAccidents(0%) -> Vandalism@98%
+2026-07-26 22:12:31 [INFO   ]   [VideoMAE-window] 41 windows in 307.9s
+2026-07-26 22:12:31 [INFO   ]   [CLIP-loc] Category=Vandalism, mean=0.958, std=0.034, range=0.246, cv=0.036
+2026-07-26 22:12:31 [INFO   ]   [CLIP-loc] Found 5 multi-scale regions:
+2026-07-26 22:12:31 [INFO   ]   [Directed scan] 18/110 segments selected for LLM scanning
+2026-07-26 22:12:32 [INFO   ]     [VLM-Bound] 22.5-36.5s -> 22.9-28.5s (vlm_conf=0.95, w_clip=0.11, w_vlm=0.89)
+2026-07-26 22:12:32 [INFO   ]   --- Pre-merge anomalies: 1 ---
+2026-07-26 22:12:32 [INFO   ]   --- Post-merge+NMS anomalies: 1 ---
+2026-07-26 22:12:32 [INFO   ]   [NOCLS-CA] classify VLM sub-tree skipped -> label='Arson' (mAP-neutral; ~-7.5% VLM calls)
+2026-07-26 22:12:32 [INFO   ]   [QSCORE-GATE] reranked 1 detections (base=0.5, raw Q range [0.852,0.852])
+2026-07-26 22:12:32 [INFO   ] [COST] video=Arson035_x264.mp4 vlm_calls=61 clip_calls=42 elapsed_s=1005.9
+2026-07-26 22:12:32 [INFO   ] [3/14] DONE  Arson035_x264: 48s video, 1 anomalies, 1005.9s processing
+2026-07-26 22:12:32 [INFO   ] [6/14] START Explosion002_x264 (Explosion)
+2026-07-26 22:12:33 [INFO   ]   [Motion filter] 268 -> 191 frames (29% removed, threshold=1.0)
+2026-07-26 22:13:03 [INFO   ]   [CLIP precompute] 191 frames encoded in 30.5s
+2026-07-26 22:13:32 [INFO   ]   [MIL] snippet scores: mean=0.981, max=1.000, min=0.714
+2026-07-26 22:13:39 [INFO   ]   [VideoMAE] Explosion(93%), Shooting(3%), Vandalism(1%) -> Explosion@93%
+2026-07-26 22:13:52 [INFO   ]   [VideoMAE-window] 10 windows in 12.8s
+2026-07-26 22:13:52 [INFO   ]   [CLIP-loc] Category=Explosion, mean=0.401, std=0.281, range=0.957, cv=0.701
+2026-07-26 22:13:52 [INFO   ]   [CLIP-loc] Fused with motion energy for Explosion
+2026-07-26 22:13:52 [INFO   ]   [CLIP-loc] Found 5 multi-scale regions:
+2026-07-26 22:13:52 [INFO   ]   [Directed scan] 10/30 segments selected for LLM scanning
+2026-07-26 22:13:52 [INFO   ] Found 2 anomaly candidate(s):
+2026-07-26 22:13:52 [INFO   ]   Candidate 1: 90.0s-123.0s score=0.95
+2026-07-26 22:13:52 [INFO   ]   Candidate 2: 130.5s-159.0s score=0.95
+2026-07-26 22:13:52 [INFO   ]     [CLIPBound] 90.0-123.0s -> 100.0-129.0s (contrast=0.033, cat=Vandalism)
+2026-07-26 22:13:52 [INFO   ]     [CLIPBound] 130.5-159.0s -> 140.5-163.5s (contrast=0.033, cat=Vandalism)
+2026-07-26 22:13:52 [INFO   ]   --- Pre-merge anomalies: 2 ---
+2026-07-26 22:13:52 [INFO   ]   --- Post-merge+NMS anomalies: 2 ---
+2026-07-26 22:13:52 [INFO   ]     [CLIPBound] 100.0-129.0s -> 119.5-139.5s (contrast=0.034, cat=Vandalism)
+2026-07-26 22:13:52 [INFO   ]     [PostTighten] 100.0-129.0s -> 119.5-139.5s (was 29.0s > 24.0s limit, conf=0.770->0.771)
+2026-07-26 22:13:52 [INFO   ]   [NOCLS-CA] classify VLM sub-tree skipped -> label='Vandalism' (mAP-neutral; ~-7.5% VLM calls)
+2026-07-26 22:13:52 [INFO   ]   [QSCORE-GATE] reranked 2 detections (base=0.5, raw Q range [0.774,0.777])
+2026-07-26 22:13:52 [INFO   ] [COST] video=Burglary079_x264.mp4 vlm_calls=28 clip_calls=28 elapsed_s=569.7
+2026-07-26 22:13:52 [INFO   ] [5/14] DONE  Burglary079_x264: 495s video, 2 anomalies, 569.7s processing
+2026-07-26 22:13:52 [INFO   ] [7/14] START Fighting018_x264 (Fighting)
+2026-07-26 22:13:52 [INFO   ]   [Motion filter] 93 -> 72 frames (23% removed, threshold=1.0)
+2026-07-26 22:14:03 [INFO   ]   [CLIP precompute] 72 frames encoded in 11.1s
+2026-07-26 22:14:05 [INFO   ]   [MIL] snippet scores: mean=1.000, max=1.000, min=0.999
+2026-07-26 22:14:14 [INFO   ]   [VideoMAE] Fighting(87%), Assault(12%), Vandalism(0%) -> Fighting@87%
+2026-07-26 22:14:18 [INFO   ]   [VideoMAE-window] 3 windows in 3.9s
+2026-07-26 22:14:18 [INFO   ]   [CLIP-loc] Category=Fighting, mean=0.291, std=0.352, range=0.989, cv=1.208
+2026-07-26 22:14:18 [INFO   ]   [CLIP-loc] Found 3 multi-scale regions:
+2026-07-26 22:14:18 [INFO   ]   [Multi-CLIP-loc] 3 regions deduped to 2
+2026-07-26 22:14:18 [INFO   ]   [Directed scan] 9/10 segments selected for LLM scanning
+2026-07-26 22:14:18 [INFO   ] [COST] video=Assault006_x264.mp4 vlm_calls=50 clip_calls=48 elapsed_s=1048.3
+2026-07-26 22:14:18 [ERROR  ] [4/14] FAIL  Assault006_x264: Request timed out. (1048.3s)
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpx/_transports/default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpx/_transports/default.py", line 394, in handle_async_request
+    resp = await self._pool.handle_async_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpcore/_async/connection_pool.py", line 256, in handle_async_request
+    raise exc from None
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpcore/_async/connection_pool.py", line 236, in handle_async_request
+    response = await connection.handle_async_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        pool_request.request
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpcore/_async/connection.py", line 101, in handle_async_request
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpcore/_async/connection.py", line 78, in handle_async_request
+    stream = await self._connect(request)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpcore/_async/connection.py", line 124, in _connect
+    stream = await self._network_backend.connect_tcp(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpcore/_backends/auto.py", line 31, in connect_tcp
+    return await self._backend.connect_tcp(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpcore/_backends/anyio.py", line 113, in connect_tcp
+    with map_exceptions(exc_map):
+         ~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectTimeout
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/openai/_base_client.py", line 1648, in request
+    response = await self._send_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/openai/_client.py", line 946, in _send_request
+    return await self._send_with_auth_retry(request, stream=stream, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/openai/_client.py", line 924, in _send_with_auth_retry
+    response = await super()._send_request(request, stream=stream, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/openai/_base_client.py", line 1571, in _send_request
+    return await self._client.send(request, stream=stream, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpx/_client.py", line 1629, in send
+    response = await self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpx/_client.py", line 1657, in _send_handling_auth
+    response = await self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpx/_client.py", line 1694, in _send_handling_redirects
+    response = await self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpx/_client.py", line 1730, in _send_single_request
+    response = await transport.handle_async_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpx/_transports/default.py", line 393, in handle_async_request
+    with map_httpcore_exceptions():
+         ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpx/_transports/default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectTimeout
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/zzl/PycharmProjects/vad/video_anomaly_detection/batch_evaluate.py", line 60, in process_one_video
+    result = await vad.detect(video_path=video_path)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zzl/PycharmProjects/vad/video_anomaly_detection/pipeline.py", line 960, in detect
+    return await self._detect_impl(video_path, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zzl/PycharmProjects/vad/video_anomaly_detection/pipeline.py", line 1132, in _detect_impl
+    candidates = await self._directed_llm_scan(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        video_data, clip_regions, context_prompt, videomae_category)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zzl/PycharmProjects/vad/video_anomaly_detection/pipeline.py", line 1970, in _directed_llm_scan
+    results = await asyncio.gather(*tasks)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zzl/PycharmProjects/vad/video_anomaly_detection/anomaly_discovery.py", line 224, in scan_segment
+    response = await self.llm.generate(prompt, keyframes)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zzl/PycharmProjects/vad/video_anomaly_detection/llm_client.py", line 104, in generate
+    response = await self.client.chat.completions.create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/openai/resources/chat/completions/completions.py", line 2739, in create
+    return await self._post(
+           ^^^^^^^^^^^^^^^^^
+    ...<53 lines>...
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/openai/_base_client.py", line 1931, in post
+    return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/openai/_base_client.py", line 1666, in request
+    raise APITimeoutError(request=request) from err
+openai.APITimeoutError: Request timed out.
+2026-07-26 22:14:18 [INFO   ] [8/14] START Normal_Videos_782_x264 (Normal)
+2026-07-26 22:14:19 [INFO   ]   [Motion filter] 370 -> 333 frames (10% removed, threshold=1.0)
+2026-07-26 22:15:49 [INFO   ]   [CLIP precompute] 333 frames encoded in 90.2s
+2026-07-26 22:15:52 [INFO   ]   [MIL] snippet scores: mean=0.000, max=0.000, min=0.000
+2026-07-26 22:16:00 [INFO   ]   [VideoMAE] Assault(98%), Vandalism(1%), Fighting(1%) -> Assault@98%
+2026-07-26 22:16:26 [INFO   ]   [VideoMAE-window] 19 windows in 26.2s
+2026-07-26 22:16:26 [INFO   ]   [CLIP-loc] Category=Assault, mean=0.034, std=0.034, range=0.206, cv=1.017
+2026-07-26 22:16:26 [INFO   ]   [CLIP-loc] Found 5 multi-scale regions:
+2026-07-26 22:16:26 [INFO   ]   [CLIP-loc] Category=Arson, mean=0.020, std=0.019, range=0.121, cv=0.962
+2026-07-26 22:16:26 [INFO   ]   [CLIP-loc] Found 5 multi-scale regions:
+2026-07-26 22:16:26 [INFO   ]   [Multi-CLIP-loc] 10 regions deduped to 4
+2026-07-26 22:16:26 [INFO   ]   [Directed scan] 10/41 segments selected for LLM scanning
+2026-07-26 22:16:29 [INFO   ] Found 2 anomaly candidate(s):
+2026-07-26 22:16:29 [INFO   ]   Candidate 1: 13.5s-19.5s score=0.90
+2026-07-26 22:16:29 [INFO   ]   Candidate 2: 103.5s-109.5s score=0.90
+2026-07-26 22:16:56 [INFO   ]     [CLIPBound] 13.5-19.5s -> 10.5-18.0s (contrast=0.041, cat=Assault)
+2026-07-26 22:16:56 [INFO   ]     [CLIPBound] 103.5-109.5s -> 105.5-110.5s (contrast=0.042, cat=Assault)
+2026-07-26 22:16:56 [INFO   ]   --- Pre-merge anomalies: 2 ---
+2026-07-26 22:16:56 [INFO   ]   --- Post-merge+NMS anomalies: 2 ---
+2026-07-26 22:16:56 [INFO   ]   [NOCLS-CA] classify VLM sub-tree skipped -> label='Assault' (mAP-neutral; ~-7.5% VLM calls)
+2026-07-26 22:16:56 [INFO   ]   [MIL-sanity] MIL max_score=0.000 < 0.3, reducing confidence by 30%
+2026-07-26 22:16:56 [INFO   ]   [ConfFilter] 2 -> 0 (threshold=0.55, cat=Assault)
+2026-07-26 22:16:56 [INFO   ]   [QSCORE-GATE] skipped (no detections / no curve)
+2026-07-26 22:16:56 [INFO   ] [COST] video=Normal_Videos_782_x264.mp4 vlm_calls=10 clip_calls=11 elapsed_s=157.6
+2026-07-26 22:16:56 [INFO   ] [8/14] DONE  Normal_Videos_782_x264: 185s video, 0 anomalies, 157.6s processing
+2026-07-26 22:16:56 [INFO   ] [9/14] START RoadAccidents123_x264 (RoadAccidents)
+2026-07-26 22:16:56 [INFO   ]   [Motion filter] 67 -> 67 frames (0% removed, threshold=1.0)
+2026-07-26 22:17:05 [INFO   ]   [CLIP precompute] 67 frames encoded in 9.5s
+2026-07-26 22:17:06 [INFO   ]   [MIL] snippet scores: mean=0.994, max=1.000, min=0.846
+2026-07-26 22:17:14 [INFO   ]   [VideoMAE] RoadAccidents(94%), Vandalism(4%), Arrest(1%) -> RoadAccidents@94%
+2026-07-26 22:17:18 [INFO   ]   [VideoMAE-window] 3 windows in 3.6s
+2026-07-26 22:17:18 [INFO   ]   [CLIP-loc] Category=RoadAccidents, mean=0.981, std=0.101, range=0.826, cv=0.103
+2026-07-26 22:17:18 [INFO   ]   [CLIP-loc] Fused with motion energy for RoadAccidents
+2026-07-26 22:17:18 [INFO   ]   [CLIP-loc] Found 3 multi-scale regions:
+2026-07-26 22:17:18 [INFO   ]   [CLIP-loc] Category=Robbery, mean=0.104, std=0.069, range=0.339, cv=0.659
+2026-07-26 22:17:18 [INFO   ]   [CLIP-loc] Found 3 multi-scale regions:
+2026-07-26 22:17:18 [INFO   ]   [Multi-CLIP-loc] 6 regions deduped to 2
+2026-07-26 22:17:18 [INFO   ]   [Directed scan] 8/8 segments selected for LLM scanning
+2026-07-26 22:17:20 [INFO   ] Found 1 anomaly candidate(s):
+2026-07-26 22:17:20 [INFO   ]   Candidate 1: 0.0s-33.5s score=0.95
+2026-07-26 22:17:20 [INFO   ]     [CLIPBound] 0.0-33.5s -> 1.5-8.5s (contrast=0.045, cat=RoadAccidents)
+2026-07-26 22:17:20 [INFO   ]   --- Pre-merge anomalies: 1 ---
+2026-07-26 22:17:20 [INFO   ]   --- Post-merge+NMS anomalies: 1 ---
+2026-07-26 22:17:20 [INFO   ]   [NOCLS-CA] classify VLM sub-tree skipped -> label='RoadAccidents' (mAP-neutral; ~-7.5% VLM calls)
+2026-07-26 22:17:20 [INFO   ]   [QSCORE-GATE] reranked 1 detections (base=0.5, raw Q range [0.906,0.906])
+2026-07-26 22:17:20 [INFO   ] [COST] video=RoadAccidents123_x264.mp4 vlm_calls=8 clip_calls=3 elapsed_s=24.1
+2026-07-26 22:17:20 [INFO   ] [9/14] DONE  RoadAccidents123_x264: 34s video, 1 anomalies, 24.1s processing
+2026-07-26 22:17:20 [INFO   ] [10/14] START Robbery050_x264 (Robbery)
+2026-07-26 22:17:20 [INFO   ]   [Motion filter] 114 -> 87 frames (24% removed, threshold=1.0)
+2026-07-26 22:17:33 [INFO   ]   [CLIP precompute] 87 frames encoded in 13.4s
+2026-07-26 22:17:37 [INFO   ]   [MIL] snippet scores: mean=0.001, max=0.003, min=0.000
+2026-07-26 22:17:46 [INFO   ]   [VideoMAE] RoadAccidents(93%), Robbery(5%), Arrest(1%) -> RoadAccidents@93%
+2026-07-26 22:17:51 [INFO   ]   [VideoMAE-window] 4 windows in 5.0s
+2026-07-26 22:17:51 [INFO   ]   [CLIP-loc] Category=RoadAccidents, mean=0.856, std=0.079, range=0.453, cv=0.092
+2026-07-26 22:17:51 [INFO   ]   [CLIP-loc] Fused with motion energy for RoadAccidents
+2026-07-26 22:17:51 [INFO   ]   [CLIP-loc] Found 4 multi-scale regions:
+2026-07-26 22:17:51 [INFO   ]   [CLIP-loc] Category=Robbery, mean=0.527, std=0.175, range=0.666, cv=0.332
+2026-07-26 22:17:51 [INFO   ]   [CLIP-loc] Found 2 multi-scale regions:
+2026-07-26 22:17:51 [INFO   ]   [Multi-CLIP-loc] 6 regions deduped to 2
+2026-07-26 22:17:51 [INFO   ]   [Directed scan] 10/13 segments selected for LLM scanning
+2026-07-26 22:17:53 [INFO   ] [COST] video=Robbery050_x264.mp4 vlm_calls=10 clip_calls=3 elapsed_s=32.8
+2026-07-26 22:17:53 [INFO   ] [10/14] DONE  Robbery050_x264: 57s video, 0 anomalies, 32.8s processing
+2026-07-26 22:17:53 [INFO   ] [11/14] START Shooting032_x264 (Shooting)
+2026-07-26 22:17:56 [INFO   ]   [Motion filter] 1446 -> 1434 frames (1% removed, threshold=1.0)
+2026-07-26 22:32:02 [INFO   ]   [CLIP precompute] 1434 frames encoded in 846.2s
+2026-07-26 22:32:06 [INFO   ]   [MIL] snippet scores: mean=0.993, max=1.000, min=0.883
+2026-07-26 22:32:13 [INFO   ]   [VideoMAE] Shooting(100%), RoadAccidents(0%), Arrest(0%) -> Shooting@100%
+2026-07-26 22:36:11 [INFO   ]   [VideoMAE-window] 88 windows in 237.1s
+2026-07-26 22:36:11 [INFO   ]   [CLIP-loc] Category=Shooting, mean=0.479, std=0.260, range=0.948, cv=0.542
+2026-07-26 22:36:11 [INFO   ]   [CLIP-loc] Found 5 multi-scale regions:
+2026-07-26 22:36:11 [INFO   ]   [Multi-CLIP-loc] 5 regions deduped to 4
+2026-07-26 22:36:11 [INFO   ]   [Directed scan] 18/161 segments selected for LLM scanning
+2026-07-26 22:36:13 [INFO   ] Found 4 anomaly candidate(s):
+2026-07-26 22:36:13 [INFO   ]   Candidate 1: 148.5s-154.5s score=0.90
+2026-07-26 22:36:13 [INFO   ]   Candidate 2: 265.5s-294.0s score=0.95
+2026-07-26 22:36:13 [INFO   ]   Candidate 3: 297.0s-312.0s score=0.95
+2026-07-26 22:36:13 [INFO   ]   Candidate 4: 315.0s-330.0s score=0.95
+2026-07-26 22:36:13 [INFO   ]   [Limit] Keeping top 3/4 candidates
+2026-07-26 22:36:13 [INFO   ]     [CLIPBound] 265.5-294.0s -> 273.0-284.0s (contrast=0.159, cat=Shooting)
+2026-07-26 22:36:13 [INFO   ]     [CLIPBound] 297.0-312.0s -> 296.0-301.0s (contrast=0.067, cat=Shooting)
+2026-07-26 22:36:13 [INFO   ]     [CLIPBound] 315.0-330.0s -> 308.5-316.5s (contrast=0.102, cat=Shooting)
+2026-07-26 22:36:13 [INFO   ]   --- Pre-merge anomalies: 3 ---
+2026-07-26 22:36:13 [INFO   ]   --- Post-merge+NMS anomalies: 3 ---
+2026-07-26 22:36:13 [INFO   ]   [NOCLS-CA] classify VLM sub-tree skipped -> label='Shooting' (mAP-neutral; ~-7.5% VLM calls)
+2026-07-26 22:36:13 [INFO   ]   [QSCORE-GATE] reranked 3 detections (base=0.5, raw Q range [0.850,0.888])
+2026-07-26 22:36:13 [INFO   ] [COST] video=Shooting032_x264.mp4 vlm_calls=18 clip_calls=45 elapsed_s=1100.6
+2026-07-26 22:36:13 [INFO   ] [11/14] DONE  Shooting032_x264: 723s video, 3 anomalies, 1100.6s processing
+2026-07-26 22:36:13 [INFO   ] [12/14] START Shoplifting001_x264 (Shoplifting)
+2026-07-26 22:36:14 [INFO   ]   [Motion filter] 290 -> 290 frames (0% removed, threshold=1.0)
+2026-07-26 22:37:14 [INFO   ]   [CLIP precompute] 290 frames encoded in 60.1s
+2026-07-26 22:37:14 [INFO   ]   [MIL] snippet scores: mean=1.000, max=1.000, min=0.992
+2026-07-26 22:37:22 [INFO   ]   [VideoMAE] Shoplifting(100%), Burglary(0%), Explosion(0%) -> Shoplifting@100%
+2026-07-26 22:37:56 [INFO   ]   [VideoMAE-window] 17 windows in 34.3s
+2026-07-26 22:37:56 [INFO   ]   [CLIP-loc] Category=Shoplifting, mean=0.989, std=0.005, range=0.036, cv=0.005
+2026-07-26 22:37:56 [INFO   ]   [CLIP-loc] Scores too uniform, falling back to standard scanning
+2026-07-26 22:37:56 [INFO   ]   [CLIP pre-screen] Scanning 32 segments...
+2026-07-26 22:37:56 [INFO   ]   [CLIP pre-screen] Adaptive threshold: 0.993 (mean=0.993, std=0.002, range: 0.99-1.00)
+2026-07-26 22:37:56 [INFO   ]   [CLIP pre-screen] Limited to top 6 segments
+2026-07-26 22:37:56 [INFO   ]   [CLIP pre-screen] 6/32 segments passed
+2026-07-26 22:37:56 [INFO   ]   [LLM scan] Scanning 6 segments in parallel...
+2026-07-26 22:37:58 [INFO   ] Found 4 anomaly candidate(s):
+2026-07-26 22:37:58 [INFO   ]   Candidate 1: 18.0s-28.5s score=0.90
+2026-07-26 22:37:58 [INFO   ]   Candidate 2: 31.5s-37.5s score=0.95
+2026-07-26 22:37:58 [INFO   ]   Candidate 3: 49.5s-55.5s score=0.90
+2026-07-26 22:37:58 [INFO   ]   Candidate 4: 63.0s-73.5s score=0.90
+2026-07-26 22:37:58 [INFO   ]   [Limit] Keeping top 3/4 candidates
+2026-07-26 22:37:58 [INFO   ]     [CLIPBound] 31.5-37.5s -> 30.0-38.5s (contrast=0.320, cat=Shoplifting)
+2026-07-26 22:37:58 [INFO   ]     [CLIPBound] 18.0-28.5s -> 14.0-32.5s (contrast=0.368, cat=Shoplifting)
+2026-07-26 22:37:58 [INFO   ]     [CLIPBound] 49.5-55.5s -> 48.0-56.5s (contrast=0.320, cat=Shoplifting)
+2026-07-26 22:37:58 [INFO   ]   --- Pre-merge anomalies: 3 ---
+2026-07-26 22:37:58 [INFO   ]   --- Post-merge+NMS anomalies: 2 ---
+2026-07-26 22:37:58 [INFO   ]   [NOCLS-CA] classify VLM sub-tree skipped -> label='Shoplifting' (mAP-neutral; ~-7.5% VLM calls)
+2026-07-26 22:37:58 [INFO   ]     [ScoreCurve] 14.0-38.5s -> 14.0-35.5s (half_max=0.991)
+2026-07-26 22:37:58 [INFO   ]   [QSCORE-GATE] reranked 2 detections (base=0.5, raw Q range [0.811,0.815])
+2026-07-26 22:37:58 [INFO   ] [COST] video=Shoplifting001_x264.mp4 vlm_calls=6 clip_calls=10 elapsed_s=105.1
+2026-07-26 22:37:58 [INFO   ] [12/14] DONE  Shoplifting001_x264: 145s video, 2 anomalies, 105.1s processing
+2026-07-26 22:37:58 [INFO   ] [13/14] START Stealing036_x264 (Stealing)
+2026-07-26 22:37:59 [INFO   ]   [Motion filter] 167 -> 149 frames (11% removed, threshold=1.0)
+2026-07-26 22:38:25 [INFO   ]   [CLIP precompute] 149 frames encoded in 26.1s
+2026-07-26 22:38:28 [INFO   ]   [MIL] snippet scores: mean=0.970, max=1.000, min=0.328
+2026-07-26 22:39:14 [INFO   ]   [VideoMAE] Stealing(100%), RoadAccidents(0%), Shooting(0%) -> Stealing@100%
+2026-07-26 22:39:27 [INFO   ]   [VideoMAE-window] 8 windows in 13.1s
+2026-07-26 22:39:27 [INFO   ]   [CLIP-loc] Category=Stealing, mean=0.803, std=0.071, range=0.338, cv=0.088
+2026-07-26 22:39:27 [INFO   ]   [CLIP-loc] Found 5 multi-scale regions:
+2026-07-26 22:39:27 [INFO   ]   [Multi-CLIP-loc] 5 regions deduped to 3
+2026-07-26 22:39:27 [INFO   ]   [Directed scan] 10/19 segments selected for LLM scanning
+2026-07-26 22:39:29 [INFO   ] Found 2 anomaly candidate(s):
+2026-07-26 22:39:29 [INFO   ]   Candidate 1: 13.5s-28.5s score=0.90
+2026-07-26 22:39:29 [INFO   ]   Candidate 2: 31.5s-55.5s score=0.90
+2026-07-26 22:39:29 [INFO   ]     [CLIPBound] 13.5-28.5s -> 10.0-35.5s (contrast=0.479, cat=Stealing)
+2026-07-26 22:39:29 [INFO   ]     [CLIPBound] 31.5-55.5s -> 62.0-66.0s (contrast=0.080, cat=Stealing)
+2026-07-26 22:39:30 [INFO   ]     [VLM-Bound] 62.0-66.0s -> 62.0-65.1s (vlm_conf=0.95, w_clip=0.08, w_vlm=0.92)
+2026-07-26 22:39:30 [INFO   ]   --- Pre-merge anomalies: 2 ---
+2026-07-26 22:39:30 [INFO   ]   --- Post-merge+NMS anomalies: 2 ---
+2026-07-26 22:39:30 [INFO   ]   [NOCLS-CA] classify VLM sub-tree skipped -> label='Stealing' (mAP-neutral; ~-7.5% VLM calls)
+2026-07-26 22:39:30 [INFO   ]   [QSCORE-GATE] reranked 2 detections (base=0.5, raw Q range [0.600,0.782])
+2026-07-26 22:39:30 [INFO   ] [COST] video=Stealing036_x264.mp4 vlm_calls=11 clip_calls=5 elapsed_s=91.7
+2026-07-26 22:39:30 [INFO   ] [13/14] DONE  Stealing036_x264: 83s video, 2 anomalies, 91.7s processing
+2026-07-26 22:39:30 [INFO   ] [14/14] START Vandalism015_x264 (Vandalism)
+2026-07-26 22:39:30 [INFO   ]   [Motion filter] 199 -> 169 frames (15% removed, threshold=1.0)
+2026-07-26 22:39:58 [INFO   ]   [CLIP precompute] 169 frames encoded in 28.1s
+2026-07-26 22:40:32 [INFO   ]   [MIL] snippet scores: mean=1.000, max=1.000, min=0.997
+2026-07-26 22:40:39 [INFO   ]   [VideoMAE] Vandalism(99%), Assault(0%), Arrest(0%) -> Vandalism@99%
+2026-07-26 22:40:51 [INFO   ]   [VideoMAE-window] 9 windows in 12.5s
+2026-07-26 22:40:51 [INFO   ]   [CLIP-loc] Category=Vandalism, mean=0.864, std=0.091, range=0.564, cv=0.105
+2026-07-26 22:40:51 [INFO   ]   [CLIP-loc] Found 5 multi-scale regions:
+2026-07-26 22:40:51 [INFO   ]   [Multi-CLIP-loc] 5 regions deduped to 4
+2026-07-26 22:40:51 [INFO   ]   [Directed scan] 10/22 segments selected for LLM scanning
+2026-07-26 22:40:51 [INFO   ] [COST] video=Fighting018_x264.mp4 vlm_calls=82 clip_calls=86 elapsed_s=1619.2
+2026-07-26 22:40:51 [ERROR  ] [7/14] FAIL  Fighting018_x264: Request timed out. (1619.2s)
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpx/_transports/default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpx/_transports/default.py", line 394, in handle_async_request
+    resp = await self._pool.handle_async_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpcore/_async/connection_pool.py", line 256, in handle_async_request
+    raise exc from None
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpcore/_async/connection_pool.py", line 236, in handle_async_request
+    response = await connection.handle_async_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        pool_request.request
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpcore/_async/connection.py", line 103, in handle_async_request
+    return await self._connection.handle_async_request(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpcore/_async/http11.py", line 136, in handle_async_request
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpcore/_async/http11.py", line 106, in handle_async_request
+    ) = await self._receive_response_headers(**kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpcore/_async/http11.py", line 177, in _receive_response_headers
+    event = await self._receive_event(timeout=timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpcore/_async/http11.py", line 217, in _receive_event
+    data = await self._network_stream.read(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.READ_NUM_BYTES, timeout=timeout
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpcore/_backends/anyio.py", line 32, in read
+    with map_exceptions(exc_map):
+         ~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ReadTimeout
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/openai/_base_client.py", line 1648, in request
+    response = await self._send_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/openai/_client.py", line 946, in _send_request
+    return await self._send_with_auth_retry(request, stream=stream, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/openai/_client.py", line 924, in _send_with_auth_retry
+    response = await super()._send_request(request, stream=stream, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/openai/_base_client.py", line 1571, in _send_request
+    return await self._client.send(request, stream=stream, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpx/_client.py", line 1629, in send
+    response = await self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpx/_client.py", line 1657, in _send_handling_auth
+    response = await self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpx/_client.py", line 1694, in _send_handling_redirects
+    response = await self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpx/_client.py", line 1730, in _send_single_request
+    response = await transport.handle_async_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpx/_transports/default.py", line 393, in handle_async_request
+    with map_httpcore_exceptions():
+         ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpx/_transports/default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ReadTimeout
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/zzl/PycharmProjects/vad/video_anomaly_detection/batch_evaluate.py", line 60, in process_one_video
+    result = await vad.detect(video_path=video_path)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zzl/PycharmProjects/vad/video_anomaly_detection/pipeline.py", line 960, in detect
+    return await self._detect_impl(video_path, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zzl/PycharmProjects/vad/video_anomaly_detection/pipeline.py", line 1132, in _detect_impl
+    candidates = await self._directed_llm_scan(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        video_data, clip_regions, context_prompt, videomae_category)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zzl/PycharmProjects/vad/video_anomaly_detection/pipeline.py", line 1970, in _directed_llm_scan
+    results = await asyncio.gather(*tasks)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zzl/PycharmProjects/vad/video_anomaly_detection/anomaly_discovery.py", line 224, in scan_segment
+    response = await self.llm.generate(prompt, keyframes)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zzl/PycharmProjects/vad/video_anomaly_detection/llm_client.py", line 104, in generate
+    response = await self.client.chat.completions.create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/openai/resources/chat/completions/completions.py", line 2739, in create
+    return await self._post(
+           ^^^^^^^^^^^^^^^^^
+    ...<53 lines>...
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/openai/_base_client.py", line 1931, in post
+    return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/openai/_base_client.py", line 1666, in request
+    raise APITimeoutError(request=request) from err
+openai.APITimeoutError: Request timed out.
+2026-07-26 22:40:51 [INFO   ] [COST] video=Explosion002_x264.mp4 vlm_calls=92 clip_calls=92 elapsed_s=1699.1
+2026-07-26 22:40:51 [ERROR  ] [6/14] FAIL  Explosion002_x264: Request timed out. (1699.1s)
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpx/_transports/default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpx/_transports/default.py", line 394, in handle_async_request
+    resp = await self._pool.handle_async_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpcore/_async/connection_pool.py", line 256, in handle_async_request
+    raise exc from None
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpcore/_async/connection_pool.py", line 236, in handle_async_request
+    response = await connection.handle_async_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        pool_request.request
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpcore/_async/connection.py", line 103, in handle_async_request
+    return await self._connection.handle_async_request(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpcore/_async/http11.py", line 136, in handle_async_request
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpcore/_async/http11.py", line 106, in handle_async_request
+    ) = await self._receive_response_headers(**kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpcore/_async/http11.py", line 177, in _receive_response_headers
+    event = await self._receive_event(timeout=timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpcore/_async/http11.py", line 217, in _receive_event
+    data = await self._network_stream.read(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.READ_NUM_BYTES, timeout=timeout
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpcore/_backends/anyio.py", line 32, in read
+    with map_exceptions(exc_map):
+         ~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ReadTimeout
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/openai/_base_client.py", line 1648, in request
+    response = await self._send_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/openai/_client.py", line 946, in _send_request
+    return await self._send_with_auth_retry(request, stream=stream, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/openai/_client.py", line 924, in _send_with_auth_retry
+    response = await super()._send_request(request, stream=stream, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/openai/_base_client.py", line 1571, in _send_request
+    return await self._client.send(request, stream=stream, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpx/_client.py", line 1629, in send
+    response = await self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpx/_client.py", line 1657, in _send_handling_auth
+    response = await self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpx/_client.py", line 1694, in _send_handling_redirects
+    response = await self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpx/_client.py", line 1730, in _send_single_request
+    response = await transport.handle_async_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpx/_transports/default.py", line 393, in handle_async_request
+    with map_httpcore_exceptions():
+         ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/httpx/_transports/default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ReadTimeout
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/zzl/PycharmProjects/vad/video_anomaly_detection/batch_evaluate.py", line 60, in process_one_video
+    result = await vad.detect(video_path=video_path)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zzl/PycharmProjects/vad/video_anomaly_detection/pipeline.py", line 960, in detect
+    return await self._detect_impl(video_path, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zzl/PycharmProjects/vad/video_anomaly_detection/pipeline.py", line 1132, in _detect_impl
+    candidates = await self._directed_llm_scan(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        video_data, clip_regions, context_prompt, videomae_category)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zzl/PycharmProjects/vad/video_anomaly_detection/pipeline.py", line 1970, in _directed_llm_scan
+    results = await asyncio.gather(*tasks)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zzl/PycharmProjects/vad/video_anomaly_detection/anomaly_discovery.py", line 224, in scan_segment
+    response = await self.llm.generate(prompt, keyframes)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zzl/PycharmProjects/vad/video_anomaly_detection/llm_client.py", line 104, in generate
+    response = await self.client.chat.completions.create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/openai/resources/chat/completions/completions.py", line 2739, in create
+    return await self._post(
+           ^^^^^^^^^^^^^^^^^
+    ...<53 lines>...
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/openai/_base_client.py", line 1931, in post
+    return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/openai/_base_client.py", line 1666, in request
+    raise APITimeoutError(request=request) from err
+openai.APITimeoutError: Request timed out.
+2026-07-26 22:40:53 [INFO   ] Found 3 anomaly candidate(s):
+2026-07-26 22:40:53 [INFO   ]   Candidate 1: 0.0s-15.0s score=0.95
+2026-07-26 22:40:53 [INFO   ]   Candidate 2: 22.5s-46.5s score=0.95
+2026-07-26 22:40:53 [INFO   ]   Candidate 3: 58.5s-64.5s score=0.95
+2026-07-26 22:40:53 [INFO   ]     [CLIPBound] 0.0-15.0s -> 1.0-13.0s (contrast=0.240, cat=Vandalism)
+2026-07-26 22:40:53 [INFO   ]     [CLIPBound] 22.5-46.5s -> 30.0-51.5s (contrast=0.094, cat=Vandalism)
+2026-07-26 22:40:53 [INFO   ]     [CLIPBound] 58.5-64.5s -> 61.0-67.0s (contrast=0.479, cat=Vandalism)
+2026-07-26 22:40:53 [INFO   ]   --- Pre-merge anomalies: 3 ---
+2026-07-26 22:40:53 [INFO   ]   --- Post-merge+NMS anomalies: 3 ---
+2026-07-26 22:40:53 [INFO   ]   [NOCLS-CA] classify VLM sub-tree skipped -> label='Vandalism' (mAP-neutral; ~-7.5% VLM calls)
+2026-07-26 22:40:53 [INFO   ]     [ScoreCurve] 30.0-51.5s -> 30.0-41.5s (half_max=0.892)
+2026-07-26 22:40:53 [INFO   ]   [QSCORE-GATE] reranked 3 detections (base=0.5, raw Q range [0.664,0.880])
+2026-07-26 22:40:53 [INFO   ] [COST] video=Vandalism015_x264.mp4 vlm_calls=10 clip_calls=6 elapsed_s=83.1
+2026-07-26 22:40:53 [INFO   ] [14/14] DONE  Vandalism015_x264: 99s video, 3 anomalies, 83.1s processing
+2026-07-26 22:40:53 [INFO   ] ============================================================
+2026-07-26 22:40:53 [INFO   ] Batch complete:
+2026-07-26 22:40:53 [INFO   ]   Succeeded: 11, Skipped: 0, Failed: 3
+2026-07-26 22:40:53 [INFO   ]   Total wall-clock time:   2794.6s (46.6min)
+2026-07-26 22:40:53 [INFO   ]   Total processing time:   8255.1s (137.6min)
+2026-07-26 22:40:53 [INFO   ]   Avg per video:           750.5s
+2026-07-26 22:40:53 [INFO   ]   Parallelism speedup:     2.95x
+2026-07-26 22:40:53 [INFO   ] ============================================================
+2026-07-26 22:40:53 [INFO   ] [ECE-GATE] markers=0 succeeded=11 ok=True
+2026-07-26 22:40:53 [INFO   ] Running evaluation...
+2026-07-26 22:40:53 [INFO   ] GT videos: 290, Predicted videos: 11, Matched: 11
+2026-07-26 22:40:53 [INFO   ]   GT only (missing predictions): 279
+2026-07-26 22:40:53 [INFO   ]   Abnormal: 10, Normal: 1
+2026-07-26 22:40:53 [INFO   ] --- Level 1: Frame-level AUC-ROC / AUPR ---
+2026-07-26 22:40:53 [INFO   ]   Global AUC-ROC: 0.8089
+2026-07-26 22:40:53 [INFO   ]   Global AUPR:    0.2850
+2026-07-26 22:40:53 [INFO   ]   Per-category AUC-ROC:
+2026-07-26 22:40:53 [INFO   ]     Abuse               : 0.9053
+2026-07-26 22:40:53 [INFO   ]     Arrest              : 0.9708
+2026-07-26 22:40:53 [INFO   ]     Arson               : 0.9960
+2026-07-26 22:40:53 [INFO   ]     Burglary            : 0.8375
+2026-07-26 22:40:53 [INFO   ]     RoadAccidents       : 0.9804
+2026-07-26 22:40:53 [INFO   ]     Robbery             : 0.4494
+2026-07-26 22:40:53 [INFO   ]     Shooting            : 0.8501
+2026-07-26 22:40:53 [INFO   ]     Shoplifting         : 0.7557
+2026-07-26 22:40:53 [INFO   ]     Stealing            : 0.3262
+2026-07-26 22:40:53 [INFO   ]     Vandalism           : 0.5244
+2026-07-26 22:40:53 [INFO   ] --- Level 2: Temporal Segment mAP ---
+2026-07-26 22:40:53 [INFO   ]   mAP:    0.2018
+2026-07-26 22:40:53 [INFO   ]   AP@0.3: 0.2159
+2026-07-26 22:40:53 [INFO   ]   AP@0.5: 0.2078
+2026-07-26 22:40:53 [INFO   ]   AP@0.7: 0.1818
+2026-07-26 22:40:53 [INFO   ] --- Level 3: Video-level Metrics ---
+2026-07-26 22:40:53 [INFO   ]   Accuracy:  0.9091
+2026-07-26 22:40:53 [INFO   ]   Precision: 1.0000
+2026-07-26 22:40:53 [INFO   ]   Recall:    0.9000
+2026-07-26 22:40:53 [INFO   ]   F1:        0.9474
+2026-07-26 22:40:53 [INFO   ]   AUC:       0.9500
+2026-07-26 22:40:53 [INFO   ] --- Level 4: Category Accuracy ---
+2026-07-26 22:40:53 [INFO   ]   Overall: 0.8000
+2026-07-26 22:40:53 [INFO   ]   Abuse               : 1/1
+2026-07-26 22:40:53 [INFO   ]   Arrest              : 1/1
+2026-07-26 22:40:53 [INFO   ]   Arson               : 1/1
+2026-07-26 22:40:53 [INFO   ]   Burglary            : 0/1
+2026-07-26 22:40:53 [INFO   ]   RoadAccidents       : 1/1
+2026-07-26 22:40:53 [INFO   ]   Robbery             : 0/1
+2026-07-26 22:40:53 [INFO   ]   Shooting            : 1/1
+2026-07-26 22:40:53 [INFO   ]   Shoplifting         : 1/1
+2026-07-26 22:40:53 [INFO   ]   Stealing            : 1/1
+2026-07-26 22:40:53 [INFO   ]   Vandalism           : 1/1
+2026-07-26 22:40:53 [INFO   ] Full report saved to: /Users/zzl/PycharmProjects/vad/results/batch_eval_v137_smoke/evaluation_report.json

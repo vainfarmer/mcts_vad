@@ -1,0 +1,33 @@
+# v98 SMOKE — EXACT INVOCATION (C mandate 1: persist the invocation).
+# evaluation_report.json records no args/flags; this file + the run.log grep
+# are the only activation evidence. Pre-written by D1 at implementation time;
+# the runner MUST execute exactly this command (or overwrite this file with
+# the actually-invoked command line at launch — shell-level redirect).
+# All non-flag args identical to the recorded v97 smoke run; the ONLY
+# controlled change vs v97 is --full_coverage_scan.
+source /Users/zzl/PycharmProjects/vad/video_anomaly_detection/.env 2>/dev/null
+export HF_ENDPOINT=https://hf-mirror.com
+export PYTHONUNBUFFERED=1
+cd /Users/zzl/PycharmProjects/vad/video_anomaly_detection
+python3 -u batch_evaluate.py \
+  --dataset_dir /Users/zzl/Movies/ucf-crime \
+  --output_dir /Users/zzl/PycharmProjects/vad/results/batch_eval_v98_smoke \
+  --max_per_category 1 \
+  --concurrency 3 \
+  --detect_model qwen-vl-plus \
+  --classify_model qwen3-vl-plus \
+  --max_tokens 512 \
+  --max_frames 200 \
+  --min_frames 3 \
+  --fps_sample 3.0 \
+  --fps 2 \
+  --segment_duration 6.0 \
+  --segment_overlap 0.25 \
+  --mcts_simulations 12 \
+  --mcts_max_depth 4 \
+  --motion_threshold 1.0 \
+  --min_motion_interval 2.0 \
+  --clip_model ViT-L-14 \
+  --clip_pretrained openai \
+  --device mps \
+  --full_coverage_scan

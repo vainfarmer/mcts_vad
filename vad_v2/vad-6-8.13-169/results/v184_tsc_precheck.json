@@ -1,0 +1,472 @@
+{
+  "mechanism": "TSC: one fixed Gaussian smooth (sigma=1.5 frames) on each category curve before any downstream consumer; text side unchanged (committed prompts)",
+  "sigma_frames": 1.5,
+  "kernel": "scipy.ndimage.gaussian_filter1d(sigma=1.5, mode=reflect, truncate=4.0)",
+  "frame_spacing_note": "frames ~2fps with motion-gated skips; sigma is in sample-index units (pre-registered)",
+  "gt_note": "train split has no frame GT (0/1610 annotated); GT interval = full video for anomaly videos (video-level label); normals used only for the inflation guard",
+  "proxy_caveat": "prominence-peakiness is a proxy for boundary-op friendliness: smoothing trades peak height against noise reduction \u2014 the median/MAD z recipe captures the net (max shrinks, MAD typically shrinks too)",
+  "per_video": {
+    "videos/Shooting/Shooting003_x264.mp4": {
+      "group": "Shooting",
+      "n_frames": 142,
+      "duration_s": 75.9,
+      "curves": {
+        "Shooting": {
+          "raw_z": 2.4575,
+          "tsc_z": 2.6648
+        }
+      }
+    },
+    "videos/Shooting/Shooting012_x264.mp4": {
+      "group": "Shooting",
+      "n_frames": 115,
+      "duration_s": 62.9,
+      "curves": {
+        "Shooting": {
+          "raw_z": 1.0587,
+          "tsc_z": 1.3699
+        }
+      }
+    },
+    "videos/Shooting/Shooting017_x264.mp4": {
+      "group": "Shooting",
+      "n_frames": 59,
+      "duration_s": 31.4,
+      "curves": {
+        "Shooting": {
+          "raw_z": 10.809,
+          "tsc_z": 5.3561
+        }
+      }
+    },
+    "videos/Shooting/Shooting009_x264.mp4": {
+      "group": "Shooting",
+      "n_frames": 333,
+      "duration_s": 172.2,
+      "curves": {
+        "Shooting": {
+          "raw_z": 2.039,
+          "tsc_z": 2.6906
+        }
+      }
+    },
+    "videos/RoadAccidents/RoadAccidents003_x264.mp4": {
+      "group": "RoadAccidents",
+      "n_frames": 99,
+      "duration_s": 49.4,
+      "curves": {
+        "RoadAccidents": {
+          "raw_z": 9.514,
+          "tsc_z": 7.7593
+        }
+      }
+    },
+    "videos/RoadAccidents/RoadAccidents006_x264.mp4": {
+      "group": "RoadAccidents",
+      "n_frames": 113,
+      "duration_s": 56.4,
+      "curves": {
+        "RoadAccidents": {
+          "raw_z": 1.0076,
+          "tsc_z": 1.4162
+        }
+      }
+    },
+    "videos/RoadAccidents/RoadAccidents007_x264.mp4": {
+      "group": "RoadAccidents",
+      "n_frames": 74,
+      "duration_s": 36.7,
+      "curves": {
+        "RoadAccidents": {
+          "raw_z": 2.2986,
+          "tsc_z": 1.4977
+        }
+      }
+    },
+    "videos/RoadAccidents/RoadAccidents008_x264.mp4": {
+      "group": "RoadAccidents",
+      "n_frames": 87,
+      "duration_s": 44.2,
+      "curves": {
+        "RoadAccidents": {
+          "raw_z": 1.4566,
+          "tsc_z": 2.1971
+        }
+      }
+    },
+    "videos/Shoplifting/Shoplifting006_x264.mp4": {
+      "group": "Shoplifting",
+      "n_frames": 209,
+      "duration_s": 105.2,
+      "curves": {
+        "Shoplifting": {
+          "raw_z": 1.1799,
+          "tsc_z": 1.0805
+        }
+      }
+    },
+    "videos/Shoplifting/Shoplifting009_x264.mp4": {
+      "group": "Shoplifting",
+      "n_frames": 347,
+      "duration_s": 173.4,
+      "curves": {
+        "Shoplifting": {
+          "raw_z": 1.331,
+          "tsc_z": 1.3588
+        }
+      }
+    },
+    "videos/Shoplifting/Shoplifting013_x264.mp4": {
+      "group": "Shoplifting",
+      "n_frames": 134,
+      "duration_s": 67.4,
+      "curves": {
+        "Shoplifting": {
+          "raw_z": 1.1822,
+          "tsc_z": 1.109
+        }
+      }
+    },
+    "videos/Shoplifting/Shoplifting018_x264.mp4": {
+      "group": "Shoplifting",
+      "n_frames": 143,
+      "duration_s": 71.1,
+      "curves": {
+        "Shoplifting": {
+          "raw_z": 1.89,
+          "tsc_z": 2.0576
+        }
+      }
+    },
+    "videos/Explosion/Explosion006_x264.mp4": {
+      "group": "Explosion",
+      "n_frames": 127,
+      "duration_s": 64.0,
+      "curves": {
+        "Explosion": {
+          "raw_z": 0.7172,
+          "tsc_z": 0.8871
+        }
+      }
+    },
+    "videos/Explosion/Explosion014_x264.mp4": {
+      "group": "Explosion",
+      "n_frames": 76,
+      "duration_s": 43.1,
+      "curves": {
+        "Explosion": {
+          "raw_z": 0.9997,
+          "tsc_z": 0.9472
+        }
+      }
+    },
+    "videos/Explosion/Explosion009_x264.mp4": {
+      "group": "Explosion",
+      "n_frames": 66,
+      "duration_s": 36.7,
+      "curves": {
+        "Explosion": {
+          "raw_z": 0.8998,
+          "tsc_z": 0.8558
+        }
+      }
+    },
+    "videos/Explosion/Explosion015_x264.mp4": {
+      "group": "Explosion",
+      "n_frames": 58,
+      "duration_s": 29.3,
+      "curves": {
+        "Explosion": {
+          "raw_z": 1.7614,
+          "tsc_z": 3.5325
+        }
+      }
+    },
+    "videos/Training_Normal/Normal_Videos002_x264.mp4": {
+      "group": "Normal",
+      "n_frames": 85,
+      "duration_s": 55.4,
+      "curves": {
+        "Abuse": {
+          "raw_z": 17.2035,
+          "tsc_z": 9.7656
+        },
+        "Arrest": {
+          "raw_z": 10.4284,
+          "tsc_z": 5.0975
+        },
+        "Arson": {
+          "raw_z": 29.7279,
+          "tsc_z": 11.0793
+        },
+        "Assault": {
+          "raw_z": 11.826,
+          "tsc_z": 4.8943
+        },
+        "Burglary": {
+          "raw_z": 12.3534,
+          "tsc_z": 10.5607
+        },
+        "Explosion": {
+          "raw_z": 9.2438,
+          "tsc_z": 4.434
+        },
+        "Fighting": {
+          "raw_z": 10.774,
+          "tsc_z": 9.116
+        },
+        "RoadAccidents": {
+          "raw_z": 16.6327,
+          "tsc_z": 11.5071
+        },
+        "Robbery": {
+          "raw_z": 8.6434,
+          "tsc_z": 4.6579
+        },
+        "Shooting": {
+          "raw_z": 5.7209,
+          "tsc_z": 1.8099
+        },
+        "Shoplifting": {
+          "raw_z": 25.0878,
+          "tsc_z": 10.8544
+        },
+        "Stealing": {
+          "raw_z": 16.8881,
+          "tsc_z": 8.0023
+        },
+        "Vandalism": {
+          "raw_z": 17.7268,
+          "tsc_z": 15.11
+        }
+      },
+      "maxz_raw": 29.7279,
+      "maxz_tsc": 15.11,
+      "maxz_cat_raw": "Arson",
+      "maxz_cat_tsc": "Vandalism"
+    },
+    "videos/Training_Normal/Normal_Videos008_x264.mp4": {
+      "group": "Normal",
+      "n_frames": 172,
+      "duration_s": 85.6,
+      "curves": {
+        "Abuse": {
+          "raw_z": 14.7343,
+          "tsc_z": 5.1639
+        },
+        "Arrest": {
+          "raw_z": 49.6392,
+          "tsc_z": 11.6625
+        },
+        "Arson": {
+          "raw_z": 14.6521,
+          "tsc_z": 7.715
+        },
+        "Assault": {
+          "raw_z": 10.4944,
+          "tsc_z": 4.9642
+        },
+        "Burglary": {
+          "raw_z": 27.4408,
+          "tsc_z": 7.2031
+        },
+        "Explosion": {
+          "raw_z": 15.627,
+          "tsc_z": 4.3809
+        },
+        "Fighting": {
+          "raw_z": 34.2023,
+          "tsc_z": 15.7132
+        },
+        "RoadAccidents": {
+          "raw_z": 15.0166,
+          "tsc_z": 4.8985
+        },
+        "Robbery": {
+          "raw_z": 64.5005,
+          "tsc_z": 13.5595
+        },
+        "Shooting": {
+          "raw_z": 7.1345,
+          "tsc_z": 3.3255
+        },
+        "Shoplifting": {
+          "raw_z": 17.4954,
+          "tsc_z": 7.2985
+        },
+        "Stealing": {
+          "raw_z": 7.9667,
+          "tsc_z": 4.316
+        },
+        "Vandalism": {
+          "raw_z": 85.8757,
+          "tsc_z": 19.9258
+        }
+      },
+      "maxz_raw": 85.8757,
+      "maxz_tsc": 19.9258,
+      "maxz_cat_raw": "Vandalism",
+      "maxz_cat_tsc": "Vandalism"
+    },
+    "videos/Training_Normal/Normal_Videos007_x264.mp4": {
+      "group": "Normal",
+      "n_frames": 66,
+      "duration_s": 32.8,
+      "curves": {
+        "Abuse": {
+          "raw_z": 11.5405,
+          "tsc_z": 4.9881
+        },
+        "Arrest": {
+          "raw_z": 5.3335,
+          "tsc_z": 3.3474
+        },
+        "Arson": {
+          "raw_z": 3.3267,
+          "tsc_z": 1.5171
+        },
+        "Assault": {
+          "raw_z": 19.2756,
+          "tsc_z": 7.0179
+        },
+        "Burglary": {
+          "raw_z": 9.1221,
+          "tsc_z": 3.6397
+        },
+        "Explosion": {
+          "raw_z": 13.2918,
+          "tsc_z": 5.8809
+        },
+        "Fighting": {
+          "raw_z": 13.9005,
+          "tsc_z": 4.242
+        },
+        "RoadAccidents": {
+          "raw_z": 5.3515,
+          "tsc_z": 3.5169
+        },
+        "Robbery": {
+          "raw_z": 18.2966,
+          "tsc_z": 12.5085
+        },
+        "Shooting": {
+          "raw_z": 11.5897,
+          "tsc_z": 3.1483
+        },
+        "Shoplifting": {
+          "raw_z": 4.1281,
+          "tsc_z": 1.8971
+        },
+        "Stealing": {
+          "raw_z": 12.0202,
+          "tsc_z": 6.3757
+        },
+        "Vandalism": {
+          "raw_z": 7.5022,
+          "tsc_z": 4.9226
+        }
+      },
+      "maxz_raw": 19.2756,
+      "maxz_tsc": 12.5085,
+      "maxz_cat_raw": "Assault",
+      "maxz_cat_tsc": "Robbery"
+    },
+    "videos/Training_Normal/Normal_Videos004_x264.mp4": {
+      "group": "Normal",
+      "n_frames": 48,
+      "duration_s": 30.6,
+      "curves": {
+        "Abuse": {
+          "raw_z": 11.6889,
+          "tsc_z": 8.643
+        },
+        "Arrest": {
+          "raw_z": 3.2715,
+          "tsc_z": 1.6263
+        },
+        "Arson": {
+          "raw_z": 13.1994,
+          "tsc_z": 11.7036
+        },
+        "Assault": {
+          "raw_z": 13.5754,
+          "tsc_z": 10.9974
+        },
+        "Burglary": {
+          "raw_z": 16.0984,
+          "tsc_z": 14.2236
+        },
+        "Explosion": {
+          "raw_z": 12.6223,
+          "tsc_z": 9.9249
+        },
+        "Fighting": {
+          "raw_z": 2.7247,
+          "tsc_z": 2.417
+        },
+        "RoadAccidents": {
+          "raw_z": 6.5199,
+          "tsc_z": 4.9741
+        },
+        "Robbery": {
+          "raw_z": 5.7267,
+          "tsc_z": 4.1149
+        },
+        "Shooting": {
+          "raw_z": 4.8347,
+          "tsc_z": 3.4768
+        },
+        "Shoplifting": {
+          "raw_z": 3.8239,
+          "tsc_z": 3.3334
+        },
+        "Stealing": {
+          "raw_z": 15.6923,
+          "tsc_z": 13.8047
+        },
+        "Vandalism": {
+          "raw_z": 9.4638,
+          "tsc_z": 8.8059
+        }
+      },
+      "maxz_raw": 16.0984,
+      "maxz_tsc": 14.2236,
+      "maxz_cat_raw": "Burglary",
+      "maxz_cat_tsc": "Burglary"
+    }
+  },
+  "per_cat": {
+    "Shooting": {
+      "n": 4,
+      "raw": 4.0911,
+      "tsc": 3.0203,
+      "delta": -1.0707
+    },
+    "RoadAccidents": {
+      "n": 4,
+      "raw": 3.5692,
+      "tsc": 3.2176,
+      "delta": -0.3516
+    },
+    "Shoplifting": {
+      "n": 4,
+      "raw": 1.3958,
+      "tsc": 1.4015,
+      "delta": 0.0057
+    },
+    "Explosion": {
+      "n": 4,
+      "raw": 1.0945,
+      "tsc": 1.5556,
+      "delta": 0.4611
+    }
+  },
+  "normal_inflation_maxz13": -22.3024,
+  "gate": {
+    "cats_delta>=+0.3": 1,
+    "no_cat_delta<-0.1": false,
+    "normal_inflation<+0.5": true,
+    "go": false
+  },
+  "elapsed_s": 30.9
+}

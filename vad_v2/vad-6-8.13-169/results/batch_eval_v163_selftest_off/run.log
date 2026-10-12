@@ -1,0 +1,74 @@
+2026-08-04 22:42:55 [INFO   ] VAD batch evaluation started | output_dir=/Users/zzl/PycharmProjects/vad/results/batch_eval_v163_selftest_off | log=/Users/zzl/PycharmProjects/vad/results/batch_eval_v163_selftest_off/run.log
+2026-08-04 22:42:55 [INFO   ] Selected 1 videos from 1 categories:
+2026-08-04 22:42:55 [INFO   ]   Explosion           :   1 / 21
+/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/open_clip/factory.py:450: UserWarning: QuickGELU mismatch between final model config (quick_gelu=False) and pretrained tag 'openai' (quick_gelu=True).
+  warnings.warn(
+2026-08-04 22:43:37 [INFO   ] [AnomalyExpert] Loaded learned prompt weights from /Users/zzl/PycharmProjects/vad/video_anomaly_detection/prompt_weights.json
+2026-08-04 22:43:41 [INFO   ] [AnomalyExpert] CLIP ViT-L-14 loaded on mps
+2026-08-04 22:44:41 [INFO   ] [VideoMAE] Loaded on mps
+2026-08-04 22:44:42 [INFO   ]   [MIL] Loaded MIL model from /Users/zzl/PycharmProjects/vad/video_anomaly_detection/model_mil.pth
+2026-08-04 22:44:42 [INFO   ] Starting batch processing: 1 videos, concurrency=1
+2026-08-04 22:44:42 [INFO   ] Detect model: qwen-vl-plus, Classify model: qwen3-vl-plus
+2026-08-04 22:44:42 [INFO   ] ============================================================
+2026-08-04 22:44:42 [INFO   ] [1/1] START Explosion002_x264 (Explosion)
+2026-08-04 22:44:42 [INFO   ]   [Motion filter] 268 -> 191 frames (29% removed, threshold=1.0)
+2026-08-04 22:45:51 [INFO   ]   [CLIP precompute] 191 frames encoded in 69.0s
+2026-08-04 22:45:55 [INFO   ]   [MIL] snippet scores: mean=0.981, max=1.000, min=0.714
+2026-08-04 22:46:09 [INFO   ]   [VideoMAE] Explosion(93%), Shooting(3%), Vandalism(1%) -> Explosion@93%
+2026-08-04 22:46:39 [INFO   ]   [VideoMAE-window] 10 windows in 29.6s
+2026-08-04 22:46:39 [INFO   ]   [CLIP-loc] Category=Explosion, mean=0.401, std=0.281, range=0.957, cv=0.701
+2026-08-04 22:46:39 [INFO   ]   [CLIP-loc] Fused with motion energy for Explosion
+2026-08-04 22:46:39 [INFO   ]   [CLIP-loc] Found 5 multi-scale regions:
+2026-08-04 22:46:39 [INFO   ]   [Directed scan] 10/30 segments selected for LLM scanning
+2026-08-04 22:46:45 [INFO   ] Found 2 anomaly candidate(s):
+2026-08-04 22:46:45 [INFO   ]   Candidate 1: 49.5s-64.5s score=0.95
+2026-08-04 22:46:45 [INFO   ]   Candidate 2: 67.5s-73.5s score=0.95
+2026-08-04 22:46:45 [INFO   ]     [CLIPBound] 49.5-64.5s -> 53.5-60.5s (contrast=0.304, cat=Explosion)
+2026-08-04 22:46:45 [INFO   ]     [CLIPBound] 67.5-73.5s -> 74.5-76.0s (contrast=0.028, cat=Explosion)
+2026-08-04 22:46:45 [INFO   ]   --- Pre-merge anomalies: 2 ---
+2026-08-04 22:46:45 [INFO   ]   --- Post-merge+NMS anomalies: 2 ---
+2026-08-04 22:46:45 [INFO   ]   [NOCLS-CA] classify VLM sub-tree skipped -> label='Explosion' (mAP-neutral; ~-7.5% VLM calls)
+2026-08-04 22:46:45 [INFO   ]   [QSCORE-GATE] reranked 2 detections (base=0.5, raw Q range [0.577,0.868])
+2026-08-04 22:46:45 [INFO   ]   [BUE] vid=Explosion002_x264.mp4 cat=Explosion det=0 closed=0 t=53.500-60.500->52.000-62.000 dur=7.00->10.00 oic=0.4338->0.5948 conf=0.8619->0.8619
+2026-08-04 22:46:45 [INFO   ]   [BUE] vid=Explosion002_x264.mp4 cat=Explosion det=1 closed=0 t=74.500-76.000->51.000-76.000 dur=1.50->25.00 oic=0.2178->0.4172 conf=0.3846->0.3846
+2026-08-04 22:46:45 [INFO   ]   [BUE] summary: vid=Explosion002_x264.mp4 fires=2 closed_skips=0 ndet_before=2 ndet_after=2 growth_med=13.250 dur_ratio=9.048 selfov=1 degen=0 noop=0 nocurve=0 lmax=40.0 gate=1
+2026-08-04 22:46:45 [INFO   ]   [CBT] vid=Explosion002_x264.mp4 cat=Explosion det=1 pre=25.0 post=9.0 t=51.00-76.00->52.50-61.50 cap=13.0 contrast=0.6203 conf=0.3846->0.3846
+2026-08-04 22:46:45 [INFO   ]   [CBT-VID] vid=Explosion002_x264.mp4 enabled=True ndet=2 fired=1 wide_noop=1 nocurve=0 nofire=0 recal=on sa=off
+2026-08-04 22:46:45 [INFO   ] [COST] video=Explosion002_x264.mp4 vlm_calls=10 clip_calls=6 elapsed_s=123.0
+2026-08-04 22:46:45 [INFO   ] [1/1] DONE  Explosion002_x264: 134s video, 2 anomalies, 123.0s processing
+2026-08-04 22:46:45 [INFO   ] ============================================================
+2026-08-04 22:46:45 [INFO   ] Batch complete:
+2026-08-04 22:46:45 [INFO   ]   Succeeded: 1, Skipped: 0, Failed: 0
+2026-08-04 22:46:45 [INFO   ]   Total wall-clock time:   123.1s (2.1min)
+2026-08-04 22:46:45 [INFO   ]   Total processing time:   123.0s (2.1min)
+2026-08-04 22:46:45 [INFO   ]   Avg per video:           123.0s
+2026-08-04 22:46:45 [INFO   ]   Parallelism speedup:     1.00x
+2026-08-04 22:46:45 [INFO   ] ============================================================
+2026-08-04 22:46:45 [INFO   ] [ECE-GATE] markers=0 succeeded=1 ok=True
+2026-08-04 22:46:45 [INFO   ] Running evaluation...
+2026-08-04 22:46:45 [INFO   ] GT videos: 290, Predicted videos: 1, Matched: 1
+2026-08-04 22:46:45 [INFO   ]   GT only (missing predictions): 289
+2026-08-04 22:46:45 [INFO   ]   Abnormal: 1, Normal: 0
+2026-08-04 22:46:45 [INFO   ] --- Level 1: Frame-level AUC-ROC / AUPR ---
+2026-08-04 22:46:45 [INFO   ]   Global AUC-ROC: 0.9334
+2026-08-04 22:46:45 [INFO   ]   Global AUPR:    0.7533
+2026-08-04 22:46:45 [INFO   ]   Per-category AUC-ROC:
+2026-08-04 22:46:45 [INFO   ]     Explosion           : 0.9334
+2026-08-04 22:46:45 [INFO   ] --- Level 2: Temporal Segment mAP ---
+2026-08-04 22:46:45 [INFO   ]   mAP:    0.6667
+2026-08-04 22:46:45 [INFO   ]   AP@0.3: 1.0000
+2026-08-04 22:46:45 [INFO   ]   AP@0.5: 1.0000
+2026-08-04 22:46:45 [INFO   ]   AP@0.7: 0.0000
+2026-08-04 22:46:45 [INFO   ] --- Level 3: Video-level Metrics ---
+2026-08-04 22:46:45 [INFO   ]   Accuracy:  1.0000
+2026-08-04 22:46:45 [INFO   ]   Precision: 1.0000
+2026-08-04 22:46:45 [INFO   ]   Recall:    1.0000
+2026-08-04 22:46:45 [INFO   ]   F1:        1.0000
+2026-08-04 22:46:45 [INFO   ]   AUC:       0.0000
+2026-08-04 22:46:45 [INFO   ] --- Level 4: Category Accuracy ---
+2026-08-04 22:46:45 [INFO   ]   Overall: 1.0000
+2026-08-04 22:46:45 [INFO   ]   Explosion           : 1/1
+2026-08-04 22:46:45 [INFO   ] Full report saved to: /Users/zzl/PycharmProjects/vad/results/batch_eval_v163_selftest_off/evaluation_report.json
+1.0000
+2026-08-04 22:46:45 [INFO   ]   Explosion           : 1/1
+2026-08-04 22:46:45 [INFO   ] Full report saved to: /Users/zzl/PycharmProjects/vad/results/batch_eval_v163_selftest_off/evaluation_report.json

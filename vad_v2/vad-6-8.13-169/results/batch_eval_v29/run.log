@@ -1,0 +1,884 @@
+2026-06-23 14:52:46 [INFO   ] vad.batch    | VAD batch evaluation started | output_dir=results/batch_eval_v29 | log=results/batch_eval_v29/run.log
+2026-06-23 14:52:46 [INFO   ] vad.batch    | Selected 65 videos from 14 categories:
+2026-06-23 14:52:46 [INFO   ] vad.batch    |   Abuse               :   2 / 2
+2026-06-23 14:52:46 [INFO   ] vad.batch    |   Arrest              :   5 / 5
+2026-06-23 14:52:46 [INFO   ] vad.batch    |   Arson               :   5 / 9
+2026-06-23 14:52:46 [INFO   ] vad.batch    |   Assault             :   3 / 3
+2026-06-23 14:52:46 [INFO   ] vad.batch    |   Burglary            :   5 / 13
+2026-06-23 14:52:46 [INFO   ] vad.batch    |   Explosion           :   5 / 21
+2026-06-23 14:52:46 [INFO   ] vad.batch    |   Fighting            :   5 / 5
+2026-06-23 14:52:46 [INFO   ] vad.batch    |   Normal              :   5 / 150
+2026-06-23 14:52:46 [INFO   ] vad.batch    |   RoadAccidents       :   5 / 23
+2026-06-23 14:52:46 [INFO   ] vad.batch    |   Robbery             :   5 / 5
+2026-06-23 14:52:46 [INFO   ] vad.batch    |   Shooting            :   5 / 23
+2026-06-23 14:52:46 [INFO   ] vad.batch    |   Shoplifting         :   5 / 21
+2026-06-23 14:52:46 [INFO   ] vad.batch    |   Stealing            :   5 / 5
+2026-06-23 14:52:46 [INFO   ] vad.batch    |   Vandalism           :   5 / 5
+2026-06-23 14:52:59 [INFO   ] vad.batch    | Starting batch processing: 65 videos, concurrency=3
+2026-06-23 14:52:59 [INFO   ] vad.batch    | Detect model: qwen-vl-plus, Classify model: qwen3-vl-plus
+2026-06-23 14:52:59 [INFO   ] vad.batch    | ============================================================
+2026-06-23 14:52:59 [INFO   ] vad.batch    | [1/65] START Abuse028_x264 (Abuse)
+2026-06-23 14:53:07 [INFO   ] vad.pipeline |   [CLIP precompute] 93 frames encoded in 7.6s
+2026-06-23 14:53:13 [INFO   ] vad.pipeline |   [VideoMAE] Abuse(100%), Arrest(0%), Burglary(0%) -> Abuse@100%
+2026-06-23 14:53:13 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 7 regions deduped to 1
+2026-06-23 14:53:13 [INFO   ] vad.pipeline |   [Directed scan] 10/11 segments selected for LLM scanning
+2026-06-23 14:53:13 [INFO   ] vad.batch    | [2/65] START Abuse030_x264 (Abuse)
+2026-06-23 14:53:23 [INFO   ] vad.pipeline |   [CLIP precompute] 103 frames encoded in 9.3s
+2026-06-23 14:53:28 [INFO   ] vad.pipeline |   [VideoMAE] Abuse(99%), RoadAccidents(1%), Vandalism(0%) -> Abuse@99%
+2026-06-23 14:53:28 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 8 regions deduped to 1
+2026-06-23 14:53:28 [INFO   ] vad.pipeline |   [Directed scan] 12/12 segments selected for LLM scanning
+2026-06-23 14:53:28 [INFO   ] vad.batch    | [3/65] START Arrest001_x264 (Arrest)
+2026-06-23 14:53:39 [INFO   ] vad.pipeline |   [CLIP precompute] 128 frames encoded in 11.2s
+2026-06-23 14:53:45 [INFO   ] vad.pipeline |   [VideoMAE] Arrest(100%), RoadAccidents(0%), Shoplifting(0%) -> Arrest@100%
+2026-06-23 14:53:45 [INFO   ] vad.pipeline |   [Directed scan] 11/18 segments selected for LLM scanning
+2026-06-23 14:53:50 [INFO   ] vad.pipeline | Found 2 anomaly candidate(s):
+2026-06-23 14:53:51 [INFO   ] vad.pipeline | Found 3 anomaly candidate(s):
+2026-06-23 14:53:57 [INFO   ] vad.pipeline | Found 1 anomaly candidate(s):
+2026-06-23 14:54:04 [INFO   ] vad.pipeline |     [GradRefine] 0.0-15.0s -> 0.0-22.5s (cat=Abuse, cv=0.234)
+2026-06-23 14:54:04 [INFO   ] vad.pipeline |     [GradRefine] 37.3-42.0s -> 35.0-44.5s (cat=Abuse, cv=0.234)
+2026-06-23 14:54:04 [INFO   ] vad.pipeline |     [GradRefine] 43.4-48.0s -> 41.5-50.5s (cat=Abuse, cv=0.234)
+2026-06-23 14:54:04 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 3 ---
+2026-06-23 14:54:04 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 2 ---
+2026-06-23 14:54:05 [INFO   ] vad.pipeline |   [Ensemble] VideoMAE=Abuse@99%, CLIP-seg=RoadAccidents(39%), Arson(20%), Vandalism(13%)
+2026-06-23 14:54:05 [INFO   ] vad.pipeline |   [Ensemble] VLM deciding among ['Abuse', 'Explosion']
+2026-06-23 14:54:09 [INFO   ] vad.pipeline |     [GradRefine] 1.1-9.3s -> 0.0-13.5s (cat=Abuse, cv=0.178)
+2026-06-23 14:54:09 [INFO   ] vad.pipeline |     [GradRefine] 32.2-47.1s -> 25.0-47.0s (cat=Abuse, cv=0.178)
+2026-06-23 14:54:09 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 2 ---
+2026-06-23 14:54:09 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 2 ---
+2026-06-23 14:54:09 [INFO   ] vad.pipeline |   [Ensemble] VideoMAE=Abuse@100%, CLIP-seg=Arson(23%), Burglary(22%), Vandalism(13%)
+2026-06-23 14:54:09 [INFO   ] vad.pipeline |   [Ensemble] VLM deciding among ['Abuse', 'Explosion']
+2026-06-23 14:54:12 [INFO   ] vad.pipeline |     [Classify] VLM chose Abuse from ['Abuse', 'Explosion']
+2026-06-23 14:54:12 [INFO   ] vad.pipeline |     [Classify] VLM chose Abuse from ['Abuse', 'Explosion']
+2026-06-23 14:54:12 [INFO   ] vad.pipeline |     [Classify] VLM chose Abuse from ['Abuse', 'Explosion']
+2026-06-23 14:54:12 [INFO   ] vad.pipeline |   [Ensemble] VLM votes={'Abuse': 3} -> Abuse
+2026-06-23 14:54:12 [INFO   ] vad.pipeline |   [ConfFilter] 2 -> 1 (threshold=0.72)
+2026-06-23 14:54:12 [INFO   ] vad.batch    | [2/65] DONE  Abuse030_x264: 51s video, 1 anomalies, 58.9s processing
+2026-06-23 14:54:12 [INFO   ] vad.batch    | [4/65] START Arrest007_x264 (Arrest)
+2026-06-23 14:54:25 [INFO   ] vad.pipeline |   [CLIP precompute] 130 frames encoded in 12.9s
+2026-06-23 14:54:31 [INFO   ] vad.pipeline |   [VideoMAE] Arrest(68%), Abuse(10%), RoadAccidents(10%) -> Arrest@68%
+2026-06-23 14:54:31 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 5 regions deduped to 3
+2026-06-23 14:54:31 [INFO   ] vad.pipeline |   [Directed scan] 14/23 segments selected for LLM scanning
+2026-06-23 14:54:31 [INFO   ] vad.pipeline |     [Classify] VLM chose Abuse from ['Abuse', 'Explosion']
+2026-06-23 14:54:31 [INFO   ] vad.pipeline |     [Classify] VLM chose Abuse from ['Abuse', 'Explosion']
+2026-06-23 14:54:31 [INFO   ] vad.pipeline |     [GradRefine] 28.6-40.3s -> 26.5-46.5s (cat=Arrest, cv=1.015)
+2026-06-23 14:54:31 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 1 ---
+2026-06-23 14:54:31 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 1 ---
+2026-06-23 14:54:31 [INFO   ] vad.pipeline |   [Ensemble] No confusion pair -> Arrest
+2026-06-23 14:54:31 [INFO   ] vad.pipeline |     [ScoreCurve] 26.5-46.5s -> 26.5-49.5s (half_max=0.647)
+2026-06-23 14:54:31 [INFO   ] vad.batch    | [3/65] DONE  Arrest001_x264: 79s video, 1 anomalies, 63.4s processing
+2026-06-23 14:54:31 [INFO   ] vad.batch    | [5/65] START Arrest024_x264 (Arrest)
+2026-06-23 14:54:50 [INFO   ] vad.pipeline |   [CLIP precompute] 192 frames encoded in 18.7s
+2026-06-23 14:54:57 [INFO   ] vad.pipeline |   [VideoMAE] Arrest(100%), RoadAccidents(0%), Abuse(0%) -> Arrest@100%
+2026-06-23 14:54:57 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 5 regions deduped to 3
+2026-06-23 14:54:57 [INFO   ] vad.pipeline |   [Directed scan] 14/27 segments selected for LLM scanning
+2026-06-23 14:54:57 [INFO   ] vad.pipeline |     [Classify] VLM chose Abuse from ['Abuse', 'Explosion']
+2026-06-23 14:54:57 [INFO   ] vad.pipeline |   [Ensemble] VLM votes={'Abuse': 3} -> Abuse
+2026-06-23 14:54:57 [INFO   ] vad.batch    | [1/65] DONE  Abuse028_x264: 47s video, 2 anomalies, 117.3s processing
+2026-06-23 14:54:57 [INFO   ] vad.batch    | [6/65] START Arrest030_x264 (Arrest)
+2026-06-23 14:56:03 [INFO   ] vad.pipeline |   [CLIP precompute] 560 frames encoded in 64.9s
+2026-06-23 14:56:11 [INFO   ] vad.pipeline |   [VideoMAE] Arrest(100%), Assault(0%), Abuse(0%) -> Arrest@100%
+2026-06-23 14:56:11 [INFO   ] vad.pipeline |   [Directed scan] 16/64 segments selected for LLM scanning
+2026-06-23 14:56:15 [INFO   ] vad.pipeline | Found 5 anomaly candidate(s):
+2026-06-23 14:56:15 [INFO   ] vad.pipeline |   [Limit] Keeping top 3/5 candidates
+2026-06-23 14:56:16 [INFO   ] vad.pipeline | Found 2 anomaly candidate(s):
+2026-06-23 14:56:19 [INFO   ] vad.pipeline | Found 3 anomaly candidate(s):
+2026-06-23 14:56:40 [INFO   ] vad.pipeline |     [GradRefine] 64.0-86.2s -> 53.0-91.5s (cat=Arrest, cv=0.875)
+2026-06-23 14:56:40 [INFO   ] vad.pipeline |     [GradRefine] 88.1-96.3s -> 89.5-95.5s (cat=Arrest, cv=0.875)
+2026-06-23 14:56:40 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 2 ---
+2026-06-23 14:56:40 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 1 ---
+2026-06-23 14:56:40 [INFO   ] vad.pipeline |   [Ensemble] No confusion pair -> Arrest
+2026-06-23 14:56:40 [INFO   ] vad.batch    | [4/65] DONE  Arrest007_x264: 105s video, 1 anomalies, 148.0s processing
+2026-06-23 14:56:40 [INFO   ] vad.batch    | [7/65] START Arrest039_x264 (Arrest)
+2026-06-23 14:59:02 [INFO   ] vad.pipeline |   [CLIP precompute] 943 frames encoded in 139.5s
+2026-06-23 14:59:12 [INFO   ] vad.pipeline |   [VideoMAE] Arrest(100%), RoadAccidents(0%), Shooting(0%) -> Arrest@100%
+2026-06-23 14:59:12 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 5 regions deduped to 2
+2026-06-23 14:59:12 [INFO   ] vad.pipeline |   [Directed scan] 24/117 segments selected for LLM scanning
+2026-06-23 14:59:17 [INFO   ] vad.pipeline | Found 3 anomaly candidate(s):
+2026-06-23 14:59:19 [INFO   ] vad.pipeline |     [GradRefine] 68.4-83.6s -> 61.0-89.0s (cat=Arrest, cv=0.944)
+2026-06-23 14:59:19 [INFO   ] vad.pipeline |     [GradRefine] 154.1-165.8s -> 149.0-172.0s (cat=Arrest, cv=0.944)
+2026-06-23 14:59:19 [INFO   ] vad.pipeline |     [GradRefine] 198.8-217.5s -> 193.5-227.0s (cat=Arrest, cv=0.944)
+2026-06-23 14:59:19 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 3 ---
+2026-06-23 14:59:19 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 3 ---
+2026-06-23 14:59:19 [INFO   ] vad.pipeline |   [Ensemble] No confusion pair -> Arrest
+2026-06-23 14:59:19 [INFO   ] vad.pipeline |     [ScoreCurve] 61.0-89.0s -> 57.5-88.5s (half_max=0.329)
+2026-06-23 14:59:19 [INFO   ] vad.batch    | [6/65] DONE  Arrest030_x264: 288s video, 3 anomalies, 262.1s processing
+2026-06-23 14:59:19 [INFO   ] vad.batch    | [8/65] START Arson007_x264 (Arson)
+2026-06-23 14:59:50 [INFO   ] vad.pipeline |   [CLIP precompute] 264 frames encoded in 30.4s
+2026-06-23 14:59:57 [INFO   ] vad.pipeline |   [VideoMAE] Arson(94%), Explosion(5%), Arrest(0%) -> Arson@94%
+2026-06-23 14:59:57 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 5 regions deduped to 4
+2026-06-23 14:59:57 [INFO   ] vad.pipeline |   [Directed scan] 14/46 segments selected for LLM scanning
+2026-06-23 14:59:59 [INFO   ] vad.batch    | [8/65] DONE  Arson007_x264: 208s video, 0 anomalies, 40.6s processing
+2026-06-23 14:59:59 [INFO   ] vad.batch    | [9/65] START Arson009_x264 (Arson)
+2026-06-23 15:00:05 [INFO   ] vad.pipeline |   [CLIP precompute] 50 frames encoded in 5.2s
+2026-06-23 15:00:12 [INFO   ] vad.pipeline |   [VideoMAE] Arson(99%), Explosion(1%), Shooting(0%) -> Arson@99%
+2026-06-23 15:00:12 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 2 regions deduped to 1
+2026-06-23 15:00:12 [INFO   ] vad.pipeline |   [Directed scan] 6/6 segments selected for LLM scanning
+2026-06-23 15:00:12 [INFO   ] vad.pipeline |     [GradRefine] 34.6-46.3s -> 32.0-52.5s (cat=Arrest, cv=0.468)
+2026-06-23 15:00:12 [INFO   ] vad.pipeline |     [GradRefine] 58.9-79.1s -> 49.0-89.5s (cat=Arrest, cv=0.468)
+2026-06-23 15:00:12 [INFO   ] vad.pipeline |     [GradRefine] 88.5-121.0s -> 72.5-120.5s (cat=Arrest, cv=0.468)
+2026-06-23 15:00:12 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 3 ---
+2026-06-23 15:00:12 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 1 ---
+2026-06-23 15:00:12 [INFO   ] vad.pipeline |   [Ensemble] No confusion pair -> Arrest
+2026-06-23 15:00:12 [INFO   ] vad.batch    | [5/65] DONE  Arrest024_x264: 121s video, 1 anomalies, 341.3s processing
+2026-06-23 15:00:12 [INFO   ] vad.batch    | [10/65] START Arson018_x264 (Arson)
+2026-06-23 15:00:19 [INFO   ] vad.pipeline |   [CLIP precompute] 57 frames encoded in 6.0s
+2026-06-23 15:00:26 [INFO   ] vad.pipeline |   [VideoMAE] Arson(98%), Explosion(2%), Vandalism(0%) -> Arson@98%
+2026-06-23 15:00:26 [INFO   ] vad.pipeline |   [Directed scan] 6/6 segments selected for LLM scanning
+2026-06-23 15:00:29 [INFO   ] vad.pipeline | Found 2 anomaly candidate(s):
+2026-06-23 15:00:44 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 2 ---
+2026-06-23 15:00:44 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 1 ---
+2026-06-23 15:00:44 [INFO   ] vad.pipeline |   [Ensemble] No confusion pair -> Arson
+2026-06-23 15:00:44 [INFO   ] vad.batch    | [10/65] DONE  Arson018_x264: 28s video, 1 anomalies, 31.5s processing
+2026-06-23 15:00:44 [INFO   ] vad.batch    | [11/65] START Arson035_x264 (Arson)
+2026-06-23 15:00:54 [INFO   ] vad.pipeline |   [CLIP precompute] 88 frames encoded in 9.5s
+2026-06-23 15:01:02 [INFO   ] vad.pipeline |   [VideoMAE] Arson(98%), Arrest(1%), Explosion(0%) -> Arson@98%
+2026-06-23 15:01:02 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 2 regions deduped to 1
+2026-06-23 15:01:02 [INFO   ] vad.pipeline |   [Directed scan] 11/11 segments selected for LLM scanning
+2026-06-23 15:01:02 [INFO   ] vad.pipeline | Found 1 anomaly candidate(s):
+2026-06-23 15:01:05 [INFO   ] vad.pipeline | Found 1 anomaly candidate(s):
+2026-06-23 15:01:19 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 1 ---
+2026-06-23 15:01:19 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 1 ---
+2026-06-23 15:01:19 [INFO   ] vad.pipeline |   [Ensemble] No confusion pair -> Arson
+2026-06-23 15:01:19 [INFO   ] vad.pipeline |     [ScoreCurve] 0.0-13.0s -> 0.0-18.0s (half_max=0.984)
+2026-06-23 15:01:19 [INFO   ] vad.batch    | [9/65] DONE  Arson009_x264: 25s video, 1 anomalies, 79.9s processing
+2026-06-23 15:01:19 [INFO   ] vad.batch    | [12/65] START Arson041_x264 (Arson)
+2026-06-23 15:01:38 [INFO   ] vad.pipeline |   [CLIP precompute] 167 frames encoded in 18.0s
+2026-06-23 15:01:44 [INFO   ] vad.pipeline |   [VideoMAE] Assault(98%), Burglary(0%), Arrest(0%) -> Assault@98%
+2026-06-23 15:01:44 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 8 regions deduped to 4
+2026-06-23 15:01:44 [INFO   ] vad.pipeline |   [Directed scan] 14/28 segments selected for LLM scanning
+2026-06-23 15:01:46 [INFO   ] vad.pipeline | Found 3 anomaly candidate(s):
+2026-06-23 15:01:46 [INFO   ] vad.pipeline |     [GradRefine] 310.9-340.1s -> 308.5-355.0s (cat=Arrest, cv=0.845)
+2026-06-23 15:01:46 [INFO   ] vad.pipeline |     [GradRefine] 317.7-346.9s -> 308.5-361.5s (cat=Arrest, cv=0.845)
+2026-06-23 15:01:46 [INFO   ] vad.pipeline |     [GradRefine] 410.4-418.5s -> 408.0-423.0s (cat=Arrest, cv=0.845)
+2026-06-23 15:01:46 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 3 ---
+2026-06-23 15:01:46 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 2 ---
+2026-06-23 15:01:46 [INFO   ] vad.pipeline |   [Ensemble] No confusion pair -> Arrest
+2026-06-23 15:01:46 [INFO   ] vad.batch    | [7/65] DONE  Arrest039_x264: 528s video, 2 anomalies, 306.3s processing
+2026-06-23 15:01:46 [INFO   ] vad.batch    | [13/65] START Assault006_x264 (Assault)
+2026-06-23 15:02:47 [INFO   ] vad.pipeline |   [CLIP precompute] 540 frames encoded in 59.0s
+2026-06-23 15:02:55 [INFO   ] vad.pipeline |   [VideoMAE] Assault(100%), Arrest(0%), RoadAccidents(0%) -> Assault@100%
+2026-06-23 15:02:55 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 10 regions deduped to 2
+2026-06-23 15:02:55 [INFO   ] vad.pipeline |   [Directed scan] 15/60 segments selected for LLM scanning
+2026-06-23 15:02:55 [INFO   ] vad.pipeline |     [GradRefine] 17.6-29.2s -> 12.0-35.5s (cat=Arson, cv=0.186)
+2026-06-23 15:02:55 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 1 ---
+2026-06-23 15:02:55 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 1 ---
+2026-06-23 15:02:55 [INFO   ] vad.pipeline |   [Ensemble] No confusion pair -> Arson
+2026-06-23 15:02:55 [INFO   ] vad.pipeline |     [ScoreCurve] 12.0-35.5s -> 12.0-43.0s (half_max=0.958)
+2026-06-23 15:02:55 [INFO   ] vad.batch    | [11/65] DONE  Arson035_x264: 48s video, 1 anomalies, 131.5s processing
+2026-06-23 15:02:55 [INFO   ] vad.batch    | [14/65] START Assault010_x264 (Assault)
+2026-06-23 15:05:06 [INFO   ] vad.pipeline |   [CLIP precompute] 1032 frames encoded in 128.0s
+2026-06-23 15:05:17 [INFO   ] vad.pipeline |   [VideoMAE] Assault(100%), RoadAccidents(0%), Vandalism(0%) -> Assault@100%
+2026-06-23 15:05:17 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 10 regions deduped to 5
+2026-06-23 15:05:17 [INFO   ] vad.pipeline |   [Directed scan] 24/120 segments selected for LLM scanning
+2026-06-23 15:05:29 [INFO   ] vad.pipeline |     [GradRefine] 0.0-4.4s -> 0.0-7.0s (cat=Assault, cv=0.210)
+2026-06-23 15:05:29 [INFO   ] vad.pipeline |     [GradRefine] 34.3-40.5s -> 33.0-44.0s (cat=Assault, cv=0.210)
+2026-06-23 15:05:29 [INFO   ] vad.pipeline |     [GradRefine] 56.2-71.8s -> 48.5-80.0s (cat=Assault, cv=0.210)
+2026-06-23 15:05:29 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 3 ---
+2026-06-23 15:05:29 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 2 ---
+2026-06-23 15:05:29 [INFO   ] vad.pipeline |   [Ensemble] VideoMAE=Assault@98%, CLIP-seg=Burglary(42%), Arson(22%), Vandalism(9%)
+2026-06-23 15:05:29 [INFO   ] vad.pipeline |   [Ensemble] VLM deciding among ['Assault', 'Arson']
+2026-06-23 15:05:34 [INFO   ] vad.pipeline |     [Classify] VLM chose Assault from ['Assault', 'Arson']
+2026-06-23 15:05:36 [INFO   ] vad.pipeline |     [Classify] VLM chose Assault from ['Assault', 'Arson']
+2026-06-23 15:05:37 [INFO   ] vad.pipeline |     [Classify] VLM chose Assault from ['Assault', 'Arson']
+2026-06-23 15:05:37 [INFO   ] vad.pipeline |   [Ensemble] VLM votes={'Assault': 3} -> Assault
+2026-06-23 15:05:37 [INFO   ] vad.batch    | [12/65] DONE  Arson041_x264: 125s video, 2 anomalies, 257.5s processing
+2026-06-23 15:05:37 [INFO   ] vad.batch    | [15/65] START Assault011_x264 (Assault)
+2026-06-23 15:05:54 [INFO   ] vad.pipeline |   [CLIP precompute] 153 frames encoded in 16.3s
+2026-06-23 15:06:01 [INFO   ] vad.pipeline |   [VideoMAE] Assault(100%), Vandalism(0%), Arrest(0%) -> Assault@100%
+2026-06-23 15:06:01 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 7 regions deduped to 2
+2026-06-23 15:06:01 [INFO   ] vad.pipeline |   [Directed scan] 14/17 segments selected for LLM scanning
+2026-06-23 15:06:01 [INFO   ] vad.pipeline | Found 6 anomaly candidate(s):
+2026-06-23 15:06:01 [INFO   ] vad.pipeline |   [Limit] Keeping top 3/6 candidates
+2026-06-23 15:06:01 [INFO   ] vad.pipeline | Found 1 anomaly candidate(s):
+2026-06-23 15:06:08 [INFO   ] vad.pipeline | Found 3 anomaly candidate(s):
+2026-06-23 15:06:35 [INFO   ] vad.pipeline |     [GradRefine] 62.7-127.8s -> 38.0-160.5s (cat=Assault, cv=0.346)
+2026-06-23 15:06:35 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 1 ---
+2026-06-23 15:06:35 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 1 ---
+2026-06-23 15:06:35 [INFO   ] vad.pipeline |   [Ensemble] VideoMAE=Assault@100%, CLIP-seg=Assault(23%), Shoplifting(16%), Abuse(15%)
+2026-06-23 15:06:35 [INFO   ] vad.pipeline |   [Ensemble] VLM deciding among ['Assault', 'Arson']
+2026-06-23 15:06:37 [INFO   ] vad.pipeline |     [GradRefine] 375.0-393.7s -> 375.0-392.5s (cat=Assault, cv=0.944)
+2026-06-23 15:06:37 [INFO   ] vad.pipeline |     [GradRefine] 419.7-427.9s -> 418.0-432.0s (cat=Assault, cv=0.944)
+2026-06-23 15:06:37 [INFO   ] vad.pipeline |     [GradRefine] 40.3-46.5s -> 37.5-50.0s (cat=Assault, cv=0.944)
+2026-06-23 15:06:37 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 3 ---
+2026-06-23 15:06:37 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 3 ---
+2026-06-23 15:06:37 [INFO   ] vad.pipeline |   [Ensemble] VideoMAE=Assault@100%, CLIP-seg=Abuse(33%), Assault(16%), Arrest(13%)
+2026-06-23 15:06:37 [INFO   ] vad.pipeline |   [Ensemble] VLM deciding among ['Assault', 'Arson']
+2026-06-23 15:06:39 [INFO   ] vad.pipeline |     [Classify] VLM chose Assault from ['Assault', 'Arson']
+2026-06-23 15:06:41 [INFO   ] vad.pipeline |     [Classify] VLM chose Assault from ['Assault', 'Arson']
+2026-06-23 15:06:42 [INFO   ] vad.pipeline |     [Classify] VLM chose Assault from ['Assault', 'Arson']
+2026-06-23 15:06:42 [INFO   ] vad.pipeline |   [Ensemble] VLM votes={'Assault': 3} -> Assault
+2026-06-23 15:06:42 [INFO   ] vad.batch    | [13/65] DONE  Assault006_x264: 270s video, 1 anomalies, 295.1s processing
+2026-06-23 15:06:42 [INFO   ] vad.batch    | [16/65] START Burglary005_x264 (Burglary)
+2026-06-23 15:07:26 [INFO   ] vad.pipeline |   [CLIP precompute] 427 frames encoded in 43.5s
+2026-06-23 15:07:32 [INFO   ] vad.pipeline |   [VideoMAE] Shoplifting(29%), Vandalism(29%), Assault(19%) -> Shoplifting@29%
+2026-06-23 15:07:32 [INFO   ] vad.pipeline |   [Directed scan] 14/57 segments selected for LLM scanning
+2026-06-23 15:07:32 [INFO   ] vad.pipeline |     [Classify] VLM chose Assault from ['Assault', 'Arson']
+2026-06-23 15:07:32 [INFO   ] vad.pipeline |     [Classify] VLM chose Assault from ['Assault', 'Arson']
+2026-06-23 15:07:32 [INFO   ] vad.pipeline |     [Classify] VLM chose Assault from ['Assault', 'Arson']
+2026-06-23 15:07:32 [INFO   ] vad.pipeline |   [Ensemble] VLM votes={'Assault': 3} -> Assault
+2026-06-23 15:07:32 [INFO   ] vad.pipeline |     [ScoreCurve] 37.5-50.0s -> 37.5-51.5s (half_max=0.448)
+2026-06-23 15:07:32 [INFO   ] vad.pipeline |   [ConfFilter] 3 -> 2 (threshold=0.72)
+2026-06-23 15:07:32 [INFO   ] vad.batch    | [14/65] DONE  Assault010_x264: 539s video, 2 anomalies, 276.8s processing
+2026-06-23 15:07:32 [INFO   ] vad.batch    | [17/65] START Burglary032_x264 (Burglary)
+2026-06-23 15:09:46 [INFO   ] vad.pipeline |   [CLIP precompute] 1049 frames encoded in 131.8s
+2026-06-23 15:09:55 [INFO   ] vad.pipeline |   [VideoMAE] Burglary(100%), Abuse(0%), Vandalism(0%) -> Burglary@100%
+2026-06-23 15:09:55 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 10 regions deduped to 4
+2026-06-23 15:09:55 [INFO   ] vad.pipeline |   [Directed scan] 24/117 segments selected for LLM scanning
+2026-06-23 15:09:57 [INFO   ] vad.pipeline |     [GradRefine] 14.4-22.5s -> 10.5-27.0s (cat=Assault, cv=0.225)
+2026-06-23 15:09:57 [INFO   ] vad.pipeline |     [GradRefine] 14.3-36.5s -> 3.5-48.0s (cat=Assault, cv=0.225)
+2026-06-23 15:09:57 [INFO   ] vad.pipeline |     [GradRefine] 64.5-70.7s -> 61.5-74.0s (cat=Assault, cv=0.225)
+2026-06-23 15:09:57 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 3 ---
+2026-06-23 15:09:57 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 2 ---
+2026-06-23 15:09:57 [INFO   ] vad.pipeline |   [Ensemble] VideoMAE=Assault@100%, CLIP-seg=Assault(23%), Stealing(15%), Abuse(15%)
+2026-06-23 15:09:57 [INFO   ] vad.pipeline |   [Ensemble] VLM deciding among ['Assault', 'Arson']
+2026-06-23 15:09:58 [INFO   ] vad.pipeline | Found 4 anomaly candidate(s):
+2026-06-23 15:09:58 [INFO   ] vad.pipeline |   [Limit] Keeping top 3/4 candidates
+2026-06-23 15:09:59 [INFO   ] vad.pipeline | Found 2 anomaly candidate(s):
+2026-06-23 15:10:03 [INFO   ] vad.pipeline |     [Classify] VLM chose Assault from ['Assault', 'Arson']
+2026-06-23 15:10:03 [INFO   ] vad.pipeline |     [Classify] VLM chose Assault from ['Assault', 'Arson']
+2026-06-23 15:10:04 [INFO   ] vad.pipeline |     [Classify] VLM chose Assault from ['Assault', 'Arson']
+2026-06-23 15:10:04 [INFO   ] vad.pipeline |   [Ensemble] VLM votes={'Assault': 3} -> Assault
+2026-06-23 15:10:04 [INFO   ] vad.batch    | [15/65] DONE  Assault011_x264: 76s video, 2 anomalies, 266.7s processing
+2026-06-23 15:10:04 [INFO   ] vad.batch    | [18/65] START Burglary037_x264 (Burglary)
+2026-06-23 15:10:16 [INFO   ] vad.pipeline |   [CLIP precompute] 115 frames encoded in 12.5s
+2026-06-23 15:10:26 [INFO   ] vad.pipeline |   [VideoMAE] Burglary(100%), Assault(0%), Vandalism(0%) -> Burglary@100%
+2026-06-23 15:10:26 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 9 regions deduped to 2
+2026-06-23 15:10:26 [INFO   ] vad.pipeline |   [Directed scan] 14/14 segments selected for LLM scanning
+2026-06-23 15:10:48 [INFO   ] vad.pipeline |     [GradRefine] 13.3-19.5s -> 10.5-23.0s (cat=Shoplifting, cv=0.863)
+2026-06-23 15:10:48 [INFO   ] vad.pipeline |     [GradRefine] 47.8-54.0s -> 48.0-57.5s (cat=Shoplifting, cv=0.863)
+2026-06-23 15:10:48 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 2 ---
+2026-06-23 15:10:48 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 2 ---
+2026-06-23 15:10:48 [INFO   ] vad.pipeline |   [Ensemble] No confusion pair -> Shoplifting
+2026-06-23 15:10:48 [INFO   ] vad.pipeline |     [ScoreCurve] 10.5-23.0s -> 8.5-22.5s (half_max=0.094)
+2026-06-23 15:10:48 [INFO   ] vad.batch    | [16/65] DONE  Burglary005_x264: 258s video, 2 anomalies, 246.2s processing
+2026-06-23 15:10:48 [INFO   ] vad.batch    | [19/65] START Burglary061_x264 (Burglary)
+2026-06-23 15:11:44 [INFO   ] vad.pipeline |   [CLIP precompute] 394 frames encoded in 55.6s
+2026-06-23 15:11:51 [INFO   ] vad.pipeline |   [VideoMAE] Arrest(68%), Shooting(16%), Vandalism(6%) -> Arrest@68%
+2026-06-23 15:11:51 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 5 regions deduped to 4
+2026-06-23 15:11:52 [INFO   ] vad.pipeline |   [Directed scan] 16/67 segments selected for LLM scanning
+2026-06-23 15:11:52 [INFO   ] vad.pipeline | Found 2 anomaly candidate(s):
+2026-06-23 15:11:56 [INFO   ] vad.pipeline | Found 2 anomaly candidate(s):
+2026-06-23 15:12:08 [INFO   ] vad.pipeline |     [GradRefine] 134.7-142.9s -> 135.5-142.0s (cat=Arrest, cv=1.409)
+2026-06-23 15:12:08 [INFO   ] vad.pipeline |     [GradRefine] 188.8-195.0s -> 188.5-193.5s (cat=Arrest, cv=1.409)
+2026-06-23 15:12:08 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 2 ---
+2026-06-23 15:12:08 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 2 ---
+2026-06-23 15:12:08 [INFO   ] vad.pipeline |   [Ensemble] No confusion pair -> Arrest
+2026-06-23 15:12:08 [INFO   ] vad.batch    | [19/65] DONE  Burglary061_x264: 300s video, 2 anomalies, 80.6s processing
+2026-06-23 15:12:08 [INFO   ] vad.batch    | [20/65] START Burglary079_x264 (Burglary)
+2026-06-23 15:13:25 [INFO   ] vad.pipeline |   [CLIP precompute] 678 frames encoded in 75.7s
+2026-06-23 15:13:32 [INFO   ] vad.pipeline |   [VideoMAE] Vandalism(98%), Assault(1%), RoadAccidents(0%) -> Vandalism@98%
+2026-06-23 15:13:32 [INFO   ] vad.pipeline |     [GradRefine] 42.9-89.3s -> 20.0-113.0s (cat=Burglary, cv=0.136)
+2026-06-23 15:13:32 [INFO   ] vad.pipeline |     [GradRefine] 125.7-133.9s -> 122.0-138.0s (cat=Burglary, cv=0.136)
+2026-06-23 15:13:32 [INFO   ] vad.pipeline |     [GradRefine] 137.8-144.0s -> 135.0-147.5s (cat=Burglary, cv=0.136)
+2026-06-23 15:13:32 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 3 ---
+2026-06-23 15:13:32 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 2 ---
+2026-06-23 15:13:34 [INFO   ] vad.pipeline |   [Ensemble] VideoMAE=Burglary@100%, CLIP-seg=Burglary(25%), Shoplifting(17%), Arson(15%)
+2026-06-23 15:13:34 [INFO   ] vad.pipeline |   [Ensemble] VLM deciding among ['Burglary', 'Shoplifting']
+2026-06-23 15:13:37 [INFO   ] vad.pipeline | Found 2 anomaly candidate(s):
+2026-06-23 15:13:41 [INFO   ] vad.pipeline |     [Classify] VLM chose Burglary from ['Burglary', 'Shoplifting']
+2026-06-23 15:13:42 [INFO   ] vad.pipeline |     [Classify] VLM chose Burglary from ['Burglary', 'Shoplifting']
+2026-06-23 15:13:42 [INFO   ] vad.pipeline |     [Classify] VLM chose Burglary from ['Burglary', 'Shoplifting']
+2026-06-23 15:13:42 [INFO   ] vad.pipeline |   [Ensemble] VLM votes={'Burglary': 3} -> Burglary
+2026-06-23 15:13:42 [INFO   ] vad.batch    | [17/65] DONE  Burglary032_x264: 526s video, 2 anomalies, 370.2s processing
+2026-06-23 15:13:42 [INFO   ] vad.batch    | [21/65] START Explosion002_x264 (Explosion)
+2026-06-23 15:14:06 [INFO   ] vad.pipeline |   [CLIP precompute] 191 frames encoded in 23.3s
+2026-06-23 15:14:14 [INFO   ] vad.pipeline |   [VideoMAE] Explosion(93%), Shooting(3%), Vandalism(1%) -> Explosion@93%
+2026-06-23 15:14:14 [INFO   ] vad.pipeline |   [Directed scan] 14/30 segments selected for LLM scanning
+2026-06-23 15:14:18 [INFO   ] vad.pipeline | Found 2 anomaly candidate(s):
+2026-06-23 15:14:22 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 2 ---
+2026-06-23 15:14:22 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 2 ---
+2026-06-23 15:14:22 [INFO   ] vad.pipeline |   [Ensemble] No confusion pair -> Vandalism
+2026-06-23 15:14:22 [INFO   ] vad.pipeline |     [ScoreCurve] 108.0-135.5s -> 97.0-144.5s (half_max=0.983)
+2026-06-23 15:14:22 [INFO   ] vad.pipeline |     [ScoreCurve] 154.0-163.0s -> 150.5-166.5s (half_max=0.982)
+2026-06-23 15:14:22 [INFO   ] vad.batch    | [20/65] DONE  Burglary079_x264: 495s video, 2 anomalies, 133.5s processing
+2026-06-23 15:14:22 [INFO   ] vad.batch    | [22/65] START Explosion004_x264 (Explosion)
+2026-06-23 15:14:35 [INFO   ] vad.pipeline |   [CLIP precompute] 126 frames encoded in 13.1s
+2026-06-23 15:14:42 [INFO   ] vad.pipeline |   [VideoMAE] Explosion(99%), Abuse(0%), Assault(0%) -> Explosion@99%
+2026-06-23 15:14:42 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 3 regions deduped to 2
+2026-06-23 15:14:42 [INFO   ] vad.pipeline |   [Directed scan] 9/14 segments selected for LLM scanning
+2026-06-23 15:14:45 [INFO   ] vad.pipeline | Found 2 anomaly candidate(s):
+2026-06-23 15:14:46 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 2 ---
+2026-06-23 15:14:46 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 1 ---
+2026-06-23 15:14:46 [INFO   ] vad.pipeline |   [Ensemble] VideoMAE=Burglary@100%, CLIP-seg=Burglary(30%), Robbery(26%), Shoplifting(12%)
+2026-06-23 15:14:46 [INFO   ] vad.pipeline |   [Ensemble] VLM deciding among ['Burglary', 'Shoplifting']
+2026-06-23 15:14:59 [INFO   ] vad.pipeline |     [GradRefine] 53.2-75.8s -> 48.5-76.5s (cat=Explosion, cv=0.597)
+2026-06-23 15:14:59 [INFO   ] vad.pipeline |     [GradRefine] 70.6-75.2s -> 68.5-77.0s (cat=Explosion, cv=0.597)
+2026-06-23 15:14:59 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 2 ---
+2026-06-23 15:14:59 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 1 ---
+2026-06-23 15:14:59 [INFO   ] vad.pipeline |   [Ensemble] No confusion pair -> Explosion
+2026-06-23 15:14:59 [INFO   ] vad.batch    | [21/65] DONE  Explosion002_x264: 134s video, 1 anomalies, 76.6s processing
+2026-06-23 15:14:59 [INFO   ] vad.batch    | [23/65] START Explosion017_x264 (Explosion)
+2026-06-23 15:15:13 [INFO   ] vad.pipeline |   [CLIP precompute] 110 frames encoded in 13.4s
+2026-06-23 15:15:21 [INFO   ] vad.pipeline |   [VideoMAE] Explosion(54%), RoadAccidents(45%), Burglary(0%) -> Explosion@54%
+2026-06-23 15:15:21 [INFO   ] vad.pipeline |   [Directed scan] 8/12 segments selected for LLM scanning
+2026-06-23 15:15:21 [INFO   ] vad.pipeline |     [Classify] VLM chose Burglary from ['Burglary', 'Shoplifting']
+2026-06-23 15:15:21 [INFO   ] vad.pipeline |     [Classify] VLM chose Burglary from ['Burglary', 'Shoplifting']
+2026-06-23 15:15:21 [INFO   ] vad.pipeline |     [Classify] VLM chose Burglary from ['Burglary', 'Shoplifting']
+2026-06-23 15:15:21 [INFO   ] vad.pipeline |   [Ensemble] VLM votes={'Burglary': 3} -> Burglary
+2026-06-23 15:15:21 [INFO   ] vad.pipeline |     [ScoreCurve] 2.5-60.0s -> 0.5-61.0s (half_max=0.976)
+2026-06-23 15:15:21 [INFO   ] vad.batch    | [18/65] DONE  Burglary037_x264: 64s video, 1 anomalies, 317.6s processing
+2026-06-23 15:15:21 [INFO   ] vad.batch    | [24/65] START Explosion029_x264 (Explosion)
+2026-06-23 15:15:36 [INFO   ] vad.pipeline |   [CLIP precompute] 125 frames encoded in 14.0s
+2026-06-23 15:15:44 [INFO   ] vad.pipeline |   [VideoMAE] Explosion(94%), RoadAccidents(4%), Vandalism(0%) -> Explosion@94%
+2026-06-23 15:15:44 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 4 regions deduped to 3
+2026-06-23 15:15:44 [INFO   ] vad.pipeline |   [Directed scan] 14/18 segments selected for LLM scanning
+2026-06-23 15:15:46 [INFO   ] vad.pipeline | Found 2 anomaly candidate(s):
+2026-06-23 15:15:49 [INFO   ] vad.pipeline | Found 1 anomaly candidate(s):
+2026-06-23 15:15:50 [INFO   ] vad.pipeline |     [GradRefine] 3.4-9.1s -> 1.0-12.0s (cat=Explosion, cv=0.058)
+2026-06-23 15:15:50 [INFO   ] vad.pipeline |     [GradRefine] 39.4-56.0s -> 31.5-63.0s (cat=Explosion, cv=0.058)
+2026-06-23 15:15:50 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 2 ---
+2026-06-23 15:15:50 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 2 ---
+2026-06-23 15:15:50 [INFO   ] vad.pipeline |     [Short-narrow] 1.0-12.0s -> 0.0-8.5s (peak@3.5s)
+2026-06-23 15:15:50 [INFO   ] vad.pipeline |   [Ensemble] No confusion pair -> Explosion
+2026-06-23 15:15:50 [INFO   ] vad.pipeline |     [ScoreCurve] 0.0-8.5s -> 0.0-11.5s (half_max=0.978)
+2026-06-23 15:15:50 [INFO   ] vad.batch    | [22/65] DONE  Explosion004_x264: 63s video, 2 anomalies, 88.2s processing
+2026-06-23 15:15:50 [INFO   ] vad.batch    | [25/65] START Explosion035_x264 (Explosion)
+2026-06-23 15:16:10 [INFO   ] vad.pipeline |   [CLIP precompute] 179 frames encoded in 19.9s
+2026-06-23 15:16:18 [INFO   ] vad.pipeline |   [VideoMAE] Abuse(90%), Explosion(4%), Burglary(2%) -> Abuse@90%
+2026-06-23 15:16:18 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 8 regions deduped to 1
+2026-06-23 15:16:18 [INFO   ] vad.pipeline |   [Directed scan] 14/21 segments selected for LLM scanning
+2026-06-23 15:16:20 [INFO   ] vad.pipeline | Found 2 anomaly candidate(s):
+2026-06-23 15:16:25 [INFO   ] vad.pipeline |     [GradRefine] 2.8-9.0s -> 0.0-12.0s (cat=Explosion, cv=0.395)
+2026-06-23 15:16:25 [INFO   ] vad.pipeline |     [GradRefine] 63.9-72.0s -> 60.0-78.5s (cat=Explosion, cv=0.395)
+2026-06-23 15:16:25 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 2 ---
+2026-06-23 15:16:25 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 2 ---
+2026-06-23 15:16:25 [INFO   ] vad.pipeline |     [Short-narrow] 0.0-12.0s -> 3.0-13.0s (peak@8.0s)
+2026-06-23 15:16:25 [INFO   ] vad.pipeline |     [Short-narrow] 60.0-78.5s -> 57.5-67.5s (peak@62.5s)
+2026-06-23 15:16:25 [INFO   ] vad.pipeline |   [Ensemble] No confusion pair -> Explosion
+2026-06-23 15:16:25 [INFO   ] vad.pipeline |     [ScoreCurve] 3.0-13.0s -> 4.5-12.0s (half_max=0.619)
+2026-06-23 15:16:25 [INFO   ] vad.batch    | [24/65] DONE  Explosion029_x264: 80s video, 2 anomalies, 63.7s processing
+2026-06-23 15:16:25 [INFO   ] vad.batch    | [26/65] START Fighting003_x264 (Fighting)
+2026-06-23 15:16:50 [INFO   ] vad.pipeline |   [CLIP precompute] 205 frames encoded in 24.9s
+2026-06-23 15:16:57 [INFO   ] vad.pipeline |   [VideoMAE] Fighting(69%), Assault(25%), RoadAccidents(3%) -> Fighting@69%
+2026-06-23 15:16:57 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 5 regions deduped to 3
+2026-06-23 15:16:57 [INFO   ] vad.pipeline |   [Directed scan] 14/23 segments selected for LLM scanning
+2026-06-23 15:17:00 [INFO   ] vad.pipeline | Found 5 anomaly candidate(s):
+2026-06-23 15:17:00 [INFO   ] vad.pipeline |   [Limit] Keeping top 3/5 candidates
+2026-06-23 15:17:03 [INFO   ] vad.pipeline |     [GradRefine] 36.0-47.8s -> 30.5-54.0s (cat=Explosion, cv=0.155)
+2026-06-23 15:17:03 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 1 ---
+2026-06-23 15:17:03 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 1 ---
+2026-06-23 15:17:03 [INFO   ] vad.pipeline |     [Short-narrow] 30.5-54.0s -> 33.5-43.5s (peak@38.5s)
+2026-06-23 15:17:03 [INFO   ] vad.pipeline |   [Ensemble] No confusion pair -> Explosion
+2026-06-23 15:17:03 [INFO   ] vad.pipeline |     [ScoreCurve] 33.5-43.5s -> 33.5-47.0s (half_max=0.876)
+2026-06-23 15:17:03 [INFO   ] vad.batch    | [23/65] DONE  Explosion017_x264: 55s video, 1 anomalies, 123.7s processing
+2026-06-23 15:17:03 [INFO   ] vad.batch    | [27/65] START Fighting018_x264 (Fighting)
+2026-06-23 15:17:10 [INFO   ] vad.pipeline |   [CLIP precompute] 72 frames encoded in 6.7s
+2026-06-23 15:17:16 [INFO   ] vad.pipeline |   [VideoMAE] Fighting(87%), Assault(12%), Vandalism(0%) -> Fighting@87%
+2026-06-23 15:17:16 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 3 regions deduped to 2
+2026-06-23 15:17:16 [INFO   ] vad.pipeline |   [Directed scan] 9/10 segments selected for LLM scanning
+2026-06-23 15:17:18 [INFO   ] vad.pipeline | Found 2 anomaly candidate(s):
+2026-06-23 15:17:25 [INFO   ] vad.pipeline |     [GradRefine] 4.2-11.3s -> 4.5-15.0s (cat=Abuse, cv=0.547)
+2026-06-23 15:17:25 [INFO   ] vad.pipeline |     [GradRefine] 26.4-41.6s -> 29.5-49.5s (cat=Abuse, cv=0.547)
+2026-06-23 15:17:25 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 2 ---
+2026-06-23 15:17:25 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 2 ---
+2026-06-23 15:17:25 [INFO   ] vad.pipeline |   [Ensemble] VideoMAE=Abuse@90%, CLIP-seg=Explosion(37%), Assault(25%), Abuse(7%)
+2026-06-23 15:17:25 [INFO   ] vad.pipeline |   [Ensemble] VLM deciding among ['Abuse', 'Explosion']
+2026-06-23 15:17:31 [INFO   ] vad.pipeline |     [GradRefine] 46.1-57.8s -> 40.5-64.0s (cat=Fighting, cv=0.316)
+2026-06-23 15:17:31 [INFO   ] vad.pipeline |     [GradRefine] 70.6-82.3s -> 65.0-88.5s (cat=Fighting, cv=0.316)
+2026-06-23 15:17:31 [INFO   ] vad.pipeline |     [GradRefine] 96.8-100.9s -> 96.5-101.5s (cat=Fighting, cv=0.316)
+2026-06-23 15:17:31 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 3 ---
+2026-06-23 15:17:31 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 2 ---
+2026-06-23 15:17:31 [INFO   ] vad.pipeline |   [Ensemble] No confusion pair -> Fighting
+2026-06-23 15:17:31 [INFO   ] vad.batch    | [26/65] DONE  Fighting003_x264: 103s video, 2 anomalies, 66.3s processing
+2026-06-23 15:17:31 [INFO   ] vad.batch    | [28/65] START Fighting033_x264 (Fighting)
+2026-06-23 15:17:39 [INFO   ] vad.pipeline |   [CLIP precompute] 73 frames encoded in 7.4s
+2026-06-23 15:17:46 [INFO   ] vad.pipeline |   [VideoMAE] Fighting(99%), Abuse(0%), Assault(0%) -> Fighting@99%
+2026-06-23 15:17:46 [INFO   ] vad.pipeline |   [Directed scan] 8/8 segments selected for LLM scanning
+2026-06-23 15:17:46 [INFO   ] vad.pipeline |     [Classify] VLM chose Explosion from ['Abuse', 'Explosion']
+2026-06-23 15:17:46 [INFO   ] vad.pipeline |     [Classify] VLM chose Explosion from ['Abuse', 'Explosion']
+2026-06-23 15:17:46 [INFO   ] vad.pipeline |     [Classify] VLM chose Explosion from ['Abuse', 'Explosion']
+2026-06-23 15:17:46 [INFO   ] vad.pipeline |   [Ensemble] VLM votes={'Explosion': 3} -> Explosion
+2026-06-23 15:17:46 [INFO   ] vad.batch    | [25/65] DONE  Explosion035_x264: 96s video, 2 anomalies, 115.8s processing
+2026-06-23 15:17:46 [INFO   ] vad.batch    | [29/65] START Fighting042_x264 (Fighting)
+2026-06-23 15:18:06 [INFO   ] vad.pipeline |   [CLIP precompute] 150 frames encoded in 19.5s
+2026-06-23 15:18:16 [INFO   ] vad.pipeline |   [VideoMAE] Fighting(67%), Vandalism(31%), Assault(0%) -> Fighting@67%
+2026-06-23 15:18:17 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 5 regions deduped to 2
+2026-06-23 15:18:17 [INFO   ] vad.pipeline |   [Directed scan] 14/17 segments selected for LLM scanning
+2026-06-23 15:18:21 [INFO   ] vad.pipeline | Found 3 anomaly candidate(s):
+2026-06-23 15:18:22 [INFO   ] vad.pipeline | Found 2 anomaly candidate(s):
+2026-06-23 15:18:26 [INFO   ] vad.pipeline |     [GradRefine] 7.8-19.2s -> 6.0-16.5s (cat=Fighting, cv=1.101)
+2026-06-23 15:18:26 [INFO   ] vad.pipeline |     [GradRefine] 29.8-36.0s -> 30.0-40.5s (cat=Fighting, cv=1.101)
+2026-06-23 15:18:26 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 2 ---
+2026-06-23 15:18:26 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 2 ---
+2026-06-23 15:18:26 [INFO   ] vad.pipeline |   [Ensemble] No confusion pair -> Fighting
+2026-06-23 15:18:26 [INFO   ] vad.pipeline |     [ScoreCurve] 30.0-40.5s -> 30.0-43.5s (half_max=0.606)
+2026-06-23 15:18:26 [INFO   ] vad.batch    | [27/65] DONE  Fighting018_x264: 46s video, 2 anomalies, 82.8s processing
+2026-06-23 15:18:26 [INFO   ] vad.batch    | [30/65] START Fighting047_x264 (Fighting)
+2026-06-23 15:19:18 [INFO   ] vad.pipeline |   [CLIP precompute] 293 frames encoded in 52.2s
+2026-06-23 15:19:26 [INFO   ] vad.pipeline |   [VideoMAE] Fighting(55%), Assault(25%), RoadAccidents(15%) -> Fighting@55%
+2026-06-23 15:19:26 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 5 regions deduped to 4
+2026-06-23 15:19:26 [INFO   ] vad.pipeline |   [Directed scan] 14/33 segments selected for LLM scanning
+2026-06-23 15:19:33 [INFO   ] vad.pipeline | Found 3 anomaly candidate(s):
+2026-06-23 15:19:44 [INFO   ] vad.pipeline |     [GradRefine] 2.8-9.0s -> 0.0-7.5s (cat=Fighting, cv=0.766)
+2026-06-23 15:19:44 [INFO   ] vad.pipeline |     [GradRefine] 23.1-33.4s -> 18.5-36.5s (cat=Fighting, cv=0.766)
+2026-06-23 15:19:44 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 2 ---
+2026-06-23 15:19:44 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 2 ---
+2026-06-23 15:19:44 [INFO   ] vad.pipeline |   [Ensemble] No confusion pair -> Fighting
+2026-06-23 15:19:44 [INFO   ] vad.batch    | [28/65] DONE  Fighting033_x264: 37s video, 2 anomalies, 132.3s processing
+2026-06-23 15:19:44 [INFO   ] vad.batch    | [31/65] START Normal_Videos_059_x264 (Normal)
+2026-06-23 15:19:58 [INFO   ] vad.pipeline |   [CLIP precompute] 119 frames encoded in 14.6s
+2026-06-23 15:20:07 [INFO   ] vad.pipeline |   [VideoMAE] Shoplifting(100%), Fighting(0%), Robbery(0%) -> Shoplifting@100%
+2026-06-23 15:20:07 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 5 regions deduped to 1
+2026-06-23 15:20:07 [INFO   ] vad.pipeline |   [Directed scan] 14/14 segments selected for LLM scanning
+2026-06-23 15:20:16 [INFO   ] vad.pipeline |     [GradRefine] 19.2-27.4s -> 17.5-28.5s (cat=Fighting, cv=1.062)
+2026-06-23 15:20:16 [INFO   ] vad.pipeline |     [GradRefine] 21.8-40.5s -> 21.0-40.5s (cat=Fighting, cv=1.062)
+2026-06-23 15:20:16 [INFO   ] vad.pipeline |     [GradRefine] 68.5-74.6s -> 65.5-74.5s (cat=Fighting, cv=1.062)
+2026-06-23 15:20:16 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 3 ---
+2026-06-23 15:20:16 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 2 ---
+2026-06-23 15:20:16 [INFO   ] vad.pipeline |   [Ensemble] No confusion pair -> Fighting
+2026-06-23 15:20:16 [INFO   ] vad.batch    | [29/65] DONE  Fighting042_x264: 75s video, 2 anomalies, 150.2s processing
+2026-06-23 15:20:16 [INFO   ] vad.batch    | [32/65] START Normal_Videos_782_x264 (Normal)
+2026-06-23 15:20:56 [INFO   ] vad.pipeline |   [CLIP precompute] 333 frames encoded in 39.2s
+2026-06-23 15:21:03 [INFO   ] vad.pipeline |   [VideoMAE] Assault(98%), Vandalism(1%), Fighting(1%) -> Assault@98%
+2026-06-23 15:21:03 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 10 regions deduped to 4
+2026-06-23 15:21:03 [INFO   ] vad.pipeline |   [Directed scan] 14/41 segments selected for LLM scanning
+2026-06-23 15:21:03 [INFO   ] vad.pipeline | Found 2 anomaly candidate(s):
+2026-06-23 15:21:06 [INFO   ] vad.pipeline | Found 4 anomaly candidate(s):
+2026-06-23 15:21:06 [INFO   ] vad.pipeline |   [Limit] Keeping top 3/4 candidates
+2026-06-23 15:21:16 [INFO   ] vad.pipeline |     [GradRefine] 11.8-18.0s -> 9.0-19.5s (cat=Assault, cv=1.029)
+2026-06-23 15:21:16 [INFO   ] vad.pipeline |     [GradRefine] 103.3-108.0s -> 104.5-110.5s (cat=Assault, cv=1.029)
+2026-06-23 15:21:16 [INFO   ] vad.pipeline |     [GradRefine] 115.6-120.2s -> 116.0-123.0s (cat=Assault, cv=1.029)
+2026-06-23 15:21:16 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 3 ---
+2026-06-23 15:21:16 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 2 ---
+2026-06-23 15:21:16 [INFO   ] vad.pipeline |   [Ensemble] VideoMAE=Assault@98%, CLIP-seg=Shoplifting(49%), Stealing(11%), Assault(3%)
+2026-06-23 15:21:16 [INFO   ] vad.pipeline |   [Ensemble] VLM deciding among ['Assault', 'Arson']
+2026-06-23 15:21:23 [INFO   ] vad.pipeline |     [Classify] VLM chose Assault from ['Assault', 'Arson']
+2026-06-23 15:21:23 [INFO   ] vad.pipeline |     [Classify] VLM chose Assault from ['Assault', 'Arson']
+2026-06-23 15:21:23 [INFO   ] vad.pipeline |     [Classify] VLM chose Assault from ['Assault', 'Arson']
+2026-06-23 15:21:23 [INFO   ] vad.pipeline |   [Ensemble] VLM votes={'Assault': 3} -> Assault
+2026-06-23 15:21:23 [INFO   ] vad.pipeline |   [ConfFilter] 2 -> 1 (threshold=0.72)
+2026-06-23 15:21:23 [INFO   ] vad.batch    | [32/65] DONE  Normal_Videos_782_x264: 185s video, 1 anomalies, 67.4s processing
+2026-06-23 15:21:23 [INFO   ] vad.batch    | [33/65] START Normal_Videos_801_x264 (Normal)
+2026-06-23 15:21:44 [INFO   ] vad.pipeline |   [CLIP precompute] 183 frames encoded in 20.1s
+2026-06-23 15:21:51 [INFO   ] vad.pipeline |   [VideoMAE] Shoplifting(100%), Abuse(0%), RoadAccidents(0%) -> Shoplifting@100%
+2026-06-23 15:21:51 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 5 regions deduped to 2
+2026-06-23 15:21:51 [INFO   ] vad.pipeline |   [Directed scan] 14/20 segments selected for LLM scanning
+2026-06-23 15:21:56 [INFO   ] vad.pipeline | Found 3 anomaly candidate(s):
+2026-06-23 15:21:58 [INFO   ] vad.pipeline |     [GradRefine] 4.8-13.0s -> 1.0-17.5s (cat=Fighting, cv=0.126)
+2026-06-23 15:21:58 [INFO   ] vad.pipeline |     [GradRefine] 43.4-77.1s -> 26.5-94.0s (cat=Fighting, cv=0.126)
+2026-06-23 15:21:58 [INFO   ] vad.pipeline |     [GradRefine] 85.3-91.5s -> 82.5-95.0s (cat=Fighting, cv=0.126)
+2026-06-23 15:21:58 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 3 ---
+2026-06-23 15:21:58 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 3 ---
+2026-06-23 15:21:58 [INFO   ] vad.pipeline |   [Ensemble] No confusion pair -> Fighting
+2026-06-23 15:21:58 [INFO   ] vad.batch    | [30/65] DONE  Fighting047_x264: 149s video, 2 anomalies, 212.2s processing
+2026-06-23 15:21:58 [INFO   ] vad.batch    | [34/65] START Normal_Videos_831_x264 (Normal)
+2026-06-23 15:22:02 [INFO   ] vad.pipeline |   [CLIP precompute] 28 frames encoded in 3.7s
+2026-06-23 15:22:08 [INFO   ] vad.pipeline |   [VideoMAE] RoadAccidents(99%), Arrest(1%), Burglary(0%) -> RoadAccidents@99%
+2026-06-23 15:22:08 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 3 regions deduped to 1
+2026-06-23 15:22:09 [INFO   ] vad.pipeline |   [Directed scan] 3/3 segments selected for LLM scanning
+2026-06-23 15:22:11 [INFO   ] vad.batch    | [34/65] DONE  Normal_Videos_831_x264: 15s video, 0 anomalies, 13.3s processing
+2026-06-23 15:22:11 [INFO   ] vad.batch    | [35/65] START Normal_Videos_905_x264 (Normal)
+2026-06-23 15:22:14 [INFO   ] vad.pipeline |   [CLIP precompute] 46 frames encoded in 3.3s
+2026-06-23 15:22:21 [INFO   ] vad.pipeline |   [VideoMAE] RoadAccidents(100%), Arrest(0%), Burglary(0%) -> RoadAccidents@100%
+2026-06-23 15:22:21 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 3 regions deduped to 2
+2026-06-23 15:22:21 [INFO   ] vad.pipeline |   [Directed scan] 9/9 segments selected for LLM scanning
+2026-06-23 15:22:25 [INFO   ] vad.pipeline | Found 1 anomaly candidate(s):
+2026-06-23 15:22:41 [INFO   ] vad.pipeline |     [GradRefine] 8.9-18.4s -> 4.5-23.5s (cat=Shoplifting, cv=0.075)
+2026-06-23 15:22:41 [INFO   ] vad.pipeline |     [GradRefine] 24.6-38.5s -> 18.0-45.5s (cat=Shoplifting, cv=0.075)
+2026-06-23 15:22:41 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 2 ---
+2026-06-23 15:22:41 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 1 ---
+2026-06-23 15:22:41 [INFO   ] vad.pipeline |   [Ensemble] No confusion pair -> Shoplifting
+2026-06-23 15:22:41 [INFO   ] vad.batch    | [31/65] DONE  Normal_Videos_059_x264: 61s video, 1 anomalies, 177.0s processing
+2026-06-23 15:22:41 [INFO   ] vad.batch    | [36/65] START RoadAccidents001_x264 (RoadAccidents)
+2026-06-23 15:22:50 [INFO   ] vad.pipeline |   [CLIP precompute] 87 frames encoded in 8.8s
+2026-06-23 15:22:58 [INFO   ] vad.pipeline |   [VideoMAE] RoadAccidents(100%), Vandalism(0%), Arrest(0%) -> RoadAccidents@100%
+2026-06-23 15:22:58 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 7 regions deduped to 1
+2026-06-23 15:22:58 [INFO   ] vad.pipeline |   [Directed scan] 10/10 segments selected for LLM scanning
+2026-06-23 15:23:01 [INFO   ] vad.pipeline | Found 2 anomaly candidate(s):
+2026-06-23 15:23:01 [INFO   ] vad.pipeline |     [GradRefine] 0.0-4.4s -> 0.0-7.0s (cat=RoadAccidents, cv=0.223)
+2026-06-23 15:23:01 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 1 ---
+2026-06-23 15:23:01 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 1 ---
+2026-06-23 15:23:01 [INFO   ] vad.pipeline |   [Ensemble] VideoMAE=RoadAccidents@100%, CLIP-seg=RoadAccidents(35%), Shooting(5%), Assault(3%)
+2026-06-23 15:23:01 [INFO   ] vad.pipeline |   [Ensemble] VLM deciding among ['RoadAccidents', 'Robbery']
+2026-06-23 15:23:01 [INFO   ] vad.pipeline |     [GradRefine] 7.7-14.1s -> 4.5-17.5s (cat=Shoplifting, cv=0.078)
+2026-06-23 15:23:01 [INFO   ] vad.pipeline |     [GradRefine] 45.9-61.1s -> 38.5-69.0s (cat=Shoplifting, cv=0.078)
+2026-06-23 15:23:01 [INFO   ] vad.pipeline |     [GradRefine] 58.5-71.1s -> 52.5-77.5s (cat=Shoplifting, cv=0.078)
+2026-06-23 15:23:01 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 3 ---
+2026-06-23 15:23:01 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 2 ---
+2026-06-23 15:23:01 [INFO   ] vad.pipeline |   [Ensemble] No confusion pair -> Shoplifting
+2026-06-23 15:23:01 [INFO   ] vad.batch    | [33/65] DONE  Normal_Videos_801_x264: 91s video, 2 anomalies, 97.8s processing
+2026-06-23 15:23:01 [INFO   ] vad.batch    | [37/65] START RoadAccidents017_x264 (RoadAccidents)
+2026-06-23 15:23:01 [INFO   ] vad.pipeline |   [CLIP precompute] 14 frames encoded in 0.1s
+2026-06-23 15:23:04 [INFO   ] vad.pipeline |   [VideoMAE] RoadAccidents(100%), Burglary(0%), Robbery(0%) -> RoadAccidents@100%
+2026-06-23 15:23:04 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 2 regions deduped to 1
+2026-06-23 15:23:04 [INFO   ] vad.pipeline |   [Directed scan] 2/2 segments selected for LLM scanning
+2026-06-23 15:23:05 [INFO   ] vad.pipeline | Found 1 anomaly candidate(s):
+2026-06-23 15:23:06 [INFO   ] vad.pipeline |     [Classify] VLM chose RoadAccidents from ['RoadAccidents', 'Robbery']
+2026-06-23 15:23:06 [INFO   ] vad.pipeline |     [Classify] VLM chose RoadAccidents from ['RoadAccidents', 'Robbery']
+2026-06-23 15:23:07 [INFO   ] vad.pipeline |     [Classify] VLM chose RoadAccidents from ['RoadAccidents', 'Robbery']
+2026-06-23 15:23:07 [INFO   ] vad.pipeline |   [Ensemble] VLM votes={'RoadAccidents': 3} -> RoadAccidents
+2026-06-23 15:23:07 [INFO   ] vad.pipeline |   [ConfFilter] 1 -> 0 (threshold=0.72)
+2026-06-23 15:23:07 [INFO   ] vad.batch    | [35/65] DONE  Normal_Videos_905_x264: 40s video, 0 anomalies, 55.7s processing
+2026-06-23 15:23:07 [INFO   ] vad.batch    | [38/65] START RoadAccidents019_x264 (RoadAccidents)
+2026-06-23 15:23:17 [INFO   ] vad.pipeline |   [CLIP precompute] 88 frames encoded in 9.7s
+2026-06-23 15:23:25 [INFO   ] vad.pipeline |   [VideoMAE] RoadAccidents(100%), Vandalism(0%), Shooting(0%) -> RoadAccidents@100%
+2026-06-23 15:23:25 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 6 regions deduped to 2
+2026-06-23 15:23:25 [INFO   ] vad.pipeline |   [Directed scan] 10/10 segments selected for LLM scanning
+2026-06-23 15:23:58 [INFO   ] vad.pipeline | Found 1 anomaly candidate(s):
+2026-06-23 15:24:07 [INFO   ] vad.pipeline |     [GradRefine] 4.1-6.6s -> 3.0-7.5s (cat=RoadAccidents, cv=0.053)
+2026-06-23 15:24:07 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 1 ---
+2026-06-23 15:24:07 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 1 ---
+2026-06-23 15:24:07 [INFO   ] vad.pipeline |   [Ensemble] VideoMAE=RoadAccidents@100%, CLIP-seg=RoadAccidents(90%), Explosion(6%), Arson(1%)
+2026-06-23 15:24:07 [INFO   ] vad.pipeline |   [Ensemble] VLM deciding among ['RoadAccidents', 'Robbery']
+2026-06-23 15:24:07 [INFO   ] vad.pipeline |     [GradRefine] 2.5-12.0s -> 0.0-17.5s (cat=RoadAccidents, cv=0.102)
+2026-06-23 15:24:07 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 1 ---
+2026-06-23 15:24:07 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 1 ---
+2026-06-23 15:24:07 [INFO   ] vad.pipeline |     [Short-narrow] 0.0-17.5s -> 3.5-13.5s (peak@8.5s)
+2026-06-23 15:24:07 [INFO   ] vad.pipeline |   [Ensemble] VideoMAE=RoadAccidents@100%, CLIP-seg=Arson(34%), Assault(16%), Burglary(15%)
+2026-06-23 15:24:07 [INFO   ] vad.pipeline |   [Ensemble] VLM deciding among ['RoadAccidents', 'Robbery']
+2026-06-23 15:24:11 [INFO   ] vad.pipeline |     [Classify] VLM chose RoadAccidents from ['RoadAccidents', 'Robbery']
+2026-06-23 15:24:12 [INFO   ] vad.pipeline |     [Classify] VLM chose RoadAccidents from ['RoadAccidents', 'Robbery']
+2026-06-23 15:24:12 [INFO   ] vad.pipeline |     [Classify] VLM chose RoadAccidents from ['RoadAccidents', 'Robbery']
+2026-06-23 15:24:12 [INFO   ] vad.pipeline |   [Ensemble] VLM votes={'RoadAccidents': 3} -> RoadAccidents
+2026-06-23 15:24:12 [INFO   ] vad.pipeline |     [ScoreCurve] 3.0-7.5s -> 2.5-6.0s (half_max=0.956)
+2026-06-23 15:24:12 [INFO   ] vad.batch    | [37/65] DONE  RoadAccidents017_x264: 8s video, 1 anomalies, 70.8s processing
+2026-06-23 15:24:12 [INFO   ] vad.batch    | [39/65] START RoadAccidents123_x264 (RoadAccidents)
+2026-06-23 15:24:29 [INFO   ] vad.pipeline |   [CLIP precompute] 67 frames encoded in 16.8s
+2026-06-23 15:24:34 [INFO   ] vad.pipeline |   [VideoMAE] RoadAccidents(94%), Vandalism(4%), Arrest(1%) -> RoadAccidents@94%
+2026-06-23 15:24:34 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 6 regions deduped to 2
+2026-06-23 15:24:34 [INFO   ] vad.pipeline |   [Directed scan] 8/8 segments selected for LLM scanning
+2026-06-23 15:24:34 [INFO   ] vad.pipeline |     [Classify] VLM chose RoadAccidents from ['RoadAccidents', 'Robbery']
+2026-06-23 15:24:34 [INFO   ] vad.pipeline |     [Classify] VLM chose RoadAccidents from ['RoadAccidents', 'Robbery']
+2026-06-23 15:24:34 [INFO   ] vad.pipeline |     [Classify] VLM chose RoadAccidents from ['RoadAccidents', 'Robbery']
+2026-06-23 15:24:34 [INFO   ] vad.pipeline |   [Ensemble] VLM votes={'RoadAccidents': 3} -> RoadAccidents
+2026-06-23 15:24:34 [INFO   ] vad.batch    | [36/65] DONE  RoadAccidents001_x264: 46s video, 1 anomalies, 113.4s processing
+2026-06-23 15:24:34 [INFO   ] vad.batch    | [40/65] START RoadAccidents125_x264 (RoadAccidents)
+2026-06-23 15:24:44 [INFO   ] vad.pipeline |   [CLIP precompute] 96 frames encoded in 9.3s
+2026-06-23 15:24:52 [INFO   ] vad.pipeline |   [VideoMAE] RoadAccidents(89%), Vandalism(10%), Assault(0%) -> RoadAccidents@89%
+2026-06-23 15:24:52 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 7 regions deduped to 1
+2026-06-23 15:24:52 [INFO   ] vad.pipeline |   [Directed scan] 12/13 segments selected for LLM scanning
+2026-06-23 15:24:55 [INFO   ] vad.pipeline | Found 1 anomaly candidate(s):
+2026-06-23 15:24:55 [INFO   ] vad.pipeline | Found 1 anomaly candidate(s):
+2026-06-23 15:24:59 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 1 ---
+2026-06-23 15:24:59 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 1 ---
+2026-06-23 15:24:59 [INFO   ] vad.pipeline |     [Short-narrow] 27.5-43.5s -> 32.0-42.0s (peak@37.0s)
+2026-06-23 15:24:59 [INFO   ] vad.pipeline |   [Ensemble] VideoMAE=RoadAccidents@100%, CLIP-seg=RoadAccidents(67%), Assault(10%), Abuse(8%)
+2026-06-23 15:24:59 [INFO   ] vad.pipeline |   [Ensemble] VLM deciding among ['RoadAccidents', 'Robbery']
+2026-06-23 15:25:05 [INFO   ] vad.pipeline |     [Classify] VLM chose RoadAccidents from ['RoadAccidents', 'Robbery']
+2026-06-23 15:25:07 [INFO   ] vad.pipeline |     [Classify] VLM chose RoadAccidents from ['RoadAccidents', 'Robbery']
+2026-06-23 15:25:08 [INFO   ] vad.pipeline |     [Classify] VLM chose RoadAccidents from ['RoadAccidents', 'Robbery']
+2026-06-23 15:25:08 [INFO   ] vad.pipeline |   [Ensemble] VLM votes={'RoadAccidents': 3} -> RoadAccidents
+2026-06-23 15:25:08 [INFO   ] vad.pipeline |     [ScoreCurve] 32.0-42.0s -> 28.0-43.0s (half_max=0.978)
+2026-06-23 15:25:08 [INFO   ] vad.batch    | [38/65] DONE  RoadAccidents019_x264: 44s video, 1 anomalies, 121.6s processing
+2026-06-23 15:25:08 [INFO   ] vad.batch    | [41/65] START Robbery048_x264 (Robbery)
+2026-06-23 15:25:17 [INFO   ] vad.pipeline |   [CLIP precompute] 91 frames encoded in 8.3s
+2026-06-23 15:25:25 [INFO   ] vad.pipeline |   [VideoMAE] Robbery(99%), Vandalism(0%), Abuse(0%) -> Robbery@99%
+2026-06-23 15:25:25 [INFO   ] vad.pipeline |   [Directed scan] 7/11 segments selected for LLM scanning
+2026-06-23 15:25:42 [INFO   ] vad.pipeline | Found 1 anomaly candidate(s):
+2026-06-23 15:25:51 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 1 ---
+2026-06-23 15:25:51 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 1 ---
+2026-06-23 15:25:51 [INFO   ] vad.pipeline |     [Short-narrow] 12.0-37.0s -> 13.0-23.0s (peak@18.0s)
+2026-06-23 15:25:51 [INFO   ] vad.pipeline |   [Ensemble] VideoMAE=RoadAccidents@89%, CLIP-seg=RoadAccidents(91%), Explosion(4%), Arson(3%)
+2026-06-23 15:25:51 [INFO   ] vad.pipeline |   [Ensemble] VLM deciding among ['RoadAccidents', 'Robbery']
+2026-06-23 15:25:55 [INFO   ] vad.pipeline |     [Classify] VLM chose RoadAccidents from ['RoadAccidents', 'Robbery']
+2026-06-23 15:25:56 [INFO   ] vad.pipeline |     [Classify] VLM chose RoadAccidents from ['RoadAccidents', 'Robbery']
+2026-06-23 15:25:56 [INFO   ] vad.pipeline |     [Classify] VLM chose RoadAccidents from ['RoadAccidents', 'Robbery']
+2026-06-23 15:25:56 [INFO   ] vad.pipeline |   [Ensemble] VLM votes={'RoadAccidents': 3} -> RoadAccidents
+2026-06-23 15:25:56 [INFO   ] vad.batch    | [40/65] DONE  RoadAccidents125_x264: 59s video, 1 anomalies, 82.0s processing
+2026-06-23 15:25:56 [INFO   ] vad.batch    | [42/65] START Robbery050_x264 (Robbery)
+2026-06-23 15:26:04 [INFO   ] vad.pipeline |   [CLIP precompute] 87 frames encoded in 7.9s
+2026-06-23 15:26:12 [INFO   ] vad.pipeline |   [VideoMAE] RoadAccidents(93%), Robbery(5%), Arrest(1%) -> RoadAccidents@93%
+2026-06-23 15:26:12 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 5 regions deduped to 2
+2026-06-23 15:26:12 [INFO   ] vad.pipeline |   [Directed scan] 12/13 segments selected for LLM scanning
+2026-06-23 15:26:19 [INFO   ] vad.batch    | [42/65] DONE  Robbery050_x264: 57s video, 0 anomalies, 22.6s processing
+2026-06-23 15:26:19 [INFO   ] vad.batch    | [43/65] START Robbery102_x264 (Robbery)
+2026-06-23 15:26:47 [INFO   ] vad.pipeline |   [CLIP precompute] 79 frames encoded in 27.6s
+2026-06-23 15:26:55 [INFO   ] vad.pipeline |   [VideoMAE] RoadAccidents(93%), Shooting(3%), Arrest(2%) -> RoadAccidents@93%
+2026-06-23 15:26:55 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 7 regions deduped to 1
+2026-06-23 15:26:55 [INFO   ] vad.pipeline |   [Directed scan] 13/14 segments selected for LLM scanning
+2026-06-23 15:27:01 [INFO   ] vad.pipeline | Found 1 anomaly candidate(s):
+2026-06-23 15:27:02 [INFO   ] vad.pipeline |     [GradRefine] 8.4-16.6s -> 4.5-21.0s (cat=RoadAccidents, cv=0.100)
+2026-06-23 15:27:02 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 1 ---
+2026-06-23 15:27:02 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 1 ---
+2026-06-23 15:27:02 [INFO   ] vad.pipeline |   [Ensemble] VideoMAE=RoadAccidents@94%, CLIP-seg=RoadAccidents(98%), Shooting(1%), Vandalism(1%)
+2026-06-23 15:27:02 [INFO   ] vad.pipeline |   [Ensemble] VLM deciding among ['RoadAccidents', 'Robbery']
+2026-06-23 15:27:06 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 1 ---
+2026-06-23 15:27:06 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 1 ---
+2026-06-23 15:27:06 [INFO   ] vad.pipeline |   [Ensemble] No confusion pair -> Robbery
+2026-06-23 15:27:06 [INFO   ] vad.batch    | [41/65] DONE  Robbery048_x264: 47s video, 1 anomalies, 117.7s processing
+2026-06-23 15:27:06 [INFO   ] vad.batch    | [44/65] START Robbery106_x264 (Robbery)
+2026-06-23 15:27:18 [INFO   ] vad.pipeline |   [CLIP precompute] 68 frames encoded in 11.8s
+2026-06-23 15:27:26 [INFO   ] vad.pipeline |   [VideoMAE] Stealing(93%), RoadAccidents(7%), Shooting(0%) -> Stealing@93%
+2026-06-23 15:27:26 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 3 regions deduped to 2
+2026-06-23 15:27:26 [INFO   ] vad.pipeline |   [Directed scan] 9/9 segments selected for LLM scanning
+2026-06-23 15:27:26 [INFO   ] vad.pipeline |     [Classify] VLM chose RoadAccidents from ['RoadAccidents', 'Robbery']
+2026-06-23 15:27:26 [INFO   ] vad.pipeline |     [Classify] VLM chose RoadAccidents from ['RoadAccidents', 'Robbery']
+2026-06-23 15:27:26 [INFO   ] vad.pipeline |     [Classify] VLM chose RoadAccidents from ['RoadAccidents', 'Robbery']
+2026-06-23 15:27:26 [INFO   ] vad.pipeline |   [Ensemble] VLM votes={'RoadAccidents': 3} -> RoadAccidents
+2026-06-23 15:27:26 [INFO   ] vad.batch    | [39/65] DONE  RoadAccidents123_x264: 34s video, 1 anomalies, 194.3s processing
+2026-06-23 15:27:26 [INFO   ] vad.batch    | [45/65] START Robbery137_x264 (Robbery)
+2026-06-23 15:27:46 [INFO   ] vad.pipeline |   [CLIP precompute] 143 frames encoded in 19.5s
+2026-06-23 15:27:55 [INFO   ] vad.pipeline |   [VideoMAE] Shoplifting(100%), Assault(0%), Fighting(0%) -> Shoplifting@100%
+2026-06-23 15:27:56 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 4 regions deduped to 2
+2026-06-23 15:27:56 [INFO   ] vad.pipeline |   [Directed scan] 12/16 segments selected for LLM scanning
+2026-06-23 15:27:59 [INFO   ] vad.pipeline | Found 1 anomaly candidate(s):
+2026-06-23 15:28:12 [INFO   ] vad.pipeline | Found 2 anomaly candidate(s):
+2026-06-23 15:28:15 [INFO   ] vad.pipeline |     [GradRefine] 35.7-48.2s -> 29.5-54.5s (cat=RoadAccidents, cv=0.267)
+2026-06-23 15:28:15 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 1 ---
+2026-06-23 15:28:15 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 1 ---
+2026-06-23 15:28:15 [INFO   ] vad.pipeline |     [Short-narrow] 29.5-54.5s -> 37.5-47.5s (peak@42.5s)
+2026-06-23 15:28:15 [INFO   ] vad.pipeline |   [Ensemble] VideoMAE=RoadAccidents@93%, CLIP-seg=Assault(37%), Shooting(13%), Fighting(12%)
+2026-06-23 15:28:15 [INFO   ] vad.pipeline |   [Ensemble] VLM deciding among ['RoadAccidents', 'Robbery']
+2026-06-23 15:28:20 [INFO   ] vad.pipeline |     [Classify] VLM chose Robbery from ['RoadAccidents', 'Robbery']
+2026-06-23 15:28:22 [INFO   ] vad.pipeline |     [Classify] VLM chose Robbery from ['RoadAccidents', 'Robbery']
+2026-06-23 15:28:36 [INFO   ] vad.pipeline |     [Classify] VLM chose Robbery from ['RoadAccidents', 'Robbery']
+2026-06-23 15:28:36 [INFO   ] vad.pipeline |   [Ensemble] VLM votes={'Robbery': 3} -> Robbery
+2026-06-23 15:28:36 [INFO   ] vad.batch    | [43/65] DONE  Robbery102_x264: 61s video, 1 anomalies, 137.0s processing
+2026-06-23 15:28:36 [INFO   ] vad.batch    | [46/65] START Shooting002_x264 (Shooting)
+2026-06-23 15:29:09 [INFO   ] vad.pipeline |   [CLIP precompute] 81 frames encoded in 32.7s
+2026-06-23 15:29:17 [INFO   ] vad.pipeline |   [VideoMAE] Shooting(96%), Assault(2%), Vandalism(1%) -> Shooting@96%
+2026-06-23 15:29:17 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 3 regions deduped to 1
+2026-06-23 15:29:17 [INFO   ] vad.pipeline |   [Directed scan] 9/9 segments selected for LLM scanning
+2026-06-23 15:29:17 [INFO   ] vad.pipeline |     [GradRefine] 6.8-16.6s -> 2.0-21.5s (cat=Stealing, cv=0.200)
+2026-06-23 15:29:17 [INFO   ] vad.pipeline |     [GradRefine] 29.4-34.0s -> 27.5-36.5s (cat=Stealing, cv=0.200)
+2026-06-23 15:29:17 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 2 ---
+2026-06-23 15:29:17 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 2 ---
+2026-06-23 15:29:17 [INFO   ] vad.pipeline |   [Ensemble] No confusion pair -> Stealing
+2026-06-23 15:29:17 [INFO   ] vad.pipeline |     [ScoreCurve] 2.0-36.5s -> 0.5-36.0s (half_max=0.811)
+2026-06-23 15:29:17 [INFO   ] vad.batch    | [44/65] DONE  Robbery106_x264: 40s video, 1 anomalies, 131.4s processing
+2026-06-23 15:29:17 [INFO   ] vad.batch    | [47/65] START Shooting018_x264 (Shooting)
+2026-06-23 15:29:33 [INFO   ] vad.pipeline |   [CLIP precompute] 111 frames encoded in 14.5s
+2026-06-23 15:29:41 [INFO   ] vad.pipeline |   [VideoMAE] Shooting(100%), RoadAccidents(0%), Burglary(0%) -> Shooting@100%
+2026-06-23 15:29:41 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 3 regions deduped to 1
+2026-06-23 15:29:41 [INFO   ] vad.pipeline |   [Directed scan] 13/13 segments selected for LLM scanning
+2026-06-23 15:29:44 [INFO   ] vad.pipeline |     [GradRefine] 36.8-59.6s -> 25.5-71.0s (cat=Shoplifting, cv=0.067)
+2026-06-23 15:29:44 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 1 ---
+2026-06-23 15:29:44 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 1 ---
+2026-06-23 15:29:44 [INFO   ] vad.pipeline |   [Ensemble] No confusion pair -> Shoplifting
+2026-06-23 15:29:44 [INFO   ] vad.batch    | [45/65] DONE  Robbery137_x264: 73s video, 1 anomalies, 137.4s processing
+2026-06-23 15:29:44 [INFO   ] vad.batch    | [48/65] START Shooting019_x264 (Shooting)
+2026-06-23 15:30:07 [INFO   ] vad.pipeline |   [CLIP precompute] 181 frames encoded in 22.8s
+2026-06-23 15:30:15 [INFO   ] vad.pipeline |   [VideoMAE] Shooting(99%), Assault(0%), RoadAccidents(0%) -> Shooting@99%
+2026-06-23 15:30:15 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 5 regions deduped to 3
+2026-06-23 15:30:16 [INFO   ] vad.pipeline |   [Directed scan] 14/21 segments selected for LLM scanning
+2026-06-23 15:30:16 [INFO   ] vad.pipeline | Found 1 anomaly candidate(s):
+2026-06-23 15:30:27 [INFO   ] vad.pipeline | Found 1 anomaly candidate(s):
+2026-06-23 15:30:47 [INFO   ] vad.pipeline | Found 3 anomaly candidate(s):
+2026-06-23 15:30:57 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 1 ---
+2026-06-23 15:30:57 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 1 ---
+2026-06-23 15:30:57 [INFO   ] vad.pipeline |   [Ensemble] No confusion pair -> Shooting
+2026-06-23 15:30:57 [INFO   ] vad.batch    | [46/65] DONE  Shooting002_x264: 40s video, 1 anomalies, 140.9s processing
+2026-06-23 15:30:57 [INFO   ] vad.batch    | [49/65] START Shooting032_x264 (Shooting)
+2026-06-23 15:34:19 [INFO   ] vad.pipeline |   [CLIP precompute] 1434 frames encoded in 199.3s
+2026-06-23 15:34:29 [INFO   ] vad.pipeline |   [VideoMAE] Shooting(100%), RoadAccidents(0%), Arrest(0%) -> Shooting@100%
+2026-06-23 15:34:29 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 5 regions deduped to 4
+2026-06-23 15:34:29 [INFO   ] vad.pipeline |   [Directed scan] 24/161 segments selected for LLM scanning
+2026-06-23 15:34:59 [INFO   ] vad.pipeline |     [GradRefine] 39.0-53.7s -> 32.0-59.5s (cat=Shooting, cv=0.188)
+2026-06-23 15:34:59 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 1 ---
+2026-06-23 15:34:59 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 1 ---
+2026-06-23 15:34:59 [INFO   ] vad.pipeline |   [Ensemble] No confusion pair -> Shooting
+2026-06-23 15:34:59 [INFO   ] vad.pipeline |     [ScoreCurve] 32.0-59.5s -> 29.5-59.0s (half_max=0.943)
+2026-06-23 15:34:59 [INFO   ] vad.batch    | [47/65] DONE  Shooting018_x264: 60s video, 1 anomalies, 341.7s processing
+2026-06-23 15:34:59 [INFO   ] vad.batch    | [50/65] START Shooting034_x264 (Shooting)
+2026-06-23 15:35:18 [INFO   ] vad.pipeline |   [CLIP precompute] 69 frames encoded in 18.4s
+2026-06-23 15:35:25 [INFO   ] vad.pipeline |   [VideoMAE] Shooting(98%), Vandalism(1%), Shoplifting(0%) -> Shooting@98%
+2026-06-23 15:35:25 [INFO   ] vad.pipeline |   [Directed scan] 8/11 segments selected for LLM scanning
+2026-06-23 15:35:26 [INFO   ] vad.pipeline | Found 4 anomaly candidate(s):
+2026-06-23 15:35:26 [INFO   ] vad.pipeline |   [Limit] Keeping top 3/4 candidates
+2026-06-23 15:35:29 [INFO   ] vad.pipeline | Found 1 anomaly candidate(s):
+2026-06-23 15:35:36 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 1 ---
+2026-06-23 15:35:36 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 1 ---
+2026-06-23 15:35:36 [INFO   ] vad.pipeline |   [Ensemble] No confusion pair -> Shooting
+2026-06-23 15:35:36 [INFO   ] vad.batch    | [50/65] DONE  Shooting034_x264: 47s video, 1 anomalies, 36.7s processing
+2026-06-23 15:35:36 [INFO   ] vad.batch    | [51/65] START Shoplifting001_x264 (Shoplifting)
+2026-06-23 15:36:15 [INFO   ] vad.pipeline |   [CLIP precompute] 290 frames encoded in 38.3s
+2026-06-23 15:36:21 [INFO   ] vad.pipeline |   [VideoMAE] Shoplifting(100%), Burglary(0%), Explosion(0%) -> Shoplifting@100%
+2026-06-23 15:36:21 [INFO   ] vad.pipeline |   [Directed scan] 14/32 segments selected for LLM scanning
+2026-06-23 15:36:25 [INFO   ] vad.pipeline | Found 5 anomaly candidate(s):
+2026-06-23 15:36:25 [INFO   ] vad.pipeline |   [Limit] Keeping top 3/5 candidates
+2026-06-23 15:36:32 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 3 ---
+2026-06-23 15:36:32 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 2 ---
+2026-06-23 15:36:32 [INFO   ] vad.pipeline |   [Ensemble] No confusion pair -> Shooting
+2026-06-23 15:36:32 [INFO   ] vad.batch    | [48/65] DONE  Shooting019_x264: 92s video, 2 anomalies, 407.9s processing
+2026-06-23 15:36:32 [INFO   ] vad.batch    | [52/65] START Shoplifting004_x264 (Shoplifting)
+2026-06-23 15:37:26 [INFO   ] vad.pipeline |   [CLIP precompute] 443 frames encoded in 53.3s
+2026-06-23 15:37:35 [INFO   ] vad.pipeline |   [VideoMAE] Shoplifting(100%), Robbery(0%), Burglary(0%) -> Shoplifting@100%
+2026-06-23 15:37:35 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 5 regions deduped to 3
+2026-06-23 15:37:35 [INFO   ] vad.pipeline |   [Directed scan] 14/50 segments selected for LLM scanning
+2026-06-23 15:37:40 [INFO   ] vad.pipeline | Found 3 anomaly candidate(s):
+2026-06-23 15:37:54 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 3 ---
+2026-06-23 15:37:54 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 1 ---
+2026-06-23 15:37:54 [INFO   ] vad.pipeline |   [Ensemble] No confusion pair -> Shoplifting
+2026-06-23 15:37:54 [INFO   ] vad.pipeline |     [ScoreCurve] 7.0-72.0s -> 7.0-77.0s (half_max=0.991)
+2026-06-23 15:37:54 [INFO   ] vad.batch    | [51/65] DONE  Shoplifting001_x264: 145s video, 1 anomalies, 138.1s processing
+2026-06-23 15:37:54 [INFO   ] vad.batch    | [53/65] START Shoplifting020_x264 (Shoplifting)
+2026-06-23 15:38:49 [INFO   ] vad.pipeline |   [CLIP precompute] 385 frames encoded in 53.7s
+2026-06-23 15:38:56 [INFO   ] vad.pipeline |   [VideoMAE] Shoplifting(96%), Arrest(2%), Assault(0%) -> Shoplifting@96%
+2026-06-23 15:38:56 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 5 regions deduped to 4
+2026-06-23 15:38:56 [INFO   ] vad.pipeline |   [Directed scan] 14/43 segments selected for LLM scanning
+2026-06-23 15:39:00 [INFO   ] vad.pipeline | Found 6 anomaly candidate(s):
+2026-06-23 15:39:00 [INFO   ] vad.pipeline |   [Limit] Keeping top 3/6 candidates
+2026-06-23 15:39:00 [INFO   ] vad.pipeline |     [GradRefine] 293.2-315.4s -> 282.5-326.5s (cat=Shooting, cv=0.476)
+2026-06-23 15:39:00 [INFO   ] vad.pipeline |     [GradRefine] 307.7-319.4s -> 302.0-325.5s (cat=Shooting, cv=0.476)
+2026-06-23 15:39:00 [INFO   ] vad.pipeline |     [GradRefine] 303.8-315.4s -> 298.0-321.5s (cat=Shooting, cv=0.476)
+2026-06-23 15:39:00 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 3 ---
+2026-06-23 15:39:00 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 1 ---
+2026-06-23 15:39:00 [INFO   ] vad.pipeline |   [Ensemble] No confusion pair -> Shooting
+2026-06-23 15:39:00 [INFO   ] vad.pipeline |     [ScoreCurve] 282.5-326.5s -> 268.5-344.0s (half_max=0.769)
+2026-06-23 15:39:00 [INFO   ] vad.batch    | [49/65] DONE  Shooting032_x264: 723s video, 1 anomalies, 483.3s processing
+2026-06-23 15:39:00 [INFO   ] vad.batch    | [54/65] START Shoplifting033_x264 (Shoplifting)
+2026-06-23 15:39:06 [INFO   ] vad.pipeline |   [CLIP precompute] 60 frames encoded in 5.7s
+2026-06-23 15:39:15 [INFO   ] vad.pipeline |   [VideoMAE] Shoplifting(100%), Burglary(0%), Explosion(0%) -> Shoplifting@100%
+2026-06-23 15:39:15 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 2 regions deduped to 1
+2026-06-23 15:39:15 [INFO   ] vad.pipeline |   [Directed scan] 7/7 segments selected for LLM scanning
+2026-06-23 15:39:17 [INFO   ] vad.pipeline |     [GradRefine] 22.5-28.7s -> 19.5-32.0s (cat=Shoplifting, cv=0.337)
+2026-06-23 15:39:17 [INFO   ] vad.pipeline |     [GradRefine] 47.8-54.0s -> 45.0-57.5s (cat=Shoplifting, cv=0.337)
+2026-06-23 15:39:17 [INFO   ] vad.pipeline |     [GradRefine] 58.2-66.4s -> 54.5-70.5s (cat=Shoplifting, cv=0.337)
+2026-06-23 15:39:17 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 3 ---
+2026-06-23 15:39:17 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 3 ---
+2026-06-23 15:39:17 [INFO   ] vad.pipeline |   [Ensemble] No confusion pair -> Shoplifting
+2026-06-23 15:39:17 [INFO   ] vad.pipeline |     [ScoreCurve] 19.5-32.0s -> 14.5-31.5s (half_max=0.644)
+2026-06-23 15:39:17 [INFO   ] vad.batch    | [52/65] DONE  Shoplifting004_x264: 222s video, 2 anomalies, 165.8s processing
+2026-06-23 15:39:17 [INFO   ] vad.batch    | [55/65] START Shoplifting037_x264 (Shoplifting)
+2026-06-23 15:39:30 [INFO   ] vad.pipeline |   [CLIP precompute] 93 frames encoded in 12.2s
+2026-06-23 15:39:39 [INFO   ] vad.pipeline |   [VideoMAE] Shoplifting(100%), Explosion(0%), Vandalism(0%) -> Shoplifting@100%
+2026-06-23 15:39:39 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 3 regions deduped to 1
+2026-06-23 15:39:39 [INFO   ] vad.pipeline |   [Directed scan] 10/10 segments selected for LLM scanning
+2026-06-23 15:39:39 [INFO   ] vad.pipeline | Found 2 anomaly candidate(s):
+2026-06-23 15:39:44 [INFO   ] vad.pipeline | Found 2 anomaly candidate(s):
+2026-06-23 15:39:49 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 2 ---
+2026-06-23 15:39:49 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 1 ---
+2026-06-23 15:39:49 [INFO   ] vad.pipeline |   [Ensemble] No confusion pair -> Shoplifting
+2026-06-23 15:39:49 [INFO   ] vad.pipeline |     [ScoreCurve] 15.5-29.5s -> 14.0-29.0s (half_max=0.974)
+2026-06-23 15:39:49 [INFO   ] vad.batch    | [54/65] DONE  Shoplifting033_x264: 30s video, 1 anomalies, 49.1s processing
+2026-06-23 15:39:49 [INFO   ] vad.batch    | [56/65] START Stealing019_x264 (Stealing)
+2026-06-23 15:40:24 [INFO   ] vad.pipeline |   [CLIP precompute] 272 frames encoded in 34.9s
+2026-06-23 15:40:33 [INFO   ] vad.pipeline |   [VideoMAE] Stealing(65%), RoadAccidents(22%), Vandalism(7%) -> Stealing@65%
+2026-06-23 15:40:33 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 5 regions deduped to 4
+2026-06-23 15:40:33 [INFO   ] vad.pipeline |   [Directed scan] 14/36 segments selected for LLM scanning
+2026-06-23 15:40:37 [INFO   ] vad.pipeline | Found 3 anomaly candidate(s):
+2026-06-23 15:40:39 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 3 ---
+2026-06-23 15:40:39 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 3 ---
+2026-06-23 15:40:39 [INFO   ] vad.pipeline |   [Ensemble] No confusion pair -> Shoplifting
+2026-06-23 15:40:39 [INFO   ] vad.batch    | [53/65] DONE  Shoplifting020_x264: 192s video, 3 anomalies, 165.3s processing
+2026-06-23 15:40:39 [INFO   ] vad.batch    | [57/65] START Stealing036_x264 (Stealing)
+2026-06-23 15:40:56 [INFO   ] vad.pipeline |   [CLIP precompute] 149 frames encoded in 16.6s
+2026-06-23 15:41:05 [INFO   ] vad.pipeline |   [VideoMAE] Stealing(100%), RoadAccidents(0%), Shooting(0%) -> Stealing@100%
+2026-06-23 15:41:05 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 5 regions deduped to 4
+2026-06-23 15:41:05 [INFO   ] vad.pipeline |   [Directed scan] 14/19 segments selected for LLM scanning
+2026-06-23 15:41:09 [INFO   ] vad.pipeline | Found 3 anomaly candidate(s):
+2026-06-23 15:41:20 [INFO   ] vad.pipeline |     [GradRefine] 23.5-34.1s -> 18.5-39.5s (cat=Shoplifting, cv=0.159)
+2026-06-23 15:41:20 [INFO   ] vad.pipeline |     [GradRefine] 25.6-38.5s -> 19.5-46.0s (cat=Shoplifting, cv=0.159)
+2026-06-23 15:41:20 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 2 ---
+2026-06-23 15:41:20 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 1 ---
+2026-06-23 15:41:20 [INFO   ] vad.pipeline |   [Ensemble] No confusion pair -> Shoplifting
+2026-06-23 15:41:20 [INFO   ] vad.batch    | [55/65] DONE  Shoplifting037_x264: 46s video, 1 anomalies, 122.7s processing
+2026-06-23 15:41:20 [INFO   ] vad.batch    | [58/65] START Stealing058_x264 (Stealing)
+2026-06-23 15:41:59 [INFO   ] vad.pipeline |   [CLIP precompute] 327 frames encoded in 38.6s
+2026-06-23 15:42:06 [INFO   ] vad.pipeline |   [VideoMAE] Stealing(99%), Vandalism(0%), Arson(0%) -> Stealing@99%
+2026-06-23 15:42:06 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 5 regions deduped to 4
+2026-06-23 15:42:06 [INFO   ] vad.pipeline |   [Directed scan] 14/37 segments selected for LLM scanning
+2026-06-23 15:42:18 [INFO   ] vad.pipeline |     [GradRefine] 9.2-29.9s -> 0.0-40.5s (cat=Stealing, cv=0.078)
+2026-06-23 15:42:18 [INFO   ] vad.pipeline |     [GradRefine] 73.6-85.3s -> 68.0-91.5s (cat=Stealing, cv=0.078)
+2026-06-23 15:42:18 [INFO   ] vad.pipeline |     [GradRefine] 132.5-141.8s -> 128.0-146.5s (cat=Stealing, cv=0.078)
+2026-06-23 15:42:18 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 3 ---
+2026-06-23 15:42:18 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 3 ---
+2026-06-23 15:42:18 [INFO   ] vad.pipeline |   [Ensemble] No confusion pair -> Stealing
+2026-06-23 15:42:18 [INFO   ] vad.batch    | [56/65] DONE  Stealing019_x264: 164s video, 3 anomalies, 149.4s processing
+2026-06-23 15:42:18 [INFO   ] vad.batch    | [59/65] START Stealing062_x264 (Stealing)
+2026-06-23 15:42:31 [INFO   ] vad.pipeline |   [CLIP precompute] 104 frames encoded in 12.1s
+2026-06-23 15:42:37 [INFO   ] vad.pipeline |   [VideoMAE] Vandalism(92%), RoadAccidents(7%), Stealing(0%) -> Vandalism@92%
+2026-06-23 15:42:37 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 5 regions deduped to 1
+2026-06-23 15:42:37 [INFO   ] vad.pipeline |   [Directed scan] 12/12 segments selected for LLM scanning
+2026-06-23 15:42:41 [INFO   ] vad.pipeline | Found 2 anomaly candidate(s):
+2026-06-23 15:42:41 [INFO   ] vad.pipeline | Found 2 anomaly candidate(s):
+2026-06-23 15:42:51 [INFO   ] vad.pipeline |     [GradRefine] 10.5-16.7s -> 7.5-20.0s (cat=Stealing, cv=0.059)
+2026-06-23 15:42:51 [INFO   ] vad.pipeline |     [GradRefine] 17.7-25.9s -> 14.0-30.0s (cat=Stealing, cv=0.059)
+2026-06-23 15:42:51 [INFO   ] vad.pipeline |     [GradRefine] 16.9-36.6s -> 7.5-46.5s (cat=Stealing, cv=0.059)
+2026-06-23 15:42:51 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 3 ---
+2026-06-23 15:42:51 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 1 ---
+2026-06-23 15:42:51 [INFO   ] vad.pipeline |   [Ensemble] No confusion pair -> Stealing
+2026-06-23 15:42:51 [INFO   ] vad.batch    | [57/65] DONE  Stealing036_x264: 83s video, 1 anomalies, 132.0s processing
+2026-06-23 15:42:51 [INFO   ] vad.batch    | [60/65] START Stealing079_x264 (Stealing)
+2026-06-23 15:43:27 [INFO   ] vad.pipeline |   [CLIP precompute] 321 frames encoded in 35.6s
+2026-06-23 15:43:33 [INFO   ] vad.pipeline |   [VideoMAE] Vandalism(59%), Burglary(8%), RoadAccidents(7%) -> Vandalism@59%
+2026-06-23 15:43:33 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 5 regions deduped to 4
+2026-06-23 15:43:33 [INFO   ] vad.pipeline |   [Directed scan] 14/43 segments selected for LLM scanning
+2026-06-23 15:44:07 [INFO   ] vad.pipeline | Found 4 anomaly candidate(s):
+2026-06-23 15:44:07 [INFO   ] vad.pipeline |   [Limit] Keeping top 3/4 candidates
+2026-06-23 15:44:11 [INFO   ] vad.pipeline |     [GradRefine] 22.6-38.6s -> 15.0-47.0s (cat=Stealing, cv=0.216)
+2026-06-23 15:44:11 [INFO   ] vad.pipeline |     [GradRefine] 69.2-100.5s -> 54.0-116.5s (cat=Stealing, cv=0.216)
+2026-06-23 15:44:11 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 2 ---
+2026-06-23 15:44:11 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 2 ---
+2026-06-23 15:44:11 [INFO   ] vad.pipeline |   [Ensemble] No confusion pair -> Stealing
+2026-06-23 15:44:11 [INFO   ] vad.pipeline |     [ScoreCurve] 15.0-47.0s -> 6.5-46.5s (half_max=0.824)
+2026-06-23 15:44:12 [INFO   ] vad.batch    | [58/65] DONE  Stealing058_x264: 166s video, 2 anomalies, 171.4s processing
+2026-06-23 15:44:12 [INFO   ] vad.batch    | [61/65] START Vandalism007_x264 (Vandalism)
+2026-06-23 15:44:16 [INFO   ] vad.pipeline |   [CLIP precompute] 58 frames encoded in 4.5s
+2026-06-23 15:44:24 [INFO   ] vad.pipeline |   [VideoMAE] Vandalism(96%), Burglary(1%), RoadAccidents(1%) -> Vandalism@96%
+2026-06-23 15:44:24 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 2 regions deduped to 1
+2026-06-23 15:44:25 [INFO   ] vad.pipeline |   [Directed scan] 7/9 segments selected for LLM scanning
+2026-06-23 15:44:29 [INFO   ] vad.pipeline | Found 1 anomaly candidate(s):
+2026-06-23 15:44:30 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 2 ---
+2026-06-23 15:44:30 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 1 ---
+2026-06-23 15:44:30 [INFO   ] vad.pipeline |   [Ensemble] No confusion pair -> Vandalism
+2026-06-23 15:44:30 [INFO   ] vad.batch    | [59/65] DONE  Stealing062_x264: 52s video, 1 anomalies, 131.4s processing
+2026-06-23 15:44:30 [INFO   ] vad.batch    | [62/65] START Vandalism015_x264 (Vandalism)
+2026-06-23 15:44:48 [INFO   ] vad.pipeline |   [CLIP precompute] 169 frames encoded in 18.3s
+2026-06-23 15:44:56 [INFO   ] vad.pipeline |   [VideoMAE] Vandalism(99%), Assault(0%), Arrest(0%) -> Vandalism@99%
+2026-06-23 15:44:56 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 5 regions deduped to 2
+2026-06-23 15:44:56 [INFO   ] vad.pipeline |   [Directed scan] 14/22 segments selected for LLM scanning
+2026-06-23 15:45:00 [INFO   ] vad.pipeline | Found 2 anomaly candidate(s):
+2026-06-23 15:45:12 [INFO   ] vad.pipeline |     [GradRefine] 47.6-55.8s -> 44.0-60.0s (cat=Vandalism, cv=0.065)
+2026-06-23 15:45:12 [INFO   ] vad.pipeline |     [GradRefine] 88.6-100.3s -> 83.0-106.5s (cat=Vandalism, cv=0.065)
+2026-06-23 15:45:12 [INFO   ] vad.pipeline |     [GradRefine] 87.8-99.4s -> 82.0-105.5s (cat=Vandalism, cv=0.065)
+2026-06-23 15:45:12 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 3 ---
+2026-06-23 15:45:12 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 2 ---
+2026-06-23 15:45:12 [INFO   ] vad.pipeline |   [Ensemble] No confusion pair -> Vandalism
+2026-06-23 15:45:12 [INFO   ] vad.pipeline |     [ScoreCurve] 82.0-106.5s -> 82.0-108.0s (half_max=0.921)
+2026-06-23 15:45:12 [INFO   ] vad.batch    | [60/65] DONE  Stealing079_x264: 195s video, 2 anomalies, 140.7s processing
+2026-06-23 15:45:12 [INFO   ] vad.batch    | [63/65] START Vandalism017_x264 (Vandalism)
+2026-06-23 15:45:21 [INFO   ] vad.pipeline |   [CLIP precompute] 65 frames encoded in 8.9s
+2026-06-23 15:45:27 [INFO   ] vad.pipeline |   [VideoMAE] Vandalism(100%), Arrest(0%), Assault(0%) -> Vandalism@100%
+2026-06-23 15:45:27 [INFO   ] vad.pipeline |   [Directed scan] 8/8 segments selected for LLM scanning
+2026-06-23 15:45:28 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 1 ---
+2026-06-23 15:45:28 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 1 ---
+2026-06-23 15:45:28 [INFO   ] vad.pipeline |   [Ensemble] No confusion pair -> Vandalism
+2026-06-23 15:45:28 [INFO   ] vad.batch    | [61/65] DONE  Vandalism007_x264: 38s video, 1 anomalies, 76.4s processing
+2026-06-23 15:45:28 [INFO   ] vad.batch    | [64/65] START Vandalism028_x264 (Vandalism)
+2026-06-23 15:46:04 [INFO   ] vad.pipeline |   [CLIP precompute] 300 frames encoded in 35.8s
+2026-06-23 15:46:12 [INFO   ] vad.pipeline |   [VideoMAE] Vandalism(100%), Assault(0%), RoadAccidents(0%) -> Vandalism@100%
+2026-06-23 15:46:12 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 5 regions deduped to 4
+2026-06-23 15:46:12 [INFO   ] vad.pipeline |   [Directed scan] 14/33 segments selected for LLM scanning
+2026-06-23 15:46:12 [INFO   ] vad.pipeline | Found 2 anomaly candidate(s):
+2026-06-23 15:46:16 [INFO   ] vad.pipeline | Found 2 anomaly candidate(s):
+2026-06-23 15:46:30 [INFO   ] vad.pipeline |     [GradRefine] 14.3-36.5s -> 3.5-48.0s (cat=Vandalism, cv=0.092)
+2026-06-23 15:46:30 [INFO   ] vad.pipeline |     [GradRefine] 60.0-87.3s -> 47.0-98.0s (cat=Vandalism, cv=0.092)
+2026-06-23 15:46:30 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 2 ---
+2026-06-23 15:46:30 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 2 ---
+2026-06-23 15:46:30 [INFO   ] vad.pipeline |   [Ensemble] No confusion pair -> Vandalism
+2026-06-23 15:46:30 [INFO   ] vad.pipeline |     [ScoreCurve] 3.5-98.0s -> 3.5-96.0s (half_max=0.934)
+2026-06-23 15:46:30 [INFO   ] vad.batch    | [62/65] DONE  Vandalism015_x264: 99s video, 1 anomalies, 120.7s processing
+2026-06-23 15:46:30 [INFO   ] vad.batch    | [65/65] START Vandalism036_x264 (Vandalism)
+2026-06-23 15:46:40 [INFO   ] vad.pipeline |   [CLIP precompute] 93 frames encoded in 9.0s
+2026-06-23 15:46:46 [INFO   ] vad.pipeline |   [VideoMAE] Vandalism(99%), Burglary(0%), Shooting(0%) -> Vandalism@99%
+2026-06-23 15:46:46 [INFO   ] vad.pipeline |   [Multi-CLIP-loc] 5 regions deduped to 2
+2026-06-23 15:46:46 [INFO   ] vad.pipeline |   [Directed scan] 11/11 segments selected for LLM scanning
+2026-06-23 15:46:49 [INFO   ] vad.pipeline | Found 3 anomaly candidate(s):
+2026-06-23 15:46:49 [INFO   ] vad.pipeline |     [GradRefine] 3.5-14.0s -> 0.0-19.5s (cat=Vandalism, cv=0.264)
+2026-06-23 15:46:49 [INFO   ] vad.pipeline |     [GradRefine] 26.7-31.5s -> 24.5-33.5s (cat=Vandalism, cv=0.264)
+2026-06-23 15:46:49 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 2 ---
+2026-06-23 15:46:49 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 1 ---
+2026-06-23 15:46:49 [INFO   ] vad.pipeline |   [Ensemble] No confusion pair -> Vandalism
+2026-06-23 15:46:49 [INFO   ] vad.batch    | [63/65] DONE  Vandalism017_x264: 34s video, 1 anomalies, 97.1s processing
+2026-06-23 15:46:51 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 2 ---
+2026-06-23 15:46:51 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 2 ---
+2026-06-23 15:46:51 [INFO   ] vad.pipeline |   [Ensemble] No confusion pair -> Vandalism
+2026-06-23 15:46:51 [INFO   ] vad.batch    | [64/65] DONE  Vandalism028_x264: 150s video, 2 anomalies, 83.5s processing
+2026-06-23 15:47:18 [INFO   ] vad.pipeline |     [GradRefine] 4.2-8.6s -> 2.5-11.5s (cat=Vandalism, cv=0.263)
+2026-06-23 15:47:18 [INFO   ] vad.pipeline |     [GradRefine] 0.0-11.8s -> 0.0-18.0s (cat=Vandalism, cv=0.263)
+2026-06-23 15:47:18 [INFO   ] vad.pipeline |     [GradRefine] 44.0-48.1s -> 42.0-48.0s (cat=Vandalism, cv=0.263)
+2026-06-23 15:47:18 [INFO   ] vad.pipeline |   --- Pre-merge anomalies: 3 ---
+2026-06-23 15:47:18 [INFO   ] vad.pipeline |   --- Post-merge anomalies: 2 ---
+2026-06-23 15:47:18 [INFO   ] vad.pipeline |   [Ensemble] No confusion pair -> Vandalism
+2026-06-23 15:47:18 [INFO   ] vad.batch    | [65/65] DONE  Vandalism036_x264: 48s video, 2 anomalies, 47.7s processing
+2026-06-23 15:47:18 [INFO   ] vad.batch    | ============================================================
+2026-06-23 15:47:18 [INFO   ] vad.batch    | Batch complete:
+2026-06-23 15:47:18 [INFO   ] vad.batch    |   Succeeded: 65, Skipped: 0, Failed: 0
+2026-06-23 15:47:18 [INFO   ] vad.batch    |   Total wall-clock time:   3258.7s (54.3min)
+2026-06-23 15:47:18 [INFO   ] vad.batch    |   Total processing time:   9678.1s (161.3min)
+2026-06-23 15:47:18 [INFO   ] vad.batch    |   Avg per video:           148.9s
+2026-06-23 15:47:18 [INFO   ] vad.batch    |   Parallelism speedup:     2.97x
+2026-06-23 15:47:18 [INFO   ] vad.batch    | ============================================================
+2026-06-23 15:47:18 [INFO   ] vad.batch    | Running evaluation...
+2026-06-23 15:47:18 [INFO   ] vad.batch    | Full report saved to: results/batch_eval_v29/evaluation_report.json

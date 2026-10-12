@@ -1,0 +1,148 @@
+2026-08-03 10:14:36 [INFO   ] VAD batch evaluation started | output_dir=/Users/zzl/PycharmProjects/vad/results/batch_eval_v162_full | log=/Users/zzl/PycharmProjects/vad/results/batch_eval_v162_full/run.log
+2026-08-03 10:14:37 [INFO   ] Selected 88 videos from 4 categories:
+2026-08-03 10:14:37 [INFO   ]   Explosion           :  21 / 21
+2026-08-03 10:14:37 [INFO   ]   RoadAccidents       :  23 / 23
+2026-08-03 10:14:37 [INFO   ]   Shooting            :  23 / 23
+2026-08-03 10:14:37 [INFO   ]   Shoplifting         :  21 / 21
+2026-08-03 10:15:10 [INFO   ] [AnomalyExpert] Loaded learned prompt weights from /Users/zzl/PycharmProjects/vad/video_anomaly_detection/prompt_weights.json
+2026-08-03 10:15:11 [INFO   ] [AnomalyExpert] CLIP ViT-L-14 loaded on mps
+2026-08-03 10:15:57 [INFO   ] [VideoMAE] Loaded on mps
+2026-08-03 10:15:57 [INFO   ]   [MIL] Loaded MIL model from /Users/zzl/PycharmProjects/vad/video_anomaly_detection/model_mil.pth
+2026-08-03 10:15:58 [INFO   ] Starting batch processing: 88 videos, concurrency=2
+2026-08-03 10:15:58 [INFO   ] Detect model: qwen-vl-plus, Classify model: qwen3-vl-plus
+2026-08-03 10:15:58 [INFO   ] ============================================================
+2026-08-03 10:15:58 [INFO   ] [1/88] START Explosion002_x264 (Explosion)
+2026-08-03 10:15:58 [INFO   ]   [Motion filter] 268 -> 191 frames (29% removed, threshold=1.0)
+2026-08-03 10:16:43 [INFO   ]   [CLIP precompute] 191 frames encoded in 45.6s
+2026-08-03 10:16:48 [INFO   ]   [MIL] snippet scores: mean=0.981, max=1.000, min=0.714
+2026-08-03 10:16:58 [INFO   ]   [VideoMAE] Explosion(93%), Shooting(3%), Vandalism(1%) -> Explosion@93%
+2026-08-03 10:17:20 [INFO   ]   [VideoMAE-window] 10 windows in 21.9s
+2026-08-03 10:17:20 [INFO   ]   [CLIP-loc] Category=Explosion, mean=0.401, std=0.281, range=0.957, cv=0.701
+2026-08-03 10:17:20 [INFO   ]   [CLIP-loc] Fused with motion energy for Explosion
+2026-08-03 10:17:20 [INFO   ]   [CLIP-loc] Found 5 multi-scale regions:
+2026-08-03 10:17:20 [INFO   ]   [Directed scan] 10/30 segments selected for LLM scanning
+2026-08-03 10:17:20 [INFO   ] [2/88] START Explosion004_x264 (Explosion)
+2026-08-03 10:17:21 [INFO   ]   [Motion filter] 127 -> 126 frames (1% removed, threshold=1.0)
+2026-08-03 10:17:52 [INFO   ]   [CLIP precompute] 126 frames encoded in 31.2s
+2026-08-03 10:17:54 [INFO   ]   [MIL] snippet scores: mean=1.000, max=1.000, min=0.994
+2026-08-03 10:18:06 [INFO   ]   [VideoMAE] Explosion(99%), Abuse(0%), Assault(0%) -> Explosion@99%
+2026-08-03 10:18:21 [INFO   ]   [VideoMAE-window] 6 windows in 14.6s
+2026-08-03 10:18:21 [INFO   ]   [CLIP-loc] Category=Explosion, mean=0.962, std=0.054, range=0.294, cv=0.056
+2026-08-03 10:18:21 [INFO   ]   [CLIP-loc] Fused with motion energy for Explosion
+2026-08-03 10:18:21 [INFO   ]   [CLIP-loc] Found 3 multi-scale regions:
+2026-08-03 10:18:21 [INFO   ]   [Multi-CLIP-loc] 3 regions deduped to 2
+2026-08-03 10:18:21 [INFO   ]   [Directed scan] 9/14 segments selected for LLM scanning
+2026-08-03 10:18:24 [INFO   ] Found 2 anomaly candidate(s):
+2026-08-03 10:18:24 [INFO   ]   Candidate 1: 49.5s-64.5s score=0.95
+2026-08-03 10:18:24 [INFO   ]   Candidate 2: 67.5s-73.5s score=0.95
+2026-08-03 10:18:24 [INFO   ]     [CLIPBound] 49.5-64.5s -> 53.5-60.5s (contrast=0.304, cat=Explosion)
+2026-08-03 10:18:24 [INFO   ]     [CLIPBound] 67.5-73.5s -> 74.5-76.0s (contrast=0.028, cat=Explosion)
+2026-08-03 10:18:24 [INFO   ]   --- Pre-merge anomalies: 2 ---
+2026-08-03 10:18:24 [INFO   ]   --- Post-merge+NMS anomalies: 2 ---
+2026-08-03 10:18:24 [INFO   ]   [NOCLS-CA] classify VLM sub-tree skipped -> label='Explosion' (mAP-neutral; ~-7.5% VLM calls)
+2026-08-03 10:18:24 [INFO   ]   [QSCORE-GATE] reranked 2 detections (base=0.5, raw Q range [0.577,0.868])
+2026-08-03 10:18:24 [INFO   ]   [BUE] vid=Explosion002_x264.mp4 cat=Explosion det=0 closed=0 t=53.500-60.500->52.000-62.000 dur=7.00->10.00 oic=0.4338->0.5948 conf=0.8619->0.8619
+2026-08-03 10:18:24 [INFO   ]   [BUE] vid=Explosion002_x264.mp4 cat=Explosion det=1 closed=0 t=74.500-76.000->51.000-76.000 dur=1.50->25.00 oic=0.2178->0.4172 conf=0.3846->0.3846
+2026-08-03 10:18:24 [INFO   ]   [BUE] summary: vid=Explosion002_x264.mp4 fires=2 closed_skips=0 ndet_before=2 ndet_after=2 growth_med=13.250 dur_ratio=9.048 selfov=1 degen=0 noop=0 nocurve=0 lmax=40.0 gate=1
+2026-08-03 10:18:24 [INFO   ]   [CBT] vid=Explosion002_x264.mp4 cat=Explosion det=1 pre=25.0 post=9.0 t=51.00-76.00->52.50-61.50 cap=13.0 contrast=0.6203 conf=0.3846->0.3846 mpa=on centers_tried=3 chosen_off_argmax=False
+2026-08-03 10:18:24 [INFO   ]   [CBT-VID] vid=Explosion002_x264.mp4 enabled=True ndet=2 fired=1 wide_noop=1 nocurve=0 nofire=0 recal=off mpa=on
+2026-08-03 10:18:24 [INFO   ] [COST] video=Explosion002_x264.mp4 vlm_calls=19 clip_calls=10 elapsed_s=146.2
+2026-08-03 10:18:24 [INFO   ] [1/88] DONE  Explosion002_x264: 134s video, 2 anomalies, 146.2s processing
+2026-08-03 10:18:24 [INFO   ] [3/88] START Explosion007_x264 (Explosion)
+2026-08-03 10:18:27 [INFO   ]   [Motion filter] 1086 -> 1071 frames (1% removed, threshold=1.0)
+2026-08-03 10:20:16 [INFO   ]   [CLIP precompute] 1071 frames encoded in 108.7s
+2026-08-03 10:20:17 [INFO   ]   [MIL] snippet scores: mean=1.000, max=1.000, min=0.998
+2026-08-03 10:20:21 [INFO   ]   [VideoMAE] Explosion(100%), Abuse(0%), Shoplifting(0%) -> Explosion@100%
+2026-08-03 10:21:17 [INFO   ]   [VideoMAE-window] 65 windows in 55.8s
+2026-08-03 10:21:17 [INFO   ]   [CLIP-loc] Category=Explosion, mean=0.913, std=0.079, range=0.635, cv=0.087
+2026-08-03 10:21:17 [INFO   ]   [CLIP-loc] Fused with motion energy for Explosion
+2026-08-03 10:21:17 [INFO   ]   [CLIP-loc] Found 5 multi-scale regions:
+2026-08-03 10:21:17 [INFO   ]   [Directed scan] 18/121 segments selected for LLM scanning
+2026-08-03 10:21:18 [INFO   ] Found 2 anomaly candidate(s):
+2026-08-03 10:21:18 [INFO   ]   Candidate 1: 0.0s-10.5s score=0.95
+2026-08-03 10:21:18 [INFO   ]   Candidate 2: 40.5s-63.4s score=0.95
+2026-08-03 10:21:18 [INFO   ]     [CLIPBound] 0.0-10.5s -> 2.5-10.5s (contrast=0.096, cat=Explosion)
+2026-08-03 10:21:18 [INFO   ]     [CLIPBound] 40.5-63.4s -> 51.5-60.5s (contrast=0.033, cat=Explosion)
+2026-08-03 10:21:18 [INFO   ]   --- Pre-merge anomalies: 2 ---
+2026-08-03 10:21:18 [INFO   ]   --- Post-merge+NMS anomalies: 2 ---
+2026-08-03 10:21:18 [INFO   ]   [NOCLS-CA] classify VLM sub-tree skipped -> label='Explosion' (mAP-neutral; ~-7.5% VLM calls)
+2026-08-03 10:21:18 [INFO   ]   [QSCORE-GATE] reranked 2 detections (base=0.5, raw Q range [0.807,0.879])
+2026-08-03 10:21:18 [INFO   ]   [BUE] vid=Explosion004_x264.mp4 cat=Explosion det=1 closed=0 t=51.500-60.500->50.500-63.000 dur=9.00->12.50 oic=0.0314->0.0539 conf=0.3852->0.3852
+2026-08-03 10:21:18 [INFO   ]   [BUE] summary: vid=Explosion004_x264.mp4 fires=1 closed_skips=0 ndet_before=2 ndet_after=2 growth_med=3.500 dur_ratio=1.389 selfov=0 degen=0 noop=1 nocurve=0 lmax=40.0 gate=1
+2026-08-03 10:21:18 [INFO   ]   [CBT-VID] vid=Explosion004_x264.mp4 enabled=True ndet=2 fired=0 wide_noop=2 nocurve=0 nofire=0 recal=off mpa=on
+2026-08-03 10:21:18 [INFO   ] [COST] video=Explosion004_x264.mp4 vlm_calls=37 clip_calls=38 elapsed_s=237.3
+2026-08-03 10:21:18 [INFO   ] [2/88] DONE  Explosion004_x264: 63s video, 2 anomalies, 237.3s processing
+2026-08-03 10:21:18 [INFO   ] [4/88] START Explosion008_x264 (Explosion)
+2026-08-03 10:21:18 [INFO   ]   [Motion filter] 117 -> 85 frames (27% removed, threshold=1.0)
+2026-08-03 10:21:27 [INFO   ]   [CLIP precompute] 85 frames encoded in 8.9s
+2026-08-03 10:21:29 [INFO   ]   [MIL] snippet scores: mean=0.993, max=1.000, min=0.860
+2026-08-03 10:21:34 [INFO   ]   [VideoMAE] Explosion(100%), Shoplifting(0%), Arrest(0%) -> Explosion@100%
+2026-08-03 10:21:38 [INFO   ]   [VideoMAE-window] 4 windows in 3.6s
+2026-08-03 10:21:38 [INFO   ]   [CLIP-loc] Category=Explosion, mean=0.801, std=0.240, range=0.740, cv=0.300
+2026-08-03 10:21:38 [INFO   ]   [CLIP-loc] Fused with motion energy for Explosion
+2026-08-03 10:21:38 [INFO   ]   [CLIP-loc] Found 1 multi-scale regions:
+2026-08-03 10:21:38 [INFO   ]   [Directed scan] 8/13 segments selected for LLM scanning
+2026-08-03 10:21:40 [INFO   ] Found 1 anomaly candidate(s):
+2026-08-03 10:21:40 [INFO   ]   Candidate 1: 31.5s-58.3s score=0.95
+2026-08-03 10:21:40 [INFO   ]     [CLIPBound] 31.5-58.3s -> 49.5-53.5s (contrast=0.079, cat=Explosion)
+2026-08-03 10:21:40 [INFO   ]   --- Pre-merge anomalies: 1 ---
+2026-08-03 10:21:40 [INFO   ]   --- Post-merge+NMS anomalies: 1 ---
+2026-08-03 10:21:40 [INFO   ]   [NOCLS-CA] classify VLM sub-tree skipped -> label='Explosion' (mAP-neutral; ~-7.5% VLM calls)
+2026-08-03 10:21:40 [INFO   ]   [QSCORE-GATE] reranked 1 detections (base=0.5, raw Q range [0.799,0.799])
+2026-08-03 10:21:40 [INFO   ]   [BUE] vid=Explosion008_x264.mp4 cat=Explosion det=0 closed=0 t=49.500-53.500->10.000-58.000 dur=4.00->48.00 oic=0.0412->0.4139 conf=0.7845->0.7845
+2026-08-03 10:21:40 [INFO   ]   [BUE] summary: vid=Explosion008_x264.mp4 fires=1 closed_skips=0 ndet_before=1 ndet_after=1 growth_med=44.000 dur_ratio=12.000 selfov=0 degen=0 noop=0 nocurve=0 lmax=40.0 gate=1
+2026-08-03 10:21:40 [INFO   ]   [CBT] vid=Explosion008_x264.mp4 cat=Explosion det=0 pre=48.0 post=13.0 t=10.00-58.00->35.50-48.50 cap=13.0 contrast=0.2447 conf=0.7845->0.7845 mpa=on centers_tried=4 chosen_off_argmax=True
+2026-08-03 10:21:40 [INFO   ]   [CBT-VID] vid=Explosion008_x264.mp4 enabled=True ndet=1 fired=1 wide_noop=0 nocurve=0 nofire=0 recal=off mpa=on
+2026-08-03 10:21:40 [INFO   ] [COST] video=Explosion008_x264.mp4 vlm_calls=8 clip_calls=3 elapsed_s=22.7
+2026-08-03 10:21:40 [INFO   ] [4/88] DONE  Explosion008_x264: 58s video, 1 anomalies, 22.7s processing
+2026-08-03 10:21:40 [INFO   ] [5/88] START Explosion010_x264 (Explosion)
+2026-08-03 10:21:41 [INFO   ]   [Motion filter] 167 -> 146 frames (13% removed, threshold=1.0)
+2026-08-03 10:21:55 [INFO   ]   [CLIP precompute] 146 frames encoded in 14.8s
+2026-08-03 10:21:57 [INFO   ]   [MIL] snippet scores: mean=0.995, max=1.000, min=0.924
+2026-08-03 10:22:02 [INFO   ]   [VideoMAE] Explosion(100%), Arrest(0%), Abuse(0%) -> Explosion@100%
+2026-08-03 10:22:09 [INFO   ]   [VideoMAE-window] 8 windows in 7.0s
+2026-08-03 10:22:09 [INFO   ]   [CLIP-loc] Category=Explosion, mean=0.944, std=0.122, range=0.686, cv=0.130
+2026-08-03 10:22:09 [INFO   ]   [CLIP-loc] Fused with motion energy for Explosion
+2026-08-03 10:22:09 [INFO   ]   [CLIP-loc] Found 5 multi-scale regions:
+2026-08-03 10:22:09 [INFO   ]   [Multi-CLIP-loc] 5 regions deduped to 2
+2026-08-03 10:22:09 [INFO   ]   [Directed scan] 10/19 segments selected for LLM scanning
+2026-08-03 10:22:09 [INFO   ] Found 2 anomaly candidate(s):
+2026-08-03 10:22:09 [INFO   ]   Candidate 1: 49.5s-60.0s score=0.95
+2026-08-03 10:22:09 [INFO   ]   Candidate 2: 99.0s-168.0s score=0.95
+2026-08-03 10:22:09 [INFO   ]     [CLIPBound] 49.5-60.0s -> 54.5-61.5s (contrast=0.096, cat=Explosion)
+2026-08-03 10:22:09 [INFO   ]     [CLIPBound] 99.0-168.0s -> 125.5-127.5s (contrast=0.021, cat=Explosion)
+2026-08-03 10:22:09 [INFO   ]   --- Pre-merge anomalies: 2 ---
+2026-08-03 10:22:09 [INFO   ]   --- Post-merge+NMS anomalies: 2 ---
+2026-08-03 10:22:09 [INFO   ]   [NOCLS-CA] classify VLM sub-tree skipped -> label='Explosion' (mAP-neutral; ~-7.5% VLM calls)
+2026-08-03 10:22:09 [INFO   ]   [QSCORE-GATE] reranked 2 detections (base=0.5, raw Q range [0.604,0.858])
+2026-08-03 10:22:09 [INFO   ]   [BUE] vid=Explosion007_x264.mp4 cat=Explosion det=0 closed=0 t=54.500-61.500->54.500-62.000 dur=7.00->7.50 oic=0.0938->0.0944 conf=0.7932->0.7932
+2026-08-03 10:22:09 [INFO   ]   [BUE] vid=Explosion007_x264.mp4 cat=Explosion det=1 closed=0 t=125.500-127.500->87.000-127.500 dur=2.00->40.50 oic=0.0087->0.0310 conf=0.3833->0.3833
+2026-08-03 10:22:09 [INFO   ]   [BUE] summary: vid=Explosion007_x264.mp4 fires=2 closed_skips=0 ndet_before=2 ndet_after=2 growth_med=19.500 dur_ratio=10.661 selfov=0 degen=0 noop=0 nocurve=0 lmax=40.0 gate=1
+2026-08-03 10:22:09 [INFO   ]   [CBT] vid=Explosion007_x264.mp4 cat=Explosion det=1 pre=40.5 post=2.0 t=87.00-127.50->125.50-127.50 cap=13.0 contrast=0.0700 conf=0.3833->0.3833 mpa=on centers_tried=3 chosen_off_argmax=False
+2026-08-03 10:22:09 [INFO   ]   [CBT-VID] vid=Explosion007_x264.mp4 enabled=True ndet=2 fired=1 wide_noop=1 nocurve=0 nofire=0 recal=off mpa=on
+2026-08-03 10:22:09 [INFO   ] [COST] video=Explosion007_x264.mp4 vlm_calls=36 clip_calls=42 elapsed_s=225.1
+2026-08-03 10:22:09 [INFO   ] [3/88] DONE  Explosion007_x264: 543s video, 2 anomalies, 225.1s processing
+2026-08-03 10:22:09 [INFO   ] [6/88] START Explosion011_x264 (Explosion)
+2026-08-03 10:22:09 [INFO   ]   [Motion filter] 105 -> 105 frames (0% removed, threshold=1.0)
+2026-08-03 10:22:22 [INFO   ]   [CLIP precompute] 105 frames encoded in 12.8s
+2026-08-03 10:22:23 [INFO   ]   [MIL] snippet scores: mean=0.948, max=0.999, min=0.645
+2026-08-03 10:22:28 [INFO   ]   [VideoMAE] Explosion(98%), RoadAccidents(2%), Arrest(0%) -> Explosion@98%
+2026-08-03 10:22:34 [INFO   ]   [VideoMAE-window] 5 windows in 5.8s
+2026-08-03 10:22:34 [INFO   ]   [CLIP-loc] Category=Explosion, mean=0.418, std=0.367, range=0.937, cv=0.878
+2026-08-03 10:22:34 [INFO   ]   [CLIP-loc] Fused with motion energy for Explosion
+2026-08-03 10:22:34 [INFO   ]   [CLIP-loc] Found 1 multi-scale regions:
+2026-08-03 10:22:34 [INFO   ]   [Directed scan] 8/12 segments selected for LLM scanning
+2026-08-03 10:22:38 [INFO   ] Found 1 anomaly candidate(s):
+2026-08-03 10:22:38 [INFO   ]   Candidate 1: 27.0s-42.0s score=0.95
+2026-08-03 10:22:38 [INFO   ]     [CLIPBound] 27.0-42.0s -> 36.5-44.5s (contrast=0.308, cat=Explosion)
+2026-08-03 10:22:38 [INFO   ]   --- Pre-merge anomalies: 1 ---
+2026-08-03 10:22:38 [INFO   ]   --- Post-merge+NMS anomalies: 1 ---
+2026-08-03 10:22:38 [INFO   ]   [NOCLS-CA] classify VLM sub-tree skipped -> label='Explosion' (mAP-neutral; ~-7.5% VLM calls)
+2026-08-03 10:22:38 [INFO   ]   [QSCORE-GATE] reranked 1 detections (base=0.5, raw Q range [0.836,0.836])
+2026-08-03 10:22:38 [INFO   ]   [BUE] vid=Explosion011_x264.mp4 cat=Explosion det=0 closed=0 t=36.500-44.500->28.500-45.000 dur=8.00->16.50 oic=0.3314->0.7702 conf=0.8597->0.8597
+2026-08-03 10:22:38 [INFO   ]   [BUE] summary: vid=Explosion011_x264.mp4 fires=1 closed_skips=0 ndet_before=1 ndet_after=1 growth_med=8.500 dur_ratio=2.062 selfov=0 degen=0 noop=0 nocurve=0 lmax=40.0 gate=1
+2026-08-03 10:22:38 [INFO   ]   [CBT-VID] vid=Explosion011_x264.mp4 enabled=True ndet=1 fired=0 wide_noop=1 nocurve=0 nofire=0 recal=off mpa=on
+2026-08-03 10:22:38 [INFO   ] [COST] video=Explosion011_x264.mp4 vlm_calls=8 clip_calls=4 elapsed_s=29.3
+2026-08-03 10:22:38 [INFO   ] [6/88] DONE  Explosion011_x264: 52s video, 1 anomalies, 29.3s processing
+2026-08-03 10:22:38 [INFO   ] [7/88] START Explosion013_x264 (Explosion)
+2026-08-03 10:22:39 [INFO   ]   [Motion filter] 222 -> 201 frames (9% removed, threshold=1.0)

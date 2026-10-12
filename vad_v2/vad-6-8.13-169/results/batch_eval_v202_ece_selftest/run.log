@@ -1,0 +1,420 @@
+2026-08-25 04:03:03 [INFO   ] VAD batch evaluation started | output_dir=/Users/zzl/PycharmProjects/vad/results/batch_eval_v202_ece_selftest | log=/Users/zzl/PycharmProjects/vad/results/batch_eval_v202_ece_selftest/run.log
+2026-08-25 04:03:03 [INFO   ] Selected 12 videos from 4 categories:
+2026-08-25 04:03:03 [INFO   ]   Explosion           :   3 / 21
+2026-08-25 04:03:03 [INFO   ]   RoadAccidents       :   3 / 23
+2026-08-25 04:03:03 [INFO   ]   Shooting            :   3 / 23
+2026-08-25 04:03:03 [INFO   ]   Shoplifting         :   3 / 21
+2026-08-25 04:03:35 [INFO   ] [AnomalyExpert] Loaded learned prompt weights from /Users/zzl/PycharmProjects/vad/video_anomaly_detection/prompt_weights.json
+2026-08-25 04:03:36 [INFO   ] [AnomalyExpert] CLIP ViT-L-14 loaded on mps
+2026-08-25 04:04:24 [INFO   ] [VideoMAE] Loaded on mps
+2026-08-25 04:04:24 [INFO   ]   [MIL] Loaded MIL model from /Users/zzl/PycharmProjects/vad/video_anomaly_detection/model_mil.pth
+2026-08-25 04:04:24 [INFO   ] Starting batch processing: 12 videos, concurrency=1
+2026-08-25 04:04:24 [INFO   ] Detect model: qwen-vl-plus, Classify model: qwen3-vl-plus
+2026-08-25 04:04:24 [INFO   ] ============================================================
+2026-08-25 04:04:24 [INFO   ] [1/12] START Explosion002_x264 (Explosion)
+2026-08-25 04:04:25 [INFO   ]   [Motion filter] 268 -> 191 frames (29% removed, threshold=1.0)
+2026-08-25 04:04:53 [INFO   ]   [CLIP precompute] 191 frames encoded in 28.3s
+2026-08-25 04:04:56 [INFO   ]   [MIL] snippet scores: mean=0.981, max=1.000, min=0.714
+2026-08-25 04:05:09 [INFO   ]   [VideoMAE] Explosion(93%), Shooting(3%), Vandalism(1%) -> Explosion@93%
+2026-08-25 04:05:25 [INFO   ]   [VideoMAE-window] 10 windows in 15.4s
+2026-08-25 04:05:25 [INFO   ]   [CLIP-loc] Category=Explosion, mean=0.401, std=0.281, range=0.957, cv=0.701
+2026-08-25 04:05:25 [INFO   ]   [CLIP-loc] Fused with motion energy for Explosion
+2026-08-25 04:05:25 [INFO   ]   [CLIP-loc] Found 5 multi-scale regions:
+2026-08-25 04:05:25 [INFO   ]   [Directed scan] 10/30 segments selected for LLM scanning
+2026-08-25 04:05:28 [INFO   ] Found 2 anomaly candidate(s):
+2026-08-25 04:05:28 [INFO   ]   Candidate 1: 49.5s-64.5s score=0.95
+2026-08-25 04:05:28 [INFO   ]   Candidate 2: 67.5s-73.5s score=0.90
+2026-08-25 04:05:28 [INFO   ]     [CLIPBound] 49.5-64.5s -> 53.5-60.5s (contrast=0.304, cat=Explosion)
+2026-08-25 04:05:28 [INFO   ]     [CLIPBound] 67.5-73.5s -> 74.5-76.0s (contrast=0.028, cat=Explosion)
+2026-08-25 04:05:28 [INFO   ]   --- Pre-merge anomalies: 2 ---
+2026-08-25 04:05:28 [INFO   ]   --- Post-merge+NMS anomalies: 2 ---
+2026-08-25 04:05:28 [INFO   ]   [NOCLS-CA] classify VLM sub-tree skipped -> label='Explosion' (mAP-neutral; ~-7.5% VLM calls)
+2026-08-25 04:05:28 [INFO   ]     [ECE] pre=[53.5,60.5] post=[53.5,60.5] (reject-cap: span 11.5s > max_dur 10.0s, cat=Explosion)
+2026-08-25 04:05:28 [INFO   ]     [ECE] pre=[74.5,76.0] post=[74.5,76.0] (grid-snap: cat=Explosion, hm=0.5703, dur 1.5s -> 1.5s)
+2026-08-25 04:05:28 [INFO   ]   [ECE] summary: 0 material / 1 snaps / 1 reject-caps / 0 skips (n=2, cat=Explosion)
+2026-08-25 04:05:28 [INFO   ]   [QSCORE-GATE] reranked 2 detections (base=0.5, raw Q range [0.558,0.880])
+2026-08-25 04:05:28 [INFO   ]   [BUE] vid=Explosion002_x264.mp4 cat=Explosion det=0 closed=0 t=53.500-60.500->52.000-62.000 dur=7.00->10.00 oic=0.4338->0.5948 conf=0.8619->0.8619
+2026-08-25 04:05:28 [INFO   ]   [BUE] vid=Explosion002_x264.mp4 cat=Explosion det=1 closed=0 t=74.500-76.000->51.000-76.000 dur=1.50->25.00 oic=0.2178->0.4172 conf=0.3644->0.3644
+2026-08-25 04:05:28 [INFO   ]   [BUE] summary: vid=Explosion002_x264.mp4 fires=2 closed_skips=0 ndet_before=2 ndet_after=2 growth_med=13.250 dur_ratio=9.048 selfov=1 degen=0 noop=0 nocurve=0 lmax=40.0 gate=1
+2026-08-25 04:05:28 [INFO   ]   [CBT] vid=Explosion002_x264.mp4 cat=Explosion det=1 pre=25.0 post=9.0 t=51.00-76.00->52.50-61.50 cap=13.0 contrast=0.6203 conf=0.3644->0.3644
+2026-08-25 04:05:28 [INFO   ]   [CBT-VID] vid=Explosion002_x264.mp4 enabled=True ndet=2 fired=1 wide_noop=1 nocurve=0 nofire=0 recal=on
+2026-08-25 04:05:28 [INFO   ]   [AB-VID] vid=Explosion002_x264 mech=ece ndet=2 armoff_len=2 n_win_changed=0 n_conf_changed=0 fired=0 cfg_changed=event_continuation_extension
+2026-08-25 04:05:28 [INFO   ] [COST] video=Explosion002_x264.mp4 vlm_calls=10 clip_calls=6 elapsed_s=63.6
+2026-08-25 04:05:28 [INFO   ] [1/12] DONE  Explosion002_x264: 134s video, 2 anomalies, 63.6s processing
+2026-08-25 04:05:28 [INFO   ] [2/12] START Explosion029_x264 (Explosion)
+2026-08-25 04:05:28 [INFO   ]   [Motion filter] 161 -> 125 frames (22% removed, threshold=1.0)
+2026-08-25 04:05:47 [INFO   ]   [CLIP precompute] 125 frames encoded in 19.2s
+2026-08-25 04:05:50 [INFO   ]   [MIL] snippet scores: mean=0.015, max=0.058, min=0.002
+2026-08-25 04:21:18 [INFO   ]   [VideoMAE] Explosion(94%), RoadAccidents(4%), Vandalism(0%) -> Explosion@94%
+2026-08-25 04:21:28 [INFO   ]   [VideoMAE-window] 6 windows in 9.3s
+2026-08-25 04:21:28 [INFO   ]   [CLIP-loc] Category=Explosion, mean=0.502, std=0.198, range=0.848, cv=0.395
+2026-08-25 04:21:28 [INFO   ]   [CLIP-loc] Fused with motion energy for Explosion
+2026-08-25 04:21:28 [INFO   ]   [CLIP-loc] Found 4 multi-scale regions:
+2026-08-25 04:21:28 [INFO   ]   [Multi-CLIP-loc] 4 regions deduped to 3
+2026-08-25 04:21:28 [INFO   ]   [Directed scan] 10/18 segments selected for LLM scanning
+2026-08-25 04:21:30 [INFO   ] Found 1 anomaly candidate(s):
+2026-08-25 04:21:30 [INFO   ]   Candidate 1: 58.5s-69.0s score=0.95
+2026-08-25 04:21:30 [INFO   ]     [CLIPBound] 58.5-69.0s -> 64.0-74.0s (contrast=0.317, cat=Explosion)
+2026-08-25 04:21:30 [INFO   ]   --- Pre-merge anomalies: 1 ---
+2026-08-25 04:21:30 [INFO   ]   --- Post-merge+NMS anomalies: 1 ---
+2026-08-25 04:21:30 [INFO   ]   [NOCLS-CA] classify VLM sub-tree skipped -> label='Explosion' (mAP-neutral; ~-7.5% VLM calls)
+2026-08-25 04:21:30 [INFO   ]   [MIL-sanity] MIL max_score=0.058 < 0.3, reducing confidence by 30%
+2026-08-25 04:21:30 [INFO   ]     [ECE] pre=[64.0,74.0] post=[64.0,74.0] (skip: dur 10.0s >= max_dur 10.0s, cat=Explosion)
+2026-08-25 04:21:30 [INFO   ]   [ECE] summary: 0 material / 0 snaps / 0 reject-caps / 1 skips (n=1, cat=Explosion)
+2026-08-25 04:21:30 [INFO   ]   [QSCORE-GATE] reranked 1 detections (base=0.5, raw Q range [0.853,0.853])
+2026-08-25 04:21:30 [INFO   ]   [BUE] vid=Explosion029_x264.mp4 cat=Explosion det=0 closed=0 t=64.000-74.000->63.000-79.000 dur=10.00->16.00 oic=0.1467->0.2917 conf=0.6031->0.6031
+2026-08-25 04:21:30 [INFO   ]   [BUE] summary: vid=Explosion029_x264.mp4 fires=1 closed_skips=0 ndet_before=1 ndet_after=1 growth_med=6.000 dur_ratio=1.600 selfov=0 degen=0 noop=0 nocurve=0 lmax=40.0 gate=1
+2026-08-25 04:21:30 [INFO   ]   [CBT] vid=Explosion029_x264.mp4 cat=Explosion det=0 pre=16.0 post=3.5 t=63.00-79.00->73.00-76.50 cap=13.0 contrast=0.3372 conf=0.6031->0.6031
+2026-08-25 04:21:30 [INFO   ]   [CBT-VID] vid=Explosion029_x264.mp4 enabled=True ndet=1 fired=1 wide_noop=0 nocurve=0 nofire=0 recal=on
+2026-08-25 04:21:30 [INFO   ]   [AB-VID] vid=Explosion029_x264 mech=ece ndet=1 armoff_len=1 n_win_changed=0 n_conf_changed=0 fired=0 cfg_changed=event_continuation_extension
+2026-08-25 04:21:30 [INFO   ] [COST] video=Explosion029_x264.mp4 vlm_calls=10 clip_calls=4 elapsed_s=961.6
+2026-08-25 04:21:30 [INFO   ] [2/12] DONE  Explosion029_x264: 80s video, 1 anomalies, 961.6s processing
+2026-08-25 04:21:30 [INFO   ] [3/12] START Explosion035_x264 (Explosion)
+2026-08-25 04:21:30 [INFO   ]   [Motion filter] 191 -> 179 frames (6% removed, threshold=1.0)
+2026-08-25 04:21:58 [INFO   ]   [CLIP precompute] 179 frames encoded in 27.5s
+2026-08-25 04:22:01 [INFO   ]   [MIL] snippet scores: mean=0.984, max=1.000, min=0.696
+2026-08-25 04:22:08 [INFO   ]   [VideoMAE] Abuse(90%), Explosion(4%), Burglary(2%) -> Abuse@90%
+2026-08-25 04:22:26 [INFO   ]   [VideoMAE-window] 10 windows in 18.1s
+2026-08-25 04:22:26 [INFO   ]   [CLIP-loc] Category=Abuse, mean=0.597, std=0.337, range=0.967, cv=0.565
+2026-08-25 04:22:26 [INFO   ]   [CLIP-loc] Found 3 multi-scale regions:
+2026-08-25 04:22:26 [INFO   ]   [CLIP-loc] Category=Explosion, mean=0.774, std=0.199, range=0.873, cv=0.257
+2026-08-25 04:22:26 [INFO   ]   [CLIP-loc] Fused with motion energy for Explosion
+2026-08-25 04:22:26 [INFO   ]   [CLIP-loc] Found 5 multi-scale regions:
+2026-08-25 04:22:26 [INFO   ]   [Multi-CLIP-loc] 8 regions deduped to 3
+2026-08-25 04:22:27 [INFO   ]   [Directed scan] 10/21 segments selected for LLM scanning
+2026-08-25 04:22:28 [INFO   ] Found 2 anomaly candidate(s):
+2026-08-25 04:22:28 [INFO   ]   Candidate 1: 4.5s-15.0s score=0.95
+2026-08-25 04:22:28 [INFO   ]   Candidate 2: 36.0s-46.5s score=0.90
+2026-08-25 04:22:28 [INFO   ]     [CLIPBound] 4.5-15.0s -> 9.0-13.5s (contrast=0.229, cat=Abuse)
+2026-08-25 04:22:28 [INFO   ]     [CLIPBound] 36.0-46.5s -> 35.0-42.0s (contrast=0.240, cat=Abuse)
+2026-08-25 04:22:28 [INFO   ]   --- Pre-merge anomalies: 2 ---
+2026-08-25 04:22:28 [INFO   ]   --- Post-merge+NMS anomalies: 2 ---
+2026-08-25 04:22:28 [INFO   ]   [NOCLS-CA] classify VLM sub-tree skipped -> label='Abuse' (mAP-neutral; ~-7.5% VLM calls)
+2026-08-25 04:22:28 [INFO   ]     [ECE] pre=[9.0,13.5] post=[9.0,13.5] (grid-snap: cat=Abuse, hm=0.5813, dur 4.5s -> 4.5s)
+2026-08-25 04:22:28 [INFO   ]     [ECE] pre=[35.0,42.0] post=[35.0,42.0] (reject-cap: span 14.5s > max_dur 8.0s, cat=Abuse)
+2026-08-25 04:22:28 [INFO   ]   [ECE] summary: 0 material / 1 snaps / 1 reject-caps / 0 skips (n=2, cat=Abuse)
+2026-08-25 04:22:28 [INFO   ]   [QSCORE-GATE] reranked 2 detections (base=0.5, raw Q range [0.798,0.815])
+2026-08-25 04:22:28 [INFO   ]   [BUE] vid=Explosion035_x264.mp4 cat=Abuse det=0 closed=0 t=9.000-13.500->8.500-14.500 dur=4.50->6.00 oic=0.2995->0.2592 conf=0.8325->0.8325
+2026-08-25 04:22:28 [INFO   ]   [BUE] vid=Explosion035_x264.mp4 cat=Abuse det=1 closed=0 t=35.000-42.000->34.500-49.000 dur=7.00->14.50 oic=0.4223->0.5630 conf=0.3998->0.3998
+2026-08-25 04:22:28 [INFO   ]   [BUE] summary: vid=Explosion035_x264.mp4 fires=2 closed_skips=0 ndet_before=2 ndet_after=2 growth_med=4.500 dur_ratio=1.702 selfov=0 degen=0 noop=0 nocurve=0 lmax=40.0 gate=1
+2026-08-25 04:22:28 [INFO   ]   [CBT-VID] vid=Explosion035_x264.mp4 enabled=True ndet=2 fired=0 wide_noop=0 nocurve=0 nofire=0 recal=on
+2026-08-25 04:22:28 [INFO   ]   [AB-VID] vid=Explosion035_x264 mech=ece ndet=2 armoff_len=2 n_win_changed=0 n_conf_changed=0 fired=0 cfg_changed=event_continuation_extension
+2026-08-25 04:22:28 [INFO   ] [COST] video=Explosion035_x264.mp4 vlm_calls=10 clip_calls=6 elapsed_s=58.8
+2026-08-25 04:22:28 [INFO   ] [3/12] DONE  Explosion035_x264: 96s video, 2 anomalies, 58.8s processing
+2026-08-25 04:22:28 [INFO   ] [4/12] START RoadAccidents001_x264 (RoadAccidents)
+2026-08-25 04:22:29 [INFO   ]   [Motion filter] 92 -> 87 frames (5% removed, threshold=1.0)
+2026-08-25 04:22:41 [INFO   ]   [CLIP precompute] 87 frames encoded in 12.8s
+2026-08-25 04:22:44 [INFO   ]   [MIL] snippet scores: mean=1.000, max=1.000, min=0.998
+2026-08-25 04:22:51 [INFO   ]   [VideoMAE] RoadAccidents(100%), Vandalism(0%), Arrest(0%) -> RoadAccidents@100%
+2026-08-25 04:22:57 [INFO   ]   [VideoMAE-window] 4 windows in 5.6s
+2026-08-25 04:22:57 [INFO   ]   [CLIP-loc] Category=RoadAccidents, mean=0.839, std=0.086, range=0.401, cv=0.103
+2026-08-25 04:22:57 [INFO   ]   [CLIP-loc] Fused with motion energy for RoadAccidents
+2026-08-25 04:22:57 [INFO   ]   [CLIP-loc] Found 4 multi-scale regions:
+2026-08-25 04:22:57 [INFO   ]   [CLIP-loc] Category=Robbery, mean=0.946, std=0.054, range=0.400, cv=0.057
+2026-08-25 04:22:57 [INFO   ]   [CLIP-loc] Found 3 multi-scale regions:
+2026-08-25 04:22:57 [INFO   ]   [Multi-CLIP-loc] 7 regions deduped to 1
+2026-08-25 04:22:57 [INFO   ]   [Directed scan] 10/10 segments selected for LLM scanning
+2026-08-25 04:22:59 [INFO   ] Found 2 anomaly candidate(s):
+2026-08-25 04:22:59 [INFO   ]   Candidate 1: 4.5s-24.0s score=0.95
+2026-08-25 04:22:59 [INFO   ]   Candidate 2: 27.0s-37.5s score=0.90
+2026-08-25 04:22:59 [INFO   ]     [CLIPBound] 4.5-24.0s -> 15.0-17.0s (contrast=0.091, cat=RoadAccidents)
+2026-08-25 04:22:59 [INFO   ]     [CLIPBound] 27.0-37.5s -> 22.0-25.5s (contrast=0.478, cat=RoadAccidents)
+2026-08-25 04:22:59 [INFO   ]   --- Pre-merge anomalies: 2 ---
+2026-08-25 04:22:59 [INFO   ]   --- Post-merge+NMS anomalies: 2 ---
+2026-08-25 04:22:59 [INFO   ]   [NOCLS-CA] classify VLM sub-tree skipped -> label='RoadAccidents' (mAP-neutral; ~-7.5% VLM calls)
+2026-08-25 04:22:59 [INFO   ]     [ECE] pre=[22.0,25.5] post=[22.0,25.5] (grid-snap: cat=RoadAccidents, hm=0.8798, dur 3.5s -> 3.5s)
+2026-08-25 04:22:59 [INFO   ]     [ECE] pre=[15.0,17.0] post=[15.0,18.0] (material: cat=RoadAccidents, hm=0.8798, dur 2.0s -> 3.0s)
+2026-08-25 04:22:59 [INFO   ]   [ECE] summary: 1 material / 1 snaps / 0 reject-caps / 0 skips (n=2, cat=RoadAccidents)
+2026-08-25 04:22:59 [INFO   ]   [QSCORE-GATE] reranked 2 detections (base=0.5, raw Q range [0.747,0.880])
+2026-08-25 04:22:59 [INFO   ]   [BUE] vid=RoadAccidents001_x264.mp4 cat=RoadAccidents det=0 closed=0 t=22.000-25.500->5.000-43.000 dur=3.50->38.00 oic=0.1230->0.1500 conf=0.8765->0.8765
+2026-08-25 04:22:59 [INFO   ]   [BUE] vid=RoadAccidents001_x264.mp4 cat=RoadAccidents det=1 closed=0 t=15.000-18.000->5.000-43.000 dur=3.00->38.00 oic=0.1123->0.1500 conf=0.3958->0.3958
+2026-08-25 04:22:59 [INFO   ]   [BUE] summary: vid=RoadAccidents001_x264.mp4 fires=2 closed_skips=0 ndet_before=2 ndet_after=2 growth_med=34.750 dur_ratio=11.762 selfov=1 degen=0 noop=0 nocurve=0 lmax=36.4 gate=1
+2026-08-25 04:22:59 [INFO   ]   [CBT] vid=RoadAccidents001_x264.mp4 cat=RoadAccidents det=0 pre=38.0 post=2.0 t=5.00-43.00->7.50-9.50 cap=4.5 contrast=0.0492 conf=0.8765->0.8765
+2026-08-25 04:22:59 [INFO   ]   [CBT] vid=RoadAccidents001_x264.mp4 cat=RoadAccidents det=1 pre=38.0 post=2.0 t=5.00-43.00->7.50-9.50 cap=4.5 contrast=0.0492 conf=0.3958->0.3958
+2026-08-25 04:22:59 [INFO   ]   [CBT-VID] vid=RoadAccidents001_x264.mp4 enabled=True ndet=2 fired=2 wide_noop=0 nocurve=0 nofire=0 recal=on
+2026-08-25 04:22:59 [INFO   ]   [AB-VID] vid=RoadAccidents001_x264 mech=ece ndet=2 armoff_len=2 n_win_changed=0 n_conf_changed=0 fired=0 cfg_changed=event_continuation_extension
+2026-08-25 04:22:59 [INFO   ] [COST] video=RoadAccidents001_x264.mp4 vlm_calls=10 clip_calls=3 elapsed_s=30.3
+2026-08-25 04:22:59 [INFO   ] [4/12] DONE  RoadAccidents001_x264: 46s video, 2 anomalies, 30.3s processing
+2026-08-25 04:22:59 [INFO   ] [5/12] START RoadAccidents019_x264 (RoadAccidents)
+2026-08-25 04:22:59 [INFO   ]   [Motion filter] 88 -> 88 frames (0% removed, threshold=1.0)
+2026-08-25 04:38:41 [INFO   ]   [CLIP precompute] 88 frames encoded in 942.0s
+2026-08-25 04:38:44 [INFO   ]   [MIL] snippet scores: mean=0.910, max=1.000, min=0.547
+2026-08-25 04:38:51 [INFO   ]   [VideoMAE] RoadAccidents(100%), Vandalism(0%), Shooting(0%) -> RoadAccidents@100%
+2026-08-25 04:38:57 [INFO   ]   [VideoMAE-window] 4 windows in 5.6s
+2026-08-25 04:38:57 [INFO   ]   [CLIP-loc] Category=RoadAccidents, mean=0.948, std=0.052, range=0.295, cv=0.055
+2026-08-25 04:38:57 [INFO   ]   [CLIP-loc] Fused with motion energy for RoadAccidents
+2026-08-25 04:38:57 [INFO   ]   [CLIP-loc] Found 3 multi-scale regions:
+2026-08-25 04:38:57 [INFO   ]   [CLIP-loc] Category=Robbery, mean=0.439, std=0.227, range=0.845, cv=0.516
+2026-08-25 04:38:57 [INFO   ]   [CLIP-loc] Found 2 multi-scale regions:
+2026-08-25 04:38:57 [INFO   ]   [Multi-CLIP-loc] 5 regions deduped to 2
+2026-08-25 04:38:57 [INFO   ]   [Directed scan] 10/10 segments selected for LLM scanning
+2026-08-25 04:38:59 [INFO   ] Found 1 anomaly candidate(s):
+2026-08-25 04:38:59 [INFO   ]   Candidate 1: 22.5s-43.8s score=0.95
+2026-08-25 04:38:59 [INFO   ]     [CLIPBound] 22.5-43.8s -> 40.5-42.5s (contrast=0.064, cat=RoadAccidents)
+2026-08-25 04:38:59 [INFO   ]   --- Pre-merge anomalies: 1 ---
+2026-08-25 04:38:59 [INFO   ]   --- Post-merge+NMS anomalies: 1 ---
+2026-08-25 04:38:59 [INFO   ]   [NOCLS-CA] classify VLM sub-tree skipped -> label='RoadAccidents' (mAP-neutral; ~-7.5% VLM calls)
+2026-08-25 04:38:59 [INFO   ]     [ECE] pre=[40.5,42.5] post=[40.0,43.5] (material: cat=RoadAccidents, hm=0.9532, dur 2.0s -> 3.5s)
+2026-08-25 04:38:59 [INFO   ]   [ECE] summary: 1 material / 0 snaps / 0 reject-caps / 0 skips (n=1, cat=RoadAccidents)
+2026-08-25 04:38:59 [INFO   ]   [QSCORE-GATE] reranked 1 detections (base=0.5, raw Q range [0.770,0.770])
+2026-08-25 04:38:59 [INFO   ]   [BUE] vid=RoadAccidents019_x264.mp4 cat=RoadAccidents det=0 closed=0 t=40.000-43.500->10.500-43.500 dur=3.50->33.00 oic=0.0597->0.0900 conf=0.7796->0.7796
+2026-08-25 04:38:59 [INFO   ]   [BUE] summary: vid=RoadAccidents019_x264.mp4 fires=1 closed_skips=0 ndet_before=1 ndet_after=1 growth_med=29.500 dur_ratio=9.429 selfov=0 degen=0 noop=0 nocurve=0 lmax=35.0 gate=1
+2026-08-25 04:38:59 [INFO   ]   [CBT] vid=RoadAccidents019_x264.mp4 cat=RoadAccidents det=0 pre=33.0 post=2.0 t=10.50-43.50->26.00-28.00 cap=4.5 contrast=0.0410 conf=0.7796->0.7796
+2026-08-25 04:38:59 [INFO   ]   [CBT-VID] vid=RoadAccidents019_x264.mp4 enabled=True ndet=1 fired=1 wide_noop=0 nocurve=0 nofire=0 recal=on
+2026-08-25 04:38:59 [INFO   ]   [AB-VID] vid=RoadAccidents019_x264 mech=ece ndet=1 armoff_len=1 n_win_changed=0 n_conf_changed=0 fired=0 cfg_changed=event_continuation_extension
+2026-08-25 04:38:59 [INFO   ] [COST] video=RoadAccidents019_x264.mp4 vlm_calls=10 clip_calls=3 elapsed_s=960.1
+2026-08-25 04:38:59 [INFO   ] [5/12] DONE  RoadAccidents019_x264: 44s video, 1 anomalies, 960.1s processing
+2026-08-25 04:38:59 [INFO   ] [6/12] START RoadAccidents123_x264 (RoadAccidents)
+2026-08-25 04:38:59 [INFO   ]   [Motion filter] 67 -> 67 frames (0% removed, threshold=1.0)
+2026-08-25 04:39:11 [INFO   ]   [CLIP precompute] 67 frames encoded in 11.9s
+2026-08-25 04:39:11 [INFO   ]   [MIL] snippet scores: mean=0.994, max=1.000, min=0.846
+2026-08-25 04:39:24 [INFO   ]   [VideoMAE] RoadAccidents(94%), Vandalism(4%), Arrest(1%) -> RoadAccidents@94%
+2026-08-25 04:39:27 [INFO   ]   [VideoMAE-window] 3 windows in 2.9s
+2026-08-25 04:39:27 [INFO   ]   [CLIP-loc] Category=RoadAccidents, mean=0.981, std=0.101, range=0.826, cv=0.103
+2026-08-25 04:39:27 [INFO   ]   [CLIP-loc] Fused with motion energy for RoadAccidents
+2026-08-25 04:39:27 [INFO   ]   [CLIP-loc] Found 3 multi-scale regions:
+2026-08-25 04:39:27 [INFO   ]   [CLIP-loc] Category=Robbery, mean=0.104, std=0.069, range=0.339, cv=0.659
+2026-08-25 04:39:27 [INFO   ]   [CLIP-loc] Found 3 multi-scale regions:
+2026-08-25 04:39:27 [INFO   ]   [Multi-CLIP-loc] 6 regions deduped to 2
+2026-08-25 04:39:27 [INFO   ]   [Directed scan] 8/8 segments selected for LLM scanning
+2026-08-25 04:39:29 [INFO   ] Found 1 anomaly candidate(s):
+2026-08-25 04:39:29 [INFO   ]   Candidate 1: 0.0s-33.5s score=0.95
+2026-08-25 04:39:29 [INFO   ]     [CLIPBound] 0.0-33.5s -> 1.5-8.5s (contrast=0.045, cat=RoadAccidents)
+2026-08-25 04:39:29 [INFO   ]   --- Pre-merge anomalies: 1 ---
+2026-08-25 04:39:29 [INFO   ]   --- Post-merge+NMS anomalies: 1 ---
+2026-08-25 04:39:29 [INFO   ]   [NOCLS-CA] classify VLM sub-tree skipped -> label='RoadAccidents' (mAP-neutral; ~-7.5% VLM calls)
+2026-08-25 04:39:29 [INFO   ]     [ECE] pre=[1.5,8.5] post=[1.5,8.5] (grid-snap: cat=RoadAccidents, hm=0.9963, dur 7.0s -> 7.0s)
+2026-08-25 04:39:29 [INFO   ]   [ECE] summary: 0 material / 1 snaps / 0 reject-caps / 0 skips (n=1, cat=RoadAccidents)
+2026-08-25 04:39:29 [INFO   ]   [QSCORE-GATE] reranked 1 detections (base=0.5, raw Q range [0.906,0.906])
+2026-08-25 04:39:29 [INFO   ]   [BUE] vid=RoadAccidents123_x264.mp4 cat=RoadAccidents det=0 closed=0 t=1.500-8.500->1.500-30.500 dur=7.00->29.00 oic=0.0619->0.1525 conf=0.7749->0.7749
+2026-08-25 04:39:29 [INFO   ]   [BUE] summary: vid=RoadAccidents123_x264.mp4 fires=1 closed_skips=0 ndet_before=1 ndet_after=1 growth_med=22.000 dur_ratio=4.143 selfov=0 degen=0 noop=0 nocurve=0 lmax=26.8 gate=1
+2026-08-25 04:39:29 [INFO   ]   [CBT] vid=RoadAccidents123_x264.mp4 cat=RoadAccidents det=0 pre=29.0 post=4.0 t=1.50-30.50->14.00-18.00 cap=4.5 contrast=0.0151 conf=0.7749->0.7749
+2026-08-25 04:39:29 [INFO   ]   [CBT-VID] vid=RoadAccidents123_x264.mp4 enabled=True ndet=1 fired=1 wide_noop=0 nocurve=0 nofire=0 recal=on
+2026-08-25 04:39:29 [INFO   ]   [AB-VID] vid=RoadAccidents123_x264 mech=ece ndet=1 armoff_len=1 n_win_changed=0 n_conf_changed=0 fired=0 cfg_changed=event_continuation_extension
+2026-08-25 04:39:29 [INFO   ] [COST] video=RoadAccidents123_x264.mp4 vlm_calls=8 clip_calls=3 elapsed_s=30.1
+2026-08-25 04:39:29 [INFO   ] [6/12] DONE  RoadAccidents123_x264: 34s video, 1 anomalies, 30.1s processing
+2026-08-25 04:39:29 [INFO   ] [7/12] START Shooting002_x264 (Shooting)
+2026-08-25 04:39:29 [INFO   ]   [Motion filter] 81 -> 81 frames (0% removed, threshold=1.0)
+2026-08-25 04:39:41 [INFO   ]   [CLIP precompute] 81 frames encoded in 11.6s
+2026-08-25 04:39:43 [INFO   ]   [MIL] snippet scores: mean=1.000, max=1.000, min=1.000
+2026-08-25 04:39:50 [INFO   ]   [VideoMAE] Shooting(96%), Assault(2%), Vandalism(1%) -> Shooting@96%
+2026-08-25 04:39:55 [INFO   ]   [VideoMAE-window] 4 windows in 5.6s
+2026-08-25 04:39:55 [INFO   ]   [CLIP-loc] Category=Shooting, mean=0.935, std=0.045, range=0.221, cv=0.049
+2026-08-25 04:39:55 [INFO   ]   [CLIP-loc] Found 2 multi-scale regions:
+2026-08-25 04:39:55 [INFO   ]   [Multi-CLIP-loc] 2 regions deduped to 1
+2026-08-25 04:39:56 [INFO   ]   [Directed scan] 9/9 segments selected for LLM scanning
+2026-08-25 04:39:57 [INFO   ] Found 1 anomaly candidate(s):
+2026-08-25 04:39:57 [INFO   ]   Candidate 1: 31.5s-40.2s score=0.95
+2026-08-25 04:39:57 [INFO   ]     [CLIPBound] 31.5-40.2s -> 28.0-39.0s (contrast=0.368, cat=Shooting)
+2026-08-25 04:39:57 [INFO   ]   --- Pre-merge anomalies: 1 ---
+2026-08-25 04:39:57 [INFO   ]   --- Post-merge+NMS anomalies: 1 ---
+2026-08-25 04:39:57 [INFO   ]   [NOCLS-CA] classify VLM sub-tree skipped -> label='Shooting' (mAP-neutral; ~-7.5% VLM calls)
+2026-08-25 04:39:57 [INFO   ]     [ECE] pre=[28.0,39.0] post=[28.0,39.0] (grid-snap: cat=Shooting, hm=0.9422, dur 11.0s -> 11.0s)
+2026-08-25 04:39:57 [INFO   ]   [ECE] summary: 0 material / 1 snaps / 0 reject-caps / 0 skips (n=1, cat=Shooting)
+2026-08-25 04:39:57 [INFO   ]   [QSCORE-GATE] reranked 1 detections (base=0.5, raw Q range [0.894,0.894])
+2026-08-25 04:39:57 [INFO   ]   [BUE] summary: vid=Shooting002_x264.mp4 fires=0 closed_skips=1 ndet_before=1 ndet_after=1 growth_med=0.000 dur_ratio=1.000 selfov=0 degen=0 noop=0 nocurve=0 lmax=32.2 gate=1
+2026-08-25 04:39:57 [INFO   ]   [CBT-VID] vid=Shooting002_x264.mp4 enabled=True ndet=1 fired=0 wide_noop=1 nocurve=0 nofire=0 recal=on
+2026-08-25 04:39:57 [INFO   ]   [AB-VID] vid=Shooting002_x264 mech=ece ndet=1 armoff_len=1 n_win_changed=0 n_conf_changed=0 fired=0 cfg_changed=event_continuation_extension
+2026-08-25 04:39:57 [INFO   ] [COST] video=Shooting002_x264.mp4 vlm_calls=9 clip_calls=3 elapsed_s=28.5
+2026-08-25 04:39:57 [INFO   ] [7/12] DONE  Shooting002_x264: 40s video, 1 anomalies, 28.5s processing
+2026-08-25 04:39:57 [INFO   ] [8/12] START Shooting019_x264 (Shooting)
+2026-08-25 04:39:58 [INFO   ]   [Motion filter] 184 -> 181 frames (2% removed, threshold=1.0)
+2026-08-25 04:40:27 [INFO   ]   [CLIP precompute] 181 frames encoded in 29.2s
+2026-08-25 04:40:30 [INFO   ]   [MIL] snippet scores: mean=1.000, max=1.000, min=0.995
+2026-08-25 04:40:37 [INFO   ]   [VideoMAE] Shooting(99%), Assault(0%), RoadAccidents(0%) -> Shooting@99%
+2026-08-25 04:40:50 [INFO   ]   [VideoMAE-window] 10 windows in 13.5s
+2026-08-25 04:40:50 [INFO   ]   [CLIP-loc] Category=Shooting, mean=0.927, std=0.041, range=0.226, cv=0.044
+2026-08-25 04:40:50 [INFO   ]   [CLIP-loc] Found 5 multi-scale regions:
+2026-08-25 04:40:50 [INFO   ]   [Multi-CLIP-loc] 5 regions deduped to 4
+2026-08-25 04:40:50 [INFO   ]   [Directed scan] 10/21 segments selected for LLM scanning
+2026-08-25 04:40:52 [INFO   ] Found 2 anomaly candidate(s):
+2026-08-25 04:40:52 [INFO   ]   Candidate 1: 4.5s-19.5s score=0.90
+2026-08-25 04:40:52 [INFO   ]   Candidate 2: 31.5s-60.0s score=0.95
+2026-08-25 04:40:52 [INFO   ]     [CLIPBound] 4.5-19.5s -> 2.0-17.0s (contrast=0.064, cat=Shooting)
+2026-08-25 04:40:52 [INFO   ]     [CLIPBound] 31.5-60.0s -> 37.5-48.5s (contrast=0.052, cat=Shooting)
+2026-08-25 04:40:52 [INFO   ]   --- Pre-merge anomalies: 2 ---
+2026-08-25 04:40:52 [INFO   ]   --- Post-merge+NMS anomalies: 2 ---
+2026-08-25 04:40:52 [INFO   ]   [NOCLS-CA] classify VLM sub-tree skipped -> label='Shooting' (mAP-neutral; ~-7.5% VLM calls)
+2026-08-25 04:40:52 [INFO   ]     [ECE] pre=[37.5,48.5] post=[37.5,49.0] (material: cat=Shooting, hm=0.9466, dur 11.0s -> 11.5s)
+2026-08-25 04:40:52 [INFO   ]     [ECE] pre=[2.0,17.0] post=[2.0,17.0] (skip: dur 15.0s >= max_dur 15.0s, cat=Shooting)
+2026-08-25 04:40:52 [INFO   ]   [ECE] summary: 1 material / 0 snaps / 0 reject-caps / 1 skips (n=2, cat=Shooting)
+2026-08-25 04:40:52 [INFO   ]   [QSCORE-GATE] reranked 2 detections (base=0.5, raw Q range [0.828,0.880])
+2026-08-25 04:40:52 [INFO   ]   [BUE] vid=Shooting019_x264.mp4 cat=Shooting det=0 closed=0 t=37.500-49.000->37.500-54.500 dur=11.50->17.00 oic=0.0534->0.0718 conf=0.7785->0.7785
+2026-08-25 04:40:52 [INFO   ]   [BUE] summary: vid=Shooting019_x264.mp4 fires=1 closed_skips=1 ndet_before=2 ndet_after=2 growth_med=5.500 dur_ratio=1.478 selfov=0 degen=0 noop=0 nocurve=0 lmax=40.0 gate=1
+2026-08-25 04:40:52 [INFO   ]   [CBT] vid=Shooting019_x264.mp4 cat=Shooting det=0 pre=17.0 post=13.0 t=37.50-54.50->39.00-52.00 cap=13.5 contrast=0.0557 conf=0.7785->0.7785
+2026-08-25 04:40:52 [INFO   ]   [CBT] vid=Shooting019_x264.mp4 cat=Shooting det=1 pre=15.0 post=10.5 t=2.00-17.00->3.50-14.00 cap=13.5 contrast=0.0196 conf=0.3695->0.3695
+2026-08-25 04:40:52 [INFO   ]   [CBT-VID] vid=Shooting019_x264.mp4 enabled=True ndet=2 fired=2 wide_noop=0 nocurve=0 nofire=0 recal=on
+2026-08-25 04:40:52 [INFO   ]   [AB-VID] vid=Shooting019_x264 mech=ece ndet=2 armoff_len=2 n_win_changed=0 n_conf_changed=0 fired=0 cfg_changed=event_continuation_extension
+2026-08-25 04:40:52 [INFO   ] [COST] video=Shooting019_x264.mp4 vlm_calls=10 clip_calls=6 elapsed_s=54.8
+2026-08-25 04:40:52 [INFO   ] [8/12] DONE  Shooting019_x264: 92s video, 2 anomalies, 54.8s processing
+2026-08-25 04:40:52 [INFO   ] [9/12] START Shooting032_x264 (Shooting)
+2026-08-25 04:40:56 [INFO   ]   [Motion filter] 1446 -> 1434 frames (1% removed, threshold=1.0)
+2026-08-25 04:45:32 [INFO   ]   [CLIP precompute] 1434 frames encoded in 276.2s
+2026-08-25 04:45:36 [INFO   ]   [MIL] snippet scores: mean=0.993, max=1.000, min=0.883
+2026-08-25 04:45:43 [INFO   ]   [VideoMAE] Shooting(100%), RoadAccidents(0%), Arrest(0%) -> Shooting@100%
+2026-08-25 05:03:02 [INFO   ]   [VideoMAE-window] 88 windows in 1038.4s
+2026-08-25 05:03:02 [INFO   ]   [CLIP-loc] Category=Shooting, mean=0.479, std=0.260, range=0.948, cv=0.542
+2026-08-25 05:03:02 [INFO   ]   [CLIP-loc] Found 5 multi-scale regions:
+2026-08-25 05:03:02 [INFO   ]   [Multi-CLIP-loc] 5 regions deduped to 4
+2026-08-25 05:03:02 [INFO   ]   [Directed scan] 18/161 segments selected for LLM scanning
+2026-08-25 05:03:06 [INFO   ] Found 5 anomaly candidate(s):
+2026-08-25 05:03:06 [INFO   ]   Candidate 1: 148.5s-154.5s score=0.90
+2026-08-25 05:03:06 [INFO   ]   Candidate 2: 265.5s-294.0s score=0.95
+2026-08-25 05:03:06 [INFO   ]   Candidate 3: 297.0s-312.0s score=0.95
+2026-08-25 05:03:06 [INFO   ]   Candidate 4: 315.0s-321.0s score=0.95
+2026-08-25 05:03:06 [INFO   ]   Candidate 5: 324.0s-330.0s score=0.95
+2026-08-25 05:03:06 [INFO   ]   [Limit] Keeping top 3/5 candidates
+2026-08-25 05:03:07 [INFO   ]     [CLIPBound] 265.5-294.0s -> 273.0-284.0s (contrast=0.159, cat=Shooting)
+2026-08-25 05:03:07 [INFO   ]     [CLIPBound] 297.0-312.0s -> 296.0-301.0s (contrast=0.067, cat=Shooting)
+2026-08-25 05:03:07 [INFO   ]     [CLIPBound] 315.0-321.0s -> 312.0-323.5s (contrast=0.866, cat=Shooting)
+2026-08-25 05:03:07 [INFO   ]   --- Pre-merge anomalies: 3 ---
+2026-08-25 05:03:07 [INFO   ]   --- Post-merge+NMS anomalies: 3 ---
+2026-08-25 05:03:07 [INFO   ]   [NOCLS-CA] classify VLM sub-tree skipped -> label='Shooting' (mAP-neutral; ~-7.5% VLM calls)
+2026-08-25 05:03:07 [INFO   ]     [ECE] pre=[312.0,323.5] post=[312.0,323.5] (reject-cap: span 69.5s > max_dur 15.0s, cat=Shooting)
+2026-08-25 05:03:07 [INFO   ]     [ECE] pre=[273.0,284.0] post=[273.0,284.0] (reject-cap: span 69.5s > max_dur 15.0s, cat=Shooting)
+2026-08-25 05:03:07 [INFO   ]     [ECE] pre=[296.0,301.0] post=[296.0,301.0] (reject-cap: span 69.5s > max_dur 15.0s, cat=Shooting)
+2026-08-25 05:03:07 [INFO   ]   [ECE] summary: 0 material / 0 snaps / 3 reject-caps / 0 skips (n=3, cat=Shooting)
+2026-08-25 05:03:07 [INFO   ]   [QSCORE-GATE] reranked 3 detections (base=0.5, raw Q range [0.755,0.907])
+2026-08-25 05:03:07 [INFO   ]   [BUE] vid=Shooting032_x264.mp4 cat=Shooting det=0 closed=0 t=312.000-323.500->277.500-323.500 dur=11.50->46.00 oic=0.0271->0.3056 conf=0.9217->0.9217
+2026-08-25 05:03:07 [INFO   ]   [BUE] vid=Shooting032_x264.mp4 cat=Shooting det=1 closed=0 t=273.000-284.000->268.500-308.500 dur=11.00->40.00 oic=0.2202->0.3264 conf=0.4761->0.4761
+2026-08-25 05:03:07 [INFO   ]   [BUE] vid=Shooting032_x264.mp4 cat=Shooting det=2 closed=0 t=296.000-301.000->268.500-308.500 dur=5.00->40.00 oic=0.0865->0.3264 conf=0.3908->0.3908
+2026-08-25 05:03:07 [INFO   ]   [BUE] summary: vid=Shooting032_x264.mp4 fires=3 closed_skips=0 ndet_before=3 ndet_after=3 growth_med=34.500 dur_ratio=5.212 selfov=3 degen=0 noop=0 nocurve=0 lmax=40.0 gate=1
+2026-08-25 05:03:07 [INFO   ]   [CBT] vid=Shooting032_x264.mp4 cat=Shooting det=0 pre=46.0 post=2.0 t=277.50-323.50->297.00-299.00 cap=13.5 contrast=0.4208 conf=0.9217->0.9217
+2026-08-25 05:03:07 [INFO   ]   [CBT] vid=Shooting032_x264.mp4 cat=Shooting det=1 pre=40.0 post=3.0 t=268.50-308.50->269.00-272.00 cap=13.5 contrast=0.3632 conf=0.4761->0.4761
+2026-08-25 05:03:07 [INFO   ]   [CBT] vid=Shooting032_x264.mp4 cat=Shooting det=2 pre=40.0 post=3.0 t=268.50-308.50->269.00-272.00 cap=13.5 contrast=0.3632 conf=0.3908->0.3908
+2026-08-25 05:03:07 [INFO   ]   [CBT-VID] vid=Shooting032_x264.mp4 enabled=True ndet=3 fired=3 wide_noop=0 nocurve=0 nofire=0 recal=on
+2026-08-25 05:03:07 [INFO   ]   [AB-VID] vid=Shooting032_x264 mech=ece ndet=3 armoff_len=3 n_win_changed=0 n_conf_changed=0 fired=0 cfg_changed=event_continuation_extension
+2026-08-25 05:03:07 [INFO   ] [COST] video=Shooting032_x264.mp4 vlm_calls=18 clip_calls=45 elapsed_s=1334.6
+2026-08-25 05:03:07 [INFO   ] [9/12] DONE  Shooting032_x264: 723s video, 3 anomalies, 1334.6s processing
+2026-08-25 05:03:07 [INFO   ] [10/12] START Shoplifting001_x264 (Shoplifting)
+2026-08-25 05:03:07 [INFO   ]   [Motion filter] 290 -> 290 frames (0% removed, threshold=1.0)
+2026-08-25 05:04:16 [INFO   ]   [CLIP precompute] 290 frames encoded in 68.3s
+2026-08-25 05:04:16 [INFO   ]   [MIL] snippet scores: mean=1.000, max=1.000, min=0.992
+2026-08-25 05:04:23 [INFO   ]   [VideoMAE] Shoplifting(100%), Burglary(0%), Explosion(0%) -> Shoplifting@100%
+2026-08-25 05:04:46 [INFO   ]   [VideoMAE-window] 17 windows in 22.8s
+2026-08-25 05:04:46 [INFO   ]   [CLIP-loc] Category=Shoplifting, mean=0.989, std=0.005, range=0.036, cv=0.005
+2026-08-25 05:04:46 [INFO   ]   [CLIP-loc] Scores too uniform, falling back to standard scanning
+2026-08-25 05:04:46 [INFO   ]   [CLIP pre-screen] Scanning 32 segments...
+2026-08-25 05:04:46 [INFO   ]   [CLIP pre-screen] Adaptive threshold: 0.993 (mean=0.993, std=0.002, range: 0.99-1.00)
+2026-08-25 05:04:46 [INFO   ]   [CLIP pre-screen] Limited to top 6 segments
+2026-08-25 05:04:46 [INFO   ]   [CLIP pre-screen] 6/32 segments passed
+2026-08-25 05:04:46 [INFO   ]   [LLM scan] Scanning 6 segments in parallel...
+2026-08-25 05:04:47 [INFO   ] Found 4 anomaly candidate(s):
+2026-08-25 05:04:47 [INFO   ]   Candidate 1: 18.0s-28.5s score=0.90
+2026-08-25 05:04:47 [INFO   ]   Candidate 2: 31.5s-37.5s score=0.95
+2026-08-25 05:04:47 [INFO   ]   Candidate 3: 49.5s-55.5s score=0.90
+2026-08-25 05:04:47 [INFO   ]   Candidate 4: 63.0s-73.5s score=0.90
+2026-08-25 05:04:47 [INFO   ]   [Limit] Keeping top 3/4 candidates
+2026-08-25 05:04:47 [INFO   ]     [CLIPBound] 31.5-37.5s -> 30.0-38.5s (contrast=0.320, cat=Shoplifting)
+2026-08-25 05:04:47 [INFO   ]     [CLIPBound] 18.0-28.5s -> 14.0-32.5s (contrast=0.368, cat=Shoplifting)
+2026-08-25 05:04:47 [INFO   ]     [CLIPBound] 49.5-55.5s -> 48.0-56.5s (contrast=0.320, cat=Shoplifting)
+2026-08-25 05:04:47 [INFO   ]   --- Pre-merge anomalies: 3 ---
+2026-08-25 05:04:47 [INFO   ]   --- Post-merge+NMS anomalies: 2 ---
+2026-08-25 05:04:47 [INFO   ]   [NOCLS-CA] classify VLM sub-tree skipped -> label='Shoplifting' (mAP-neutral; ~-7.5% VLM calls)
+2026-08-25 05:04:47 [INFO   ]     [ScoreCurve] 14.0-38.5s -> 14.0-35.5s (half_max=0.991)
+2026-08-25 05:04:47 [INFO   ]     [ECE] pre=[14.0,35.5] post=[14.0,35.5] (skip: dur 21.5s >= max_dur 20.0s, cat=Shoplifting)
+2026-08-25 05:04:47 [INFO   ]     [ECE] pre=[48.0,56.5] post=[48.0,56.5] (grid-snap: cat=Shoplifting, hm=0.9918, dur 8.5s -> 8.5s)
+2026-08-25 05:04:47 [INFO   ]   [ECE] summary: 0 material / 1 snaps / 0 reject-caps / 1 skips (n=2, cat=Shoplifting)
+2026-08-25 05:04:47 [INFO   ]   [QSCORE-GATE] reranked 2 detections (base=0.5, raw Q range [0.811,0.815])
+2026-08-25 05:04:47 [INFO   ]   [BUE] vid=Shoplifting001_x264.mp4 cat=Shoplifting det=0 closed=0 t=14.000-35.500->12.000-35.500 dur=21.50->23.50 oic=0.0076->0.0081 conf=0.8615->0.8615
+2026-08-25 05:04:47 [INFO   ]   [BUE] summary: vid=Shoplifting001_x264.mp4 fires=1 closed_skips=1 ndet_before=2 ndet_after=2 growth_med=2.000 dur_ratio=1.093 selfov=0 degen=0 noop=0 nocurve=0 lmax=40.0 gate=1
+2026-08-25 05:04:47 [INFO   ]   [CBT] vid=Shoplifting001_x264.mp4 cat=Shoplifting det=0 pre=23.5 post=2.0 t=12.00-35.50->33.50-35.50 cap=9.0 contrast=0.0046 conf=0.8615->0.8615
+2026-08-25 05:04:47 [INFO   ]   [CBT-VID] vid=Shoplifting001_x264.mp4 enabled=True ndet=2 fired=1 wide_noop=1 nocurve=0 nofire=0 recal=on
+2026-08-25 05:04:47 [INFO   ]   [AB-VID] vid=Shoplifting001_x264 mech=ece ndet=2 armoff_len=2 n_win_changed=0 n_conf_changed=0 fired=0 cfg_changed=event_continuation_extension
+2026-08-25 05:04:47 [INFO   ] [COST] video=Shoplifting001_x264.mp4 vlm_calls=6 clip_calls=10 elapsed_s=100.7
+2026-08-25 05:04:47 [INFO   ] [10/12] DONE  Shoplifting001_x264: 145s video, 2 anomalies, 100.7s processing
+2026-08-25 05:04:47 [INFO   ] [11/12] START Shoplifting033_x264 (Shoplifting)
+2026-08-25 05:04:47 [INFO   ]   [Motion filter] 60 -> 60 frames (0% removed, threshold=1.0)
+2026-08-25 05:04:54 [INFO   ]   [CLIP precompute] 60 frames encoded in 6.6s
+2026-08-25 05:04:57 [INFO   ]   [MIL] snippet scores: mean=0.132, max=0.397, min=0.005
+2026-08-25 05:05:06 [INFO   ]   [VideoMAE] Shoplifting(100%), Burglary(0%), Explosion(0%) -> Shoplifting@100%
+2026-08-25 05:05:09 [INFO   ]   [VideoMAE-window] 2 windows in 3.0s
+2026-08-25 05:05:09 [INFO   ]   [CLIP-loc] Category=Shoplifting, mean=0.958, std=0.029, range=0.185, cv=0.031
+2026-08-25 05:05:09 [INFO   ]   [CLIP-loc] Found 3 multi-scale regions:
+2026-08-25 05:05:09 [INFO   ]   [Multi-CLIP-loc] 3 regions deduped to 2
+2026-08-25 05:05:10 [INFO   ]   [Directed scan] 7/7 segments selected for LLM scanning
+2026-08-25 05:05:11 [INFO   ] Found 1 anomaly candidate(s):
+2026-08-25 05:05:11 [INFO   ]   Candidate 1: 22.5s-30.0s score=0.90
+2026-08-25 05:05:11 [INFO   ]     [CLIPBound] 22.5-30.0s -> 20.5-28.0s (contrast=0.256, cat=Shoplifting)
+2026-08-25 05:05:11 [INFO   ]   --- Pre-merge anomalies: 1 ---
+2026-08-25 05:05:11 [INFO   ]   --- Post-merge+NMS anomalies: 1 ---
+2026-08-25 05:05:11 [INFO   ]   [NOCLS-CA] classify VLM sub-tree skipped -> label='Shoplifting' (mAP-neutral; ~-7.5% VLM calls)
+2026-08-25 05:05:11 [INFO   ]     [ECE] pre=[20.5,28.0] post=[18.5,28.0] (material: cat=Shoplifting, hm=0.9678, dur 7.5s -> 9.5s)
+2026-08-25 05:05:11 [INFO   ]   [ECE] summary: 1 material / 0 snaps / 0 reject-caps / 0 skips (n=1, cat=Shoplifting)
+2026-08-25 05:05:11 [INFO   ]   [QSCORE-GATE] reranked 1 detections (base=0.5, raw Q range [0.920,0.920])
+2026-08-25 05:05:11 [INFO   ]   [BUE] vid=Shoplifting033_x264.mp4 cat=Shoplifting det=0 closed=0 t=18.500-28.000->9.000-29.500 dur=9.50->20.50 oic=0.0366->0.0642 conf=0.8000->0.8000
+2026-08-25 05:05:11 [INFO   ]   [BUE] summary: vid=Shoplifting033_x264.mp4 fires=1 closed_skips=0 ndet_before=1 ndet_after=1 growth_med=11.000 dur_ratio=2.158 selfov=0 degen=0 noop=0 nocurve=0 lmax=24.0 gate=1
+2026-08-25 05:05:11 [INFO   ]   [CBT] vid=Shoplifting033_x264.mp4 cat=Shoplifting det=0 pre=20.5 post=8.0 t=9.00-29.50->17.00-25.00 cap=9.0 contrast=0.0287 conf=0.8000->0.8000
+2026-08-25 05:05:11 [INFO   ]   [CBT-VID] vid=Shoplifting033_x264.mp4 enabled=True ndet=1 fired=1 wide_noop=0 nocurve=0 nofire=0 recal=on
+2026-08-25 05:05:11 [INFO   ]   [AB-VID] vid=Shoplifting033_x264 mech=ece ndet=1 armoff_len=1 n_win_changed=0 n_conf_changed=0 fired=0 cfg_changed=event_continuation_extension
+2026-08-25 05:05:11 [INFO   ] [COST] video=Shoplifting033_x264.mp4 vlm_calls=7 clip_calls=2 elapsed_s=23.9
+2026-08-25 05:05:11 [INFO   ] [11/12] DONE  Shoplifting033_x264: 30s video, 1 anomalies, 23.9s processing
+2026-08-25 05:05:11 [INFO   ] [12/12] START Shoplifting037_x264 (Shoplifting)
+2026-08-25 05:05:11 [INFO   ]   [Motion filter] 93 -> 93 frames (0% removed, threshold=1.0)
+2026-08-25 05:05:25 [INFO   ]   [CLIP precompute] 93 frames encoded in 13.4s
+2026-08-25 05:05:27 [INFO   ]   [MIL] snippet scores: mean=0.996, max=1.000, min=0.927
+2026-08-25 05:05:34 [INFO   ]   [VideoMAE] Shoplifting(100%), Explosion(0%), Vandalism(0%) -> Shoplifting@100%
+2026-08-25 05:05:40 [INFO   ]   [VideoMAE-window] 4 windows in 5.7s
+2026-08-25 05:05:40 [INFO   ]   [CLIP-loc] Category=Shoplifting, mean=0.693, std=0.145, range=0.588, cv=0.209
+2026-08-25 05:05:40 [INFO   ]   [CLIP-loc] Found 4 multi-scale regions:
+2026-08-25 05:05:40 [INFO   ]   [Multi-CLIP-loc] 4 regions deduped to 1
+2026-08-25 05:05:40 [INFO   ]   [Directed scan] 10/10 segments selected for LLM scanning
+2026-08-25 05:05:42 [INFO   ] Found 2 anomaly candidate(s):
+2026-08-25 05:05:42 [INFO   ]   Candidate 1: 0.0s-19.5s score=0.90
+2026-08-25 05:05:42 [INFO   ]   Candidate 2: 22.5s-46.2s score=0.95
+2026-08-25 05:05:42 [INFO   ]     [CLIPBound] 0.0-19.5s -> 17.0-27.0s (contrast=0.106, cat=Shoplifting)
+2026-08-25 05:05:42 [INFO   ]     [CLIPBound] 22.5-46.2s -> 20.0-40.0s (contrast=0.136, cat=Shoplifting)
+2026-08-25 05:05:43 [INFO   ]     [VLM-Bound] 17.0-27.0s -> 18.3-27.4s (vlm_conf=0.90, w_clip=0.11, w_vlm=0.89)
+2026-08-25 05:05:44 [INFO   ]     [VLM-Bound] 20.0-40.0s -> 24.4-31.3s (vlm_conf=0.95, w_clip=0.13, w_vlm=0.87)
+2026-08-25 05:05:44 [INFO   ]   --- Pre-merge anomalies: 2 ---
+2026-08-25 05:05:44 [INFO   ]   --- Post-merge+NMS anomalies: 1 ---
+2026-08-25 05:05:44 [INFO   ]   [NOCLS-CA] classify VLM sub-tree skipped -> label='Shoplifting' (mAP-neutral; ~-7.5% VLM calls)
+2026-08-25 05:05:44 [INFO   ]     [ECE] pre=[18.3,31.3] post=[18.5,32.0] (material: cat=Shoplifting, hm=0.7376, dur 12.9s -> 13.5s)
+2026-08-25 05:05:44 [INFO   ]   [ECE] summary: 1 material / 0 snaps / 0 reject-caps / 0 skips (n=1, cat=Shoplifting)
+2026-08-25 05:05:44 [INFO   ]   [QSCORE-GATE] reranked 1 detections (base=0.5, raw Q range [0.873,0.873])
+2026-08-25 05:05:44 [INFO   ]   [BUE] vid=Shoplifting037_x264.mp4 cat=Shoplifting det=0 closed=0 t=18.500-32.000->18.500-38.000 dur=13.50->19.50 oic=0.1037->0.1179 conf=0.8038->0.8038
+2026-08-25 05:05:44 [INFO   ]   [BUE] summary: vid=Shoplifting037_x264.mp4 fires=1 closed_skips=0 ndet_before=1 ndet_after=1 growth_med=6.000 dur_ratio=1.444 selfov=0 degen=0 noop=0 nocurve=0 lmax=37.0 gate=1
+2026-08-25 05:05:44 [INFO   ]   [CBT] vid=Shoplifting037_x264.mp4 cat=Shoplifting det=0 pre=19.5 post=2.0 t=18.50-38.00->35.00-37.00 cap=9.0 contrast=0.1755 conf=0.8038->0.8038
+2026-08-25 05:05:44 [INFO   ]   [CBT-VID] vid=Shoplifting037_x264.mp4 enabled=True ndet=1 fired=1 wide_noop=0 nocurve=0 nofire=0 recal=on
+2026-08-25 05:05:44 [INFO   ]   [AB-VID] vid=Shoplifting037_x264 mech=ece ndet=1 armoff_len=1 n_win_changed=0 n_conf_changed=0 fired=0 cfg_changed=event_continuation_extension
+2026-08-25 05:05:44 [INFO   ] [COST] video=Shoplifting037_x264.mp4 vlm_calls=12 clip_calls=3 elapsed_s=33.1
+2026-08-25 05:05:44 [INFO   ] [12/12] DONE  Shoplifting037_x264: 46s video, 1 anomalies, 33.1s processing
+2026-08-25 05:05:44 [INFO   ] ============================================================
+2026-08-25 05:05:44 [INFO   ] Batch complete:
+2026-08-25 05:05:44 [INFO   ]   Succeeded: 12, Skipped: 0, Failed: 0
+2026-08-25 05:05:44 [INFO   ]   Total wall-clock time:   3680.0s (61.3min)
+2026-08-25 05:05:44 [INFO   ]   Total processing time:   3680.0s (61.3min)
+2026-08-25 05:05:44 [INFO   ]   Avg per video:           306.7s
+2026-08-25 05:05:44 [INFO   ]   Parallelism speedup:     1.00x
+2026-08-25 05:05:44 [INFO   ] ============================================================
+2026-08-25 05:05:44 [INFO   ] [ECE-GATE] markers=12 succeeded=12 ok=True
+2026-08-25 05:05:44 [INFO   ] Running evaluation...
+2026-08-25 05:05:44 [INFO   ] GT videos: 290, Predicted videos: 12, Matched: 12
+2026-08-25 05:05:44 [INFO   ]   GT only (missing predictions): 278
+2026-08-25 05:05:44 [INFO   ]   Abnormal: 12, Normal: 0
+2026-08-25 05:05:44 [INFO   ] --- Level 1: Frame-level AUC-ROC / AUPR ---
+2026-08-25 05:05:45 [INFO   ]   Global AUC-ROC: 0.8133
+2026-08-25 05:05:45 [INFO   ]   Global AUPR:    0.1819
+2026-08-25 05:05:45 [INFO   ]   Per-category AUC-ROC:
+2026-08-25 05:05:45 [INFO   ]     Explosion           : 0.8359
+2026-08-25 05:05:45 [INFO   ]     RoadAccidents       : 0.6458
+2026-08-25 05:05:45 [INFO   ]     Shooting            : 0.9018
+2026-08-25 05:05:45 [INFO   ]     Shoplifting         : 0.7006
+2026-08-25 05:05:45 [INFO   ] --- Level 2: Temporal Segment mAP ---
+2026-08-25 05:05:45 [INFO   ]   mAP:    0.1848
+2026-08-25 05:05:45 [INFO   ]   AP@0.3: 0.3273
+2026-08-25 05:05:45 [INFO   ]   AP@0.5: 0.2273
+2026-08-25 05:05:45 [INFO   ]   AP@0.7: 0.0000
+2026-08-25 05:05:45 [INFO   ] --- Level 3: Video-level Metrics ---
+2026-08-25 05:05:45 [INFO   ]   Accuracy:  1.0000
+2026-08-25 05:05:45 [INFO   ]   Precision: 1.0000
+2026-08-25 05:05:45 [INFO   ]   Recall:    1.0000
+2026-08-25 05:05:45 [INFO   ]   F1:        1.0000
+2026-08-25 05:05:45 [INFO   ]   AUC:       0.0000
+2026-08-25 05:05:45 [INFO   ] --- Level 4: Category Accuracy ---
+2026-08-25 05:05:45 [INFO   ]   Overall: 0.9167
+2026-08-25 05:05:45 [INFO   ]   Explosion           : 2/3
+2026-08-25 05:05:45 [INFO   ]   RoadAccidents       : 3/3
+2026-08-25 05:05:45 [INFO   ]   Shooting            : 3/3
+2026-08-25 05:05:45 [INFO   ]   Shoplifting         : 3/3
+2026-08-25 05:05:45 [INFO   ] Full report saved to: /Users/zzl/PycharmProjects/vad/results/batch_eval_v202_ece_selftest/evaluation_report.json

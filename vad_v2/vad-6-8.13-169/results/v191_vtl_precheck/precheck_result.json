@@ -1,0 +1,110 @@
+{
+  "data": {
+    "n_anomaly": 810,
+    "n_normal": 800,
+    "n_videos": 1610,
+    "parquet": "/Users/zzl/Movies/ucf-crime/data/train-00000-of-00001.parquet",
+    "split": "official train only",
+    "temporal_gt_used": false,
+    "test_data_or_gt_used": false
+  },
+  "fold_thresholds": [
+    0.08268897235393524,
+    0.18155691027641296,
+    0.10592640936374664,
+    0.13477583229541779,
+    0.08422524482011795
+  ],
+  "folds": [
+    {
+      "fold": 0,
+      "n_train": 1288,
+      "n_validation": 322,
+      "threshold_from_inner_oof": 0.08268897235393524,
+      "validation_auc": 0.9395447530864198,
+      "validation_normal_fpr": 0.2125
+    },
+    {
+      "fold": 1,
+      "n_train": 1288,
+      "n_validation": 322,
+      "threshold_from_inner_oof": 0.18155691027641296,
+      "validation_auc": 0.9626543209876544,
+      "validation_normal_fpr": 0.14375
+    },
+    {
+      "fold": 2,
+      "n_train": 1288,
+      "n_validation": 322,
+      "threshold_from_inner_oof": 0.10592640936374664,
+      "validation_auc": 0.9520447530864198,
+      "validation_normal_fpr": 0.15625
+    },
+    {
+      "fold": 3,
+      "n_train": 1288,
+      "n_validation": 322,
+      "threshold_from_inner_oof": 0.13477583229541779,
+      "validation_auc": 0.9612268518518519,
+      "validation_normal_fpr": 0.16875
+    },
+    {
+      "fold": 4,
+      "n_train": 1288,
+      "n_validation": 322,
+      "threshold_from_inner_oof": 0.08422524482011795,
+      "validation_auc": 0.9564429012345679,
+      "validation_normal_fpr": 0.20625
+    }
+  ],
+  "gates": {
+    "causal_context_auc_gain_at_least_0_15": false,
+    "each_hard_recall_at_least_0_50": true,
+    "hard_recall_at_least_0_70": true,
+    "oof_auc_at_least_0_90": true,
+    "oof_auc_at_least_raw_plus_0_05": true,
+    "pooled_normal_fpr_at_most_0_20": true,
+    "source2_count_grid_call_budget_invariant": true,
+    "source2_topk_change_at_least_0_10": true
+  },
+  "go": false,
+  "invariants": {
+    "grid_cells_per_video_raw": 8,
+    "grid_cells_per_video_vtl": 8,
+    "groups_are_unique_videos": true,
+    "implied_vlm_calls_raw": 2,
+    "implied_vlm_calls_vtl": 2,
+    "selected_source2_cells_raw": 2,
+    "selected_source2_cells_vtl": 2
+  },
+  "metrics": {
+    "auc_gain_over_raw": 0.28371141975308656,
+    "causal_temporal_context_auc_gain": 0.004523148148148359,
+    "hard_category_recall_each": {
+      "Explosion": 0.9655172413793104,
+      "RoadAccidents": 0.905511811023622,
+      "Shooting": 0.9629629629629629,
+      "Shoplifting": 0.7586206896551724
+    },
+    "hard_category_recall_pooled": 0.9009433962264151,
+    "no_temporal_context_ablation_auc": 0.9495185185185184,
+    "oof_auc": 0.9540416666666668,
+    "pooled_normal_fpr_fold_local_thresholds": 0.1775,
+    "raw_frozen_head_auc": 0.6703302469135802,
+    "source2_top2_changed_rate": 0.94472049689441,
+    "source2_top2_changed_videos": 1521,
+    "source2_total_videos": 1610
+  },
+  "recipe": {
+    "clip_grid": "16 uniform source frames -> 8 temporal patch groups",
+    "context_ablation": "same fitted model with lag-2/lag-1 convolution weights zeroed",
+    "embedding": "spatial mean of each 14x14 final hidden-token group",
+    "frozen_encoder": "OPear/videomae-large-finetuned-UCF-Crime",
+    "outer_cv": "category-stratified video-grouped 5-fold",
+    "precision": "fp16 extraction; fp32 temporal head",
+    "raw_comparator": "top-2 mean of per-temporal-group 1-P(Normal) frozen-head scores",
+    "source2": "raw top-2 versus VTL top-2 on identical 8-cell grid",
+    "temporal_model": "LayerNorm, 1024->64, depthwise causal Conv1d(k=3), top-2 MIL",
+    "thresholding": "outer-train-only 3-fold OOF; lowest threshold with Normal FPR<=0.20"
+  }
+}

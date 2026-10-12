@@ -1,0 +1,415 @@
+2026-07-06 22:14:18 [INFO   ] VAD batch evaluation started | output_dir=results/batch_eval_v61_smoke | log=results/batch_eval_v61_smoke/run.log
+2026-07-06 22:14:18 [INFO   ] Selected 14 videos from 14 categories:
+2026-07-06 22:14:18 [INFO   ]   Abuse               :   1 / 2
+2026-07-06 22:14:18 [INFO   ]   Arrest              :   1 / 5
+2026-07-06 22:14:18 [INFO   ]   Arson               :   1 / 9
+2026-07-06 22:14:18 [INFO   ]   Assault             :   1 / 3
+2026-07-06 22:14:18 [INFO   ]   Burglary            :   1 / 13
+2026-07-06 22:14:18 [INFO   ]   Explosion           :   1 / 21
+2026-07-06 22:14:18 [INFO   ]   Fighting            :   1 / 5
+2026-07-06 22:14:18 [INFO   ]   Normal              :   1 / 150
+2026-07-06 22:14:18 [INFO   ]   RoadAccidents       :   1 / 23
+2026-07-06 22:14:18 [INFO   ]   Robbery             :   1 / 5
+2026-07-06 22:14:18 [INFO   ]   Shooting            :   1 / 23
+2026-07-06 22:14:18 [INFO   ]   Shoplifting         :   1 / 21
+2026-07-06 22:14:18 [INFO   ]   Stealing            :   1 / 5
+2026-07-06 22:14:18 [INFO   ]   Vandalism           :   1 / 5
+2026-07-06 22:14:47 [INFO   ] [AnomalyExpert] CLIP ViT-L-14 loaded on mps
+2026-07-06 22:15:32 [INFO   ] [VideoMAE] Loaded on mps
+2026-07-06 22:15:32 [INFO   ]   [MIL] Loaded MIL model from /Users/zzl/PycharmProjects/vad/video_anomaly_detection/model_mil.pth
+2026-07-06 22:15:32 [INFO   ] Starting batch processing: 14 videos, concurrency=3
+2026-07-06 22:15:32 [INFO   ] Detect model: qwen-vl-plus, Classify model: qwen3-vl-plus
+2026-07-06 22:15:32 [INFO   ] ============================================================
+2026-07-06 22:15:32 [INFO   ] [1/14] START Abuse030_x264 (Abuse)
+2026-07-06 22:15:32 [INFO   ]   [Motion filter] 103 -> 103 frames (0% removed, threshold=1.0)
+2026-07-06 22:15:40 [INFO   ]   [CLIP precompute] 103 frames encoded in 7.2s
+2026-07-06 22:15:40 [INFO   ]   [MIL] snippet scores: mean=0.999, max=1.000, min=0.977
+2026-07-06 22:15:44 [INFO   ]   [VideoMAE] Abuse(99%), RoadAccidents(1%), Vandalism(0%) -> Abuse@99%
+2026-07-06 22:15:47 [INFO   ]   [VideoMAE-window] 5 windows in 3.6s
+2026-07-06 22:15:47 [INFO   ]   [CLIP-loc] Category=Abuse, mean=0.500, std=0.117, range=0.573, cv=0.234
+2026-07-06 22:15:47 [INFO   ]   [CLIP-loc] Found 4 multi-scale regions:
+2026-07-06 22:15:47 [INFO   ]   [CLIP-loc] Category=Explosion, mean=0.427, std=0.163, range=0.819, cv=0.382
+2026-07-06 22:15:47 [INFO   ]   [CLIP-loc] Fused with motion energy for Explosion
+2026-07-06 22:15:47 [INFO   ]   [CLIP-loc] Found 5 multi-scale regions:
+2026-07-06 22:15:47 [INFO   ]   [Multi-CLIP-loc] 9 regions deduped to 1
+2026-07-06 22:15:47 [INFO   ]   [Directed scan] 10/12 segments selected for LLM scanning
+2026-07-06 22:15:47 [INFO   ] [2/14] START Arrest007_x264 (Arrest)
+2026-07-06 22:15:48 [INFO   ]   [Motion filter] 210 -> 130 frames (38% removed, threshold=1.0)
+2026-07-06 22:15:57 [INFO   ]   [CLIP precompute] 130 frames encoded in 9.5s
+2026-07-06 22:15:57 [INFO   ]   [MIL] snippet scores: mean=0.994, max=1.000, min=0.978
+2026-07-06 22:16:01 [INFO   ]   [VideoMAE] Arrest(68%), Abuse(10%), RoadAccidents(10%) -> Arrest@68%
+2026-07-06 22:16:06 [INFO   ]   [VideoMAE-window] 7 windows in 4.8s
+2026-07-06 22:16:06 [INFO   ]   [CLIP-loc] Category=Arrest, mean=0.342, std=0.300, range=0.988, cv=0.875
+2026-07-06 22:16:06 [INFO   ]   [CLIP-loc] Found 5 multi-scale regions:
+2026-07-06 22:16:06 [INFO   ]   [Multi-CLIP-loc] 5 regions deduped to 4
+2026-07-06 22:16:06 [INFO   ]   [Directed scan] 10/23 segments selected for LLM scanning
+2026-07-06 22:16:06 [INFO   ] [3/14] START Arson035_x264 (Arson)
+2026-07-06 22:16:06 [INFO   ]   [Motion filter] 96 -> 88 frames (8% removed, threshold=1.0)
+2026-07-06 22:16:11 [INFO   ]   [CLIP precompute] 88 frames encoded in 5.2s
+2026-07-06 22:16:12 [INFO   ]   [MIL] snippet scores: mean=1.000, max=1.000, min=0.996
+2026-07-06 22:16:16 [INFO   ]   [VideoMAE] Arson(98%), Arrest(1%), Explosion(0%) -> Arson@98%
+2026-07-06 22:16:19 [INFO   ]   [VideoMAE-window] 4 windows in 2.9s
+2026-07-06 22:16:19 [INFO   ]   [CLIP-loc] Category=Arson, mean=0.922, std=0.171, range=0.775, cv=0.186
+2026-07-06 22:16:19 [INFO   ]   [CLIP-loc] Found 2 multi-scale regions:
+2026-07-06 22:16:19 [INFO   ]   [Multi-CLIP-loc] 2 regions deduped to 1
+2026-07-06 22:16:19 [INFO   ]   [Directed scan] 10/11 segments selected for LLM scanning
+2026-07-06 22:16:23 [INFO   ] Found 1 anomaly candidate(s):
+2026-07-06 22:16:23 [INFO   ]   Candidate 1: 18.0s-33.0s score=0.95
+2026-07-06 22:16:23 [INFO   ]     [CLIPBound] 18.0-33.0s -> 21.0-36.0s (contrast=0.108, cat=Arson)
+2026-07-06 22:16:24 [INFO   ]     [VLM-Bound] 21.0-36.0s -> 22.8-28.4s (vlm_conf=0.95, w_clip=0.10, w_vlm=0.90)
+2026-07-06 22:16:24 [INFO   ]   --- Pre-merge anomalies: 1 ---
+2026-07-06 22:16:24 [INFO   ]   --- Post-merge+NMS anomalies: 1 ---
+2026-07-06 22:16:24 [INFO   ]   [Ensemble] No confusion pair -> Arson
+2026-07-06 22:16:24 [INFO   ] [3/14] DONE  Arson035_x264: 48s video, 1 anomalies, 18.1s processing
+2026-07-06 22:16:24 [INFO   ] [4/14] START Assault006_x264 (Assault)
+2026-07-06 22:16:24 [INFO   ]   [Motion filter] 540 -> 540 frames (0% removed, threshold=1.0)
+2026-07-06 22:17:04 [INFO   ]   [CLIP precompute] 540 frames encoded in 39.9s
+2026-07-06 22:17:06 [INFO   ]   [MIL] snippet scores: mean=0.999, max=1.000, min=0.983
+2026-07-06 22:17:10 [INFO   ]   [VideoMAE] Assault(100%), Arrest(0%), RoadAccidents(0%) -> Assault@100%
+2026-07-06 22:17:34 [INFO   ]   [VideoMAE-window] 32 windows in 24.9s
+2026-07-06 22:17:35 [INFO   ]   [CLIP-loc] Category=Assault, mean=0.766, std=0.265, range=0.959, cv=0.346
+2026-07-06 22:17:35 [INFO   ]   [CLIP-loc] Found 5 multi-scale regions:
+2026-07-06 22:17:35 [INFO   ]   [CLIP-loc] Category=Arson, mean=0.431, std=0.172, range=0.853, cv=0.399
+2026-07-06 22:17:35 [INFO   ]   [CLIP-loc] Found 5 multi-scale regions:
+2026-07-06 22:17:35 [INFO   ]   [Multi-CLIP-loc] 10 regions deduped to 3
+2026-07-06 22:17:35 [INFO   ]   [Directed scan] 12/60 segments selected for LLM scanning
+2026-07-06 22:17:35 [INFO   ] Found 1 anomaly candidate(s):
+2026-07-06 22:17:35 [INFO   ]   Candidate 1: 49.5s-64.5s score=0.95
+2026-07-06 22:17:35 [INFO   ]     [CLIPBound] 49.5-64.5s -> 53.5-71.0s (contrast=0.769, cat=Arrest)
+2026-07-06 22:17:35 [INFO   ] Found 3 anomaly candidate(s):
+2026-07-06 22:17:35 [INFO   ]   Candidate 1: 4.5s-10.5s score=0.90
+2026-07-06 22:17:35 [INFO   ]   Candidate 2: 31.5s-37.5s score=0.85
+2026-07-06 22:17:35 [INFO   ]   Candidate 3: 40.5s-46.5s score=0.90
+2026-07-06 22:17:35 [INFO   ]     [CLIPBound] 4.5-10.5s -> 1.5-10.0s (contrast=0.316, cat=Abuse)
+2026-07-06 22:17:35 [INFO   ]     [CLIPBound] 31.5-37.5s -> 37.5-40.0s (contrast=0.336, cat=Abuse)
+2026-07-06 22:17:35 [INFO   ]     [CLIPBound] 40.5-46.5s -> 43.5-49.0s (contrast=0.366, cat=Abuse)
+2026-07-06 22:17:36 [INFO   ]     [VLM-Bound] 1.5-10.0s -> 1.9-7.7s (vlm_conf=0.95, w_clip=0.25, w_vlm=0.75)
+2026-07-06 22:17:36 [INFO   ]     [VLM-Bound] 53.5-71.0s -> 52.1-66.6s (vlm_conf=0.95, w_clip=0.45, w_vlm=0.55)
+2026-07-06 22:17:36 [INFO   ]   --- Pre-merge anomalies: 1 ---
+2026-07-06 22:17:36 [INFO   ]   --- Post-merge+NMS anomalies: 1 ---
+2026-07-06 22:17:36 [INFO   ]   [Ensemble] No confusion pair -> Arrest
+2026-07-06 22:17:36 [INFO   ] [2/14] DONE  Arrest007_x264: 105s video, 1 anomalies, 108.3s processing
+2026-07-06 22:17:36 [INFO   ] [5/14] START Burglary079_x264 (Burglary)
+2026-07-06 22:17:37 [INFO   ]   [Motion filter] 991 -> 678 frames (32% removed, threshold=1.0)
+2026-07-06 22:18:45 [INFO   ]   [CLIP precompute] 678 frames encoded in 68.4s
+2026-07-06 22:18:46 [INFO   ]   [MIL] snippet scores: mean=0.956, max=1.000, min=0.582
+2026-07-06 22:18:50 [INFO   ]   [VideoMAE] Vandalism(98%), Assault(1%), RoadAccidents(0%) -> Vandalism@98%
+2026-07-06 22:19:24 [INFO   ]   [VideoMAE-window] 41 windows in 34.1s
+2026-07-06 22:19:24 [INFO   ]   [CLIP-loc] Category=Vandalism, mean=0.971, std=0.023, range=0.152, cv=0.023
+2026-07-06 22:19:24 [INFO   ]   [CLIP-loc] Scores too uniform, falling back to standard scanning
+2026-07-06 22:19:24 [INFO   ]   [CLIP pre-screen] Scanning 110 segments...
+2026-07-06 22:19:24 [INFO   ]   [CLIP pre-screen] Adaptive threshold: 0.974 (mean=0.980, std=0.012, range: 0.93-0.99)
+2026-07-06 22:19:24 [INFO   ]   [CLIP pre-screen] Zone-selected 6 segments (coverage-aware)
+2026-07-06 22:19:24 [INFO   ]   [CLIP pre-screen] 6/110 segments passed
+2026-07-06 22:19:24 [INFO   ]   [LLM scan] Scanning 6 segments in parallel...
+2026-07-06 22:19:24 [INFO   ]     [VLM-Bound] 37.5-40.0s -> 37.1-40.0s (vlm_conf=0.95, w_clip=0.26, w_vlm=0.74)
+2026-07-06 22:19:24 [INFO   ] Found 1 anomaly candidate(s):
+2026-07-06 22:19:24 [INFO   ]   Candidate 1: 36.0s-87.0s score=0.95
+2026-07-06 22:19:24 [INFO   ]     [CLIPBound] 36.0-87.0s -> 41.0-109.5s (contrast=0.442, cat=Assault)
+2026-07-06 22:19:25 [INFO   ]     [VLM-Bound] 41.0-109.5s -> 27.0-123.5s (vlm_conf=0.95, w_clip=0.32, w_vlm=0.68)
+2026-07-06 22:19:25 [INFO   ]   --- Pre-merge anomalies: 1 ---
+2026-07-06 22:19:25 [INFO   ]   --- Post-merge+NMS anomalies: 1 ---
+2026-07-06 22:19:25 [INFO   ]   [Ensemble] VideoMAE=Assault@100%, CLIP-seg=Assault(20%), Shoplifting(17%), Abuse(14%)
+2026-07-06 22:19:25 [INFO   ]   [Ensemble] VLM deciding among ['Assault', 'Arson']
+2026-07-06 22:19:26 [INFO   ] Found 4 anomaly candidate(s):
+2026-07-06 22:19:26 [INFO   ]   Candidate 1: 112.5s-118.5s score=0.90
+2026-07-06 22:19:26 [INFO   ]   Candidate 2: 193.5s-199.5s score=0.90
+2026-07-06 22:19:26 [INFO   ]   Candidate 3: 328.5s-339.0s score=0.95
+2026-07-06 22:19:26 [INFO   ]   Candidate 4: 441.0s-447.0s score=0.95
+2026-07-06 22:19:26 [INFO   ]   [Limit] Keeping top 3/4 candidates
+2026-07-06 22:19:26 [INFO   ]     [CLIPBound] 328.5-339.0s -> 329.0-344.0s (contrast=0.498, cat=Vandalism)
+2026-07-06 22:19:26 [INFO   ]     [CLIPBound] 441.0-447.0s -> 438.0-449.5s (contrast=0.956, cat=Vandalism)
+2026-07-06 22:19:26 [INFO   ]     [CLIPBound] 112.5-118.5s -> 110.5-119.5s (contrast=0.555, cat=Vandalism)
+2026-07-06 22:19:27 [INFO   ]     [VLM-Bound] 329.0-344.0s -> 327.4-347.0s (vlm_conf=0.95, w_clip=0.34, w_vlm=0.66)
+2026-07-06 22:19:28 [INFO   ]     [VLM-Bound] 438.0-449.5s -> 438.5-449.0s (vlm_conf=0.95, w_clip=0.50, w_vlm=0.50)
+2026-07-06 22:19:29 [INFO   ]     [VLM-Bound] 110.5-119.5s -> 111.4-118.9s (vlm_conf=0.95, w_clip=0.37, w_vlm=0.63)
+2026-07-06 22:19:29 [INFO   ]   --- Pre-merge anomalies: 3 ---
+2026-07-06 22:19:29 [INFO   ]   --- Post-merge+NMS anomalies: 3 ---
+2026-07-06 22:19:29 [INFO   ]   [Ensemble] No confusion pair -> Vandalism
+2026-07-06 22:19:29 [INFO   ] [5/14] DONE  Burglary079_x264: 495s video, 3 anomalies, 113.0s processing
+2026-07-06 22:19:29 [INFO   ] [6/14] START Explosion002_x264 (Explosion)
+2026-07-06 22:19:29 [INFO   ]   [Motion filter] 268 -> 191 frames (29% removed, threshold=1.0)
+2026-07-06 22:19:47 [INFO   ]   [CLIP precompute] 191 frames encoded in 18.2s
+2026-07-06 22:19:49 [INFO   ]   [MIL] snippet scores: mean=0.981, max=1.000, min=0.714
+2026-07-06 22:19:53 [INFO   ]   [VideoMAE] Explosion(93%), Shooting(3%), Vandalism(1%) -> Explosion@93%
+2026-07-06 22:20:01 [INFO   ]   [VideoMAE-window] 10 windows in 8.0s
+2026-07-06 22:20:01 [INFO   ]   [CLIP-loc] Category=Explosion, mean=0.458, std=0.273, range=0.951, cv=0.597
+2026-07-06 22:20:01 [INFO   ]   [CLIP-loc] Fused with motion energy for Explosion
+2026-07-06 22:20:01 [INFO   ]   [CLIP-loc] Found 5 multi-scale regions:
+2026-07-06 22:20:01 [INFO   ]   [Directed scan] 10/30 segments selected for LLM scanning
+2026-07-06 22:20:01 [INFO   ]     [Classify] VLM chose Assault from ['Assault', 'Arson']
+2026-07-06 22:20:01 [INFO   ]     [Classify] VLM chose Assault from ['Assault', 'Arson']
+2026-07-06 22:20:01 [INFO   ]     [Classify] VLM chose Assault from ['Assault', 'Arson']
+2026-07-06 22:20:01 [INFO   ]     [VLM-Bound] 43.5-49.0s -> 46.0-49.4s (vlm_conf=0.95, w_clip=0.28, w_vlm=0.72)
+2026-07-06 22:20:01 [INFO   ]   --- Pre-merge anomalies: 3 ---
+2026-07-06 22:20:01 [INFO   ]   --- Post-merge+NMS anomalies: 3 ---
+2026-07-06 22:20:01 [INFO   ]   [Ensemble] VideoMAE=Abuse@99%, CLIP-seg=RoadAccidents(34%), Arson(20%), Vandalism(11%)
+2026-07-06 22:20:01 [INFO   ]   [Ensemble] VLM deciding among ['Abuse', 'Explosion']
+2026-07-06 22:20:01 [INFO   ]   [Ensemble] VLM votes={'Assault': 3} -> Assault
+2026-07-06 22:20:01 [INFO   ]     [ScoreCurve] 27.0-123.5s -> 39.5-123.0s (half_max=0.878)
+2026-07-06 22:20:01 [INFO   ] [4/14] DONE  Assault006_x264: 270s video, 1 anomalies, 217.2s processing
+2026-07-06 22:20:01 [INFO   ] [7/14] START Fighting018_x264 (Fighting)
+2026-07-06 22:20:01 [INFO   ]   [Motion filter] 93 -> 72 frames (23% removed, threshold=1.0)
+2026-07-06 22:20:07 [INFO   ]   [CLIP precompute] 72 frames encoded in 6.0s
+2026-07-06 22:20:08 [INFO   ]   [MIL] snippet scores: mean=1.000, max=1.000, min=0.999
+2026-07-06 22:20:12 [INFO   ]   [VideoMAE] Fighting(87%), Assault(12%), Vandalism(0%) -> Fighting@87%
+2026-07-06 22:20:14 [INFO   ]   [VideoMAE-window] 3 windows in 2.4s
+2026-07-06 22:20:14 [INFO   ]   [CLIP-loc] Category=Fighting, mean=0.319, std=0.352, range=0.985, cv=1.101
+2026-07-06 22:20:14 [INFO   ]   [CLIP-loc] Found 3 multi-scale regions:
+2026-07-06 22:20:14 [INFO   ]   [Multi-CLIP-loc] 3 regions deduped to 2
+2026-07-06 22:20:14 [INFO   ]   [Directed scan] 9/10 segments selected for LLM scanning
+2026-07-06 22:20:16 [INFO   ] Found 2 anomaly candidate(s):
+2026-07-06 22:20:16 [INFO   ]   Candidate 1: 0.0s-28.5s score=0.95
+2026-07-06 22:20:16 [INFO   ]   Candidate 2: 31.5s-37.5s score=0.95
+2026-07-06 22:20:16 [INFO   ]     [CLIPBound] 0.0-28.5s -> 6.5-13.0s (contrast=0.291, cat=Fighting)
+2026-07-06 22:20:16 [INFO   ]     [CLIPBound] 31.5-37.5s -> 37.5-39.5s (contrast=0.501, cat=Fighting)
+2026-07-06 22:20:17 [INFO   ]     [VLM-Bound] 6.5-13.0s -> 6.1-11.1s (vlm_conf=0.95, w_clip=0.23, w_vlm=0.77)
+2026-07-06 22:20:17 [INFO   ]   --- Pre-merge anomalies: 2 ---
+2026-07-06 22:20:17 [INFO   ]   --- Post-merge+NMS anomalies: 2 ---
+2026-07-06 22:20:17 [INFO   ]   [Ensemble] No confusion pair -> Fighting
+2026-07-06 22:20:17 [INFO   ] [7/14] DONE  Fighting018_x264: 46s video, 2 anomalies, 16.4s processing
+2026-07-06 22:20:17 [INFO   ] [8/14] START Normal_Videos_782_x264 (Normal)
+2026-07-06 22:20:18 [INFO   ]   [Motion filter] 370 -> 333 frames (10% removed, threshold=1.0)
+2026-07-06 22:20:48 [INFO   ]   [CLIP precompute] 333 frames encoded in 29.9s
+2026-07-06 22:20:49 [INFO   ]   [MIL] snippet scores: mean=0.000, max=0.000, min=0.000
+2026-07-06 22:20:53 [INFO   ]   [VideoMAE] Assault(98%), Vandalism(1%), Fighting(1%) -> Assault@98%
+2026-07-06 22:21:09 [INFO   ]   [VideoMAE-window] 19 windows in 15.8s
+2026-07-06 22:21:09 [INFO   ]   [CLIP-loc] Category=Assault, mean=0.054, std=0.055, range=0.343, cv=1.029
+2026-07-06 22:21:09 [INFO   ]   [CLIP-loc] Found 5 multi-scale regions:
+2026-07-06 22:21:09 [INFO   ]   [CLIP-loc] Category=Arson, mean=0.019, std=0.020, range=0.147, cv=1.050
+2026-07-06 22:21:09 [INFO   ]   [CLIP-loc] Found 5 multi-scale regions:
+2026-07-06 22:21:09 [INFO   ]   [Multi-CLIP-loc] 10 regions deduped to 5
+2026-07-06 22:21:09 [INFO   ]   [Directed scan] 10/41 segments selected for LLM scanning
+2026-07-06 22:21:09 [INFO   ]     [Classify] VLM chose Abuse from ['Abuse', 'Explosion']
+2026-07-06 22:21:09 [INFO   ]     [Classify] VLM chose Abuse from ['Abuse', 'Explosion']
+2026-07-06 22:21:09 [INFO   ]     [Classify] VLM chose Abuse from ['Abuse', 'Explosion']
+2026-07-06 22:21:09 [INFO   ]   [Ensemble] VLM votes={'Abuse': 3} -> Abuse
+2026-07-06 22:21:09 [INFO   ] [1/14] DONE  Abuse030_x264: 51s video, 3 anomalies, 336.7s processing
+2026-07-06 22:21:09 [INFO   ] Found 2 anomaly candidate(s):
+2026-07-06 22:21:09 [INFO   ]   Candidate 1: 49.5s-64.5s score=0.95
+2026-07-06 22:21:09 [INFO   ]   Candidate 2: 67.5s-73.5s score=0.90
+2026-07-06 22:21:09 [INFO   ]     [CLIPBound] 49.5-64.5s -> 51.5-62.0s (contrast=0.484, cat=Explosion)
+2026-07-06 22:21:09 [INFO   ]     [CLIPBound] 67.5-73.5s -> 64.5-76.0s (contrast=0.519, cat=Explosion)
+2026-07-06 22:21:09 [INFO   ] [9/14] START RoadAccidents123_x264 (RoadAccidents)
+2026-07-06 22:21:09 [INFO   ]   [Motion filter] 67 -> 67 frames (0% removed, threshold=1.0)
+2026-07-06 22:21:16 [INFO   ]   [CLIP precompute] 67 frames encoded in 6.5s
+2026-07-06 22:21:16 [INFO   ]   [MIL] snippet scores: mean=0.994, max=1.000, min=0.846
+2026-07-06 22:21:20 [INFO   ]   [VideoMAE] RoadAccidents(94%), Vandalism(4%), Arrest(1%) -> RoadAccidents@94%
+2026-07-06 22:21:23 [INFO   ]   [VideoMAE-window] 3 windows in 2.5s
+2026-07-06 22:21:23 [INFO   ]   [CLIP-loc] Category=RoadAccidents, mean=0.982, std=0.098, range=0.807, cv=0.100
+2026-07-06 22:21:23 [INFO   ]   [CLIP-loc] Fused with motion energy for RoadAccidents
+2026-07-06 22:21:23 [INFO   ]   [CLIP-loc] Found 3 multi-scale regions:
+2026-07-06 22:21:23 [INFO   ]   [CLIP-loc] Category=Robbery, mean=0.134, std=0.080, range=0.399, cv=0.599
+2026-07-06 22:21:23 [INFO   ]   [CLIP-loc] Found 4 multi-scale regions:
+2026-07-06 22:21:23 [INFO   ]   [Multi-CLIP-loc] 7 regions deduped to 2
+2026-07-06 22:21:23 [INFO   ]   [Directed scan] 8/8 segments selected for LLM scanning
+2026-07-06 22:21:25 [INFO   ] Found 2 anomaly candidate(s):
+2026-07-06 22:21:25 [INFO   ]   Candidate 1: 13.5s-19.5s score=0.90
+2026-07-06 22:21:25 [INFO   ]   Candidate 2: 103.5s-109.5s score=0.90
+2026-07-06 22:21:25 [INFO   ]     [CLIPBound] 13.5-19.5s -> 13.5-18.5s (contrast=0.085, cat=Assault)
+2026-07-06 22:21:25 [INFO   ]     [CLIPBound] 103.5-109.5s -> 105.5-110.5s (contrast=0.090, cat=Assault)
+2026-07-06 22:21:25 [INFO   ]     [VLM-Bound] 51.5-62.0s -> 51.8-62.7s (vlm_conf=0.95, w_clip=0.34, w_vlm=0.66)
+2026-07-06 22:21:25 [INFO   ] Found 1 anomaly candidate(s):
+2026-07-06 22:21:25 [INFO   ]   Candidate 1: 0.0s-33.5s score=0.95
+2026-07-06 22:21:25 [INFO   ]     [CLIPBound] 0.0-33.5s -> 2.0-30.5s (contrast=0.209, cat=RoadAccidents)
+2026-07-06 22:21:26 [INFO   ]     [VLM-Bound] CLIP over-wide (28.5s > 24.0s), using VLM boundaries
+2026-07-06 22:21:26 [INFO   ]     [VLM-Bound] 2.0-30.5s -> 6.0-9.0s (vlm_conf=0.95, w_clip=0.00, w_vlm=1.00)
+2026-07-06 22:21:26 [INFO   ]   --- Pre-merge anomalies: 1 ---
+2026-07-06 22:21:26 [INFO   ]   --- Post-merge+NMS anomalies: 1 ---
+2026-07-06 22:21:26 [INFO   ]   [Ensemble] VideoMAE=RoadAccidents@94%, CLIP-seg=RoadAccidents(97%), Shooting(1%), Vandalism(1%)
+2026-07-06 22:21:26 [INFO   ]   [Ensemble] VLM deciding among ['RoadAccidents', 'Robbery']
+2026-07-06 22:21:26 [INFO   ]     [VLM-Bound] 64.5-76.0s -> 63.9-70.5s (vlm_conf=0.95, w_clip=0.35, w_vlm=0.65)
+2026-07-06 22:21:26 [INFO   ]   --- Pre-merge anomalies: 2 ---
+2026-07-06 22:21:26 [INFO   ]   --- Post-merge+NMS anomalies: 1 ---
+2026-07-06 22:21:26 [INFO   ]     [CLIPBound] 51.8-70.5s -> 51.5-62.0s (contrast=0.576, cat=Explosion)
+2026-07-06 22:21:26 [INFO   ]     [PostTighten] 51.8-70.5s -> 51.5-62.0s (was 18.7s > 12.0s limit, conf=0.944->0.950)
+2026-07-06 22:21:26 [INFO   ]   [Ensemble] No confusion pair -> Explosion
+2026-07-06 22:21:26 [INFO   ] [6/14] DONE  Explosion002_x264: 134s video, 1 anomalies, 117.6s processing
+2026-07-06 22:21:26 [INFO   ] [10/14] START Robbery050_x264 (Robbery)
+2026-07-06 22:21:26 [INFO   ]   [Motion filter] 114 -> 87 frames (24% removed, threshold=1.0)
+2026-07-06 22:21:32 [INFO   ]   [CLIP precompute] 87 frames encoded in 5.7s
+2026-07-06 22:21:34 [INFO   ]   [MIL] snippet scores: mean=0.001, max=0.003, min=0.000
+2026-07-06 22:21:38 [INFO   ]   [VideoMAE] RoadAccidents(93%), Robbery(5%), Arrest(1%) -> RoadAccidents@93%
+2026-07-06 22:21:41 [INFO   ]   [VideoMAE-window] 4 windows in 3.3s
+2026-07-06 22:21:41 [INFO   ]   [CLIP-loc] Category=RoadAccidents, mean=0.854, std=0.075, range=0.432, cv=0.088
+2026-07-06 22:21:41 [INFO   ]   [CLIP-loc] Fused with motion energy for RoadAccidents
+2026-07-06 22:21:41 [INFO   ]   [CLIP-loc] Found 4 multi-scale regions:
+2026-07-06 22:21:41 [INFO   ]   [CLIP-loc] Category=Robbery, mean=0.642, std=0.177, range=0.650, cv=0.276
+2026-07-06 22:21:41 [INFO   ]   [CLIP-loc] Found 1 multi-scale regions:
+2026-07-06 22:21:41 [INFO   ]   [Multi-CLIP-loc] 5 regions deduped to 2
+2026-07-06 22:21:41 [INFO   ]   [Directed scan] 10/13 segments selected for LLM scanning
+2026-07-06 22:21:41 [INFO   ]     [VLM-Bound] 105.5-110.5s -> 105.5-110.5s (vlm_conf=0.95, w_clip=0.09, w_vlm=0.91)
+2026-07-06 22:21:41 [INFO   ]   --- Pre-merge anomalies: 2 ---
+2026-07-06 22:21:41 [INFO   ]   --- Post-merge+NMS anomalies: 2 ---
+2026-07-06 22:21:41 [INFO   ]   [Ensemble] VideoMAE=Assault@98%, CLIP-seg=Shoplifting(42%), Stealing(14%), Assault(4%)
+2026-07-06 22:21:41 [INFO   ]   [Ensemble] VLM deciding among ['Assault', 'Arson']
+2026-07-06 22:21:47 [INFO   ]     [Classify] VLM chose RoadAccidents from ['RoadAccidents', 'Robbery']
+2026-07-06 22:21:47 [INFO   ]     [Classify] VLM chose Assault from ['Assault', 'Arson']
+2026-07-06 22:21:47 [INFO   ]     [Classify] VLM chose RoadAccidents from ['RoadAccidents', 'Robbery']
+2026-07-06 22:21:47 [INFO   ]     [Classify] VLM chose RoadAccidents from ['RoadAccidents', 'Robbery']
+2026-07-06 22:21:47 [INFO   ]   [Ensemble] VLM votes={'RoadAccidents': 3} -> RoadAccidents
+2026-07-06 22:21:47 [INFO   ] [9/14] DONE  RoadAccidents123_x264: 34s video, 1 anomalies, 38.2s processing
+2026-07-06 22:21:47 [INFO   ] [11/14] START Shooting032_x264 (Shooting)
+2026-07-06 22:21:50 [INFO   ]   [Motion filter] 1446 -> 1434 frames (1% removed, threshold=1.0)
+2026-07-06 22:24:03 [INFO   ]   [CLIP precompute] 1434 frames encoded in 133.5s
+2026-07-06 22:24:05 [INFO   ]   [MIL] snippet scores: mean=0.993, max=1.000, min=0.883
+2026-07-06 22:24:09 [INFO   ]   [VideoMAE] Shooting(100%), RoadAccidents(0%), Arrest(0%) -> Shooting@100%
+2026-07-06 22:25:25 [INFO   ]   [VideoMAE-window] 88 windows in 75.6s
+2026-07-06 22:25:25 [INFO   ]   [CLIP-loc] Category=Shooting, mean=0.561, std=0.267, range=0.955, cv=0.476
+2026-07-06 22:25:25 [INFO   ]   [CLIP-loc] Found 5 multi-scale regions:
+2026-07-06 22:25:25 [INFO   ]   [Multi-CLIP-loc] 5 regions deduped to 4
+2026-07-06 22:25:25 [INFO   ]   [Directed scan] 18/161 segments selected for LLM scanning
+2026-07-06 22:25:25 [INFO   ]     [Classify] VLM chose Assault from ['Assault', 'Arson']
+2026-07-06 22:25:25 [INFO   ] [10/14] DONE  Robbery050_x264: 57s video, 0 anomalies, 238.7s processing
+2026-07-06 22:25:25 [INFO   ] [12/14] START Shoplifting001_x264 (Shoplifting)
+2026-07-06 22:25:25 [INFO   ]   [Motion filter] 290 -> 290 frames (0% removed, threshold=1.0)
+2026-07-06 22:25:53 [INFO   ]   [CLIP precompute] 290 frames encoded in 28.2s
+2026-07-06 22:25:54 [INFO   ]   [MIL] snippet scores: mean=1.000, max=1.000, min=0.992
+2026-07-06 22:25:58 [INFO   ]   [VideoMAE] Shoplifting(100%), Burglary(0%), Explosion(0%) -> Shoplifting@100%
+2026-07-06 22:26:12 [INFO   ]   [VideoMAE-window] 17 windows in 14.1s
+2026-07-06 22:26:12 [INFO   ]   [CLIP-loc] Category=Shoplifting, mean=0.988, std=0.005, range=0.040, cv=0.005
+2026-07-06 22:26:12 [INFO   ]   [CLIP-loc] Scores too uniform, falling back to standard scanning
+2026-07-06 22:26:12 [INFO   ]   [CLIP pre-screen] Scanning 32 segments...
+2026-07-06 22:26:12 [INFO   ]   [CLIP pre-screen] Adaptive threshold: 0.993 (mean=0.994, std=0.002, range: 0.99-1.00)
+2026-07-06 22:26:12 [INFO   ]   [CLIP pre-screen] Zone-selected 6 segments (coverage-aware)
+2026-07-06 22:26:12 [INFO   ]   [CLIP pre-screen] 6/32 segments passed
+2026-07-06 22:26:12 [INFO   ]   [LLM scan] Scanning 6 segments in parallel...
+2026-07-06 22:26:12 [INFO   ]     [Classify] VLM chose Assault from ['Assault', 'Arson']
+2026-07-06 22:26:12 [INFO   ]   [Ensemble] VLM votes={'Assault': 3} -> Assault
+2026-07-06 22:26:12 [INFO   ]   [MIL-sanity] MIL max_score=0.000 < 0.3, reducing confidence by 30%
+2026-07-06 22:26:12 [INFO   ]   [ConfFilter] 2 -> 0 (threshold=0.55, cat=Assault)
+2026-07-06 22:26:12 [INFO   ] [8/14] DONE  Normal_Videos_782_x264: 185s video, 0 anomalies, 354.8s processing
+2026-07-06 22:26:12 [INFO   ] [13/14] START Stealing036_x264 (Stealing)
+2026-07-06 22:26:12 [INFO   ]   [Motion filter] 167 -> 149 frames (11% removed, threshold=1.0)
+2026-07-06 22:26:25 [INFO   ]   [CLIP precompute] 149 frames encoded in 12.5s
+2026-07-06 22:26:27 [INFO   ]   [MIL] snippet scores: mean=0.970, max=1.000, min=0.328
+2026-07-06 22:26:31 [INFO   ]   [VideoMAE] Stealing(100%), RoadAccidents(0%), Shooting(0%) -> Stealing@100%
+2026-07-06 22:26:37 [INFO   ]   [VideoMAE-window] 8 windows in 6.6s
+2026-07-06 22:26:37 [INFO   ]   [CLIP-loc] Category=Stealing, mean=0.861, std=0.051, range=0.271, cv=0.059
+2026-07-06 22:26:37 [INFO   ]   [CLIP-loc] Found 5 multi-scale regions:
+2026-07-06 22:26:37 [INFO   ]   [Multi-CLIP-loc] 5 regions deduped to 3
+2026-07-06 22:26:37 [INFO   ]   [Directed scan] 10/19 segments selected for LLM scanning
+2026-07-06 22:26:48 [INFO   ] Found 3 anomaly candidate(s):
+2026-07-06 22:26:48 [INFO   ]   Candidate 1: 265.5s-294.0s score=0.95
+2026-07-06 22:26:48 [INFO   ]   Candidate 2: 297.0s-312.0s score=0.95
+2026-07-06 22:26:48 [INFO   ]   Candidate 3: 315.0s-330.0s score=0.95
+2026-07-06 22:26:48 [INFO   ]     [CLIPBound] 265.5-294.0s -> 268.5-302.0s (contrast=0.711, cat=Shooting)
+2026-07-06 22:26:48 [INFO   ]     [CLIPBound] 297.0-312.0s -> 295.0-319.0s (contrast=0.530, cat=Shooting)
+2026-07-06 22:26:48 [INFO   ]     [CLIPBound] 315.0-330.0s -> 308.0-327.0s (contrast=0.230, cat=Shooting)
+2026-07-06 22:26:50 [INFO   ]     [VLM-Bound] CLIP over-wide (33.5s > 18.0s), using VLM boundaries
+2026-07-06 22:26:50 [INFO   ]     [VLM-Bound] 268.5-302.0s -> 265.0-270.0s (vlm_conf=0.95, w_clip=0.00, w_vlm=1.00)
+2026-07-06 22:26:51 [INFO   ]     [VLM-Bound] CLIP over-wide (24.0s > 18.0s), using VLM boundaries
+2026-07-06 22:26:51 [INFO   ]     [VLM-Bound] 295.0-319.0s -> 289.0-296.0s (vlm_conf=0.95, w_clip=0.00, w_vlm=1.00)
+2026-07-06 22:26:51 [INFO   ] Found 2 anomaly candidate(s):
+2026-07-06 22:26:51 [INFO   ]   Candidate 1: 13.5s-28.5s score=0.90
+2026-07-06 22:26:51 [INFO   ]   Candidate 2: 31.5s-60.0s score=0.90
+2026-07-06 22:26:51 [INFO   ]     [CLIPBound] 13.5-28.5s -> 9.5-35.5s (contrast=0.454, cat=Stealing)
+2026-07-06 22:26:51 [INFO   ]     [CLIPBound] 31.5-60.0s -> 17.5-70.5s (contrast=0.456, cat=Stealing)
+2026-07-06 22:26:52 [INFO   ]   --- Pre-merge anomalies: 3 ---
+2026-07-06 22:26:52 [INFO   ]   --- Post-merge+NMS anomalies: 3 ---
+2026-07-06 22:26:52 [INFO   ]     [CLIPBound] 308.0-327.0s -> 298.5-327.0s (contrast=0.500, cat=Shooting)
+2026-07-06 22:26:52 [INFO   ]     [PostTighten] 308.0-327.0s -> 298.5-327.0s (was 19.0s > 18.0s limit, conf=0.847->0.950)
+2026-07-06 22:26:52 [INFO   ]   [Ensemble] No confusion pair -> Shooting
+2026-07-06 22:26:52 [INFO   ] [11/14] DONE  Shooting032_x264: 723s video, 3 anomalies, 304.5s processing
+2026-07-06 22:26:52 [INFO   ] [14/14] START Vandalism015_x264 (Vandalism)
+2026-07-06 22:26:52 [INFO   ]   [Motion filter] 199 -> 169 frames (15% removed, threshold=1.0)
+2026-07-06 22:27:07 [INFO   ]   [CLIP precompute] 169 frames encoded in 14.6s
+2026-07-06 22:27:07 [INFO   ]   [MIL] snippet scores: mean=1.000, max=1.000, min=0.997
+2026-07-06 22:27:11 [INFO   ]   [VideoMAE] Vandalism(99%), Assault(0%), Arrest(0%) -> Vandalism@99%
+2026-07-06 22:27:18 [INFO   ]   [VideoMAE-window] 9 windows in 6.8s
+2026-07-06 22:27:18 [INFO   ]   [CLIP-loc] Category=Vandalism, mean=0.883, std=0.082, range=0.484, cv=0.092
+2026-07-06 22:27:18 [INFO   ]   [CLIP-loc] Found 5 multi-scale regions:
+2026-07-06 22:27:18 [INFO   ]   [Multi-CLIP-loc] 5 regions deduped to 4
+2026-07-06 22:27:18 [INFO   ]   [Directed scan] 10/22 segments selected for LLM scanning
+2026-07-06 22:27:18 [INFO   ]     [VLM-Bound] 9.5-35.5s -> 14.6-28.1s (vlm_conf=0.95, w_clip=0.32, w_vlm=0.68)
+2026-07-06 22:27:18 [INFO   ] Found 5 anomaly candidate(s):
+2026-07-06 22:27:18 [INFO   ]   Candidate 1: 18.0s-24.0s score=0.90
+2026-07-06 22:27:18 [INFO   ]   Candidate 2: 31.5s-37.5s score=0.95
+2026-07-06 22:27:18 [INFO   ]   Candidate 3: 67.5s-78.0s score=0.90
+2026-07-06 22:27:18 [INFO   ]   Candidate 4: 112.5s-118.5s score=0.90
+2026-07-06 22:27:18 [INFO   ]   Candidate 5: 121.5s-127.5s score=0.90
+2026-07-06 22:27:18 [INFO   ]   [Limit] Keeping top 3/5 candidates
+2026-07-06 22:27:18 [INFO   ]     [CLIPBound] 31.5-37.5s -> 30.0-38.5s (contrast=0.319, cat=Shoplifting)
+2026-07-06 22:27:18 [INFO   ]     [CLIPBound] 18.0-24.0s -> 15.0-24.0s (contrast=0.526, cat=Shoplifting)
+2026-07-06 22:27:18 [INFO   ]     [CLIPBound] 67.5-78.0s -> 64.5-77.0s (contrast=0.188, cat=Shoplifting)
+2026-07-06 22:27:19 [INFO   ]     [VLM-Bound] CLIP over-wide (53.0s > 36.0s), using VLM boundaries
+2026-07-06 22:27:19 [INFO   ]     [VLM-Bound] 17.5-70.5s -> 16.5-24.0s (vlm_conf=0.95, w_clip=0.00, w_vlm=1.00)
+2026-07-06 22:27:19 [INFO   ]   --- Pre-merge anomalies: 2 ---
+2026-07-06 22:27:19 [INFO   ]   --- Post-merge+NMS anomalies: 1 ---
+2026-07-06 22:27:19 [INFO   ]   [Ensemble] No confusion pair -> Stealing
+2026-07-06 22:27:19 [INFO   ] [13/14] DONE  Stealing036_x264: 83s video, 1 anomalies, 67.2s processing
+2026-07-06 22:27:20 [INFO   ] Found 2 anomaly candidate(s):
+2026-07-06 22:27:20 [INFO   ]   Candidate 1: 0.0s-15.0s score=0.95
+2026-07-06 22:27:20 [INFO   ]   Candidate 2: 22.5s-46.5s score=0.95
+2026-07-06 22:27:20 [INFO   ]     [CLIPBound] 0.0-15.0s -> 1.5-14.0s (contrast=0.286, cat=Vandalism)
+2026-07-06 22:27:20 [INFO   ]     [CLIPBound] 22.5-46.5s -> 10.5-49.5s (contrast=0.442, cat=Vandalism)
+2026-07-06 22:27:21 [INFO   ]     [VLM-Bound] 30.0-38.5s -> 29.3-37.4s (vlm_conf=0.95, w_clip=0.25, w_vlm=0.75)
+2026-07-06 22:27:21 [INFO   ]     [VLM-Bound] 1.5-14.0s -> 4.2-10.9s (vlm_conf=0.95, w_clip=0.23, w_vlm=0.77)
+2026-07-06 22:27:21 [INFO   ]     [VLM-Bound] 15.0-24.0s -> 14.7-25.6s (vlm_conf=0.95, w_clip=0.36, w_vlm=0.64)
+2026-07-06 22:27:22 [INFO   ]     [VLM-Bound] CLIP over-wide (39.0s > 24.0s), using VLM boundaries
+2026-07-06 22:27:22 [INFO   ]     [VLM-Bound] 10.5-49.5s -> 27.0-34.0s (vlm_conf=0.95, w_clip=0.00, w_vlm=1.00)
+2026-07-06 22:27:22 [INFO   ]   --- Pre-merge anomalies: 2 ---
+2026-07-06 22:27:22 [INFO   ]   --- Post-merge+NMS anomalies: 2 ---
+2026-07-06 22:27:22 [INFO   ]   [Ensemble] No confusion pair -> Vandalism
+2026-07-06 22:27:22 [INFO   ] [14/14] DONE  Vandalism015_x264: 99s video, 2 anomalies, 30.2s processing
+2026-07-06 22:27:23 [INFO   ]     [VLM-Bound] 64.5-77.0s -> 63.2-74.5s (vlm_conf=0.95, w_clip=0.17, w_vlm=0.83)
+2026-07-06 22:27:23 [INFO   ]   --- Pre-merge anomalies: 3 ---
+2026-07-06 22:27:23 [INFO   ]   --- Post-merge+NMS anomalies: 3 ---
+2026-07-06 22:27:23 [INFO   ]   [Ensemble] No confusion pair -> Shoplifting
+2026-07-06 22:27:23 [INFO   ] [12/14] DONE  Shoplifting001_x264: 145s video, 3 anomalies, 117.7s processing
+2026-07-06 22:27:23 [INFO   ] ============================================================
+2026-07-06 22:27:23 [INFO   ] Batch complete:
+2026-07-06 22:27:23 [INFO   ]   Succeeded: 14, Skipped: 0, Failed: 0
+2026-07-06 22:27:23 [INFO   ]   Total wall-clock time:   710.4s (11.8min)
+2026-07-06 22:27:23 [INFO   ]   Total processing time:   2078.6s (34.6min)
+2026-07-06 22:27:23 [INFO   ]   Avg per video:           148.5s
+2026-07-06 22:27:23 [INFO   ]   Parallelism speedup:     2.93x
+2026-07-06 22:27:23 [INFO   ] ============================================================
+2026-07-06 22:27:23 [INFO   ] Running evaluation...
+2026-07-06 22:27:23 [INFO   ] GT videos: 290, Predicted videos: 14, Matched: 14
+2026-07-06 22:27:23 [INFO   ]   GT only (missing predictions): 276
+2026-07-06 22:27:23 [INFO   ]   Abnormal: 13, Normal: 1
+2026-07-06 22:27:23 [INFO   ] --- Level 1: Frame-level AUC-ROC / AUPR ---
+2026-07-06 22:27:23 [INFO   ]   Global AUC-ROC: 0.8086
+2026-07-06 22:27:23 [INFO   ]   Global AUPR:    0.4567
+2026-07-06 22:27:23 [INFO   ]   Per-category AUC-ROC:
+2026-07-06 22:27:23 [INFO   ]     Abuse               : 0.6012
+2026-07-06 22:27:23 [INFO   ]     Arrest              : 1.0000
+2026-07-06 22:27:23 [INFO   ]     Arson               : 0.9972
+2026-07-06 22:27:23 [INFO   ]     Assault             : 0.9818
+2026-07-06 22:27:23 [INFO   ]     Burglary            : 0.9092
+2026-07-06 22:27:23 [INFO   ]     Explosion           : 0.9646
+2026-07-06 22:27:23 [INFO   ]     Fighting            : 0.7860
+2026-07-06 22:27:23 [INFO   ]     RoadAccidents       : 0.9426
+2026-07-06 22:27:23 [INFO   ]     Robbery             : 0.4752
+2026-07-06 22:27:23 [INFO   ]     Shooting            : 0.9482
+2026-07-06 22:27:23 [INFO   ]     Shoplifting         : 0.7112
+2026-07-06 22:27:23 [INFO   ]     Stealing            : 0.4620
+2026-07-06 22:27:23 [INFO   ]     Vandalism           : 0.7258
+2026-07-06 22:27:23 [INFO   ] --- Level 2: Temporal Segment mAP ---
+2026-07-06 22:27:23 [INFO   ]   mAP:    0.1180
+2026-07-06 22:27:23 [INFO   ]   AP@0.3: 0.2677
+2026-07-06 22:27:23 [INFO   ]   AP@0.5: 0.0864
+2026-07-06 22:27:23 [INFO   ]   AP@0.7: 0.0000
+2026-07-06 22:27:23 [INFO   ] --- Level 3: Video-level Metrics ---
+2026-07-06 22:27:23 [INFO   ]   Accuracy:  0.9286
+2026-07-06 22:27:23 [INFO   ]   Precision: 1.0000
+2026-07-06 22:27:23 [INFO   ]   Recall:    0.9231
+2026-07-06 22:27:23 [INFO   ]   F1:        0.9600
+2026-07-06 22:27:23 [INFO   ]   AUC:       0.9615
+2026-07-06 22:27:23 [INFO   ] --- Level 4: Category Accuracy ---
+2026-07-06 22:27:23 [INFO   ]   Overall: 0.8462
+2026-07-06 22:27:23 [INFO   ]   Abuse               : 1/1
+2026-07-06 22:27:23 [INFO   ]   Arrest              : 1/1
+2026-07-06 22:27:23 [INFO   ]   Arson               : 1/1
+2026-07-06 22:27:23 [INFO   ]   Assault             : 1/1
+2026-07-06 22:27:23 [INFO   ]   Burglary            : 0/1
+2026-07-06 22:27:23 [INFO   ]   Explosion           : 1/1
+2026-07-06 22:27:23 [INFO   ]   Fighting            : 1/1
+2026-07-06 22:27:23 [INFO   ]   RoadAccidents       : 1/1
+2026-07-06 22:27:23 [INFO   ]   Robbery             : 0/1
+2026-07-06 22:27:23 [INFO   ]   Shooting            : 1/1
+2026-07-06 22:27:23 [INFO   ]   Shoplifting         : 1/1
+2026-07-06 22:27:23 [INFO   ]   Stealing            : 1/1
+2026-07-06 22:27:23 [INFO   ]   Vandalism           : 1/1
+2026-07-06 22:27:23 [INFO   ] Full report saved to: results/batch_eval_v61_smoke/evaluation_report.json

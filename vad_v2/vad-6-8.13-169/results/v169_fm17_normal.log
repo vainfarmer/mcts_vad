@@ -1,0 +1,29 @@
+/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/open_clip/factory.py:450: UserWarning: QuickGELU mismatch between final model config (quick_gelu=False) and pretrained tag 'openai' (quick_gelu=True).
+  warnings.warn(
+2026-08-13 22:00:18 [INFO   ] [AnomalyExpert] Loaded learned prompt weights from /Users/zzl/PycharmProjects/vad/video_anomaly_detection/prompt_weights.json
+2026-08-13 22:00:21 [INFO   ] [AnomalyExpert] CLIP ViT-B-32 loaded on cpu
+2026-08-13 22:01:06 [INFO   ] [VideoMAE] Loaded on cpu
+2026-08-13 22:01:06 [INFO   ]   [MIL] Loaded MIL model from /Users/zzl/PycharmProjects/vad/video_anomaly_detection/model_mil.pth
+Processing video: /Users/zzl/Movies/ucf-crime/videos/Testing_Normal/Normal_Videos_003_x264.mp4
+Model: qwen-vl-max
+Anomaly categories: Abuse, Arrest, Arson, Assault, Burglary, Explosion, Fighting, RoadAccidents, Robbery, Shooting, Shoplifting, Stealing, Vandalism
+2026-08-13 22:01:07 [INFO   ]   [Motion filter] 404 -> 63 frames (84% removed, threshold=1.0)
+2026-08-13 22:01:15 [INFO   ]   [CLIP precompute] 63 frames encoded in 8.7s
+2026-08-13 22:01:15 [WARNING]   [MIL] Scoring failed: Given groups=1, weight of size [512, 768, 1], expected input[1, 512, 32] to have 768 channels, but got 512 channels instead
+2026-08-13 22:01:25 [INFO   ]   [VideoMAE] Vandalism(74%), Abuse(13%), Assault(6%) -> Vandalism@74%
+2026-08-13 22:01:27 [INFO   ]   [VideoMAE-window] 2 windows in 2.6s
+2026-08-13 22:01:27 [INFO   ]   [CLIP-loc] Category=Vandalism, mean=0.351, std=0.122, range=0.659, cv=0.348
+2026-08-13 22:01:27 [INFO   ]   [CLIP-loc] Found 3 multi-scale regions:
+2026-08-13 22:01:27 [INFO   ]   [Directed scan] 10/16 segments selected for LLM scanning
+2026-08-13 22:01:29 [INFO   ]   [CBT-VID] vid=Normal_Videos_003_x264.mp4 enabled=True ndet=0 fired=0 recal=on (early return: no candidates)
+2026-08-13 22:01:29 [INFO   ]   [CGR-VID] vid=Normal_Videos_003_x264.mp4 enabled=True ndet_before=0 ndet_after=0 moved=0 skip=early_return_no_candidates
+2026-08-13 22:01:29 [INFO   ]   [CGR-AB] vid=Normal_Videos_003_x264.mp4 ndet=0 armoff_len=0 fired=0
+2026-08-13 22:01:29 [INFO   ] [COST] video=Normal_Videos_003_x264.mp4 vlm_calls=10 clip_calls=2 elapsed_s=23.1
+
+==================================================
+Processing time: 23.1s
+Video duration:  94.1s
+Is normal:       True
+Anomalies found: 0
+
+Results saved to /Users/zzl/PycharmProjects/vad/results/v169_fm17_normal.json

@@ -1,0 +1,94 @@
+2026-08-16 20:25:04 [INFO   ] VAD batch evaluation started | output_dir=/Users/zzl/PycharmProjects/vad/results/batch_eval_v179_smoke_off | log=/Users/zzl/PycharmProjects/vad/results/batch_eval_v179_smoke_off/run.log
+2026-08-16 20:25:04 [INFO   ] Selected 2 videos from 2 categories:
+2026-08-16 20:25:04 [INFO   ]   Arson               :   1 / 9
+2026-08-16 20:25:04 [INFO   ]   Normal              :   1 / 150
+/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/open_clip/factory.py:450: UserWarning: QuickGELU mismatch between final model config (quick_gelu=False) and pretrained tag 'openai' (quick_gelu=True).
+  warnings.warn(
+2026-08-16 20:41:18 [INFO   ] [AnomalyExpert] Loaded learned prompt weights from /Users/zzl/PycharmProjects/vad/video_anomaly_detection/prompt_weights.json
+2026-08-16 20:41:19 [INFO   ] [AnomalyExpert] CLIP ViT-L-14 loaded on mps
+2026-08-16 20:42:16 [INFO   ] [VideoMAE] Loaded on mps
+2026-08-16 20:42:16 [INFO   ]   [MIL] Loaded MIL model from /Users/zzl/PycharmProjects/vad/video_anomaly_detection/model_mil.pth
+2026-08-16 20:42:16 [INFO   ] Starting batch processing: 2 videos, concurrency=2
+2026-08-16 20:42:16 [INFO   ] Detect model: qwen-vl-plus, Classify model: qwen3-vl-plus
+2026-08-16 20:42:16 [INFO   ] ============================================================
+2026-08-16 20:42:16 [INFO   ] [1/2] START Arson035_x264 (Arson)
+2026-08-16 20:42:17 [INFO   ]   [Motion filter] 96 -> 88 frames (8% removed, threshold=1.0)
+2026-08-16 20:42:28 [INFO   ]   [CLIP precompute] 88 frames encoded in 11.6s
+2026-08-16 20:42:31 [INFO   ]   [MIL] snippet scores: mean=1.000, max=1.000, min=0.996
+2026-08-16 20:42:38 [INFO   ]   [VideoMAE] Arson(98%), Arrest(1%), Explosion(0%) -> Arson@98%
+2026-08-16 20:42:43 [INFO   ]   [VideoMAE-window] 4 windows in 5.4s
+2026-08-16 20:42:43 [INFO   ]   [CLIP-loc] Category=Arson, mean=0.903, std=0.179, range=0.778, cv=0.198
+2026-08-16 20:42:43 [INFO   ]   [CLIP-loc] Found 2 multi-scale regions:
+2026-08-16 20:42:43 [INFO   ]   [Directed scan] 10/11 segments selected for LLM scanning
+2026-08-16 20:42:43 [INFO   ] [2/2] START Normal_Videos_782_x264 (Normal)
+2026-08-16 20:42:44 [INFO   ]   [Motion filter] 370 -> 333 frames (10% removed, threshold=1.0)
+2026-08-16 20:43:37 [INFO   ]   [CLIP precompute] 333 frames encoded in 52.6s
+2026-08-16 20:43:43 [INFO   ]   [MIL] snippet scores: mean=0.000, max=0.000, min=0.000
+2026-08-16 20:43:50 [INFO   ]   [VideoMAE] Assault(98%), Vandalism(1%), Fighting(1%) -> Assault@98%
+2026-08-16 20:44:17 [INFO   ]   [VideoMAE-window] 19 windows in 26.6s
+2026-08-16 20:44:17 [INFO   ]   [CLIP-loc] Category=Assault, mean=0.034, std=0.034, range=0.206, cv=1.017
+2026-08-16 20:44:17 [INFO   ]   [CLIP-loc] Found 5 multi-scale regions:
+2026-08-16 20:44:17 [INFO   ]   [CLIP-loc] Category=Arson, mean=0.020, std=0.019, range=0.121, cv=0.962
+2026-08-16 20:44:17 [INFO   ]   [CLIP-loc] Found 5 multi-scale regions:
+2026-08-16 20:44:17 [INFO   ]   [Multi-CLIP-loc] 10 regions deduped to 4
+2026-08-16 20:44:17 [INFO   ]   [Directed scan] 10/41 segments selected for LLM scanning
+2026-08-16 20:44:21 [INFO   ] Found 2 anomaly candidate(s):
+2026-08-16 20:44:21 [INFO   ]   Candidate 1: 13.5s-19.5s score=0.90
+2026-08-16 20:44:21 [INFO   ]   Candidate 2: 103.5s-109.5s score=0.90
+2026-08-16 20:44:21 [INFO   ]     [CLIPBound] 13.5-19.5s -> 10.5-18.0s (contrast=0.041, cat=Assault)
+2026-08-16 20:44:21 [INFO   ]     [CLIPBound] 103.5-109.5s -> 105.5-110.5s (contrast=0.042, cat=Assault)
+2026-08-16 20:44:21 [INFO   ]   --- Pre-merge anomalies: 2 ---
+2026-08-16 20:44:21 [INFO   ]   --- Post-merge+NMS anomalies: 2 ---
+2026-08-16 20:44:21 [INFO   ]   [NOCLS-CA] classify VLM sub-tree skipped -> label='Assault' (mAP-neutral; ~-7.5% VLM calls)
+2026-08-16 20:44:21 [INFO   ]   [MIL-sanity] MIL max_score=0.000 < 0.3, reducing confidence by 30%
+2026-08-16 20:44:21 [INFO   ]   [ConfFilter] 2 -> 0 (threshold=0.55, cat=Assault)
+2026-08-16 20:44:21 [INFO   ]   [QSCORE-GATE] skipped (no detections / no curve)
+2026-08-16 20:44:21 [INFO   ]   [CBT-VID] vid=Normal_Videos_782_x264.mp4 enabled=True ndet=0 fired=0 wide_noop=0 nocurve=0 nofire=0 skip=no_dets recal=on
+2026-08-16 20:44:21 [INFO   ] [COST] video=Normal_Videos_782_x264.mp4 vlm_calls=20 clip_calls=11 elapsed_s=97.6
+2026-08-16 20:44:21 [INFO   ] [2/2] DONE  Normal_Videos_782_x264: 185s video, 0 anomalies, 97.6s processing
+2026-08-16 20:44:21 [INFO   ] Found 1 anomaly candidate(s):
+2026-08-16 20:44:21 [INFO   ]   Candidate 1: 18.0s-33.0s score=0.95
+2026-08-16 20:44:21 [INFO   ]     [CLIPBound] 18.0-33.0s -> 22.5-36.5s (contrast=0.117, cat=Arson)
+2026-08-16 20:44:22 [INFO   ]     [VLM-Bound] 22.5-36.5s -> 22.9-28.5s (vlm_conf=0.95, w_clip=0.11, w_vlm=0.89)
+2026-08-16 20:44:22 [INFO   ]   --- Pre-merge anomalies: 1 ---
+2026-08-16 20:44:22 [INFO   ]   --- Post-merge+NMS anomalies: 1 ---
+2026-08-16 20:44:22 [INFO   ]   [NOCLS-CA] classify VLM sub-tree skipped -> label='Arson' (mAP-neutral; ~-7.5% VLM calls)
+2026-08-16 20:44:22 [INFO   ]   [QSCORE-GATE] reranked 1 detections (base=0.5, raw Q range [0.852,0.852])
+2026-08-16 20:44:22 [INFO   ]   [BUE] vid=Arson035_x264.mp4 cat=Arson det=0 closed=0 t=22.945-28.486->4.500-45.000 dur=5.54->40.50 oic=0.0177->0.4824 conf=0.7985->0.7985
+2026-08-16 20:44:22 [INFO   ]   [BUE] summary: vid=Arson035_x264.mp4 fires=1 closed_skips=0 ndet_before=1 ndet_after=1 growth_med=34.960 dur_ratio=7.310 selfov=0 degen=0 noop=0 nocurve=0 lmax=38.3 gate=1
+2026-08-16 20:44:22 [INFO   ]   [CBT-VID] vid=Arson035_x264.mp4 enabled=True ndet=1 fired=0 wide_noop=0 nocurve=0 nofire=0 recal=on
+2026-08-16 20:44:22 [INFO   ] [COST] video=Arson035_x264.mp4 vlm_calls=21 clip_calls=14 elapsed_s=125.5
+2026-08-16 20:44:22 [INFO   ] [1/2] DONE  Arson035_x264: 48s video, 1 anomalies, 125.5s processing
+2026-08-16 20:44:22 [INFO   ] ============================================================
+2026-08-16 20:44:22 [INFO   ] Batch complete:
+2026-08-16 20:44:22 [INFO   ]   Succeeded: 2, Skipped: 0, Failed: 0
+2026-08-16 20:44:22 [INFO   ]   Total wall-clock time:   125.6s (2.1min)
+2026-08-16 20:44:22 [INFO   ]   Total processing time:   223.1s (3.7min)
+2026-08-16 20:44:22 [INFO   ]   Avg per video:           111.6s
+2026-08-16 20:44:22 [INFO   ]   Parallelism speedup:     1.78x
+2026-08-16 20:44:22 [INFO   ] ============================================================
+2026-08-16 20:44:22 [INFO   ] [ECE-GATE] markers=0 succeeded=2 ok=True
+2026-08-16 20:44:22 [INFO   ] Running evaluation...
+2026-08-16 20:44:22 [INFO   ] GT videos: 290, Predicted videos: 2, Matched: 2
+2026-08-16 20:44:22 [INFO   ]   GT only (missing predictions): 288
+2026-08-16 20:44:22 [INFO   ]   Abnormal: 1, Normal: 1
+2026-08-16 20:44:22 [INFO   ] --- Level 1: Frame-level AUC-ROC / AUPR ---
+2026-08-16 20:44:22 [INFO   ]   Global AUC-ROC: 0.9993
+2026-08-16 20:44:22 [INFO   ]   Global AUPR:    0.9865
+2026-08-16 20:44:22 [INFO   ]   Per-category AUC-ROC:
+2026-08-16 20:44:22 [INFO   ]     Arson               : 0.9960
+2026-08-16 20:44:22 [INFO   ] --- Level 2: Temporal Segment mAP ---
+2026-08-16 20:44:22 [INFO   ]   mAP:    0.0000
+2026-08-16 20:44:22 [INFO   ]   AP@0.3: 0.0000
+2026-08-16 20:44:22 [INFO   ]   AP@0.5: 0.0000
+2026-08-16 20:44:22 [INFO   ]   AP@0.7: 0.0000
+2026-08-16 20:44:22 [INFO   ] --- Level 3: Video-level Metrics ---
+2026-08-16 20:44:22 [INFO   ]   Accuracy:  1.0000
+2026-08-16 20:44:22 [INFO   ]   Precision: 1.0000
+2026-08-16 20:44:22 [INFO   ]   Recall:    1.0000
+2026-08-16 20:44:22 [INFO   ]   F1:        1.0000
+2026-08-16 20:44:22 [INFO   ]   AUC:       1.0000
+2026-08-16 20:44:22 [INFO   ] --- Level 4: Category Accuracy ---
+2026-08-16 20:44:22 [INFO   ]   Overall: 1.0000
+2026-08-16 20:44:22 [INFO   ]   Arson               : 1/1
+2026-08-16 20:44:22 [INFO   ] Full report saved to: /Users/zzl/PycharmProjects/vad/results/batch_eval_v179_smoke_off/evaluation_report.json

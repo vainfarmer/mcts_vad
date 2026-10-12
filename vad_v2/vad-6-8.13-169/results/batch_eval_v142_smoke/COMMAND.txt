@@ -1,0 +1,11 @@
+# v142 BUE flag-ON smoke launch command (Agent D-launcher)
+cd /Users/zzl/PycharmProjects/vad
+nohup python3.14 -u -m video_anomaly_detection.batch_evaluate \
+  --dataset_dir /Users/zzl/Movies/ucf-crime \
+  --output_dir /Users/zzl/PycharmProjects/vad/results/batch_eval_v142_smoke \
+  --max_per_category 1 \
+  --concurrency 2 \
+  --bue_extension \
+  > /Users/zzl/PycharmProjects/vad/results/batch_eval_v142_smoke.log 2>&1 &
+# BUE params default to pre-registered values: bue_alpha=1.0, bue_lmin_sec=6.0,
+# bue_lmax_sec=40.0, bue_lmax_frac=0.8, bue_smooth_win=3, bue_closure_gate=True

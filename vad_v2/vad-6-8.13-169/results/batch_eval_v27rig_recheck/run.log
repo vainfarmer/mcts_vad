@@ -1,0 +1,72 @@
+2026-08-24 22:07:40 [INFO   ] VAD batch evaluation started | output_dir=/Users/zzl/PycharmProjects/vad/results/batch_eval_v27rig_recheck | log=/Users/zzl/PycharmProjects/vad/results/batch_eval_v27rig_recheck/run.log
+2026-08-24 22:07:40 [INFO   ] Selected 1 videos from 1 categories:
+2026-08-24 22:07:40 [INFO   ]   RoadAccidents       :   1 / 23
+2026-08-24 22:08:12 [INFO   ] [AnomalyExpert] Loaded learned prompt weights from /Users/zzl/PycharmProjects/vad/video_anomaly_detection/prompt_weights.json
+2026-08-24 22:08:13 [INFO   ] [AnomalyExpert] CLIP ViT-L-14 loaded on mps
+2026-08-24 22:09:14 [INFO   ] [VideoMAE] Loaded on mps
+2026-08-24 22:09:14 [INFO   ]   [MIL] Loaded MIL model from /Users/zzl/PycharmProjects/vad/video_anomaly_detection/model_mil.pth
+2026-08-24 22:09:14 [INFO   ] Starting batch processing: 1 videos, concurrency=1
+2026-08-24 22:09:14 [INFO   ] Detect model: qwen-vl-plus, Classify model: qwen3-vl-plus
+2026-08-24 22:09:14 [INFO   ] ============================================================
+2026-08-24 22:09:14 [INFO   ] [1/1] START RoadAccidents123_x264 (RoadAccidents)
+2026-08-24 22:09:14 [INFO   ]   [Motion filter] 67 -> 67 frames (0% removed, threshold=1.0)
+2026-08-24 22:09:20 [INFO   ]   [CLIP precompute] 67 frames encoded in 5.1s
+2026-08-24 22:09:20 [INFO   ]   [MIL] snippet scores: mean=0.994, max=1.000, min=0.846
+2026-08-24 22:09:23 [INFO   ]   [VideoMAE] RoadAccidents(94%), Vandalism(4%), Arrest(1%) -> RoadAccidents@94%
+2026-08-24 22:09:25 [INFO   ]   [VideoMAE-window] 3 windows in 2.1s
+2026-08-24 22:09:25 [INFO   ]   [CLIP-loc] Category=RoadAccidents, mean=0.981, std=0.101, range=0.826, cv=0.103
+2026-08-24 22:09:25 [INFO   ]   [CLIP-loc] Fused with motion energy for RoadAccidents
+2026-08-24 22:09:25 [INFO   ]   [CLIP-loc] Found 3 multi-scale regions:
+2026-08-24 22:09:25 [INFO   ]   [CLIP-loc] Category=Robbery, mean=0.104, std=0.069, range=0.339, cv=0.659
+2026-08-24 22:09:25 [INFO   ]   [CLIP-loc] Found 3 multi-scale regions:
+2026-08-24 22:09:25 [INFO   ]   [Multi-CLIP-loc] 6 regions deduped to 2
+2026-08-24 22:09:25 [INFO   ]   [Directed scan] 8/8 segments selected for LLM scanning
+2026-08-24 22:09:50 [INFO   ] Found 1 anomaly candidate(s):
+2026-08-24 22:09:50 [INFO   ]   Candidate 1: 0.0s-33.5s score=0.95
+2026-08-24 22:09:50 [INFO   ]     [CLIPBound] 0.0-33.5s -> 1.5-8.5s (contrast=0.045, cat=RoadAccidents)
+2026-08-24 22:09:50 [INFO   ]   --- Pre-merge anomalies: 1 ---
+2026-08-24 22:09:50 [INFO   ]   --- Post-merge+NMS anomalies: 1 ---
+2026-08-24 22:09:50 [INFO   ]   [NOCLS-CA] classify VLM sub-tree skipped -> label='RoadAccidents' (mAP-neutral; ~-7.5% VLM calls)
+2026-08-24 22:09:50 [INFO   ]   [QSCORE-GATE] reranked 1 detections (base=0.5, raw Q range [0.906,0.906])
+2026-08-24 22:09:50 [INFO   ]   [CGR] vid=RoadAccidents123_x264.mp4 cat=RoadAccidents det=0 t=1.50-8.50->29.50-33.50 w=7.00 t_peak=33.00 conf=0.7749->0.7749
+2026-08-24 22:09:50 [INFO   ]   [CGR-VID] vid=RoadAccidents123_x264.mp4 enabled=True ndet_before=1 ndet_after=1 moved=1 skip=fired
+2026-08-24 22:09:50 [INFO   ]   [BUE] vid=RoadAccidents123_x264.mp4 cat=RoadAccidents det=0 closed=0 t=29.500-33.500->3.500-33.500 dur=4.00->30.00 oic=-0.0433->0.1420 conf=0.7749->0.7749
+2026-08-24 22:09:50 [INFO   ]   [BUE] summary: vid=RoadAccidents123_x264.mp4 fires=1 closed_skips=0 ndet_before=1 ndet_after=1 growth_med=26.000 dur_ratio=7.500 selfov=0 degen=0 noop=0 nocurve=0 lmax=26.8 gate=1
+2026-08-24 22:09:50 [INFO   ]   [CBT] vid=RoadAccidents123_x264.mp4 cat=RoadAccidents det=0 pre=30.0 post=4.0 t=3.50-33.50->14.00-18.00 cap=4.5 contrast=0.0151 conf=0.7749->0.7749
+2026-08-24 22:09:50 [INFO   ]   [CBT-VID] vid=RoadAccidents123_x264.mp4 enabled=True ndet=1 fired=1 wide_noop=0 nocurve=0 nofire=0 recal=on
+2026-08-24 22:09:50 [INFO   ]   [AB-VID] vid=RoadAccidents123_x264 mech=cgr ndet=1 armoff_len=1 n_win_changed=0 n_conf_changed=0 fired=0 cfg_changed=cgr_enabled
+2026-08-24 22:09:50 [INFO   ] [COST] video=RoadAccidents123_x264.mp4 vlm_calls=8 clip_calls=3 elapsed_s=35.3
+2026-08-24 22:09:50 [INFO   ] [1/1] DONE  RoadAccidents123_x264: 34s video, 1 anomalies, 35.3s processing
+2026-08-24 22:09:50 [INFO   ] ============================================================
+2026-08-24 22:09:50 [INFO   ] Batch complete:
+2026-08-24 22:09:50 [INFO   ]   Succeeded: 1, Skipped: 0, Failed: 0
+2026-08-24 22:09:50 [INFO   ]   Total wall-clock time:   35.3s (0.6min)
+2026-08-24 22:09:50 [INFO   ]   Total processing time:   35.3s (0.6min)
+2026-08-24 22:09:50 [INFO   ]   Avg per video:           35.3s
+2026-08-24 22:09:50 [INFO   ]   Parallelism speedup:     1.00x
+2026-08-24 22:09:50 [INFO   ] ============================================================
+2026-08-24 22:09:50 [INFO   ] [ECE-GATE] markers=0 succeeded=1 ok=True
+2026-08-24 22:09:50 [INFO   ] Running evaluation...
+2026-08-24 22:09:50 [INFO   ] GT videos: 290, Predicted videos: 1, Matched: 1
+2026-08-24 22:09:50 [INFO   ]   GT only (missing predictions): 289
+2026-08-24 22:09:50 [INFO   ]   Abnormal: 1, Normal: 0
+2026-08-24 22:09:50 [INFO   ] --- Level 1: Frame-level AUC-ROC / AUPR ---
+2026-08-24 22:09:50 [INFO   ]   Global AUC-ROC: 0.9804
+2026-08-24 22:09:50 [INFO   ]   Global AUPR:    0.7952
+2026-08-24 22:09:50 [INFO   ]   Per-category AUC-ROC:
+2026-08-24 22:09:50 [INFO   ]     RoadAccidents       : 0.9804
+2026-08-24 22:09:50 [INFO   ] --- Level 2: Temporal Segment mAP ---
+2026-08-24 22:09:50 [INFO   ]   mAP:    0.0000
+2026-08-24 22:09:50 [INFO   ]   AP@0.3: 0.0000
+2026-08-24 22:09:50 [INFO   ]   AP@0.5: 0.0000
+2026-08-24 22:09:50 [INFO   ]   AP@0.7: 0.0000
+2026-08-24 22:09:50 [INFO   ] --- Level 3: Video-level Metrics ---
+2026-08-24 22:09:50 [INFO   ]   Accuracy:  1.0000
+2026-08-24 22:09:50 [INFO   ]   Precision: 1.0000
+2026-08-24 22:09:50 [INFO   ]   Recall:    1.0000
+2026-08-24 22:09:50 [INFO   ]   F1:        1.0000
+2026-08-24 22:09:50 [INFO   ]   AUC:       0.0000
+2026-08-24 22:09:50 [INFO   ] --- Level 4: Category Accuracy ---
+2026-08-24 22:09:50 [INFO   ]   Overall: 1.0000
+2026-08-24 22:09:50 [INFO   ]   RoadAccidents       : 1/1
+2026-08-24 22:09:50 [INFO   ] Full report saved to: /Users/zzl/PycharmProjects/vad/results/batch_eval_v27rig_recheck/evaluation_report.json

@@ -1,0 +1,152 @@
+2026-08-09 10:30:43 [INFO   ] VAD batch evaluation started | output_dir=/Users/zzl/PycharmProjects/vad/results/batch_eval_v166_selftest | log=/Users/zzl/PycharmProjects/vad/results/batch_eval_v166_selftest/run.log
+2026-08-09 10:30:43 [INFO   ] Selected 4 videos from 1 categories:
+2026-08-09 10:30:43 [INFO   ]   Shooting            :   4 / 23
+/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/open_clip/factory.py:450: UserWarning: QuickGELU mismatch between final model config (quick_gelu=False) and pretrained tag 'openai' (quick_gelu=True).
+  warnings.warn(
+2026-08-09 10:31:18 [INFO   ] [AnomalyExpert] Loaded learned prompt weights from /Users/zzl/PycharmProjects/vad/video_anomaly_detection/prompt_weights.json
+2026-08-09 10:31:19 [INFO   ] [AnomalyExpert] CLIP ViT-L-14 loaded on mps
+2026-08-09 10:32:12 [INFO   ] [VideoMAE] Loaded on mps
+2026-08-09 10:32:12 [INFO   ]   [MIL] Loaded MIL model from /Users/zzl/PycharmProjects/vad/video_anomaly_detection/model_mil.pth
+2026-08-09 10:32:12 [INFO   ] Starting batch processing: 4 videos, concurrency=2
+2026-08-09 10:32:12 [INFO   ] Detect model: qwen-vl-plus, Classify model: qwen3-vl-plus
+2026-08-09 10:32:12 [INFO   ] ============================================================
+2026-08-09 10:32:12 [INFO   ] [1/4] START Shooting002_x264 (Shooting)
+2026-08-09 10:32:12 [INFO   ]   [Motion filter] 81 -> 81 frames (0% removed, threshold=1.0)
+2026-08-09 10:32:26 [INFO   ]   [CLIP precompute] 81 frames encoded in 13.7s
+2026-08-09 10:32:30 [INFO   ]   [MIL] snippet scores: mean=1.000, max=1.000, min=1.000
+2026-08-09 10:32:39 [INFO   ]   [VideoMAE] Shooting(96%), Assault(2%), Vandalism(1%) -> Shooting@96%
+2026-08-09 10:32:45 [INFO   ]   [VideoMAE-window] 4 windows in 5.4s
+2026-08-09 10:32:45 [INFO   ]   [CLIP-loc] Category=Shooting, mean=0.935, std=0.045, range=0.221, cv=0.049
+2026-08-09 10:32:45 [INFO   ]   [CLIP-loc] Found 2 multi-scale regions:
+2026-08-09 10:32:45 [INFO   ]   [Multi-CLIP-loc] 2 regions deduped to 1
+2026-08-09 10:32:45 [INFO   ]   [Directed scan] 9/9 segments selected for LLM scanning
+2026-08-09 10:32:45 [INFO   ] [2/4] START Shooting018_x264 (Shooting)
+2026-08-09 10:32:46 [INFO   ]   [Motion filter] 120 -> 111 frames (7% removed, threshold=1.0)
+2026-08-09 10:33:01 [INFO   ]   [CLIP precompute] 111 frames encoded in 15.7s
+2026-08-09 10:33:03 [INFO   ]   [MIL] snippet scores: mean=0.999, max=1.000, min=0.973
+2026-08-09 10:33:09 [INFO   ]   [VideoMAE] Shooting(100%), RoadAccidents(0%), Burglary(0%) -> Shooting@100%
+2026-08-09 10:33:13 [INFO   ]   [VideoMAE-window] 5 windows in 3.9s
+2026-08-09 10:33:14 [INFO   ]   [CLIP-loc] Category=Shooting, mean=0.868, std=0.188, range=0.857, cv=0.216
+2026-08-09 10:33:14 [INFO   ]   [CLIP-loc] Found 3 multi-scale regions:
+2026-08-09 10:33:14 [INFO   ]   [Multi-CLIP-loc] 3 regions deduped to 1
+2026-08-09 10:33:15 [INFO   ]   [Directed scan] 10/13 segments selected for LLM scanning
+2026-08-09 10:33:19 [INFO   ] Found 1 anomaly candidate(s):
+2026-08-09 10:33:19 [INFO   ]   Candidate 1: 9.0s-55.5s score=0.95
+2026-08-09 10:33:19 [INFO   ]   [CCR-VID] vid=Shooting018_x264.mp4 cat=Shooting enabled=True ndet=1 fired=0 from=- to=-
+2026-08-09 10:33:19 [INFO   ]     [CLIPBound] 9.0-55.5s -> 38.5-40.5s (contrast=0.061, cat=Shooting)
+2026-08-09 10:33:19 [INFO   ]   --- Pre-merge anomalies: 1 ---
+2026-08-09 10:33:19 [INFO   ]   --- Post-merge+NMS anomalies: 1 ---
+2026-08-09 10:33:19 [INFO   ]   [NOCLS-CA] classify VLM sub-tree skipped -> label='Shooting' (mAP-neutral; ~-7.5% VLM calls)
+2026-08-09 10:33:19 [INFO   ]   [QSCORE-GATE] reranked 1 detections (base=0.5, raw Q range [0.797,0.797])
+2026-08-09 10:33:19 [INFO   ]   [BUE] vid=Shooting018_x264.mp4 cat=Shooting det=0 closed=0 t=38.500-40.500->16.500-59.500 dur=2.00->43.00 oic=0.0861->0.2790 conf=0.7822->0.7822
+2026-08-09 10:33:19 [INFO   ]   [BUE] summary: vid=Shooting018_x264.mp4 fires=1 closed_skips=0 ndet_before=1 ndet_after=1 growth_med=41.000 dur_ratio=21.500 selfov=0 degen=0 noop=0 nocurve=0 lmax=40.0 gate=1
+2026-08-09 10:33:19 [INFO   ]   [CBT] vid=Shooting018_x264.mp4 cat=Shooting det=0 pre=43.0 post=2.0 t=16.50-59.50->19.00-21.00 cap=13.5 contrast=0.1251 conf=0.7822->0.7822
+2026-08-09 10:33:19 [INFO   ]   [CBT-VID] vid=Shooting018_x264.mp4 enabled=True ndet=1 fired=1 wide_noop=0 nocurve=0 nofire=0 recal=on
+2026-08-09 10:33:19 [INFO   ] [COST] video=Shooting018_x264.mp4 vlm_calls=19 clip_calls=4 elapsed_s=34.3
+2026-08-09 10:33:19 [INFO   ] [2/4] DONE  Shooting018_x264: 60s video, 1 anomalies, 34.3s processing
+2026-08-09 10:33:19 [INFO   ] [3/4] START Shooting019_x264 (Shooting)
+2026-08-09 10:33:20 [INFO   ]   [Motion filter] 184 -> 181 frames (2% removed, threshold=1.0)
+2026-08-09 10:33:39 [INFO   ]   [CLIP precompute] 181 frames encoded in 19.4s
+2026-08-09 10:33:41 [INFO   ]   [MIL] snippet scores: mean=1.000, max=1.000, min=0.995
+2026-08-09 10:33:46 [INFO   ]   [VideoMAE] Shooting(99%), Assault(0%), RoadAccidents(0%) -> Shooting@99%
+2026-08-09 10:33:54 [INFO   ]   [VideoMAE-window] 10 windows in 8.1s
+2026-08-09 10:33:54 [INFO   ]   [CLIP-loc] Category=Shooting, mean=0.927, std=0.041, range=0.226, cv=0.044
+2026-08-09 10:33:54 [INFO   ]   [CLIP-loc] Found 5 multi-scale regions:
+2026-08-09 10:33:54 [INFO   ]   [Multi-CLIP-loc] 5 regions deduped to 4
+2026-08-09 10:33:55 [INFO   ]   [Directed scan] 10/21 segments selected for LLM scanning
+2026-08-09 10:33:55 [INFO   ] Found 1 anomaly candidate(s):
+2026-08-09 10:33:55 [INFO   ]   Candidate 1: 31.5s-40.2s score=0.95
+2026-08-09 10:33:55 [INFO   ]   [CCR-VID] vid=Shooting002_x264.mp4 cat=Shooting enabled=True ndet=1 fired=0 from=- to=-
+2026-08-09 10:33:55 [INFO   ]     [CLIPBound] 31.5-40.2s -> 28.0-39.0s (contrast=0.368, cat=Shooting)
+2026-08-09 10:33:55 [INFO   ]   --- Pre-merge anomalies: 1 ---
+2026-08-09 10:33:55 [INFO   ]   --- Post-merge+NMS anomalies: 1 ---
+2026-08-09 10:33:55 [INFO   ]   [NOCLS-CA] classify VLM sub-tree skipped -> label='Shooting' (mAP-neutral; ~-7.5% VLM calls)
+2026-08-09 10:33:55 [INFO   ]   [QSCORE-GATE] reranked 1 detections (base=0.5, raw Q range [0.894,0.894])
+2026-08-09 10:33:55 [INFO   ]   [BUE] summary: vid=Shooting002_x264.mp4 fires=0 closed_skips=1 ndet_before=1 ndet_after=1 growth_med=0.000 dur_ratio=1.000 selfov=0 degen=0 noop=0 nocurve=0 lmax=32.2 gate=1
+2026-08-09 10:33:55 [INFO   ]   [CBT-VID] vid=Shooting002_x264.mp4 enabled=True ndet=1 fired=0 wide_noop=1 nocurve=0 nofire=0 recal=on
+2026-08-09 10:33:55 [INFO   ] [COST] video=Shooting002_x264.mp4 vlm_calls=29 clip_calls=13 elapsed_s=103.0
+2026-08-09 10:33:55 [INFO   ] [1/4] DONE  Shooting002_x264: 40s video, 1 anomalies, 103.0s processing
+2026-08-09 10:33:55 [INFO   ] [4/4] START Shooting032_x264 (Shooting)
+2026-08-09 10:34:00 [INFO   ]   [Motion filter] 1446 -> 1434 frames (1% removed, threshold=1.0)
+2026-08-09 10:38:12 [INFO   ]   [CLIP precompute] 1434 frames encoded in 251.6s
+2026-08-09 10:38:14 [INFO   ]   [MIL] snippet scores: mean=0.993, max=1.000, min=0.883
+2026-08-09 10:38:22 [INFO   ]   [VideoMAE] Shooting(100%), RoadAccidents(0%), Arrest(0%) -> Shooting@100%
+2026-08-09 10:39:50 [INFO   ]   [VideoMAE-window] 88 windows in 87.3s
+2026-08-09 10:39:50 [INFO   ]   [CLIP-loc] Category=Shooting, mean=0.479, std=0.260, range=0.948, cv=0.542
+2026-08-09 10:39:50 [INFO   ]   [CLIP-loc] Found 5 multi-scale regions:
+2026-08-09 10:39:50 [INFO   ]   [Multi-CLIP-loc] 5 regions deduped to 4
+2026-08-09 10:39:50 [INFO   ]   [Directed scan] 18/161 segments selected for LLM scanning
+2026-08-09 10:39:54 [INFO   ] Found 2 anomaly candidate(s):
+2026-08-09 10:39:54 [INFO   ]   Candidate 1: 4.5s-19.5s score=0.90
+2026-08-09 10:39:54 [INFO   ]   Candidate 2: 31.5s-60.0s score=0.95
+2026-08-09 10:39:54 [INFO   ]   [CCR-VID] vid=Shooting019_x264.mp4 cat=Shooting enabled=True ndet=2 fired=0 from=- to=-
+2026-08-09 10:39:54 [INFO   ]     [CLIPBound] 4.5-19.5s -> 2.0-17.0s (contrast=0.064, cat=Shooting)
+2026-08-09 10:39:54 [INFO   ]     [CLIPBound] 31.5-60.0s -> 37.5-48.5s (contrast=0.052, cat=Shooting)
+2026-08-09 10:39:54 [INFO   ]   --- Pre-merge anomalies: 2 ---
+2026-08-09 10:39:54 [INFO   ]   --- Post-merge+NMS anomalies: 2 ---
+2026-08-09 10:39:54 [INFO   ]   [NOCLS-CA] classify VLM sub-tree skipped -> label='Shooting' (mAP-neutral; ~-7.5% VLM calls)
+2026-08-09 10:39:54 [INFO   ]   [QSCORE-GATE] reranked 2 detections (base=0.5, raw Q range [0.830,0.897])
+2026-08-09 10:39:54 [INFO   ]   [BUE] vid=Shooting019_x264.mp4 cat=Shooting det=0 closed=0 t=37.500-48.500->37.500-54.500 dur=11.00->17.00 oic=0.0483->0.0718 conf=0.7785->0.7785
+2026-08-09 10:39:54 [INFO   ]   [BUE] summary: vid=Shooting019_x264.mp4 fires=1 closed_skips=1 ndet_before=2 ndet_after=2 growth_med=6.000 dur_ratio=1.545 selfov=0 degen=0 noop=0 nocurve=0 lmax=40.0 gate=1
+2026-08-09 10:39:54 [INFO   ]   [CBT] vid=Shooting019_x264.mp4 cat=Shooting det=0 pre=17.0 post=13.0 t=37.50-54.50->39.00-52.00 cap=13.5 contrast=0.0557 conf=0.7785->0.7785
+2026-08-09 10:39:54 [INFO   ]   [CBT] vid=Shooting019_x264.mp4 cat=Shooting det=1 pre=15.0 post=10.5 t=2.00-17.00->3.50-14.00 cap=13.5 contrast=0.0196 conf=0.3695->0.3695
+2026-08-09 10:39:54 [INFO   ]   [CBT-VID] vid=Shooting019_x264.mp4 enabled=True ndet=2 fired=2 wide_noop=0 nocurve=0 nofire=0 recal=on
+2026-08-09 10:39:54 [INFO   ] [COST] video=Shooting019_x264.mp4 vlm_calls=28 clip_calls=51 elapsed_s=395.0
+2026-08-09 10:39:54 [INFO   ] [3/4] DONE  Shooting019_x264: 92s video, 2 anomalies, 395.0s processing
+2026-08-09 10:39:55 [INFO   ] Found 4 anomaly candidate(s):
+2026-08-09 10:39:55 [INFO   ]   Candidate 1: 148.5s-154.5s score=0.90
+2026-08-09 10:39:55 [INFO   ]   Candidate 2: 265.5s-294.0s score=0.95
+2026-08-09 10:39:55 [INFO   ]   Candidate 3: 297.0s-312.0s score=0.95
+2026-08-09 10:39:55 [INFO   ]   Candidate 4: 315.0s-330.0s score=0.95
+2026-08-09 10:39:55 [INFO   ]   [Limit] Keeping top 3/4 candidates
+2026-08-09 10:39:55 [INFO   ]   [CCR-VID] vid=Shooting032_x264.mp4 cat=Shooting enabled=True ndet=3 fired=0 from=- to=-
+2026-08-09 10:39:55 [INFO   ]     [CLIPBound] 265.5-294.0s -> 273.0-284.0s (contrast=0.159, cat=Shooting)
+2026-08-09 10:39:55 [INFO   ]     [CLIPBound] 297.0-312.0s -> 296.0-301.0s (contrast=0.067, cat=Shooting)
+2026-08-09 10:39:55 [INFO   ]     [CLIPBound] 315.0-330.0s -> 308.5-316.5s (contrast=0.102, cat=Shooting)
+2026-08-09 10:39:55 [INFO   ]   --- Pre-merge anomalies: 3 ---
+2026-08-09 10:39:55 [INFO   ]   --- Post-merge+NMS anomalies: 3 ---
+2026-08-09 10:39:55 [INFO   ]   [NOCLS-CA] classify VLM sub-tree skipped -> label='Shooting' (mAP-neutral; ~-7.5% VLM calls)
+2026-08-09 10:39:55 [INFO   ]   [QSCORE-GATE] reranked 3 detections (base=0.5, raw Q range [0.850,0.888])
+2026-08-09 10:39:55 [INFO   ]   [BUE] vid=Shooting032_x264.mp4 cat=Shooting det=0 closed=0 t=273.000-284.000->268.500-308.500 dur=11.00->40.00 oic=0.2202->0.3264 conf=0.8139->0.8139
+2026-08-09 10:39:55 [INFO   ]   [BUE] vid=Shooting032_x264.mp4 cat=Shooting det=1 closed=0 t=308.500-316.500->270.000-316.500 dur=8.00->46.50 oic=0.0517->0.3459 conf=0.6640->0.6640
+2026-08-09 10:39:55 [INFO   ]   [BUE] vid=Shooting032_x264.mp4 cat=Shooting det=2 closed=0 t=296.000-301.000->268.500-308.500 dur=5.00->40.00 oic=0.0865->0.3264 conf=0.3908->0.3908
+2026-08-09 10:39:55 [INFO   ]   [BUE] summary: vid=Shooting032_x264.mp4 fires=3 closed_skips=0 ndet_before=3 ndet_after=3 growth_med=35.000 dur_ratio=5.816 selfov=3 degen=0 noop=0 nocurve=0 lmax=40.0 gate=1
+2026-08-09 10:39:55 [INFO   ]   [CBT] vid=Shooting032_x264.mp4 cat=Shooting det=0 pre=40.0 post=3.0 t=268.50-308.50->269.00-272.00 cap=13.5 contrast=0.3632 conf=0.8139->0.8139
+2026-08-09 10:39:55 [INFO   ]   [CBT] vid=Shooting032_x264.mp4 cat=Shooting det=1 pre=46.5 post=2.0 t=270.00-316.50->270.00-272.00 cap=13.5 contrast=0.3632 conf=0.6640->0.6640
+2026-08-09 10:39:55 [INFO   ]   [CBT] vid=Shooting032_x264.mp4 cat=Shooting det=2 pre=40.0 post=3.0 t=268.50-308.50->269.00-272.00 cap=13.5 contrast=0.3632 conf=0.3908->0.3908
+2026-08-09 10:39:55 [INFO   ]   [CBT-VID] vid=Shooting032_x264.mp4 enabled=True ndet=3 fired=3 wide_noop=0 nocurve=0 nofire=0 recal=on
+2026-08-09 10:39:55 [INFO   ] [COST] video=Shooting032_x264.mp4 vlm_calls=18 clip_calls=45 elapsed_s=359.9
+2026-08-09 10:39:55 [INFO   ] [4/4] DONE  Shooting032_x264: 723s video, 3 anomalies, 359.9s processing
+2026-08-09 10:39:55 [INFO   ] ============================================================
+2026-08-09 10:39:55 [INFO   ] Batch complete:
+2026-08-09 10:39:55 [INFO   ]   Succeeded: 4, Skipped: 0, Failed: 0
+2026-08-09 10:39:55 [INFO   ]   Total wall-clock time:   462.9s (7.7min)
+2026-08-09 10:39:55 [INFO   ]   Total processing time:   892.2s (14.9min)
+2026-08-09 10:39:55 [INFO   ]   Avg per video:           223.0s
+2026-08-09 10:39:55 [INFO   ]   Parallelism speedup:     1.93x
+2026-08-09 10:39:55 [INFO   ] ============================================================
+2026-08-09 10:39:55 [INFO   ] [ECE-GATE] markers=0 succeeded=4 ok=True
+2026-08-09 10:39:55 [INFO   ] Running evaluation...
+2026-08-09 10:39:55 [INFO   ] GT videos: 290, Predicted videos: 4, Matched: 4
+2026-08-09 10:39:55 [INFO   ]   GT only (missing predictions): 286
+2026-08-09 10:39:55 [INFO   ]   Abnormal: 4, Normal: 0
+2026-08-09 10:39:55 [INFO   ] --- Level 1: Frame-level AUC-ROC / AUPR ---
+2026-08-09 10:39:55 [INFO   ]   Global AUC-ROC: 0.8704
+2026-08-09 10:39:55 [INFO   ]   Global AUPR:    0.1953
+2026-08-09 10:39:55 [INFO   ]   Per-category AUC-ROC:
+2026-08-09 10:39:55 [INFO   ]     Shooting            : 0.8704
+2026-08-09 10:39:55 [INFO   ] --- Level 2: Temporal Segment mAP ---
+2026-08-09 10:39:55 [INFO   ]   mAP:    0.1136
+2026-08-09 10:39:55 [INFO   ]   AP@0.3: 0.2727
+2026-08-09 10:39:55 [INFO   ]   AP@0.5: 0.0682
+2026-08-09 10:39:55 [INFO   ]   AP@0.7: 0.0000
+2026-08-09 10:39:55 [INFO   ] --- Level 3: Video-level Metrics ---
+2026-08-09 10:39:55 [INFO   ]   Accuracy:  1.0000
+2026-08-09 10:39:55 [INFO   ]   Precision: 1.0000
+2026-08-09 10:39:55 [INFO   ]   Recall:    1.0000
+2026-08-09 10:39:55 [INFO   ]   F1:        1.0000
+2026-08-09 10:39:55 [INFO   ]   AUC:       0.0000
+2026-08-09 10:39:55 [INFO   ] --- Level 4: Category Accuracy ---
+2026-08-09 10:39:55 [INFO   ]   Overall: 1.0000
+2026-08-09 10:39:55 [INFO   ]   Shooting            : 4/4
+2026-08-09 10:39:55 [INFO   ] Full report saved to: /Users/zzl/PycharmProjects/vad/results/batch_eval_v166_selftest/evaluation_report.json

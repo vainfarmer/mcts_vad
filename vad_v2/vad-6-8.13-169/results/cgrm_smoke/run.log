@@ -1,0 +1,132 @@
+2026-08-09 02:20:00 [INFO   ] VAD batch evaluation started | output_dir=/Users/zzl/PycharmProjects/vad/results/cgrm_smoke | log=/Users/zzl/PycharmProjects/vad/results/cgrm_smoke/run.log
+2026-08-09 02:20:00 [INFO   ] Selected 3 videos from 1 categories:
+2026-08-09 02:20:00 [INFO   ]   Shoplifting         :   3 / 21
+2026-08-09 02:20:31 [INFO   ] [AnomalyExpert] Loaded learned prompt weights from /Users/zzl/PycharmProjects/vad/video_anomaly_detection/prompt_weights.json
+2026-08-09 02:20:32 [INFO   ] [AnomalyExpert] CLIP ViT-L-14 loaded on mps
+2026-08-09 02:21:20 [INFO   ] [VideoMAE] Loaded on mps
+2026-08-09 02:21:20 [INFO   ]   [MIL] Loaded MIL model from /Users/zzl/PycharmProjects/vad/video_anomaly_detection/model_mil.pth
+2026-08-09 02:21:20 [INFO   ] Starting batch processing: 3 videos, concurrency=1
+2026-08-09 02:21:20 [INFO   ] Detect model: qwen-vl-plus, Classify model: qwen3-vl-plus
+2026-08-09 02:21:20 [INFO   ] ============================================================
+2026-08-09 02:21:20 [INFO   ] [1/3] START Shoplifting001_x264 (Shoplifting)
+2026-08-09 02:21:21 [INFO   ]   [Motion filter] 290 -> 290 frames (0% removed, threshold=1.0)
+2026-08-09 02:21:54 [INFO   ]   [CLIP precompute] 290 frames encoded in 32.7s
+2026-08-09 02:21:54 [INFO   ]   [MIL] snippet scores: mean=1.000, max=1.000, min=0.992
+2026-08-09 02:21:59 [INFO   ]   [VideoMAE] Shoplifting(100%), Burglary(0%), Explosion(0%) -> Shoplifting@100%
+2026-08-09 02:22:16 [INFO   ]   [VideoMAE-window] 17 windows in 17.2s
+2026-08-09 02:22:16 [INFO   ]   [CLIP-loc] Category=Shoplifting, mean=0.989, std=0.005, range=0.036, cv=0.005
+2026-08-09 02:22:16 [INFO   ]   [CLIP-loc] Scores too uniform, falling back to standard scanning
+2026-08-09 02:22:16 [INFO   ]   [CLIP pre-screen] Scanning 32 segments...
+2026-08-09 02:22:16 [INFO   ]   [CLIP pre-screen] Adaptive threshold: 0.993 (mean=0.993, std=0.002, range: 0.99-1.00)
+2026-08-09 02:22:16 [INFO   ]   [CLIP pre-screen] Limited to top 6 segments
+2026-08-09 02:22:16 [INFO   ]   [CLIP pre-screen] 6/32 segments passed
+2026-08-09 02:22:16 [INFO   ]   [LLM scan] Scanning 6 segments in parallel...
+2026-08-09 02:22:21 [INFO   ] Found 4 anomaly candidate(s):
+2026-08-09 02:22:21 [INFO   ]   Candidate 1: 18.0s-28.5s score=0.90
+2026-08-09 02:22:21 [INFO   ]   Candidate 2: 31.5s-37.5s score=0.95
+2026-08-09 02:22:21 [INFO   ]   Candidate 3: 49.5s-55.5s score=0.90
+2026-08-09 02:22:21 [INFO   ]   Candidate 4: 63.0s-73.5s score=0.90
+2026-08-09 02:22:21 [INFO   ]   [Limit] Keeping top 3/4 candidates
+2026-08-09 02:22:21 [INFO   ]     [CLIPBound] 31.5-37.5s -> 30.0-38.5s (contrast=0.320, cat=Shoplifting)
+2026-08-09 02:22:21 [INFO   ]     [CLIPBound] 18.0-28.5s -> 14.0-32.5s (contrast=0.368, cat=Shoplifting)
+2026-08-09 02:22:21 [INFO   ]     [CLIPBound] 49.5-55.5s -> 48.0-56.5s (contrast=0.320, cat=Shoplifting)
+2026-08-09 02:22:21 [INFO   ]   --- Pre-merge anomalies: 3 ---
+2026-08-09 02:22:21 [INFO   ]   --- Post-merge+NMS anomalies: 2 ---
+2026-08-09 02:22:21 [INFO   ]   [NOCLS-CA] classify VLM sub-tree skipped -> label='Shoplifting' (mAP-neutral; ~-7.5% VLM calls)
+2026-08-09 02:22:21 [INFO   ]     [ScoreCurve] 14.0-38.5s -> 14.0-35.5s (half_max=0.991)
+2026-08-09 02:22:21 [INFO   ]   [QSCORE-GATE] reranked 2 detections (base=0.5, raw Q range [0.811,0.815])
+2026-08-09 02:22:21 [INFO   ]   [CGR-VID] vid=Shoplifting001_x264.mp4 enabled=True cat=Shoplifting ndet=2 fired=0 reason=cat_floor prom=0.646 t=na->na
+2026-08-09 02:22:21 [INFO   ]   [BUE] vid=Shoplifting001_x264.mp4 cat=Shoplifting det=0 closed=0 t=14.000-35.500->12.000-35.500 dur=21.50->23.50 oic=0.0076->0.0081 conf=0.8615->0.8615
+2026-08-09 02:22:21 [INFO   ]   [BUE] summary: vid=Shoplifting001_x264.mp4 fires=1 closed_skips=1 ndet_before=2 ndet_after=2 growth_med=2.000 dur_ratio=1.093 selfov=0 degen=0 noop=0 nocurve=0 lmax=40.0 gate=1
+2026-08-09 02:22:21 [INFO   ]   [CBT] vid=Shoplifting001_x264.mp4 cat=Shoplifting det=0 pre=23.5 post=2.0 t=12.00-35.50->33.50-35.50 cap=9.0 contrast=0.0046 conf=0.8615->0.8615
+2026-08-09 02:22:21 [INFO   ]   [CBT-VID] vid=Shoplifting001_x264.mp4 enabled=True ndet=2 fired=1 wide_noop=1 nocurve=0 nofire=0 recal=on
+2026-08-09 02:22:21 [INFO   ] [COST] video=Shoplifting001_x264.mp4 vlm_calls=6 clip_calls=10 elapsed_s=60.3
+2026-08-09 02:22:21 [INFO   ] [1/3] DONE  Shoplifting001_x264: 145s video, 2 anomalies, 60.3s processing
+2026-08-09 02:22:21 [INFO   ] [2/3] START Shoplifting033_x264 (Shoplifting)
+2026-08-09 02:22:21 [INFO   ]   [Motion filter] 60 -> 60 frames (0% removed, threshold=1.0)
+2026-08-09 02:22:26 [INFO   ]   [CLIP precompute] 60 frames encoded in 5.3s
+2026-08-09 02:22:29 [INFO   ]   [MIL] snippet scores: mean=0.132, max=0.397, min=0.005
+2026-08-09 02:22:34 [INFO   ]   [VideoMAE] Shoplifting(100%), Burglary(0%), Explosion(0%) -> Shoplifting@100%
+2026-08-09 02:22:36 [INFO   ]   [VideoMAE-window] 2 windows in 2.1s
+2026-08-09 02:22:36 [INFO   ]   [CLIP-loc] Category=Shoplifting, mean=0.958, std=0.029, range=0.185, cv=0.031
+2026-08-09 02:22:36 [INFO   ]   [CLIP-loc] Found 3 multi-scale regions:
+2026-08-09 02:22:36 [INFO   ]   [Multi-CLIP-loc] 3 regions deduped to 2
+2026-08-09 02:22:36 [INFO   ]   [Directed scan] 7/7 segments selected for LLM scanning
+2026-08-09 02:22:38 [INFO   ] Found 2 anomaly candidate(s):
+2026-08-09 02:22:38 [INFO   ]   Candidate 1: 13.5s-19.5s score=0.85
+2026-08-09 02:22:38 [INFO   ]   Candidate 2: 22.5s-30.0s score=0.90
+2026-08-09 02:22:38 [INFO   ]     [CLIPBound] 13.5-19.5s -> 15.5-22.0s (contrast=0.416, cat=Shoplifting)
+2026-08-09 02:22:38 [INFO   ]     [CLIPBound] 22.5-30.0s -> 20.5-28.0s (contrast=0.256, cat=Shoplifting)
+2026-08-09 02:22:38 [INFO   ]   --- Pre-merge anomalies: 2 ---
+2026-08-09 02:22:38 [INFO   ]   --- Post-merge+NMS anomalies: 1 ---
+2026-08-09 02:22:38 [INFO   ]   [NOCLS-CA] classify VLM sub-tree skipped -> label='Shoplifting' (mAP-neutral; ~-7.5% VLM calls)
+2026-08-09 02:22:38 [INFO   ]   [QSCORE-GATE] reranked 1 detections (base=0.5, raw Q range [0.924,0.924])
+2026-08-09 02:22:38 [INFO   ]   [CGR-VID] vid=Shoplifting033_x264.mp4 enabled=True cat=Shoplifting ndet=1 fired=0 reason=cat_floor prom=0.520 t=na->na
+2026-08-09 02:22:38 [INFO   ]   [BUE] vid=Shoplifting033_x264.mp4 cat=Shoplifting det=0 closed=0 t=15.500-28.000->9.000-29.500 dur=12.50->20.50 oic=0.0437->0.0642 conf=0.8032->0.8032
+2026-08-09 02:22:38 [INFO   ]   [BUE] summary: vid=Shoplifting033_x264.mp4 fires=1 closed_skips=0 ndet_before=1 ndet_after=1 growth_med=8.000 dur_ratio=1.640 selfov=0 degen=0 noop=0 nocurve=0 lmax=24.0 gate=1
+2026-08-09 02:22:38 [INFO   ]   [CBT] vid=Shoplifting033_x264.mp4 cat=Shoplifting det=0 pre=20.5 post=8.0 t=9.00-29.50->17.00-25.00 cap=9.0 contrast=0.0287 conf=0.8032->0.8032
+2026-08-09 02:22:38 [INFO   ]   [CBT-VID] vid=Shoplifting033_x264.mp4 enabled=True ndet=1 fired=1 wide_noop=0 nocurve=0 nofire=0 recal=on
+2026-08-09 02:22:38 [INFO   ] [COST] video=Shoplifting033_x264.mp4 vlm_calls=7 clip_calls=2 elapsed_s=17.7
+2026-08-09 02:22:38 [INFO   ] [2/3] DONE  Shoplifting033_x264: 30s video, 1 anomalies, 17.7s processing
+2026-08-09 02:22:38 [INFO   ] [3/3] START Shoplifting037_x264 (Shoplifting)
+2026-08-09 02:22:39 [INFO   ]   [Motion filter] 93 -> 93 frames (0% removed, threshold=1.0)
+2026-08-09 02:22:48 [INFO   ]   [CLIP precompute] 93 frames encoded in 9.8s
+2026-08-09 02:22:50 [INFO   ]   [MIL] snippet scores: mean=0.996, max=1.000, min=0.927
+2026-08-09 02:22:55 [INFO   ]   [VideoMAE] Shoplifting(100%), Explosion(0%), Vandalism(0%) -> Shoplifting@100%
+2026-08-09 02:23:00 [INFO   ]   [VideoMAE-window] 4 windows in 4.2s
+2026-08-09 02:23:00 [INFO   ]   [CLIP-loc] Category=Shoplifting, mean=0.693, std=0.145, range=0.588, cv=0.209
+2026-08-09 02:23:00 [INFO   ]   [CLIP-loc] Found 4 multi-scale regions:
+2026-08-09 02:23:00 [INFO   ]   [Multi-CLIP-loc] 4 regions deduped to 1
+2026-08-09 02:23:00 [INFO   ]   [Directed scan] 10/10 segments selected for LLM scanning
+2026-08-09 02:23:02 [INFO   ] Found 2 anomaly candidate(s):
+2026-08-09 02:23:02 [INFO   ]   Candidate 1: 0.0s-19.5s score=0.90
+2026-08-09 02:23:02 [INFO   ]   Candidate 2: 22.5s-46.2s score=0.95
+2026-08-09 02:23:02 [INFO   ]     [CLIPBound] 0.0-19.5s -> 17.0-27.0s (contrast=0.106, cat=Shoplifting)
+2026-08-09 02:23:02 [INFO   ]     [CLIPBound] 22.5-46.2s -> 20.0-40.0s (contrast=0.136, cat=Shoplifting)
+2026-08-09 02:23:05 [INFO   ]     [VLM-Bound] 17.0-27.0s -> 18.3-27.4s (vlm_conf=0.90, w_clip=0.11, w_vlm=0.89)
+2026-08-09 02:23:06 [INFO   ]     [VLM-Bound] 20.0-40.0s -> 24.4-31.3s (vlm_conf=0.95, w_clip=0.13, w_vlm=0.87)
+2026-08-09 02:23:06 [INFO   ]   --- Pre-merge anomalies: 2 ---
+2026-08-09 02:23:06 [INFO   ]   --- Post-merge+NMS anomalies: 1 ---
+2026-08-09 02:23:06 [INFO   ]   [NOCLS-CA] classify VLM sub-tree skipped -> label='Shoplifting' (mAP-neutral; ~-7.5% VLM calls)
+2026-08-09 02:23:06 [INFO   ]   [QSCORE-GATE] reranked 1 detections (base=0.5, raw Q range [0.890,0.890])
+2026-08-09 02:23:06 [INFO   ]   [CGR] vid=Shoplifting037_x264.mp4 cat=Shoplifting det=0 prom=0.601 peak_t=35.00 src=18.34-31.26->31.50-38.50 margin=1.8982 conf=0.8038->0.8038
+2026-08-09 02:23:06 [INFO   ]   [CGR-VID] vid=Shoplifting037_x264.mp4 enabled=True cat=Shoplifting ndet=1 fired=1 reason=relocated prom=0.601 t=18.34-31.26->31.50-38.50
+2026-08-09 02:23:06 [INFO   ]   [BUE] vid=Shoplifting037_x264.mp4 cat=Shoplifting det=0 closed=0 t=31.500-38.500->22.500-38.500 dur=7.00->16.00 oic=0.0679->0.1201 conf=0.8038->0.8038
+2026-08-09 02:23:06 [INFO   ]   [BUE] summary: vid=Shoplifting037_x264.mp4 fires=1 closed_skips=0 ndet_before=1 ndet_after=1 growth_med=9.000 dur_ratio=2.286 selfov=0 degen=0 noop=0 nocurve=0 lmax=37.0 gate=1
+2026-08-09 02:23:06 [INFO   ]   [CBT] vid=Shoplifting037_x264.mp4 cat=Shoplifting det=0 pre=16.0 post=2.0 t=22.50-38.50->35.00-37.00 cap=9.0 contrast=0.1755 conf=0.8038->0.8038
+2026-08-09 02:23:06 [INFO   ]   [CBT-VID] vid=Shoplifting037_x264.mp4 enabled=True ndet=1 fired=1 wide_noop=0 nocurve=0 nofire=0 recal=on
+2026-08-09 02:23:06 [INFO   ] [COST] video=Shoplifting037_x264.mp4 vlm_calls=12 clip_calls=3 elapsed_s=27.3
+2026-08-09 02:23:06 [INFO   ] [3/3] DONE  Shoplifting037_x264: 46s video, 1 anomalies, 27.3s processing
+2026-08-09 02:23:06 [INFO   ] ============================================================
+2026-08-09 02:23:06 [INFO   ] Batch complete:
+2026-08-09 02:23:06 [INFO   ]   Succeeded: 3, Skipped: 0, Failed: 0
+2026-08-09 02:23:06 [INFO   ]   Total wall-clock time:   105.4s (1.8min)
+2026-08-09 02:23:06 [INFO   ]   Total processing time:   105.4s (1.8min)
+2026-08-09 02:23:06 [INFO   ]   Avg per video:           35.1s
+2026-08-09 02:23:06 [INFO   ]   Parallelism speedup:     1.00x
+2026-08-09 02:23:06 [INFO   ] ============================================================
+2026-08-09 02:23:06 [INFO   ] [ECE-GATE] markers=0 succeeded=3 ok=True
+2026-08-09 02:23:06 [INFO   ] Running evaluation...
+2026-08-09 02:23:06 [INFO   ] GT videos: 290, Predicted videos: 3, Matched: 3
+2026-08-09 02:23:06 [INFO   ]   GT only (missing predictions): 287
+2026-08-09 02:23:06 [INFO   ]   Abnormal: 3, Normal: 0
+2026-08-09 02:23:06 [INFO   ] --- Level 1: Frame-level AUC-ROC / AUPR ---
+2026-08-09 02:23:06 [INFO   ]   Global AUC-ROC: 0.6969
+2026-08-09 02:23:06 [INFO   ]   Global AUPR:    0.1461
+2026-08-09 02:23:06 [INFO   ]   Per-category AUC-ROC:
+2026-08-09 02:23:06 [INFO   ]     Shoplifting         : 0.6969
+2026-08-09 02:23:06 [INFO   ] --- Level 2: Temporal Segment mAP ---
+2026-08-09 02:23:06 [INFO   ]   mAP:    0.0808
+2026-08-09 02:23:06 [INFO   ]   AP@0.3: 0.1212
+2026-08-09 02:23:06 [INFO   ]   AP@0.5: 0.1212
+2026-08-09 02:23:06 [INFO   ]   AP@0.7: 0.0000
+2026-08-09 02:23:06 [INFO   ] --- Level 3: Video-level Metrics ---
+2026-08-09 02:23:06 [INFO   ]   Accuracy:  1.0000
+2026-08-09 02:23:06 [INFO   ]   Precision: 1.0000
+2026-08-09 02:23:06 [INFO   ]   Recall:    1.0000
+2026-08-09 02:23:06 [INFO   ]   F1:        1.0000
+2026-08-09 02:23:06 [INFO   ]   AUC:       0.0000
+2026-08-09 02:23:06 [INFO   ] --- Level 4: Category Accuracy ---
+2026-08-09 02:23:06 [INFO   ]   Overall: 1.0000
+2026-08-09 02:23:06 [INFO   ]   Shoplifting         : 3/3
+2026-08-09 02:23:06 [INFO   ] Full report saved to: /Users/zzl/PycharmProjects/vad/results/cgrm_smoke/evaluation_report.json

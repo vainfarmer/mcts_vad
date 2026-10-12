@@ -1,0 +1,169 @@
+2026-08-25 07:53:26 [INFO   ] VAD batch evaluation started | output_dir=/Users/zzl/PycharmProjects/vad/results/batch_eval_v203_smoke | log=/Users/zzl/PycharmProjects/vad/results/batch_eval_v203_smoke/run.log
+2026-08-25 07:53:26 [INFO   ] Selected 4 videos from 2 categories:
+2026-08-25 07:53:26 [INFO   ]   Abuse               :   2 / 2
+2026-08-25 07:53:26 [INFO   ]   Fighting            :   2 / 5
+2026-08-25 07:53:58 [INFO   ] [AnomalyExpert] Loaded learned prompt weights from /Users/zzl/PycharmProjects/vad/video_anomaly_detection/prompt_weights.json
+2026-08-25 07:53:59 [INFO   ] [AnomalyExpert] CLIP ViT-L-14 loaded on mps
+2026-08-25 07:54:48 [INFO   ] [VideoMAE] Loaded on mps
+2026-08-25 07:54:48 [INFO   ]   [MIL] Loaded MIL model from /Users/zzl/PycharmProjects/vad/video_anomaly_detection/model_mil.pth
+2026-08-25 07:54:48 [INFO   ] Starting batch processing: 4 videos, concurrency=1
+2026-08-25 07:54:48 [INFO   ] Detect model: qwen-vl-plus, Classify model: qwen3-vl-plus
+2026-08-25 07:54:48 [INFO   ] ============================================================
+2026-08-25 07:54:48 [INFO   ] [1/4] START Abuse028_x264 (Abuse)
+2026-08-25 07:54:49 [INFO   ]   [Motion filter] 95 -> 93 frames (2% removed, threshold=1.0)
+2026-08-25 07:55:08 [INFO   ]   [CLIP precompute] 93 frames encoded in 19.2s
+2026-08-25 07:55:10 [INFO   ]   [MIL] snippet scores: mean=0.992, max=1.000, min=0.949
+2026-08-25 07:55:17 [INFO   ]   [VideoMAE] Abuse(100%), Arrest(0%), Burglary(0%) -> Abuse@100%
+2026-08-25 07:55:22 [INFO   ]   [VideoMAE-window] 4 windows in 5.3s
+2026-08-25 07:55:22 [INFO   ]   [CLIP-loc] Category=Abuse, mean=0.711, std=0.155, range=0.558, cv=0.218
+2026-08-25 07:55:22 [INFO   ]   [CLIP-loc] Found 3 multi-scale regions:
+2026-08-25 07:55:22 [INFO   ]   [CLIP-loc] Category=Explosion, mean=0.396, std=0.118, range=0.683, cv=0.299
+2026-08-25 07:55:22 [INFO   ]   [CLIP-loc] Fused with motion energy for Explosion
+2026-08-25 07:55:22 [INFO   ]   [CLIP-loc] Found 4 multi-scale regions:
+2026-08-25 07:55:22 [INFO   ]   [Multi-CLIP-loc] 7 regions deduped to 1
+2026-08-25 07:55:22 [INFO   ]   [Directed scan] 10/11 segments selected for LLM scanning
+2026-08-25 07:55:26 [INFO   ] Found 2 anomaly candidate(s):
+2026-08-25 07:55:26 [INFO   ]   Candidate 1: 9.0s-19.5s score=0.90
+2026-08-25 07:55:26 [INFO   ]   Candidate 2: 22.5s-37.5s score=0.95
+2026-08-25 07:55:26 [INFO   ]     [CLIPBound] 9.0-19.5s -> 21.0-23.0s (contrast=0.133, cat=Abuse)
+2026-08-25 07:55:26 [INFO   ]     [CLIPBound] 22.5-37.5s -> 32.0-34.0s (contrast=0.132, cat=Abuse)
+2026-08-25 07:55:26 [INFO   ]   --- Pre-merge anomalies: 2 ---
+2026-08-25 07:55:26 [INFO   ]   --- Post-merge+NMS anomalies: 2 ---
+2026-08-25 07:55:26 [INFO   ]   [NOCLS-CA] classify VLM sub-tree skipped -> label='Abuse' (mAP-neutral; ~-7.5% VLM calls)
+2026-08-25 07:55:26 [INFO   ]   [QSCORE-GATE] reranked 2 detections (base=0.5, raw Q range [0.585,0.698])
+2026-08-25 07:55:26 [INFO   ]   [BUE] vid=Abuse028_x264.mp4 cat=Abuse det=0 closed=0 t=32.000-34.000->0.500-35.000 dur=2.00->34.50 oic=0.1324->0.2625 conf=0.4028->0.4028
+2026-08-25 07:55:26 [INFO   ]   [BUE] vid=Abuse028_x264.mp4 cat=Abuse det=1 closed=0 t=21.000-23.000->0.500-35.000 dur=2.00->34.50 oic=0.1097->0.2625 conf=0.7648->0.7648
+2026-08-25 07:55:26 [INFO   ]   [BUE] summary: vid=Abuse028_x264.mp4 fires=2 closed_skips=0 ndet_before=2 ndet_after=2 growth_med=32.500 dur_ratio=17.250 selfov=1 degen=0 noop=0 nocurve=0 lmax=37.7 gate=1
+2026-08-25 07:55:26 [INFO   ]   [CBT] vid=Abuse028_x264.mp4 cat=Abuse det=0 pre=34.5 post=2.0 t=0.50-35.00->32.50-34.50 cap=8.0 contrast=0.1172 conf=0.4028->0.4028
+2026-08-25 07:55:26 [INFO   ]   [CBT] vid=Abuse028_x264.mp4 cat=Abuse det=1 pre=34.5 post=2.0 t=0.50-35.00->32.50-34.50 cap=8.0 contrast=0.1172 conf=0.7648->0.7648
+2026-08-25 07:55:26 [INFO   ]   [CBT-VID] vid=Abuse028_x264.mp4 enabled=True ndet=2 fired=2 wide_noop=0 nocurve=0 nofire=0 recal=on allcats=on ncats=13 allfired=2
+2026-08-25 07:55:26 [INFO   ]   [AB-FIRE] vid=Abuse028_x264 mech=cbt_all idx=0 t=32.50-34.50 win=0.50-35.00->32.50-34.50 conf=0.4028->0.4028
+2026-08-25 07:55:26 [INFO   ]   [AB-FIRE] vid=Abuse028_x264 mech=cbt_all idx=1 t=32.50-34.50 win=0.50-35.00->32.50-34.50 conf=0.7648->0.7648
+2026-08-25 07:55:26 [WARNING]   [AB-COLLISION] vid=Abuse028_x264 mech=cbt_all dup_fire_keys=1 — fired detections share a rounded (t_start,t_end); --paired-log restore cannot disambiguate them (use --paired-json ab_arm_off_boundaries, which is index-aligned)
+2026-08-25 07:55:26 [INFO   ]   [AB-VID] vid=Abuse028_x264 mech=cbt_all ndet=2 armoff_len=2 n_win_changed=2 n_conf_changed=0 fired=1 cfg_changed=cbt_all_cats
+2026-08-25 07:55:26 [INFO   ] [COST] video=Abuse028_x264.mp4 vlm_calls=10 clip_calls=3 elapsed_s=37.6
+2026-08-25 07:55:26 [INFO   ] [1/4] DONE  Abuse028_x264: 47s video, 2 anomalies, 37.6s processing
+2026-08-25 07:55:26 [INFO   ] [2/4] START Abuse030_x264 (Abuse)
+2026-08-25 07:55:26 [INFO   ]   [Motion filter] 103 -> 103 frames (0% removed, threshold=1.0)
+2026-08-25 07:55:42 [INFO   ]   [CLIP precompute] 103 frames encoded in 15.9s
+2026-08-25 07:55:43 [INFO   ]   [MIL] snippet scores: mean=0.999, max=1.000, min=0.977
+2026-08-25 07:55:53 [INFO   ]   [VideoMAE] Abuse(99%), RoadAccidents(1%), Vandalism(0%) -> Abuse@99%
+2026-08-25 07:56:02 [INFO   ]   [VideoMAE-window] 5 windows in 9.0s
+2026-08-25 07:56:02 [INFO   ]   [CLIP-loc] Category=Abuse, mean=0.413, std=0.116, range=0.595, cv=0.281
+2026-08-25 07:56:02 [INFO   ]   [CLIP-loc] Found 4 multi-scale regions:
+2026-08-25 07:56:02 [INFO   ]   [CLIP-loc] Category=Explosion, mean=0.437, std=0.166, range=0.824, cv=0.380
+2026-08-25 07:56:02 [INFO   ]   [CLIP-loc] Fused with motion energy for Explosion
+2026-08-25 07:56:02 [INFO   ]   [CLIP-loc] Found 5 multi-scale regions:
+2026-08-25 07:56:02 [INFO   ]   [Multi-CLIP-loc] 9 regions deduped to 1
+2026-08-25 07:56:02 [INFO   ]   [Directed scan] 10/12 segments selected for LLM scanning
+2026-08-25 07:56:05 [INFO   ] Found 3 anomaly candidate(s):
+2026-08-25 07:56:05 [INFO   ]   Candidate 1: 0.0s-10.5s score=0.90
+2026-08-25 07:56:05 [INFO   ]   Candidate 2: 31.5s-37.5s score=0.85
+2026-08-25 07:56:05 [INFO   ]   Candidate 3: 40.5s-46.5s score=0.90
+2026-08-25 07:56:05 [INFO   ]     [CLIPBound] 0.0-10.5s -> 0.5-8.5s (contrast=0.126, cat=Abuse)
+2026-08-25 07:56:05 [INFO   ]     [CLIPBound] 31.5-37.5s -> 37.5-40.0s (contrast=0.328, cat=Abuse)
+2026-08-25 07:56:05 [INFO   ]     [CLIPBound] 40.5-46.5s -> 43.5-49.0s (contrast=0.366, cat=Abuse)
+2026-08-25 07:56:05 [INFO   ]   --- Pre-merge anomalies: 3 ---
+2026-08-25 07:56:05 [INFO   ]   --- Post-merge+NMS anomalies: 3 ---
+2026-08-25 07:56:05 [INFO   ]   [NOCLS-CA] classify VLM sub-tree skipped -> label='Abuse' (mAP-neutral; ~-7.5% VLM calls)
+2026-08-25 07:56:05 [INFO   ]   [QSCORE-GATE] reranked 3 detections (base=0.5, raw Q range [0.570,0.874])
+2026-08-25 07:56:05 [INFO   ]   [BUE] vid=Abuse030_x264.mp4 cat=Abuse det=0 closed=0 t=43.500-49.000->37.500-51.000 dur=5.50->13.50 oic=0.1142->0.1926 conf=0.8313->0.8313
+2026-08-25 07:56:05 [INFO   ]   [BUE] vid=Abuse030_x264.mp4 cat=Abuse det=1 closed=0 t=37.500-40.000->37.500-51.000 dur=2.50->13.50 oic=0.0919->0.1926 conf=0.3898->0.3898
+2026-08-25 07:56:05 [INFO   ]   [BUE] summary: vid=Abuse030_x264.mp4 fires=2 closed_skips=0 ndet_before=3 ndet_after=3 growth_med=9.500 dur_ratio=3.927 selfov=1 degen=0 noop=1 nocurve=0 lmax=40.0 gate=1
+2026-08-25 07:56:05 [INFO   ]   [CBT] vid=Abuse030_x264.mp4 cat=Abuse det=0 pre=13.5 post=7.5 t=37.50-51.00->43.50-51.00 cap=8.0 contrast=0.1851 conf=0.8313->0.8313
+2026-08-25 07:56:05 [INFO   ]   [CBT] vid=Abuse030_x264.mp4 cat=Abuse det=1 pre=13.5 post=7.5 t=37.50-51.00->43.50-51.00 cap=8.0 contrast=0.1851 conf=0.3898->0.3898
+2026-08-25 07:56:05 [INFO   ]   [CBT-VID] vid=Abuse030_x264.mp4 enabled=True ndet=3 fired=2 wide_noop=1 nocurve=0 nofire=0 recal=on allcats=on ncats=13 allfired=2
+2026-08-25 07:56:05 [INFO   ]   [AB-FIRE] vid=Abuse030_x264 mech=cbt_all idx=0 t=43.50-51.00 win=37.50-51.00->43.50-51.00 conf=0.8313->0.8313
+2026-08-25 07:56:05 [INFO   ]   [AB-FIRE] vid=Abuse030_x264 mech=cbt_all idx=1 t=43.50-51.00 win=37.50-51.00->43.50-51.00 conf=0.3898->0.3898
+2026-08-25 07:56:05 [WARNING]   [AB-COLLISION] vid=Abuse030_x264 mech=cbt_all dup_fire_keys=1 — fired detections share a rounded (t_start,t_end); --paired-log restore cannot disambiguate them (use --paired-json ab_arm_off_boundaries, which is index-aligned)
+2026-08-25 07:56:05 [INFO   ]   [AB-VID] vid=Abuse030_x264 mech=cbt_all ndet=3 armoff_len=3 n_win_changed=2 n_conf_changed=0 fired=1 cfg_changed=cbt_all_cats
+2026-08-25 07:56:05 [INFO   ] [COST] video=Abuse030_x264.mp4 vlm_calls=10 clip_calls=4 elapsed_s=39.1
+2026-08-25 07:56:05 [INFO   ] [2/4] DONE  Abuse030_x264: 51s video, 3 anomalies, 39.1s processing
+2026-08-25 07:56:05 [INFO   ] [3/4] START Fighting018_x264 (Fighting)
+2026-08-25 07:56:05 [INFO   ]   [Motion filter] 93 -> 72 frames (23% removed, threshold=1.0)
+2026-08-25 07:56:16 [INFO   ]   [CLIP precompute] 72 frames encoded in 10.5s
+2026-08-25 07:56:17 [INFO   ]   [MIL] snippet scores: mean=1.000, max=1.000, min=0.999
+2026-08-25 07:56:24 [INFO   ]   [VideoMAE] Fighting(87%), Assault(12%), Vandalism(0%) -> Fighting@87%
+2026-08-25 07:56:28 [INFO   ]   [VideoMAE-window] 3 windows in 4.1s
+2026-08-25 07:56:28 [INFO   ]   [CLIP-loc] Category=Fighting, mean=0.291, std=0.352, range=0.989, cv=1.208
+2026-08-25 07:56:28 [INFO   ]   [CLIP-loc] Found 3 multi-scale regions:
+2026-08-25 07:56:28 [INFO   ]   [Multi-CLIP-loc] 3 regions deduped to 2
+2026-08-25 07:56:28 [INFO   ]   [Directed scan] 9/10 segments selected for LLM scanning
+2026-08-25 07:56:30 [INFO   ] Found 2 anomaly candidate(s):
+2026-08-25 07:56:30 [INFO   ]   Candidate 1: 0.0s-28.5s score=0.95
+2026-08-25 07:56:30 [INFO   ]   Candidate 2: 31.5s-37.5s score=0.95
+2026-08-25 07:56:30 [INFO   ]     [CLIPBound] 0.0-28.5s -> 38.0-41.0s (contrast=0.342, cat=Fighting)
+2026-08-25 07:56:30 [INFO   ]     [CLIPBound] 31.5-37.5s -> 37.5-39.5s (contrast=0.494, cat=Fighting)
+2026-08-25 07:56:30 [INFO   ]   --- Pre-merge anomalies: 2 ---
+2026-08-25 07:56:30 [INFO   ]   --- Post-merge+NMS anomalies: 1 ---
+2026-08-25 07:56:30 [INFO   ]   [NOCLS-CA] classify VLM sub-tree skipped -> label='Fighting' (mAP-neutral; ~-7.5% VLM calls)
+2026-08-25 07:56:30 [INFO   ]   [QSCORE-GATE] reranked 1 detections (base=0.5, raw Q range [0.705,0.705])
+2026-08-25 07:56:30 [INFO   ]   [BUE] vid=Fighting018_x264.mp4 cat=Fighting det=0 closed=0 t=37.500-41.000->36.000-45.500 dur=3.50->9.50 oic=0.1429->0.4104 conf=0.9158->0.9158
+2026-08-25 07:56:30 [INFO   ]   [BUE] summary: vid=Fighting018_x264.mp4 fires=1 closed_skips=0 ndet_before=1 ndet_after=1 growth_med=6.000 dur_ratio=2.714 selfov=0 degen=0 noop=0 nocurve=0 lmax=37.0 gate=1
+2026-08-25 07:56:30 [INFO   ]   [CBT-VID] vid=Fighting018_x264.mp4 enabled=True ndet=1 fired=0 wide_noop=1 nocurve=0 nofire=0 recal=on allcats=on ncats=13 allfired=0
+2026-08-25 07:56:30 [INFO   ]   [AB-VID] vid=Fighting018_x264 mech=cbt_all ndet=1 armoff_len=1 n_win_changed=0 n_conf_changed=0 fired=0 cfg_changed=cbt_all_cats
+2026-08-25 07:56:30 [INFO   ] [COST] video=Fighting018_x264.mp4 vlm_calls=9 clip_calls=3 elapsed_s=24.4
+2026-08-25 07:56:30 [INFO   ] [3/4] DONE  Fighting018_x264: 46s video, 1 anomalies, 24.4s processing
+2026-08-25 07:56:30 [INFO   ] [4/4] START Fighting047_x264 (Fighting)
+2026-08-25 07:56:30 [INFO   ]   [Motion filter] 298 -> 293 frames (2% removed, threshold=1.0)
+2026-08-25 07:57:24 [INFO   ]   [CLIP precompute] 293 frames encoded in 53.2s
+2026-08-25 07:57:24 [INFO   ]   [MIL] snippet scores: mean=0.941, max=0.997, min=0.262
+2026-08-25 07:57:31 [INFO   ]   [VideoMAE] Fighting(55%), Assault(25%), RoadAccidents(15%) -> Fighting@55%
+2026-08-25 07:57:56 [INFO   ]   [VideoMAE-window] 17 windows in 24.5s
+2026-08-25 07:57:56 [INFO   ]   [CLIP-loc] Category=Fighting, mean=0.900, std=0.116, range=0.640, cv=0.129
+2026-08-25 07:57:56 [INFO   ]   [CLIP-loc] Found 5 multi-scale regions:
+2026-08-25 07:57:56 [INFO   ]   [Multi-CLIP-loc] 5 regions deduped to 4
+2026-08-25 07:57:56 [INFO   ]   [Directed scan] 10/33 segments selected for LLM scanning
+2026-08-25 07:57:59 [INFO   ] Found 2 anomaly candidate(s):
+2026-08-25 07:57:59 [INFO   ]   Candidate 1: 0.0s-15.0s score=0.95
+2026-08-25 07:57:59 [INFO   ]   Candidate 2: 27.0s-60.0s score=0.95
+2026-08-25 07:57:59 [INFO   ]     [CLIPBound] 0.0-15.0s -> 2.0-7.0s (contrast=0.140, cat=Fighting)
+2026-08-25 07:57:59 [INFO   ]     [CLIPBound] 27.0-60.0s -> 37.0-46.0s (contrast=0.073, cat=Fighting)
+2026-08-25 07:57:59 [INFO   ]   --- Pre-merge anomalies: 2 ---
+2026-08-25 07:57:59 [INFO   ]   --- Post-merge+NMS anomalies: 2 ---
+2026-08-25 07:57:59 [INFO   ]   [NOCLS-CA] classify VLM sub-tree skipped -> label='Fighting' (mAP-neutral; ~-7.5% VLM calls)
+2026-08-25 07:57:59 [INFO   ]   [QSCORE-GATE] reranked 2 detections (base=0.5, raw Q range [0.765,0.817])
+2026-08-25 07:57:59 [INFO   ]   [BUE] vid=Fighting047_x264.mp4 cat=Fighting det=0 closed=0 t=2.000-7.000->2.000-13.500 dur=5.00->11.50 oic=0.1421->0.2123 conf=0.8039->0.8039
+2026-08-25 07:57:59 [INFO   ]   [BUE] vid=Fighting047_x264.mp4 cat=Fighting det=1 closed=0 t=37.000-46.000->37.000-59.000 dur=9.00->22.00 oic=0.0475->0.1231 conf=0.3924->0.3924
+2026-08-25 07:57:59 [INFO   ]   [BUE] summary: vid=Fighting047_x264.mp4 fires=2 closed_skips=0 ndet_before=2 ndet_after=2 growth_med=9.750 dur_ratio=2.372 selfov=0 degen=0 noop=0 nocurve=0 lmax=40.0 gate=1
+2026-08-25 07:57:59 [INFO   ]   [CBT] vid=Fighting047_x264.mp4 cat=Fighting det=1 pre=22.0 post=2.0 t=37.00-59.00->40.50-42.50 cap=15.0 contrast=0.0774 conf=0.3924->0.3924
+2026-08-25 07:57:59 [INFO   ]   [CBT-VID] vid=Fighting047_x264.mp4 enabled=True ndet=2 fired=1 wide_noop=1 nocurve=0 nofire=0 recal=on allcats=on ncats=13 allfired=1
+2026-08-25 07:57:59 [INFO   ]   [AB-FIRE] vid=Fighting047_x264 mech=cbt_all idx=1 t=40.50-42.50 win=37.00-59.00->40.50-42.50 conf=0.3924->0.3924
+2026-08-25 07:57:59 [INFO   ]   [AB-VID] vid=Fighting047_x264 mech=cbt_all ndet=2 armoff_len=2 n_win_changed=1 n_conf_changed=0 fired=1 cfg_changed=cbt_all_cats
+2026-08-25 07:57:59 [INFO   ] [COST] video=Fighting047_x264.mp4 vlm_calls=10 clip_calls=10 elapsed_s=89.3
+2026-08-25 07:57:59 [INFO   ] [4/4] DONE  Fighting047_x264: 149s video, 2 anomalies, 89.3s processing
+2026-08-25 07:57:59 [INFO   ] ============================================================
+2026-08-25 07:57:59 [INFO   ] Batch complete:
+2026-08-25 07:57:59 [INFO   ]   Succeeded: 4, Skipped: 0, Failed: 0
+2026-08-25 07:57:59 [INFO   ]   Total wall-clock time:   190.4s (3.2min)
+2026-08-25 07:57:59 [INFO   ]   Total processing time:   190.4s (3.2min)
+2026-08-25 07:57:59 [INFO   ]   Avg per video:           47.6s
+2026-08-25 07:57:59 [INFO   ]   Parallelism speedup:     1.00x
+2026-08-25 07:57:59 [INFO   ] ============================================================
+2026-08-25 07:57:59 [INFO   ] [ECE-GATE] markers=0 succeeded=4 ok=True
+2026-08-25 07:57:59 [INFO   ] Running evaluation...
+2026-08-25 07:57:59 [INFO   ] GT videos: 290, Predicted videos: 4, Matched: 4
+2026-08-25 07:57:59 [INFO   ]   GT only (missing predictions): 286
+2026-08-25 07:57:59 [INFO   ]   Abnormal: 4, Normal: 0
+2026-08-25 07:57:59 [INFO   ] --- Level 1: Frame-level AUC-ROC / AUPR ---
+2026-08-25 07:57:59 [INFO   ]   Global AUC-ROC: 0.5657
+2026-08-25 07:57:59 [INFO   ]   Global AUPR:    0.3181
+2026-08-25 07:57:59 [INFO   ]   Per-category AUC-ROC:
+2026-08-25 07:57:59 [INFO   ]     Abuse               : 0.7120
+2026-08-25 07:57:59 [INFO   ]     Fighting            : 0.5171
+2026-08-25 07:57:59 [INFO   ] --- Level 2: Temporal Segment mAP ---
+2026-08-25 07:57:59 [INFO   ]   mAP:    0.0000
+2026-08-25 07:57:59 [INFO   ]   AP@0.3: 0.0000
+2026-08-25 07:57:59 [INFO   ]   AP@0.5: 0.0000
+2026-08-25 07:57:59 [INFO   ]   AP@0.7: 0.0000
+2026-08-25 07:57:59 [INFO   ] --- Level 3: Video-level Metrics ---
+2026-08-25 07:57:59 [INFO   ]   Accuracy:  1.0000
+2026-08-25 07:57:59 [INFO   ]   Precision: 1.0000
+2026-08-25 07:57:59 [INFO   ]   Recall:    1.0000
+2026-08-25 07:57:59 [INFO   ]   F1:        1.0000
+2026-08-25 07:57:59 [INFO   ]   AUC:       0.0000
+2026-08-25 07:57:59 [INFO   ] --- Level 4: Category Accuracy ---
+2026-08-25 07:57:59 [INFO   ]   Overall: 1.0000
+2026-08-25 07:57:59 [INFO   ]   Abuse               : 2/2
+2026-08-25 07:57:59 [INFO   ]   Fighting            : 2/2
+2026-08-25 07:57:59 [INFO   ] Full report saved to: /Users/zzl/PycharmProjects/vad/results/batch_eval_v203_smoke/evaluation_report.json

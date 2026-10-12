@@ -1,0 +1,76 @@
+2026-07-21 15:49:29 [INFO   ] VAD batch evaluation started | output_dir=/Users/zzl/PycharmProjects/vad/results/batch_eval_v104_full | log=/Users/zzl/PycharmProjects/vad/results/batch_eval_v104_full/run.log
+2026-07-21 15:49:30 [INFO   ] Selected 65 videos from 14 categories:
+2026-07-21 15:49:30 [INFO   ]   Abuse               :   2 / 2
+2026-07-21 15:49:30 [INFO   ]   Arrest              :   5 / 5
+2026-07-21 15:49:30 [INFO   ]   Arson               :   5 / 9
+2026-07-21 15:49:30 [INFO   ]   Assault             :   3 / 3
+2026-07-21 15:49:30 [INFO   ]   Burglary            :   5 / 13
+2026-07-21 15:49:30 [INFO   ]   Explosion           :   5 / 21
+2026-07-21 15:49:30 [INFO   ]   Fighting            :   5 / 5
+2026-07-21 15:49:30 [INFO   ]   Normal              :   5 / 150
+2026-07-21 15:49:30 [INFO   ]   RoadAccidents       :   5 / 23
+2026-07-21 15:49:30 [INFO   ]   Robbery             :   5 / 5
+2026-07-21 15:49:30 [INFO   ]   Shooting            :   5 / 23
+2026-07-21 15:49:30 [INFO   ]   Shoplifting         :   5 / 21
+2026-07-21 15:49:30 [INFO   ]   Stealing            :   5 / 5
+2026-07-21 15:49:30 [INFO   ]   Vandalism           :   5 / 5
+/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/open_clip/factory.py:450: UserWarning: QuickGELU mismatch between final model config (quick_gelu=False) and pretrained tag 'openai' (quick_gelu=True).
+  warnings.warn(
+2026-07-21 15:49:46 [INFO   ] [AnomalyExpert] Loaded learned prompt weights from /Users/zzl/PycharmProjects/vad/video_anomaly_detection/prompt_weights.json
+2026-07-21 15:49:47 [INFO   ] [AnomalyExpert] CLIP ViT-L-14 loaded on mps
+2026-07-21 15:50:16 [INFO   ] [VideoMAE] Loaded on mps
+2026-07-21 15:50:16 [INFO   ]   [MIL] Loaded MIL model from /Users/zzl/PycharmProjects/vad/video_anomaly_detection/model_mil.pth
+2026-07-21 15:50:16 [INFO   ] Starting batch processing: 65 videos, concurrency=3
+2026-07-21 15:50:16 [INFO   ] Detect model: qwen-vl-plus, Classify model: qwen3-vl-plus
+2026-07-21 15:50:16 [INFO   ] ============================================================
+2026-07-21 15:50:16 [INFO   ] [1/65] START Abuse028_x264 (Abuse)
+2026-07-21 15:50:16 [INFO   ]   [Motion filter] 95 -> 93 frames (2% removed, threshold=1.0)
+2026-07-21 15:50:28 [INFO   ]   [CLIP precompute] 93 frames encoded in 11.3s
+2026-07-21 15:50:30 [INFO   ]   [MIL] snippet scores: mean=0.992, max=1.000, min=0.949
+2026-07-21 15:50:36 [INFO   ]   [VideoMAE] Abuse(100%), Arrest(0%), Burglary(0%) -> Abuse@100%
+2026-07-21 15:50:42 [INFO   ]   [VideoMAE-window] 4 windows in 5.4s
+2026-07-21 15:50:42 [INFO   ]   [CLIP-loc] Category=Abuse, mean=0.711, std=0.155, range=0.558, cv=0.218
+2026-07-21 15:50:42 [INFO   ]   [CLIP-loc] Found 3 multi-scale regions:
+2026-07-21 15:50:42 [INFO   ]   [CLIP-loc] Category=Explosion, mean=0.396, std=0.118, range=0.683, cv=0.299
+2026-07-21 15:50:42 [INFO   ]   [CLIP-loc] Fused with motion energy for Explosion
+2026-07-21 15:50:42 [INFO   ]   [CLIP-loc] Found 4 multi-scale regions:
+2026-07-21 15:50:42 [INFO   ]   [Multi-CLIP-loc] 7 regions deduped to 1
+2026-07-21 15:50:42 [INFO   ]   [TSG] summary: not-applicable (clip_regions=1)
+2026-07-21 15:50:42 [INFO   ]   [Directed scan] 10/11 segments selected for LLM scanning
+2026-07-21 15:50:42 [INFO   ] [2/65] START Abuse030_x264 (Abuse)
+2026-07-21 15:50:43 [INFO   ]   [Motion filter] 103 -> 103 frames (0% removed, threshold=1.0)
+2026-07-21 15:50:57 [INFO   ]   [CLIP precompute] 103 frames encoded in 14.9s
+2026-07-21 15:50:58 [INFO   ]   [MIL] snippet scores: mean=0.999, max=1.000, min=0.977
+2026-07-21 15:51:05 [INFO   ]   [VideoMAE] Abuse(99%), RoadAccidents(1%), Vandalism(0%) -> Abuse@99%
+2026-07-21 15:51:12 [INFO   ]   [VideoMAE-window] 5 windows in 6.8s
+2026-07-21 15:51:12 [INFO   ]   [CLIP-loc] Category=Abuse, mean=0.413, std=0.116, range=0.595, cv=0.281
+2026-07-21 15:51:12 [INFO   ]   [CLIP-loc] Found 4 multi-scale regions:
+2026-07-21 15:51:12 [INFO   ]   [CLIP-loc] Category=Explosion, mean=0.437, std=0.166, range=0.824, cv=0.380
+2026-07-21 15:51:12 [INFO   ]   [CLIP-loc] Fused with motion energy for Explosion
+2026-07-21 15:51:12 [INFO   ]   [CLIP-loc] Found 5 multi-scale regions:
+2026-07-21 15:51:12 [INFO   ]   [Multi-CLIP-loc] 9 regions deduped to 1
+2026-07-21 15:51:12 [INFO   ]   [TSG] summary: not-applicable (clip_regions=1)
+2026-07-21 15:51:12 [INFO   ]   [Directed scan] 10/12 segments selected for LLM scanning
+2026-07-21 15:51:12 [INFO   ] [3/65] SKIP Arrest001_x264 (result exists)
+2026-07-21 15:51:12 [INFO   ] [4/65] START Arrest007_x264 (Arrest)
+2026-07-21 15:51:13 [INFO   ]   [Motion filter] 210 -> 130 frames (38% removed, threshold=1.0)
+2026-07-21 15:51:34 [INFO   ]   [CLIP precompute] 130 frames encoded in 20.6s
+2026-07-21 15:51:34 [INFO   ]   [MIL] snippet scores: mean=0.994, max=1.000, min=0.978
+2026-07-21 15:51:41 [INFO   ]   [VideoMAE] Arrest(68%), Abuse(10%), RoadAccidents(10%) -> Arrest@68%
+2026-07-21 15:51:50 [INFO   ]   [VideoMAE-window] 7 windows in 9.6s
+2026-07-21 15:51:51 [INFO   ]   [CLIP-loc] Category=Arrest, mean=0.295, std=0.297, range=0.990, cv=1.004
+2026-07-21 15:51:51 [INFO   ]   [CLIP-loc] Found 4 multi-scale regions:
+2026-07-21 15:51:51 [INFO   ]   [Multi-CLIP-loc] 4 regions deduped to 3
+2026-07-21 15:51:51 [INFO   ]   [TSG] summary: not-applicable (clip_regions=3)
+2026-07-21 15:51:51 [INFO   ]   [Directed scan] 10/23 segments selected for LLM scanning
+2026-07-21 15:51:54 [INFO   ] Found 2 anomaly candidate(s):
+2026-07-21 15:51:54 [INFO   ]   Candidate 1: 49.5s-78.0s score=0.95
+2026-07-21 15:51:54 [INFO   ]   Candidate 2: 85.5s-91.5s score=0.95
+2026-07-21 15:51:54 [INFO   ]     [CLIPBound] 49.5-78.0s -> 53.5-74.5s (contrast=0.539, cat=Arrest)
+2026-07-21 15:51:54 [INFO   ]     [CLIPBound] 85.5-91.5s -> 87.0-95.0s (contrast=0.161, cat=Arrest)
+2026-07-21 15:51:54 [INFO   ]   --- Pre-merge anomalies: 2 ---
+2026-07-21 15:51:54 [INFO   ]   --- Post-merge+NMS anomalies: 2 ---
+2026-07-21 15:51:54 [INFO   ]   [Ensemble] No confusion pair -> Arrest
+2026-07-21 15:51:54 [INFO   ] [4/65] DONE  Arrest007_x264: 105s video, 2 anomalies, 41.8s processing
+2026-07-21 15:51:54 [INFO   ] [5/65] START Arrest024_x264 (Arrest)
+2026-07-21 15:51:55 [INFO   ]   [Motion filter] 242 -> 192 frames (21% removed, threshold=1.0)

@@ -1,0 +1,162 @@
+2026-08-25 19:08:07 [INFO   ] VAD batch evaluation started | output_dir=/Users/zzl/PycharmProjects/vad/results/batch_eval_v205_snh_selftest | log=/Users/zzl/PycharmProjects/vad/results/batch_eval_v205_snh_selftest/run.log
+2026-08-25 19:08:07 [INFO   ] Selected 4 videos from 2 categories:
+2026-08-25 19:08:07 [INFO   ]   Explosion           :   2 / 21
+2026-08-25 19:08:07 [INFO   ]   Normal              :   2 / 150
+/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/open_clip/factory.py:450: UserWarning: QuickGELU mismatch between final model config (quick_gelu=False) and pretrained tag 'openai' (quick_gelu=True).
+  warnings.warn(
+2026-08-25 19:08:40 [INFO   ] [AnomalyExpert] Loaded learned prompt weights from /Users/zzl/PycharmProjects/vad/video_anomaly_detection/prompt_weights.json
+2026-08-25 19:08:41 [INFO   ] [AnomalyExpert] CLIP ViT-L-14 loaded on mps
+2026-08-25 19:09:31 [INFO   ] [VideoMAE] Loaded on mps
+2026-08-25 19:09:31 [INFO   ]   [MIL] Loaded MIL model from /Users/zzl/PycharmProjects/vad/video_anomaly_detection/model_mil.pth
+2026-08-25 19:09:31 [INFO   ] Starting batch processing: 4 videos, concurrency=1
+2026-08-25 19:09:31 [INFO   ] Detect model: qwen-vl-plus, Classify model: qwen3-vl-plus
+2026-08-25 19:09:31 [INFO   ] ============================================================
+2026-08-25 19:09:31 [INFO   ] [1/4] START Explosion002_x264 (Explosion)
+2026-08-25 19:09:31 [INFO   ]   [Motion filter] 268 -> 191 frames (29% removed, threshold=1.0)
+2026-08-25 19:10:03 [INFO   ]   [CLIP precompute] 191 frames encoded in 31.9s
+2026-08-25 19:10:06 [INFO   ]   [MIL] snippet scores: mean=0.981, max=1.000, min=0.714
+2026-08-25 19:10:13 [INFO   ]   [VideoMAE] Explosion(93%), Shooting(3%), Vandalism(1%) -> Explosion@93%
+2026-08-25 19:10:27 [INFO   ]   [VideoMAE-window] 10 windows in 14.1s
+2026-08-25 19:10:27 [INFO   ]   [CLIP-loc] Category=Explosion, mean=0.401, std=0.281, range=0.957, cv=0.701
+2026-08-25 19:10:27 [INFO   ]   [CLIP-loc] Fused with motion energy for Explosion
+2026-08-25 19:10:27 [INFO   ]   [CLIP-loc] Found 5 multi-scale regions:
+2026-08-25 19:10:27 [INFO   ]   [Directed scan] 10/30 segments selected for LLM scanning
+2026-08-25 19:10:30 [INFO   ] Found 2 anomaly candidate(s):
+2026-08-25 19:10:30 [INFO   ]   Candidate 1: 49.5s-64.5s score=0.95
+2026-08-25 19:10:30 [INFO   ]   Candidate 2: 67.5s-73.5s score=0.90
+2026-08-25 19:10:31 [INFO   ]     [CLIPBound] 49.5-64.5s -> 53.5-60.5s (contrast=0.304, cat=Explosion)
+2026-08-25 19:10:31 [INFO   ]     [CLIPBound] 67.5-73.5s -> 74.5-76.0s (contrast=0.028, cat=Explosion)
+2026-08-25 19:10:31 [INFO   ]   --- Pre-merge anomalies: 2 ---
+2026-08-25 19:10:31 [INFO   ]   --- Post-merge+NMS anomalies: 2 ---
+2026-08-25 19:10:31 [INFO   ]   [NOCLS-CA] classify VLM sub-tree skipped -> label='Explosion' (mAP-neutral; ~-7.5% VLM calls)
+2026-08-25 19:10:31 [INFO   ]   [QSCORE-GATE] reranked 2 detections (base=0.5, raw Q range [0.558,0.880])
+2026-08-25 19:10:31 [INFO   ]   [BUE] vid=Explosion002_x264.mp4 cat=Explosion det=0 closed=0 t=53.500-60.500->52.000-62.000 dur=7.00->10.00 oic=0.4338->0.5948 conf=0.8619->0.8619
+2026-08-25 19:10:31 [INFO   ]   [BUE] vid=Explosion002_x264.mp4 cat=Explosion det=1 closed=0 t=74.500-76.000->51.000-76.000 dur=1.50->25.00 oic=0.2178->0.4172 conf=0.3644->0.3644
+2026-08-25 19:10:31 [INFO   ]   [BUE] summary: vid=Explosion002_x264.mp4 fires=2 closed_skips=0 ndet_before=2 ndet_after=2 growth_med=13.250 dur_ratio=9.048 selfov=1 degen=0 noop=0 nocurve=0 lmax=40.0 gate=1
+2026-08-25 19:10:31 [INFO   ]   [CBT] vid=Explosion002_x264.mp4 cat=Explosion det=1 pre=25.0 post=9.0 t=51.00-76.00->52.50-61.50 cap=13.0 contrast=0.6203 conf=0.3644->0.3644
+2026-08-25 19:10:31 [INFO   ]   [CBT-VID] vid=Explosion002_x264.mp4 enabled=True ndet=2 fired=1 wide_noop=1 nocurve=0 nofire=0 recal=on
+2026-08-25 19:10:31 [INFO   ]   [SNH-VID] vid=Explosion002_x264.mp4 ndet=2 vetoed=0 p_normal=0.0022 tau=0.7894 gate=0 force=0
+2026-08-25 19:10:31 [INFO   ]   [AB-VID] vid=Explosion002_x264 mech=snh ndet=2 armoff_len=2 n_win_changed=0 n_conf_changed=0 fired=0 cfg_changed=snh_veto
+2026-08-25 19:10:31 [INFO   ] [COST] video=Explosion002_x264.mp4 vlm_calls=10 clip_calls=6 elapsed_s=59.6
+2026-08-25 19:10:31 [INFO   ] [1/4] DONE  Explosion002_x264: 134s video, 2 anomalies, 59.6s processing
+2026-08-25 19:10:31 [INFO   ] [2/4] START Explosion035_x264 (Explosion)
+2026-08-25 19:10:31 [INFO   ]   [Motion filter] 191 -> 179 frames (6% removed, threshold=1.0)
+2026-08-25 19:11:00 [INFO   ]   [CLIP precompute] 179 frames encoded in 29.2s
+2026-08-25 19:11:03 [INFO   ]   [MIL] snippet scores: mean=0.984, max=1.000, min=0.696
+2026-08-25 19:11:10 [INFO   ]   [VideoMAE] Abuse(90%), Explosion(4%), Burglary(2%) -> Abuse@90%
+2026-08-25 19:11:24 [INFO   ]   [VideoMAE-window] 10 windows in 14.6s
+2026-08-25 19:11:25 [INFO   ]   [CLIP-loc] Category=Abuse, mean=0.597, std=0.337, range=0.967, cv=0.565
+2026-08-25 19:11:25 [INFO   ]   [CLIP-loc] Found 3 multi-scale regions:
+2026-08-25 19:11:25 [INFO   ]   [CLIP-loc] Category=Explosion, mean=0.774, std=0.199, range=0.873, cv=0.257
+2026-08-25 19:11:25 [INFO   ]   [CLIP-loc] Fused with motion energy for Explosion
+2026-08-25 19:11:25 [INFO   ]   [CLIP-loc] Found 5 multi-scale regions:
+2026-08-25 19:11:25 [INFO   ]   [Multi-CLIP-loc] 8 regions deduped to 3
+2026-08-25 19:11:25 [INFO   ]   [Directed scan] 10/21 segments selected for LLM scanning
+2026-08-25 19:11:27 [INFO   ] Found 2 anomaly candidate(s):
+2026-08-25 19:11:27 [INFO   ]   Candidate 1: 4.5s-15.0s score=0.95
+2026-08-25 19:11:27 [INFO   ]   Candidate 2: 36.0s-46.5s score=0.90
+2026-08-25 19:11:27 [INFO   ]     [CLIPBound] 4.5-15.0s -> 9.0-13.5s (contrast=0.229, cat=Abuse)
+2026-08-25 19:11:27 [INFO   ]     [CLIPBound] 36.0-46.5s -> 35.0-42.0s (contrast=0.240, cat=Abuse)
+2026-08-25 19:11:27 [INFO   ]   --- Pre-merge anomalies: 2 ---
+2026-08-25 19:11:27 [INFO   ]   --- Post-merge+NMS anomalies: 2 ---
+2026-08-25 19:11:27 [INFO   ]   [NOCLS-CA] classify VLM sub-tree skipped -> label='Abuse' (mAP-neutral; ~-7.5% VLM calls)
+2026-08-25 19:11:27 [INFO   ]   [QSCORE-GATE] reranked 2 detections (base=0.5, raw Q range [0.798,0.815])
+2026-08-25 19:11:27 [INFO   ]   [BUE] vid=Explosion035_x264.mp4 cat=Abuse det=0 closed=0 t=9.000-13.500->8.500-14.500 dur=4.50->6.00 oic=0.2995->0.2592 conf=0.8325->0.8325
+2026-08-25 19:11:27 [INFO   ]   [BUE] vid=Explosion035_x264.mp4 cat=Abuse det=1 closed=0 t=35.000-42.000->34.500-49.000 dur=7.00->14.50 oic=0.4223->0.5630 conf=0.3998->0.3998
+2026-08-25 19:11:27 [INFO   ]   [BUE] summary: vid=Explosion035_x264.mp4 fires=2 closed_skips=0 ndet_before=2 ndet_after=2 growth_med=4.500 dur_ratio=1.702 selfov=0 degen=0 noop=0 nocurve=0 lmax=40.0 gate=1
+2026-08-25 19:11:27 [INFO   ]   [CBT-VID] vid=Explosion035_x264.mp4 enabled=True ndet=2 fired=0 wide_noop=0 nocurve=0 nofire=0 recal=on
+2026-08-25 19:11:27 [INFO   ]   [SNH-VID] vid=Explosion035_x264.mp4 ndet=2 vetoed=0 p_normal=0.0016 tau=0.7894 gate=0 force=0
+2026-08-25 19:11:27 [INFO   ]   [AB-VID] vid=Explosion035_x264 mech=snh ndet=2 armoff_len=2 n_win_changed=0 n_conf_changed=0 fired=0 cfg_changed=snh_veto
+2026-08-25 19:11:27 [INFO   ] [COST] video=Explosion035_x264.mp4 vlm_calls=10 clip_calls=6 elapsed_s=56.5
+2026-08-25 19:11:27 [INFO   ] [2/4] DONE  Explosion035_x264: 96s video, 2 anomalies, 56.5s processing
+2026-08-25 19:11:27 [INFO   ] [3/4] START Normal_Videos_059_x264 (Normal)
+2026-08-25 19:11:27 [INFO   ]   [Motion filter] 123 -> 119 frames (3% removed, threshold=1.0)
+2026-08-25 19:11:45 [INFO   ]   [CLIP precompute] 119 frames encoded in 17.9s
+2026-08-25 19:11:48 [INFO   ]   [MIL] snippet scores: mean=0.078, max=0.287, min=0.002
+2026-08-25 19:11:55 [INFO   ]   [VideoMAE] Shoplifting(100%), Fighting(0%), Robbery(0%) -> Shoplifting@100%
+2026-08-25 19:12:04 [INFO   ]   [VideoMAE-window] 6 windows in 8.4s
+2026-08-25 19:12:04 [INFO   ]   [CLIP-loc] Category=Shoplifting, mean=0.886, std=0.090, range=0.577, cv=0.102
+2026-08-25 19:12:04 [INFO   ]   [CLIP-loc] Found 5 multi-scale regions:
+2026-08-25 19:12:04 [INFO   ]   [Multi-CLIP-loc] 5 regions deduped to 2
+2026-08-25 19:12:04 [INFO   ]   [Directed scan] 10/14 segments selected for LLM scanning
+2026-08-25 19:12:06 [INFO   ] Found 2 anomaly candidate(s):
+2026-08-25 19:12:06 [INFO   ]   Candidate 1: 4.5s-19.5s score=0.90
+2026-08-25 19:12:06 [INFO   ]   Candidate 2: 22.5s-46.5s score=0.95
+2026-08-25 19:12:06 [INFO   ]     [CLIPBound] 4.5-19.5s -> 3.5-20.0s (contrast=0.128, cat=Shoplifting)
+2026-08-25 19:12:06 [INFO   ]     [CLIPBound] 22.5-46.5s -> 34.5-43.5s (contrast=0.051, cat=Shoplifting)
+2026-08-25 19:12:07 [INFO   ]     [VLM-Bound] 3.5-20.0s -> 4.4-8.5s (vlm_conf=0.95, w_clip=0.12, w_vlm=0.88)
+2026-08-25 19:12:08 [INFO   ]     [VLM-Bound] 34.5-43.5s -> 34.0-42.1s (vlm_conf=0.95, w_clip=0.05, w_vlm=0.95)
+2026-08-25 19:12:08 [INFO   ]   --- Pre-merge anomalies: 2 ---
+2026-08-25 19:12:08 [INFO   ]   --- Post-merge+NMS anomalies: 2 ---
+2026-08-25 19:12:08 [INFO   ]   [NOCLS-CA] classify VLM sub-tree skipped -> label='Shoplifting' (mAP-neutral; ~-7.5% VLM calls)
+2026-08-25 19:12:08 [INFO   ]   [MIL-sanity] MIL max_score=0.287 < 0.3, reducing confidence by 30%
+2026-08-25 19:12:08 [INFO   ]   [QSCORE-GATE] reranked 2 detections (base=0.5, raw Q range [0.632,0.828])
+2026-08-25 19:12:08 [INFO   ]   [BUE] vid=Normal_Videos_059_x264.mp4 cat=Shoplifting det=1 closed=0 t=4.381-8.544->1.500-19.000 dur=4.16->17.50 oic=0.0505->0.1022 conf=0.2654->0.2654
+2026-08-25 19:12:08 [INFO   ]   [BUE] summary: vid=Normal_Videos_059_x264.mp4 fires=1 closed_skips=0 ndet_before=2 ndet_after=2 growth_med=13.337 dur_ratio=4.204 selfov=0 degen=0 noop=1 nocurve=0 lmax=40.0 gate=1
+2026-08-25 19:12:08 [INFO   ]   [CBT] vid=Normal_Videos_059_x264.mp4 cat=Shoplifting det=1 pre=17.5 post=2.0 t=1.50-19.00->16.50-18.50 cap=9.0 contrast=0.0843 conf=0.2654->0.2654
+2026-08-25 19:12:08 [INFO   ]   [CBT-VID] vid=Normal_Videos_059_x264.mp4 enabled=True ndet=2 fired=1 wide_noop=1 nocurve=0 nofire=0 recal=on
+2026-08-25 19:12:08 [INFO   ]   [SNH-VID] vid=Normal_Videos_059_x264.mp4 ndet=2 vetoed=0 p_normal=0.5258 tau=0.7894 gate=0 force=0
+2026-08-25 19:12:08 [INFO   ]   [AB-VID] vid=Normal_Videos_059_x264 mech=snh ndet=2 armoff_len=2 n_win_changed=0 n_conf_changed=0 fired=0 cfg_changed=snh_veto
+2026-08-25 19:12:08 [INFO   ] [COST] video=Normal_Videos_059_x264.mp4 vlm_calls=12 clip_calls=4 elapsed_s=40.9
+2026-08-25 19:12:08 [INFO   ] [3/4] DONE  Normal_Videos_059_x264: 61s video, 2 anomalies, 40.9s processing
+2026-08-25 19:12:08 [INFO   ] [4/4] START Normal_Videos_782_x264 (Normal)
+2026-08-25 19:12:09 [INFO   ]   [Motion filter] 370 -> 333 frames (10% removed, threshold=1.0)
+2026-08-25 19:13:04 [INFO   ]   [CLIP precompute] 333 frames encoded in 55.2s
+2026-08-25 19:13:06 [INFO   ]   [MIL] snippet scores: mean=0.000, max=0.000, min=0.000
+2026-08-25 19:13:13 [INFO   ]   [VideoMAE] Assault(98%), Vandalism(1%), Fighting(1%) -> Assault@98%
+2026-08-25 19:13:38 [INFO   ]   [VideoMAE-window] 19 windows in 25.4s
+2026-08-25 19:13:38 [INFO   ]   [CLIP-loc] Category=Assault, mean=0.034, std=0.034, range=0.206, cv=1.017
+2026-08-25 19:13:38 [INFO   ]   [CLIP-loc] Found 5 multi-scale regions:
+2026-08-25 19:13:38 [INFO   ]   [CLIP-loc] Category=Arson, mean=0.020, std=0.019, range=0.121, cv=0.962
+2026-08-25 19:13:38 [INFO   ]   [CLIP-loc] Found 5 multi-scale regions:
+2026-08-25 19:13:38 [INFO   ]   [Multi-CLIP-loc] 10 regions deduped to 4
+2026-08-25 19:13:38 [INFO   ]   [Directed scan] 10/41 segments selected for LLM scanning
+2026-08-25 19:13:40 [INFO   ] Found 2 anomaly candidate(s):
+2026-08-25 19:13:40 [INFO   ]   Candidate 1: 13.5s-19.5s score=0.90
+2026-08-25 19:13:40 [INFO   ]   Candidate 2: 103.5s-109.5s score=0.90
+2026-08-25 19:13:40 [INFO   ]     [CLIPBound] 13.5-19.5s -> 10.5-18.0s (contrast=0.041, cat=Assault)
+2026-08-25 19:13:40 [INFO   ]     [CLIPBound] 103.5-109.5s -> 105.5-110.5s (contrast=0.042, cat=Assault)
+2026-08-25 19:13:40 [INFO   ]   --- Pre-merge anomalies: 2 ---
+2026-08-25 19:13:40 [INFO   ]   --- Post-merge+NMS anomalies: 2 ---
+2026-08-25 19:13:40 [INFO   ]   [NOCLS-CA] classify VLM sub-tree skipped -> label='Assault' (mAP-neutral; ~-7.5% VLM calls)
+2026-08-25 19:13:40 [INFO   ]   [MIL-sanity] MIL max_score=0.000 < 0.3, reducing confidence by 30%
+2026-08-25 19:13:40 [INFO   ]   [ConfFilter] 2 -> 0 (threshold=0.55, cat=Assault)
+2026-08-25 19:13:40 [INFO   ]   [QSCORE-GATE] skipped (no detections / no curve)
+2026-08-25 19:13:40 [INFO   ]   [CBT-VID] vid=Normal_Videos_782_x264.mp4 enabled=True ndet=0 fired=0 wide_noop=0 nocurve=0 nofire=0 skip=no_dets recal=on
+2026-08-25 19:13:40 [INFO   ]   [SNH-VID] vid=Normal_Videos_782_x264.mp4 ndet=0 vetoed=0 p_normal=0.9933 tau=0.7894 gate=1 force=0
+2026-08-25 19:13:40 [INFO   ]   [AB-VID] vid=Normal_Videos_782_x264 mech=snh ndet=0 armoff_len=0 n_win_changed=0 n_conf_changed=0 fired=0 cfg_changed=snh_veto
+2026-08-25 19:13:40 [INFO   ] [COST] video=Normal_Videos_782_x264.mp4 vlm_calls=10 clip_calls=11 elapsed_s=92.2
+2026-08-25 19:13:40 [INFO   ] [4/4] DONE  Normal_Videos_782_x264: 185s video, 0 anomalies, 92.2s processing
+2026-08-25 19:13:40 [INFO   ] ============================================================
+2026-08-25 19:13:40 [INFO   ] Batch complete:
+2026-08-25 19:13:40 [INFO   ]   Succeeded: 4, Skipped: 0, Failed: 0
+2026-08-25 19:13:40 [INFO   ]   Total wall-clock time:   249.2s (4.2min)
+2026-08-25 19:13:40 [INFO   ]   Total processing time:   249.2s (4.2min)
+2026-08-25 19:13:40 [INFO   ]   Avg per video:           62.3s
+2026-08-25 19:13:40 [INFO   ]   Parallelism speedup:     1.00x
+2026-08-25 19:13:40 [INFO   ] ============================================================
+2026-08-25 19:13:40 [INFO   ] [ECE-GATE] markers=0 succeeded=4 ok=True
+2026-08-25 19:13:40 [INFO   ] Running evaluation...
+2026-08-25 19:13:40 [INFO   ] GT videos: 290, Predicted videos: 4, Matched: 4
+2026-08-25 19:13:40 [INFO   ]   GT only (missing predictions): 286
+2026-08-25 19:13:40 [INFO   ]   Abnormal: 2, Normal: 2
+2026-08-25 19:13:40 [INFO   ] --- Level 1: Frame-level AUC-ROC / AUPR ---
+2026-08-25 19:13:40 [INFO   ]   Global AUC-ROC: 0.8612
+2026-08-25 19:13:40 [INFO   ]   Global AUPR:    0.4618
+2026-08-25 19:13:40 [INFO   ]   Per-category AUC-ROC:
+2026-08-25 19:13:40 [INFO   ]     Explosion           : 0.8284
+2026-08-25 19:13:40 [INFO   ] --- Level 2: Temporal Segment mAP ---
+2026-08-25 19:13:40 [INFO   ]   mAP:    0.6667
+2026-08-25 19:13:40 [INFO   ]   AP@0.3: 1.0000
+2026-08-25 19:13:40 [INFO   ]   AP@0.5: 1.0000
+2026-08-25 19:13:40 [INFO   ]   AP@0.7: 0.0000
+2026-08-25 19:13:40 [INFO   ] --- Level 3: Video-level Metrics ---
+2026-08-25 19:13:40 [INFO   ]   Accuracy:  0.7500
+2026-08-25 19:13:40 [INFO   ]   Precision: 0.6667
+2026-08-25 19:13:40 [INFO   ]   Recall:    1.0000
+2026-08-25 19:13:40 [INFO   ]   F1:        0.8000
+2026-08-25 19:13:40 [INFO   ]   AUC:       1.0000
+2026-08-25 19:13:40 [INFO   ] --- Level 4: Category Accuracy ---
+2026-08-25 19:13:40 [INFO   ]   Overall: 0.5000
+2026-08-25 19:13:40 [INFO   ]   Explosion           : 1/2
+2026-08-25 19:13:40 [INFO   ] Full report saved to: /Users/zzl/PycharmProjects/vad/results/batch_eval_v205_snh_selftest/evaluation_report.json

@@ -1,0 +1,68 @@
+2026-08-14 22:16:34 [INFO   ] VAD batch evaluation started | output_dir=/Users/zzl/PycharmProjects/vad/results/batch_eval_v169_selftest_d1b | log=/Users/zzl/PycharmProjects/vad/results/batch_eval_v169_selftest_d1b/run.log
+2026-08-14 22:16:34 [INFO   ] Selected 1 videos from 1 categories:
+2026-08-14 22:16:34 [INFO   ]   Assault             :   1 / 3
+2026-08-14 22:17:03 [INFO   ] [AnomalyExpert] Loaded learned prompt weights from /Users/zzl/PycharmProjects/vad/video_anomaly_detection/prompt_weights.json
+2026-08-14 22:17:03 [INFO   ] [AnomalyExpert] CLIP ViT-L-14 loaded on mps
+2026-08-14 22:17:53 [INFO   ] [VideoMAE] Loaded on mps
+2026-08-14 22:17:53 [INFO   ]   [MIL] Loaded MIL model from /Users/zzl/PycharmProjects/vad/video_anomaly_detection/model_mil.pth
+2026-08-14 22:17:53 [INFO   ] Starting batch processing: 1 videos, concurrency=1
+2026-08-14 22:17:53 [INFO   ] Detect model: qwen-vl-plus, Classify model: qwen3-vl-plus
+2026-08-14 22:17:53 [INFO   ] ============================================================
+2026-08-14 22:17:53 [INFO   ] [1/1] START Assault006_x264 (Assault)
+2026-08-14 22:17:55 [INFO   ]   [Motion filter] 540 -> 540 frames (0% removed, threshold=1.0)
+2026-08-14 22:18:54 [INFO   ]   [CLIP precompute] 540 frames encoded in 59.5s
+2026-08-14 22:18:56 [INFO   ]   [MIL] snippet scores: mean=0.999, max=1.000, min=0.983
+2026-08-14 22:19:02 [INFO   ]   [VideoMAE] Assault(100%), Arrest(0%), RoadAccidents(0%) -> Assault@100%
+2026-08-14 22:19:33 [INFO   ]   [VideoMAE-window] 32 windows in 31.6s
+2026-08-14 22:19:33 [INFO   ]   [CLIP-loc] Category=Assault, mean=0.743, std=0.282, range=0.975, cv=0.380
+2026-08-14 22:19:33 [INFO   ]   [CLIP-loc] Found 5 multi-scale regions:
+2026-08-14 22:19:33 [INFO   ]   [CLIP-loc] Category=Arson, mean=0.385, std=0.172, range=0.862, cv=0.447
+2026-08-14 22:19:33 [INFO   ]   [CLIP-loc] Found 5 multi-scale regions:
+2026-08-14 22:19:33 [INFO   ]   [Multi-CLIP-loc] 10 regions deduped to 2
+2026-08-14 22:19:33 [INFO   ]   [Directed scan] 12/60 segments selected for LLM scanning
+2026-08-14 22:19:37 [INFO   ] Found 1 anomaly candidate(s):
+2026-08-14 22:19:37 [INFO   ]   Candidate 1: 36.0s-87.0s score=0.95
+2026-08-14 22:19:37 [INFO   ]     [CLIPBound] 36.0-87.0s -> 38.0-111.5s (contrast=0.485, cat=Assault)
+2026-08-14 22:19:37 [INFO   ]   --- Pre-merge anomalies: 1 ---
+2026-08-14 22:19:37 [INFO   ]   --- Post-merge+NMS anomalies: 1 ---
+2026-08-14 22:19:37 [INFO   ]   [NOCLS-CA] classify VLM sub-tree skipped -> label='Assault' (mAP-neutral; ~-7.5% VLM calls)
+2026-08-14 22:19:37 [INFO   ]   [QSCORE-GATE] reranked 1 detections (base=0.5, raw Q range [0.565,0.565])
+2026-08-14 22:19:37 [INFO   ]   [CGR-VID] vid=Assault006_x264.mp4 enabled=True ndet_before=1 ndet_after=1 moved=0 skip=cat_not_gated:Assault
+2026-08-14 22:19:37 [INFO   ]   [BUE] summary: vid=Assault006_x264.mp4 fires=0 closed_skips=1 ndet_before=1 ndet_after=1 growth_med=0.000 dur_ratio=1.000 selfov=0 degen=0 noop=0 nocurve=0 lmax=40.0 gate=1
+2026-08-14 22:19:37 [INFO   ]   [CBT-VID] vid=Assault006_x264.mp4 enabled=True ndet=1 fired=0 wide_noop=0 nocurve=0 nofire=0 recal=on
+2026-08-14 22:19:37 [INFO   ]   [CGR-AB] vid=Assault006_x264.mp4 ndet=1 armoff_len=1 fired=0
+2026-08-14 22:19:37 [INFO   ] [COST] video=Assault006_x264.mp4 vlm_calls=12 clip_calls=17 elapsed_s=103.3
+2026-08-14 22:19:37 [INFO   ] [1/1] DONE  Assault006_x264: 270s video, 1 anomalies, 103.3s processing
+2026-08-14 22:19:37 [INFO   ] ============================================================
+2026-08-14 22:19:37 [INFO   ] Batch complete:
+2026-08-14 22:19:37 [INFO   ]   Succeeded: 1, Skipped: 0, Failed: 0
+2026-08-14 22:19:37 [INFO   ]   Total wall-clock time:   103.3s (1.7min)
+2026-08-14 22:19:37 [INFO   ]   Total processing time:   103.3s (1.7min)
+2026-08-14 22:19:37 [INFO   ]   Avg per video:           103.3s
+2026-08-14 22:19:37 [INFO   ]   Parallelism speedup:     1.00x
+2026-08-14 22:19:37 [INFO   ] ============================================================
+2026-08-14 22:19:37 [INFO   ] [ECE-GATE] markers=0 succeeded=1 ok=True
+2026-08-14 22:19:37 [INFO   ] Running evaluation...
+2026-08-14 22:19:37 [INFO   ] GT videos: 290, Predicted videos: 1, Matched: 1
+2026-08-14 22:19:37 [INFO   ]   GT only (missing predictions): 289
+2026-08-14 22:19:37 [INFO   ]   Abnormal: 1, Normal: 0
+2026-08-14 22:19:37 [INFO   ] --- Level 1: Frame-level AUC-ROC / AUPR ---
+2026-08-14 22:19:37 [INFO   ]   Global AUC-ROC: 0.9627
+2026-08-14 22:19:37 [INFO   ]   Global AUPR:    0.9896
+2026-08-14 22:19:37 [INFO   ]   Per-category AUC-ROC:
+2026-08-14 22:19:37 [INFO   ]     Assault             : 0.9627
+2026-08-14 22:19:37 [INFO   ] --- Level 2: Temporal Segment mAP ---
+2026-08-14 22:19:37 [INFO   ]   mAP:    0.3333
+2026-08-14 22:19:37 [INFO   ]   AP@0.3: 1.0000
+2026-08-14 22:19:37 [INFO   ]   AP@0.5: 0.0000
+2026-08-14 22:19:37 [INFO   ]   AP@0.7: 0.0000
+2026-08-14 22:19:37 [INFO   ] --- Level 3: Video-level Metrics ---
+2026-08-14 22:19:37 [INFO   ]   Accuracy:  1.0000
+2026-08-14 22:19:37 [INFO   ]   Precision: 1.0000
+2026-08-14 22:19:37 [INFO   ]   Recall:    1.0000
+2026-08-14 22:19:37 [INFO   ]   F1:        1.0000
+2026-08-14 22:19:37 [INFO   ]   AUC:       0.0000
+2026-08-14 22:19:37 [INFO   ] --- Level 4: Category Accuracy ---
+2026-08-14 22:19:37 [INFO   ]   Overall: 1.0000
+2026-08-14 22:19:37 [INFO   ]   Assault             : 1/1
+2026-08-14 22:19:37 [INFO   ] Full report saved to: /Users/zzl/PycharmProjects/vad/results/batch_eval_v169_selftest_d1b/evaluation_report.json

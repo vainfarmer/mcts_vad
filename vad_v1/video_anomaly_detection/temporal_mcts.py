@@ -338,6 +338,13 @@ class TemporalBoundaryMCTS:
         cache_key = (round(t_start, 1), round(t_end, 1))
         if cache_key in self._llm_cache:
             cached = self._llm_cache[cache_key]
+            print(
+                f"    [MCTS cache HIT] tree={id(self):x}, node={id(node):x}, "
+                f"key=({cache_key[0]:.1f}, {cache_key[1]:.1f}), "
+                f"interval={t_start:.6f}-{t_end:.6f}s, "
+                f"depth={node.state.get('depth', 0)}, "
+                f"reward={cached['reward_base']:.3f}; VLM call skipped"
+            )
             node.state['anomaly_present'] = cached['anomaly_present']
             node.state['llm_response'] = cached['response']
             node.state['starts_at_beginning'] = cached.get('starts_at_beginning', True)

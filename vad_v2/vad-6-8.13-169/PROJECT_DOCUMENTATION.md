@@ -8,10 +8,13 @@
 
 ## 目录
 
+专项分析：[V2 单视频 CLIP 定位完整流程与 Q-score → BUE → CBT 实验证据](V2_CLIP_LOCALIZATION_ANALYSIS.md)（按当前源码核对，含抽帧、语义选帧、定界、后处理及实验口径限制）。
+
 1. [项目目标与总体思路](#1-项目目标与总体思路)
 2. [顶层目录结构](#2-顶层目录结构)
 3. [端到端总流程](#3-端到端总流程)
 4. [单视频流水线逐阶段详解](#4-单视频流水线逐阶段详解)
+   - [Stage 5 边界判断：当前路径与历史 MCTS](#41-stage-5-边界判断当前路径与历史-mcts)
 5. [后处理终端槽（deterministic post-VLM 算子链）](#5-后处理终端槽deterministic-post-vlm-算子链)
 6. [逐文件作用说明](#6-逐文件作用说明)
 7. [特性开关总表（config flags）](#7-特性开关总表config-flags)
@@ -145,6 +148,54 @@ flowchart TD
 - **扫描分支**：有 CLIP 区域时 `_directed_llm_scan` 定向扫描；没有区域时 `discovery.discover` 从分段网格预筛候选。当前代码没有 FCCS 全覆盖分支。
 - **早退路径**：VideoMAE 高置信判 Normal，或扫描后没有候选时，计算 `frame_scores` 后直接返回空检测；CBT 开启时记录空检测标记。
 - **paired 快照**：`DetectionResult` 在对应算子开启时携带 `pre_bue_boundaries` 和 `pre_cbt_boundaries`，供离线重建 flag-OFF 对照臂。
+
+### 4.1 Stage 5 边界判断：当前路径与历史 MCTS
+
+后续融合设计见 [v2 融合 MCTS 的实施设计](MCTS_FUSION_DESIGN.md)：包含文件修改清单、Stage 5 接入、动作/奖励/抽帧适配、回退及评测方案；该文档描述待实现方案。
+
+**版本区分**：当前 `pipeline.py` 的 Stage 5 调用 `_clip_boundary_detection()`，从 v50 起不再调用 `TemporalBoundaryMCTS.search()`。`temporal_mcts.py`、MCTS 配置及 CLI 参数仍保留；下面第二张图说明这段历史实现的算法流程，不能当作当前运行路径。
+
+```mermaid
+flowchart TD
+    A["输入视频"] --> B["VideoPreprocessor.process：OpenCV 读取 FPS、总帧数与时长"]
+    B --> C["按 max(1, int(原视频 FPS / 配置 FPS)) 间隔取帧；BGR 转 RGB，记录时间戳"]
+    C --> D["运动过滤：64×64 相邻采样帧差均值；首帧保留，运动帧保留，静止区每 2 秒至少保留一帧"]
+    D --> E["按 6 秒窗口、25% 重叠建立 segments；输出 all_frames、timestamps、segments"]
+    E --> F["CLIP 特征及其他本地信号；VideoMAE 高置信 Normal 可提前返回空结果"]
+    F --> G["CLIP 粗定位 → VLM 扫描，得到异常候选"]
+    G --> H{"有候选？"}
+    H -->|否| Z["空检测结果"]
+    H -->|是| I["按 coarse_score 取前 3 个候选"]
+    I --> J["当前 Stage 5：每个候选两侧各扩展候选时长的 50%，读取类别 CLIP 帧级曲线"]
+    J --> K["有 MIL 分数时融合 0.75×CLIP + 0.25×MIL；按类别设置多尺度平滑"]
+    K --> L["半峰阈值找上升/下降沿，梯度与时长先验修正，选最佳边界；必要时收紧过宽区间"]
+    L --> M["低 CLIP 对比度且属于指定类别时，Stage 5b 可用 VLM 估计边界"]
+    M --> N["全局合并、时间 NMS、边界后处理、分类与置信过滤"]
+    N --> O["frame_scores → Q-score → BUE → CBT → DetectionResult"]
+```
+
+默认抽帧目标为 2 FPS，但代码通过整数帧间隔采样，实际采样率取决于原视频 FPS。`get_segment_frames()` 按时间戳选择 `[t_start, t_end)` 内的已保留帧；若该范围没有帧，则取最接近中点的一帧。边界判断使用这些帧的时间戳，不会重新从原视频解码。
+
+历史 MCTS 若被单独调用，对**每个候选**分别执行以下搜索：
+
+```mermaid
+flowchart TD
+    A["候选时间范围与目标异常描述"] --> B["从预处理帧按时间戳取根节点帧；CLIP expert 评估异常分数和峰值时间"]
+    B --> C["根节点 VLM 判断：目标异常是否存在、置信度、是否从片段首尾持续"]
+    C --> D["选择：沿 UCB 最高的子节点走到可扩展节点"]
+    D --> E["扩展：结合 CLIP 峰值与 VLM 首尾判断，选 shrink_left 或 shrink_right"]
+    E --> F["按深度自适应比例缩短时间段；取该段已缓存的帧并由 CLIP expert 评分"]
+    F --> G["模拟前选帧：按段长、深度、收缩次数计算 K；均匀预采样，CLIP 语义去重；无采样器则最多均匀取 4 帧"]
+    G --> H["VLM 判断目标异常；相同的 0.1 秒取整边界复用缓存"]
+    H --> I["奖励：异常存在时融合 CLIP 分数、VLM 置信度、缩短比例与首尾边界信号；不存在则为 0"]
+    I --> J["回传：更新节点访问次数、累计奖励及动作价值"]
+    J --> Q{"达到模拟次数 / 连续 4 次判断一致且至少已做 6 次？"}
+    Q -->|否| D
+    Q -->|是| R["遍历搜索树，取异常存在且奖励为正的最高奖励节点"]
+    R --> S["输出 t_start、t_end、confidence、anomaly_type、depth、visits；无有效节点则返回空列表"]
+```
+
+历史实现中，收缩比例为 `0.4 / (1 + 0.3 × depth)`，收缩后区间须长于 0.5 秒。`SemanticFrameSampler` 的目标帧数随段长和收缩次数变化，并以 CLIP 相似度做语义去重；这是向 VLM 送图的二次选帧，区别于最开始的视频抽帧。`TemporalBoundaryMCTS` 类内默认 12 次模拟、最大深度 5；当前配置文件中虽有模拟次数 12、最大深度 4 等字段，但主流水线不会据此启动 MCTS。
 
 ---
 

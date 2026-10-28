@@ -32,6 +32,11 @@ mechanism, what it changed, and its measured result.
 """
 
 
+try:
+    from .llm_usage import track_video_usage
+except ImportError:
+    from llm_usage import track_video_usage
+
 import asyncio
 import bisect
 import json
@@ -639,6 +644,7 @@ class MultiAnomalyVAD:
             f"lmax={eff_lmax:.1f} gate={int(bool(cfg.bue_closure_gate))}")
         return final_anomalies
 
+    @track_video_usage
     async def detect(
         self,
         video_path: str,

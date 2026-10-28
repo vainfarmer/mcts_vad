@@ -1,0 +1,53 @@
+# Loop 3 — v99 ECE: Event-Continuation Extension
+
+**Date:** 2026-07-18
+**Decision: REVERTED** (code restored byte-identical from `/Users/zzl/PycharmProjects/vad/.qoder/backups/v99/`, diff-verified)
+
+## Approved Proposal (A+B joint consensus)
+
+**Title:** v99 ECE: Event-Continuation Extension — half-max region growing of FINAL detections on the read-only whole-video category CLIP curve, reject-capped by existing duration priors. (B's mechanism hardened with A's exact-simulation-fidelity mandate and the v98 FM5 process mandates; A's TPV withdrawn — its own pre-validation gate evidence, VideoMAE window sep-AUC ≈0.473 < chance, already exists and fails.)
+
+**Mechanism:** One new post-processing stage at the END of `detect()` — after Stage 7 ensemble classification, 7b curve correction, MIL-sanity, and the category confidence gate (pipeline.py:993-996), before the final dict projection (pipeline.py:998) — behind a single new switch `ScoringConfig.event_continuation_extension: bool = False` (False = byte-identical prior behavior). For each final detection `a` whose duration < `max_dur = CATEGORY_DURATION_PRIORS[cat]['expected_duration'][1]`: (1) fetch the whole-video relative CLIP curve `rel = cat/(cat+normal)` via the existing `frame_scorer.get_category_scores` cache (read-only, never re-fused); (2) half-max level `hm = (rel.max() + np.percentile(rel, 20)) / 2.0`, mult = 1.0, zero new constants (the v51 LEVEL formula applied to a different signal/domain than v51's own fused-curve local-window computation — implemented exactly as simulated, per A's mandate); (3) `s = searchsorted(ts, t_start)`, `e = min(searchsorted(ts, t_end), len(ts)-1)`; walk L left / R right while `rel >= hm`; (4) REJECT-CAP: if `ts[R]-ts[L] > max_dur`, keep original boundaries; else snap `t_start/t_end` to `ts[L]/ts[R]`. Confidence, category, detection COUNT, order, NMS, merge, and every upstream stage byte-identical; no re-NMS; no VLM/CLIP recompute. Guards: category None/'Normal'/unknown → skip; curve None → skip; empty anomalies → no-op. Self-limiting on flat curves (whole-video growth → span > max_dur → reject-cap → unchanged).
+
+**Rationale:** Consensus signed by both researchers. Decisive asymmetry = evidence quality: ECE's gain was already measured on the OFFICIAL evaluator with deterministic semantics and independently reproduced to the last digit (baseline mAP 0.16154893439350917 → ECE 0.19218, +0.0307; AP@0.3 0.21823→0.27950, AP@0.5 0.15005→0.16069, AP@0.7 0.11636→0.13636; ±10% mult band 0.19264/0.17672, always ≥ +0.015). ECE belongs to the only change class that never regressed in 20+ versions (read-only post-hoc modulation of fixed detections: v89/v94/v95/v96), and attacks the validated dominant failure mode (~39% of detection mass in boundary imprecision, long-event-shrunk mode caused by v51's structural search-window cage). TPV was killed by its own gate evidence (VideoMAE sep-AUC ≈0.473 below chance).
+
+**Expected gain:** mAP 0.16155 → 0.19218 (+0.0307) deterministic on cached v97 candidates; honest range +0.015 to +0.031 under ±10% perturbation. Keep rule: deterministic flag-ON/OFF delta ≥ +0.02 on identical cached candidates AND full-eval mAP ≥ live baseline − 0.03; REVERT if deterministic delta < +0.005 or full eval < baseline − 0.03.
+
+**Risks (as approved):** FM1 avoided by construction (curve read-only, stage after all boundary stages, v52→v53 duration-prior guard mirrored); FM2 impossible (count/order/confidence frozen, simulation ran through the real greedy matcher); FM3/FM4 absent; FM5 mitigated by `[ECE]` per-video log line + grep gate before metric acceptance + persisted COMMAND.txt + flag-OFF byte-identical JSON diff. Residual: TP dilution on short events (bounded by reject-cap; one simulated TP@0.5 flip on Arson035, which flips to a WIN on the faithful live grid per C); 2/65 cache-miss videos (Shooting032, Stealing062); gain concentration (~1/3 of AP@0.3 lift on Arson041); sub-event bridging bounded by reject-cap; +0.031 at the edge of the ±0.03 VLM noise band (mitigated by deterministic primary evidence).
+
+## C's Feedback — APPROVE
+
+"Strongest-evidenced proposal in the project's history." C independently re-derived every central number before signing: baseline reproduced to 17 significant digits; ECE simulation reproduced to the last digit on the pkl grid (0.19218, +0.0307); on the faithful LIVE grid (pkl curves subsampled to each video's motion-filtered timestamps from the v97 JSONs) mAP = 0.19266 (+0.0311) with ZERO threshold-crossing TP losses (Arson035 flips 0.554→0.667, a win). All code references verified (pipeline.py:993-996 gate, :998 projection, :1483-1485 v51 formula, :503-519 priors; frame_scorer.py:41-61 cache; config.py:129-157 from_args omitting scoring; batch_evaluate.py:189-191 flag pattern). Literature verified (T3AL is ECCV 2024, not CVPR — corrected in implementation). FM1 avoided, FM2 impossible, FM3/FM4 absent; not a repeat per grep of all summary logs.
+
+**C's eval-phase mandates:** (1) pre-eval deterministic gate must use the live-grid subsampled curves (threshold ≥ +0.015, expected +0.0311); (2) smoke run must diff flag-ON per-video JSON boundaries against the live-grid simulation's predicted boundaries; (3) paste `[ECE]` material/reject-cap grep counts into the eval handoff BEFORE accepting metrics.
+
+## Implementation Notes (D1)
+
+- `config.py`: `event_continuation_extension: bool = False` added to ScoringConfig (line 71); threaded in `VADConfig.from_args` via explicit `scoring=ScoringConfig(event_continuation_extension=getattr(args, 'event_continuation_extension', False))` — flag-off verified byte-identical (`from_args(empty).scoring == ScoringConfig()`).
+- `pipeline.py`: versioned docstring bumped v97→v99 (precise wording: v51 half-max LEVEL formula on the whole-video relative category curve, NOT v51's fused-curve local-window computation; T3AL citation corrected to ECCV 2024). New `_event_continuation_extension` (line 1931) implementing exactly the reproduced simulation semantics with C's mandates: always snap to grid (no skip-if-unchanged), log line reports material extensions / grid-snaps / reject-caps / skips separately: `  [ECE] extended K/N detections (material), S grid-snaps, R reject-caps, K skips (cat=[...])`. Single call site in `detect()` (line 1046) after the confidence gate, before dict projection, guarded by switch + non-empty anomalies + non-Normal category.
+- `batch_evaluate.py` (line 192) + `run.py` (line 144): `--event_continuation_extension` store_true flag, mirroring `--full_coverage_scan`; argparse dest ↔ from_args getattr threading verified (FM5 end-to-end check).
+- Sanity: ast.parse OK on all 4 files; `import pipeline` OK; pytest 43 pass / 2 fail (both pre-existing, verified present on backups). Unit tests of the method ALL PASS (plateau edges exact; grown span > max_dur unchanged; dur ≥ max_dur unchanged; rel None unchanged; flat curve → reject-cap → unchanged; unknown/Normal unchanged; multiple detections independent; empty no-op; no-growth still snaps to grid).
+- Deviations: defensive clamp `s = min(searchsorted(...), n_ts-1)` (semantically identical on all simulated data); log line reports sorted detection-category set instead of videomae_category (method signature per plan); `[ECE] extended` grep-gate prefix preserved.
+- Backups: pre-edit copies of all 4 files at `/Users/zzl/PycharmProjects/vad/.qoder/backups/v99/`. No git mutations.
+
+## Results (live evals, flag intended ON)
+
+| metric | v97 baseline | v99 smoke | v97 smoke | v99 full |
+|---|---|---|---|---|
+| mAP | 0.16155 | 0.14666 | 0.15035 | **0.15814** |
+| AP@0.3 | 0.21823 | 0.24603 | 0.25524 | 0.21787 |
+| AP@0.5 | 0.15005 | 0.10303 | 0.10490 | 0.13914 |
+| AP@0.7 | 0.11636 | 0.09091 | 0.09091 | 0.11742 |
+| latency (s/video) | 141.47 | — | — | 148.18 |
+
+Full report: `/Users/zzl/PycharmProjects/vad/results/batch_eval_v99_full/evaluation_report.json` (65/65 succeeded, 0 failed). Frame AUC 0.70994 (recorded per C's note that ECE spans flow into compute_frame_scores; not a keep criterion).
+
+## Keep/Revert Decision: **REVERT**
+
+**Reason — FM5 fired a third time: the ECE stage never activated.** Grep of both run logs shows **zero `[ECE]` lines** in the smoke run (0 matches) and the full run (0 matches). The proposal's own mandatory grep gate — count `[ECE] extended` lines (>0 on videos with extendable detections) and paste counts into the eval handoff BEFORE accepting any metric — fails at the first step: there is nothing to count. With zero activation, the live runs are flag-off-equivalent re-runs of the v97 pipeline; the observed full mAP 0.15814 vs baseline 0.16155 (−0.0034) and smoke 0.14666 vs 0.15035 are ordinary VLM noise on identical candidates, NOT evidence about ECE. The primary keep criterion (deterministic flag-ON/OFF delta ≥ +0.02 on identical cached candidates) is 0 by construction when the flag never reaches the call site; the simulated +0.0311 live-grid evidence remains untested in vivo. Per the orchestrator's decision, all 4 files were restored from `/Users/zzl/PycharmProjects/vad/.qoder/backups/v99/` and diff-verified byte-identical (post-restore grep confirms zero `event_continuation_extension` traces; ast.parse OK on all restored files).
+
+## Lessons Learned (failure modes confirmed/refuted)
+
+- **FM5 CONFIRMED — third consecutive occurrence.** v98's autopsy named flag-omission/gate-non-enforcement the dominant process failure; v99 adopted every mandated mitigation (persisted COMMAND.txt, per-video `[ECE]` log line, grep-gate-before-metrics) and the activation still never fired — AND the grep gate did not stop the eval from being scored and handed off. The process mandates are necessary but not sufficient: the gate must be a hard precondition executed by the eval runner itself (refuse to extract metrics when activation count == 0), not a checklist item. This is now the project's #1 recurring defect (v98 FCCS flag omitted; v99 ECE zero activation).
+- **FM1/FM2/FM3/FM4: untested, not refuted.** Because ECE never executed, the live runs carry zero information about curve-safety, greedy-match, or VLM failure modes. The deterministic simulation evidence (+0.0311 on the faithful live grid, zero threshold-crossing TP losses, reproduced independently by C) remains intact and the mechanism remains the strongest pending candidate — it should be re-run with an enforced activation gate rather than discarded.
+- **Noise-band math reconfirmed:** flag-off-equivalent full run landed at 0.15814 vs 0.16155 baseline (−0.0034), well inside the ±0.03 VLM band — consistent with the project's doctrine that single live runs cannot adjudicate sub-0.03 effects, which is exactly why ECE's keep rule was built on the deterministic A/B.

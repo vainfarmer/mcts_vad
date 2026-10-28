@@ -156,8 +156,10 @@ def load_predictions(result_dir: str) -> Dict[str, Dict[str, Any]]:
     preds = {}
     result_path = Path(result_dir)
     for json_file in result_path.glob('*.json'):
-        with open(json_file, 'r') as f:
+        with open(json_file, 'r', encoding='utf-8') as f:
             data = json.load(f)
+        if 'video_path' not in data or 'anomalies' not in data:
+            continue
         video_path = data.get('video_path', json_file.stem)
         video_id = _extract_video_id(video_path)
         preds[video_id] = {

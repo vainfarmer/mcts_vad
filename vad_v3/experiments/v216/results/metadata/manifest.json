@@ -1,0 +1,240 @@
+{
+  "schema": "vad-v3-1",
+  "config": {
+    "preprocess": {
+      "fps": 2,
+      "segment_duration": 6.0,
+      "segment_overlap": 0.25,
+      "motion_threshold": 1.0,
+      "min_motion_interval": 2.0
+    },
+    "clip": {
+      "model_name": "ViT-L-14",
+      "pretrained": "openai",
+      "max_frames": 200,
+      "min_frames": 3,
+      "fps_sample": 3.0,
+      "semantic_tau": 0.9
+    },
+    "mcts": {
+      "simulations": 12,
+      "max_depth": 4,
+      "padding_ratio": 0.75,
+      "early_stop_agree": 4,
+      "early_stop_min_sim": 5,
+      "mode": "refine",
+      "action_set": "shrink_expand_shift",
+      "search_strategy": "mcts",
+      "comparison_gate": "best_valid",
+      "acceptance_policy": "relative_nonloss",
+      "trigger_policy": "all_valid",
+      "citation_repair_attempts": 1,
+      "max_candidates_per_video": 4,
+      "max_vlm_evaluations_per_candidate": 10,
+      "max_vlm_evaluations_per_video": 40,
+      "timeout_seconds_per_candidate": 90.0,
+      "contrast_threshold": 0.15,
+      "search_padding_ratio": 0.25,
+      "max_inward_shift_ratio": 0.25,
+      "max_outward_shift_ratio": 0.25,
+      "step_ratio": 0.1,
+      "min_interval_seconds": 0.5,
+      "max_images_per_evaluation": 32,
+      "context_seconds": 2.0,
+      "max_boundary_gap_seconds": 1.5,
+      "max_evidence_gap_seconds": 3.0,
+      "min_unique_evaluations": 4,
+      "patience": 3,
+      "min_reward_gain": 0.02,
+      "max_curve_quality_drop": 0.05,
+      "ucb_c": 1.0,
+      "ucb_decay": 0.0,
+      "random_seed": 42,
+      "trace_enabled": true,
+      "paired_eval": true,
+      "final_nms_enabled": true,
+      "final_nms_iou": 0.3,
+      "boundary_guard_enabled": true,
+      "guard_min_retained_ratio": 0.5,
+      "guard_max_shift_ratio": 0.25,
+      "guard_tolerance_seconds": 0.5,
+      "postprocess_ablation": true,
+      "dense_fps": 0.0,
+      "max_dense_frames": 512,
+      "max_enumerated_states": 10000
+    },
+    "scoring": {
+      "clip_base_weight": 0.35,
+      "gaussian_sigma_factor": 1.5,
+      "gaussian_sigma_min": 1.0,
+      "confidence_gate": 0.5,
+      "curve_smooth_seconds": 2.0,
+      "curve_half_max_weight": 0.5,
+      "curve_max_shift_ratio": 0.4,
+      "curve_core_signal_floor": 0.3,
+      "boundary_shrink_ratio": 0.35,
+      "videomae_weight": 0.15,
+      "motion_weight": 0.1,
+      "mae_window_size": 32,
+      "mae_window_stride": 16,
+      "qscore_rerank": true,
+      "qscore_base": 0.5,
+      "bue_enabled": true,
+      "bue_alpha": 1.0,
+      "bue_lmin_sec": 6.0,
+      "bue_lmax_sec": 40.0,
+      "bue_lmax_frac": 0.8,
+      "bue_smooth_win": 3,
+      "bue_closure_gate": true,
+      "cbt_enabled": true,
+      "cbt_recal": true,
+      "cbt_recal_caps": {
+        "RoadAccidents": 4.5,
+        "Explosion": 13.0,
+        "Shoplifting": 9.0,
+        "Shooting": 13.5
+      },
+      "cbt_recal_trigger": 1.1,
+      "classify_skip_class_agnostic": true
+    },
+    "discovery": {
+      "clip_threshold": 0.3,
+      "min_pass_rate": 0.2,
+      "max_scan_segments": 6,
+      "candidate_top_k": 3
+    },
+    "device": "cuda",
+    "anomaly_categories": [
+      "Abuse",
+      "Arrest",
+      "Arson",
+      "Assault",
+      "Burglary",
+      "Explosion",
+      "Fighting",
+      "RoadAccidents",
+      "Robbery",
+      "Shooting",
+      "Shoplifting",
+      "Stealing",
+      "Vandalism"
+    ]
+  },
+  "models": [
+    {
+      "model": "qwen3-vl-plus",
+      "temperature": 0.0,
+      "max_tokens": 512,
+      "max_frames": 200,
+      "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1/"
+    },
+    {
+      "model": "qwen3-vl-plus",
+      "temperature": 0.0,
+      "max_tokens": 512,
+      "max_frames": 200,
+      "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1/"
+    }
+  ],
+  "videos": [
+    "F:\\dataset\\ucf_crime\\Anomaly-Videos-Part-1\\Abuse\\Abuse030_x264.mp4",
+    "F:\\dataset\\ucf_crime\\Anomaly-Videos-Part-1\\Arrest\\Arrest007_x264.mp4",
+    "F:\\dataset\\ucf_crime\\Anomaly-Videos-Part-1\\Arson\\Arson035_x264.mp4",
+    "F:\\dataset\\ucf_crime\\Anomaly-Videos-Part-1\\Assault\\Assault006_x264.mp4",
+    "F:\\dataset\\ucf_crime\\Anomaly-Videos-Part-2\\Burglary\\Burglary079_x264.mp4",
+    "F:\\dataset\\ucf_crime\\Anomaly-Videos-Part-2\\Explosion\\Explosion002_x264.mp4",
+    "F:\\dataset\\ucf_crime\\Anomaly-Videos-Part-2\\Fighting\\Fighting018_x264.mp4",
+    "F:\\dataset\\ucf_crime\\Anomaly-Videos-Part-3\\RoadAccidents\\RoadAccidents123_x264.mp4",
+    "F:\\dataset\\ucf_crime\\Anomaly-Videos-Part-3\\Robbery\\Robbery050_x264.mp4",
+    "F:\\dataset\\ucf_crime\\Anomaly-Videos-Part-3\\Shooting\\Shooting032_x264.mp4",
+    "F:\\dataset\\ucf_crime\\Anomaly-Videos-Part-4\\Shoplifting\\Shoplifting001_x264.mp4",
+    "F:\\dataset\\ucf_crime\\Anomaly-Videos-Part-4\\Stealing\\Stealing036_x264.mp4",
+    "F:\\dataset\\ucf_crime\\Anomaly-Videos-Part-4\\Vandalism\\Vandalism015_x264.mp4",
+    "F:\\dataset\\ucf_crime\\Testing_Normal_Videos_Anomaly\\Normal_Videos_782_x264.mp4"
+  ],
+  "local_model_sha256": {
+    "model_mil.pth": "afc7c285087711eacfb71c0f75d8db5db6b010e6578f2a357f5ea86d2b404e8f",
+    "model_mil_v6.pth": "d0f46c2cdf252c2cbfe52f2fa2ecd8fa0659096d58fdb60697b9b97abad354eb",
+    "prompt_weights.json": "0e85c2bdbb7a79cca9dbd15a3fa7ca1e923170d38bae7b146ce24cfdafec84fd"
+  },
+  "source_sha256": {
+    "__init__.py": "f1f8510d0b370d132f508dc6fb447c0b28d3ef9cfbaadec5b9dacc187c65d907",
+    "anomaly_discovery.py": "493ac84327700ddc3183370fc8798c41da5991bc44464c148281031f57cbb4f7",
+    "anomaly_expert.py": "35fd8c30976641f0e73448475cbbecddd38fd186f5be42bd652e68555ee01dbe",
+    "api_recovery.py": "604a12cb2a42e21565f1f5e2fd072641b3c6a4581bf9859058dd2c4b82398819",
+    "batch_evaluate.py": "54d83a939e9132c132a9363d831cc9fd4e9c5376c4dbda4d29eb30b6c1b8e5a2",
+    "boundary_dense.py": "f6f79723aa5c10bcade206dc8b1f53eb28f85b5a1789eaf59744befe0e710875",
+    "boundary_guard.py": "7aa955d7fccafe00196a4afab95bd68c780a323e34639cc2dcc2685c091f4ec0",
+    "boundary_search.py": "968e1fbb71ba1db11c27337574c78852c1e033dc430dbb6d4478afcf1f87f00f",
+    "config.py": "0fc85c9051fe01c8713b8329f25d6422350bb150691acf468b33165a44ade377",
+    "dataset_index.py": "7fa0f73b23eb04068c51e0f8c41ea1110d16c2f423390871fe2aaea8ae107adc",
+    "evaluate.py": "b90cde5a3abc355d859913e7365d4f4dd86c906397973e10bc5e5f21c7d690f7",
+    "experiment.py": "6a68f7beb81c21672e7ef2e87e1ebdc66af70bca8beb42b2952fea511b0a25dd",
+    "extract_features.py": "a485c3fc2624b8f47f4c6e8798de69f7cd2dfada2741bfc4a427a568b8e7a1c3",
+    "factory.py": "1745bd1caf2337530c1fd6196f48fb54d4586d5d35c2d2e239b32ab7c22b7f2d",
+    "frame_scorer.py": "d97459393d488a543acdc28c6ff510892015c56ccb9849fa1955b50d2832cb47",
+    "llm_client.py": "2bb4e6201e4b7b54d27021155193b8f0487891b58d395f052fd9a3251c179e82",
+    "llm_protocol.py": "46682ff92f180abdf52d51dddea7752b43e469602565cce3e314c009909193c2",
+    "llm_usage.py": "97f7a154c4e4a2f771ace3a3f3bcadd67acfe27eb66b5addb38020717716886a",
+    "mcts_boundary_scorer.py": "86f8eb49eb57ab580a0e6d4462deb2c63334629b834dc1e2ca83f8ed8ec82ca5",
+    "mcts_config.py": "20aa7aa314ae6c9df77847d71906d94d4c97585f1a8682ae2f52eaaafc12511a",
+    "mcts_prompts.py": "cadf59084e2d0ace54e6e3a66b811c1327fe60c27d198ff437ec07a0774133b6",
+    "mcts_refiner.py": "04fb15ba6ecd73d8b32cd8dadfd928f532d5ceb6527fa9e3a40a9578d7b9797c",
+    "mil_inference.py": "950bf51dd52133d367e3e79dafca49297cde4c6cf69ac17ba08fd758b1656e0a",
+    "mil_model.py": "865a63316099d1270372275535593c640b95b92086c7e51c4af000a45815cda7",
+    "models.py": "05de14b515e8b2c819cb8234e9af0dfd30f9d022d9ba24725f489992f94f9934",
+    "pipeline.py": "e73717037dca3f0fa004ae919bf944ec9a429505ba3572a7917eb368d79c8561",
+    "post_processor.py": "7397a1ad66744206283668b3571a79787a4fca8f62cee396457507e4dc7f44bd",
+    "run.py": "8681c794ab1cdccaaa77352b7f1206765a3d732856e4dcc283df51cb547e9411",
+    "temporal_mcts.py": "667b10e877fa41d4f21ca5000a46c392d5be6b5d23d0fde00c428b1c0670c17a",
+    "token_compressor.py": "85c3f814944b61a0233a4782182fd4fcc45e8fa14731f68ee3924407fb67198c",
+    "train_mil.py": "2c94c7cd073ed769b216d0d8f6a786a39e40dc29af93851288e7b599ca1dfc3e",
+    "train_mil_v6.py": "34090da21ba88957cb68fa1aeca0cd52ef2e979f40abc507fc053ed17946eaa7",
+    "train_prompt_weights.py": "fa3a7bc932756c79889b3150c08e8716a2a4400c008ad0625c4eb09a251538f7",
+    "vad_logger.py": "df7189240fe0c7a391f0fffbd965bd902207d25c466db3d7cde62804e35cac9d",
+    "video_preprocessor.py": "97159788652fd26f45b03edec712cf378dae3139a2dd79235020f4150cc2da52",
+    "videomae_classifier.py": "e8d2c4e70a2d37fc0ddd178bcaa004e5ebbf97d40cc3a02387303500b82dce92"
+  },
+  "runtime_settings": {
+    "video_concurrency": 2,
+    "video_retry_rounds": 1,
+    "video_retry_min_seconds": 5.0,
+    "video_retry_max_seconds": 15.0
+  },
+  "api_settings": [
+    {
+      "attempts": 3,
+      "delay_min": 2.0,
+      "delay_max": 8.0,
+      "concurrency": 4,
+      "timeout_seconds": 60.0,
+      "connect_timeout_seconds": 15.0
+    },
+    {
+      "attempts": 3,
+      "delay_min": 2.0,
+      "delay_max": 8.0,
+      "concurrency": 4,
+      "timeout_seconds": 60.0,
+      "connect_timeout_seconds": 15.0
+    }
+  ],
+  "packages": {
+    "torch": "2.7.1+cu128",
+    "transformers": "4.57.6",
+    "open-clip-torch": "2.32.0",
+    "numpy": "2.2.6"
+  },
+  "cached_model_revisions": {
+    "OPear/videomae-large-finetuned-UCF-Crime": [
+      "bc5f1c1058158a05f8710de2b7c7c372fe69062b"
+    ],
+    "timm/vit_large_patch14_clip_224.openai": [
+      "18d0535469bb561bf468d76c1d73aa35156c922b"
+    ],
+    "timm/vit_base_patch32_clip_224.openai": [
+      "a6f597a30f7b82c51704746581f9a4e41421e878"
+    ]
+  },
+  "fingerprint": "e2e1abfa0ef4efdd3268b27e7329455aa53c6bd832c7c85c3b281eedfb804b69"
+}

@@ -5,12 +5,18 @@ v5: 双 VLM 模型 + 优化参数
 """
 
 import argparse
+try:
+    from .llm_usage import track_batch_usage
+except ImportError:
+    from llm_usage import track_batch_usage
+
 import asyncio
 import json
 import os
 import sys
 import time
 from pathlib import Path
+from dataset_index import parquet_directory, resolve_video
 
 import pandas as pd
 
@@ -28,7 +34,7 @@ logger = vad_logger.get("vad.batch")
 
 def select_videos(dataset_dir: str, max_per_category: int, split: str = "test",
                   categories=None):
-    data_dir = Path(dataset_dir) / "data"
+    data_dir = parquet_directory(dataset_dir)
     parquet_files = sorted(data_dir.glob(f"{split}-*.parquet"))
     if not parquet_files:
         raise FileNotFoundError(f"No {split} parquet files in {data_dir}")
@@ -51,6 +57,7 @@ def select_videos(dataset_dir: str, max_per_category: int, split: str = "test",
     for cat, n in sorted(summary.items()):
         total = len(df[df["category"] == cat])
         logger.info(f"  {cat:20s}: {n:3d} / {total}")
+    result["video_path"] = result["video_path"].map(lambda p: resolve_video(dataset_dir, p))
     return result
 
 
@@ -67,7 +74,7 @@ async def process_one_video(vad, video_path, output_file, video_id, category,
             elapsed = time.time() - t0
             serializable = result.to_dict()
             serializable["processing_time"] = round(elapsed, 2)
-            with open(output_file, "w") as f:
+            with open(output_file, "w", encoding="utf-8") as f:
                 json.dump(serializable, f, indent=2, ensure_ascii=False)
             n_anomalies = len(result.anomalies)
             logger.info(f"[{idx}/{total}] DONE  {video_id}: "
@@ -82,6 +89,7 @@ async def process_one_video(vad, video_path, output_file, video_id, category,
 
 
 
+@track_batch_usage
 async def run_batch(args):
     dataset_dir = Path(args.dataset_dir)
     output_dir = Path(args.output_dir)
@@ -151,7 +159,7 @@ async def run_batch(args):
 
 
     logger.info("Running evaluation...")
-    label_path = str(dataset_dir / "data")
+    label_path = str(parquet_directory(dataset_dir))
     eval_results = evaluate(label_path, str(output_dir), fps=30, split="test")
 
     report = {
@@ -166,7 +174,7 @@ async def run_batch(args):
         "evaluation": eval_results,
     }
     report_file = str(output_dir / "evaluation_report.json")
-    with open(report_file, "w") as f:
+    with open(report_file, "w", encoding="utf-8") as f:
         json.dump(report, f, indent=2, ensure_ascii=False)
     logger.info(f"Full report saved to: {report_file}")
     return report

@@ -5,6 +5,11 @@ v5: 双 VLM 模型 + 优化参数
 """
 
 import argparse
+try:
+    from .llm_usage import track_batch_usage
+except ImportError:
+    from llm_usage import track_batch_usage
+
 import asyncio
 import json
 import os
@@ -63,6 +68,7 @@ async def process_one_video(vad, video_path, output_file, video_id, category,
                 "processing_time": round(elapsed, 2),
                 "is_normal": result["is_normal"],
                 "anomalies": result["anomalies"],
+            "token_usage": result["token_usage"],
             }
             with open(output_file, "w") as f:
                 json.dump(serializable, f, indent=2, ensure_ascii=False)
@@ -77,6 +83,7 @@ async def process_one_video(vad, video_path, output_file, video_id, category,
             return "failed", elapsed
 
 
+@track_batch_usage
 async def run_batch(args):
     dataset_dir = Path(args.dataset_dir)
     output_dir = Path(args.output_dir)

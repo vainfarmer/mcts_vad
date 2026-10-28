@@ -8,6 +8,11 @@ DashScope VLM 客户端 — 从 run.py 抽离，实现 llm_protocol.LLMClient。
 """
 
 from __future__ import annotations
+try:
+    from .llm_usage import tracked_completion
+except ImportError:
+    from llm_usage import tracked_completion
+
 import os
 from typing import Optional
 
@@ -37,7 +42,7 @@ class DashScopeLLMClient:
         # API key 仅从环境读取，禁止打印
         api_key = api_key or os.environ.get("DASHSCOPE_API_KEY", "")
         base_url = base_url or "https://dashscope.aliyuncs.com/compatible-mode/v1"
-        self.client = AsyncOpenAI(api_key=api_key, base_url=base_url)
+        self.client = AsyncOpenAI(api_key=api_key, base_url=base_url, max_retries=0)
         self.model = model
         self.temperature = temperature
         self.max_tokens = max_tokens
@@ -101,7 +106,7 @@ class DashScopeLLMClient:
         import asyncio as _asyncio
         for _attempt in range(5):
             try:
-                response = await self.client.chat.completions.create(
+                response = await tracked_completion(self.client,
                     model=self.model,
                     messages=[{"role": "user", "content": content}],
                     max_tokens=self.max_tokens,

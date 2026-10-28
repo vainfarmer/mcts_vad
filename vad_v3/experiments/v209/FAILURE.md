@@ -1,0 +1,1 @@
+v209：qwen-vl-plus 返回 HTTP 404 model_not_found。人工停止批次；未产生有效对照指标。v210 统一使用可用的 qwen3-vl-plus。停止前的逐请求日志保留于 results/metadata。

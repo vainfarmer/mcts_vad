@@ -1,0 +1,29 @@
+# Shared dependencies for vad_v1 and vad_v2, including analysis and tests.
+# Install: conda run -n common python -m pip install -r requirement.txt
+# Tested target: Windows x64, Python 3.13, NVIDIA RTX 5060 Ti.
+# CUDA 12.8 wheels; a compatible NVIDIA driver is required for GPU use.
+--extra-index-url https://download.pytorch.org/whl/cu128
+torch==2.7.1+cu128
+torchvision==0.22.1+cu128
+
+# Video processing and numerical evaluation.
+numpy==2.2.6
+opencv-python-headless==4.14.0.94
+Pillow==12.3.0
+pandas==2.3.3
+scipy==1.15.3
+scikit-learn==1.6.1
+
+# CLIP / VideoMAE and the OpenAI-compatible DashScope client.
+open-clip-torch==2.32.0
+transformers==4.57.6
+huggingface-hub==0.36.2
+safetensors==0.8.0
+openai==1.109.1
+
+# Existing unit test suite.
+pytest==8.4.2
+
+# Model weights, datasets and API credentials are configured separately.
+# snh_features is a missing local module used by one historical analysis script;
+# it is not a third-party package and cannot be supplied by pip.

@@ -22,6 +22,11 @@
 """
 
 import argparse
+try:
+    from .llm_usage import tracked_completion
+except ImportError:
+    from llm_usage import tracked_completion
+
 import asyncio
 import json
 import os
@@ -57,7 +62,7 @@ class DashScopeLLMClient:
                  temperature=0.0, max_tokens=512, max_frames=200):
         api_key = api_key or os.environ.get("DASHSCOPE_API_KEY", "")
         base_url = base_url or "https://dashscope.aliyuncs.com/compatible-mode/v1"
-        self.client = AsyncOpenAI(api_key=api_key, base_url=base_url)
+        self.client = AsyncOpenAI(api_key=api_key, base_url=base_url, max_retries=0)
         self.model = model
         self.temperature = temperature
         self.max_tokens = max_tokens
@@ -120,7 +125,7 @@ class DashScopeLLMClient:
         import asyncio as _asyncio
         for _attempt in range(5):
             try:
-                response = await self.client.chat.completions.create(
+                response = await tracked_completion(self.client,
                     model=self.model,
                     messages=[{"role": "user", "content": content}],
                     max_tokens=self.max_tokens,
@@ -206,6 +211,7 @@ async def main(args):
             'processing_time': round(elapsed, 2),
             'is_normal': result['is_normal'],
             'anomalies': result['anomalies'],
+            "token_usage": result["token_usage"],
         }
         with open(args.output_file, 'w') as f:
             json.dump(serializable, f, indent=2, ensure_ascii=False)

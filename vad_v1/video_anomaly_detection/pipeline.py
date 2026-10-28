@@ -11,6 +11,11 @@ v27: 降低Normal误报 + 提升分类准确率 + 改善时间定位
   6. MCTS搜索范围扩大至±75%（改善时间边界覆盖）
 """
 
+try:
+    from .llm_usage import track_video_usage
+except ImportError:
+    from llm_usage import track_video_usage
+
 import asyncio
 import json
 from collections import Counter
@@ -150,6 +155,7 @@ class MultiAnomalyVAD:
         self.mcts_simulations = mcts_simulations
         self.mcts_max_depth = mcts_max_depth
 
+    @track_video_usage
     async def detect(
         self,
         video_path: str,

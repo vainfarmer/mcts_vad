@@ -135,6 +135,7 @@ class DetectionResult:
     # pre_bue_boundaries），无需正则解析 run.log、无浮点取整键冲突，并免费
     # 继承该工具的长度不一致 HARD-VOID 检查。
     # None（flag-off）时不序列化 —— 输出 JSON 与旧行为字节级一致。
+    token_usage: Optional[Dict[str, Any]] = None
     pre_bue_boundaries: Optional[List[List[float]]] = None
     # v155 CBT (M1): CBT 生效前的 [t_start, t_end] 列表（与 anomalies 顺序
     # index-aligned；CBT 是 count-neutral 的就地端点收缩，长度必然等于
@@ -162,6 +163,8 @@ class DetectionResult:
             d["pre_bue_boundaries"] = self.pre_bue_boundaries
         if self.pre_cbt_boundaries is not None:
             d["pre_cbt_boundaries"] = self.pre_cbt_boundaries
+        if self.token_usage is not None:
+            d["token_usage"] = self.token_usage
         return d
 
 

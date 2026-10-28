@@ -1,0 +1,236 @@
+2026-10-27 12:42:41 [INFO   ] VAD batch evaluation started | output_dir=D:\Users\zzl\project\mcts_vad\vad_v3\experiments\v209\results | log=D:\Users\zzl\project\mcts_vad\vad_v3\experiments\v209\results\run.log
+2026-10-27 12:42:41 [INFO   ] Selected 14 videos from 14 categories:
+2026-10-27 12:42:41 [INFO   ]   Abuse               :   1 / 2
+2026-10-27 12:42:41 [INFO   ]   Arrest              :   1 / 5
+2026-10-27 12:42:41 [INFO   ]   Arson               :   1 / 9
+2026-10-27 12:42:41 [INFO   ]   Assault             :   1 / 3
+2026-10-27 12:42:41 [INFO   ]   Burglary            :   1 / 13
+2026-10-27 12:42:41 [INFO   ]   Explosion           :   1 / 21
+2026-10-27 12:42:41 [INFO   ]   Fighting            :   1 / 5
+2026-10-27 12:42:41 [INFO   ]   Normal              :   1 / 150
+2026-10-27 12:42:41 [INFO   ]   RoadAccidents       :   1 / 23
+2026-10-27 12:42:41 [INFO   ]   Robbery             :   1 / 5
+2026-10-27 12:42:41 [INFO   ]   Shooting            :   1 / 23
+2026-10-27 12:42:41 [INFO   ]   Shoplifting         :   1 / 21
+2026-10-27 12:42:41 [INFO   ]   Stealing            :   1 / 5
+2026-10-27 12:42:41 [INFO   ]   Vandalism           :   1 / 5
+2026-10-27 12:42:44 [INFO   ] [AnomalyExpert] Loaded learned prompt weights from D:\Users\zzl\project\mcts_vad\vad_v3\video_anomaly_detection\prompt_weights.json
+2026-10-27 12:42:45 [INFO   ] [AnomalyExpert] CLIP ViT-L-14 loaded on cuda
+2026-10-27 12:42:50 [INFO   ] [VideoMAE] Loaded on cuda
+2026-10-27 12:42:50 [INFO   ]   [MIL] Loaded MIL model from D:\Users\zzl\project\mcts_vad\vad_v3\video_anomaly_detection\model_mil.pth
+2026-10-27 12:42:50 [INFO   ] Starting batch processing: 14 videos, concurrency=1
+2026-10-27 12:42:50 [INFO   ] Detect model: qwen-vl-plus, Classify model: qwen3-vl-plus
+2026-10-27 12:42:50 [INFO   ] ============================================================
+2026-10-27 12:42:50 [INFO   ] [1/14] START Abuse030_x264 (Abuse)
+2026-10-27 12:42:50 [INFO   ]   [Motion filter] 103 -> 103 frames (0% removed, threshold=1.0)
+2026-10-27 12:42:51 [INFO   ]   [CLIP precompute] 103 frames encoded in 1.3s
+2026-10-27 12:42:51 [INFO   ]   [MIL] snippet scores: mean=0.995, max=1.000, min=0.920
+2026-10-27 12:42:53 [INFO   ]   [VideoMAE] Abuse(99%), RoadAccidents(1%), Vandalism(0%) -> Abuse@99%
+2026-10-27 12:42:54 [INFO   ]   [VideoMAE-window] 5 windows in 1.4s
+2026-10-27 12:42:54 [INFO   ]   [CLIP-loc] Category=Abuse, mean=0.271, std=0.117, range=0.534, cv=0.432
+2026-10-27 12:42:54 [INFO   ]   [CLIP-loc] Found 5 multi-scale regions:
+2026-10-27 12:42:54 [INFO   ]   [CLIP-loc] Category=Explosion, mean=0.178, std=0.172, range=0.858, cv=0.967
+2026-10-27 12:42:54 [INFO   ]   [CLIP-loc] Fused with motion energy for Explosion
+2026-10-27 12:42:54 [INFO   ]   [CLIP-loc] Found 5 multi-scale regions:
+2026-10-27 12:42:54 [INFO   ]   [Multi-CLIP-loc] 10 regions deduped to 1
+2026-10-27 12:42:54 [INFO   ]   [Directed scan] 10/12 segments selected for LLM scanning
+2026-10-27 12:42:55 [INFO   ] [LLM-TOKENS-CALL] {"request_id": "6b3a63de05a641e9b7480b8f4125240e", "timestamp": "2026-10-27T04:42:54.949469+00:00", "model": "qwen-vl-plus", "video_path": "F:\\dataset\\ucf_crime\\Anomaly-Videos-Part-1\\Abuse\\Abuse030_x264.mp4", "run_id": "20261027T044241-61e76c9e", "status": "error", "prompt_tokens": null, "completion_tokens": null, "total_tokens": null, "usage_complete": false, "error_type": "NotFoundError", "elapsed_seconds": 0.3869}
+2026-10-27 12:42:55 [INFO   ] [LLM-TOKENS-CALL] {"request_id": "075504d51c534b34b62c7f26f3c8213a", "timestamp": "2026-10-27T04:42:54.698099+00:00", "model": "qwen-vl-plus", "video_path": "F:\\dataset\\ucf_crime\\Anomaly-Videos-Part-1\\Abuse\\Abuse030_x264.mp4", "run_id": "20261027T044241-61e76c9e", "status": "error", "prompt_tokens": null, "completion_tokens": null, "total_tokens": null, "usage_complete": false, "error_type": "NotFoundError", "elapsed_seconds": 0.639}
+2026-10-27 12:42:55 [INFO   ] [COST] video=Abuse030_x264.mp4 vlm_calls=10 clip_calls=4 elapsed_s=5.2
+2026-10-27 12:42:55 [INFO   ] [LLM-TOKENS-VIDEO] {"requests": 2, "successful_requests": 0, "failed_requests": 2, "unknown_usage_requests": 2, "prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0, "by_model": {"qwen-vl-plus": {"requests": 2, "successful_requests": 0, "failed_requests": 2, "unknown_usage_requests": 2, "prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0, "by_model": {}}}, "video_path": "F:\\dataset\\ucf_crime\\Anomaly-Videos-Part-1\\Abuse\\Abuse030_x264.mp4", "status": "error"}
+2026-10-27 12:42:55 [ERROR  ] [1/14] FAIL  Abuse030_x264: Error code: 404 - {'error': {'message': 'Model not exist.', 'type': 'invalid_request_error', 'param': None, 'code': 'model_not_found'}, 'id': 'chatcmpl-d2f70ce0-8fda-9b54-9471-ffdd4b8ab045', 'request_id': 'd2f70ce0-8fda-9b54-9471-ffdd4b8ab045'} (5.2s)
+Traceback (most recent call last):
+  File "D:\Users\zzl\project\mcts_vad\vad_v3\video_anomaly_detection\batch_evaluate.py", line 76, in process_one_video
+    result = await vad.detect(video_path=video_path)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Users\zzl\project\mcts_vad\vad_v3\video_anomaly_detection\llm_usage.py", line 95, in wrapped
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Users\zzl\project\mcts_vad\vad_v3\video_anomaly_detection\experiment.py", line 19, in wrapped
+    result=await func(self,*args,**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Users\zzl\project\mcts_vad\vad_v3\video_anomaly_detection\pipeline.py", line 687, in detect
+    return await self._detect_impl(video_path, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Users\zzl\project\mcts_vad\vad_v3\video_anomaly_detection\pipeline.py", line 840, in _detect_impl
+    candidates = await self._directed_llm_scan(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        video_data, clip_regions, context_prompt, videomae_category)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Users\zzl\project\mcts_vad\vad_v3\video_anomaly_detection\pipeline.py", line 1577, in _directed_llm_scan
+    results = await asyncio.gather(*tasks)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Users\zzl\project\mcts_vad\vad_v3\video_anomaly_detection\anomaly_discovery.py", line 86, in scan_segment
+    response = await self.llm.generate(prompt, keyframes)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Users\zzl\project\mcts_vad\vad_v3\video_anomaly_detection\experiment.py", line 46, in wrapped
+    cache[key]=await func(self,prompt,images,**kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Users\zzl\project\mcts_vad\vad_v3\video_anomaly_detection\llm_client.py", line 117, in generate
+    response = await tracked_completion(self.client,
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+    )
+    ^
+  File "D:\Users\zzl\project\mcts_vad\vad_v3\video_anomaly_detection\llm_usage.py", line 60, in tracked_completion
+    response = await client.chat.completions.create(**kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Gigabyte\.conda\envs\common\Lib\site-packages\openai\resources\chat\completions\completions.py", line 2585, in create
+    return await self._post(
+           ^^^^^^^^^^^^^^^^^
+    ...<48 lines>...
+    )
+    ^
+  File "C:\Users\Gigabyte\.conda\envs\common\Lib\site-packages\openai\_base_client.py", line 1794, in post
+    return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Gigabyte\.conda\envs\common\Lib\site-packages\openai\_base_client.py", line 1594, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.NotFoundError: Error code: 404 - {'error': {'message': 'Model not exist.', 'type': 'invalid_request_error', 'param': None, 'code': 'model_not_found'}, 'id': 'chatcmpl-d2f70ce0-8fda-9b54-9471-ffdd4b8ab045', 'request_id': 'd2f70ce0-8fda-9b54-9471-ffdd4b8ab045'}
+2026-10-27 12:42:55 [INFO   ] [2/14] START Arrest007_x264 (Arrest)
+2026-10-27 12:42:55 [INFO   ]   [Motion filter] 210 -> 130 frames (38% removed, threshold=1.0)
+2026-10-27 12:42:56 [INFO   ]   [CLIP precompute] 130 frames encoded in 1.1s
+2026-10-27 12:42:56 [INFO   ]   [MIL] snippet scores: mean=0.997, max=1.000, min=0.975
+2026-10-27 12:42:58 [INFO   ]   [VideoMAE] Arrest(68%), Abuse(10%), RoadAccidents(10%) -> Arrest@68%
+2026-10-27 12:43:00 [INFO   ]   [VideoMAE-window] 7 windows in 2.0s
+2026-10-27 12:43:00 [INFO   ]   [CLIP-loc] Category=Arrest, mean=0.395, std=0.331, range=0.998, cv=0.838
+2026-10-27 12:43:00 [INFO   ]   [CLIP-loc] Found 5 multi-scale regions:
+2026-10-27 12:43:00 [INFO   ]   [Multi-CLIP-loc] 5 regions deduped to 3
+2026-10-27 12:43:00 [INFO   ]   [Directed scan] 10/23 segments selected for LLM scanning
+2026-10-27 12:43:00 [INFO   ] [LLM-TOKENS-CALL] {"request_id": "999ac6576633407fa55698293b177b7f", "timestamp": "2026-10-27T04:42:54.939112+00:00", "model": "qwen-vl-plus", "video_path": "F:\\dataset\\ucf_crime\\Anomaly-Videos-Part-1\\Abuse\\Abuse030_x264.mp4", "run_id": "20261027T044241-61e76c9e", "status": "error", "prompt_tokens": null, "completion_tokens": null, "total_tokens": null, "usage_complete": false, "error_type": "NotFoundError", "elapsed_seconds": 5.3379}
+2026-10-27 12:43:00 [INFO   ] [LLM-TOKENS-CALL] {"request_id": "48364c42e1504fc696b5404025885f66", "timestamp": "2026-10-27T04:42:54.959938+00:00", "model": "qwen-vl-plus", "video_path": "F:\\dataset\\ucf_crime\\Anomaly-Videos-Part-1\\Abuse\\Abuse030_x264.mp4", "run_id": "20261027T044241-61e76c9e", "status": "error", "prompt_tokens": null, "completion_tokens": null, "total_tokens": null, "usage_complete": false, "error_type": "NotFoundError", "elapsed_seconds": 5.3201}
+2026-10-27 12:43:00 [INFO   ] [LLM-TOKENS-CALL] {"request_id": "f2b0d4d3e3f34c7f90419e127026ada5", "timestamp": "2026-10-27T04:42:54.884290+00:00", "model": "qwen-vl-plus", "video_path": "F:\\dataset\\ucf_crime\\Anomaly-Videos-Part-1\\Abuse\\Abuse030_x264.mp4", "run_id": "20261027T044241-61e76c9e", "status": "error", "prompt_tokens": null, "completion_tokens": null, "total_tokens": null, "usage_complete": false, "error_type": "NotFoundError", "elapsed_seconds": 5.3962}
+2026-10-27 12:43:00 [INFO   ] [LLM-TOKENS-CALL] {"request_id": "98c074b0ceb64beb8396366aeb0a7082", "timestamp": "2026-10-27T04:42:54.928605+00:00", "model": "qwen-vl-plus", "video_path": "F:\\dataset\\ucf_crime\\Anomaly-Videos-Part-1\\Abuse\\Abuse030_x264.mp4", "run_id": "20261027T044241-61e76c9e", "status": "error", "prompt_tokens": null, "completion_tokens": null, "total_tokens": null, "usage_complete": false, "error_type": "NotFoundError", "elapsed_seconds": 5.3523}
+2026-10-27 12:43:00 [INFO   ] [LLM-TOKENS-CALL] {"request_id": "71eb17fc34b048fda77c8e26c817c5f9", "timestamp": "2026-10-27T04:42:54.855392+00:00", "model": "qwen-vl-plus", "video_path": "F:\\dataset\\ucf_crime\\Anomaly-Videos-Part-1\\Abuse\\Abuse030_x264.mp4", "run_id": "20261027T044241-61e76c9e", "status": "error", "prompt_tokens": null, "completion_tokens": null, "total_tokens": null, "usage_complete": false, "error_type": "NotFoundError", "elapsed_seconds": 5.4259}
+2026-10-27 12:43:00 [INFO   ] [LLM-TOKENS-CALL] {"request_id": "9a4e4f547e074ae4bdffd17e13cf885b", "timestamp": "2026-10-27T04:42:54.864974+00:00", "model": "qwen-vl-plus", "video_path": "F:\\dataset\\ucf_crime\\Anomaly-Videos-Part-1\\Abuse\\Abuse030_x264.mp4", "run_id": "20261027T044241-61e76c9e", "status": "error", "prompt_tokens": null, "completion_tokens": null, "total_tokens": null, "usage_complete": false, "error_type": "NotFoundError", "elapsed_seconds": 5.4169}
+2026-10-27 12:43:00 [INFO   ] [LLM-TOKENS-CALL] {"request_id": "91e334a6f8f04869864a085a7bd1136c", "timestamp": "2026-10-27T04:42:54.917805+00:00", "model": "qwen-vl-plus", "video_path": "F:\\dataset\\ucf_crime\\Anomaly-Videos-Part-1\\Abuse\\Abuse030_x264.mp4", "run_id": "20261027T044241-61e76c9e", "status": "error", "prompt_tokens": null, "completion_tokens": null, "total_tokens": null, "usage_complete": false, "error_type": "NotFoundError", "elapsed_seconds": 5.3645}
+2026-10-27 12:43:00 [INFO   ] [LLM-TOKENS-CALL] {"request_id": "87786f04b04a48e2bfb33826bdf25048", "timestamp": "2026-10-27T04:42:54.874421+00:00", "model": "qwen-vl-plus", "video_path": "F:\\dataset\\ucf_crime\\Anomaly-Videos-Part-1\\Abuse\\Abuse030_x264.mp4", "run_id": "20261027T044241-61e76c9e", "status": "error", "prompt_tokens": null, "completion_tokens": null, "total_tokens": null, "usage_complete": false, "error_type": "NotFoundError", "elapsed_seconds": 5.4084}
+2026-10-27 12:43:00 [INFO   ] [LLM-TOKENS-CALL] {"request_id": "15cb60a7023e413f911d3b0ff5ec42e0", "timestamp": "2026-10-27T04:43:00.269016+00:00", "model": "qwen-vl-plus", "video_path": "F:\\dataset\\ucf_crime\\Anomaly-Videos-Part-1\\Arrest\\Arrest007_x264.mp4", "run_id": "20261027T044241-61e76c9e", "status": "error", "prompt_tokens": null, "completion_tokens": null, "total_tokens": null, "usage_complete": false, "error_type": "NotFoundError", "elapsed_seconds": 0.1514}
+2026-10-27 12:43:00 [INFO   ] [COST] video=Arrest007_x264.mp4 vlm_calls=10 clip_calls=5 elapsed_s=5.1
+2026-10-27 12:43:00 [INFO   ] [LLM-TOKENS-VIDEO] {"requests": 1, "successful_requests": 0, "failed_requests": 1, "unknown_usage_requests": 1, "prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0, "by_model": {"qwen-vl-plus": {"requests": 1, "successful_requests": 0, "failed_requests": 1, "unknown_usage_requests": 1, "prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0, "by_model": {}}}, "video_path": "F:\\dataset\\ucf_crime\\Anomaly-Videos-Part-1\\Arrest\\Arrest007_x264.mp4", "status": "error"}
+2026-10-27 12:43:00 [ERROR  ] [2/14] FAIL  Arrest007_x264: Error code: 404 - {'error': {'message': 'Model not exist.', 'type': 'invalid_request_error', 'param': None, 'code': 'model_not_found'}, 'id': 'chatcmpl-d250166a-88f9-9e29-9ff2-b3771af43822', 'request_id': 'd250166a-88f9-9e29-9ff2-b3771af43822'} (5.1s)
+Traceback (most recent call last):
+  File "D:\Users\zzl\project\mcts_vad\vad_v3\video_anomaly_detection\batch_evaluate.py", line 76, in process_one_video
+    result = await vad.detect(video_path=video_path)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Users\zzl\project\mcts_vad\vad_v3\video_anomaly_detection\llm_usage.py", line 95, in wrapped
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Users\zzl\project\mcts_vad\vad_v3\video_anomaly_detection\experiment.py", line 19, in wrapped
+    result=await func(self,*args,**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Users\zzl\project\mcts_vad\vad_v3\video_anomaly_detection\pipeline.py", line 687, in detect
+    return await self._detect_impl(video_path, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Users\zzl\project\mcts_vad\vad_v3\video_anomaly_detection\pipeline.py", line 840, in _detect_impl
+    candidates = await self._directed_llm_scan(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        video_data, clip_regions, context_prompt, videomae_category)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Users\zzl\project\mcts_vad\vad_v3\video_anomaly_detection\pipeline.py", line 1577, in _directed_llm_scan
+    results = await asyncio.gather(*tasks)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Users\zzl\project\mcts_vad\vad_v3\video_anomaly_detection\anomaly_discovery.py", line 86, in scan_segment
+    response = await self.llm.generate(prompt, keyframes)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Users\zzl\project\mcts_vad\vad_v3\video_anomaly_detection\experiment.py", line 46, in wrapped
+    cache[key]=await func(self,prompt,images,**kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Users\zzl\project\mcts_vad\vad_v3\video_anomaly_detection\llm_client.py", line 117, in generate
+    response = await tracked_completion(self.client,
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+    )
+    ^
+  File "D:\Users\zzl\project\mcts_vad\vad_v3\video_anomaly_detection\llm_usage.py", line 60, in tracked_completion
+    response = await client.chat.completions.create(**kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Gigabyte\.conda\envs\common\Lib\site-packages\openai\resources\chat\completions\completions.py", line 2585, in create
+    return await self._post(
+           ^^^^^^^^^^^^^^^^^
+    ...<48 lines>...
+    )
+    ^
+  File "C:\Users\Gigabyte\.conda\envs\common\Lib\site-packages\openai\_base_client.py", line 1794, in post
+    return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Gigabyte\.conda\envs\common\Lib\site-packages\openai\_base_client.py", line 1594, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.NotFoundError: Error code: 404 - {'error': {'message': 'Model not exist.', 'type': 'invalid_request_error', 'param': None, 'code': 'model_not_found'}, 'id': 'chatcmpl-d250166a-88f9-9e29-9ff2-b3771af43822', 'request_id': 'd250166a-88f9-9e29-9ff2-b3771af43822'}
+2026-10-27 12:43:00 [INFO   ] [3/14] START Arson035_x264 (Arson)
+2026-10-27 12:43:00 [INFO   ]   [Motion filter] 96 -> 88 frames (8% removed, threshold=1.0)
+2026-10-27 12:43:01 [INFO   ]   [CLIP precompute] 88 frames encoded in 0.6s
+2026-10-27 12:43:01 [INFO   ]   [MIL] snippet scores: mean=1.000, max=1.000, min=0.997
+2026-10-27 12:43:02 [INFO   ]   [VideoMAE] Arson(98%), Arrest(1%), Explosion(0%) -> Arson@98%
+2026-10-27 12:43:03 [INFO   ]   [VideoMAE-window] 4 windows in 1.1s
+2026-10-27 12:43:03 [INFO   ]   [CLIP-loc] Category=Arson, mean=0.909, std=0.219, range=0.908, cv=0.241
+2026-10-27 12:43:03 [INFO   ]   [CLIP-loc] Found 2 multi-scale regions:
+2026-10-27 12:43:03 [INFO   ]   [Multi-CLIP-loc] 2 regions deduped to 1
+2026-10-27 12:43:03 [INFO   ]   [Directed scan] 10/11 segments selected for LLM scanning
+2026-10-27 12:43:03 [INFO   ] [LLM-TOKENS-CALL] {"request_id": "297b0fd189b14ccda440e168f5281eb9", "timestamp": "2026-10-27T04:43:00.275048+00:00", "model": "qwen-vl-plus", "video_path": "F:\\dataset\\ucf_crime\\Anomaly-Videos-Part-1\\Arrest\\Arrest007_x264.mp4", "run_id": "20261027T044241-61e76c9e", "status": "error", "prompt_tokens": null, "completion_tokens": null, "total_tokens": null, "usage_complete": false, "error_type": "NotFoundError", "elapsed_seconds": 3.6351}
+2026-10-27 12:43:03 [INFO   ] [LLM-TOKENS-CALL] {"request_id": "0e3550fff38e401a916d91f4db239d4b", "timestamp": "2026-10-27T04:43:00.265912+00:00", "model": "qwen-vl-plus", "video_path": "F:\\dataset\\ucf_crime\\Anomaly-Videos-Part-1\\Arrest\\Arrest007_x264.mp4", "run_id": "20261027T044241-61e76c9e", "status": "error", "prompt_tokens": null, "completion_tokens": null, "total_tokens": null, "usage_complete": false, "error_type": "NotFoundError", "elapsed_seconds": 3.6448}
+2026-10-27 12:43:03 [INFO   ] [LLM-TOKENS-CALL] {"request_id": "2970d2d5716d45348ecd056d0fa45a4a", "timestamp": "2026-10-27T04:43:00.272249+00:00", "model": "qwen-vl-plus", "video_path": "F:\\dataset\\ucf_crime\\Anomaly-Videos-Part-1\\Arrest\\Arrest007_x264.mp4", "run_id": "20261027T044241-61e76c9e", "status": "error", "prompt_tokens": null, "completion_tokens": null, "total_tokens": null, "usage_complete": false, "error_type": "NotFoundError", "elapsed_seconds": 3.6389}
+2026-10-27 12:43:03 [INFO   ] [LLM-TOKENS-CALL] {"request_id": "59cfdca58e1a4c28a52adaba098b2413", "timestamp": "2026-10-27T04:43:00.233560+00:00", "model": "qwen-vl-plus", "video_path": "F:\\dataset\\ucf_crime\\Anomaly-Videos-Part-1\\Arrest\\Arrest007_x264.mp4", "run_id": "20261027T044241-61e76c9e", "status": "error", "prompt_tokens": null, "completion_tokens": null, "total_tokens": null, "usage_complete": false, "error_type": "NotFoundError", "elapsed_seconds": 3.6781}
+2026-10-27 12:43:03 [WARNING]     [LLM] Rate limited, retry in 2s (attempt 1/5)
+2026-10-27 12:43:03 [INFO   ] [LLM-TOKENS-CALL] {"request_id": "a92d6de8055d40108f2b9cf38cb79289", "timestamp": "2026-10-27T04:43:00.239005+00:00", "model": "qwen-vl-plus", "video_path": "F:\\dataset\\ucf_crime\\Anomaly-Videos-Part-1\\Arrest\\Arrest007_x264.mp4", "run_id": "20261027T044241-61e76c9e", "status": "error", "prompt_tokens": null, "completion_tokens": null, "total_tokens": null, "usage_complete": false, "error_type": "NotFoundError", "elapsed_seconds": 3.6731}
+2026-10-27 12:43:03 [INFO   ] [LLM-TOKENS-CALL] {"request_id": "17cffab08b59465dbd1f7fee65a4471b", "timestamp": "2026-10-27T04:43:00.261970+00:00", "model": "qwen-vl-plus", "video_path": "F:\\dataset\\ucf_crime\\Anomaly-Videos-Part-1\\Arrest\\Arrest007_x264.mp4", "run_id": "20261027T044241-61e76c9e", "status": "error", "prompt_tokens": null, "completion_tokens": null, "total_tokens": null, "usage_complete": false, "error_type": "NotFoundError", "elapsed_seconds": 3.6507}
+2026-10-27 12:43:03 [INFO   ] [LLM-TOKENS-CALL] {"request_id": "e3687c4fd59449459a699c5db83fa32d", "timestamp": "2026-10-27T04:43:00.255776+00:00", "model": "qwen-vl-plus", "video_path": "F:\\dataset\\ucf_crime\\Anomaly-Videos-Part-1\\Arrest\\Arrest007_x264.mp4", "run_id": "20261027T044241-61e76c9e", "status": "error", "prompt_tokens": null, "completion_tokens": null, "total_tokens": null, "usage_complete": false, "error_type": "NotFoundError", "elapsed_seconds": 3.6573}
+2026-10-27 12:43:03 [INFO   ] [LLM-TOKENS-CALL] {"request_id": "2f01d5f65f744a14bd84f1096fba17db", "timestamp": "2026-10-27T04:43:00.244461+00:00", "model": "qwen-vl-plus", "video_path": "F:\\dataset\\ucf_crime\\Anomaly-Videos-Part-1\\Arrest\\Arrest007_x264.mp4", "run_id": "20261027T044241-61e76c9e", "status": "error", "prompt_tokens": null, "completion_tokens": null, "total_tokens": null, "usage_complete": false, "error_type": "NotFoundError", "elapsed_seconds": 3.6691}
+2026-10-27 12:43:03 [INFO   ] [LLM-TOKENS-CALL] {"request_id": "e1b619ff8fd34fa5b5867726dc4b778a", "timestamp": "2026-10-27T04:43:00.250274+00:00", "model": "qwen-vl-plus", "video_path": "F:\\dataset\\ucf_crime\\Anomaly-Videos-Part-1\\Arrest\\Arrest007_x264.mp4", "run_id": "20261027T044241-61e76c9e", "status": "error", "prompt_tokens": null, "completion_tokens": null, "total_tokens": null, "usage_complete": false, "error_type": "NotFoundError", "elapsed_seconds": 3.6637}
+2026-10-27 12:43:04 [INFO   ] [LLM-TOKENS-CALL] {"request_id": "25f9124db50845e397a1e049084234c3", "timestamp": "2026-10-27T04:43:03.831267+00:00", "model": "qwen-vl-plus", "video_path": "F:\\dataset\\ucf_crime\\Anomaly-Videos-Part-1\\Arson\\Arson035_x264.mp4", "run_id": "20261027T044241-61e76c9e", "status": "error", "prompt_tokens": null, "completion_tokens": null, "total_tokens": null, "usage_complete": false, "error_type": "NotFoundError", "elapsed_seconds": 0.2715}
+2026-10-27 12:43:04 [INFO   ] [COST] video=Arson035_x264.mp4 vlm_calls=10 clip_calls=3 elapsed_s=3.7
+2026-10-27 12:43:04 [INFO   ] [LLM-TOKENS-VIDEO] {"requests": 1, "successful_requests": 0, "failed_requests": 1, "unknown_usage_requests": 1, "prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0, "by_model": {"qwen-vl-plus": {"requests": 1, "successful_requests": 0, "failed_requests": 1, "unknown_usage_requests": 1, "prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0, "by_model": {}}}, "video_path": "F:\\dataset\\ucf_crime\\Anomaly-Videos-Part-1\\Arson\\Arson035_x264.mp4", "status": "error"}
+2026-10-27 12:43:04 [ERROR  ] [3/14] FAIL  Arson035_x264: Error code: 404 - {'error': {'message': 'Model not exist.', 'type': 'invalid_request_error', 'param': None, 'code': 'model_not_found'}, 'id': 'chatcmpl-459ad75f-b6fe-9a76-b815-15edb70cabdd', 'request_id': '459ad75f-b6fe-9a76-b815-15edb70cabdd'} (3.7s)
+Traceback (most recent call last):
+  File "D:\Users\zzl\project\mcts_vad\vad_v3\video_anomaly_detection\batch_evaluate.py", line 76, in process_one_video
+    result = await vad.detect(video_path=video_path)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Users\zzl\project\mcts_vad\vad_v3\video_anomaly_detection\llm_usage.py", line 95, in wrapped
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Users\zzl\project\mcts_vad\vad_v3\video_anomaly_detection\experiment.py", line 19, in wrapped
+    result=await func(self,*args,**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Users\zzl\project\mcts_vad\vad_v3\video_anomaly_detection\pipeline.py", line 687, in detect
+    return await self._detect_impl(video_path, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Users\zzl\project\mcts_vad\vad_v3\video_anomaly_detection\pipeline.py", line 840, in _detect_impl
+    candidates = await self._directed_llm_scan(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        video_data, clip_regions, context_prompt, videomae_category)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Users\zzl\project\mcts_vad\vad_v3\video_anomaly_detection\pipeline.py", line 1577, in _directed_llm_scan
+    results = await asyncio.gather(*tasks)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Users\zzl\project\mcts_vad\vad_v3\video_anomaly_detection\anomaly_discovery.py", line 86, in scan_segment
+    response = await self.llm.generate(prompt, keyframes)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Users\zzl\project\mcts_vad\vad_v3\video_anomaly_detection\experiment.py", line 46, in wrapped
+    cache[key]=await func(self,prompt,images,**kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Users\zzl\project\mcts_vad\vad_v3\video_anomaly_detection\llm_client.py", line 117, in generate
+    response = await tracked_completion(self.client,
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+    )
+    ^
+  File "D:\Users\zzl\project\mcts_vad\vad_v3\video_anomaly_detection\llm_usage.py", line 60, in tracked_completion
+    response = await client.chat.completions.create(**kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Gigabyte\.conda\envs\common\Lib\site-packages\openai\resources\chat\completions\completions.py", line 2585, in create
+    return await self._post(
+           ^^^^^^^^^^^^^^^^^
+    ...<48 lines>...
+    )
+    ^
+  File "C:\Users\Gigabyte\.conda\envs\common\Lib\site-packages\openai\_base_client.py", line 1794, in post
+    return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Gigabyte\.conda\envs\common\Lib\site-packages\openai\_base_client.py", line 1594, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.NotFoundError: Error code: 404 - {'error': {'message': 'Model not exist.', 'type': 'invalid_request_error', 'param': None, 'code': 'model_not_found'}, 'id': 'chatcmpl-459ad75f-b6fe-9a76-b815-15edb70cabdd', 'request_id': '459ad75f-b6fe-9a76-b815-15edb70cabdd'}
+2026-10-27 12:43:04 [INFO   ] [4/14] START Assault006_x264 (Assault)
+2026-10-27 12:43:05 [INFO   ]   [Motion filter] 540 -> 540 frames (0% removed, threshold=1.0)
+2026-10-27 12:43:09 [INFO   ]   [CLIP precompute] 540 frames encoded in 3.9s
+2026-10-27 12:43:09 [INFO   ]   [MIL] snippet scores: mean=1.000, max=1.000, min=0.998
+2026-10-27 12:43:10 [INFO   ]   [VideoMAE] Assault(100%), Arrest(0%), RoadAccidents(0%) -> Assault@100%

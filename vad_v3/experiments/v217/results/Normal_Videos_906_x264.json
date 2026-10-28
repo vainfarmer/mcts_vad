@@ -1,0 +1,996 @@
+{
+  "video_path": "F:\\dataset\\ucf_crime\\Testing_Normal_Videos_Anomaly\\Normal_Videos_906_x264.mp4",
+  "duration": 22.533333333333335,
+  "is_normal": false,
+  "anomalies": [
+    {
+      "t_start": 3.5,
+      "t_end": 6.5,
+      "confidence": 0.6191956453411236,
+      "anomaly_type": "RoadAccidents",
+      "depth": null,
+      "visits": null
+    }
+  ],
+  "frame_scores": [
+    0.3836089035987855,
+    0.38364870676639357,
+    0.3836043420844263,
+    0.3834883342637951,
+    0.38363483071122473,
+    0.3845286730214256,
+    0.3864297301080701,
+    0.38912210744964026,
+    0.39199578406606667,
+    0.39437103105538157,
+    0.3958390758659569,
+    0.3964121146704472,
+    0.39639899317060484,
+    0.3960678155817476,
+    0.3953099481858881,
+    0.3936103750609775,
+    0.39043144430828586,
+    0.38575537648475344,
+    0.3802816994089502,
+    0.3750454553993966,
+    0.370739630731055,
+    0.3673573828686385,
+    0.36447081004463916,
+    0.3619449044138965,
+    0.3604339552417168,
+    0.36129744400389147,
+    0.3661197082437949,
+    0.3763055086848912,
+    0.3929236846253621,
+    0.41652145223478665,
+    0.44657656793425354,
+    0.4808230414900623,
+    0.5150728796267258,
+    0.543904263255412,
+    0.5620099221498449,
+    0.565599868629503,
+    0.5535590161547527,
+    0.5283309198616889,
+    0.49624001513319593,
+    0.46652264264191673,
+    0.44863967729277954
+  ],
+  "timestamps": [
+    0.0,
+    0.5,
+    1.0,
+    1.5,
+    2.0,
+    2.5,
+    3.0,
+    3.5,
+    4.0,
+    4.5,
+    5.0,
+    5.5,
+    6.0,
+    6.5,
+    7.0,
+    7.5,
+    8.0,
+    8.5,
+    9.0,
+    9.5,
+    10.0,
+    10.5,
+    11.0,
+    11.5,
+    12.0,
+    12.5,
+    13.0,
+    13.5,
+    14.0,
+    14.5,
+    15.0,
+    15.5,
+    16.0,
+    17.0,
+    17.5,
+    18.0,
+    18.5,
+    19.0,
+    19.5,
+    20.0,
+    21.0
+  ],
+  "pre_bue_boundaries": [
+    [
+      16.0,
+      20.0
+    ]
+  ],
+  "pre_cbt_boundaries": [
+    [
+      0.5,
+      20.0
+    ]
+  ],
+  "mcts_trace": {
+    "mode": "refine",
+    "acceptance_policy": "relative_nonloss",
+    "strategy": "mcts",
+    "prompt_version": "boundary-v3-3",
+    "candidates": {
+      "0": {
+        "candidate_id": 0,
+        "applied": false,
+        "would_accept": false,
+        "baseline": [
+          16.0,
+          20.0
+        ],
+        "boundary_method": "halfmax",
+        "reason": "missing_curve_end"
+      }
+    },
+    "logical_requests": 0,
+    "images_sent": 0,
+    "frame_scores_stage": "post_conf_gate",
+    "evidence_pool": "global",
+    "decode_seconds": 0.0,
+    "encode_seconds": 0.0,
+    "search_category": "RoadAccidents",
+    "gate_category": "RoadAccidents",
+    "effective_config": {
+      "preprocess": {
+        "fps": 2,
+        "segment_duration": 6.0,
+        "segment_overlap": 0.25,
+        "motion_threshold": 1.0,
+        "min_motion_interval": 2.0
+      },
+      "clip": {
+        "model_name": "ViT-L-14",
+        "pretrained": "openai",
+        "max_frames": 200,
+        "min_frames": 3,
+        "fps_sample": 3.0,
+        "semantic_tau": 0.9
+      },
+      "mcts": {
+        "simulations": 12,
+        "max_depth": 4,
+        "padding_ratio": 0.75,
+        "early_stop_agree": 4,
+        "early_stop_min_sim": 5,
+        "mode": "refine",
+        "action_set": "shrink_expand_shift",
+        "search_strategy": "mcts",
+        "comparison_gate": "best_valid",
+        "acceptance_policy": "relative_nonloss",
+        "trigger_policy": "all_valid",
+        "citation_repair_attempts": 1,
+        "max_candidates_per_video": 4,
+        "max_vlm_evaluations_per_candidate": 10,
+        "max_vlm_evaluations_per_video": 40,
+        "timeout_seconds_per_candidate": 90.0,
+        "contrast_threshold": 0.15,
+        "search_padding_ratio": 0.25,
+        "max_inward_shift_ratio": 0.25,
+        "max_outward_shift_ratio": 0.25,
+        "step_ratio": 0.1,
+        "min_interval_seconds": 0.5,
+        "max_images_per_evaluation": 32,
+        "context_seconds": 2.0,
+        "max_boundary_gap_seconds": 1.5,
+        "max_evidence_gap_seconds": 3.0,
+        "min_unique_evaluations": 4,
+        "patience": 3,
+        "min_reward_gain": 0.02,
+        "max_curve_quality_drop": 0.05,
+        "ucb_c": 1.0,
+        "ucb_decay": 0.0,
+        "random_seed": 42,
+        "trace_enabled": true,
+        "paired_eval": true,
+        "final_nms_enabled": true,
+        "final_nms_iou": 0.3,
+        "boundary_guard_enabled": false,
+        "guard_min_retained_ratio": 0.5,
+        "guard_max_shift_ratio": 0.25,
+        "guard_tolerance_seconds": 0.5,
+        "postprocess_ablation": false,
+        "dense_fps": 0.0,
+        "max_dense_frames": 512,
+        "max_enumerated_states": 10000
+      },
+      "scoring": {
+        "clip_base_weight": 0.35,
+        "gaussian_sigma_factor": 1.5,
+        "gaussian_sigma_min": 1.0,
+        "confidence_gate": 0.5,
+        "curve_smooth_seconds": 2.0,
+        "curve_half_max_weight": 0.5,
+        "curve_max_shift_ratio": 0.4,
+        "curve_core_signal_floor": 0.3,
+        "boundary_shrink_ratio": 0.35,
+        "videomae_weight": 0.15,
+        "motion_weight": 0.1,
+        "mae_window_size": 32,
+        "mae_window_stride": 16,
+        "qscore_rerank": true,
+        "qscore_base": 0.5,
+        "bue_enabled": true,
+        "bue_alpha": 1.0,
+        "bue_lmin_sec": 6.0,
+        "bue_lmax_sec": 40.0,
+        "bue_lmax_frac": 0.8,
+        "bue_smooth_win": 3,
+        "bue_closure_gate": true,
+        "cbt_enabled": true,
+        "cbt_recal": true,
+        "cbt_recal_caps": {
+          "RoadAccidents": 4.5,
+          "Explosion": 13.0,
+          "Shoplifting": 9.0,
+          "Shooting": 13.5
+        },
+        "cbt_recal_trigger": 1.1,
+        "classify_skip_class_agnostic": true
+      },
+      "discovery": {
+        "clip_threshold": 0.3,
+        "min_pass_rate": 0.2,
+        "max_scan_segments": 6,
+        "candidate_top_k": 3
+      },
+      "device": "cuda",
+      "anomaly_categories": [
+        "Abuse",
+        "Arrest",
+        "Arson",
+        "Assault",
+        "Burglary",
+        "Explosion",
+        "Fighting",
+        "RoadAccidents",
+        "Robbery",
+        "Shooting",
+        "Shoplifting",
+        "Stealing",
+        "Vandalism"
+      ]
+    },
+    "stages": {
+      "post_clip": [
+        {
+          "t_start": 16.0,
+          "t_end": 20.0,
+          "frame_indices": [
+            35,
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "coarse_score": 0.95,
+          "description": "Two vehicles (a silver sedan and a dark sedan) collide at an intersection while turning left; the dark sedan strikes the side of the silver sedan, causing visible impact and abrupt change in vehicle trajectories—consistent with a road accident.",
+          "confidence": 0.8845652076301765,
+          "anomaly_type": "RoadAccidents",
+          "boundary_contrast": 0.40592533606847303,
+          "_boundary_method": "halfmax"
+        }
+      ],
+      "post_mcts": [
+        {
+          "t_start": 16.0,
+          "t_end": 20.0,
+          "frame_indices": [
+            35,
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "coarse_score": 0.95,
+          "description": "Two vehicles (a silver sedan and a dark sedan) collide at an intersection while turning left; the dark sedan strikes the side of the silver sedan, causing visible impact and abrupt change in vehicle trajectories—consistent with a road accident.",
+          "confidence": 0.8845652076301765,
+          "anomaly_type": "RoadAccidents",
+          "boundary_contrast": 0.40592533606847303,
+          "_boundary_method": "halfmax"
+        }
+      ],
+      "post_stage5b": [
+        {
+          "t_start": 16.0,
+          "t_end": 20.0,
+          "frame_indices": [
+            35,
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "coarse_score": 0.95,
+          "description": "Two vehicles (a silver sedan and a dark sedan) collide at an intersection while turning left; the dark sedan strikes the side of the silver sedan, causing visible impact and abrupt change in vehicle trajectories—consistent with a road accident.",
+          "confidence": 0.8845652076301765,
+          "anomaly_type": "RoadAccidents",
+          "boundary_contrast": 0.40592533606847303,
+          "_boundary_method": "halfmax",
+          "source_candidate_ids": [
+            0
+          ]
+        }
+      ],
+      "post_merge": [
+        {
+          "t_start": 16.0,
+          "t_end": 20.0,
+          "frame_indices": [
+            35,
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "coarse_score": 0.95,
+          "description": "Two vehicles (a silver sedan and a dark sedan) collide at an intersection while turning left; the dark sedan strikes the side of the silver sedan, causing visible impact and abrupt change in vehicle trajectories—consistent with a road accident.",
+          "confidence": 0.8845652076301765,
+          "anomaly_type": "RoadAccidents",
+          "boundary_contrast": 0.40592533606847303,
+          "_boundary_method": "halfmax",
+          "source_candidate_ids": [
+            0
+          ]
+        }
+      ],
+      "post_nms": [
+        {
+          "t_start": 16.0,
+          "t_end": 20.0,
+          "frame_indices": [
+            35,
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "coarse_score": 0.95,
+          "description": "Two vehicles (a silver sedan and a dark sedan) collide at an intersection while turning left; the dark sedan strikes the side of the silver sedan, causing visible impact and abrupt change in vehicle trajectories—consistent with a road accident.",
+          "confidence": 0.8845652076301765,
+          "anomaly_type": "RoadAccidents",
+          "boundary_contrast": 0.40592533606847303,
+          "_boundary_method": "halfmax",
+          "source_candidate_ids": [
+            0
+          ]
+        }
+      ],
+      "post_tighten": [
+        {
+          "t_start": 16.0,
+          "t_end": 20.0,
+          "frame_indices": [
+            35,
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "coarse_score": 0.95,
+          "description": "Two vehicles (a silver sedan and a dark sedan) collide at an intersection while turning left; the dark sedan strikes the side of the silver sedan, causing visible impact and abrupt change in vehicle trajectories—consistent with a road accident.",
+          "confidence": 0.8845652076301765,
+          "anomaly_type": "RoadAccidents",
+          "boundary_contrast": 0.40592533606847303,
+          "_boundary_method": "halfmax",
+          "source_candidate_ids": [
+            0
+          ]
+        }
+      ],
+      "post_short": [
+        {
+          "t_start": 16.0,
+          "t_end": 20.0,
+          "frame_indices": [
+            35,
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "coarse_score": 0.95,
+          "description": "Two vehicles (a silver sedan and a dark sedan) collide at an intersection while turning left; the dark sedan strikes the side of the silver sedan, causing visible impact and abrupt change in vehicle trajectories—consistent with a road accident.",
+          "confidence": 0.8845652076301765,
+          "anomaly_type": "RoadAccidents",
+          "boundary_contrast": 0.40592533606847303,
+          "_boundary_method": "halfmax",
+          "source_candidate_ids": [
+            0
+          ]
+        }
+      ],
+      "post_classify": [
+        {
+          "t_start": 16.0,
+          "t_end": 20.0,
+          "frame_indices": [
+            35,
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "coarse_score": 0.95,
+          "description": "Two vehicles (a silver sedan and a dark sedan) collide at an intersection while turning left; the dark sedan strikes the side of the silver sedan, causing visible impact and abrupt change in vehicle trajectories—consistent with a road accident.",
+          "confidence": 0.8845652076301765,
+          "anomaly_type": "RoadAccidents",
+          "boundary_contrast": 0.40592533606847303,
+          "_boundary_method": "halfmax",
+          "source_candidate_ids": [
+            0
+          ]
+        }
+      ],
+      "post_curve": [
+        {
+          "t_start": 16.0,
+          "t_end": 20.0,
+          "frame_indices": [
+            35,
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "coarse_score": 0.95,
+          "description": "Two vehicles (a silver sedan and a dark sedan) collide at an intersection while turning left; the dark sedan strikes the side of the silver sedan, causing visible impact and abrupt change in vehicle trajectories—consistent with a road accident.",
+          "confidence": 0.8845652076301765,
+          "anomaly_type": "RoadAccidents",
+          "boundary_contrast": 0.40592533606847303,
+          "_boundary_method": "halfmax",
+          "source_candidate_ids": [
+            0
+          ]
+        }
+      ],
+      "pre_conf_gate": [
+        {
+          "t_start": 16.0,
+          "t_end": 20.0,
+          "frame_indices": [
+            35,
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "coarse_score": 0.95,
+          "description": "Two vehicles (a silver sedan and a dark sedan) collide at an intersection while turning left; the dark sedan strikes the side of the silver sedan, causing visible impact and abrupt change in vehicle trajectories—consistent with a road accident.",
+          "confidence": 0.6191956453411236,
+          "anomaly_type": "RoadAccidents",
+          "boundary_contrast": 0.40592533606847303,
+          "_boundary_method": "halfmax",
+          "source_candidate_ids": [
+            0
+          ]
+        }
+      ],
+      "post_conf_gate": [
+        {
+          "t_start": 16.0,
+          "t_end": 20.0,
+          "frame_indices": [
+            35,
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "coarse_score": 0.95,
+          "description": "Two vehicles (a silver sedan and a dark sedan) collide at an intersection while turning left; the dark sedan strikes the side of the silver sedan, causing visible impact and abrupt change in vehicle trajectories—consistent with a road accident.",
+          "confidence": 0.6191956453411236,
+          "anomaly_type": "RoadAccidents",
+          "boundary_contrast": 0.40592533606847303,
+          "_boundary_method": "halfmax",
+          "source_candidate_ids": [
+            0
+          ]
+        }
+      ],
+      "pre_qscore": [
+        {
+          "t_start": 16.0,
+          "t_end": 20.0,
+          "confidence": 0.6191956453411236,
+          "anomaly_type": "RoadAccidents",
+          "depth": null,
+          "visits": null,
+          "source_candidate_ids": [
+            0
+          ]
+        }
+      ],
+      "post_qscore": [
+        {
+          "t_start": 16.0,
+          "t_end": 20.0,
+          "confidence": 0.6191956453411236,
+          "anomaly_type": "RoadAccidents",
+          "depth": null,
+          "visits": null,
+          "source_candidate_ids": [
+            0
+          ]
+        }
+      ],
+      "post_bue": [
+        {
+          "t_start": 0.5,
+          "t_end": 20.0,
+          "confidence": 0.6191956453411236,
+          "anomaly_type": "RoadAccidents",
+          "depth": null,
+          "visits": null,
+          "source_candidate_ids": [
+            0
+          ]
+        }
+      ],
+      "post_cbt": [
+        {
+          "t_start": 3.5,
+          "t_end": 6.5,
+          "confidence": 0.6191956453411236,
+          "anomaly_type": "RoadAccidents",
+          "depth": null,
+          "visits": null,
+          "source_candidate_ids": [
+            0
+          ]
+        }
+      ],
+      "final": [
+        {
+          "t_start": 3.5,
+          "t_end": 6.5,
+          "confidence": 0.6191956453411236,
+          "anomaly_type": "RoadAccidents",
+          "depth": null,
+          "visits": null,
+          "source_candidate_ids": [
+            0
+          ]
+        }
+      ]
+    },
+    "stage_seconds": {
+      "post_stage5b": 5.00003807246685e-07,
+      "post_merge": 4.600000102072954e-05,
+      "post_nms": 8.00006091594696e-07,
+      "post_tighten": 3.609998384490609e-05,
+      "post_short": 1.600012183189392e-06,
+      "post_classify": 3.5200006095692515e-05,
+      "post_curve": 5.3099996875971556e-05,
+      "pre_conf_gate": 4.909999552182853e-05,
+      "post_conf_gate": 9.00006853044033e-07,
+      "pre_qscore": 6.160000339150429e-05,
+      "post_qscore": 0.00013840000610798597,
+      "post_bue": 0.0007647000020369887,
+      "post_cbt": 0.00022990000434219837,
+      "final": 4.270000499673188e-05
+    },
+    "stage_events": {
+      "post_stage5b": {
+        "input_count": 1,
+        "output_count": 1,
+        "changed": false,
+        "video_category": "RoadAccidents",
+        "bypassed_stage5b_ids": []
+      },
+      "post_merge": {
+        "input_count": 1,
+        "output_count": 1,
+        "changed": false,
+        "video_category": "RoadAccidents",
+        "bypassed_stage5b_ids": []
+      },
+      "post_nms": {
+        "input_count": 1,
+        "output_count": 1,
+        "changed": false,
+        "video_category": "RoadAccidents",
+        "bypassed_stage5b_ids": []
+      },
+      "post_tighten": {
+        "input_count": 1,
+        "output_count": 1,
+        "changed": false,
+        "video_category": "RoadAccidents",
+        "bypassed_stage5b_ids": []
+      },
+      "post_short": {
+        "input_count": 1,
+        "output_count": 1,
+        "changed": false,
+        "video_category": "RoadAccidents",
+        "bypassed_stage5b_ids": []
+      },
+      "post_classify": {
+        "input_count": 1,
+        "output_count": 1,
+        "changed": false,
+        "video_category": "RoadAccidents",
+        "bypassed_stage5b_ids": []
+      },
+      "post_curve": {
+        "input_count": 1,
+        "output_count": 1,
+        "changed": false,
+        "video_category": "RoadAccidents",
+        "bypassed_stage5b_ids": []
+      },
+      "pre_conf_gate": {
+        "input_count": 1,
+        "output_count": 1,
+        "changed": true,
+        "video_category": "RoadAccidents",
+        "bypassed_stage5b_ids": []
+      },
+      "post_conf_gate": {
+        "input_count": 1,
+        "output_count": 1,
+        "changed": false,
+        "video_category": "RoadAccidents",
+        "bypassed_stage5b_ids": []
+      },
+      "pre_qscore": {
+        "input_count": 1,
+        "output_count": 1,
+        "changed": false,
+        "video_category": "RoadAccidents",
+        "bypassed_stage5b_ids": []
+      },
+      "post_qscore": {
+        "input_count": 1,
+        "output_count": 1,
+        "changed": false,
+        "video_category": "RoadAccidents",
+        "bypassed_stage5b_ids": []
+      },
+      "post_bue": {
+        "input_count": 1,
+        "output_count": 1,
+        "changed": true,
+        "video_category": "RoadAccidents",
+        "bypassed_stage5b_ids": []
+      },
+      "post_cbt": {
+        "input_count": 1,
+        "output_count": 1,
+        "changed": true,
+        "video_category": "RoadAccidents",
+        "bypassed_stage5b_ids": []
+      },
+      "final": {
+        "input_count": 1,
+        "output_count": 1,
+        "changed": false,
+        "video_category": "RoadAccidents",
+        "bypassed_stage5b_ids": []
+      }
+    },
+    "nms_suppression": [],
+    "final_nms_suppression": [],
+    "tail_seconds": 0.0016419000166933984,
+    "postprocess_config": {
+      "final_nms": true,
+      "boundary_guard": false
+    },
+    "video_api_metrics": {
+      "logical_calls": 5,
+      "cache_hits": 0,
+      "sdk_attempts": 5,
+      "prompt_tokens": 5727,
+      "completion_tokens": 161
+    }
+  },
+  "paired_results": {
+    "original_off": {
+      "video_path": "F:\\dataset\\ucf_crime\\Testing_Normal_Videos_Anomaly\\Normal_Videos_906_x264.mp4",
+      "duration": 22.533333333333335,
+      "is_normal": false,
+      "anomalies": [
+        {
+          "t_start": 3.5,
+          "t_end": 6.5,
+          "confidence": 0.6191956453411236,
+          "anomaly_type": "RoadAccidents",
+          "depth": null,
+          "visits": null
+        }
+      ],
+      "frame_scores": [
+        0.3836089035987855,
+        0.38364870676639357,
+        0.3836043420844263,
+        0.3834883342637951,
+        0.38363483071122473,
+        0.3845286730214256,
+        0.3864297301080701,
+        0.38912210744964026,
+        0.39199578406606667,
+        0.39437103105538157,
+        0.3958390758659569,
+        0.3964121146704472,
+        0.39639899317060484,
+        0.3960678155817476,
+        0.3953099481858881,
+        0.3936103750609775,
+        0.39043144430828586,
+        0.38575537648475344,
+        0.3802816994089502,
+        0.3750454553993966,
+        0.370739630731055,
+        0.3673573828686385,
+        0.36447081004463916,
+        0.3619449044138965,
+        0.3604339552417168,
+        0.36129744400389147,
+        0.3661197082437949,
+        0.3763055086848912,
+        0.3929236846253621,
+        0.41652145223478665,
+        0.44657656793425354,
+        0.4808230414900623,
+        0.5150728796267258,
+        0.543904263255412,
+        0.5620099221498449,
+        0.565599868629503,
+        0.5535590161547527,
+        0.5283309198616889,
+        0.49624001513319593,
+        0.46652264264191673,
+        0.44863967729277954
+      ],
+      "timestamps": [
+        0.0,
+        0.5,
+        1.0,
+        1.5,
+        2.0,
+        2.5,
+        3.0,
+        3.5,
+        4.0,
+        4.5,
+        5.0,
+        5.5,
+        6.0,
+        6.5,
+        7.0,
+        7.5,
+        8.0,
+        8.5,
+        9.0,
+        9.5,
+        10.0,
+        10.5,
+        11.0,
+        11.5,
+        12.0,
+        12.5,
+        13.0,
+        13.5,
+        14.0,
+        14.5,
+        15.0,
+        15.5,
+        16.0,
+        17.0,
+        17.5,
+        18.0,
+        18.5,
+        19.0,
+        19.5,
+        20.0,
+        21.0
+      ],
+      "pre_bue_boundaries": [
+        [
+          16.0,
+          20.0
+        ]
+      ],
+      "pre_cbt_boundaries": [
+        [
+          0.5,
+          20.0
+        ]
+      ]
+    },
+    "skip_only": {
+      "video_path": "F:\\dataset\\ucf_crime\\Testing_Normal_Videos_Anomaly\\Normal_Videos_906_x264.mp4",
+      "duration": 22.533333333333335,
+      "is_normal": false,
+      "anomalies": [
+        {
+          "t_start": 3.5,
+          "t_end": 6.5,
+          "confidence": 0.6191956453411236,
+          "anomaly_type": "RoadAccidents",
+          "depth": null,
+          "visits": null
+        }
+      ],
+      "frame_scores": [
+        0.3836089035987855,
+        0.38364870676639357,
+        0.3836043420844263,
+        0.3834883342637951,
+        0.38363483071122473,
+        0.3845286730214256,
+        0.3864297301080701,
+        0.38912210744964026,
+        0.39199578406606667,
+        0.39437103105538157,
+        0.3958390758659569,
+        0.3964121146704472,
+        0.39639899317060484,
+        0.3960678155817476,
+        0.3953099481858881,
+        0.3936103750609775,
+        0.39043144430828586,
+        0.38575537648475344,
+        0.3802816994089502,
+        0.3750454553993966,
+        0.370739630731055,
+        0.3673573828686385,
+        0.36447081004463916,
+        0.3619449044138965,
+        0.3604339552417168,
+        0.36129744400389147,
+        0.3661197082437949,
+        0.3763055086848912,
+        0.3929236846253621,
+        0.41652145223478665,
+        0.44657656793425354,
+        0.4808230414900623,
+        0.5150728796267258,
+        0.543904263255412,
+        0.5620099221498449,
+        0.565599868629503,
+        0.5535590161547527,
+        0.5283309198616889,
+        0.49624001513319593,
+        0.46652264264191673,
+        0.44863967729277954
+      ],
+      "timestamps": [
+        0.0,
+        0.5,
+        1.0,
+        1.5,
+        2.0,
+        2.5,
+        3.0,
+        3.5,
+        4.0,
+        4.5,
+        5.0,
+        5.5,
+        6.0,
+        6.5,
+        7.0,
+        7.5,
+        8.0,
+        8.5,
+        9.0,
+        9.5,
+        10.0,
+        10.5,
+        11.0,
+        11.5,
+        12.0,
+        12.5,
+        13.0,
+        13.5,
+        14.0,
+        14.5,
+        15.0,
+        15.5,
+        16.0,
+        17.0,
+        17.5,
+        18.0,
+        18.5,
+        19.0,
+        19.5,
+        20.0,
+        21.0
+      ],
+      "pre_bue_boundaries": [
+        [
+          16.0,
+          20.0
+        ]
+      ],
+      "pre_cbt_boundaries": [
+        [
+          0.5,
+          20.0
+        ]
+      ]
+    }
+  },
+  "token_usage": {
+    "requests": 5,
+    "successful_requests": 5,
+    "failed_requests": 0,
+    "unknown_usage_requests": 0,
+    "prompt_tokens": 5727,
+    "completion_tokens": 161,
+    "total_tokens": 5888,
+    "api_queue_seconds": 11.049579900020035,
+    "api_request_seconds": 8.6516,
+    "api_backoff_seconds": 0.0,
+    "api_cancelled_queue_seconds": 0.0,
+    "by_model": {
+      "qwen3-vl-plus": {
+        "requests": 5,
+        "successful_requests": 5,
+        "failed_requests": 0,
+        "unknown_usage_requests": 0,
+        "prompt_tokens": 5727,
+        "completion_tokens": 161,
+        "total_tokens": 5888,
+        "api_queue_seconds": 11.049579900020035,
+        "api_request_seconds": 8.6516,
+        "api_backoff_seconds": 0.0,
+        "api_cancelled_queue_seconds": 0.0,
+        "by_model": {}
+      }
+    },
+    "video_path": "F:\\dataset\\ucf_crime\\Testing_Normal_Videos_Anomaly\\Normal_Videos_906_x264.mp4",
+    "status": "success"
+  },
+  "experiment_fingerprint": "69151360b4e16dcfbf99492a751b29a4bd19bf4f261359ae39c21a3657cd6c75",
+  "diagnosis_attempt": 1,
+  "token_usage_all_attempts": {
+    "requests": 5,
+    "successful_requests": 5,
+    "failed_requests": 0,
+    "unknown_usage_requests": 0,
+    "prompt_tokens": 5727,
+    "completion_tokens": 161,
+    "total_tokens": 5888,
+    "api_queue_seconds": 11.049579900020035,
+    "api_request_seconds": 8.6516,
+    "api_backoff_seconds": 0.0,
+    "api_cancelled_queue_seconds": 0.0,
+    "by_model": {
+      "qwen3-vl-plus": {
+        "requests": 5,
+        "successful_requests": 5,
+        "failed_requests": 0,
+        "unknown_usage_requests": 0,
+        "prompt_tokens": 5727,
+        "completion_tokens": 161,
+        "total_tokens": 5888,
+        "api_queue_seconds": 11.049579900020035,
+        "api_request_seconds": 8.6516,
+        "api_backoff_seconds": 0.0,
+        "api_cancelled_queue_seconds": 0.0,
+        "by_model": {}
+      }
+    },
+    "diagnosis_attempts": 1
+  },
+  "processing_time": 7.53
+}

@@ -1,0 +1,2059 @@
+{
+  "video_path": "F:\\dataset\\ucf_crime\\Testing_Normal_Videos_Anomaly\\Normal_Videos_010_x264.mp4",
+  "duration": 35.1,
+  "is_normal": false,
+  "anomalies": [
+    {
+      "t_start": 3.2778382496827505,
+      "t_end": 25.555458478424868,
+      "confidence": 0.4966499890997629,
+      "anomaly_type": "Burglary",
+      "depth": null,
+      "visits": null
+    }
+  ],
+  "frame_scores": [
+    0.1116142109307017,
+    0.11945384210346141,
+    0.13514537200054152,
+    0.16243049895523848,
+    0.2083647682703002,
+    0.2749761253598646,
+    0.35139735326104593,
+    0.41848138222119835,
+    0.4630223558028019,
+    0.485300247599209,
+    0.4936825235478989,
+    0.49605453659863324,
+    0.4965593683751295,
+    0.49664008776791013,
+    0.49664998909976293,
+    0.49664998909976293,
+    0.49664998909976293,
+    0.49664998909976293,
+    0.49664998909976293,
+    0.49664998909976293,
+    0.49664998909976293,
+    0.49664998909976293,
+    0.49664998909976293,
+    0.49664998909976293,
+    0.49664998909976293,
+    0.49664998909976293,
+    0.49664998909976293,
+    0.49664030378483937,
+    0.4965591915082369,
+    0.4960490277612567,
+    0.493629858359922,
+    0.48498503950906047,
+    0.4617154961806865,
+    0.41459197867100894,
+    0.34297299898155986,
+    0.2617387581363694,
+    0.1937968583103453,
+    0.15294070334202348,
+    0.13615897396917453,
+    0.13196769619927276,
+    0.13182091595836293,
+    0.13291033657976237,
+    0.1346024745843858,
+    0.1359194284675798
+  ],
+  "timestamps": [
+    0.0,
+    0.5,
+    1.5,
+    2.0,
+    2.5,
+    3.0,
+    3.5,
+    4.0,
+    4.5,
+    5.0,
+    5.5,
+    6.5,
+    7.0,
+    8.0,
+    8.5,
+    9.0,
+    9.5,
+    10.0,
+    10.5,
+    11.0,
+    11.5,
+    12.0,
+    12.5,
+    13.0,
+    13.5,
+    15.5,
+    17.5,
+    19.0,
+    19.5,
+    20.0,
+    20.5,
+    21.0,
+    21.5,
+    22.0,
+    24.0,
+    26.0,
+    28.0,
+    30.0,
+    31.0,
+    31.5,
+    32.0,
+    34.0,
+    34.5,
+    35.0
+  ],
+  "pre_bue_boundaries": [
+    [
+      3.2778382496827505,
+      25.555458478424868
+    ]
+  ],
+  "pre_cbt_boundaries": [
+    [
+      3.2778382496827505,
+      25.555458478424868
+    ]
+  ],
+  "mcts_trace": {
+    "mode": "refine",
+    "acceptance_policy": "relative_nonloss",
+    "strategy": "mcts",
+    "prompt_version": "boundary-v3-3",
+    "candidates": {
+      "0": {
+        "candidate_id": 0,
+        "applied": false,
+        "would_accept": false,
+        "baseline": [
+          5.5,
+          22.0
+        ],
+        "boundary_method": "halfmax",
+        "baseline_contrast_raw": 0.14786829243442323,
+        "baseline_curve_quality": 0.5739341462172116,
+        "boundary_measurement_valid": true,
+        "evidence_coverage": {
+          "0_inside": {
+            "start": 5.5,
+            "end": 22.0,
+            "max_gap": 2.5
+          }
+        },
+        "legal_evidence_actions": 4,
+        "core_evidence_ids": [
+          10,
+          30,
+          32
+        ],
+        "proposed": [
+          4.0,
+          22.0
+        ],
+        "baseline_reward": 0.4822868292434423,
+        "proposal_reward": 0.484370410561872,
+        "reward_gain": 0.002083581318429728,
+        "pairwise_mapping": {
+          "proposal": "B"
+        },
+        "changed_regions": [
+          {
+            "region_id": "added_0",
+            "kind": "added",
+            "interval_seconds": [
+              4.0,
+              5.5
+            ],
+            "eligible_image_indices": [
+              1,
+              2
+            ]
+          }
+        ],
+        "changed_region_coverage": {
+          "0_inside": {
+            "start": 5.5,
+            "end": 22.0,
+            "max_gap": 2.5
+          },
+          "1_inside": {
+            "start": 4.0,
+            "end": 22.0,
+            "max_gap": 2.5
+          },
+          "1_added_0": {
+            "start": 4.0,
+            "end": 5.5,
+            "max_gap": 1.0
+          }
+        },
+        "pairwise_attempts": [
+          {
+            "answer": {
+              "winner": "B",
+              "same_event": true,
+              "complete_without_loss": false,
+              "removed_contains_target": true,
+              "added_same_event": true,
+              "evidence_image_indices": [
+                3,
+                12,
+                13
+              ],
+              "removed_evidence_indices": [
+                1,
+                2
+              ],
+              "added_evidence_indices": [],
+              "preserves_reference_content": false
+            },
+            "semantic_failures": [
+              "removed_target_content",
+              "reference_content_lost_or_unknown"
+            ],
+            "citation_failures": [
+              {
+                "code": "citation_outside_changed_region",
+                "kind": "removed",
+                "indices": [
+                  1,
+                  2
+                ]
+              },
+              {
+                "code": "missing_changed_region_citation",
+                "region_id": "added_0"
+              }
+            ]
+          }
+        ],
+        "pairwise_verdict": {
+          "winner": "B",
+          "same_event": true,
+          "complete_without_loss": false,
+          "removed_contains_target": true,
+          "added_same_event": true,
+          "evidence_image_indices": [
+            3,
+            12,
+            13
+          ],
+          "removed_evidence_indices": [
+            1,
+            2
+          ],
+          "added_evidence_indices": [],
+          "preserves_reference_content": false
+        },
+        "semantic_failures": [
+          "removed_target_content",
+          "reference_content_lost_or_unknown"
+        ],
+        "citation_failures": [
+          {
+            "code": "citation_outside_changed_region",
+            "kind": "removed",
+            "indices": [
+              1,
+              2
+            ]
+          },
+          {
+            "code": "missing_changed_region_citation",
+            "region_id": "added_0"
+          }
+        ],
+        "rejection_reasons": [
+          "removed_target_content",
+          "reference_content_lost_or_unknown",
+          "citation_outside_changed_region",
+          "missing_changed_region_citation"
+        ],
+        "reason": "comparison_rejected",
+        "logical_requests": 8,
+        "elapsed_seconds": 43.945843599998625,
+        "stop_reason": "simulation_limit",
+        "evaluations": [
+          {
+            "interval": [
+              5.5,
+              22.0
+            ],
+            "depth": 0,
+            "reward": 0.4822868292434423,
+            "cache_hit": false,
+            "parts": {
+              "P": 0.95,
+              "B": 0.5,
+              "E": 0.0,
+              "C": 0.5739341462172116,
+              "F": 1.0
+            },
+            "answer": {
+              "target_present_inside": true,
+              "target_confidence": 0.95,
+              "same_event_as_reference": true,
+              "start_status": "well_bounded",
+              "end_status": "event_cut",
+              "event_completeness": "partial",
+              "evidence_image_indices": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12
+              ]
+            }
+          },
+          {
+            "interval": [
+              4.0,
+              22.0
+            ],
+            "depth": 1,
+            "reward": 0.484370410561872,
+            "cache_hit": false,
+            "parts": {
+              "P": 0.95,
+              "B": 0.5,
+              "E": 0.0,
+              "C": 0.5843520528093601,
+              "F": 1.0
+            },
+            "answer": {
+              "target_present_inside": true,
+              "target_confidence": 0.95,
+              "same_event_as_reference": true,
+              "start_status": "well_bounded",
+              "end_status": "event_cut",
+              "event_completeness": "partial",
+              "evidence_image_indices": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14
+              ]
+            }
+          },
+          {
+            "interval": [
+              7.0,
+              22.0
+            ],
+            "depth": 1,
+            "reward": 0.4778264238126576,
+            "cache_hit": false,
+            "parts": {
+              "P": 0.95,
+              "B": 0.5,
+              "E": 0.0,
+              "C": 0.551632119063288,
+              "F": 1.0
+            },
+            "answer": {
+              "target_present_inside": true,
+              "target_confidence": 0.95,
+              "same_event_as_reference": true,
+              "start_status": "event_cut",
+              "end_status": "well_bounded",
+              "event_completeness": "partial",
+              "evidence_image_indices": [
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12
+              ]
+            }
+          },
+          {
+            "interval": [
+              5.5,
+              24.0
+            ],
+            "depth": 1,
+            "invalid_reason": "boundary_gap_right_in"
+          },
+          {
+            "interval": [
+              4.0,
+              20.5
+            ],
+            "depth": 1,
+            "reward": 0.4759663758505926,
+            "cache_hit": false,
+            "parts": {
+              "P": 0.95,
+              "B": 0.5,
+              "E": 0.0,
+              "C": 0.542331879252963,
+              "F": 1.0
+            },
+            "answer": {
+              "target_present_inside": true,
+              "target_confidence": 0.95,
+              "same_event_as_reference": true,
+              "start_status": "well_bounded",
+              "end_status": "event_cut",
+              "event_completeness": "partial",
+              "evidence_image_indices": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13
+              ]
+            }
+          },
+          {
+            "interval": [
+              5.5,
+              20.5
+            ],
+            "depth": 1,
+            "reward": 0.4738950637370969,
+            "cache_hit": false,
+            "parts": {
+              "P": 0.95,
+              "B": 0.5,
+              "E": 0.0,
+              "C": 0.5319753186854844,
+              "F": 1.0
+            },
+            "answer": {
+              "target_present_inside": true,
+              "target_confidence": 0.95,
+              "same_event_as_reference": true,
+              "start_status": "well_bounded",
+              "end_status": "event_cut",
+              "event_completeness": "partial",
+              "evidence_image_indices": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11
+              ]
+            }
+          },
+          {
+            "interval": [
+              9.5,
+              26.0
+            ],
+            "depth": 1,
+            "invalid_reason": "boundary_gap_right_in"
+          },
+          {
+            "interval": [
+              3.5,
+              22.0
+            ],
+            "depth": 2,
+            "reward": 0.48238495617475663,
+            "cache_hit": false,
+            "parts": {
+              "P": 0.95,
+              "B": 0.5,
+              "E": 0.0,
+              "C": 0.5744247808737831,
+              "F": 1.0
+            },
+            "answer": {
+              "target_present_inside": true,
+              "target_confidence": 0.95,
+              "same_event_as_reference": true,
+              "start_status": "event_cut",
+              "end_status": "well_bounded",
+              "event_completeness": "partial",
+              "evidence_image_indices": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14
+              ]
+            }
+          },
+          {
+            "interval": [
+              8.0,
+              26.0
+            ],
+            "depth": 2,
+            "invalid_reason": "boundary_gap_right_in"
+          },
+          {
+            "interval": [
+              9.5,
+              24.0
+            ],
+            "depth": 2,
+            "invalid_reason": "boundary_gap_right_in"
+          },
+          {
+            "interval": [
+              9.5,
+              26.125
+            ],
+            "depth": 2,
+            "invalid_reason": "boundary_gap_right_out"
+          },
+          {
+            "interval": [
+              4.0,
+              22.0
+            ],
+            "depth": 3,
+            "reward": 0.484370410561872,
+            "cache_hit": true,
+            "parts": {
+              "P": 0.95,
+              "B": 0.5,
+              "E": 0.0,
+              "C": 0.5843520528093601,
+              "F": 1.0
+            },
+            "answer": {
+              "target_present_inside": true,
+              "target_confidence": 0.95,
+              "same_event_as_reference": true,
+              "start_status": "well_bounded",
+              "end_status": "event_cut",
+              "event_completeness": "partial",
+              "evidence_image_indices": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14
+              ]
+            }
+          },
+          {
+            "interval": [
+              2.5,
+              22.0
+            ],
+            "depth": 2,
+            "reward": 0.4808995022696371,
+            "cache_hit": false,
+            "parts": {
+              "P": 0.95,
+              "B": 0.5,
+              "E": 0.0,
+              "C": 0.5669975113481857,
+              "F": 1.0
+            },
+            "answer": {
+              "target_present_inside": true,
+              "target_confidence": 0.95,
+              "same_event_as_reference": true,
+              "start_status": "event_cut",
+              "end_status": "well_bounded",
+              "event_completeness": "partial",
+              "evidence_image_indices": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15
+              ]
+            }
+          }
+        ],
+        "tree_nodes": 13
+      }
+    },
+    "logical_requests": 8,
+    "images_sent": 115,
+    "frame_scores_stage": "post_conf_gate",
+    "evidence_pool": "global",
+    "decode_seconds": 0.0,
+    "encode_seconds": 0.0,
+    "search_category": "Burglary",
+    "gate_category": "Burglary",
+    "effective_config": {
+      "preprocess": {
+        "fps": 2,
+        "segment_duration": 6.0,
+        "segment_overlap": 0.25,
+        "motion_threshold": 1.0,
+        "min_motion_interval": 2.0
+      },
+      "clip": {
+        "model_name": "ViT-L-14",
+        "pretrained": "openai",
+        "max_frames": 200,
+        "min_frames": 3,
+        "fps_sample": 3.0,
+        "semantic_tau": 0.9
+      },
+      "mcts": {
+        "simulations": 12,
+        "max_depth": 4,
+        "padding_ratio": 0.75,
+        "early_stop_agree": 4,
+        "early_stop_min_sim": 5,
+        "mode": "refine",
+        "action_set": "shrink_expand_shift",
+        "search_strategy": "mcts",
+        "comparison_gate": "best_valid",
+        "acceptance_policy": "relative_nonloss",
+        "trigger_policy": "all_valid",
+        "citation_repair_attempts": 1,
+        "max_candidates_per_video": 4,
+        "max_vlm_evaluations_per_candidate": 10,
+        "max_vlm_evaluations_per_video": 40,
+        "timeout_seconds_per_candidate": 90.0,
+        "contrast_threshold": 0.15,
+        "search_padding_ratio": 0.25,
+        "max_inward_shift_ratio": 0.25,
+        "max_outward_shift_ratio": 0.25,
+        "step_ratio": 0.1,
+        "min_interval_seconds": 0.5,
+        "max_images_per_evaluation": 32,
+        "context_seconds": 2.0,
+        "max_boundary_gap_seconds": 1.5,
+        "max_evidence_gap_seconds": 3.0,
+        "min_unique_evaluations": 4,
+        "patience": 3,
+        "min_reward_gain": 0.02,
+        "max_curve_quality_drop": 0.05,
+        "ucb_c": 1.0,
+        "ucb_decay": 0.0,
+        "random_seed": 42,
+        "trace_enabled": true,
+        "paired_eval": true,
+        "final_nms_enabled": true,
+        "final_nms_iou": 0.3,
+        "boundary_guard_enabled": false,
+        "guard_min_retained_ratio": 0.5,
+        "guard_max_shift_ratio": 0.25,
+        "guard_tolerance_seconds": 0.5,
+        "postprocess_ablation": false,
+        "dense_fps": 0.0,
+        "max_dense_frames": 512,
+        "max_enumerated_states": 10000
+      },
+      "scoring": {
+        "clip_base_weight": 0.35,
+        "gaussian_sigma_factor": 1.5,
+        "gaussian_sigma_min": 1.0,
+        "confidence_gate": 0.5,
+        "curve_smooth_seconds": 2.0,
+        "curve_half_max_weight": 0.5,
+        "curve_max_shift_ratio": 0.4,
+        "curve_core_signal_floor": 0.3,
+        "boundary_shrink_ratio": 0.35,
+        "videomae_weight": 0.15,
+        "motion_weight": 0.1,
+        "mae_window_size": 32,
+        "mae_window_stride": 16,
+        "qscore_rerank": true,
+        "qscore_base": 0.5,
+        "bue_enabled": true,
+        "bue_alpha": 1.0,
+        "bue_lmin_sec": 6.0,
+        "bue_lmax_sec": 40.0,
+        "bue_lmax_frac": 0.8,
+        "bue_smooth_win": 3,
+        "bue_closure_gate": true,
+        "cbt_enabled": true,
+        "cbt_recal": true,
+        "cbt_recal_caps": {
+          "RoadAccidents": 4.5,
+          "Explosion": 13.0,
+          "Shoplifting": 9.0,
+          "Shooting": 13.5
+        },
+        "cbt_recal_trigger": 1.1,
+        "classify_skip_class_agnostic": true
+      },
+      "discovery": {
+        "clip_threshold": 0.3,
+        "min_pass_rate": 0.2,
+        "max_scan_segments": 6,
+        "candidate_top_k": 3
+      },
+      "device": "cuda",
+      "anomaly_categories": [
+        "Abuse",
+        "Arrest",
+        "Arson",
+        "Assault",
+        "Burglary",
+        "Explosion",
+        "Fighting",
+        "RoadAccidents",
+        "Robbery",
+        "Shooting",
+        "Shoplifting",
+        "Stealing",
+        "Vandalism"
+      ]
+    },
+    "stages": {
+      "post_clip": [
+        {
+          "t_start": 5.5,
+          "t_end": 22.0,
+          "frame_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            24,
+            25,
+            26,
+            27,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            36,
+            37,
+            38,
+            39,
+            40,
+            39,
+            40,
+            41,
+            42,
+            43
+          ],
+          "coarse_score": 0.85,
+          "description": "A person is seen entering a dimly lit interior space (likely an office or building corridor) at night (21:04), moving deliberately toward the camera while holding an object that appears to be a bag or tool. The setting is non-public hours, and the individual’s posture and slow, cautious approach suggest unauthorized entry. No visible forced entry (e.g., broken door/window) is captured in these frames, but the context—nighttime, isolated environment, and purposeful movement—strongly indicates potential burglary. The person turns toward the camera in later frames, possibly aware of surveillance, increasing suspicion.",
+          "confidence": 0.7094999844282327,
+          "anomaly_type": "Burglary",
+          "boundary_contrast": 0.10627603727541643,
+          "_boundary_method": "halfmax"
+        }
+      ],
+      "post_mcts": [
+        {
+          "t_start": 5.5,
+          "t_end": 22.0,
+          "frame_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            24,
+            25,
+            26,
+            27,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            36,
+            37,
+            38,
+            39,
+            40,
+            39,
+            40,
+            41,
+            42,
+            43
+          ],
+          "coarse_score": 0.85,
+          "description": "A person is seen entering a dimly lit interior space (likely an office or building corridor) at night (21:04), moving deliberately toward the camera while holding an object that appears to be a bag or tool. The setting is non-public hours, and the individual’s posture and slow, cautious approach suggest unauthorized entry. No visible forced entry (e.g., broken door/window) is captured in these frames, but the context—nighttime, isolated environment, and purposeful movement—strongly indicates potential burglary. The person turns toward the camera in later frames, possibly aware of surveillance, increasing suspicion.",
+          "confidence": 0.7094999844282327,
+          "anomaly_type": "Burglary",
+          "boundary_contrast": 0.10627603727541643,
+          "_boundary_method": "halfmax"
+        }
+      ],
+      "post_stage5b": [
+        {
+          "t_start": 3.2778382496827505,
+          "t_end": 25.555458478424868,
+          "frame_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            24,
+            25,
+            26,
+            27,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            36,
+            37,
+            38,
+            39,
+            40,
+            39,
+            40,
+            41,
+            42,
+            43
+          ],
+          "coarse_score": 0.85,
+          "description": "A person is seen entering a dimly lit interior space (likely an office or building corridor) at night (21:04), moving deliberately toward the camera while holding an object that appears to be a bag or tool. The setting is non-public hours, and the individual’s posture and slow, cautious approach suggest unauthorized entry. No visible forced entry (e.g., broken door/window) is captured in these frames, but the context—nighttime, isolated environment, and purposeful movement—strongly indicates potential burglary. The person turns toward the camera in later frames, possibly aware of surveillance, increasing suspicion.",
+          "confidence": 0.7094999844282327,
+          "anomaly_type": "Burglary",
+          "boundary_contrast": 0.10627603727541643,
+          "_boundary_method": "halfmax",
+          "source_candidate_ids": [
+            0
+          ],
+          "vlm_confidence": 0.85
+        }
+      ],
+      "post_merge": [
+        {
+          "t_start": 3.2778382496827505,
+          "t_end": 25.555458478424868,
+          "frame_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            24,
+            25,
+            26,
+            27,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            36,
+            37,
+            38,
+            39,
+            40,
+            39,
+            40,
+            41,
+            42,
+            43
+          ],
+          "coarse_score": 0.85,
+          "description": "A person is seen entering a dimly lit interior space (likely an office or building corridor) at night (21:04), moving deliberately toward the camera while holding an object that appears to be a bag or tool. The setting is non-public hours, and the individual’s posture and slow, cautious approach suggest unauthorized entry. No visible forced entry (e.g., broken door/window) is captured in these frames, but the context—nighttime, isolated environment, and purposeful movement—strongly indicates potential burglary. The person turns toward the camera in later frames, possibly aware of surveillance, increasing suspicion.",
+          "confidence": 0.7094999844282327,
+          "anomaly_type": "Burglary",
+          "boundary_contrast": 0.10627603727541643,
+          "_boundary_method": "halfmax",
+          "source_candidate_ids": [
+            0
+          ],
+          "vlm_confidence": 0.85
+        }
+      ],
+      "post_nms": [
+        {
+          "t_start": 3.2778382496827505,
+          "t_end": 25.555458478424868,
+          "frame_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            24,
+            25,
+            26,
+            27,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            36,
+            37,
+            38,
+            39,
+            40,
+            39,
+            40,
+            41,
+            42,
+            43
+          ],
+          "coarse_score": 0.85,
+          "description": "A person is seen entering a dimly lit interior space (likely an office or building corridor) at night (21:04), moving deliberately toward the camera while holding an object that appears to be a bag or tool. The setting is non-public hours, and the individual’s posture and slow, cautious approach suggest unauthorized entry. No visible forced entry (e.g., broken door/window) is captured in these frames, but the context—nighttime, isolated environment, and purposeful movement—strongly indicates potential burglary. The person turns toward the camera in later frames, possibly aware of surveillance, increasing suspicion.",
+          "confidence": 0.7094999844282327,
+          "anomaly_type": "Burglary",
+          "boundary_contrast": 0.10627603727541643,
+          "_boundary_method": "halfmax",
+          "source_candidate_ids": [
+            0
+          ],
+          "vlm_confidence": 0.85
+        }
+      ],
+      "post_tighten": [
+        {
+          "t_start": 3.2778382496827505,
+          "t_end": 25.555458478424868,
+          "frame_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            24,
+            25,
+            26,
+            27,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            36,
+            37,
+            38,
+            39,
+            40,
+            39,
+            40,
+            41,
+            42,
+            43
+          ],
+          "coarse_score": 0.85,
+          "description": "A person is seen entering a dimly lit interior space (likely an office or building corridor) at night (21:04), moving deliberately toward the camera while holding an object that appears to be a bag or tool. The setting is non-public hours, and the individual’s posture and slow, cautious approach suggest unauthorized entry. No visible forced entry (e.g., broken door/window) is captured in these frames, but the context—nighttime, isolated environment, and purposeful movement—strongly indicates potential burglary. The person turns toward the camera in later frames, possibly aware of surveillance, increasing suspicion.",
+          "confidence": 0.7094999844282327,
+          "anomaly_type": "Burglary",
+          "boundary_contrast": 0.10627603727541643,
+          "_boundary_method": "halfmax",
+          "source_candidate_ids": [
+            0
+          ],
+          "vlm_confidence": 0.85
+        }
+      ],
+      "post_short": [
+        {
+          "t_start": 3.2778382496827505,
+          "t_end": 25.555458478424868,
+          "frame_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            24,
+            25,
+            26,
+            27,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            36,
+            37,
+            38,
+            39,
+            40,
+            39,
+            40,
+            41,
+            42,
+            43
+          ],
+          "coarse_score": 0.85,
+          "description": "A person is seen entering a dimly lit interior space (likely an office or building corridor) at night (21:04), moving deliberately toward the camera while holding an object that appears to be a bag or tool. The setting is non-public hours, and the individual’s posture and slow, cautious approach suggest unauthorized entry. No visible forced entry (e.g., broken door/window) is captured in these frames, but the context—nighttime, isolated environment, and purposeful movement—strongly indicates potential burglary. The person turns toward the camera in later frames, possibly aware of surveillance, increasing suspicion.",
+          "confidence": 0.7094999844282327,
+          "anomaly_type": "Burglary",
+          "boundary_contrast": 0.10627603727541643,
+          "_boundary_method": "halfmax",
+          "source_candidate_ids": [
+            0
+          ],
+          "vlm_confidence": 0.85
+        }
+      ],
+      "post_classify": [
+        {
+          "t_start": 3.2778382496827505,
+          "t_end": 25.555458478424868,
+          "frame_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            24,
+            25,
+            26,
+            27,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            36,
+            37,
+            38,
+            39,
+            40,
+            39,
+            40,
+            41,
+            42,
+            43
+          ],
+          "coarse_score": 0.85,
+          "description": "A person is seen entering a dimly lit interior space (likely an office or building corridor) at night (21:04), moving deliberately toward the camera while holding an object that appears to be a bag or tool. The setting is non-public hours, and the individual’s posture and slow, cautious approach suggest unauthorized entry. No visible forced entry (e.g., broken door/window) is captured in these frames, but the context—nighttime, isolated environment, and purposeful movement—strongly indicates potential burglary. The person turns toward the camera in later frames, possibly aware of surveillance, increasing suspicion.",
+          "confidence": 0.7094999844282327,
+          "anomaly_type": "Burglary",
+          "boundary_contrast": 0.10627603727541643,
+          "_boundary_method": "halfmax",
+          "source_candidate_ids": [
+            0
+          ],
+          "vlm_confidence": 0.85
+        }
+      ],
+      "post_curve": [
+        {
+          "t_start": 3.2778382496827505,
+          "t_end": 25.555458478424868,
+          "frame_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            24,
+            25,
+            26,
+            27,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            36,
+            37,
+            38,
+            39,
+            40,
+            39,
+            40,
+            41,
+            42,
+            43
+          ],
+          "coarse_score": 0.85,
+          "description": "A person is seen entering a dimly lit interior space (likely an office or building corridor) at night (21:04), moving deliberately toward the camera while holding an object that appears to be a bag or tool. The setting is non-public hours, and the individual’s posture and slow, cautious approach suggest unauthorized entry. No visible forced entry (e.g., broken door/window) is captured in these frames, but the context—nighttime, isolated environment, and purposeful movement—strongly indicates potential burglary. The person turns toward the camera in later frames, possibly aware of surveillance, increasing suspicion.",
+          "confidence": 0.7094999844282327,
+          "anomaly_type": "Burglary",
+          "boundary_contrast": 0.10627603727541643,
+          "_boundary_method": "halfmax",
+          "source_candidate_ids": [
+            0
+          ],
+          "vlm_confidence": 0.85
+        }
+      ],
+      "pre_conf_gate": [
+        {
+          "t_start": 3.2778382496827505,
+          "t_end": 25.555458478424868,
+          "frame_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            24,
+            25,
+            26,
+            27,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            36,
+            37,
+            38,
+            39,
+            40,
+            39,
+            40,
+            41,
+            42,
+            43
+          ],
+          "coarse_score": 0.85,
+          "description": "A person is seen entering a dimly lit interior space (likely an office or building corridor) at night (21:04), moving deliberately toward the camera while holding an object that appears to be a bag or tool. The setting is non-public hours, and the individual’s posture and slow, cautious approach suggest unauthorized entry. No visible forced entry (e.g., broken door/window) is captured in these frames, but the context—nighttime, isolated environment, and purposeful movement—strongly indicates potential burglary. The person turns toward the camera in later frames, possibly aware of surveillance, increasing suspicion.",
+          "confidence": 0.4966499890997629,
+          "anomaly_type": "Burglary",
+          "boundary_contrast": 0.10627603727541643,
+          "_boundary_method": "halfmax",
+          "source_candidate_ids": [
+            0
+          ],
+          "vlm_confidence": 0.85
+        }
+      ],
+      "post_conf_gate": [
+        {
+          "t_start": 3.2778382496827505,
+          "t_end": 25.555458478424868,
+          "frame_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            24,
+            25,
+            26,
+            27,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            36,
+            37,
+            38,
+            39,
+            40,
+            39,
+            40,
+            41,
+            42,
+            43
+          ],
+          "coarse_score": 0.85,
+          "description": "A person is seen entering a dimly lit interior space (likely an office or building corridor) at night (21:04), moving deliberately toward the camera while holding an object that appears to be a bag or tool. The setting is non-public hours, and the individual’s posture and slow, cautious approach suggest unauthorized entry. No visible forced entry (e.g., broken door/window) is captured in these frames, but the context—nighttime, isolated environment, and purposeful movement—strongly indicates potential burglary. The person turns toward the camera in later frames, possibly aware of surveillance, increasing suspicion.",
+          "confidence": 0.4966499890997629,
+          "anomaly_type": "Burglary",
+          "boundary_contrast": 0.10627603727541643,
+          "_boundary_method": "halfmax",
+          "source_candidate_ids": [
+            0
+          ],
+          "vlm_confidence": 0.85
+        }
+      ],
+      "pre_qscore": [
+        {
+          "t_start": 3.2778382496827505,
+          "t_end": 25.555458478424868,
+          "confidence": 0.4966499890997629,
+          "anomaly_type": "Burglary",
+          "depth": null,
+          "visits": null,
+          "source_candidate_ids": [
+            0
+          ]
+        }
+      ],
+      "post_qscore": [
+        {
+          "t_start": 3.2778382496827505,
+          "t_end": 25.555458478424868,
+          "confidence": 0.4966499890997629,
+          "anomaly_type": "Burglary",
+          "depth": null,
+          "visits": null,
+          "source_candidate_ids": [
+            0
+          ]
+        }
+      ],
+      "post_bue": [
+        {
+          "t_start": 3.2778382496827505,
+          "t_end": 25.555458478424868,
+          "confidence": 0.4966499890997629,
+          "anomaly_type": "Burglary",
+          "depth": null,
+          "visits": null,
+          "source_candidate_ids": [
+            0
+          ]
+        }
+      ],
+      "post_cbt": [
+        {
+          "t_start": 3.2778382496827505,
+          "t_end": 25.555458478424868,
+          "confidence": 0.4966499890997629,
+          "anomaly_type": "Burglary",
+          "depth": null,
+          "visits": null,
+          "source_candidate_ids": [
+            0
+          ]
+        }
+      ],
+      "final": [
+        {
+          "t_start": 3.2778382496827505,
+          "t_end": 25.555458478424868,
+          "confidence": 0.4966499890997629,
+          "anomaly_type": "Burglary",
+          "depth": null,
+          "visits": null,
+          "source_candidate_ids": [
+            0
+          ]
+        }
+      ]
+    },
+    "stage_seconds": {
+      "post_stage5b": 0.002814600011333823,
+      "post_merge": 5.040000542066991e-05,
+      "post_nms": 1.00000761449337e-06,
+      "post_tighten": 3.429999924264848e-05,
+      "post_short": 3.00002284348011e-07,
+      "post_classify": 3.42000275850296e-05,
+      "post_curve": 7.410001126118004e-05,
+      "pre_conf_gate": 6.170000415295362e-05,
+      "post_conf_gate": 1.2999807950109243e-06,
+      "pre_qscore": 7.759997970424592e-05,
+      "post_qscore": 0.0001464999804738909,
+      "post_bue": 0.0002127000188920647,
+      "post_cbt": 9.970000246539712e-05,
+      "final": 4.630000330507755e-05
+    },
+    "stage_events": {
+      "post_stage5b": {
+        "input_count": 1,
+        "output_count": 1,
+        "changed": true,
+        "video_category": "Burglary",
+        "bypassed_stage5b_ids": []
+      },
+      "post_merge": {
+        "input_count": 1,
+        "output_count": 1,
+        "changed": false,
+        "video_category": "Burglary",
+        "bypassed_stage5b_ids": []
+      },
+      "post_nms": {
+        "input_count": 1,
+        "output_count": 1,
+        "changed": false,
+        "video_category": "Burglary",
+        "bypassed_stage5b_ids": []
+      },
+      "post_tighten": {
+        "input_count": 1,
+        "output_count": 1,
+        "changed": false,
+        "video_category": "Burglary",
+        "bypassed_stage5b_ids": []
+      },
+      "post_short": {
+        "input_count": 1,
+        "output_count": 1,
+        "changed": false,
+        "video_category": "Burglary",
+        "bypassed_stage5b_ids": []
+      },
+      "post_classify": {
+        "input_count": 1,
+        "output_count": 1,
+        "changed": false,
+        "video_category": "Burglary",
+        "bypassed_stage5b_ids": []
+      },
+      "post_curve": {
+        "input_count": 1,
+        "output_count": 1,
+        "changed": false,
+        "video_category": "Burglary",
+        "bypassed_stage5b_ids": []
+      },
+      "pre_conf_gate": {
+        "input_count": 1,
+        "output_count": 1,
+        "changed": true,
+        "video_category": "Burglary",
+        "bypassed_stage5b_ids": []
+      },
+      "post_conf_gate": {
+        "input_count": 1,
+        "output_count": 1,
+        "changed": false,
+        "video_category": "Burglary",
+        "bypassed_stage5b_ids": []
+      },
+      "pre_qscore": {
+        "input_count": 1,
+        "output_count": 1,
+        "changed": false,
+        "video_category": "Burglary",
+        "bypassed_stage5b_ids": []
+      },
+      "post_qscore": {
+        "input_count": 1,
+        "output_count": 1,
+        "changed": false,
+        "video_category": "Burglary",
+        "bypassed_stage5b_ids": []
+      },
+      "post_bue": {
+        "input_count": 1,
+        "output_count": 1,
+        "changed": false,
+        "video_category": "Burglary",
+        "bypassed_stage5b_ids": []
+      },
+      "post_cbt": {
+        "input_count": 1,
+        "output_count": 1,
+        "changed": false,
+        "video_category": "Burglary",
+        "bypassed_stage5b_ids": []
+      },
+      "final": {
+        "input_count": 1,
+        "output_count": 1,
+        "changed": false,
+        "video_category": "Burglary",
+        "bypassed_stage5b_ids": []
+      }
+    },
+    "nms_suppression": [],
+    "final_nms_suppression": [],
+    "tail_seconds": 0.0039527000044472516,
+    "postprocess_config": {
+      "final_nms": true,
+      "boundary_guard": false
+    },
+    "video_api_metrics": {
+      "logical_calls": 19,
+      "cache_hits": 2,
+      "sdk_attempts": 17,
+      "prompt_tokens": 25092,
+      "completion_tokens": 1960
+    }
+  },
+  "paired_results": {
+    "original_off": {
+      "video_path": "F:\\dataset\\ucf_crime\\Testing_Normal_Videos_Anomaly\\Normal_Videos_010_x264.mp4",
+      "duration": 35.1,
+      "is_normal": false,
+      "anomalies": [
+        {
+          "t_start": 3.2778382496827505,
+          "t_end": 25.555458478424868,
+          "confidence": 0.4966499890997629,
+          "anomaly_type": "Burglary",
+          "depth": null,
+          "visits": null
+        }
+      ],
+      "frame_scores": [
+        0.1116142109307017,
+        0.11945384210346141,
+        0.13514537200054152,
+        0.16243049895523848,
+        0.2083647682703002,
+        0.2749761253598646,
+        0.35139735326104593,
+        0.41848138222119835,
+        0.4630223558028019,
+        0.485300247599209,
+        0.4936825235478989,
+        0.49605453659863324,
+        0.4965593683751295,
+        0.49664008776791013,
+        0.49664998909976293,
+        0.49664998909976293,
+        0.49664998909976293,
+        0.49664998909976293,
+        0.49664998909976293,
+        0.49664998909976293,
+        0.49664998909976293,
+        0.49664998909976293,
+        0.49664998909976293,
+        0.49664998909976293,
+        0.49664998909976293,
+        0.49664998909976293,
+        0.49664998909976293,
+        0.49664030378483937,
+        0.4965591915082369,
+        0.4960490277612567,
+        0.493629858359922,
+        0.48498503950906047,
+        0.4617154961806865,
+        0.41459197867100894,
+        0.34297299898155986,
+        0.2617387581363694,
+        0.1937968583103453,
+        0.15294070334202348,
+        0.13615897396917453,
+        0.13196769619927276,
+        0.13182091595836293,
+        0.13291033657976237,
+        0.1346024745843858,
+        0.1359194284675798
+      ],
+      "timestamps": [
+        0.0,
+        0.5,
+        1.5,
+        2.0,
+        2.5,
+        3.0,
+        3.5,
+        4.0,
+        4.5,
+        5.0,
+        5.5,
+        6.5,
+        7.0,
+        8.0,
+        8.5,
+        9.0,
+        9.5,
+        10.0,
+        10.5,
+        11.0,
+        11.5,
+        12.0,
+        12.5,
+        13.0,
+        13.5,
+        15.5,
+        17.5,
+        19.0,
+        19.5,
+        20.0,
+        20.5,
+        21.0,
+        21.5,
+        22.0,
+        24.0,
+        26.0,
+        28.0,
+        30.0,
+        31.0,
+        31.5,
+        32.0,
+        34.0,
+        34.5,
+        35.0
+      ],
+      "pre_bue_boundaries": [
+        [
+          3.2778382496827505,
+          25.555458478424868
+        ]
+      ],
+      "pre_cbt_boundaries": [
+        [
+          3.2778382496827505,
+          25.555458478424868
+        ]
+      ]
+    },
+    "skip_only": {
+      "video_path": "F:\\dataset\\ucf_crime\\Testing_Normal_Videos_Anomaly\\Normal_Videos_010_x264.mp4",
+      "duration": 35.1,
+      "is_normal": false,
+      "anomalies": [
+        {
+          "t_start": 3.2778382496827505,
+          "t_end": 25.555458478424868,
+          "confidence": 0.4966499890997629,
+          "anomaly_type": "Burglary",
+          "depth": null,
+          "visits": null
+        }
+      ],
+      "frame_scores": [
+        0.1116142109307017,
+        0.11945384210346141,
+        0.13514537200054152,
+        0.16243049895523848,
+        0.2083647682703002,
+        0.2749761253598646,
+        0.35139735326104593,
+        0.41848138222119835,
+        0.4630223558028019,
+        0.485300247599209,
+        0.4936825235478989,
+        0.49605453659863324,
+        0.4965593683751295,
+        0.49664008776791013,
+        0.49664998909976293,
+        0.49664998909976293,
+        0.49664998909976293,
+        0.49664998909976293,
+        0.49664998909976293,
+        0.49664998909976293,
+        0.49664998909976293,
+        0.49664998909976293,
+        0.49664998909976293,
+        0.49664998909976293,
+        0.49664998909976293,
+        0.49664998909976293,
+        0.49664998909976293,
+        0.49664030378483937,
+        0.4965591915082369,
+        0.4960490277612567,
+        0.493629858359922,
+        0.48498503950906047,
+        0.4617154961806865,
+        0.41459197867100894,
+        0.34297299898155986,
+        0.2617387581363694,
+        0.1937968583103453,
+        0.15294070334202348,
+        0.13615897396917453,
+        0.13196769619927276,
+        0.13182091595836293,
+        0.13291033657976237,
+        0.1346024745843858,
+        0.1359194284675798
+      ],
+      "timestamps": [
+        0.0,
+        0.5,
+        1.5,
+        2.0,
+        2.5,
+        3.0,
+        3.5,
+        4.0,
+        4.5,
+        5.0,
+        5.5,
+        6.5,
+        7.0,
+        8.0,
+        8.5,
+        9.0,
+        9.5,
+        10.0,
+        10.5,
+        11.0,
+        11.5,
+        12.0,
+        12.5,
+        13.0,
+        13.5,
+        15.5,
+        17.5,
+        19.0,
+        19.5,
+        20.0,
+        20.5,
+        21.0,
+        21.5,
+        22.0,
+        24.0,
+        26.0,
+        28.0,
+        30.0,
+        31.0,
+        31.5,
+        32.0,
+        34.0,
+        34.5,
+        35.0
+      ],
+      "pre_bue_boundaries": [
+        [
+          3.2778382496827505,
+          25.555458478424868
+        ]
+      ],
+      "pre_cbt_boundaries": [
+        [
+          3.2778382496827505,
+          25.555458478424868
+        ]
+      ]
+    }
+  },
+  "token_usage": {
+    "requests": 17,
+    "successful_requests": 17,
+    "failed_requests": 0,
+    "unknown_usage_requests": 0,
+    "prompt_tokens": 25092,
+    "completion_tokens": 1960,
+    "total_tokens": 27052,
+    "api_queue_seconds": 24.900604799913708,
+    "api_request_seconds": 71.5118,
+    "api_backoff_seconds": 0.0,
+    "api_cancelled_queue_seconds": 0.0,
+    "by_model": {
+      "qwen3-vl-plus": {
+        "requests": 17,
+        "successful_requests": 17,
+        "failed_requests": 0,
+        "unknown_usage_requests": 0,
+        "prompt_tokens": 25092,
+        "completion_tokens": 1960,
+        "total_tokens": 27052,
+        "api_queue_seconds": 24.900604799913708,
+        "api_request_seconds": 71.5118,
+        "api_backoff_seconds": 0.0,
+        "api_cancelled_queue_seconds": 0.0,
+        "by_model": {}
+      }
+    },
+    "video_path": "F:\\dataset\\ucf_crime\\Testing_Normal_Videos_Anomaly\\Normal_Videos_010_x264.mp4",
+    "status": "success"
+  },
+  "experiment_fingerprint": "69151360b4e16dcfbf99492a751b29a4bd19bf4f261359ae39c21a3657cd6c75",
+  "diagnosis_attempt": 1,
+  "token_usage_all_attempts": {
+    "requests": 17,
+    "successful_requests": 17,
+    "failed_requests": 0,
+    "unknown_usage_requests": 0,
+    "prompt_tokens": 25092,
+    "completion_tokens": 1960,
+    "total_tokens": 27052,
+    "api_queue_seconds": 24.900604799913708,
+    "api_request_seconds": 71.5118,
+    "api_backoff_seconds": 0.0,
+    "api_cancelled_queue_seconds": 0.0,
+    "by_model": {
+      "qwen3-vl-plus": {
+        "requests": 17,
+        "successful_requests": 17,
+        "failed_requests": 0,
+        "unknown_usage_requests": 0,
+        "prompt_tokens": 25092,
+        "completion_tokens": 1960,
+        "total_tokens": 27052,
+        "api_queue_seconds": 24.900604799913708,
+        "api_request_seconds": 71.5118,
+        "api_backoff_seconds": 0.0,
+        "api_cancelled_queue_seconds": 0.0,
+        "by_model": {}
+      }
+    },
+    "diagnosis_attempts": 1
+  },
+  "processing_time": 57.69
+}

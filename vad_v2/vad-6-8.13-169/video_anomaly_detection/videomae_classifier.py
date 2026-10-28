@@ -37,7 +37,9 @@ class VideoMAEClassifier:
             self._load_model(model_name)
             _log.info(f"[VideoMAE] Loaded on {device}")
         except Exception as e:
+            self.model = None
             _log.error(f"[VideoMAE] Failed to load: {e}")
+            raise
 
     def _load_model(self, model_name):
         from transformers import VideoMAEForVideoClassification, VideoMAEConfig
@@ -57,22 +59,19 @@ class VideoMAEClassifier:
         model_path = hf_hub_download(model_name, 'model.safetensors')
         state_dict = load_file(model_path)
 
+        expected = set(self.model.state_dict())
         new_state_dict = {}
         for k, v in state_dict.items():
-            new_key = k
-            if '.attention.attention.q_bias' in k:
-                new_key = k.replace('.q_bias', '.query.bias')
-            elif '.attention.attention.v_bias' in k:
-                new_key = k.replace('.v_bias', '.value.bias')
-            new_state_dict[new_key] = v
-
-        for i in range(config.num_hidden_layers):
-            key_name = f'videomae.encoder.layer.{i}.attention.attention.key.bias'
-            if key_name not in new_state_dict:
-                q_name = f'videomae.encoder.layer.{i}.attention.attention.query.bias'
-                if q_name in new_state_dict:
-                    new_state_dict[key_name] = torch.zeros_like(new_state_dict[q_name])
-
+            mapped = k
+            for old, new in (('.q_bias', '.query.bias'), ('.v_bias', '.value.bias')):
+                if k.endswith(old) and k not in expected:
+                    mapped = k[:-len(old)] + new
+            new_state_dict[mapped] = v
+        for key in expected:
+            if key.endswith('.key.bias') and key not in new_state_dict:
+                qkey = key.replace('.key.bias', '.query.bias')
+                if qkey in new_state_dict:
+                    new_state_dict[key] = torch.zeros_like(new_state_dict[qkey])
         self.model.load_state_dict(new_state_dict, strict=True)
         self.model = self.model.to(self.device).eval()
 

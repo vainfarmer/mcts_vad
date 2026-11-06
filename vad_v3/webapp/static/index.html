@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>VAD V3 · 视频异常检测</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/"><span class="brand-icon">◫</span> VAD <span class="version">V3</span><span class="brand-caption">视频分析工作台</span></a>
+    <span class="local"><i></i> 本地工作空间</span>
+  </header>
+  <main>
+    <div class="heading"><div><p class="eyebrow">VIDEO ANOMALY DETECTION</p><h1>视频异常检测与定位</h1><p class="subtitle">从完整视频到异常片段，查看类别、时间边界与最初的视觉描述。</p></div><div class="workflow"><span><b>01</b> 上传</span><em>／</em><span><b>02</b> 检测</span><em>／</em><span><b>03</b> 定位</span></div></div>
+    <div id="notice" class="notice" role="status" hidden></div>
+    <div class="layout">
+      <aside>
+        <section class="panel upload-panel">
+          <div class="section-heading"><h2>输入视频</h2><span class="step">01</span></div>
+          <label id="dropzone" class="dropzone" for="video-file" tabindex="0">
+            <span class="upload-icon" aria-hidden="true">↑</span><strong>点击选择或拖入视频</strong><span>MP4 · WebM · MOV · AVI · MKV</span><small id="upload-limit">文件保存在本机</small>
+          </label>
+          <input id="video-file" type="file" accept=".mp4,.webm,.mov,.m4v,.avi,.mkv" class="visually-hidden">
+          <div id="file-info" class="file-info" hidden><span class="file-symbol">▷</span><div><strong id="file-name"></strong><small id="file-size"></small></div></div>
+          <details class="settings"><summary>检测设置 <span>＋</span></summary>
+            <label for="device">计算设备</label><select id="device"><option value="cuda" selected>CUDA / NVIDIA GPU</option><option value="cpu">CPU</option><option value="mps">MPS / Apple GPU</option></select>
+            <label for="mcts-mode">MCTS 边界优化</label><select id="mcts-mode"><option value="off">关闭 · v3 默认配置</option><option value="refine">Refine · 应用通过验证的优化</option><option value="shadow">Shadow · 仅运行对照搜索</option></select>
+            <label for="context">场景描述</label><input id="context" value="surveillance camera" maxlength="1000">
+            <label class="checkbox"><input id="full-classification" type="checkbox">启用额外 VLM 类别复核</label><p class="hint">默认沿用 v3 分类配置；复核会增加模型调用。</p>
+          </details>
+          <button id="detect" class="primary" disabled><span>开始检测</span><span aria-hidden="true">↗</span></button>
+          <p class="privacy-note">视频存储在本机；检测时抽取的帧会发送至已配置的 VLM 服务。</p>
+          <div id="upload-progress" hidden><progress max="100" value="0"></progress><small></small></div>
+        </section>
+        <section class="panel history-panel"><div class="section-heading"><h2>最近任务</h2><button id="refresh-history" class="icon-button" aria-label="刷新任务">↻</button></div><div id="history"><p class="empty-history">还没有检测记录</p></div></section>
+        <div class="sidebar-note"><b>如何定位？</b><p>点击结果中的「播放片段」，或在播放器下方输入起止时间。播放将在区间末尾暂停。</p></div>
+      </aside>
+      <div class="workspace">
+        <section class="panel player-panel">
+          <div class="section-heading"><div class="inline"><h2>视频预览</h2><span id="video-label" class="muted">等待选择视频</span></div><span id="duration-label" class="mono">--:--</span></div>
+          <div class="video-stage"><video id="player" controls preload="metadata" playsinline hidden></video><div id="video-placeholder"><div class="placeholder-frame"><span>▶</span></div><h3>选择视频，开始分析</h3><p>检测后可直接跳转到每一个异常区间</p><span class="placeholder-tag">LOCAL VIDEO</span></div></div>
+          <p id="video-error" class="media-error" role="alert" hidden></p>
+          <div class="timeline-container"><div class="timeline-caption"><span>异常时间轴</span><span id="timeline-hint">检测结果将在这里标出</span></div><div id="timeline" class="timeline" aria-label="异常区间时间轴"></div><div class="timeline-ticks"><span>00:00</span><span id="timeline-end">--:--</span></div></div>
+          <form id="range-form" class="range-controls"><label>起始时间<input id="range-start" placeholder="00:00.000" value="0" aria-label="起始时间，秒或时分秒" required></label><span class="range-dash">—</span><label>结束时间<input id="range-end" placeholder="秒 / 分:秒" aria-label="结束时间，秒或时分秒" required></label><button type="submit" id="play-range" class="secondary" disabled>▶ 播放区间</button><button type="button" id="play-whole" class="text-button" disabled>完整视频</button><label class="checkbox loop"><input type="checkbox" id="loop">循环片段</label></form>
+          <div id="playback-status" class="playback-status" aria-live="polite">支持输入秒数或 时:分:秒，例如 12.5 或 01:20</div>
+        </section>
+        <section class="panel results-panel">
+          <div class="section-heading"><div class="inline"><h2>定位结果</h2><span id="result-count" class="count">0</span></div><a id="download" class="text-button" hidden>↓ 导出 JSON</a></div>
+          <div id="job-status" class="job-status" role="status"><span class="status-dot"></span><span id="status-text">等待检测</span><span id="elapsed" class="mono"></span></div>
+          <div id="results"><div class="empty-results"><span class="empty-mark">⌕</span><h3>异常片段将显示在这里</h3><p>每条结果包含异常类别、开始与结束时间，以及原始 VLM description。</p></div></div>
+          <details id="log-panel" class="log-panel" hidden><summary>运行日志</summary><pre id="log"></pre></details>
+        </section>
+      </div>
+    </div>
+    <footer><span>VAD / VERSION 3</span><span>时间定位 · 视觉描述 · 片段回看</span></footer>
+  </main>
+</body>
+</html>

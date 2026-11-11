@@ -26,6 +26,8 @@ def paired_scope(func):
                 result.paired_results={'original_off':raw,'skip_only':dict(raw)}
                 if self.config.mcts.postprocess_ablation:
                     result.paired_results.update({k:dict(raw) for k in ('legacy_off','legacy_on','dedup_on')})
+                if self.config.mcts.stage4_acceptance_eval:
+                    result.paired_results.update({k:dict(raw) for k in ('relaxed_node','force_best')})
             return result
         finally:
             request_cache.reset(token)

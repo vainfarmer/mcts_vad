@@ -1,0 +1,13 @@
+{
+  "selection": "Same 14 source videos as the previous pilot; file hashes verified; test split sample(n=1, random_state=42) per class.",
+  "comparison": "Stage 4 raw candidates -> fixed BUE -> CBT versus the same candidates -> original shrink MCTS -> fixed BUE -> CBT.",
+  "skipped_stages": "Stage 5 CLIP boundaries, Stage 5b, intermediate tighten/merge/NMS, candidate top-k, classification VLM, confidence gating and QSCORE are bypassed in BOTH arms.",
+  "action_geometry": "Original shrink actions only; seed-relative +/-25% endpoint bounds; no BUE/CBT search actions.",
+  "interpretation": "Both arms use all Stage 4 candidates, identical fixed postprocessing, predicted upstream category and frozen discovery confidence. GT is used only after inference.",
+  "priors": "Existing frozen category caps; no tuning on selected labels. Provenance of older GT-derived caps is not independently established.",
+  "evidence": "Existing v217 coverage settings (32 images, boundary gap 1.5s, evidence gap 3s); strict acceptance; all_valid trigger.",
+  "cost": "Result token_usage and processing_time cover the entire paired run, not an individual arm.",
+  "evaluation": "VadCLIP rank AP, class-aware 13 abnormal classes, IoU 0.1:0.1:0.5, source FPS, integer half-open intervals. Normal false positives reported separately.",
+  "reference": "https://raw.githubusercontent.com/nwpu-zxr/VadCLIP/main/src/utils/ucf_detectionMAP.py",
+  "limitations": "One test video per class is a smoke/pilot comparison, not a full benchmark or significance test."
+}

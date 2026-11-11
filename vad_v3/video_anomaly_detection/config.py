@@ -119,11 +119,9 @@ class ScoringConfig:
     cbt_recal_trigger: float = 1.1
     # v137 NOCLS-CA (KEPT latency win): skip the Stage-7 _ensemble_classify VLM
     # sub-tree (qwen3-vl-plus, <=3 calls/video) and return the upstream VideoMAE
-    # label. mAP-NEUTRAL BY CONSTRUCTION — compute_temporal_map reads only
-    # {video_id, t_start, t_end, confidence}, never anomaly_type; the confidence
-    # gate / curve correction / frame scores all key off videomae_category, not
-    # the classify result. Verified ~-7.5% per-video VLM calls (v132 in-vivo).
-    # TRADEOFF: degrades the separate Level-4 category-accuracy metric (NOT mAP).
+    # label. This was neutral only for the old class-agnostic localization metric.
+    # Classification affects the new class-aware VadCLIP primary mAP as well
+    # as category accuracy. The inference default is retained for comparability.
     # Opt out with --no_classify_skip_class_agnostic.
     classify_skip_class_agnostic: bool = True
 

@@ -102,6 +102,7 @@ class DashScopeLLMClient:
         from PIL import Image
 
         content = []
+        selected = None
 
         if images is not None and len(images) > 0:
             selected = self._sample_frames(images, self.max_frames)
@@ -131,6 +132,11 @@ class DashScopeLLMClient:
                     })
 
         content.append({"type": "text", "text": prompt})
+        try:
+            from . import research_recording as research
+        except ImportError:
+            import research_recording as research
+        record = research.active.request(prompt, selected, content) if research.active else None
 
         async def attempt():
             metrics = request_metrics.get()
@@ -146,7 +152,16 @@ class DashScopeLLMClient:
                 metrics["prompt_tokens"] += response.usage.prompt_tokens or 0
                 metrics["completion_tokens"] += response.usage.completion_tokens or 0
             return response.choices[0].message.content
-        return await retry_api(attempt,self.api_semaphore,model=self.model,**self.retry_settings)
+        try:
+            answer = await retry_api(attempt,self.api_semaphore,model=self.model,**self.retry_settings)
+            if record is not None:
+                research.active.response(record, response=answer)
+            return answer
+        except Exception as exc:
+            if record is not None:
+                # Error type is enough here; transport messages may contain credentials.
+                research.active.response(record, error=type(exc).__name__)
+            raise
 
     def _sample_frames(self, frames: np.ndarray, n: int) -> np.ndarray:
         """均匀采样 n 帧（首尾必含），作为发送 API 前的帧数保险。"""

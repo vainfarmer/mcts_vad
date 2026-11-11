@@ -18,6 +18,11 @@ import numpy as np
 from typing import List, Dict, Any
 
 try:
+    from .description_provenance import discovery_descriptions
+except ImportError:
+    from description_provenance import discovery_descriptions
+
+try:
     import vad_logger as _vl
     _log = _vl.get("vad.discovery")
 except Exception:
@@ -88,7 +93,15 @@ Respond ONLY in JSON format (no other text):
         # functionally similar to the already-confirmed-harmful "candidate
         # pool modification" risk category, just triggered by revoting
         # instead of a different model. Reverted to the single original call.
-        response = await self.llm.generate(prompt, keyframes)
+        try:
+            from . import research_recording as research
+        except ImportError:
+            import research_recording as research
+        token = research.scope.set(dict(stage='discovery', interval=[segment['t_start'], segment['t_end']]))
+        try:
+            response = await self.llm.generate(prompt, keyframes)
+        finally:
+            research.scope.reset(token)
         result = self._parse_response(response)
         return result
 
@@ -104,6 +117,14 @@ Respond ONLY in JSON format (no other text):
         except (json.JSONDecodeError, ValueError):
             data = {}
 
+        if getattr(self, 'strict_responses', False):
+            import math
+            valid = (isinstance(data, dict) and type(data.get('is_anomalous')) is bool
+                     and type(data.get('confidence')) in (int, float)
+                     and math.isfinite(data['confidence']) and 0 <= data['confidence'] <= 1
+                     and (data.get('description') is None or isinstance(data.get('description'), str)))
+            if not valid:
+                raise ValueError('VLM_DISCOVERY_INVALID_RESPONSE: invalid JSON schema; no normal conclusion')
         is_anomalous = data.get('is_anomalous', False)
         confidence = float(data.get('confidence', 0.0))
         description = data.get('description', None)
@@ -112,6 +133,7 @@ Respond ONLY in JSON format (no other text):
             'is_suspicious': is_anomalous and confidence > 0.3,
             'anomaly_score': confidence,
             'description': description or 'unknown anomaly',
+            'original_description': description if isinstance(description, str) else None,
         }
 
     async def discover(self, video_data, context_prompt="") -> List[Dict[str, Any]]:
@@ -192,11 +214,15 @@ Respond ONLY in JSON format (no other text):
                     'frame_indices': seg['frame_indices'],
                     'coarse_score': result['anomaly_score'],
                     'description': result['description'],
+                    'original_descriptions': discovery_descriptions(dict(
+                        seg, description=result.get('original_description', result['description']))),
                 })
 
         return self._merge_adjacent(suspicious)
 
     def _merge_adjacent(self, candidates, gap_threshold=2.0):
+        candidates = [dict(c, original_descriptions=discovery_descriptions(c))
+                      for c in candidates]
         if len(candidates) <= 1:
             return candidates
 
@@ -212,6 +238,8 @@ Respond ONLY in JSON format (no other text):
                     'frame_indices': last['frame_indices'] + cand['frame_indices'],
                     'coarse_score': max(last['coarse_score'], cand['coarse_score']),
                     'description': last['description'],
+                    'original_descriptions': (last['original_descriptions']
+                                              + cand['original_descriptions']),
                 }
             else:
                 merged.append(cand)

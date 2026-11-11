@@ -1,0 +1,80 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>MCTS 接收条件消融</title>
+<style>body{font:15px system-ui;max-width:1500px;margin:40px auto;padding:0 24px;color:#25382f}table{border-collapse:collapse;width:100%;margin:20px 0}td,th{border:1px solid #d4ddd6;padding:10px;text-align:left}th{background:#edf3ef}small{display:block;color:#65726a}pre{white-space:pre-wrap}a{color:#216749}</style>
+<h1>Stage 4 → MCTS 接收条件 → 固定 BUE→CBT</h1><p><strong>放宽接收 MCTS接受 19 个提案，最终改变 8 个视频，AVG 相对直接后处理变化 +7.69 个百分点；强制接收最佳提案接受 19 个提案，最终改变 8 个视频，AVG 相对直接后处理变化 +7.69 个百分点。</strong></p>
+<p>同一批 14 个视频，复用上一轮 Stage 4 候选和完整 MCTS 搜索树、VLM 回答与奖励，仅改变接收规则。重建真实视频的 CLIP 曲线并重新执行原有 BUE→CBT；直接后处理和严格接收两条基线逐视频精确复现。新 VLM 请求：0。</p>
+<ul><li>严格：原有完整性、未切断、CLIP 质量及最终 A/B 证据比较。</li>
+<li>放宽 relaxed_node：仅保留目标存在、同一事件、CLIP 质量不明显下降，取消完整性/切断否决和最终 A/B 比较。</li>
+<li>强制 force_best：每个已搜索候选直接采用评分最高的有效非根节点，允许分数低于原区间；取消语义和 CLIP 接收门槛及最终比较。</li></ul>
+<p>每个候选只输出一个区间，不把搜索树所有节点变成检测结果。无合法已评分提案的候选保留原区间。几何合法性、证据覆盖、原搜索预算均保持；本次没有重新搜索未进入预算的候选。强制接收也不会采用无效 JSON 或失败评价。</p>
+<h2>最终定位结果</h2><p>使用当前 evaluate.py：VadCLIP 非插值 AP，13 类异常，原视频 FPS，IoU 0.1—0.5；AVG 为五个阈值的平均。正常视频误报单独统计。</p>
+<table><tr><th>策略</th><th>mAP@0.1</th><th>mAP@0.3</th><th>mAP@0.5</th><th>AVG</th><th>接受候选</th><th>最终改变视频</th><th>被固定尾流程恢复的候选</th></tr><tr><td>直接 BUE→CBT</td><td>50.64%</td><td>25.00%</td><td>9.62%</td><td>27.56%</td><td>0</td><td>0</td><td>0</td></tr><tr><td>严格接收 MCTS</td><td>50.64%</td><td>25.00%</td><td>9.62%</td><td>27.56%</td><td>0</td><td>0</td><td>0</td></tr><tr><td>放宽接收 MCTS</td><td>50.64%</td><td>32.69%</td><td>17.31%</td><td>35.26%</td><td>19</td><td>8</td><td>9</td></tr><tr><td>强制接收最佳提案</td><td>50.64%</td><td>32.69%</td><td>17.31%</td><td>35.26%</td><td>19</td><td>8</td><td>9</td></tr></table>
+<p>放宽组 AVG 变化的类别贡献：Explosion +6.15 个百分点、Fighting +1.54 个百分点。这是各类别 AP 对宏平均的贡献，不是逐类 AP 本身。主要收益集中在少数样本，需要更大样本复核。</p>
+<h2>固定后处理前后</h2><p>前列使用接收后的搜索区间直接评估；用于观察 BUE→CBT 的作用，类别与置信度保持相同。</p>
+<table><tr><th>策略</th><th>后处理前 AVG</th><th>后处理后 AVG</th></tr><tr><td>直接 BUE→CBT</td><td>33.33%</td><td>27.56%</td></tr><tr><td>严格接收 MCTS</td><td>33.33%</td><td>27.56%</td></tr><tr><td>放宽接收 MCTS</td><td>34.87%</td><td>35.26%</td></tr><tr><td>强制接收最佳提案</td><td>34.87%</td><td>35.26%</td></tr></table>
+<h2>逐视频边界</h2><p>数值为每个 GT 的最佳 tIoU 再求均值，不计类别；下方为最终区间（秒）。严格策略与直接后处理相同，完整数据见 JSON。</p>
+<table><tr><th>视频</th><th>直接 BUE→CBT</th><th>放宽接收后 BUE→CBT</th><th>强制接收后 BUE→CBT</th></tr><tr><td>Abuse<small>Abuse030_x264</small></td><td>0.000<small>[]</small></td><td>0.000<small>[]</small></td><td>0.000<small>[]</small></td></tr><tr><td>Arrest<small>Arrest007_x264</small></td><td>0.840<small>[(22.5, 33.0), (49.5, 74.5)]</small></td><td>0.872<small>[(23.5, 33.0), (51.5, 74.5)]</small></td><td>0.872<small>[(23.5, 33.0), (51.5, 74.5)]</small></td></tr><tr><td>Arson<small>Arson035_x264</small></td><td>0.247<small>[(4.5, 45.0)]</small></td><td>0.247<small>[(4.5, 45.0)]</small></td><td>0.247<small>[(4.5, 45.0)]</small></td></tr><tr><td>Assault<small>Assault006_x264</small></td><td>0.145<small>[(36.0, 73.5), (90.0, 107.5)]</small></td><td>0.130<small>[(36.0, 70.0), (92.5, 107.5)]</small></td><td>0.130<small>[(36.0, 70.0), (92.5, 107.5)]</small></td></tr><tr><td>Burglary<small>Burglary079_x264</small></td><td>0.000<small>[(90.0, 174.5)]</small></td><td>0.000<small>[(90.0, 174.5)]</small></td><td>0.000<small>[(90.0, 174.5)]</small></td></tr><tr><td>Explosion<small>Explosion002_x264</small></td><td>0.100<small>[(51.0, 53.0), (51.5, 53.0)]</small></td><td>0.585<small>[(49.5, 62.0), (51.5, 53.0)]</small></td><td>0.585<small>[(49.5, 62.0), (51.5, 53.0)]</small></td></tr><tr><td>Fighting<small>Fighting018_x264</small></td><td>0.398<small>[(0.0, 28.5), (31.5, 45.5)]</small></td><td>0.482<small>[(0.0, 23.5), (31.5, 45.5)]</small></td><td>0.482<small>[(0.0, 23.5), (31.5, 45.5)]</small></td></tr><tr><td>Normal<small>Normal_Videos_782_x264</small></td><td>—<small>[(103.5, 145.0)]</small></td><td>—<small>[(104.0, 145.0)]</small></td><td>—<small>[(104.0, 145.0)]</small></td></tr><tr><td>RoadAccidents<small>RoadAccidents123_x264</small></td><td>0.000<small>[(14.0, 18.0), (29.0, 31.0)]</small></td><td>0.000<small>[(14.0, 18.0), (29.0, 31.0)]</small></td><td>0.000<small>[(14.0, 18.0), (29.0, 31.0)]</small></td></tr><tr><td>Robbery<small>Robbery050_x264</small></td><td>0.066<small>[(44.5, 46.5), (44.5, 46.5)]</small></td><td>0.066<small>[(44.5, 46.5), (44.5, 46.5)]</small></td><td>0.066<small>[(44.5, 46.5), (44.5, 46.5)]</small></td></tr><tr><td>Shooting<small>Shooting032_x264</small></td><td>0.429<small>[(269.0, 272.0)]</small></td><td>0.429<small>[(269.0, 272.0)]</small></td><td>0.429<small>[(269.0, 272.0)]</small></td></tr><tr><td>Shoplifting<small>Shoplifting001_x264</small></td><td>0.223<small>[(19.5, 21.5), (31.5, 37.5), (49.5, 55.5), (65.5, 69.5)]</small></td><td>0.223<small>[(19.0, 27.5), (31.5, 37.5), (49.5, 55.5), (65.5, 69.5)]</small></td><td>0.223<small>[(19.0, 27.5), (31.5, 37.5), (49.5, 55.5), (65.5, 69.5)]</small></td></tr><tr><td>Stealing<small>Stealing036_x264</small></td><td>0.000<small>[(31.5, 41.0)]</small></td><td>0.000<small>[(33.0, 41.0)]</small></td><td>0.000<small>[(33.0, 41.0)]</small></td></tr><tr><td>Vandalism<small>Vandalism015_x264</small></td><td>0.687<small>[(9.0, 15.0), (22.5, 42.5), (57.0, 90.5)]</small></td><td>0.687<small>[(2.0, 14.5), (22.5, 42.5), (57.0, 90.5)]</small></td><td>0.687<small>[(2.0, 14.5), (22.5, 42.5), (57.0, 90.5)]</small></td></tr></table>
+<h2>范围与统计</h2><p>本次是固定搜索树的接收消融，不是重新执行整条推理流程；不能据此比较不同策略的新请求数或独立运行耗时。只有每类一个视频，不能代表完整数据集。原有 CBT 时长先验保持不变，历史统计来源未独立核实；未使用本轮 GT 调整接收条件。应用默认仍为严格接收。</p>
+<pre>{
+  &quot;completed&quot;: 14,
+  &quot;new_vlm_requests&quot;: 0,
+  &quot;replay_seconds&quot;: 40.209990500006825,
+  &quot;summary&quot;: {
+    &quot;fixed&quot;: {
+      &quot;accepted_candidates&quot;: 0,
+      &quot;overwritten_candidates&quot;: 0,
+      &quot;final_changed_videos&quot;: 0,
+      &quot;total_predictions&quot;: 24,
+      &quot;unchanged&quot;: 13,
+      &quot;normal_false_positives&quot;: 1,
+      &quot;mean_best_tiou&quot;: 0.24107459362407496
+    },
+    &quot;strict&quot;: {
+      &quot;accepted_candidates&quot;: 0,
+      &quot;overwritten_candidates&quot;: 0,
+      &quot;final_changed_videos&quot;: 0,
+      &quot;total_predictions&quot;: 24,
+      &quot;unchanged&quot;: 13,
+      &quot;normal_false_positives&quot;: 1,
+      &quot;mean_best_tiou&quot;: 0.24107459362407496
+    },
+    &quot;relaxed_node&quot;: {
+      &quot;accepted_candidates&quot;: 19,
+      &quot;overwritten_candidates&quot;: 9,
+      &quot;final_changed_videos&quot;: 8,
+      &quot;total_predictions&quot;: 24,
+      &quot;unchanged&quot;: 9,
+      &quot;improved&quot;: 3,
+      &quot;worsened&quot;: 1,
+      &quot;normal_false_positives&quot;: 1,
+      &quot;mean_best_tiou&quot;: 0.28625529912782544
+    },
+    &quot;force_best&quot;: {
+      &quot;accepted_candidates&quot;: 19,
+      &quot;overwritten_candidates&quot;: 9,
+      &quot;final_changed_videos&quot;: 8,
+      &quot;total_predictions&quot;: 24,
+      &quot;unchanged&quot;: 9,
+      &quot;improved&quot;: 3,
+      &quot;worsened&quot;: 1,
+      &quot;normal_false_positives&quot;: 1,
+      &quot;mean_best_tiou&quot;: 0.28625529912782544
+    }
+  },
+  &quot;selected_diagnostics&quot;: {
+    &quot;relaxed_node&quot;: {
+      &quot;partial_selected&quot;: 16,
+      &quot;cut_selected&quot;: 16,
+      &quot;below_root_reward&quot;: 5,
+      &quot;image_budget_insufficient&quot;: 2,
+      &quot;candidate_or_video_budget&quot;: 3
+    },
+    &quot;force_best&quot;: {
+      &quot;partial_selected&quot;: 16,
+      &quot;cut_selected&quot;: 16,
+      &quot;below_root_reward&quot;: 5,
+      &quot;image_budget_insufficient&quot;: 2,
+      &quot;candidate_or_video_budget&quot;: 3
+    }
+  }
+}</pre>
+<p><a href="comparison.json">完整 JSON</a> · <a href="per_video.csv">逐视频 CSV</a> · <a href="protocol.json">实验协议</a> · <a href="executed_source.zip">执行源码</a> · <a href="../stage4_fixed_vs_mcts/report.html">原始搜索报告</a></p></html>

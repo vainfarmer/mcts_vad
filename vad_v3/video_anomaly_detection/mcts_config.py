@@ -18,6 +18,8 @@ class MCTSConfig:
     # best_valid只比较最佳合格提案；reward_gain还要求超过根节点的最小奖励增益。
     comparison_gate: str = 'best_valid'
     # relative_nonloss允许原事件不完整且比较打平，但必须保留原区间已有事件内容。
+    # relaxed_node保留目标/同一事件/CLIP质量；force_best接受最佳有效非根节点。
+    # 后两者是接收消融，不做最终A/B比较，也不检查奖励增益；默认仍为strict。
     acceptance_policy: str = 'strict'
     # all_valid取消对比阈值筛选，但仍要求证据有效、存在合法动作并遵守预算。
     trigger_policy: str = 'low_contrast'
@@ -50,6 +52,11 @@ class MCTSConfig:
     trace_enabled: bool = False
     # 配对模式共享上游，独立运行三条尾流程；整次token不是单独on分支成本。
     paired_eval: bool = False
+    # 实验路由：Stage 4 原始候选 -> (可选原有 MCTS) -> 固定 BUE -> CBT。
+    # 仅用于共享上游的配对消融，不改变默认完整流程。
+    stage4_direct_eval: bool = False
+    # 四组实时配对：off / strict / relaxed_node / force_best，共享Stage 4和精确请求缓存。
+    stage4_acceptance_eval: bool = False
     # 最终去重对off/on均生效；保护仅作用于MCTS已接受来源。默认保持旧流程，消融后再决定启用。
     final_nms_enabled: bool = False
     final_nms_iou: float = 0.3
@@ -68,13 +75,15 @@ class MCTSConfig:
             'action_set': ('shrink', 'shrink_shift', 'shrink_expand_shift'),
             'search_strategy': ('mcts', 'greedy', 'uniform'),
             'comparison_gate': ('best_valid', 'reward_gain'),
-            'acceptance_policy': ('strict', 'relative_nonloss'),
+            'acceptance_policy': ('strict', 'relative_nonloss', 'relaxed_node', 'force_best'),
             'trigger_policy': ('low_contrast', 'all_valid'),
         }.items():
             if getattr(self, key) not in allowed:
                 raise ValueError(f'{key} must be one of {allowed}')
         if type(self.citation_repair_attempts) is not int or self.citation_repair_attempts not in (0,1):
             raise ValueError('citation_repair_attempts must be 0 or 1')
+        if self.acceptance_policy in ('relaxed_node', 'force_best') and self.comparison_gate != 'best_valid':
+            raise ValueError('Node-only acceptance requires comparison_gate=best_valid')
         integers = ('simulations', 'max_depth', 'max_candidates_per_video',
                     'max_vlm_evaluations_per_candidate', 'max_vlm_evaluations_per_video',
                     'max_images_per_evaluation', 'min_unique_evaluations', 'patience',
@@ -99,6 +108,11 @@ class MCTSConfig:
             raise ValueError('Budget must reserve root evaluation and final comparison')
         if self.paired_eval and self.mode != 'refine':
             raise ValueError('paired_eval requires mode=refine')
+        if self.stage4_direct_eval and (not self.paired_eval or self.postprocess_ablation):
+            raise ValueError('stage4_direct_eval requires paired_eval without postprocess_ablation')
+        if self.stage4_acceptance_eval and (not self.stage4_direct_eval or self.acceptance_policy != 'strict'
+                                           or self.comparison_gate != 'best_valid'):
+            raise ValueError('stage4_acceptance_eval requires stage4_direct_eval, strict and best_valid')
         if self.postprocess_ablation and not self.paired_eval:
             raise ValueError('postprocess_ablation requires paired_eval')
         if self.postprocess_ablation and not (self.final_nms_enabled and self.boundary_guard_enabled):

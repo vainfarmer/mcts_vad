@@ -1,0 +1,33 @@
+{
+  "scope": "Stage 4 raw candidates -> optional MCTS -> identical fixed BUE -> CBT",
+  "arms": [
+    "off",
+    "strict",
+    "relaxed_node",
+    "force_best"
+  ],
+  "selection": "All 140 abnormal test videos across 13 categories. Normal videos excluded before inference.",
+  "category_counts": {
+    "Abuse": 2,
+    "Arrest": 5,
+    "Arson": 9,
+    "Assault": 3,
+    "Burglary": 13,
+    "Explosion": 21,
+    "Fighting": 5,
+    "RoadAccidents": 23,
+    "Robbery": 5,
+    "Shooting": 23,
+    "Shoplifting": 21,
+    "Stealing": 5,
+    "Vandalism": 5
+  },
+  "pairing": "One shared upstream discovery; off completes before any search. Each active policy independently executes the current MCTS refiner with its own budget/tree and video state.",
+  "api_replay": "Per-video exact-request cache: only identical model settings, prompts and image bytes share successful replies. This is a live paired run, not frozen-tree replay.",
+  "frozen": "All Stage 4 candidates retained, discovery confidences and predicted categories fixed. Stage 5 and intermediate refinements/top-k/NMS/classification/gating/QSCORE bypassed.",
+  "search": "shrink, all_valid, 8 simulations, depth 4, 2 candidates/video, 10 logical requests/candidate and 20/video, 32 evidence images, boundary gap 1.5s/evidence gap 3s.",
+  "evaluation": "VadCLIP noninterpolated class-aware AP; 13 abnormal classes, native FPS, integer half-open frames, IoU 0.1:0.1:0.5. No normal-video evaluation.",
+  "costs": "Result-level aggregate includes historical imported usage; current execution API usage is separately saved in results/metadata/token_usage*.json. Cache-affected branch times are not standalone comparisons.",
+  "limitations": "All abnormal test videos but no normal videos, so no normal-video FPR estimate. Prior test-set use means this is not an independent holdout. CBT priors unchanged; historical provenance unverified. GT only used for evaluation.",
+  "reuse": "60 verified prior four-arm abnormal-video results + 80 new live four-arm videos; source files and inference manifests matched. Full mAP reranked/recomputed jointly on all 140."
+}

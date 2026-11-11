@@ -206,7 +206,7 @@ async def run_batch(args):
         raise RuntimeError(f'{failed} videos failed; incomplete results are not evaluated')
     logger.info("Running evaluation...")
     label_path = str(parquet_directory(dataset_dir))
-    eval_results = evaluate(label_path, str(output_dir), fps=30, split="test")
+    eval_results = evaluate(label_path, str(output_dir), split="test", video_root=dataset_dir)
 
     report = {
         "timing": {

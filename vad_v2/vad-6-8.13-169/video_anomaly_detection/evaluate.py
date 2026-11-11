@@ -36,8 +36,8 @@ UCF-Crime 评估模块
     --label_path data/ucf_crime_labels.txt \
     --result_dir data/results/
 
-注意：--fps 应设为 GT 标注使用的原始视频帧率（通常 30fps），
-不是 Pipeline 的采样帧率。GT 标注的帧号基于原始视频帧率。
+注意：默认读取项目data/ucf_crime_test_video_fps.json中的逐视频原始FPS，
+不是Pipeline采样FPS。--legacy_fixed_fps用于显式复现历史固定FPS指标。
 """
 
 import argparse
@@ -45,6 +45,15 @@ import json
 import os
 from pathlib import Path
 from typing import Dict, List, Tuple, Any
+
+# Shared FPS index is outside versioned inference code; standalone CLI still works.
+import sys
+for _project_root in Path(__file__).resolve().parents:
+    if (_project_root / 'evaluation_tools' / 'video_fps.py').is_file():
+        if str(_project_root) not in sys.path:
+            sys.path.insert(0, str(_project_root))
+        break
+from evaluation_tools.video_fps import evaluation_fps, fps_for_video
 
 import numpy as np
 import pandas as pd
@@ -205,7 +214,8 @@ def compute_frame_auc(
 
     for video_id, gt_entry in gt.items():
         pred_entry = pred.get(video_id)
-        total_frames = _get_total_frames(video_id, gt_entry, pred_entry, fps)
+        video_fps = fps_for_video(fps, video_id)
+        total_frames = _get_total_frames(video_id, gt_entry, pred_entry, video_fps)
         if total_frames == 0:
             continue
 
@@ -220,7 +230,7 @@ def compute_frame_auc(
             if frame_scores is not None and len(frame_scores) > 1:
                 fs = np.array(frame_scores, dtype=np.float32)
                 if pred_timestamps is not None and len(pred_timestamps) == len(fs):
-                    sample_frames = np.array(pred_timestamps) * fps
+                    sample_frames = np.array(pred_timestamps) * video_fps
                 else:
                     sample_frames = np.linspace(0, total_frames - 1, len(fs))
                 pred_scores = np.interp(
@@ -228,8 +238,8 @@ def compute_frame_auc(
                 ).astype(np.float32)
             else:
                 for anomaly in pred_entry['anomalies']:
-                    start_f = int(anomaly['t_start'] * fps)
-                    end_f = int(anomaly['t_end'] * fps)
+                    start_f = int(anomaly['t_start'] * video_fps)
+                    end_f = int(anomaly['t_end'] * video_fps)
                     conf = anomaly.get('confidence', 1.0)
                     start_f = max(0, min(start_f, total_frames - 1))
                     end_f = max(0, min(end_f, total_frames))
@@ -359,7 +369,7 @@ def compute_temporal_map(
                     continue
                 if j in matched_gt:
                     continue
-                iou = _temporal_iou(p['segment'], g['segment'], fps)
+                iou = _temporal_iou(p['segment'], g['segment'], fps_for_video(fps, p['video_id']))
                 if iou > best_iou:
                     best_iou = iou
                     best_gt_idx = j
@@ -486,7 +496,7 @@ def compute_category_accuracy(
 # 主评估入口
 # ---------------------------------------------------------------------------
 
-def evaluate(label_path, result_dir, fps=30, split="test"):
+def evaluate(label_path, result_dir, fps=30, split="test", fps_manifest=None):
     gt = load_ground_truth(label_path, split=split)
     pred = load_predictions(result_dir)
 
@@ -503,6 +513,9 @@ def evaluate(label_path, result_dir, fps=30, split="test"):
         _log.warning("No matching videos found between GT and predictions.")
         return {}
 
+    # Missing FPS entries are errors; never silently mix native and assumed FPS.
+    fps = evaluation_fps(fps, fps_manifest, matched)
+    _log.info('FPS source: %s', 'per-video manifest' if isinstance(fps, dict) else f'fixed {fps}')
     gt_matched = {k: gt[k] for k in matched}
     pred_matched = {k: pred[k] for k in matched}
 
@@ -554,15 +567,20 @@ if __name__ == "__main__":
                         help="Path to GT: parquet file, parquet directory, or text file")
     parser.add_argument("--result_dir", type=str, required=True,
                         help="Directory containing prediction JSON files")
-    parser.add_argument("--fps", type=int, default=30,
+    parser.add_argument("--fps", type=float, default=30,
                         help="Video frame rate for frame-level evaluation")
     parser.add_argument("--split", type=str, default="test",
                         help="Dataset split to use when label_path is a directory")
     parser.add_argument("--output_file", type=str, default=None,
                         help="Save evaluation report to JSON")
+    parser.add_argument("--fps_manifest", default=None,
+                        help="Per-video FPS JSON; defaults to project data/ucf_crime_test_video_fps.json")
+    parser.add_argument("--legacy_fixed_fps", action="store_true",
+                        help="Explicitly bypass FPS manifest to reproduce historical fixed-FPS scores")
     args = parser.parse_args()
 
-    results = evaluate(args.label_path, args.result_dir, args.fps, args.split)
+    results = evaluate(args.label_path, args.result_dir, args.fps, args.split,
+                       fps_manifest=False if args.legacy_fixed_fps else args.fps_manifest)
 
     if args.output_file and results:
         with open(args.output_file, 'w') as f:

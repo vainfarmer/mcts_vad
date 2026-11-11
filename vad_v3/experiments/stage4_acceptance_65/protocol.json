@@ -1,0 +1,33 @@
+{
+  "scope": "Stage 4 raw candidates -> optional MCTS -> identical fixed BUE -> CBT",
+  "arms": [
+    "off",
+    "strict",
+    "relaxed_node",
+    "force_best"
+  ],
+  "selection": "Historical 65-video selection reproduced by max_per_category=5, random_state=42; 60 abnormal and 5 normal; Abuse=2 and Assault=3 due to test-set availability.",
+  "category_counts": {
+    "Abuse": 2,
+    "Arrest": 5,
+    "Arson": 5,
+    "Assault": 3,
+    "Burglary": 5,
+    "Explosion": 5,
+    "Fighting": 5,
+    "Normal": 5,
+    "RoadAccidents": 5,
+    "Robbery": 5,
+    "Shooting": 5,
+    "Shoplifting": 5,
+    "Stealing": 5,
+    "Vandalism": 5
+  },
+  "pairing": "One shared upstream discovery; off completes before any search. Each active policy independently executes the current MCTS refiner with its own budget/tree and video state.",
+  "api_replay": "Per-video exact-request cache: only identical model settings, prompts and image bytes share successful replies. This is a live paired run, not frozen-tree replay.",
+  "frozen": "All Stage 4 candidates retained, discovery confidences and predicted categories fixed. Stage 5 and intermediate refinements/top-k/NMS/classification/gating/QSCORE bypassed.",
+  "search": "shrink, all_valid, 8 simulations, depth 4, 2 candidates/video, 10 logical requests/candidate and 20/video, 32 evidence images, boundary gap 1.5s/evidence gap 3s.",
+  "evaluation": "Current VadCLIP noninterpolated class-aware AP; 13 abnormal classes, native FPS, integer half-open frames, IoU 0.1:0.1:0.5. Normal false positives reported separately.",
+  "costs": "Whole-run tokens/latency are actual shared four-arm usage. Later arms benefit from cache; branch time/tokens are not standalone deployment comparisons.",
+  "limitations": "65-video subset, not full test set. Includes earlier pilot inputs; not an independent holdout. Existing CBT priors unchanged; older provenance unverified. GT only used for evaluation."
+}

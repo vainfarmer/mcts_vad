@@ -1,0 +1,56 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>BUE / CBT MCTS 小样本对照</title>
+<style>body{font:15px system-ui;max-width:1500px;margin:40px auto;padding:0 24px;color:#26352f}table{border-collapse:collapse;width:100%;margin:20px 0}td,th{border:1px solid #d4ddd6;padding:10px;text-align:left}th{background:#edf3ef}small{display:block;color:#65726a}pre{white-space:pre-wrap}a{color:#216749}</style>
+<h1>BUE / CBT MCTS：每类一个视频的配对试验</h1>
+<p><strong>共 8 个视频、11 个候选进入搜索，30 次逻辑评估，接受 0 个修改。所有最终结果与 skip_only 辅助对照完全一致；本轮输出差异来自取消末尾 BUE/CBT，没有被采用的 MCTS 边界改进。</strong></p>
+<p>13 类异常各一个测试视频，另加一个正常视频；固定随机种子 42。动作只有 BUE、CBT，原始输出受原有 ±25% 边界位移约束。候选、帧和上游结果共享，GT 不参与推理。</p>
+<p>fixed_bue_cbt：不开 MCTS，末尾固定执行 BUE→CBT。mcts_bue_cbt：MCTS 搜索两种动作，末尾不重复执行。skip_only：原区间、沿用搜索分支 Stage 5b 绕过策略、关闭末尾 BUE/CBT，仅用于解释差异来源。</p>
+<p>这是执行位置也发生变化的系统方案对照，不能把所有差异归因于 MCTS 搜索。原有 CBT 时长先验的历史统计来源未重新核实，本次未使用所选视频标注调参。单视频/类结果不代表完整测试集表现。</p>
+<h2>定位指标</h2><p>类别敏感 AP；使用每个视频真实 FPS，半开区间；mAP 对 13 类求均值；AVG 为 IoU 0.1、0.2、0.3、0.4、0.5 的均值。正常视频单独检查误报，不进入此 mAP。</p>
+<table><tr><th>方案</th><th>mAP@0.1</th><th>mAP@0.3</th><th>mAP@0.5</th><th>AVG</th></tr><tr><td>fixed_bue_cbt</td><td>46.15%</td><td>26.92%</td><td>19.23%</td><td>33.08%</td></tr><tr><td>mcts_bue_cbt</td><td>34.62%</td><td>23.08%</td><td>15.38%</td><td>26.15%</td></tr><tr><td>skip_only</td><td>34.62%</td><td>23.08%</td><td>15.38%</td><td>26.15%</td></tr></table>
+<h2>逐视频结果</h2><p>tIoU 列为各 GT 区间最佳检测重叠的均值，不计类别，漏检记 0；它用于诊断边界，不替代上面的类别敏感 AP。搜索/接受/请求分别为候选数、接受数、逻辑 VLM 评估数。</p>
+<table><tr><th>类别 / 视频</th><th>GT 秒</th><th>固定 BUE→CBT</th><th>BUE/CBT MCTS</th><th>最佳 tIoU 均值</th><th>搜索 / 接受 / 请求</th><th>搜索结果</th></tr><tr><td>Abuse<small>Abuse030_x264</small></td><td>[(42.5, 45.33)]</td><td>无检测</td><td>无检测</td><td>0.000 → 0.000</td><td>0 / 0 / 0</td><td>{}</td></tr><tr><td>Arrest<small>Arrest007_x264</small></td><td>[(51.0, 72.0)]</td><td>Arrest [53.50, 74.50]<br>Arrest [25.50, 76.50]</td><td>Arrest [53.50, 74.50]<br>Arrest [25.50, 37.50]</td><td>0.787 → 0.787</td><td>0 / 0 / 0</td><td>{&#x27;boundary_gap_left_out&#x27;: 1, &#x27;boundary_gap_right_in&#x27;: 1}</td></tr><tr><td>Arson<small>Arson035_x264</small></td><td>[(20.0, 30.0)]</td><td>Arson [4.50, 45.00]</td><td>Arson [23.92, 28.00]</td><td>0.247 → 0.408</td><td>1 / 0 / 2</td><td>{&#x27;no_valid_proposal&#x27;: 1}</td></tr><tr><td>Assault<small>Assault006_x264</small></td><td>[(39.5, 269.87)]</td><td>Assault [19.50, 108.00]</td><td>Assault [19.50, 108.00]</td><td>0.274 → 0.274</td><td>0 / 0 / 0</td><td>{&#x27;image_budget_insufficient&#x27;: 1, &#x27;no_evidenced_action&#x27;: 1}</td></tr><tr><td>Burglary<small>Burglary079_x264</small></td><td>[(258.33, 357.0)]</td><td>Vandalism [103.00, 174.50]</td><td>Vandalism [132.50, 134.50]</td><td>0.000 → 0.000</td><td>1 / 0 / 3</td><td>{&#x27;comparison_rejected&#x27;: 1}</td></tr><tr><td>Explosion<small>Explosion002_x264</small></td><td>[(50.0, 70.0)]</td><td>Explosion [51.50, 62.00]<br>Explosion [51.00, 53.00]</td><td>Explosion [51.50, 61.50]<br>Explosion [74.50, 76.00]</td><td>0.525 → 0.500</td><td>1 / 0 / 2</td><td>{&#x27;no_valid_proposal&#x27;: 1, &#x27;no_evidenced_action&#x27;: 1}</td></tr><tr><td>Fighting<small>Fighting018_x264</small></td><td>[(2.67, 14.0)]</td><td>Fighting [36.00, 45.50]</td><td>Fighting [38.00, 45.50]</td><td>0.000 → 0.000</td><td>0 / 0 / 0</td><td>{&#x27;no_evidenced_action&#x27;: 1, &#x27;boundary_gap_right_in&#x27;: 1}</td></tr><tr><td>Normal<small>Normal_Videos_782_x264</small></td><td>[]</td><td>无检测</td><td>无检测</td><td>— → —</td><td>0 / 0 / 0</td><td>{&#x27;no_evidenced_action&#x27;: 1}</td></tr><tr><td>RoadAccidents<small>RoadAccidents123_x264</small></td><td>[(4.33, 7.0)]</td><td>RoadAccidents [14.00, 18.00]</td><td>RoadAccidents [6.50, 30.50]</td><td>0.000 → 0.019</td><td>2 / 0 / 7</td><td>{&#x27;no_valid_proposal&#x27;: 2}</td></tr><tr><td>Robbery<small>Robbery050_x264</small></td><td>[(16.5, 47.0)]</td><td>RoadAccidents [44.50, 46.50]<br>RoadAccidents [44.50, 46.50]</td><td>RoadAccidents [16.00, 26.00]<br>RoadAccidents [33.50, 47.00]</td><td>0.066 → 0.443</td><td>1 / 0 / 3</td><td>{&#x27;boundary_gap_left_out&#x27;: 1, &#x27;no_valid_proposal&#x27;: 1}</td></tr><tr><td>Shooting<small>Shooting032_x264</small></td><td>[(266.5, 273.5)]</td><td>Shooting [269.00, 272.00]</td><td>Shooting [295.50, 300.50]</td><td>0.429 → 0.000</td><td>1 / 0 / 1</td><td>{&#x27;invalid_root&#x27;: 1}</td></tr><tr><td>Shoplifting<small>Shoplifting001_x264</small></td><td>[(51.67, 66.67)]</td><td>Shoplifting [33.50, 36.00]<br>Shoplifting [48.00, 56.50]</td><td>Shoplifting [14.00, 36.00]<br>Shoplifting [48.00, 56.50]</td><td>0.259 → 0.259</td><td>2 / 0 / 8</td><td>{&#x27;no_valid_proposal&#x27;: 2, &#x27;no_evidenced_action&#x27;: 1}</td></tr><tr><td>Stealing<small>Stealing036_x264</small></td><td>[(42.0, 53.0)]</td><td>Stealing [34.00, 40.00]<br>Stealing [16.00, 25.50]</td><td>Stealing [34.00, 40.00]<br>Stealing [16.00, 25.50]</td><td>0.000 → 0.000</td><td>0 / 0 / 0</td><td>{&#x27;no_evidenced_action&#x27;: 2}</td></tr><tr><td>Vandalism<small>Vandalism015_x264</small></td><td>[(67.0, 90.0)]</td><td>Vandalism [2.00, 13.00]<br>Vandalism [56.50, 90.00]<br>Vandalism [30.00, 50.50]</td><td>Vandalism [6.00, 13.00]<br>Vandalism [56.50, 67.00]<br>Vandalism [31.00, 50.50]</td><td>0.687 → 0.000</td><td>2 / 0 / 4</td><td>{&#x27;candidate_or_video_budget&#x27;: 1, &#x27;no_valid_proposal&#x27;: 2}</td></tr></table>
+<h2>执行统计</h2><p>耗时和 Token 是整个配对流程的实际用量，不是某一个方案独立运行的费用。搜索耗时和逻辑请求另外记录；缓存命中和 HTTP 重试会使逻辑请求与实际请求数不同。</p><pre>{
+  &quot;completed&quot;: 14,
+  &quot;expected&quot;: 14,
+  &quot;remaining&quot;: [],
+  &quot;searched_videos&quot;: 8,
+  &quot;searched_candidates&quot;: 11,
+  &quot;accepted_candidates&quot;: 0,
+  &quot;logical_search_requests&quot;: 30,
+  &quot;reasons&quot;: {
+    &quot;boundary_gap_left_out&quot;: 2,
+    &quot;boundary_gap_right_in&quot;: 2,
+    &quot;no_valid_proposal&quot;: 9,
+    &quot;image_budget_insufficient&quot;: 1,
+    &quot;no_evidenced_action&quot;: 7,
+    &quot;comparison_rejected&quot;: 1,
+    &quot;invalid_root&quot;: 1,
+    &quot;candidate_or_video_budget&quot;: 1
+  },
+  &quot;actions&quot;: {
+    &quot;bue:legal&quot;: 18,
+    &quot;bue:projected&quot;: 17,
+    &quot;cbt:no_op&quot;: 25,
+    &quot;bue:no_op&quot;: 15,
+    &quot;cbt:legal&quot;: 8,
+    &quot;cbt:projected&quot;: 12
+  },
+  &quot;paired_api_usage&quot;: {
+    &quot;requests&quot;: 182,
+    &quot;successful_requests&quot;: 182,
+    &quot;failed_requests&quot;: 0,
+    &quot;prompt_tokens&quot;: 230019,
+    &quot;completion_tokens&quot;: 15213,
+    &quot;total_tokens&quot;: 245232,
+    &quot;unknown_usage_requests&quot;: 0
+  },
+  &quot;improved&quot;: 3,
+  &quot;worsened&quot;: 3,
+  &quot;unchanged&quot;: 7,
+  &quot;fixed_mean_best_tiou&quot;: 0.25172209841119975,
+  &quot;mcts_mean_best_tiou&quot;: 0.20686507201094065,
+  &quot;paired_total_seconds&quot;: 456.43,
+  &quot;search_total_seconds&quot;: 103.64473790000193,
+  &quot;all_outputs_equal_skip_only&quot;: true
+}</pre>
+<p><a href="comparison.json">完整 JSON</a> · <a href="per_video.csv">逐视频 CSV</a> · <a href="selected_videos.json">输入清单</a> · <a href="COMMAND.json">复现命令</a> · <a href="rejection_audit.json">拒绝原因明细</a> · <a href="executed_source.zip">本轮实际执行源码</a></p></html>

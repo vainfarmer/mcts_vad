@@ -66,7 +66,7 @@ class AnomalySegment:
         anomaly_type: 异常类别（UCF-Crime 13 类之一）
         depth:  MCTS 树深度（追溯用，可选）
         visits: MCTS 访问次数（追溯用，可选）
-        description: CLIP/VLM 给出的异常描述（可选）
+        description: 初次 VLM 扫描的原文；合并时取时间最早的一条（可选）
         coarse_score: Stage 2 粗粒度分数（可选）
     """
     t_start: float
@@ -77,9 +77,10 @@ class AnomalySegment:
     visits: Optional[int] = None
     description: Optional[str] = None
     coarse_score: Optional[float] = None
+    original_descriptions: List[Dict[str, Any]] = field(default_factory=list)
 
     def to_dict(self) -> Dict[str, Any]:
-        return {
+        result = {
             "t_start": self.t_start,
             "t_end": self.t_end,
             "confidence": self.confidence,
@@ -87,6 +88,11 @@ class AnomalySegment:
             "depth": self.depth,
             "visits": self.visits,
         }
+        if self.description is not None:
+            result['description'] = self.description
+        if self.original_descriptions:
+            result['original_descriptions'] = [dict(row) for row in self.original_descriptions]
+        return result
 
     @classmethod
     def from_dict(cls, d: Dict[str, Any]) -> "AnomalySegment":
@@ -100,6 +106,7 @@ class AnomalySegment:
             visits=d.get("visits"),
             description=d.get("description"),
             coarse_score=d.get("coarse_score"),
+            original_descriptions=[dict(row) for row in d.get('original_descriptions', [])],
         )
 
 
@@ -150,8 +157,7 @@ class DetectionResult:
     def to_dict(self) -> Dict[str, Any]:
         """序列化为 dict，供 batch_evaluate.py 写 JSON。
 
-        anomalies 只保留 t_start/t_end/confidence/anomaly_type/depth/visits，
-        与 pipeline v33 原有输出字段完全一致，保持向后兼容。
+        保留旧字段，并在有初次扫描证据时增加 description/original_descriptions。
         """
         d = {
             "video_path": self.video_path,

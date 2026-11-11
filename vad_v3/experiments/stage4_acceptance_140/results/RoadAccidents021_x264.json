@@ -1,0 +1,1446 @@
+{
+  "video_path": "F:\\dataset\\ucf_crime\\Anomaly-Videos-Part-3\\RoadAccidents\\RoadAccidents021_x264.mp4",
+  "duration": 5.166666666666667,
+  "is_normal": false,
+  "anomalies": [
+    {
+      "t_start": 0.5,
+      "t_end": 2.5,
+      "confidence": 0.85,
+      "anomaly_type": "RoadAccidents",
+      "depth": null,
+      "visits": null,
+      "description": "Two individuals appear to be engaged in a physical altercation near the front driver's side of the black pickup truck; one person is seen pushing or striking the other, who stumbles backward and falls out of frame by 0:04s. This constitutes suspicious violent behavior (assault) consistent with the 'Violence' anomaly type.",
+      "original_descriptions": [
+        {
+          "t_start": 0.0,
+          "t_end": 5.166666666666667,
+          "description": "Two individuals appear to be engaged in a physical altercation near the front driver's side of the black pickup truck; one person is seen pushing or striking the other, who stumbles backward and falls out of frame by 0:04s. This constitutes suspicious violent behavior (assault) consistent with the 'Violence' anomaly type."
+        }
+      ]
+    }
+  ],
+  "frame_scores": [
+    0.6113994265809342,
+    0.6070844244706247,
+    0.5955175078111725,
+    0.5730555106050956,
+    0.5382594332745205,
+    0.4935048587761168,
+    0.444458376721218,
+    0.3979431908288579,
+    0.35967241920827087,
+    0.33310884382986145,
+    0.3196780141479114
+  ],
+  "timestamps": [
+    0.0,
+    0.5,
+    1.0,
+    1.5,
+    2.0,
+    2.5,
+    3.0,
+    3.5,
+    4.0,
+    4.5,
+    5.0
+  ],
+  "pre_bue_boundaries": [
+    [
+      0.0,
+      5.166666666666667
+    ]
+  ],
+  "pre_cbt_boundaries": [
+    [
+      0.0,
+      5.166666666666667
+    ]
+  ],
+  "mcts_trace": {
+    "mode": "refine",
+    "acceptance_policy": "strict",
+    "strategy": "mcts",
+    "prompt_version": "boundary-v3-3",
+    "candidates": {
+      "0": {
+        "candidate_id": 0,
+        "applied": false,
+        "would_accept": false,
+        "baseline": [
+          0.0,
+          5.166666666666667
+        ],
+        "boundary_method": "unknown",
+        "reason": "no_external_curve"
+      }
+    },
+    "logical_requests": 0,
+    "images_sent": 0,
+    "frame_scores_stage": "post_cbt",
+    "evidence_pool": "global",
+    "decode_seconds": 0.0,
+    "encode_seconds": 0.0,
+    "route": "stage4_direct",
+    "search_category": "RoadAccidents",
+    "effective_config": {
+      "preprocess": {
+        "fps": 2,
+        "segment_duration": 6.0,
+        "segment_overlap": 0.25,
+        "motion_threshold": 1.0,
+        "min_motion_interval": 2.0
+      },
+      "clip": {
+        "model_name": "ViT-L-14",
+        "pretrained": "openai",
+        "max_frames": 200,
+        "min_frames": 3,
+        "fps_sample": 3.0,
+        "semantic_tau": 0.9
+      },
+      "mcts": {
+        "simulations": 8,
+        "max_depth": 4,
+        "padding_ratio": 0.75,
+        "early_stop_agree": 4,
+        "early_stop_min_sim": 5,
+        "mode": "refine",
+        "action_set": "shrink",
+        "search_strategy": "mcts",
+        "comparison_gate": "best_valid",
+        "acceptance_policy": "strict",
+        "trigger_policy": "all_valid",
+        "citation_repair_attempts": 1,
+        "max_candidates_per_video": 2,
+        "max_vlm_evaluations_per_candidate": 10,
+        "max_vlm_evaluations_per_video": 20,
+        "timeout_seconds_per_candidate": 90.0,
+        "contrast_threshold": 0.15,
+        "search_padding_ratio": 0.25,
+        "max_inward_shift_ratio": 0.25,
+        "max_outward_shift_ratio": 0.25,
+        "step_ratio": 0.1,
+        "min_interval_seconds": 0.5,
+        "max_images_per_evaluation": 32,
+        "context_seconds": 2.0,
+        "max_boundary_gap_seconds": 1.5,
+        "max_evidence_gap_seconds": 3.0,
+        "min_unique_evaluations": 4,
+        "patience": 3,
+        "min_reward_gain": 0.02,
+        "max_curve_quality_drop": 0.05,
+        "ucb_c": 1.0,
+        "ucb_decay": 0.0,
+        "random_seed": 42,
+        "trace_enabled": true,
+        "paired_eval": true,
+        "stage4_direct_eval": true,
+        "stage4_acceptance_eval": true,
+        "final_nms_enabled": false,
+        "final_nms_iou": 0.3,
+        "boundary_guard_enabled": false,
+        "guard_min_retained_ratio": 0.5,
+        "guard_max_shift_ratio": 0.25,
+        "guard_tolerance_seconds": 0.5,
+        "postprocess_ablation": false,
+        "dense_fps": 0.0,
+        "max_dense_frames": 512,
+        "max_enumerated_states": 10000
+      },
+      "scoring": {
+        "clip_base_weight": 0.35,
+        "gaussian_sigma_factor": 1.5,
+        "gaussian_sigma_min": 1.0,
+        "confidence_gate": 0.5,
+        "curve_smooth_seconds": 2.0,
+        "curve_half_max_weight": 0.5,
+        "curve_max_shift_ratio": 0.4,
+        "curve_core_signal_floor": 0.3,
+        "boundary_shrink_ratio": 0.35,
+        "videomae_weight": 0.15,
+        "motion_weight": 0.1,
+        "mae_window_size": 32,
+        "mae_window_stride": 16,
+        "qscore_rerank": true,
+        "qscore_base": 0.5,
+        "bue_enabled": true,
+        "bue_alpha": 1.0,
+        "bue_lmin_sec": 6.0,
+        "bue_lmax_sec": 40.0,
+        "bue_lmax_frac": 0.8,
+        "bue_smooth_win": 3,
+        "bue_closure_gate": true,
+        "cbt_enabled": true,
+        "cbt_recal": true,
+        "cbt_recal_caps": {
+          "RoadAccidents": 4.5,
+          "Explosion": 13.0,
+          "Shoplifting": 9.0,
+          "Shooting": 13.5
+        },
+        "cbt_recal_trigger": 1.1,
+        "classify_skip_class_agnostic": true
+      },
+      "discovery": {
+        "clip_threshold": 0.3,
+        "min_pass_rate": 0.2,
+        "max_scan_segments": 6,
+        "candidate_top_k": 3
+      },
+      "device": "cuda",
+      "anomaly_categories": [
+        "Abuse",
+        "Arrest",
+        "Arson",
+        "Assault",
+        "Burglary",
+        "Explosion",
+        "Fighting",
+        "RoadAccidents",
+        "Robbery",
+        "Shooting",
+        "Shoplifting",
+        "Stealing",
+        "Vandalism"
+      ]
+    },
+    "search_seconds": 0.001137500163167715,
+    "search_api_metrics": {
+      "logical_calls": 0,
+      "cache_hits": 0,
+      "sdk_attempts": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0
+    },
+    "candidate_policy": "all stage4 candidates; no top-k/merge/NMS/confidence gate",
+    "confidence_source": "stage4 coarse_score",
+    "category_source": "upstream prediction",
+    "stages": {
+      "post_stage4": [
+        {
+          "t_start": 0.0,
+          "t_end": 5.166666666666667,
+          "frame_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "coarse_score": 0.85,
+          "description": "Two individuals appear to be engaged in a physical altercation near the front driver's side of the black pickup truck; one person is seen pushing or striking the other, who stumbles backward and falls out of frame by 0:04s. This constitutes suspicious violent behavior (assault) consistent with the 'Violence' anomaly type.",
+          "original_descriptions": [
+            {
+              "t_start": 0.0,
+              "t_end": 5.166666666666667,
+              "description": "Two individuals appear to be engaged in a physical altercation near the front driver's side of the black pickup truck; one person is seen pushing or striking the other, who stumbles backward and falls out of frame by 0:04s. This constitutes suspicious violent behavior (assault) consistent with the 'Violence' anomaly type."
+            }
+          ],
+          "confidence": 0.85,
+          "anomaly_type": "RoadAccidents",
+          "source_candidate_ids": [
+            0
+          ]
+        }
+      ],
+      "post_mcts": [
+        {
+          "t_start": 0.0,
+          "t_end": 5.166666666666667,
+          "frame_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "coarse_score": 0.85,
+          "description": "Two individuals appear to be engaged in a physical altercation near the front driver's side of the black pickup truck; one person is seen pushing or striking the other, who stumbles backward and falls out of frame by 0:04s. This constitutes suspicious violent behavior (assault) consistent with the 'Violence' anomaly type.",
+          "original_descriptions": [
+            {
+              "t_start": 0.0,
+              "t_end": 5.166666666666667,
+              "description": "Two individuals appear to be engaged in a physical altercation near the front driver's side of the black pickup truck; one person is seen pushing or striking the other, who stumbles backward and falls out of frame by 0:04s. This constitutes suspicious violent behavior (assault) consistent with the 'Violence' anomaly type."
+            }
+          ],
+          "confidence": 0.85,
+          "anomaly_type": "RoadAccidents",
+          "source_candidate_ids": [
+            0
+          ]
+        }
+      ],
+      "pre_bue": [
+        {
+          "t_start": 0.0,
+          "t_end": 5.166666666666667,
+          "frame_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "coarse_score": 0.85,
+          "description": "Two individuals appear to be engaged in a physical altercation near the front driver's side of the black pickup truck; one person is seen pushing or striking the other, who stumbles backward and falls out of frame by 0:04s. This constitutes suspicious violent behavior (assault) consistent with the 'Violence' anomaly type.",
+          "original_descriptions": [
+            {
+              "t_start": 0.0,
+              "t_end": 5.166666666666667,
+              "description": "Two individuals appear to be engaged in a physical altercation near the front driver's side of the black pickup truck; one person is seen pushing or striking the other, who stumbles backward and falls out of frame by 0:04s. This constitutes suspicious violent behavior (assault) consistent with the 'Violence' anomaly type."
+            }
+          ],
+          "confidence": 0.85,
+          "anomaly_type": "RoadAccidents",
+          "source_candidate_ids": [
+            0
+          ]
+        }
+      ],
+      "post_bue": [
+        {
+          "t_start": 0.0,
+          "t_end": 5.166666666666667,
+          "frame_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "coarse_score": 0.85,
+          "description": "Two individuals appear to be engaged in a physical altercation near the front driver's side of the black pickup truck; one person is seen pushing or striking the other, who stumbles backward and falls out of frame by 0:04s. This constitutes suspicious violent behavior (assault) consistent with the 'Violence' anomaly type.",
+          "original_descriptions": [
+            {
+              "t_start": 0.0,
+              "t_end": 5.166666666666667,
+              "description": "Two individuals appear to be engaged in a physical altercation near the front driver's side of the black pickup truck; one person is seen pushing or striking the other, who stumbles backward and falls out of frame by 0:04s. This constitutes suspicious violent behavior (assault) consistent with the 'Violence' anomaly type."
+            }
+          ],
+          "confidence": 0.85,
+          "anomaly_type": "RoadAccidents",
+          "source_candidate_ids": [
+            0
+          ]
+        }
+      ],
+      "post_cbt": [
+        {
+          "t_start": 0.5,
+          "t_end": 2.5,
+          "frame_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "coarse_score": 0.85,
+          "description": "Two individuals appear to be engaged in a physical altercation near the front driver's side of the black pickup truck; one person is seen pushing or striking the other, who stumbles backward and falls out of frame by 0:04s. This constitutes suspicious violent behavior (assault) consistent with the 'Violence' anomaly type.",
+          "original_descriptions": [
+            {
+              "t_start": 0.0,
+              "t_end": 5.166666666666667,
+              "description": "Two individuals appear to be engaged in a physical altercation near the front driver's side of the black pickup truck; one person is seen pushing or striking the other, who stumbles backward and falls out of frame by 0:04s. This constitutes suspicious violent behavior (assault) consistent with the 'Violence' anomaly type."
+            }
+          ],
+          "confidence": 0.85,
+          "anomaly_type": "RoadAccidents",
+          "source_candidate_ids": [
+            0
+          ]
+        }
+      ]
+    },
+    "arm": "strict",
+    "tail_seconds": 0.0017496999353170395,
+    "video_api_metrics": {
+      "logical_calls": 1,
+      "cache_hits": 0,
+      "sdk_attempts": 1,
+      "prompt_tokens": 1177,
+      "completion_tokens": 91
+    }
+  },
+  "paired_results": {
+    "original_off": {
+      "video_path": "F:\\dataset\\ucf_crime\\Anomaly-Videos-Part-3\\RoadAccidents\\RoadAccidents021_x264.mp4",
+      "duration": 5.166666666666667,
+      "is_normal": false,
+      "anomalies": [
+        {
+          "t_start": 0.5,
+          "t_end": 2.5,
+          "confidence": 0.85,
+          "anomaly_type": "RoadAccidents",
+          "depth": null,
+          "visits": null,
+          "description": "Two individuals appear to be engaged in a physical altercation near the front driver's side of the black pickup truck; one person is seen pushing or striking the other, who stumbles backward and falls out of frame by 0:04s. This constitutes suspicious violent behavior (assault) consistent with the 'Violence' anomaly type.",
+          "original_descriptions": [
+            {
+              "t_start": 0.0,
+              "t_end": 5.166666666666667,
+              "description": "Two individuals appear to be engaged in a physical altercation near the front driver's side of the black pickup truck; one person is seen pushing or striking the other, who stumbles backward and falls out of frame by 0:04s. This constitutes suspicious violent behavior (assault) consistent with the 'Violence' anomaly type."
+            }
+          ]
+        }
+      ],
+      "frame_scores": [
+        0.6113994265809342,
+        0.6070844244706247,
+        0.5955175078111725,
+        0.5730555106050956,
+        0.5382594332745205,
+        0.4935048587761168,
+        0.444458376721218,
+        0.3979431908288579,
+        0.35967241920827087,
+        0.33310884382986145,
+        0.3196780141479114
+      ],
+      "timestamps": [
+        0.0,
+        0.5,
+        1.0,
+        1.5,
+        2.0,
+        2.5,
+        3.0,
+        3.5,
+        4.0,
+        4.5,
+        5.0
+      ],
+      "pre_bue_boundaries": [
+        [
+          0.0,
+          5.166666666666667
+        ]
+      ],
+      "pre_cbt_boundaries": [
+        [
+          0.0,
+          5.166666666666667
+        ]
+      ],
+      "mcts_trace": {
+        "mode": "off",
+        "logical_requests": 0,
+        "stages": {
+          "post_stage4": [
+            {
+              "t_start": 0.0,
+              "t_end": 5.166666666666667,
+              "frame_indices": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+              ],
+              "coarse_score": 0.85,
+              "description": "Two individuals appear to be engaged in a physical altercation near the front driver's side of the black pickup truck; one person is seen pushing or striking the other, who stumbles backward and falls out of frame by 0:04s. This constitutes suspicious violent behavior (assault) consistent with the 'Violence' anomaly type.",
+              "original_descriptions": [
+                {
+                  "t_start": 0.0,
+                  "t_end": 5.166666666666667,
+                  "description": "Two individuals appear to be engaged in a physical altercation near the front driver's side of the black pickup truck; one person is seen pushing or striking the other, who stumbles backward and falls out of frame by 0:04s. This constitutes suspicious violent behavior (assault) consistent with the 'Violence' anomaly type."
+                }
+              ],
+              "confidence": 0.85,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ],
+          "pre_bue": [
+            {
+              "t_start": 0.0,
+              "t_end": 5.166666666666667,
+              "frame_indices": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+              ],
+              "coarse_score": 0.85,
+              "description": "Two individuals appear to be engaged in a physical altercation near the front driver's side of the black pickup truck; one person is seen pushing or striking the other, who stumbles backward and falls out of frame by 0:04s. This constitutes suspicious violent behavior (assault) consistent with the 'Violence' anomaly type.",
+              "original_descriptions": [
+                {
+                  "t_start": 0.0,
+                  "t_end": 5.166666666666667,
+                  "description": "Two individuals appear to be engaged in a physical altercation near the front driver's side of the black pickup truck; one person is seen pushing or striking the other, who stumbles backward and falls out of frame by 0:04s. This constitutes suspicious violent behavior (assault) consistent with the 'Violence' anomaly type."
+                }
+              ],
+              "confidence": 0.85,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ],
+          "post_bue": [
+            {
+              "t_start": 0.0,
+              "t_end": 5.166666666666667,
+              "frame_indices": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+              ],
+              "coarse_score": 0.85,
+              "description": "Two individuals appear to be engaged in a physical altercation near the front driver's side of the black pickup truck; one person is seen pushing or striking the other, who stumbles backward and falls out of frame by 0:04s. This constitutes suspicious violent behavior (assault) consistent with the 'Violence' anomaly type.",
+              "original_descriptions": [
+                {
+                  "t_start": 0.0,
+                  "t_end": 5.166666666666667,
+                  "description": "Two individuals appear to be engaged in a physical altercation near the front driver's side of the black pickup truck; one person is seen pushing or striking the other, who stumbles backward and falls out of frame by 0:04s. This constitutes suspicious violent behavior (assault) consistent with the 'Violence' anomaly type."
+                }
+              ],
+              "confidence": 0.85,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ],
+          "post_cbt": [
+            {
+              "t_start": 0.5,
+              "t_end": 2.5,
+              "frame_indices": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+              ],
+              "coarse_score": 0.85,
+              "description": "Two individuals appear to be engaged in a physical altercation near the front driver's side of the black pickup truck; one person is seen pushing or striking the other, who stumbles backward and falls out of frame by 0:04s. This constitutes suspicious violent behavior (assault) consistent with the 'Violence' anomaly type.",
+              "original_descriptions": [
+                {
+                  "t_start": 0.0,
+                  "t_end": 5.166666666666667,
+                  "description": "Two individuals appear to be engaged in a physical altercation near the front driver's side of the black pickup truck; one person is seen pushing or striking the other, who stumbles backward and falls out of frame by 0:04s. This constitutes suspicious violent behavior (assault) consistent with the 'Violence' anomaly type."
+                }
+              ],
+              "confidence": 0.85,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ]
+        },
+        "route": "stage4_direct",
+        "arm": "stage4_fixed",
+        "frame_scores_stage": "post_cbt",
+        "tail_seconds": 0.0021043000742793083
+      }
+    },
+    "relaxed_node": {
+      "video_path": "F:\\dataset\\ucf_crime\\Anomaly-Videos-Part-3\\RoadAccidents\\RoadAccidents021_x264.mp4",
+      "duration": 5.166666666666667,
+      "is_normal": false,
+      "anomalies": [
+        {
+          "t_start": 0.5,
+          "t_end": 2.5,
+          "confidence": 0.85,
+          "anomaly_type": "RoadAccidents",
+          "depth": null,
+          "visits": null,
+          "description": "Two individuals appear to be engaged in a physical altercation near the front driver's side of the black pickup truck; one person is seen pushing or striking the other, who stumbles backward and falls out of frame by 0:04s. This constitutes suspicious violent behavior (assault) consistent with the 'Violence' anomaly type.",
+          "original_descriptions": [
+            {
+              "t_start": 0.0,
+              "t_end": 5.166666666666667,
+              "description": "Two individuals appear to be engaged in a physical altercation near the front driver's side of the black pickup truck; one person is seen pushing or striking the other, who stumbles backward and falls out of frame by 0:04s. This constitutes suspicious violent behavior (assault) consistent with the 'Violence' anomaly type."
+            }
+          ]
+        }
+      ],
+      "frame_scores": [
+        0.6113994265809342,
+        0.6070844244706247,
+        0.5955175078111725,
+        0.5730555106050956,
+        0.5382594332745205,
+        0.4935048587761168,
+        0.444458376721218,
+        0.3979431908288579,
+        0.35967241920827087,
+        0.33310884382986145,
+        0.3196780141479114
+      ],
+      "timestamps": [
+        0.0,
+        0.5,
+        1.0,
+        1.5,
+        2.0,
+        2.5,
+        3.0,
+        3.5,
+        4.0,
+        4.5,
+        5.0
+      ],
+      "pre_bue_boundaries": [
+        [
+          0.0,
+          5.166666666666667
+        ]
+      ],
+      "pre_cbt_boundaries": [
+        [
+          0.0,
+          5.166666666666667
+        ]
+      ],
+      "mcts_trace": {
+        "mode": "refine",
+        "acceptance_policy": "relaxed_node",
+        "strategy": "mcts",
+        "prompt_version": "boundary-v3-3",
+        "candidates": {
+          "0": {
+            "candidate_id": 0,
+            "applied": false,
+            "would_accept": false,
+            "baseline": [
+              0.0,
+              5.166666666666667
+            ],
+            "boundary_method": "unknown",
+            "reason": "no_external_curve"
+          }
+        },
+        "logical_requests": 0,
+        "images_sent": 0,
+        "frame_scores_stage": "post_cbt",
+        "evidence_pool": "global",
+        "decode_seconds": 0.0,
+        "encode_seconds": 0.0,
+        "route": "stage4_direct",
+        "search_category": "RoadAccidents",
+        "effective_config": {
+          "preprocess": {
+            "fps": 2,
+            "segment_duration": 6.0,
+            "segment_overlap": 0.25,
+            "motion_threshold": 1.0,
+            "min_motion_interval": 2.0
+          },
+          "clip": {
+            "model_name": "ViT-L-14",
+            "pretrained": "openai",
+            "max_frames": 200,
+            "min_frames": 3,
+            "fps_sample": 3.0,
+            "semantic_tau": 0.9
+          },
+          "mcts": {
+            "simulations": 8,
+            "max_depth": 4,
+            "padding_ratio": 0.75,
+            "early_stop_agree": 4,
+            "early_stop_min_sim": 5,
+            "mode": "refine",
+            "action_set": "shrink",
+            "search_strategy": "mcts",
+            "comparison_gate": "best_valid",
+            "acceptance_policy": "relaxed_node",
+            "trigger_policy": "all_valid",
+            "citation_repair_attempts": 1,
+            "max_candidates_per_video": 2,
+            "max_vlm_evaluations_per_candidate": 10,
+            "max_vlm_evaluations_per_video": 20,
+            "timeout_seconds_per_candidate": 90.0,
+            "contrast_threshold": 0.15,
+            "search_padding_ratio": 0.25,
+            "max_inward_shift_ratio": 0.25,
+            "max_outward_shift_ratio": 0.25,
+            "step_ratio": 0.1,
+            "min_interval_seconds": 0.5,
+            "max_images_per_evaluation": 32,
+            "context_seconds": 2.0,
+            "max_boundary_gap_seconds": 1.5,
+            "max_evidence_gap_seconds": 3.0,
+            "min_unique_evaluations": 4,
+            "patience": 3,
+            "min_reward_gain": 0.02,
+            "max_curve_quality_drop": 0.05,
+            "ucb_c": 1.0,
+            "ucb_decay": 0.0,
+            "random_seed": 42,
+            "trace_enabled": true,
+            "paired_eval": true,
+            "stage4_direct_eval": true,
+            "stage4_acceptance_eval": false,
+            "final_nms_enabled": false,
+            "final_nms_iou": 0.3,
+            "boundary_guard_enabled": false,
+            "guard_min_retained_ratio": 0.5,
+            "guard_max_shift_ratio": 0.25,
+            "guard_tolerance_seconds": 0.5,
+            "postprocess_ablation": false,
+            "dense_fps": 0.0,
+            "max_dense_frames": 512,
+            "max_enumerated_states": 10000
+          },
+          "scoring": {
+            "clip_base_weight": 0.35,
+            "gaussian_sigma_factor": 1.5,
+            "gaussian_sigma_min": 1.0,
+            "confidence_gate": 0.5,
+            "curve_smooth_seconds": 2.0,
+            "curve_half_max_weight": 0.5,
+            "curve_max_shift_ratio": 0.4,
+            "curve_core_signal_floor": 0.3,
+            "boundary_shrink_ratio": 0.35,
+            "videomae_weight": 0.15,
+            "motion_weight": 0.1,
+            "mae_window_size": 32,
+            "mae_window_stride": 16,
+            "qscore_rerank": true,
+            "qscore_base": 0.5,
+            "bue_enabled": true,
+            "bue_alpha": 1.0,
+            "bue_lmin_sec": 6.0,
+            "bue_lmax_sec": 40.0,
+            "bue_lmax_frac": 0.8,
+            "bue_smooth_win": 3,
+            "bue_closure_gate": true,
+            "cbt_enabled": true,
+            "cbt_recal": true,
+            "cbt_recal_caps": {
+              "RoadAccidents": 4.5,
+              "Explosion": 13.0,
+              "Shoplifting": 9.0,
+              "Shooting": 13.5
+            },
+            "cbt_recal_trigger": 1.1,
+            "classify_skip_class_agnostic": true
+          },
+          "discovery": {
+            "clip_threshold": 0.3,
+            "min_pass_rate": 0.2,
+            "max_scan_segments": 6,
+            "candidate_top_k": 3
+          },
+          "device": "cuda",
+          "anomaly_categories": [
+            "Abuse",
+            "Arrest",
+            "Arson",
+            "Assault",
+            "Burglary",
+            "Explosion",
+            "Fighting",
+            "RoadAccidents",
+            "Robbery",
+            "Shooting",
+            "Shoplifting",
+            "Stealing",
+            "Vandalism"
+          ]
+        },
+        "search_seconds": 0.0011497000232338905,
+        "search_api_metrics": {
+          "logical_calls": 0,
+          "cache_hits": 0,
+          "sdk_attempts": 0,
+          "prompt_tokens": 0,
+          "completion_tokens": 0
+        },
+        "candidate_policy": "all stage4 candidates; no top-k/merge/NMS/confidence gate",
+        "confidence_source": "stage4 coarse_score",
+        "category_source": "upstream prediction",
+        "stages": {
+          "post_stage4": [
+            {
+              "t_start": 0.0,
+              "t_end": 5.166666666666667,
+              "frame_indices": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+              ],
+              "coarse_score": 0.85,
+              "description": "Two individuals appear to be engaged in a physical altercation near the front driver's side of the black pickup truck; one person is seen pushing or striking the other, who stumbles backward and falls out of frame by 0:04s. This constitutes suspicious violent behavior (assault) consistent with the 'Violence' anomaly type.",
+              "original_descriptions": [
+                {
+                  "t_start": 0.0,
+                  "t_end": 5.166666666666667,
+                  "description": "Two individuals appear to be engaged in a physical altercation near the front driver's side of the black pickup truck; one person is seen pushing or striking the other, who stumbles backward and falls out of frame by 0:04s. This constitutes suspicious violent behavior (assault) consistent with the 'Violence' anomaly type."
+                }
+              ],
+              "confidence": 0.85,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ],
+          "post_mcts": [
+            {
+              "t_start": 0.0,
+              "t_end": 5.166666666666667,
+              "frame_indices": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+              ],
+              "coarse_score": 0.85,
+              "description": "Two individuals appear to be engaged in a physical altercation near the front driver's side of the black pickup truck; one person is seen pushing or striking the other, who stumbles backward and falls out of frame by 0:04s. This constitutes suspicious violent behavior (assault) consistent with the 'Violence' anomaly type.",
+              "original_descriptions": [
+                {
+                  "t_start": 0.0,
+                  "t_end": 5.166666666666667,
+                  "description": "Two individuals appear to be engaged in a physical altercation near the front driver's side of the black pickup truck; one person is seen pushing or striking the other, who stumbles backward and falls out of frame by 0:04s. This constitutes suspicious violent behavior (assault) consistent with the 'Violence' anomaly type."
+                }
+              ],
+              "confidence": 0.85,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ],
+          "pre_bue": [
+            {
+              "t_start": 0.0,
+              "t_end": 5.166666666666667,
+              "frame_indices": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+              ],
+              "coarse_score": 0.85,
+              "description": "Two individuals appear to be engaged in a physical altercation near the front driver's side of the black pickup truck; one person is seen pushing or striking the other, who stumbles backward and falls out of frame by 0:04s. This constitutes suspicious violent behavior (assault) consistent with the 'Violence' anomaly type.",
+              "original_descriptions": [
+                {
+                  "t_start": 0.0,
+                  "t_end": 5.166666666666667,
+                  "description": "Two individuals appear to be engaged in a physical altercation near the front driver's side of the black pickup truck; one person is seen pushing or striking the other, who stumbles backward and falls out of frame by 0:04s. This constitutes suspicious violent behavior (assault) consistent with the 'Violence' anomaly type."
+                }
+              ],
+              "confidence": 0.85,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ],
+          "post_bue": [
+            {
+              "t_start": 0.0,
+              "t_end": 5.166666666666667,
+              "frame_indices": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+              ],
+              "coarse_score": 0.85,
+              "description": "Two individuals appear to be engaged in a physical altercation near the front driver's side of the black pickup truck; one person is seen pushing or striking the other, who stumbles backward and falls out of frame by 0:04s. This constitutes suspicious violent behavior (assault) consistent with the 'Violence' anomaly type.",
+              "original_descriptions": [
+                {
+                  "t_start": 0.0,
+                  "t_end": 5.166666666666667,
+                  "description": "Two individuals appear to be engaged in a physical altercation near the front driver's side of the black pickup truck; one person is seen pushing or striking the other, who stumbles backward and falls out of frame by 0:04s. This constitutes suspicious violent behavior (assault) consistent with the 'Violence' anomaly type."
+                }
+              ],
+              "confidence": 0.85,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ],
+          "post_cbt": [
+            {
+              "t_start": 0.5,
+              "t_end": 2.5,
+              "frame_indices": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+              ],
+              "coarse_score": 0.85,
+              "description": "Two individuals appear to be engaged in a physical altercation near the front driver's side of the black pickup truck; one person is seen pushing or striking the other, who stumbles backward and falls out of frame by 0:04s. This constitutes suspicious violent behavior (assault) consistent with the 'Violence' anomaly type.",
+              "original_descriptions": [
+                {
+                  "t_start": 0.0,
+                  "t_end": 5.166666666666667,
+                  "description": "Two individuals appear to be engaged in a physical altercation near the front driver's side of the black pickup truck; one person is seen pushing or striking the other, who stumbles backward and falls out of frame by 0:04s. This constitutes suspicious violent behavior (assault) consistent with the 'Violence' anomaly type."
+                }
+              ],
+              "confidence": 0.85,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ]
+        },
+        "arm": "relaxed_node",
+        "tail_seconds": 0.003159299958497286
+      }
+    },
+    "force_best": {
+      "video_path": "F:\\dataset\\ucf_crime\\Anomaly-Videos-Part-3\\RoadAccidents\\RoadAccidents021_x264.mp4",
+      "duration": 5.166666666666667,
+      "is_normal": false,
+      "anomalies": [
+        {
+          "t_start": 0.5,
+          "t_end": 2.5,
+          "confidence": 0.85,
+          "anomaly_type": "RoadAccidents",
+          "depth": null,
+          "visits": null,
+          "description": "Two individuals appear to be engaged in a physical altercation near the front driver's side of the black pickup truck; one person is seen pushing or striking the other, who stumbles backward and falls out of frame by 0:04s. This constitutes suspicious violent behavior (assault) consistent with the 'Violence' anomaly type.",
+          "original_descriptions": [
+            {
+              "t_start": 0.0,
+              "t_end": 5.166666666666667,
+              "description": "Two individuals appear to be engaged in a physical altercation near the front driver's side of the black pickup truck; one person is seen pushing or striking the other, who stumbles backward and falls out of frame by 0:04s. This constitutes suspicious violent behavior (assault) consistent with the 'Violence' anomaly type."
+            }
+          ]
+        }
+      ],
+      "frame_scores": [
+        0.6113994265809342,
+        0.6070844244706247,
+        0.5955175078111725,
+        0.5730555106050956,
+        0.5382594332745205,
+        0.4935048587761168,
+        0.444458376721218,
+        0.3979431908288579,
+        0.35967241920827087,
+        0.33310884382986145,
+        0.3196780141479114
+      ],
+      "timestamps": [
+        0.0,
+        0.5,
+        1.0,
+        1.5,
+        2.0,
+        2.5,
+        3.0,
+        3.5,
+        4.0,
+        4.5,
+        5.0
+      ],
+      "pre_bue_boundaries": [
+        [
+          0.0,
+          5.166666666666667
+        ]
+      ],
+      "pre_cbt_boundaries": [
+        [
+          0.0,
+          5.166666666666667
+        ]
+      ],
+      "mcts_trace": {
+        "mode": "refine",
+        "acceptance_policy": "force_best",
+        "strategy": "mcts",
+        "prompt_version": "boundary-v3-3",
+        "candidates": {
+          "0": {
+            "candidate_id": 0,
+            "applied": false,
+            "would_accept": false,
+            "baseline": [
+              0.0,
+              5.166666666666667
+            ],
+            "boundary_method": "unknown",
+            "reason": "no_external_curve"
+          }
+        },
+        "logical_requests": 0,
+        "images_sent": 0,
+        "frame_scores_stage": "post_cbt",
+        "evidence_pool": "global",
+        "decode_seconds": 0.0,
+        "encode_seconds": 0.0,
+        "route": "stage4_direct",
+        "search_category": "RoadAccidents",
+        "effective_config": {
+          "preprocess": {
+            "fps": 2,
+            "segment_duration": 6.0,
+            "segment_overlap": 0.25,
+            "motion_threshold": 1.0,
+            "min_motion_interval": 2.0
+          },
+          "clip": {
+            "model_name": "ViT-L-14",
+            "pretrained": "openai",
+            "max_frames": 200,
+            "min_frames": 3,
+            "fps_sample": 3.0,
+            "semantic_tau": 0.9
+          },
+          "mcts": {
+            "simulations": 8,
+            "max_depth": 4,
+            "padding_ratio": 0.75,
+            "early_stop_agree": 4,
+            "early_stop_min_sim": 5,
+            "mode": "refine",
+            "action_set": "shrink",
+            "search_strategy": "mcts",
+            "comparison_gate": "best_valid",
+            "acceptance_policy": "force_best",
+            "trigger_policy": "all_valid",
+            "citation_repair_attempts": 1,
+            "max_candidates_per_video": 2,
+            "max_vlm_evaluations_per_candidate": 10,
+            "max_vlm_evaluations_per_video": 20,
+            "timeout_seconds_per_candidate": 90.0,
+            "contrast_threshold": 0.15,
+            "search_padding_ratio": 0.25,
+            "max_inward_shift_ratio": 0.25,
+            "max_outward_shift_ratio": 0.25,
+            "step_ratio": 0.1,
+            "min_interval_seconds": 0.5,
+            "max_images_per_evaluation": 32,
+            "context_seconds": 2.0,
+            "max_boundary_gap_seconds": 1.5,
+            "max_evidence_gap_seconds": 3.0,
+            "min_unique_evaluations": 4,
+            "patience": 3,
+            "min_reward_gain": 0.02,
+            "max_curve_quality_drop": 0.05,
+            "ucb_c": 1.0,
+            "ucb_decay": 0.0,
+            "random_seed": 42,
+            "trace_enabled": true,
+            "paired_eval": true,
+            "stage4_direct_eval": true,
+            "stage4_acceptance_eval": false,
+            "final_nms_enabled": false,
+            "final_nms_iou": 0.3,
+            "boundary_guard_enabled": false,
+            "guard_min_retained_ratio": 0.5,
+            "guard_max_shift_ratio": 0.25,
+            "guard_tolerance_seconds": 0.5,
+            "postprocess_ablation": false,
+            "dense_fps": 0.0,
+            "max_dense_frames": 512,
+            "max_enumerated_states": 10000
+          },
+          "scoring": {
+            "clip_base_weight": 0.35,
+            "gaussian_sigma_factor": 1.5,
+            "gaussian_sigma_min": 1.0,
+            "confidence_gate": 0.5,
+            "curve_smooth_seconds": 2.0,
+            "curve_half_max_weight": 0.5,
+            "curve_max_shift_ratio": 0.4,
+            "curve_core_signal_floor": 0.3,
+            "boundary_shrink_ratio": 0.35,
+            "videomae_weight": 0.15,
+            "motion_weight": 0.1,
+            "mae_window_size": 32,
+            "mae_window_stride": 16,
+            "qscore_rerank": true,
+            "qscore_base": 0.5,
+            "bue_enabled": true,
+            "bue_alpha": 1.0,
+            "bue_lmin_sec": 6.0,
+            "bue_lmax_sec": 40.0,
+            "bue_lmax_frac": 0.8,
+            "bue_smooth_win": 3,
+            "bue_closure_gate": true,
+            "cbt_enabled": true,
+            "cbt_recal": true,
+            "cbt_recal_caps": {
+              "RoadAccidents": 4.5,
+              "Explosion": 13.0,
+              "Shoplifting": 9.0,
+              "Shooting": 13.5
+            },
+            "cbt_recal_trigger": 1.1,
+            "classify_skip_class_agnostic": true
+          },
+          "discovery": {
+            "clip_threshold": 0.3,
+            "min_pass_rate": 0.2,
+            "max_scan_segments": 6,
+            "candidate_top_k": 3
+          },
+          "device": "cuda",
+          "anomaly_categories": [
+            "Abuse",
+            "Arrest",
+            "Arson",
+            "Assault",
+            "Burglary",
+            "Explosion",
+            "Fighting",
+            "RoadAccidents",
+            "Robbery",
+            "Shooting",
+            "Shoplifting",
+            "Stealing",
+            "Vandalism"
+          ]
+        },
+        "search_seconds": 0.0013927998952567577,
+        "search_api_metrics": {
+          "logical_calls": 0,
+          "cache_hits": 0,
+          "sdk_attempts": 0,
+          "prompt_tokens": 0,
+          "completion_tokens": 0
+        },
+        "candidate_policy": "all stage4 candidates; no top-k/merge/NMS/confidence gate",
+        "confidence_source": "stage4 coarse_score",
+        "category_source": "upstream prediction",
+        "stages": {
+          "post_stage4": [
+            {
+              "t_start": 0.0,
+              "t_end": 5.166666666666667,
+              "frame_indices": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+              ],
+              "coarse_score": 0.85,
+              "description": "Two individuals appear to be engaged in a physical altercation near the front driver's side of the black pickup truck; one person is seen pushing or striking the other, who stumbles backward and falls out of frame by 0:04s. This constitutes suspicious violent behavior (assault) consistent with the 'Violence' anomaly type.",
+              "original_descriptions": [
+                {
+                  "t_start": 0.0,
+                  "t_end": 5.166666666666667,
+                  "description": "Two individuals appear to be engaged in a physical altercation near the front driver's side of the black pickup truck; one person is seen pushing or striking the other, who stumbles backward and falls out of frame by 0:04s. This constitutes suspicious violent behavior (assault) consistent with the 'Violence' anomaly type."
+                }
+              ],
+              "confidence": 0.85,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ],
+          "post_mcts": [
+            {
+              "t_start": 0.0,
+              "t_end": 5.166666666666667,
+              "frame_indices": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+              ],
+              "coarse_score": 0.85,
+              "description": "Two individuals appear to be engaged in a physical altercation near the front driver's side of the black pickup truck; one person is seen pushing or striking the other, who stumbles backward and falls out of frame by 0:04s. This constitutes suspicious violent behavior (assault) consistent with the 'Violence' anomaly type.",
+              "original_descriptions": [
+                {
+                  "t_start": 0.0,
+                  "t_end": 5.166666666666667,
+                  "description": "Two individuals appear to be engaged in a physical altercation near the front driver's side of the black pickup truck; one person is seen pushing or striking the other, who stumbles backward and falls out of frame by 0:04s. This constitutes suspicious violent behavior (assault) consistent with the 'Violence' anomaly type."
+                }
+              ],
+              "confidence": 0.85,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ],
+          "pre_bue": [
+            {
+              "t_start": 0.0,
+              "t_end": 5.166666666666667,
+              "frame_indices": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+              ],
+              "coarse_score": 0.85,
+              "description": "Two individuals appear to be engaged in a physical altercation near the front driver's side of the black pickup truck; one person is seen pushing or striking the other, who stumbles backward and falls out of frame by 0:04s. This constitutes suspicious violent behavior (assault) consistent with the 'Violence' anomaly type.",
+              "original_descriptions": [
+                {
+                  "t_start": 0.0,
+                  "t_end": 5.166666666666667,
+                  "description": "Two individuals appear to be engaged in a physical altercation near the front driver's side of the black pickup truck; one person is seen pushing or striking the other, who stumbles backward and falls out of frame by 0:04s. This constitutes suspicious violent behavior (assault) consistent with the 'Violence' anomaly type."
+                }
+              ],
+              "confidence": 0.85,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ],
+          "post_bue": [
+            {
+              "t_start": 0.0,
+              "t_end": 5.166666666666667,
+              "frame_indices": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+              ],
+              "coarse_score": 0.85,
+              "description": "Two individuals appear to be engaged in a physical altercation near the front driver's side of the black pickup truck; one person is seen pushing or striking the other, who stumbles backward and falls out of frame by 0:04s. This constitutes suspicious violent behavior (assault) consistent with the 'Violence' anomaly type.",
+              "original_descriptions": [
+                {
+                  "t_start": 0.0,
+                  "t_end": 5.166666666666667,
+                  "description": "Two individuals appear to be engaged in a physical altercation near the front driver's side of the black pickup truck; one person is seen pushing or striking the other, who stumbles backward and falls out of frame by 0:04s. This constitutes suspicious violent behavior (assault) consistent with the 'Violence' anomaly type."
+                }
+              ],
+              "confidence": 0.85,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ],
+          "post_cbt": [
+            {
+              "t_start": 0.5,
+              "t_end": 2.5,
+              "frame_indices": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+              ],
+              "coarse_score": 0.85,
+              "description": "Two individuals appear to be engaged in a physical altercation near the front driver's side of the black pickup truck; one person is seen pushing or striking the other, who stumbles backward and falls out of frame by 0:04s. This constitutes suspicious violent behavior (assault) consistent with the 'Violence' anomaly type.",
+              "original_descriptions": [
+                {
+                  "t_start": 0.0,
+                  "t_end": 5.166666666666667,
+                  "description": "Two individuals appear to be engaged in a physical altercation near the front driver's side of the black pickup truck; one person is seen pushing or striking the other, who stumbles backward and falls out of frame by 0:04s. This constitutes suspicious violent behavior (assault) consistent with the 'Violence' anomaly type."
+                }
+              ],
+              "confidence": 0.85,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ]
+        },
+        "arm": "force_best",
+        "tail_seconds": 0.0016794002149254084
+      }
+    }
+  },
+  "token_usage": {
+    "requests": 1,
+    "successful_requests": 1,
+    "failed_requests": 0,
+    "unknown_usage_requests": 0,
+    "prompt_tokens": 1177,
+    "completion_tokens": 91,
+    "total_tokens": 1268,
+    "api_queue_seconds": 5.300156772136688e-06,
+    "api_request_seconds": 2.9418,
+    "api_backoff_seconds": 0.0,
+    "api_cancelled_queue_seconds": 0.0,
+    "by_model": {
+      "qwen3-vl-plus": {
+        "requests": 1,
+        "successful_requests": 1,
+        "failed_requests": 0,
+        "unknown_usage_requests": 0,
+        "prompt_tokens": 1177,
+        "completion_tokens": 91,
+        "total_tokens": 1268,
+        "api_queue_seconds": 5.300156772136688e-06,
+        "api_request_seconds": 2.9418,
+        "api_backoff_seconds": 0.0,
+        "api_cancelled_queue_seconds": 0.0,
+        "by_model": {}
+      }
+    },
+    "video_path": "F:\\dataset\\ucf_crime\\Anomaly-Videos-Part-3\\RoadAccidents\\RoadAccidents021_x264.mp4",
+    "status": "success"
+  },
+  "experiment_fingerprint": "e389db791631740ba3abf285592cc9681f93a55d204a56933d10aa06227756fd",
+  "diagnosis_attempt": 1,
+  "token_usage_all_attempts": {
+    "requests": 1,
+    "successful_requests": 1,
+    "failed_requests": 0,
+    "unknown_usage_requests": 0,
+    "prompt_tokens": 1177,
+    "completion_tokens": 91,
+    "total_tokens": 1268,
+    "api_queue_seconds": 5.300156772136688e-06,
+    "api_request_seconds": 2.9418,
+    "api_backoff_seconds": 0.0,
+    "api_cancelled_queue_seconds": 0.0,
+    "by_model": {
+      "qwen3-vl-plus": {
+        "requests": 1,
+        "successful_requests": 1,
+        "failed_requests": 0,
+        "unknown_usage_requests": 0,
+        "prompt_tokens": 1177,
+        "completion_tokens": 91,
+        "total_tokens": 1268,
+        "api_queue_seconds": 5.300156772136688e-06,
+        "api_request_seconds": 2.9418,
+        "api_backoff_seconds": 0.0,
+        "api_cancelled_queue_seconds": 0.0,
+        "by_model": {}
+      }
+    },
+    "diagnosis_attempts": 1
+  },
+  "processing_time": 3.75
+}

@@ -1,331 +1,379 @@
-"""Exercise HTTP uploads, subprocess completion/failure and byte-range playback."""
+"""Queue, API, immutable review, migration and evaluation acceptance tests."""
 import io
 import json
+import os
 from pathlib import Path
+import subprocess
 import sys
+import threading
 import time
-
 import pytest
-
 from vad_v3.webapp import app as web
+from vad_v3.webapp.settings import atomic_json, code_hash, effective_config, file_hash
+from vad_v3.webapp.store import Store, Conflict
+from vad_v3.webapp.worker import Worker, InstanceLock
+from vad_v3.webapp.results import validate_result
+from vad_v3.webapp import experiments
+
+RESULT=dict(duration=10.,is_normal=False,anomalies=[
+    dict(t_start=2.,t_end=4.,confidence=.8,anomaly_type='Fighting',
+         description='Original description',original_descriptions=[
+             dict(t_start=0.,t_end=6.,description='Original description')])],
+    timestamps=[0.,2.,4.,6.,8.],frame_scores=[.1,.9,.8,.1,.1])
+
+
+@pytest.fixture(scope='module')
+def source_videos(tmp_path_factory):
+    """原生 FPS 评估使用真实的小视频；API/Worker 测试仍不调用 VLM。"""
+    import cv2
+    import numpy as np
+    root=tmp_path_factory.mktemp('source-videos')
+    for name,fps in (('a',30),('b',25)):
+        writer=cv2.VideoWriter(str(root/(name+'.mp4')),cv2.VideoWriter_fourcc(*'mp4v'),fps,(32,24))
+        assert writer.isOpened()
+        try:
+            for _ in range(fps*10):writer.write(np.zeros((24,32,3),dtype=np.uint8))
+        finally:writer.release()
+    return root
 
 
 @pytest.fixture
-def app(tmp_path, monkeypatch):
-    monkeypatch.setattr(web, 'ENV_FILE', tmp_path / 'missing.env')
-    monkeypatch.delenv('DASHSCOPE_MODEL', raising=False)
-    monkeypatch.setenv('DASHSCOPE_API_KEY', 'test-key-not-a-real-credential')
-    application = web.create_app(tmp_path / 'jobs', max_upload_mb=1, timeout=5)
-    application.config['TESTING'] = True
+def app(tmp_path,monkeypatch,source_videos):
+    monkeypatch.setattr(web,'ENV_FILE',tmp_path/'missing.env')
+    monkeypatch.setenv('DASHSCOPE_API_KEY','test-only-key')
+    monkeypatch.setattr(web,'probe_video',lambda p:dict(duration=10.,fps=30.,frame_count=300))
+    monkeypatch.setattr(experiments,'probe_video_metadata',lambda p:dict(duration=10.,fps=30.,frame_count=300))
+    monkeypatch.setattr(experiments,'DATASET_ROOT',source_videos)
+    application=web.create_app(tmp_path/'data',max_upload_mb=1,timeout=5,migrate=False)
+    application.config['TESTING']=True
     yield application
-    application.extensions['jobs'].close()
+    application.extensions['executor'].shutdown()
 
 
-def test_dotenv_uses_explicit_path_with_bom_and_inherits_into_detector(tmp_path, monkeypatch):
-    env_file = tmp_path / 'config' / '.env'
-    env_file.parent.mkdir()
-    env_file.write_text('DASHSCOPE_API_KEY="test-only-from-dotenv"\n', encoding='utf-8-sig')
-    monkeypatch.setattr(web, 'ENV_FILE', env_file)
-    monkeypatch.delenv('DASHSCOPE_API_KEY', raising=False)
-    monkeypatch.chdir(tmp_path)
-    application = web.create_app(tmp_path / 'jobs')
-    try:
-        assert application.test_client().get('/api/config').get_json()['api_key_configured'] is True
-        # Exercise the real subprocess environment, without printing or saving a key.
-        script = ('import json, os, sys; from pathlib import Path; '
-                  'assert os.environ.get("DASHSCOPE_API_KEY") == "test-only-from-dotenv"; '
-                  'Path(sys.argv[1]).write_text(json.dumps({"duration": 10, "anomalies": []}))')
-        monkeypatch.setattr(web, 'probe_video', lambda path: {'duration': 10., 'fps': 30.})
-        monkeypatch.setattr(web, 'build_command', lambda job, directory:
-                            [sys.executable, '-c', script, str(directory / 'result.json')])
-        client = application.test_client()
-        response = upload(client)
-        assert response.status_code == 202
-        result = wait_done(client, response.get_json()['id'])
-        assert result['status'] == 'completed'
-        assert 'test-only-from-dotenv' not in json.dumps(result)
-    finally:
-        application.extensions['jobs'].close()
+def video(client):
+    response=client.post('/api/videos',data={'video':(io.BytesIO(b'video-bytes-1234'),'test.mp4')})
+    assert response.status_code==201,response.get_json()
+    return response.get_json()
 
 
-def test_process_environment_overrides_dotenv(tmp_path, monkeypatch):
-    import os
-
-    env_file = tmp_path / '.env'
-    env_file.write_text('DASHSCOPE_API_KEY=test-only-from-file\n', encoding='utf-8')
-    monkeypatch.setattr(web, 'ENV_FILE', env_file)
-    monkeypatch.setenv('DASHSCOPE_API_KEY', 'test-only-from-process')
-    application = web.create_app(tmp_path / 'jobs')
-    try:
-        assert os.environ['DASHSCOPE_API_KEY'] == 'test-only-from-process'
-    finally:
-        application.extensions['jobs'].close()
+def submit(client,vid=None,key=None,config=None):
+    vid=vid or video(client)['id']
+    return client.post('/api/jobs',json=dict(video_id=vid,config=config or {}),
+                       headers={'Idempotency-Key':key} if key else {})
 
 
-def upload(client, name='测试 clip.mp4', data=b'0123456789', **options):
-    return client.post('/api/jobs', data={'video': (io.BytesIO(data), name), **options})
+def complete(store,job_id):
+    claimed=store.claim('unit-test')
+    assert claimed[0]['id']==job_id
+    attempt=claimed[1]
+    atomic_json(store.path(attempt['artifact_dir']+'/result.json'),RESULT)
+    store.finish(attempt['id'],attempt['token'],'completed')
+    return attempt
 
 
-def wait_done(client, job_id):
-    deadline = time.monotonic() + 8
-    while time.monotonic() < deadline:
-        job = client.get('/api/jobs/' + job_id).get_json()
-        if job['status'] in {'completed', 'failed'}:
-            return job
-        time.sleep(.02)
-    pytest.fail('Background task did not finish')
-
-
-def test_upload_real_subprocess_result_download_seek_and_reload(app, monkeypatch, tmp_path):
-    # Stub ONLY model computation; keep the HTTP/storage/process lifecycle real.
-    expected = {'duration': 10., 'is_normal': False, 'processing_time': .1,
-                'anomalies': [{'t_start': 2., 't_end': 4., 'confidence': .9,
-                               'anomaly_type': 'Arson', 'description': 'Original text.'}]}
-    script = tmp_path / 'detector_stub.py'
-    script.write_text('import json,sys\nfrom pathlib import Path\n'
-                      'Path(sys.argv[1]).write_text(json.dumps(' + repr(expected) + '))\n', encoding='utf-8')
-    monkeypatch.setattr(web, 'probe_video', lambda path: {'duration': 10., 'fps': 30.})
-    monkeypatch.setattr(web, 'build_command', lambda job, directory: [sys.executable, str(script), str(directory / 'result.json')])
-    client = app.test_client()
-    response = upload(client)
-    assert response.status_code == 202
-    job_id = response.get_json()['id']
-    job = wait_done(client, job_id)
-    assert job['status'] == 'completed'
-    assert job['filename'] == '测试 clip.mp4'
-    assert job['model'] == 'qwen3-vl-plus'
-    assert job['device'] == 'cuda'
-    assert job['result'] == expected
-    partial = client.get(f'/api/jobs/{job_id}/video', headers={'Range': 'bytes=3-6'})
-    assert partial.status_code == 206
-    assert partial.data == b'3456'
-    assert partial.headers['Content-Range'] == 'bytes 3-6/10'
-    partial.close()
-    download = client.get(f'/api/jobs/{job_id}/result')
-    assert json.loads(download.data) == expected
-    assert 'attachment' in download.headers['Content-Disposition']
-    download.close()
-    restarted = web.create_app(app.extensions['jobs'].root)
-    assert restarted.test_client().get(f'/api/jobs/{job_id}').get_json()['result'] == expected
-    restarted.extensions['jobs'].close()
-
-
-@pytest.mark.parametrize('failure', ['exit', 'timeout'])
-def test_failed_or_timed_out_detection_is_reported_and_unlocks(app, monkeypatch, failure):
-    monkeypatch.setattr(web, 'probe_video', lambda path: {'duration': 10., 'fps': 30.})
-    script = 'import sys; print("model failed"); sys.exit(2)' if failure == 'exit' else 'import time; time.sleep(10)'
-    monkeypatch.setattr(web, 'build_command', lambda *args: [sys.executable, '-c', script])
-    if failure == 'timeout':
-        app.extensions['jobs'].timeout = .1
-    client = app.test_client()
-    job_id = upload(client).get_json()['id']
-    job = wait_done(client, job_id)
-    assert job['status'] == 'failed'
-    assert '退出码 2' in job['error'] if failure == 'exit' else '超过' in job['error']
-    assert app.extensions['jobs'].active_id is None
-    assert client.get(f'/api/jobs/{job_id}/result').status_code == 409
-
-
-def test_missing_key_invalid_input_oversize_and_cross_origin(app, monkeypatch):
-    client = app.test_client()
-    monkeypatch.delenv('DASHSCOPE_API_KEY')
-    assert client.get('/api/config').get_json()['api_key_configured'] is False
-    assert upload(client).status_code == 503
-    monkeypatch.setenv('DASHSCOPE_API_KEY', 'test-only')
-    assert upload(client, name='bad.exe').status_code == 400
-    assert upload(client, device='cuda; evil').status_code == 400
-    assert upload(client, data=b'x' * (1024 * 1024 + 1)).status_code == 413
-    assert client.post('/api/jobs', headers={'Origin': 'https://unrelated.example'}).status_code == 403
-    assert app.extensions['jobs'].active_id is None
-
-
-def test_corrupt_video_is_rejected_without_starting_detector(app):
-    client = app.test_client()
-    response = upload(client, data=b'not a video')
-    assert response.status_code == 400
-    assert '无法读取视频' in response.get_json()['error']
-    assert app.extensions['jobs'].active_id is None
-    assert not list(app.extensions['jobs'].root.glob('*/input.mp4'))
-
-
-def test_valid_video_is_decoded_and_metadata_is_recorded(app, monkeypatch, tmp_path):
-    import cv2
-    import numpy as np
-
-    video = tmp_path / 'valid.avi'
-    writer = cv2.VideoWriter(str(video), cv2.VideoWriter_fourcc(*'MJPG'), 10, (32, 32))
-    assert writer.isOpened()
-    for _ in range(10):
-        writer.write(np.zeros((32, 32, 3), dtype=np.uint8))
-    writer.release()
-    monkeypatch.setattr(app.extensions['jobs'], 'start', lambda job: None)
-    response = upload(app.test_client(), name='valid.avi', data=video.read_bytes())
-    assert response.status_code == 202
-    assert response.get_json()['duration'] == pytest.approx(1.)
-    assert response.get_json()['fps'] == pytest.approx(10.)
-
-
-def test_busy_job_and_untrusted_filename(app, monkeypatch, tmp_path):
-    monkeypatch.setattr(web, 'probe_video', lambda path: {'duration': 10., 'fps': 30.})
-    monkeypatch.setattr(app.extensions['jobs'], 'start', lambda job: None)
-    client = app.test_client()
-    job = upload(client, name='../../outside.mp4').get_json()
-    assert job['filename'] == 'outside.mp4'
-    assert job['video_file'] == 'input.mp4'
-    assert upload(client).status_code == 409
-    assert not (tmp_path / 'outside.mp4').exists()
-    assert client.get('/api/jobs/invalid-id/video').status_code == 404
-    restarted = web.create_app(app.extensions['jobs'].root)
-    assert restarted.test_client().get('/api/jobs/' + job['id']).get_json()['status'] == 'failed'
-    restarted.extensions['jobs'].close()
-
-
-def test_command_calls_v3_cli_without_shell_or_key_argument(tmp_path):
-    job = dict(video_file='input.mp4', device='cuda', mcts_mode='refine', context='shop camera', full_classification=True)
-    command = web.build_command(job, tmp_path)
-    assert command[:3] == [sys.executable, '-u', str(web.V3_DIR / 'video_anomaly_detection/run.py')]
-    assert command[command.index('--video_path') + 1] == str(tmp_path / 'input.mp4')
-    assert '--no_classify_skip_class_agnostic' in command
-    assert '--api_key' not in command
-    assert command[command.index('--model') + 1] == 'qwen3-vl-plus'
-
-
-def test_dotenv_model_reaches_job_and_real_cli_command(tmp_path, monkeypatch):
-    env_file = tmp_path / '.env'
-    env_file.write_text('DASHSCOPE_MODEL=qwen3-vl-flash\n', encoding='utf-8')
-    monkeypatch.setattr(web, 'ENV_FILE', env_file)
-    monkeypatch.delenv('DASHSCOPE_MODEL', raising=False)
-    monkeypatch.setenv('DASHSCOPE_API_KEY', 'test-only')
-    monkeypatch.setattr(web, 'probe_video', lambda path: {'duration': 10., 'fps': 30.})
-    application = web.create_app(tmp_path / 'jobs')
-    monkeypatch.setattr(application.extensions['jobs'], 'start', lambda job: None)
-    try:
-        client = application.test_client()
-        assert client.get('/api/config').get_json()['model'] == 'qwen3-vl-flash'
-        response = upload(client)
-        assert response.status_code == 202
-        job = response.get_json()
-        assert job['model'] == 'qwen3-vl-flash'
-        command = web.build_command(job, tmp_path)
-        assert command[command.index('--model') + 1] == 'qwen3-vl-flash'
-        assert application.extensions['jobs'].read(job['id'])['model'] == 'qwen3-vl-flash'
-    finally:
-        application.extensions['jobs'].close()
-
-
-@pytest.mark.parametrize('device', [None, 'cpu'])
-def test_device_default_and_explicit_override_reach_cli(app, monkeypatch, tmp_path, device):
-    monkeypatch.setattr(web, 'probe_video', lambda path: {'duration': 10., 'fps': 30.})
-    monkeypatch.setattr(app.extensions['jobs'], 'start', lambda job: None)
-    response = upload(app.test_client(), **({'device': device} if device else {}))
-    assert response.status_code == 202
-    job = response.get_json()
-    assert job['device'] == (device or 'cuda')
-    command = web.build_command(job, tmp_path)
-    assert command[command.index('--device') + 1] == (device or 'cuda')
-
-
-def seed_job(app, job_id='b' * 32, status='completed'):
-    manager = app.extensions['jobs']
-    job = dict(id=job_id, filename='saved.mp4', video_file='input.mp4',
-               status=status, created_at=time.time(), device='cuda', duration=10.)
-    manager.save(job)
-    directory = manager.directory(job_id)
-    (directory / 'input.mp4').write_bytes(b'0123456789')
-    (directory / 'run.log').write_text('saved log', encoding='utf-8')
-    (directory / 'result.json').write_text(json.dumps({'duration': 10., 'anomalies': []}), encoding='utf-8')
-    return job_id, directory
-
-
-@pytest.mark.parametrize('status', ['completed', 'failed'])
-def test_delete_and_restore_job_with_all_files(app, status):
-    job_id, directory = seed_job(app, status=status)
-    original = {file.name: file.read_bytes() for file in directory.iterdir()}
-    client = app.test_client()
-    assert client.delete('/api/jobs/' + job_id).status_code == 200
-    assert client.get('/api/jobs').get_json()['jobs'] == []
-    assert not directory.exists()
-    for suffix in ['', '/video', '/result']:
-        assert client.get('/api/jobs/' + job_id + suffix).status_code == 404
-    archived = app.extensions['jobs'].root / '.trash' / job_id
-    assert {file.name: file.read_bytes() for file in archived.iterdir()} == original
-    assert client.delete('/api/jobs/' + job_id).status_code == 404
-    assert client.post('/api/jobs/' + job_id + '/restore').status_code == 200
-    assert len(client.get('/api/jobs').get_json()['jobs']) == 1
-    assert {file.name: file.read_bytes() for file in directory.iterdir()} == original
-    response = client.get('/api/jobs/' + job_id + '/video', headers={'Range': 'bytes=3-6'})
-    assert response.status_code == 206 and response.data == b'3456'
+def test_upload_queue_idempotency_and_range(app):
+    c=app.test_client();v=video(c)
+    first=submit(c,v['id'],'same-key-123')
+    second=submit(c,v['id'],'same-key-123')
+    assert first.status_code==202 and second.status_code==200
+    assert first.json['id']==second.json['id']
+    assert first.json['device']=='cuda'
+    assert first.json['mcts_mode']=='refine'
+    assert c.get('/api/config').json['defaults']['mcts_mode']=='refine'
+    assert c.get('/api/config').json['defaults']['mcts_acceptance_policy']=='force_best'
+    saved=app.extensions['store'].job(first.json['id'])
+    assert saved['config']['detector_config']['mcts']['acceptance_policy']=='force_best'
+    assert first.json['status']=='queued'
+    assert submit(c,v['id'],'same-key-123',{'device':'cpu'}).status_code==409
+    explicit_off=submit(c,v['id'],'new-key-123',{'mcts_mode':'off'})
+    assert explicit_off.status_code==202 and explicit_off.json['mcts_mode']=='off'
+    explicit_strict=submit(c,v['id'],config={'mcts':{'acceptance_policy':'strict'}})
+    assert app.extensions['store'].job(explicit_strict.json['id'])['config']['detector_config']['mcts']['acceptance_policy']=='strict'
+    response=c.get('/api/videos/'+v['id']+'/stream',headers={'Range':'bytes=2-5'})
+    assert response.status_code==206 and response.data==b'deo-'
     response.close()
-    assert client.post('/api/jobs/' + job_id + '/restore').status_code == 404
 
 
-@pytest.mark.parametrize('status', ['uploading', 'running', 'completed'])
-def test_running_job_cannot_be_deleted_even_during_final_save(app, status):
-    job_id, directory = seed_job(app, status=status)
-    if status == 'completed':
-        app.extensions['jobs'].active_id = job_id
-    response = app.test_client().delete('/api/jobs/' + job_id)
-    assert response.status_code == 409
-    assert (directory / 'input.mp4').read_bytes() == b'0123456789'
+def test_origin_path_and_configuration_validation(app):
+    c=app.test_client()
+    assert c.post('/api/videos',headers={'Origin':'https://example.invalid'}).status_code==403
+    assert c.get('/api/config',headers={'Host':'attacker.invalid'}).status_code==400
+    assert c.get('/api/videos/not-found/stream').status_code==404
+    v=video(c)
+    assert submit(c,v['id'],config={'device':'not-a-device'}).status_code==400
+    assert submit(c,v['id'],config={'shell':'anything'}).status_code==400
+    assert c.post('/api/videos',data={'video':(io.BytesIO(b'x'),'bad.exe')}).status_code==400
+    with pytest.raises(ValueError):
+        app.extensions['store'].path('../outside')
 
 
-def test_delete_is_isolated_from_other_jobs_and_checks_origin(app):
-    removed, directory = seed_job(app)
-    other, other_directory = seed_job(app, job_id='c' * 32, status='running')
-    app.extensions['jobs'].active_id = other
-    client = app.test_client()
-    assert client.delete('/api/jobs/' + removed, headers={'Origin': 'https://unrelated.example'}).status_code == 403
-    assert directory.exists()
-    assert client.delete('/api/jobs/' + removed).status_code == 200
-    assert client.post('/api/jobs/' + removed + '/restore', headers={'Origin': 'https://unrelated.example'}).status_code == 403
-    assert [job['id'] for job in client.get('/api/jobs').get_json()['jobs']] == [other]
-    assert (other_directory / 'input.mp4').read_bytes() == b'0123456789'
-    assert app.extensions['jobs'].active_id == other
-    assert client.delete('/api/jobs/invalid-id').status_code == 404
-    assert client.post('/api/jobs/invalid-id/restore').status_code == 404
+def test_cancel_queued_retry_and_soft_delete(app):
+    c=app.test_client();j=submit(c).json;store=app.extensions['store']
+    assert c.delete('/api/jobs/'+j['id']).status_code==409
+    assert c.post('/api/jobs/'+j['id']+'/cancel').json['status']=='cancelled'
+    assert c.post('/api/jobs/'+j['id']+'/retry').status_code==202
+    complete(store,j['id'])
+    assert c.delete('/api/jobs/'+j['id']).status_code==200
+    assert c.get('/api/jobs/'+j['id']).status_code==404
+    assert len(c.get('/api/jobs?deleted=1').json['jobs'])==1
+    assert c.post('/api/jobs/'+j['id']+'/restore').status_code==200
+    assert store.result(j['id'])==RESULT
+    assert store.path(store.video(j['video_id'])['path']).exists()
 
 
-def test_restore_does_not_overwrite_new_data(app):
-    job_id, directory = seed_job(app)
-    client = app.test_client()
-    assert client.delete('/api/jobs/' + job_id).status_code == 200
-    directory.mkdir()
-    (directory / 'important.txt').write_text('keep')
-    assert client.post('/api/jobs/' + job_id + '/restore').status_code == 409
-    assert (directory / 'important.txt').read_text() == 'keep'
-    assert (app.extensions['jobs'].root / '.trash' / job_id / 'input.mp4').is_file()
+def test_review_versions_manual_identity_and_original_unchanged(app):
+    c=app.test_client();j=submit(c).json;store=app.extensions['store'];complete(store,j['id'])
+    before=store.result(j['id'])
+    payload=dict(subject_id='det-0',expected_revision=0,action='corrected',
+        after=dict(t_start=1.,t_end=5.,confidence=.8,anomaly_type='Assault'),reason='review')
+    assert c.post('/api/jobs/'+j['id']+'/reviews',json=payload).status_code==201
+    assert c.post('/api/jobs/'+j['id']+'/reviews',json=payload).status_code==409
+    manual=c.post('/api/jobs/'+j['id']+'/reviews',json=dict(action='added',after=payload['after'])).json
+    payload.update(subject_id=manual['subject_id'],expected_revision=1)
+    assert c.post('/api/jobs/'+j['id']+'/reviews',json=payload).status_code==201
+    assert store.result(j['id'])==before
+    assert len(c.get('/api/jobs/'+j['id']+'/analysis').json['reviews'])==3
+    for fmt in ('csv','html'):
+        assert c.get('/api/jobs/'+j['id']+'/export?format='+fmt).status_code==200
 
 
-def test_delete_rejects_directory_outside_data_root(app, tmp_path, monkeypatch):
-    job_id, directory = seed_job(app)
-    outside = tmp_path / 'unrelated'
-    outside.mkdir()
-    original_resolve = Path.resolve
-
-    def resolve(path, *args, **kwargs):
-        # Simulate a symlink/junction without requiring Windows symlink privileges.
-        if path == directory:
-            return outside
-        return original_resolve(path, *args, **kwargs)
-
-    monkeypatch.setattr(Path, 'resolve', resolve)
-    assert app.test_client().delete('/api/jobs/' + job_id).status_code == 404
-    assert (directory / 'input.mp4').read_bytes() == b'0123456789'
-    assert outside.is_dir()
+def test_export_escapes_untrusted_description(app):
+    c=app.test_client();j=submit(c).json;store=app.extensions['store'];a=complete(store,j['id'])
+    result=json.loads(json.dumps(RESULT));result['anomalies'][0]['description']='<script>alert(1)</script>'
+    atomic_json(store.path(a['artifact_dir']+'/result.json'),result)
+    body=c.get('/api/jobs/'+j['id']+'/export').get_data(as_text=True)
+    assert '<script>alert(1)</script>' not in body
+    assert '&lt;script&gt;' in body
 
 
-def test_file_in_use_does_not_remove_task_or_other_files(app, monkeypatch):
-    job_id, directory = seed_job(app)
-    original_rename = Path.rename
+def fake_command(job,attempt,store):
+    path=store.path(attempt['artifact_dir']+'/result.json')
+    return [sys.executable,'-c','import pathlib,sys;pathlib.Path(sys.argv[1]).write_text(sys.argv[2])',
+            str(path),json.dumps(RESULT)]
 
-    def rename(path, destination):
-        if path == directory:
-            raise PermissionError('File in use')
-        return original_rename(path, destination)
 
-    monkeypatch.setattr(Path, 'rename', rename)
-    client = app.test_client()
-    assert client.delete('/api/jobs/' + job_id).status_code == 409
-    assert len(client.get('/api/jobs').get_json()['jobs']) == 1
-    assert (directory / 'input.mp4').read_bytes() == b'0123456789'
-    assert client.get('/api/jobs/' + job_id).status_code == 200
+def test_worker_runs_multiple_jobs_serially_and_persists_attempts(app,tmp_path):
+    c=app.test_client();one=submit(c).json;two=submit(c).json;store=app.extensions['store']
+    worker=Worker(store,fake_command,tmp_path/'lock')
+    worker.run(once=True)
+    assert store.job(one['id'])['status']==store.job(two['id'])['status']=='completed'
+    assert len(store.attempts(one['id']))==1
+    assert store.attempts(one['id'])[0]['finished_at']<=store.attempts(two['id'])[0]['started_at']
+    assert store.result(one['id'])==RESULT
+
+
+def test_worker_failure_is_not_normal_and_retry_retains_attempt(app,tmp_path):
+    c=app.test_client();j=submit(c).json;store=app.extensions['store']
+    worker=Worker(store,lambda *unused:[sys.executable,'-c','raise RuntimeError("failed")'],tmp_path/'lock')
+    worker.run(once=True)
+    assert store.job(j['id'])['status']=='failed'
+    assert c.get('/api/jobs/'+j['id']+'/result').status_code==409
+    store.retry(j['id'],code_hash())
+    Worker(store,fake_command,tmp_path/'lock').run(once=True)
+    assert [a['state'] for a in store.attempts(j['id'])]==['failed','completed']
+
+
+def test_cancel_running_stops_subprocess_and_does_not_commit(app,tmp_path):
+    c=app.test_client();j=submit(c).json;store=app.extensions['store']
+    worker=Worker(store,lambda *unused:[sys.executable,'-c','import time;time.sleep(30)'],tmp_path/'lock')
+    thread=threading.Thread(target=worker.run,kwargs={'once':True});thread.start()
+    deadline=time.time()+8
+    while time.time()<deadline:
+        attempts=store.attempts(j['id'])
+        if attempts and attempts[0]['pid']:break
+        time.sleep(.05)
+    store.cancel(j['id']);thread.join(12)
+    assert not thread.is_alive()
+    assert store.job(j['id'])['status']=='cancelled'
+    assert store.job(j['id'])['result_attempt_id'] is None
+
+
+def test_timeout_fails_with_retained_log(app,tmp_path):
+    c=app.test_client();j=submit(c,config={'timeout':1}).json;store=app.extensions['store']
+    Worker(store,lambda *unused:[sys.executable,'-c','import time;time.sleep(20)'],tmp_path/'lock').run(once=True)
+    assert store.job(j['id'])['status']=='failed'
+    assert '超时' in store.job(j['id'])['error']
+
+
+def test_single_instance_and_stale_result_token(app,tmp_path):
+    with InstanceLock(tmp_path/'lock'):
+        with pytest.raises(RuntimeError):
+            with InstanceLock(tmp_path/'lock'):pass
+    c=app.test_client();j=submit(c).json;store=app.extensions['store'];a=complete(store,j['id'])
+    with pytest.raises(Conflict):
+        store.finish(a['id'],a['token'],'completed')
+
+
+def test_restart_marks_active_attempt_interrupted(app,tmp_path):
+    c=app.test_client();j=submit(c).json;store=app.extensions['store']
+    store.claim('dead-worker')
+    Worker(store,fake_command,tmp_path/'lock').run(once=True)
+    assert store.job(j['id'])['status']=='interrupted'
+    assert store.claim('new-worker') is None
+
+
+def test_worker_does_not_inherit_config_only_from_web(tmp_path,monkeypatch):
+    from vad_v3.webapp.settings import load_environment
+    path=tmp_path/'.env';path.write_text('DASHSCOPE_API_KEY=fixture-only\n',encoding='utf-8-sig')
+    monkeypatch.delenv('DASHSCOPE_API_KEY',raising=False);load_environment(path)
+    assert os.environ['DASHSCOPE_API_KEY']=='fixture-only'
+    monkeypatch.setenv('DASHSCOPE_API_KEY','environment-priority');load_environment(path)
+    assert os.environ['DASHSCOPE_API_KEY']=='environment-priority'
+
+
+@pytest.mark.parametrize('mutate',[
+    lambda r:r['anomalies'][0].update(t_end=11),
+    lambda r:r.update(timestamps=[0,0,2,3,4]),
+    lambda r:r.update(frame_scores=[float('nan')]*5),
+    lambda r:r.update(frame_scores=[.1]),
+    lambda r:r.update(is_normal=True),
+])
+def test_invalid_outputs_are_rejected(mutate):
+    result=json.loads(json.dumps(RESULT));mutate(result)
+    with pytest.raises(ValueError):validate_result(result)
+
+
+def bundle():
+    return dict(name='fixture',ground_truth={
+        'a':dict(category='Fighting',fps=30.,frame_count=300,segments=[[60,120]]),
+        'b':dict(category='Normal',fps=25.,frame_count=250,segments=[])},
+        groups={'on':{'a':RESULT,'b':dict(duration=10.,is_normal=True,anomalies=[],
+            timestamps=[0.,5.,9.],frame_scores=[.01,.01,.01])}})
+
+
+def test_evaluation_uses_classes_coverage_and_immutable_runs(app):
+    store=app.extensions['store'];b=bundle();exp=experiments.create_experiment(store,b)
+    one=experiments.create_evaluation(store,exp['id']);experiments.evaluate(store,one)
+    two=experiments.create_evaluation(store,exp['id'],'report_historical_v1');experiments.evaluate(store,two)
+    c=app.test_client();row=c.get('/api/evaluations/'+one).json
+    assert row['status']=='completed',row
+    metrics=row['metrics']['groups']['on']
+    assert metrics['abnormal']['per_class']['Fighting']['AP@0.5']==1
+    assert metrics['classification']['accuracy']==1
+    assert metrics['classification']['normal_false_positive_rate']==0
+    assert len(experiments.list_experiments(store)[0]['evaluations'])==2
+    b['groups']['on'].pop('b')
+    with pytest.raises(ValueError,match='覆盖'):
+        experiments.create_experiment(store,b)
+
+
+def test_evaluation_missing_curves_reports_unavailable_not_zero(app):
+    store=app.extensions['store'];b=bundle();b['groups']['on']['b'].pop('frame_scores')
+    b['groups']['on']['b'].pop('timestamps')
+    eid=experiments.create_experiment(store,b)['id'];rid=experiments.create_evaluation(store,eid)
+    experiments.evaluate(store,rid)
+    frame=app.test_client().get('/api/evaluations/'+rid).json['metrics']['groups']['on']['frame']
+    assert frame['auc'] is None and frame['missing_videos']==['b']
+
+
+def test_native_evaluation_reprobes_video_instead_of_using_bundle_fps(app):
+    store=app.extensions['store'];b=bundle()
+    # 模拟过期清单：记录的 FPS/帧数均错，但时长仍为 10 秒。
+    b['ground_truth']['a'].update(fps=10.,frame_count=100)
+    eid=experiments.create_experiment(store,b)['id'];rid=experiments.create_evaluation(store,eid)
+    experiments.evaluate(store,rid)
+    row=app.test_client().get('/api/evaluations/'+rid).json
+    assert row['status']=='completed',row
+    assert row['metrics']['source_video_metadata']['a']['fps']==30.
+    assert row['metrics']['groups']['on']['abnormal']['per_class']['Fighting']['AP@0.5']==1.
+    original=json.loads(store.path(experiments.experiment(store,eid)['manifest']['input_path']).read_text(encoding='utf-8'))
+    assert original['ground_truth']['a']['fps']==10.
+
+
+def test_native_evaluation_requires_readable_source_videos(app,tmp_path,monkeypatch):
+    monkeypatch.setattr(experiments,'DATASET_ROOT',tmp_path/'missing-source')
+    store=app.extensions['store'];eid=experiments.create_experiment(store,bundle())['id']
+    rid=experiments.create_evaluation(store,eid);experiments.evaluate(store,rid)
+    row=app.test_client().get('/api/evaluations/'+rid).json
+    assert row['status']=='failed' and row['error']
+
+
+@pytest.mark.parametrize('legacy_mode',[None,'off','shadow','refine'])
+def test_legacy_import_preserves_original_directories(tmp_path,legacy_mode):
+    from vad_v3.webapp.migration import import_legacy
+    store=Store(tmp_path/'data');jid='a'*32;old=store.root/jid;old.mkdir()
+    (old/'input.mp4').write_bytes(b'old-video')
+    legacy=dict(id=jid,filename='old.mp4',video_file='input.mp4',
+        status='completed',duration=10.,fps=30.,created_at=time.time(),device='cuda',
+        context='camera',full_classification=False)
+    if legacy_mode is not None: legacy['mcts_mode']=legacy_mode
+    atomic_json(old/'job.json',legacy)
+    atomic_json(old/'result.json',RESULT)
+    result=import_legacy(store)
+    assert result['imported']==1 and not result['errors']
+    with store.connect() as db:
+        config=json.loads(db.execute('SELECT config_json FROM jobs WHERE id=?',(jid,)).fetchone()[0])
+    assert config['mcts_mode']==(legacy_mode or 'off')
+    assert config['detector_config']['mcts']['mode']==(legacy_mode or 'off')
+    assert config['detector_config']['mcts']['acceptance_policy']=='strict'
+    assert store.result(jid)==RESULT and (old/'input.mp4').exists()
+    assert import_legacy(store)['imported']==0
+
+
+def test_experiment_from_completed_tasks_keeps_input_identity(app):
+    c=app.test_client();v=video(c);store=app.extensions['store']
+    one=submit(c,v['id'],config={'mcts_mode':'off'}).json;complete(store,one['id'])
+    two=submit(c,v['id'],config={'mcts_mode':'shadow'}).json;complete(store,two['id'])
+    payload=dict(name='two configs',groups={'off':[one['id']],'shadow':[two['id']]},
+        ground_truth={'test':dict(category='Fighting',segments=[[60,120]])})
+    response=c.post('/api/experiments/from-jobs',json=payload)
+    assert response.status_code==201,response.json
+    assert response.json['manifest']['video_count']==1
+    source=response.json['manifest']['provenance']['jobs']
+    assert source['off']['test']['video_sha256']==source['shadow']['test']['video_sha256']
+    assert source['off']['test']['config_hash']!=source['shadow']['test']['config_hash']
+    payload['ground_truth']['extra']=payload['ground_truth']['test']
+    assert c.post('/api/experiments/from-jobs',json=payload).status_code==400
+
+
+def test_backup_restore_keeps_reviews_and_rejects_live_writers(app,tmp_path):
+    from vad_v3.webapp.service import backup,restore
+    c=app.test_client();store=app.extensions['store'];j=submit(c).json;complete(store,j['id'])
+    c.post('/api/jobs/'+j['id']+'/reviews',json=dict(subject_id='det-0',action='confirmed',expected_revision=0))
+    destination=tmp_path/'backup.zip'
+    with InstanceLock(store.root/'.web.lock'):
+        with pytest.raises(RuntimeError):backup(store,destination)
+    assert not destination.exists()
+    backup(store,destination)
+    restored_path=tmp_path/'restored';restore(destination,restored_path)
+    restored=Store(restored_path)
+    assert restored.result(j['id'])==RESULT
+    assert restored.reviews(j['id'])==store.reviews(j['id'])
+    assert file_hash(restored.path(restored.video(j['video_id'])['path']))==store.video(j['video_id'])['sha256']
+    with pytest.raises(ValueError):restore(destination,restored_path)
+
+
+def test_global_worker_recovers_previous_data_directory(app,tmp_path):
+    store=app.extensions['store'];c=app.test_client();job=submit(c).json
+    store.claim('crashed')
+    lock=tmp_path/'global.lock'
+    atomic_json(lock.with_suffix('.owner.json'),dict(data_dir=str(store.root)))
+    other=Store(tmp_path/'another-data')
+    Worker(other,fake_command,lock).run(once=True)
+    assert store.job(job['id'])['status']=='interrupted'
+
+
+def test_invalid_json_shapes_are_client_errors(app):
+    c=app.test_client();vid=video(c)['id']
+    assert c.post('/api/jobs',json=[]).status_code==400
+    assert c.post('/api/jobs',json=dict(video_id=vid,config=[])).status_code==400
+    assert c.post('/api/experiments',json=dict(ground_truth={'a':[]},groups={'a':{}})).status_code==400
+    assert c.post('/api/experiments/from-jobs',json=[]).status_code==400
+
+
+def test_historical_frame_precision_and_length_match_original_evaluator(app):
+    from vad_v3.video_anomaly_detection.evaluate import compute_frame_auc
+    store=app.extensions['store'];b=bundle()
+    b['ground_truth']['b'].update(fps=30.,frame_count=300)
+    # A decimal duration whose product can be just below the true integer count.
+    b['ground_truth']['a']['frame_count']=302
+    b['groups']['on']['a']=json.loads(json.dumps(RESULT))
+    b['groups']['on']['a']['duration']=302/30
+    expected=compute_frame_auc(b['ground_truth'],b['groups']['on'],fps=30)
+    eid=experiments.create_experiment(store,b)['id']
+    rid=experiments.create_evaluation(store,eid,'report_historical_v1');experiments.evaluate(store,rid)
+    c=app.test_client();actual=c.get('/api/evaluations/'+rid).json['metrics']['groups']['on']['frame']
+    assert actual['auc']==expected['auc']
+    assert actual['aupr']==expected['aupr']
+    downloaded=c.get('/api/evaluations/'+rid+'/download?format=csv')
+    assert downloaded.status_code==200 and b'frame,auc' in downloaded.data

@@ -61,8 +61,10 @@ async def main(args):
         **client_retry_options(args),
     )
 
-    cfg = VADConfig.from_args(args)
+    cfg = VADConfig.load(args.config_json) if getattr(args,'config_json',None) else VADConfig.from_args(args)
     cfg.anomaly_categories = UCF_CRIME_CATEGORIES
+    import research_recording
+    recorder = research_recording.initialize(getattr(args,'research_dir',None))
     manifest = None
     if args.output_file:
         output = Path(args.output_file)
@@ -71,6 +73,7 @@ async def main(args):
             raise ValueError('Existing result has no v3 manifest; choose a new output file')
         manifest = prepare_manifest(manifest_path,cfg,[llm_client],[str(Path(args.video_path))])
     vad = build_vad(cfg, llm_client)
+    vad.discovery.strict_responses = getattr(args,'strict_discovery',False)
 
     print(f"Processing video: {args.video_path}")
     print(f"Model: {args.model}")
@@ -81,6 +84,8 @@ async def main(args):
         video_path=args.video_path,
         context=args.context,
     )
+    if recorder:
+        recorder.finish(result, vad.frame_scorer)
 
     elapsed = time.time() - start_time
     print(f"\n{'='*50}")
@@ -219,5 +224,9 @@ if __name__ == "__main__":
 
     add_api_arguments(parser)
     add_mcts_arguments(parser)
+    parser.add_argument('--config_json', type=str, help='Frozen VADConfig JSON from local task adapter')
+    parser.add_argument('--research_dir', type=str, help='Opt-in local evidence and stage recording')
+    parser.add_argument('--strict_discovery', action='store_true',
+                        help='Fail on invalid discovery response instead of silently treating it as normal')
     args = parser.parse_args()
     asyncio.run(main(args))

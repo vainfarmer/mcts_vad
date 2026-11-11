@@ -1,0 +1,33 @@
+{
+  "kind": "frozen_search_tree_acceptance_replay",
+  "source": "D:\\Users\\zzl\\project\\mcts_vad\\vad_v3\\experiments\\stage4_fixed_vs_mcts",
+  "policies": [
+    "fixed",
+    "strict",
+    "relaxed_node",
+    "force_best"
+  ],
+  "relaxed_node": "Keep target presence, same event, CLIP quality floor; drop completeness, cut-boundary rejection and final A/B comparison.",
+  "force_best": "Select the highest-reward evaluated non-root node, even if below root; drop semantic/CLIP acceptance and final A/B gates.",
+  "preserved": "Same 14 videos, Stage 4 candidates, predictions, scores, search tree, rewards, geometry/evidence validation, budgets and fixed BUE -> CBT.",
+  "candidate_scope": "One best proposal per searched candidate. No emitting all tree nodes; no invented proposal for unsearched/failed candidates.",
+  "inference": "Recompute native video frames and actual CLIP category curves on CUDA; execute original BUE/CBT. Verify baseline boundaries exactly against source run.",
+  "costs": "Zero new VLM requests. Replay runtime includes feature rebuilding and multiple tails, not per-policy fresh-run latency.",
+  "limitations": "One video per class; fixed shrink trees; no new exploration. Existing CBT priors unchanged, historical training provenance unverified.",
+  "source_results_sha256": {
+    "Abuse030_x264": "ea38aaf5763de89b2b8fca2f4cf96770609efc26835f540101ec94919d67528c",
+    "Arrest007_x264": "5265015e94d67dce3d88968787cc475047c950d79464f0c780a7811161862917",
+    "Arson035_x264": "9563d29618440869f7e85035b8fd597b09de3d0b09985b684749f3812f442767",
+    "Assault006_x264": "3a18c69ae3c682a457afbf164a9dcac78bc6f97b5c7c20044371e50251cf9188",
+    "Burglary079_x264": "37774c77a310555808799476377c685917dfba0acf5aa591ea221ab46dd9f816",
+    "Explosion002_x264": "f6577c6475daf7d8186da7a3a9dcb90790863529b9ad5b1d35d0db6a88020131",
+    "Fighting018_x264": "28d500fcb151c8bbb56ba8fee4e792b41a0536d6d43dd90cc140d69bb0c0a5ad",
+    "Normal_Videos_782_x264": "fd28dbc97e3884e4f22458b9ffbe481443e1608fd85c09757cef2a36ded43104",
+    "RoadAccidents123_x264": "b245e7c1d3c0e025a1a2bdb7969674529328af32e381bf51b17a40bbb64b768e",
+    "Robbery050_x264": "139c53803ca56af64ec15177037322a6fff46b158b0492451815d2e013007b77",
+    "Shooting032_x264": "dd2a6c1157ddec5e09098222d1842dc7691015b9f77c608c8e1991d382f47f04",
+    "Shoplifting001_x264": "6178501e8782118d95fc65ca503d160602225ee1dead3acf586f9e167880b65d",
+    "Stealing036_x264": "cb82288bc221cb1dbfd34dd660293a38656776a36d4c1fd060d45a3e1c977425",
+    "Vandalism015_x264": "2c98e5ece34528c4fde82cfdedcdb16a0ac8486e93f8b2df393a0ea6e540b50d"
+  }
+}

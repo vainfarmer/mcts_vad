@@ -1,218 +1,74 @@
-"""Local-only upload, background detection and seekable video serving.
-
-Run with the same Python environment as v3: python vad_v3/webapp/app.py
-"""
+"""Local HTTP service; inference is owned by the independent queue worker."""
 from __future__ import annotations
-
 import argparse
+from concurrent.futures import ThreadPoolExecutor
+import io
 import json
 import math
 import os
 from pathlib import Path
-import re
-import subprocess
 import sys
-import threading
 import time
 import uuid
-
+if not __package__:
+    sys.path.insert(0,str(Path(__file__).resolve().parents[2]))
 from flask import Flask, jsonify, request, send_file
-from dotenv import load_dotenv
 from werkzeug.exceptions import HTTPException
-
-V3_DIR = Path(__file__).resolve().parents[1]
-ENV_FILE = Path(__file__).resolve().with_name('.env')
-# qwen-vl-max was retired on 2026-10-10. Keep the historical experiment
-# CLI defaults intact; the web application explicitly selects its model.
-DEFAULT_MODEL = 'qwen3-vl-plus'
-VIDEO_SUFFIXES = {'.mp4', '.webm', '.mov', '.m4v', '.avi', '.mkv'}
-ACTIVE_STATES = {'uploading', 'running'}
+from vad_v3.webapp import experiments
+from vad_v3.webapp.settings import (V3_DIR, ENV_FILE, DEFAULT_MODEL, DEFAULT_MCTS_MODE,
+    DEFAULT_MCTS_ACCEPTANCE_POLICY, CATEGORIES,
+    load_environment, effective_config, code_hash, file_hash, redact)
+from vad_v3.webapp.store import Store, Conflict
+from vad_v3.webapp.results import analysis, curves, export_csv, export_html
+from vad_v3.webapp.migration import import_legacy
+from vad_v3.webapp.diagnostics import check_environment
+VIDEO_SUFFIXES={'.mp4','.webm','.mov','.m4v','.avi','.mkv'}
 
 
 def probe_video(path):
-    import cv2
-
-    capture = cv2.VideoCapture(str(path))
-    try:
-        fps = float(capture.get(cv2.CAP_PROP_FPS))
-        frames = float(capture.get(cv2.CAP_PROP_FRAME_COUNT))
-        readable, _ = capture.read()
-        duration = frames / fps if fps > 0 else 0
-        if not readable or not math.isfinite(duration) or duration <= 0:
-            raise ValueError('无法读取视频，请上传有效的视频文件。')
-        return {'duration': duration, 'fps': fps}
-    finally:
-        capture.release()
+    from evaluation_tools.video_fps import probe_video_metadata
+    metadata = probe_video_metadata(path)
+    # 上传临时路径不写入视频记录，后续以数据库里的正式文件路径为准。
+    metadata.pop('video_path')
+    return metadata
 
 
-def build_command(job, directory):
-    """Invoke the actual CLI; all unspecified model settings stay at v3 defaults."""
-    command = [sys.executable, '-u', str(V3_DIR / 'video_anomaly_detection' / 'run.py'),
-               '--video_path', str(directory / job['video_file']),
-               '--output_file', str(directory / 'result.json'),
-               '--device', job['device'], '--mcts_mode', job['mcts_mode'],
-               '--model', job.get('model', DEFAULT_MODEL),
-               '--context', job['context']]
-    if job['full_classification']:
-        command.append('--no_classify_skip_class_agnostic')
-    return command
-
-
-class JobManager:
-    def __init__(self, root, timeout):
-        self.root = Path(root).resolve()
-        self.root.mkdir(parents=True, exist_ok=True)
-        self.timeout = timeout
-        self.lock = threading.RLock()
-        self.active_id = None
-        self.process = None
-        self.closed = False
-        # Incomplete jobs from a previous server process cannot be resumed safely.
-        for path in self.root.glob('*/job.json'):
-            try:
-                job = json.loads(path.read_text(encoding='utf-8'))
-                if job['status'] in ACTIVE_STATES:
-                    job.update(status='failed', error='上次服务已中断，请重新提交检测。')
-                    self.save(job)
-            except (OSError, ValueError, KeyError):
-                continue
-
-    def directory(self, job_id):
-        if not re.fullmatch(r'[0-9a-f]{32}', job_id):
-            raise FileNotFoundError('任务不存在。')
-        directory = self.root / job_id
-        if directory.resolve() != directory:
-            raise FileNotFoundError('任务目录无效。')
-        return directory
-
-    def trash_directory(self, job_id):
-        self.directory(job_id)  # Validate the ID and the active destination.
-        directory = self.root / '.trash' / job_id
-        if directory.resolve() != directory:
-            raise FileNotFoundError('任务回收目录无效。')
-        return directory
-
-    def delete(self, job_id):
-        """Move one finished job into a recoverable, local trash directory."""
-        with self.lock:
-            job = self.read(job_id)
-            if job_id == self.active_id or job['status'] in ACTIVE_STATES:
-                raise ValueError('正在运行的任务不能删除，请等待检测完成。')
-            source = self.directory(job_id)
-            destination = self.trash_directory(job_id)
-            if destination.exists():
-                raise ValueError('回收目录已存在同名任务，无法覆盖。')
-            destination.parent.mkdir(exist_ok=True)
-            # Both resolved absolute paths were checked to stay within root.
-            source.rename(destination)
-
-    def restore(self, job_id):
-        with self.lock:
-            source = self.trash_directory(job_id)
-            destination = self.directory(job_id)
-            if not (source / 'job.json').is_file():
-                raise FileNotFoundError('回收目录中没有这个任务。')
-            if destination.exists():
-                raise ValueError('任务已存在，无法重复恢复。')
-            source.rename(destination)
-            return self.read(job_id)
-
-    def save(self, job):
-        with self.lock:
-            directory = self.directory(job['id'])
-            directory.mkdir(exist_ok=True)
-            temporary = directory / 'job.tmp'
-            temporary.write_text(json.dumps(job, ensure_ascii=False, indent=2), encoding='utf-8')
-            temporary.replace(directory / 'job.json')
-
-    def read(self, job_id):
-        with self.lock:
-            return json.loads((self.directory(job_id) / 'job.json').read_text(encoding='utf-8'))
-
-    def list_jobs(self):
-        with self.lock:
-            jobs = []
-            for path in self.root.glob('*/job.json'):
-                try:
-                    jobs.append(self.read(path.parent.name))
-                except (OSError, ValueError):
-                    continue
-            return sorted(jobs, key=lambda job: job['created_at'], reverse=True)[:30]
-
-    def start(self, job):
-        threading.Thread(target=self._run, args=(job,), daemon=True).start()
-
-    def _run(self, job):
-        directory = self.directory(job['id'])
-        try:
-            job.update(status='running', started_at=time.time())
-            self.save(job)
-            environment = dict(os.environ, PYTHONUTF8='1', PYTHONIOENCODING='utf-8')
-            with (directory / 'run.log').open('w', encoding='utf-8') as log:
-                with self.lock:
-                    if self.closed:
-                        raise RuntimeError('服务已停止。')
-                    self.process = subprocess.Popen(
-                        build_command(job, directory), cwd=str(V3_DIR.parent), env=environment,
-                        stdout=log, stderr=subprocess.STDOUT,
-                        creationflags=subprocess.CREATE_NO_WINDOW if os.name == 'nt' else 0)
-                    process = self.process
-                try:
-                    code = process.wait(timeout=self.timeout)
-                except subprocess.TimeoutExpired:
-                    process.kill()
-                    process.wait()
-                    raise RuntimeError(f'检测超过 {self.timeout} 秒，已终止。可通过 --timeout 调整。')
-            if code:
-                raise RuntimeError(f'v3 检测失败（退出码 {code}），请查看运行日志。')
-            result = json.loads((directory / 'result.json').read_text(encoding='utf-8'))
-            if not isinstance(result.get('anomalies'), list) or 'duration' not in result:
-                raise RuntimeError('v3 未生成有效的检测结果。')
-            job.update(status='completed', finished_at=time.time(),
-                       anomaly_count=len(result['anomalies']),
-                       processing_time=result.get('processing_time'))
-        except Exception as exc:
-            job.update(status='failed', finished_at=time.time(), error=str(exc))
-        finally:
-            try:
-                self.save(job)
-            finally:
-                with self.lock:
-                    self.active_id = None
-                    self.process = None
-
-    def close(self):
-        with self.lock:
-            self.closed = True
-            process = self.process
-            if process is not None and process.poll() is None:
-                process.kill()
-                process.wait()
-
-
-def create_app(data_dir=None, max_upload_mb=2048, timeout=3600):
-    # Resolve relative to this file, not the launch directory. Windows editors
-    # may write a UTF-8 BOM; existing process environment settings take priority.
-    load_dotenv(ENV_FILE, override=False, encoding='utf-8-sig')
-    app = Flask(__name__, static_folder='static', static_url_path='/static')
-    app.config['MAX_CONTENT_LENGTH'] = max_upload_mb * 1024 * 1024
-    app.config['VLM_MODEL'] = (os.environ.get('DASHSCOPE_MODEL') or DEFAULT_MODEL).strip() or DEFAULT_MODEL
-    app.json.ensure_ascii = False
-    manager = JobManager(data_dir or V3_DIR / 'web_data', timeout)
-    app.extensions['jobs'] = manager
+def create_app(data_dir=None,max_upload_mb=2048,timeout=3600,migrate=True):
+    load_environment(ENV_FILE)
+    app=Flask(__name__,static_folder='static',static_url_path='/static')
+    app.json.ensure_ascii=False
+    app.config.update(MAX_CONTENT_LENGTH=max_upload_mb*1024*1024,VLM_MODEL=os.getenv('DASHSCOPE_MODEL') or DEFAULT_MODEL,
+                      TRUSTED_HOSTS=['127.0.0.1','localhost'])
+    store=Store(data_dir or V3_DIR/'web_data')
+    app.extensions['store']=store
+    executor=ThreadPoolExecutor(max_workers=1,thread_name_prefix='vad-evaluation')
+    app.extensions['executor']=executor
+    app.extensions['migration']=import_legacy(store) if migrate else None
+    with store.connect() as db:
+        db.execute("UPDATE evaluations SET status='failed',error='Web 服务重启，请重新评价' WHERE status IN ('queued','running')")
 
     @app.before_request
-    def check_origin():
-        if request.method in {'POST', 'DELETE'}:
-            origin = request.headers.get('Origin')
-            if origin and origin != request.host_url.rstrip('/'):
-                return jsonify(error='请从本地界面提交请求。'), 403
+    def origin_check():
+        if request.method in {'POST','PUT','PATCH','DELETE'}:
+            origin=request.headers.get('Origin')
+            if origin and origin!=request.host_url.rstrip('/'):
+                return jsonify(error='请从本地系统页面提交请求。'),403
 
     @app.errorhandler(HTTPException)
     def http_error(exc):
-        message = ('文件过大，上传上限为 %s MB。' % max_upload_mb
-                   if exc.code == 413 else exc.description)
-        return jsonify(error=message), exc.code
+        return jsonify(error=f'上传超过 {max_upload_mb} MB 限制' if exc.code==413 else exc.description),exc.code
+
+    @app.errorhandler(FileNotFoundError)
+    def missing(exc):
+        return jsonify(error=str(exc)),404
+
+    @app.errorhandler(Conflict)
+    def conflict(exc):
+        return jsonify(error=str(exc)),409
+
+    @app.errorhandler(ValueError)
+    def invalid(exc):
+        return jsonify(error=redact(str(exc))),400
 
     @app.get('/')
     def index():
@@ -220,152 +76,243 @@ def create_app(data_dir=None, max_upload_mb=2048, timeout=3600):
 
     @app.get('/api/config')
     def config():
-        return jsonify(api_key_configured=bool(os.environ.get('DASHSCOPE_API_KEY')),
-                       model=app.config['VLM_MODEL'],
-                       max_upload_mb=max_upload_mb)
+        return jsonify(api_key_configured=bool(os.getenv('DASHSCOPE_API_KEY')),
+            model=app.config['VLM_MODEL'],max_upload_mb=max_upload_mb,categories=CATEGORIES,
+            defaults=dict(device='cuda',mcts_mode=DEFAULT_MCTS_MODE,
+                          mcts_acceptance_policy=DEFAULT_MCTS_ACCEPTANCE_POLICY),protocols=experiments.PROTOCOLS)
 
-    @app.get('/api/jobs')
-    def jobs():
-        return jsonify(jobs=manager.list_jobs())
+    @app.get('/api/health')
+    def health():
+        worker=store.service('worker')
+        online=bool(worker and time.time()-worker['updated_at']<5 and worker['payload']['state']!='stopped')
+        return jsonify(web='ready',worker=worker,worker_online=online,diagnostics=store.service('diagnostics'))
+
+    @app.post('/api/system/check')
+    def environment_check():
+        executor.submit(lambda:store.service('diagnostics',check_environment()))
+        return jsonify(status='queued'),202
+
+    def page():
+        value=int(request.args.get('page',1))
+        if not 1<=value<=100000: raise ValueError('页码无效。')
+        return value
+
+    def upload_video():
+        upload=request.files.get('video')
+        if not upload or not upload.filename: raise ValueError('请选择视频文件。')
+        filename=upload.filename.replace('\\','/').rsplit('/',1)[-1]
+        suffix=Path(filename).suffix.lower()
+        if suffix not in VIDEO_SUFFIXES: raise ValueError('支持 MP4、WebM、MOV、M4V、AVI、MKV。')
+        vid=uuid.uuid4().hex; relative=f'videos/{vid}/input{suffix}'
+        path=store.path(relative); path.parent.mkdir(parents=True,exist_ok=True)
+        try:
+            upload.save(path)
+            metadata=probe_video(path); metadata['size_bytes']=path.stat().st_size
+            return store.add_video(vid,filename,relative,file_hash(path),metadata)
+        except BaseException:
+            path.unlink(missing_ok=True)
+            raise
+
+    @app.post('/api/videos')
+    def video_upload():
+        return jsonify(upload_video()),201
+
+    @app.get('/api/videos')
+    def video_list():
+        return jsonify(videos=store.videos(request.args.get('q',''),page(),request.args.get('deleted')=='1'))
+
+    @app.get('/api/videos/<vid>/stream')
+    def video_stream(vid):
+        return send_file(store.path(store.video(vid,deleted=True)['path']),conditional=True)
+
+    @app.delete('/api/videos/<vid>')
+    def video_delete(vid):
+        store.delete_video(vid)
+        return jsonify(deleted=True,id=vid)
+
+    @app.post('/api/videos/<vid>/restore')
+    def video_restore(vid):
+        store.delete_video(vid,restore=True)
+        return jsonify(store.video(vid))
+
+    def public_job(job):
+        video=store.video(job['video_id'],deleted=True)
+        return dict(job,filename=video['filename'],duration=video['metadata'].get('duration'),
+            fps=video['metadata'].get('fps'),device=job['config']['device'],
+            mcts_mode=job['config']['mcts_mode'],model=job['config']['model'])
 
     @app.post('/api/jobs')
     def submit():
-        if not os.environ.get('DASHSCOPE_API_KEY'):
-            return jsonify(error='服务端未配置 DASHSCOPE_API_KEY。请设置环境变量或 webapp/.env 后重启服务。'), 503
-        job_id = uuid.uuid4().hex
-        with manager.lock:
-            if manager.active_id or manager.closed:
-                return jsonify(error='已有检测任务正在运行，请等待完成后再提交。'), 409
-            manager.active_id = job_id
-        launched = False
-        job = None
-        try:
-            upload = request.files.get('video')
-            if upload is None or not upload.filename:
-                return jsonify(error='请选择一个视频文件。'), 400
-            filename = upload.filename.replace('\\', '/').rsplit('/', 1)[-1]
-            suffix = Path(filename).suffix.lower()
-            if suffix not in VIDEO_SUFFIXES:
-                return jsonify(error='支持 MP4、WebM、MOV、M4V、AVI、MKV 视频。'), 400
-            device = request.form.get('device', 'cuda')
-            mode = request.form.get('mcts_mode', 'off')
-            context = request.form.get('context', 'surveillance camera').strip()
-            if device not in {'cpu', 'cuda', 'mps'} or mode not in {'off', 'shadow', 'refine'}:
-                return jsonify(error='无效的检测配置。'), 400
-            if len(context) > 1000:
-                return jsonify(error='场景描述不能超过 1000 字符。'), 400
-            job = dict(id=job_id, filename=filename, video_file='input' + suffix,
-                       status='uploading', created_at=time.time(), device=device,
-                       mcts_mode=mode, context=context,
-                       model=app.config['VLM_MODEL'],
-                       full_classification=request.form.get('full_classification') == 'true')
-            manager.save(job)
-            path = manager.directory(job_id) / job['video_file']
-            upload.save(path)
-            metadata = probe_video(path)
-            job.update(metadata)
-            job['status'] = 'running'
-            manager.save(job)
-            manager.start(job)
-            launched = True
-            return jsonify(job), 202
-        except ValueError as exc:
-            return jsonify(error=str(exc)), 400
-        finally:
-            if not launched:
-                try:
-                    if job is not None:
-                        job.update(status='failed', error='上传或视频校验失败，请重新提交。')
-                        manager.save(job)
-                        (manager.directory(job_id) / job['video_file']).unlink(missing_ok=True)
-                finally:
-                    with manager.lock:
-                        manager.active_id = None
+        if not os.getenv('DASHSCOPE_API_KEY'):
+            return jsonify(error='未配置 DASHSCOPE_API_KEY，请配置 webapp/.env 后重启 Web 和 Worker。'),503
+        if request.is_json:
+            data=request.get_json()
+            if not isinstance(data,dict):raise ValueError('任务请求必须是 JSON 对象。')
+            vid=data.get('video_id'); options=data.get('config',{})
+        else:
+            vid=upload_video()['id']
+            options={k:request.form[k] for k in ('device','mcts_mode','context') if k in request.form}
+            options['full_classification']=request.form.get('full_classification')=='true'
+        cfg=effective_config(options,timeout,app.config['VLM_MODEL'])
+        job,created=store.create_job(vid,cfg,code_hash(),request.headers.get('Idempotency-Key'))
+        return jsonify(public_job(job)),202 if created else 200
 
-    def existing(job_id):
-        try:
-            return manager.read(job_id)
-        except (OSError, ValueError):
-            from flask import abort
-            abort(404, description='任务不存在。')
+    @app.get('/api/jobs')
+    def jobs():
+        return jsonify(jobs=[public_job(j) for j in store.jobs(request.args.get('status',''),
+            request.args.get('q',''),page(),request.args.get('deleted')=='1',request.args.get('video_id',''))])
 
-    @app.delete('/api/jobs/<job_id>')
-    def delete_job(job_id):
-        try:
-            manager.delete(job_id)
-        except FileNotFoundError:
-            return jsonify(error='任务不存在。'), 404
-        except ValueError as exc:
-            return jsonify(error=str(exc)), 409
-        except OSError:
-            return jsonify(error='任务文件正在被占用或无法移动，请暂停其他窗口中的视频后重试。'), 409
-        return jsonify(id=job_id, deleted=True)
-
-    @app.post('/api/jobs/<job_id>/restore')
-    def restore_job(job_id):
-        try:
-            job = manager.restore(job_id)
-        except FileNotFoundError:
-            return jsonify(error='回收目录中没有这个任务。'), 404
-        except ValueError as exc:
-            return jsonify(error=str(exc)), 409
-        except OSError:
-            return jsonify(error='无法恢复任务，请检查文件占用和目录权限。'), 409
+    @app.get('/api/jobs/<jid>')
+    def job_detail(jid):
+        job=public_job(store.job(jid)); job['attempts']=store.attempts(jid)
+        if job['result_attempt_id']: job['result']=store.result(jid)
+        if job['current_attempt_id']:
+            a=store.attempt(job['current_attempt_id']); path=store.path(a['artifact_dir']+'/run.log')
+            if path.is_file():
+                with path.open('rb') as stream:
+                    stream.seek(max(0,path.stat().st_size-16000))
+                    job['log']=redact(stream.read().decode('utf-8',errors='replace'))
         return jsonify(job)
 
-    @app.get('/api/jobs/<job_id>')
-    def job_status(job_id):
-        # Keep the metadata and result reads atomic with respect to deletion.
-        with manager.lock:
-            job = existing(job_id)
-            directory = manager.directory(job_id)
-            if job['status'] == 'completed':
-                job['result'] = json.loads((directory / 'result.json').read_text(encoding='utf-8'))
-            log = directory / 'run.log'
-            if log.exists():
-                with log.open('rb') as stream:
-                    stream.seek(max(0, log.stat().st_size - 16000))
-                    tail = stream.read().decode('utf-8', errors='replace')
-                key = os.environ.get('DASHSCOPE_API_KEY')
-                job['log'] = tail.replace(key, '[REDACTED]') if key else tail
-        return jsonify(job)
+    @app.post('/api/jobs/<jid>/cancel')
+    def job_cancel(jid):
+        store.cancel(jid); return jsonify(public_job(store.job(jid)))
 
-    @app.get('/api/jobs/<job_id>/video')
-    def video(job_id):
-        with manager.lock:
-            job = existing(job_id)
-            path = manager.directory(job_id) / job['video_file']
-            if not path.is_file():
-                return jsonify(error='视频不存在。'), 404
-            # Werkzeug handles HTTP Range (206), essential for browser seeking.
-            return send_file(path, conditional=True)
+    @app.post('/api/jobs/<jid>/retry')
+    def job_retry(jid):
+        store.retry(jid,code_hash()); return jsonify(public_job(store.job(jid))),202
 
-    @app.get('/api/jobs/<job_id>/result')
-    def result_download(job_id):
-        with manager.lock:
-            job = existing(job_id)
-            if job['status'] != 'completed':
-                return jsonify(error='检测结果尚未生成。'), 409
-            return send_file(manager.directory(job_id) / 'result.json', as_attachment=True,
-                             download_name=Path(job['filename']).stem + '.result.json')
+    @app.delete('/api/jobs/<jid>')
+    def job_delete(jid):
+        store.delete_job(jid); return jsonify(id=jid,deleted=True)
 
+    @app.post('/api/jobs/<jid>/restore')
+    def job_restore(jid):
+        store.delete_job(jid,restore=True); return jsonify(public_job(store.job(jid)))
+
+    @app.get('/api/jobs/<jid>/video')
+    def job_video(jid):
+        return video_stream(store.job(jid)['video_id'])
+
+    @app.get('/api/jobs/<jid>/result')
+    def job_result(jid):
+        job=store.job(jid); store.result(jid)
+        a=store.attempt(job['result_attempt_id'])
+        return send_file(store.path(a['artifact_dir']+'/result.json'),as_attachment=True,download_name=f'{jid}.result.json')
+
+    @app.get('/api/jobs/<jid>/analysis')
+    def job_analysis(jid):
+        return jsonify(analysis(store,jid))
+
+    @app.get('/api/jobs/<jid>/curves')
+    def job_curves(jid):
+        return jsonify(curves=curves(store,jid))
+
+    @app.get('/api/jobs/<jid>/events')
+    def events(jid):
+        job=store.job(jid)
+        if not job['current_attempt_id']: return jsonify(events=[])
+        a=store.attempt(job['current_attempt_id']); path=store.path(a['artifact_dir']+'/stage_events.jsonl')
+        after=int(request.args.get('after',0)); values=[]
+        if path.exists():
+            for line in path.read_text(encoding='utf-8',errors='replace').splitlines():
+                try: row=json.loads(line)
+                except ValueError: continue
+                if row['sequence']>after: values.append(row)
+        return jsonify(events=values[:300] if 'after' in request.args else values[-300:])
+
+    @app.get('/api/jobs/<jid>/evidence/<name>')
+    def evidence(jid,name):
+        data=analysis(store,jid)
+        registered={Path(i['file']).name:i['file'] for r in data['evidence'] for i in r['images']}
+        if name not in registered: raise FileNotFoundError('证据图片未登记。')
+        a=store.attempt(data['attempt_id'])
+        return send_file(store.path(a['artifact_dir']+'/'+registered[name]),conditional=True)
+
+    @app.get('/api/jobs/<jid>/mcts')
+    def mcts(jid):
+        return jsonify(analysis(store,jid)['mcts'])
+
+    @app.post('/api/jobs/<jid>/reviews')
+    def reviews(jid):
+        return jsonify(store.add_review(jid,request.get_json())),201
+
+    @app.get('/api/jobs/<jid>/export')
+    def export(jid):
+        data=analysis(store,jid); name=store.video(store.job(jid)['video_id'],deleted=True)['filename']
+        fmt=request.args.get('format','html')
+        if fmt=='csv': content=export_csv(store.result(jid),data['reviews']); mime='text/csv'
+        elif fmt=='html': content=export_html(data,name); mime='text/html'
+        else: raise ValueError('支持 HTML 和 CSV 报告。')
+        return send_file(io.BytesIO(content.encode('utf-8')),mimetype=mime,as_attachment=True,
+                         download_name=f'{jid}.report.{fmt}')
+
+    @app.get('/api/experiments')
+    def experiment_list():
+        return jsonify(experiments=experiments.list_experiments(store))
+
+    @app.post('/api/experiments')
+    def experiment_import():
+        if request.is_json: bundle=request.get_json()
+        else:
+            upload=request.files.get('bundle')
+            if not upload: raise ValueError('请选择实验 JSON。')
+            bundle=json.load(upload.stream)
+        return jsonify(experiments.create_experiment(store,bundle)),201
+
+    @app.post('/api/experiments/import-history')
+    def import_history():
+        return jsonify(experiments.create_experiment(store,experiments.historical_bundle())),201
+
+    @app.post('/api/experiments/from-jobs')
+    def experiment_from_jobs():
+        return jsonify(experiments.from_jobs(store,request.get_json())),201
+
+    @app.post('/api/experiments/<eid>/evaluate')
+    def experiment_evaluate(eid):
+        data=request.get_json(silent=True) or {}
+        if not isinstance(data,dict): raise ValueError('评价请求必须是 JSON 对象。')
+        rid=experiments.create_evaluation(store,eid,data.get('protocol','vadclip_native_fps'))
+        executor.submit(experiments.evaluate,store,rid)
+        return jsonify(id=rid,status='queued'),202
+
+    @app.get('/api/evaluations/<rid>')
+    def evaluation(rid):
+        with store.connect() as db:
+            record=store.unpack(db.execute('SELECT * FROM evaluations WHERE id=?',(rid,)).fetchone())
+        if record['status']=='completed':
+            record['metrics']=json.loads(store.path(record['metrics_path']).read_text(encoding='utf-8'))
+        return jsonify(record)
+
+    @app.get('/api/evaluations/<rid>/download')
+    def evaluation_download(rid):
+        with store.connect() as db:
+            record=store.unpack(db.execute('SELECT * FROM evaluations WHERE id=?',(rid,)).fetchone())
+        if record['status']!='completed': raise Conflict('评价尚未完成。')
+        path=store.path(record['metrics_path'])
+        if request.args.get('format')=='csv':
+            content=experiments.metrics_csv(json.loads(path.read_text(encoding='utf-8')))
+            return send_file(io.BytesIO(content.encode('utf-8')),mimetype='text/csv',
+                as_attachment=True,download_name=f'{rid}-metrics.csv')
+        if request.args.get('audit')=='1': path=path.with_name('matching_audit.json')
+        return send_file(path,as_attachment=True,download_name=f'{rid}-{path.name}')
     return app
 
 
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='V3 本地视频异常检测界面')
-    parser.add_argument('--port', type=int, default=7860)
-    parser.add_argument('--data-dir', type=Path, default=V3_DIR / 'web_data')
-    parser.add_argument('--max-upload-mb', type=int, default=2048)
-    parser.add_argument('--timeout', type=int, default=3600)
-    args = parser.parse_args()
-    if args.max_upload_mb <= 0 or args.timeout <= 0:
-        parser.error('上传上限和超时必须为正数。')
-    application = create_app(args.data_dir, args.max_upload_mb, args.timeout)
+if __name__=='__main__':
+    parser=argparse.ArgumentParser(description='V3 视频异常分析系统 Web 服务')
+    parser.add_argument('--port',type=int,default=7860)
+    parser.add_argument('--data-dir',type=Path,default=V3_DIR/'web_data')
+    parser.add_argument('--max-upload-mb',type=int,default=2048)
+    parser.add_argument('--timeout',type=int,default=3600)
+    args=parser.parse_args()
     from waitress import serve
-    print(f'V3 视频异常检测：http://127.0.0.1:{args.port}', flush=True)
-    try:
-        serve(application, host='127.0.0.1', port=args.port, threads=6,
-              max_request_body_size=args.max_upload_mb * 1024 * 1024)
-    finally:
-        application.extensions['jobs'].close()
+    from vad_v3.webapp.worker import InstanceLock
+    with InstanceLock(args.data_dir/'.web.lock'):
+        application=create_app(args.data_dir,args.max_upload_mb,args.timeout)
+        print(f'V3 视频异常分析系统：http://127.0.0.1:{args.port}',flush=True)
+        try:
+            serve(application,host='127.0.0.1',port=args.port,threads=6,
+                  max_request_body_size=args.max_upload_mb*1024*1024)
+        finally:
+            application.extensions['executor'].shutdown(wait=True)

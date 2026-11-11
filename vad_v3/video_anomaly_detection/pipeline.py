@@ -60,6 +60,15 @@ import json
 from collections import Counter
 import numpy as np
 from typing import List, Dict, Any, Optional
+try:
+    from . import research_recording as research_recorder
+except ImportError:
+    import research_recording as research_recorder
+
+try:
+    from .description_provenance import discovery_descriptions, attach_descriptions
+except ImportError:
+    from description_provenance import discovery_descriptions, attach_descriptions
 
 try:
     import torch
@@ -418,11 +427,13 @@ class MultiAnomalyVAD:
         grad = np.abs(np.gradient(fs))
         vid_range = fs.max() - fs.min() + 1e-9
         qs = []
+        components = []
         for a in final_anomalies:
             t_s, t_e = a['t_start'], a['t_end']
             in_mask = (ts >= t_s) & (ts <= t_e)
             if in_mask.sum() < 1:
                 qs.append(0.0)
+                components.append(dict(reason='no_curve_samples'))
                 continue
             peak = fs[in_mask].max()
             peak_idx = np.where(in_mask)[0][np.argmax(fs[in_mask])]
@@ -436,13 +447,19 @@ class MultiAnomalyVAD:
             dur = max(t_e - t_s, 1e-6)
             center = float(np.clip(1 - 2 * abs(ts[peak_idx] - center_t) / dur, 0, 1))
             qs.append((sharp + contrast + center) / 3.0)
+            components.append(dict(sharpness=sharp,contrast=contrast,center_fit=center))
         qs = np.array(qs)
         if len(qs) > 1 and qs.max() - qs.min() > 1e-9:
             qn = (qs - qs.min()) / (qs.max() - qs.min())
         else:
             qn = np.ones_like(qs)
-        for a, q in zip(final_anomalies, qn):
+        for a, q, raw_q, component in zip(final_anomalies, qn, qs, components):
+            component.update(t_start=a['t_start'],t_end=a['t_end'],before=a['confidence'],
+                             raw_quality=float(raw_q),normalized_quality=float(q))
             a['confidence'] = min(1.0, a['confidence'] * (base + (1 - base) * float(q)))
+            component['after']=a['confidence']
+        if research_recorder.active:
+            research_recorder.active.observe('qscore',dict(base=base,components=components))
         _log.info(f"  [QSCORE-GATE] reranked {len(final_anomalies)} detections "
                   f"(base={base}, raw Q range [{qs.min():.3f},{qs.max():.3f}])")
         return final_anomalies
@@ -719,6 +736,12 @@ class MultiAnomalyVAD:
         context: str = "surveillance camera",
     ) -> Dict[str, Any]:
         video_data = self.preprocessor.process(video_path)
+        try:
+            from . import research_recording as research
+        except ImportError:
+            import research_recording as research
+        if research.active:
+            research.active.preprocessed(video_data)
 
         # Stage 1: CLIP precompute
         if self.anomaly_expert.model is not None:
@@ -775,6 +798,10 @@ class MultiAnomalyVAD:
         videomae_confidence = 0.0
         if self.videomae is not None and self.videomae.model is not None:
             result = self.videomae.classify(video_data['all_frames'], top_k=3, tta=True)
+            if research.active:
+                research.active.classification=copy.deepcopy(result)
+                research.active.event('classification','completed',category=result['category'],
+                                      confidence=result['confidence'])
             videomae_category = result['category']
             videomae_confidence = result['confidence']
             top3_str = ', '.join(f'{c}({s:.0%})' for c, s in result['top_k'])
@@ -782,6 +809,8 @@ class MultiAnomalyVAD:
 
             # Early Normal filter
             if videomae_category == 'Normal' and videomae_confidence > 0.5:
+                if research.active:
+                    research.active.exit_reason='videomae_normal_early_return'
                 _log.info(f"  [VideoMAE] Normal@{videomae_confidence:.0%} — skipping detection")
                 if self.config.scoring.cbt_enabled:
                     # FM17: unconditional per-video CBT marker on the empty /
@@ -815,6 +844,8 @@ class MultiAnomalyVAD:
                             _log.info(f"  [VideoMAE] Normal override -> CLIP: {videomae_category}")
 
             video_data['videomae_category'] = videomae_category
+            if research.active:
+                research.active.classification['selected_category']=videomae_category
 
             # Stage 2b: VideoMAE sliding window temporal scanning
             sc = self.config.scoring
@@ -845,6 +876,9 @@ class MultiAnomalyVAD:
             all_clip_regions.extend(regions)
 
         clip_regions = self._deduplicate_clip_regions(all_clip_regions)
+        if research.active:
+            research.active.snapshot('coarse_candidates',clip_regions)
+            research.active.event('discovery','start',regions=len(clip_regions))
 
         # Stage 4: LLM scanning — directed by CLIP regions
         context_prompt = f"This is a {context} video." if context else ""
@@ -856,6 +890,10 @@ class MultiAnomalyVAD:
             candidates = await self.discovery.discover(
                 video_data, context_prompt)
 
+        if research.active:
+            research.active.snapshot('discovery_candidates',candidates)
+            if not candidates:
+                research.active.exit_reason='discovery_no_surviving_candidates'
         if not candidates:
             if self.config.scoring.cbt_enabled:
                 # FM17: unconditional per-video CBT marker on the 0-detection path.
@@ -874,6 +912,9 @@ class MultiAnomalyVAD:
                 timestamps=video_data['timestamps'].tolist() if frame_scores else None,
             )
 
+        if self.config.mcts.stage4_direct_eval:
+            return await self._compare_stage4_boundaries(candidates,video_data,video_path,videomae_category)
+
         _log.info(f"Found {len(candidates)} anomaly candidate(s):")
         for i, c in enumerate(candidates):
             _log.info(f"  Candidate {i+1}: {c['t_start']:.1f}s-{c['t_end']:.1f}s "
@@ -885,9 +926,17 @@ class MultiAnomalyVAD:
             _log.info(f"  [Limit] Keeping top {top_k}/{len(candidates)} candidates")
             candidates = candidates[:top_k]
 
+        # Preserve discovery evidence independently of all subsequent edits.
+        video_data['discovery_descriptions'] = {
+            i: discovery_descriptions(candidate)
+            for i, candidate in enumerate(candidates)
+        }
+
         # Stage 5: CLIP score-curve boundary detection (v50 — replaces MCTS)
         all_anomalies = self._clip_boundary_detection(
             candidates, video_data, videomae_category)
+        if research.active:
+            research.active.snapshot('post_clip',all_anomalies)
 
         # v3: freeze original Stage 5b triggers before invalidating derived fields.
         baseline = copy.deepcopy(all_anomalies)
@@ -916,6 +965,14 @@ class MultiAnomalyVAD:
                 applied_ids = set()
                 trace = ({'skipped_reason':'refiner_contract_or_runtime_error', 'error':type(exc).__name__}
                          if self.config.mcts.trace_enabled or self.config.mcts.paired_eval else None)
+        try:
+            from . import research_recording as research
+        except ImportError:
+            import research_recording as research
+        if trace is None and research.active:
+            trace = {'mode': self.config.mcts.mode, 'candidates': {}}
+        if research.active:
+            research.active.snapshot('post_mcts',all_anomalies)
         if trace is not None:
             trace['search_category'] = videomae_category
             trace['gate_category'] = videomae_category
@@ -953,6 +1010,91 @@ class MultiAnomalyVAD:
             result.paired_results={'original_off':off.to_dict(),'skip_only':skip.to_dict(),**ablation}
         return result
 
+    async def _compare_stage4_boundaries(self, candidates, video_data, video_path, category):
+        """Opt-in paired ablation; neither arm enters Stage 5 or the normal tail.
+
+        Stage 4's complete candidate list is frozen before candidate_top_k.
+        Confidence is the discovery coarse_score; category is the upstream
+        prediction, never the dataset label. Both remain fixed in both arms.
+        """
+        try:
+            from .mcts_refiner import MCTSBoundaryRefiner
+            from .experiment import request_metrics
+        except ImportError:
+            from mcts_refiner import MCTSBoundaryRefiner
+            from experiment import request_metrics
+        from dataclasses import replace, asdict
+        if category not in CATEGORY_DURATION_PRIORS:
+            raise ValueError('Stage 4 direct comparison requires a predicted anomaly category')
+        if not (self.config.scoring.bue_enabled and self.config.scoring.cbt_enabled):
+            raise ValueError('Stage 4 direct comparison requires both fixed BUE and CBT')
+        seeds={}
+        descriptions={}
+        for sid,candidate in enumerate(candidates):
+            row=copy.deepcopy(candidate)
+            row.update(confidence=float(row['coarse_score']),anomaly_type=category,source_candidate_ids=[sid])
+            seeds[sid]=row
+            descriptions[sid]=discovery_descriptions(candidate)
+        cfg=self.config.mcts
+
+        def finish(rows,arm,branch_trace):
+            started=time.perf_counter()
+            # 每组复制状态后独立执行固定 BUE→CBT，避免一组修改曲线缓存影响另一组。
+            rows=copy.deepcopy(rows);state=fork_video_state(video_data)
+            branch_trace.update(route='stage4_direct',arm=arm,frame_scores_stage='post_cbt')
+            stages=branch_trace.setdefault('stages',{})
+            stages['pre_bue']=copy.deepcopy(rows)
+            pre_bue=[[float(r['t_start']),float(r['t_end'])] for r in rows]
+            rows=self._bue_boundary_union_extension(rows,state,category)
+            stages['post_bue']=copy.deepcopy(rows)
+            pre_cbt=[[float(r['t_start']),float(r['t_end'])] for r in rows]
+            rows=self._cbt_category_boundary_tighten(rows,state,category)
+            stages['post_cbt']=copy.deepcopy(rows)
+            attach_descriptions(rows,descriptions)
+            frame_scores=self.frame_scorer.compute_frame_scores(state,rows,category)
+            branch_trace['tail_seconds']=time.perf_counter()-started
+            return DetectionResult(video_path=video_path,duration=state['duration'],is_normal=not rows,
+                anomalies=[AnomalySegment.from_dict(r) for r in rows],frame_scores=frame_scores,
+                timestamps=state['timestamps'].tolist() if frame_scores else None,
+                pre_bue_boundaries=pre_bue,pre_cbt_boundaries=pre_cbt,mcts_trace=branch_trace)
+
+        # The off arm is completed before any search runs and receives no search output.
+        off=finish(list(seeds.values()),'stage4_fixed',{'mode':'off','logical_requests':0,
+            'stages':{'post_stage4':copy.deepcopy(list(seeds.values()))}})
+
+        async def search_and_finish(policy):
+            branch_cfg=replace(cfg,acceptance_policy=policy,
+                stage4_acceptance_eval=cfg.stage4_acceptance_eval if policy=='strict' else False)
+            before=dict(request_metrics.get() or {})
+            started=time.perf_counter()
+            _log.info('[STAGE4-ARM] video=%s policy=%s start',video_path,policy)
+            refiner=MCTSBoundaryRefiner(branch_cfg,self.llm_client,self.frame_sampler,CATEGORY_DURATION_PRIORS)
+            outcome=await refiner.refine_candidates(seeds,dict(enumerate(candidates)),
+                                                   fork_video_state(video_data),category,self.frame_scorer)
+            if set(outcome.candidates_by_id)!=set(seeds):
+                raise ValueError('Stage 4 comparison candidate identity changed')
+            after=request_metrics.get() or {}
+            trace=outcome.trace or {}
+            effective=self.config.to_dict(); effective['mcts']=asdict(branch_cfg)
+            trace.update(route='stage4_direct',search_category=category,effective_config=effective,
+                search_seconds=time.perf_counter()-started,
+                search_api_metrics={k:after[k]-before.get(k,0) for k in after},
+                candidate_policy='all stage4 candidates; no top-k/merge/NMS/confidence gate',
+                confidence_source='stage4 coarse_score',category_source='upstream prediction',
+                frame_scores_stage='post_cbt',stages={'post_stage4':copy.deepcopy(list(seeds.values())),
+                    'post_mcts':copy.deepcopy(list(outcome.candidates_by_id.values()))})
+            result=finish(list(outcome.candidates_by_id.values()),policy,trace)
+            _log.info('[STAGE4-ARM] video=%s policy=%s done accepted=%s',video_path,policy,len(outcome.applied_ids))
+            return result
+
+        on=await search_and_finish(cfg.acceptance_policy)
+        on.paired_results={'original_off':off.to_dict()}
+        if cfg.stage4_acceptance_eval:
+            for policy in ('relaxed_node','force_best'):
+                branch=await search_and_finish(policy)
+                on.paired_results[policy]=branch.to_dict()
+        return on
+
     async def _finish_from_stage5(self, all_anomalies, video_data, video_path,
                                  videomae_category, videomae_confidence,
                                  stage5b_ids, bypass_ids, trace=None, *, final_nms=None,
@@ -972,6 +1114,12 @@ class MultiAnomalyVAD:
                     if trace is not None:
                         trace.setdefault('boundary_guard_events',[]).extend(events)
                 guard.remember(items)
+            try:
+                from . import research_recording as research
+            except ImportError:
+                import research_recording as research
+            if research.active:
+                research.active.snapshot(name, items)
             elapsed=time.perf_counter()-stage_started
             # 阶段计时保留在JSON trace中，避免配对分支逐阶段重复刷屏。
             if trace is not None:
@@ -1148,6 +1296,7 @@ class MultiAnomalyVAD:
             if trace is not None: trace['final_nms_suppression']=audit
             _log.info('[FINAL-NMS] video=%s before=%s after=%s',video_path,len(before),len(final_anomalies))
         snapshot('final', final_anomalies)
+        attach_descriptions(final_anomalies, video_data.get('discovery_descriptions', {}))
         if trace is not None:
             trace['tail_seconds']=time.perf_counter()-tail_started
             trace['postprocess_config']={'final_nms':final_nms,'boundary_guard':guard_enabled}
@@ -1441,6 +1590,8 @@ class MultiAnomalyVAD:
             cat_scores = probs[:, cat_idx]
             normal_scores = probs[:, -1]
             relative_scores = cat_scores / (cat_scores + normal_scores + 1e-8)
+        if research_recorder.active:
+            research_recorder.active.curve('clip_raw:'+category,timestamps,relative_scores)
 
 
         fps = max(1, len(timestamps) / max(1, duration))
@@ -1503,6 +1654,11 @@ class MultiAnomalyVAD:
                 threshold = sorted_scores[min(min_frames_needed - 1, len(sorted_scores) - 1)]
 
             above = smoothed > threshold
+            if research_recorder.active:
+                research_recorder.active.curve(f'clip_smooth:{category}:{smooth_sec:g}s',
+                    timestamps,smoothed,threshold=float(threshold),sample_window=window)
+                research_recorder.active.curve(f'clip_threshold:{category}:{smooth_sec:g}s',
+                    timestamps,np.full(len(timestamps),float(threshold)))
 
             # Find contiguous regions
             segments = []
@@ -1651,6 +1807,8 @@ class MultiAnomalyVAD:
                     'frame_indices': seg['frame_indices'],
                     'coarse_score': result['anomaly_score'],
                     'description': result['description'],
+                    'original_descriptions': discovery_descriptions(dict(
+                        seg, description=result.get('original_description', result['description']))),
                 })
 
         return self.discovery._merge_adjacent(suspicious)
@@ -2453,15 +2611,13 @@ Respond ONLY in JSON format:
         """Multi-classifier ensemble: VideoMAE + VLM for known confusion pairs only."""
         # v137 NOCLS-CA (KEPT latency win): drop the entire classify VLM sub-tree
         # (qwen3-vl-plus, <=3 calls/video) and return the upstream VideoMAE label.
-        # mAP-NEUTRAL BY CONSTRUCTION: the returned string only sets a['anomaly_type'],
-        # which compute_temporal_map never reads (it uses {video_id,t_start,t_end,
-        # confidence} only); the confidence gate / curve correction / frame scores
-        # all key off videomae_category, not this result. Cuts ~7.5% of VLM calls.
-        # Tradeoff: degrades the separate Level-4 category-accuracy metric, not mAP.
+        # The label affects the class-aware VadCLIP primary mAP. Only the old
+        # class-agnostic auxiliary metric is insensitive to this classifier.
+        # 分类标签同时影响类别准确率与新的按类别匹配 mAP。
         if self.config.scoring.classify_skip_class_agnostic:
             _label = videomae_cat if (videomae_cat and videomae_cat != 'Normal') else 'unknown'
             _log.info(f"  [NOCLS-CA] classify VLM sub-tree skipped -> label='{_label}' "
-                      f"(mAP-neutral; ~-7.5% VLM calls)")
+                      f"(upstream category retained)")
             return _label
         if not videomae_cat or videomae_cat == 'Normal':
             result = await self._classify_clip_guided(anomalies, video_data)

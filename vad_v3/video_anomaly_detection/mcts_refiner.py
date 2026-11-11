@@ -9,9 +9,11 @@ import numpy as np
 
 try:
     from .boundary_search import LocalBoundarySearch
+    from .mcts_acceptance import NODE_ONLY_POLICIES, select_node_proposal
     from .mcts_boundary_scorer import BoundaryEvidenceScorer, EvidenceError, parse_answer, interval_difference
 except ImportError:
     from boundary_search import LocalBoundarySearch
+    from mcts_acceptance import NODE_ONLY_POLICIES, select_node_proposal
     from mcts_boundary_scorer import BoundaryEvidenceScorer, EvidenceError, parse_answer, interval_difference
 
 try:
@@ -112,7 +114,16 @@ class MCTSBoundaryRefiner:
                 nonlocal used,remaining
                 if used>=allowance or remaining<=0: raise EvidenceError('request_budget')
                 used+=1; remaining-=1; trace['logical_requests']+=1; trace['images_sent']+=len(evidence.indices)
-                text=await self.client.generate(prompt,evidence.frames)
+                try:
+                    from . import research_recording as research
+                except ImportError:
+                    import research_recording as research
+                token=research.scope.set(dict(stage='mcts',candidate_id=sid,
+                    evidence_times=evidence.timestamps,pair=pair))
+                try:
+                    text=await self.client.generate(prompt,evidence.frames)
+                finally:
+                    research.scope.reset(token)
                 answer=parse_answer(text,len(evidence.indices),pair)
                 if pair and cfg.acceptance_policy=='relative_nonloss' and type(answer.get('preserves_reference_content')) is not bool:
                     raise EvidenceError('invalid_preserves_reference_content')
@@ -171,54 +182,65 @@ class MCTSBoundaryRefiner:
                 root=search.root.evaluation
                 # 第二层门槛：搜索评分高不等于可采用。先要求同一事件、完整且未切断，
                 # 再限制 CLIP 质量下降；best_valid 模式不要求奖励一定高于根节点。
-                good=[]
-                for n in search.nodes[1:]:
-                    ev=n.evaluation
-                    if ev is None: continue
-                    a=ev['answer']
-                    if not proposal_eligible(a,root['answer'],cfg.acceptance_policy): continue
-                    if scorer.quality(n.interval)['quality'] < item['baseline_curve_quality']-cfg.max_curve_quality_drop: continue
-                    good.append(n)
-                if not good: raise EvidenceError('no_valid_proposal')
-                best=max(good,key=lambda n:n.evaluation['reward'])
+                node_only=cfg.acceptance_policy in NODE_ONLY_POLICIES
+                if node_only:
+                    best=select_node_proposal(search.nodes,item['baseline_curve_quality'],
+                                              cfg.acceptance_policy,cfg.max_curve_quality_drop)
+                    if best is None: raise EvidenceError('no_valid_proposal')
+                else:
+                    good=[]
+                    for n in search.nodes[1:]:
+                        ev=n.evaluation
+                        if ev is None: continue
+                        a=ev['answer']
+                        if not proposal_eligible(a,root['answer'],cfg.acceptance_policy): continue
+                        if scorer.quality(n.interval)['quality'] < item['baseline_curve_quality']-cfg.max_curve_quality_drop: continue
+                        good.append(n)
+                    if not good: raise EvidenceError('no_valid_proposal')
+                    best=max(good,key=lambda n:n.evaluation['reward'])
                 gain=best.evaluation['reward']-root['reward']
                 item.update(proposed=list(best.interval),baseline_reward=root['reward'],proposal_reward=best.evaluation['reward'],reward_gain=gain)
                 if cfg.comparison_gate=='reward_gain' and gain<cfg.min_reward_gain: raise EvidenceError('reward_gain_gate')
-                evidence=self.select_evidence(scorer,search.seed,[search.seed,best.interval],core,limit)
-                proposal_label='A' if (cfg.random_seed+sid)%2 else 'B'
-                regions=changed_regions(search.seed,best.interval,evidence)
-                prompt=build_prompt(category,description,evidence,search.seed,best.interval,proposal_label,cfg.acceptance_policy)
-                item.update(pairwise_mapping={'proposal':proposal_label},changed_regions=regions,
-                            changed_region_coverage=evidence.coverage,pairwise_attempts=[])
-                answer=await request(prompt,evidence,True)
-                for attempt in range(cfg.citation_repair_attempts+1):
-                    semantic=semantic_failures(answer,proposal_label,cfg.acceptance_policy)
-                    citations=citation_failures(answer,regions)
-                    item['pairwise_attempts'].append({'answer':copy.deepcopy(answer),
-                        'semantic_failures':semantic,'citation_failures':citations})
-                    item.update(pairwise_verdict=answer,semantic_failures=semantic,citation_failures=citations)
-                    if semantic or not citations:
-                        break
-                    # 只在所有语义条件已通过时纠正引用。继续使用原图和原预算，不重搜提案。
-                    if attempt>=cfg.citation_repair_attempts:
-                        item['repair_stop_reason']='attempt_limit'; break
-                    if used>=allowance or remaining<=0:
-                        item['repair_stop_reason']='request_budget'; break
-                    corrected=await request(repair_prompt(prompt,answer,citations),evidence,True)
-                    frozen=SEMANTIC_FIELDS+(('preserves_reference_content',) if cfg.acceptance_policy=='relative_nonloss' else ())
-                    if any(corrected[k]!=answer[k] for k in frozen):
-                        item['pairwise_attempts'].append({'answer':corrected,
-                            'semantic_failures':semantic_failures(corrected,proposal_label,cfg.acceptance_policy),
-                            'citation_failures':citation_failures(corrected,regions),
-                            'repair_error':'repair_changed_semantics'})
-                        item['rejection_reasons']=['repair_changed_semantics']+semantic+[x['code'] for x in citations]
-                        raise EvidenceError('repair_changed_semantics')
-                    answer=corrected
-                item['rejection_reasons']=semantic+[x['code'] for x in citations]
-                if semantic:
-                    raise EvidenceError('comparison_rejected')
-                if citations:
-                    raise EvidenceError(citations[0]['code'])
+                if node_only:
+                    # Same evidence validation as the selected node; no new VLM call.
+                    evidence=self.select_evidence(scorer,search.seed,[best.interval],core,limit)
+                    item['comparison_skipped']=cfg.acceptance_policy
+                else:
+                    evidence=self.select_evidence(scorer,search.seed,[search.seed,best.interval],core,limit)
+                    proposal_label='A' if (cfg.random_seed+sid)%2 else 'B'
+                    regions=changed_regions(search.seed,best.interval,evidence)
+                    prompt=build_prompt(category,description,evidence,search.seed,best.interval,proposal_label,cfg.acceptance_policy)
+                    item.update(pairwise_mapping={'proposal':proposal_label},changed_regions=regions,
+                                changed_region_coverage=evidence.coverage,pairwise_attempts=[])
+                    answer=await request(prompt,evidence,True)
+                    for attempt in range(cfg.citation_repair_attempts+1):
+                        semantic=semantic_failures(answer,proposal_label,cfg.acceptance_policy)
+                        citations=citation_failures(answer,regions)
+                        item['pairwise_attempts'].append({'answer':copy.deepcopy(answer),
+                            'semantic_failures':semantic,'citation_failures':citations})
+                        item.update(pairwise_verdict=answer,semantic_failures=semantic,citation_failures=citations)
+                        if semantic or not citations:
+                            break
+                        # 只在所有语义条件已通过时纠正引用。继续使用原图和原预算，不重搜提案。
+                        if attempt>=cfg.citation_repair_attempts:
+                            item['repair_stop_reason']='attempt_limit'; break
+                        if used>=allowance or remaining<=0:
+                            item['repair_stop_reason']='request_budget'; break
+                        corrected=await request(repair_prompt(prompt,answer,citations),evidence,True)
+                        frozen=SEMANTIC_FIELDS+(('preserves_reference_content',) if cfg.acceptance_policy=='relative_nonloss' else ())
+                        if any(corrected[k]!=answer[k] for k in frozen):
+                            item['pairwise_attempts'].append({'answer':corrected,
+                                'semantic_failures':semantic_failures(corrected,proposal_label,cfg.acceptance_policy),
+                                'citation_failures':citation_failures(corrected,regions),
+                                'repair_error':'repair_changed_semantics'})
+                            item['rejection_reasons']=['repair_changed_semantics']+semantic+[x['code'] for x in citations]
+                            raise EvidenceError('repair_changed_semantics')
+                        answer=corrected
+                    item['rejection_reasons']=semantic+[x['code'] for x in citations]
+                    if semantic:
+                        raise EvidenceError('comparison_rejected')
+                    if citations:
+                        raise EvidenceError(citations[0]['code'])
                 item['would_accept']=True
                 # 可追溯的几何保护契约；曲线峰值是启发式锚点，不声称是VLM逐帧认证。
                 inside=np.flatnonzero((scorer.times>=best.interval[0]) & (scorer.times<best.interval[1]))
@@ -238,6 +260,12 @@ class MCTSBoundaryRefiner:
             except Exception as exc: item['reason']=str(exc)
             item.update(logical_requests=used,elapsed_seconds=time.monotonic()-started,stop_reason=search.stop_reason,
                         evaluations=evaluation_log,tree_nodes=len(search.nodes))
+            if cfg.trace_enabled:
+                node_ids={id(n):i for i,n in enumerate(search.nodes)}
+                item['nodes']=[dict(node_id=node_ids[id(n)],
+                    parent_id=node_ids.get(id(n.parent)),interval=list(n.interval),
+                    depth=n.depth,visits=n.visits,mean_value=n.value/n.visits if n.visits else None,
+                    evaluation=n.evaluation,exhausted=n.exhausted) for n in search.nodes]
             _log.info('[MCTS] Search end: candidate=%s video=%s simulations=%s evaluations=%s stop_reason=%s outcome=%s elapsed=%.3fs',
                       sid,video_data.get('video_path'),max(0,len(evaluation_log)-1),len(evaluation_log),search.stop_reason,
                       item.get('reason'),item['elapsed_seconds'])

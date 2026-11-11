@@ -1,60 +1,90 @@
 <!doctype html>
 <html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>VAD V3 · 视频异常检测</title>
-  <link rel="stylesheet" href="/static/style.css">
-  <script src="/static/app.js" defer></script>
-</head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VAD · 视频异常分析系统</title>
+<link rel="stylesheet" href="/static/style.css">
+<script src="/static/vendor/echarts.min.js" defer></script><script src="/static/app.js" defer></script></head>
 <body>
-  <header class="topbar">
-    <a class="brand" href="/"><span class="brand-icon">◫</span> VAD <span class="version">V3</span><span class="brand-caption">视频分析工作台</span></a>
-    <span class="local"><i></i> 本地工作空间</span>
-  </header>
-  <main>
-    <div class="heading"><div><p class="eyebrow">VIDEO ANOMALY DETECTION</p><h1>视频异常检测与定位</h1><p class="subtitle">从完整视频到异常片段，查看类别、时间边界与最初的视觉描述。</p></div><div class="workflow"><span><b>01</b> 上传</span><em>／</em><span><b>02</b> 检测</span><em>／</em><span><b>03</b> 定位</span></div></div>
-    <div id="notice" class="notice" role="status" hidden></div>
-    <div class="layout">
-      <aside>
-        <section class="panel upload-panel">
-          <div class="section-heading"><h2>输入视频</h2><span class="step">01</span></div>
-          <label id="dropzone" class="dropzone" for="video-file" tabindex="0">
-            <span class="upload-icon" aria-hidden="true">↑</span><strong>点击选择或拖入视频</strong><span>MP4 · WebM · MOV · AVI · MKV</span><small id="upload-limit">文件保存在本机</small>
-          </label>
-          <input id="video-file" type="file" accept=".mp4,.webm,.mov,.m4v,.avi,.mkv" class="visually-hidden">
-          <div id="file-info" class="file-info" hidden><span class="file-symbol">▷</span><div><strong id="file-name"></strong><small id="file-size"></small></div></div>
-          <details class="settings"><summary>检测设置 <span>＋</span></summary>
-            <label for="device">计算设备</label><select id="device"><option value="cuda" selected>CUDA / NVIDIA GPU</option><option value="cpu">CPU</option><option value="mps">MPS / Apple GPU</option></select>
-            <label for="mcts-mode">MCTS 边界优化</label><select id="mcts-mode"><option value="off">关闭 · v3 默认配置</option><option value="refine">Refine · 应用通过验证的优化</option><option value="shadow">Shadow · 仅运行对照搜索</option></select>
-            <label for="context">场景描述</label><input id="context" value="surveillance camera" maxlength="1000">
-            <label class="checkbox"><input id="full-classification" type="checkbox">启用额外 VLM 类别复核</label><p class="hint">默认沿用 v3 分类配置；复核会增加模型调用。</p>
-          </details>
-          <button id="detect" class="primary" disabled><span>开始检测</span><span aria-hidden="true">↗</span></button>
-          <p class="privacy-note">视频存储在本机；检测时抽取的帧会发送至已配置的 VLM 服务。</p>
-          <div id="upload-progress" hidden><progress max="100" value="0"></progress><small></small></div>
-        </section>
-        <section class="panel history-panel"><div class="section-heading"><h2>最近任务</h2><button id="refresh-history" class="icon-button" aria-label="刷新任务">↻</button></div><div id="history"><p class="empty-history">还没有检测记录</p></div></section>
-        <div class="sidebar-note"><b>如何定位？</b><p>点击结果中的「播放片段」，或在播放器下方输入起止时间。播放将在区间末尾暂停。</p></div>
-      </aside>
-      <div class="workspace">
-        <section class="panel player-panel">
-          <div class="section-heading"><div class="inline"><h2>视频预览</h2><span id="video-label" class="muted">等待选择视频</span></div><span id="duration-label" class="mono">--:--</span></div>
-          <div class="video-stage"><video id="player" controls preload="metadata" playsinline hidden></video><div id="video-placeholder"><div class="placeholder-frame"><span>▶</span></div><h3>选择视频，开始分析</h3><p>检测后可直接跳转到每一个异常区间</p><span class="placeholder-tag">LOCAL VIDEO</span></div></div>
-          <p id="video-error" class="media-error" role="alert" hidden></p>
-          <div class="timeline-container"><div class="timeline-caption"><span>异常时间轴</span><span id="timeline-hint">检测结果将在这里标出</span></div><div id="timeline" class="timeline" aria-label="异常区间时间轴"></div><div class="timeline-ticks"><span>00:00</span><span id="timeline-end">--:--</span></div></div>
-          <form id="range-form" class="range-controls"><label>起始时间<input id="range-start" placeholder="00:00.000" value="0" aria-label="起始时间，秒或时分秒" required></label><span class="range-dash">—</span><label>结束时间<input id="range-end" placeholder="秒 / 分:秒" aria-label="结束时间，秒或时分秒" required></label><button type="submit" id="play-range" class="secondary" disabled>▶ 播放区间</button><button type="button" id="play-whole" class="text-button" disabled>完整视频</button><label class="checkbox loop"><input type="checkbox" id="loop">循环片段</label></form>
-          <div id="playback-status" class="playback-status" aria-live="polite">支持输入秒数或 时:分:秒，例如 12.5 或 01:20</div>
-        </section>
-        <section class="panel results-panel">
-          <div class="section-heading"><div class="inline"><h2>定位结果</h2><span id="result-count" class="count">0</span></div><a id="download" class="text-button" hidden>↓ 导出 JSON</a></div>
-          <div id="job-status" class="job-status" role="status"><span class="status-dot"></span><span id="status-text">等待检测</span><span id="elapsed" class="mono"></span></div>
-          <div id="results"><div class="empty-results"><span class="empty-mark">⌕</span><h3>异常片段将显示在这里</h3><p>每条结果包含异常类别、开始与结束时间，以及原始 VLM description。</p></div></div>
-          <details id="log-panel" class="log-panel" hidden><summary>运行日志</summary><pre id="log"></pre></details>
-        </section>
-      </div>
-    </div>
-    <footer><span>VAD / VERSION 3</span><span>时间定位 · 视觉描述 · 片段回看</span></footer>
-  </main>
-</body>
-</html>
+<header class="topbar"><a class="brand" href="/">◫ <b>VAD</b><span>视频异常分析系统</span><em>V3</em></a>
+<span id="service-status" class="service">连接本地服务…</span></header>
+<div class="shell">
+<nav class="navigation" aria-label="主要导航">
+<div class="nav-caption">分析空间</div>
+<button class="nav active" data-page="workbench"><span>◫</span>分析工作台</button>
+<button class="nav" data-page="videos"><span>▤</span>视频库</button>
+<button class="nav" data-page="tasks"><span>≡</span>任务中心</button>
+<div class="nav-caption second">研究与管理</div>
+<button class="nav" data-page="research"><span>⌁</span>过程与复核</button>
+<button class="nav" data-page="experiments"><span>▥</span>实验中心</button>
+<button class="nav" data-page="settings"><span>⚙</span>系统状态</button>
+<div class="nav-foot"><span class="local-dot"></span> 本地工作空间<p>视频保存在本机<br>抽取图像用于 VLM 分析</p></div></nav>
+<main>
+<div id="notice" role="alert" hidden></div>
+<section id="page-workbench" class="page active">
+<div class="page-heading"><div><div class="eyebrow">VIDEO ANALYSIS</div><h1>从视频，到事件。</h1><p>定位异常发生的时间，回看现场，核实视觉证据。</p></div><button class="primary" id="choose-video">＋ 导入视频</button></div>
+<div class="work-grid"><aside class="panel setup"><h2>检测配置</h2>
+<div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="选择本地视频"><span>↥</span><b id="selected-video">选择或拖入视频</b><small id="video-meta">MP4 / WebM / MOV / AVI / MKV</small></div>
+<input id="file-input" type="file" accept="video/*,.mkv,.avi" hidden>
+<label>计算设备<select id="device"><option value="cuda">CUDA · NVIDIA GPU</option><option value="cpu">CPU</option><option value="mps">MPS</option></select></label>
+<label>MCTS 边界搜索<select id="mcts-mode"><option value="refine" selected>精修 · 默认开启</option><option value="off">关闭 · 基准流程</option><option value="shadow">观察 · 记录但不应用</option></select></label>
+<details class="settings"><summary>研究参数</summary>
+<label>搜索策略<select id="strategy"><option value="mcts">MCTS</option><option value="greedy">Greedy</option><option value="uniform">Uniform</option></select></label>
+<label>候选接收策略<select id="acceptance-policy"><option value="force_best" selected>force_best · 接收最佳有效提案（默认）</option><option value="relaxed_node">relaxed_node · 放宽接收</option><option value="strict">strict · 严格接收</option><option value="relative_nonloss">relative_nonloss · 保留原事件内容</option></select></label>
+<label>每视频逻辑请求预算<input id="budget" type="number" value="20" min="2" max="500"></label>
+<label>场景说明<input id="context" value="surveillance camera" maxlength="1000"></label>
+<label class="check"><input id="full-classification" type="checkbox">额外类别复核</label>
+<label class="check"><input id="qscore" type="checkbox" checked>Q-score 评分重排</label>
+<label class="check"><input id="bue" type="checkbox" checked>BUE 边界扩展</label>
+<label class="check"><input id="cbt" type="checkbox" checked>CBT 边界收紧</label>
+<label class="check"><input id="final-nms" type="checkbox">末尾 NMS 去重</label></details>
+<button id="detect" class="primary wide" disabled>提交检测任务 ↗</button><p class="hint">默认串行执行。已有任务运行时，新任务进入队列。</p>
+<div class="divider"></div><h3>最近任务</h3><div id="recent-jobs" class="recent"></div></aside>
+<div class="workspace"><section class="panel player-panel"><div class="panel-title"><h2>视频预览</h2><span id="player-name">尚未选择视频</span><span id="duration-label" class="mono">--:--</span></div>
+<div class="video-stage"><video id="player" controls preload="metadata" playsinline hidden></video><div id="video-placeholder"><span>▷</span><h3>把注意力放在关键片段</h3><p>导入视频或打开历史任务，开始分析</p></div></div>
+<p id="video-error" class="error-text" hidden></p>
+<div class="timeline-caption"><span>异常时间轴</span><small>点击区间直接回看</small></div><div id="timeline" class="timeline"></div>
+<form id="range-form" class="range-controls"><label>开始<input id="range-start" value="0" aria-label="开始时间"></label><span>—</span><label>结束<input id="range-end" placeholder="秒 / 分:秒" aria-label="结束时间"></label><button id="play-range" type="submit" class="secondary" disabled>▶ 播放区间</button><button id="play-whole" type="button" class="text-button">完整视频</button><label class="check"><input id="loop" type="checkbox">循环</label></form>
+<p id="playback-status" class="hint">支持输入秒数或 时:分:秒；区间结束时暂停。</p></section>
+<section class="panel result-panel"><div class="panel-title"><h2>定位结果 <span id="result-count" class="badge">0</span></h2><div id="export-links" hidden></div></div>
+<div class="job-line"><span id="job-status" class="status">等待检测</span><span id="job-stage"></span><span id="elapsed" class="mono"></span></div>
+<div id="results" class="empty">检测完成后显示异常类别、起止时间和 VLM 原始描述。</div>
+<div id="job-actions"></div><details class="log-panel"><summary>执行日志</summary><pre id="log">尚无日志</pre></details>
+</section></div></div></section>
+<section id="page-videos" class="page"><div class="page-heading"><div><div class="eyebrow">VIDEO LIBRARY</div><h1>视频库</h1><p>复用输入视频，为不同配置创建独立检测任务。</p></div><button class="primary" id="library-upload">＋ 导入视频</button></div>
+<div class="toolbar"><input id="video-search" placeholder="搜索视频名称"><label class="check"><input id="video-trash" type="checkbox">回收站</label><button id="refresh-videos" class="secondary">刷新</button></div>
+<div id="video-list" class="video-list"></div><div class="pager"><button id="video-prev">上一页</button><span id="video-page">1</span><button id="video-next">下一页</button></div></section>
+<section id="page-tasks" class="page"><div class="page-heading"><div><div class="eyebrow">TASK QUEUE</div><h1>任务中心</h1><p>跟踪执行、查看失败原因，保留每次重试记录。</p></div><button id="refresh-tasks" class="secondary">刷新任务</button></div>
+<div class="toolbar"><input id="task-search" placeholder="搜索视频名称"><select id="task-filter"><option value="">全部状态</option><option value="queued">排队中</option><option value="running">运行中</option><option value="completed">已完成</option><option value="failed">失败</option><option value="interrupted">中断</option><option value="cancelled">已取消</option></select><label class="check"><input id="task-trash" type="checkbox">回收站</label></div>
+<div class="panel table-wrap"><table><thead><tr><th>视频 / 任务</th><th>状态</th><th>模式</th><th>提交时间</th><th>操作</th></tr></thead><tbody id="task-list"></tbody></table></div>
+<div class="pager"><button id="task-prev">上一页</button><span id="task-page">1</span><button id="task-next">下一页</button></div></section>
+<section id="page-research" class="page"><div class="page-heading"><div><div class="eyebrow">EVIDENCE & REVIEW</div><h1>过程与复核</h1><p id="research-label">先从任务中心打开一个已完成的检测。</p></div><button id="manual-event" class="secondary" disabled>＋ 补充漏检</button></div>
+<div id="research-empty" class="panel empty large">打开已完成任务后，可查看曲线、边界变化、视觉证据和复核记录。</div>
+<div id="research-content" hidden>
+<section class="panel"><h2>类别依据与执行统计</h2><div id="execution-summary"></div><details><summary>查看类别原始输出与配置</summary><pre id="classification-detail"></pre></details></section>
+<section class="panel"><div class="panel-title"><h2>时序曲线</h2><small>横轴为原视频秒数 · 点击曲线可回看</small></div><div id="curve-chart" class="chart"></div><p id="curve-note" class="hint"></p><button id="curve-export" class="text-button">下载曲线图 PNG</button></section>
+<section class="panel"><div class="panel-title"><h2>阶段边界变化</h2><small>保持模型原始数值 · 点击区间回看</small></div><div id="stage-chart" class="chart" hidden></div><div id="stage-table" class="table-wrap"></div></section>
+<section class="panel"><h2>Q-score 评分分量</h2><div id="qscore-detail" class="table-wrap"></div></section>
+<section class="panel"><h2>视觉证据</h2><p class="hint">显示实际发送的 JPEG 图像和原始响应；无法唯一恢复时间时明确标记。</p><div id="evidence-list"></div></section>
+<section class="panel"><h2>MCTS 搜索</h2><div id="tree-choice-label" hidden class="two-col"><label>搜索候选<select id="tree-choice"></select></label><label>查看节点<select id="tree-node-choice"></select></label></div><div id="tree-chart" class="chart" hidden></div><p id="tree-note" class="hint"></p><button id="tree-play" class="text-button" hidden>回看选中节点</button><pre id="tree-detail"></pre><div id="mcts-list"></div></section>
+<section class="panel"><h2>人工复核记录</h2><p class="hint">修订独立保存，不覆盖预测，也不自动作为测试 GT。</p><div id="review-list"></div></section>
+</div></section>
+<section id="page-experiments" class="page"><div class="page-heading"><div><div class="eyebrow">EXPERIMENT LAB</div><h1>实验中心</h1><p>固定输入与评价协议，比较定位质量和运行成本。</p></div><div class="buttons"><button id="import-history" class="secondary">导入 v217 历史实验</button><button id="import-experiment" class="primary">导入实验 JSON</button><input id="experiment-file" type="file" accept=".json" hidden></div></div>
+<p class="hint">实验包包含 ground_truth、groups 和每个视频的 FPS / 帧数。缺少预测时拒绝评价，不静默剔除失败视频。</p>
+<button id="experiment-from-jobs" class="secondary">从已完成任务创建对比实验</button><p class="hint">为相同视频选择两个配置组，并上传独立 GT；模型预测和人工复核不会自动成为 GT。</p>
+<div id="experiment-list"></div><div id="metric-view" hidden class="panel"><div class="panel-title"><h2>评价结果</h2><div id="metric-downloads"></div></div><p id="metric-protocol" class="hint"></p><div id="metric-table" class="table-wrap"></div><div id="metric-chart" class="chart"></div><div id="cost-table" class="table-wrap"></div><div id="class-metrics" class="table-wrap"></div><div id="confusion-chart" class="chart"></div><div id="video-errors" class="table-wrap"></div></div></section>
+<section id="page-settings" class="page"><div class="page-heading"><div><div class="eyebrow">SYSTEM STATUS</div><h1>系统状态</h1><p>独立检查 Web、Worker、计算环境和配置。</p></div><button id="check-environment" class="primary">运行环境检查</button></div>
+<div class="panel"><h2>连接与资源</h2><div id="health-details"></div><pre id="diagnostic-results">点击环境检查，验证当前 Python、CUDA 与视频工具。不会显示 API 密钥。</pre></div>
+<div class="panel"><h2>运行说明</h2><p>使用 scripts/start.ps1 同时启动 Web 与 Worker，scripts/stop.ps1 停止服务。修改 .env 后重启两个进程。</p><p>任务和视频删除后进入回收站，文件暂时保留；共享视频不会因删除某次任务而丢失。</p><p>首次 VLM 描述保持原语言。所有检测评分用于排序，未经概率校准。</p></div></section>
+<footer>VAD / VERSION 3 <span>视频异常检测 · 时序定位 · 研究复核</span></footer>
+</main></div>
+<dialog id="review-dialog"><form id="review-form"><div class="panel-title"><h2 id="review-title">复核区间</h2><button type="button" id="review-close" aria-label="关闭">×</button></div>
+<label>处理方式<select id="review-action"><option value="corrected">修正区间 / 类别</option><option value="confirmed">确认正确</option><option value="rejected">标记误报</option><option value="added">补充漏检</option></select></label>
+<label>异常类别<select id="review-category"></select></label><div class="two-col"><label>开始（秒）<input id="review-start" type="number" min="0" step="0.001" required></label><label>结束（秒）<input id="review-end" type="number" min="0" step="0.001" required></label></div>
+<label>原因 / 备注<textarea id="review-reason" rows="3" maxlength="2000"></textarea></label><p id="review-error" class="error-text"></p><button class="primary wide" type="submit">保存独立修订</button></form></dialog>
+<dialog id="experiment-dialog"><form id="experiment-form"><div class="panel-title"><h2>创建任务对比实验</h2><button id="experiment-close" type="button">×</button></div>
+<label>实验名称<input id="experiment-name" value="配置对比实验" required maxlength="200"></label>
+<p class="hint">每组对同一视频选一个任务；两组视频范围须相同。</p><div id="experiment-job-choices"></div>
+<label>独立 GT 文件<input id="gt-file" type="file" accept=".json" required></label>
+<p class="hint">JSON 以不含扩展名的视频名称为键，每项包含 category 和 segments；区间为 0 起始、右端不含的原视频帧号。</p>
+<pre>{"视频名":{"category":"Fighting","segments":[[60,120]]}}</pre><p id="experiment-error" class="error-text"></p><button class="primary wide" type="submit">校验并创建实验</button></form></dialog>
+</body></html>

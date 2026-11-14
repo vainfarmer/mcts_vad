@@ -1,4 +1,4 @@
-# 宽松搜索入口。采用相对不退步接受标准，保留同一事件、内容保留与有效引用检查。
+# 宽松搜索入口。采用 force_best，接收最佳有效非根节点，保留搜索证据和预算检查。
 # 执行前在环境中设置 DASHSCOPE_API_KEY；输出应使用新的实验目录。
 param(
     [Parameter(Mandatory = $true)][string]$OutputDir,
@@ -21,7 +21,7 @@ $batchScript = Join-Path $PSScriptRoot 'video_anomaly_detection\batch_evaluate.p
     --mcts_mode refine --mcts_paired_eval --mcts_trace `
     --mcts_final_nms_enabled `
     --mcts_trigger_policy all_valid `
-    --mcts_acceptance_policy relative_nonloss `
+    --mcts_acceptance_policy force_best `
     --mcts_action_set shrink_expand_shift `
     --mcts_max_images_per_evaluation 32 `
     --mcts_max_boundary_gap_seconds 1.5 `

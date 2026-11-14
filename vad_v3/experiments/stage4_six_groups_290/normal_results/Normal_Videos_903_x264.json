@@ -1,0 +1,1810 @@
+{
+  "video_path": "F:\\dataset\\ucf_crime\\Testing_Normal_Videos_Anomaly\\Normal_Videos_903_x264.mp4",
+  "duration": 26.333333333333332,
+  "is_normal": false,
+  "anomalies": [
+    {
+      "t_start": 19.0,
+      "t_end": 22.0,
+      "confidence": 0.95,
+      "anomaly_type": "RoadAccidents",
+      "depth": null,
+      "visits": null,
+      "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type.",
+      "original_descriptions": [
+        {
+          "t_start": 13.5,
+          "t_end": 19.5,
+          "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type."
+        }
+      ]
+    }
+  ],
+  "frame_scores": [
+    0.2154894246086262,
+    0.21510619384252977,
+    0.21395335050792805,
+    0.2116341620306577,
+    0.20772641979542028,
+    0.2017620139854821,
+    0.19389948131277757,
+    0.1853602729706646,
+    0.17761056154996285,
+    0.17149590771041046,
+    0.16779910830134048,
+    0.16806302908850507,
+    0.17379141757679784,
+    0.1850522463641215,
+    0.2017025504232311,
+    0.22865025153515678,
+    0.2799887549200118,
+    0.3723563083273374,
+    0.5070465618548364,
+    0.6584756937533108,
+    0.7858896793049137,
+    0.857048416703744,
+    0.8581056595847457,
+    0.7884360614121196,
+    0.6600552714010384,
+    0.5029567255939027,
+    0.3576419424754861,
+    0.2536295274508611,
+    0.1963168206891148,
+    0.17355527552407854,
+    0.16961875258852963,
+    0.17314237405139,
+    0.1778913676164185,
+    0.1808835102474126
+  ],
+  "timestamps": [
+    0.0,
+    1.0,
+    1.5,
+    2.0,
+    2.5,
+    3.0,
+    3.5,
+    5.5,
+    7.5,
+    9.5,
+    11.5,
+    13.5,
+    15.5,
+    16.0,
+    16.5,
+    17.0,
+    17.5,
+    18.0,
+    18.5,
+    19.0,
+    19.5,
+    20.0,
+    20.5,
+    21.0,
+    21.5,
+    22.0,
+    22.5,
+    23.0,
+    23.5,
+    24.0,
+    24.5,
+    25.0,
+    25.5,
+    26.0
+  ],
+  "pre_bue_boundaries": [
+    [
+      13.5,
+      19.5
+    ]
+  ],
+  "pre_cbt_boundaries": [
+    [
+      0.0,
+      26.0
+    ]
+  ],
+  "mcts_trace": {
+    "mode": "refine",
+    "acceptance_policy": "strict",
+    "strategy": "mcts",
+    "prompt_version": "boundary-v3-3",
+    "candidates": {
+      "0": {
+        "candidate_id": 0,
+        "applied": false,
+        "would_accept": false,
+        "baseline": [
+          13.5,
+          19.5
+        ],
+        "boundary_method": "unknown",
+        "reason": "boundary_gap_left_out"
+      }
+    },
+    "logical_requests": 0,
+    "images_sent": 0,
+    "frame_scores_stage": "post_cbt",
+    "evidence_pool": "global",
+    "decode_seconds": 0.0,
+    "encode_seconds": 0.0,
+    "route": "stage4_direct",
+    "search_category": "RoadAccidents",
+    "effective_config": {
+      "preprocess": {
+        "fps": 2,
+        "segment_duration": 6.0,
+        "segment_overlap": 0.25,
+        "motion_threshold": 1.0,
+        "min_motion_interval": 2.0
+      },
+      "clip": {
+        "model_name": "ViT-L-14",
+        "pretrained": "openai",
+        "max_frames": 200,
+        "min_frames": 3,
+        "fps_sample": 3.0,
+        "semantic_tau": 0.9
+      },
+      "mcts": {
+        "simulations": 8,
+        "max_depth": 4,
+        "padding_ratio": 0.75,
+        "early_stop_agree": 4,
+        "early_stop_min_sim": 5,
+        "mode": "refine",
+        "action_set": "shrink",
+        "search_strategy": "mcts",
+        "comparison_gate": "best_valid",
+        "acceptance_policy": "strict",
+        "trigger_policy": "all_valid",
+        "citation_repair_attempts": 1,
+        "max_candidates_per_video": 2,
+        "max_vlm_evaluations_per_candidate": 10,
+        "max_vlm_evaluations_per_video": 20,
+        "timeout_seconds_per_candidate": 90.0,
+        "contrast_threshold": 0.15,
+        "search_padding_ratio": 0.25,
+        "max_inward_shift_ratio": 0.25,
+        "max_outward_shift_ratio": 0.25,
+        "step_ratio": 0.1,
+        "min_interval_seconds": 0.5,
+        "max_images_per_evaluation": 32,
+        "context_seconds": 2.0,
+        "max_boundary_gap_seconds": 1.5,
+        "max_evidence_gap_seconds": 3.0,
+        "min_unique_evaluations": 4,
+        "patience": 3,
+        "min_reward_gain": 0.02,
+        "max_curve_quality_drop": 0.05,
+        "ucb_c": 1.0,
+        "ucb_decay": 0.0,
+        "random_seed": 42,
+        "trace_enabled": true,
+        "paired_eval": true,
+        "stage4_direct_eval": true,
+        "stage4_acceptance_eval": true,
+        "final_nms_enabled": false,
+        "final_nms_iou": 0.3,
+        "boundary_guard_enabled": false,
+        "guard_min_retained_ratio": 0.5,
+        "guard_max_shift_ratio": 0.25,
+        "guard_tolerance_seconds": 0.5,
+        "postprocess_ablation": false,
+        "dense_fps": 0.0,
+        "max_dense_frames": 512,
+        "max_enumerated_states": 10000
+      },
+      "scoring": {
+        "clip_base_weight": 0.35,
+        "gaussian_sigma_factor": 1.5,
+        "gaussian_sigma_min": 1.0,
+        "confidence_gate": 0.5,
+        "curve_smooth_seconds": 2.0,
+        "curve_half_max_weight": 0.5,
+        "curve_max_shift_ratio": 0.4,
+        "curve_core_signal_floor": 0.3,
+        "boundary_shrink_ratio": 0.35,
+        "videomae_weight": 0.15,
+        "motion_weight": 0.1,
+        "mae_window_size": 32,
+        "mae_window_stride": 16,
+        "qscore_rerank": true,
+        "qscore_base": 0.5,
+        "bue_enabled": true,
+        "bue_alpha": 1.0,
+        "bue_lmin_sec": 6.0,
+        "bue_lmax_sec": 40.0,
+        "bue_lmax_frac": 0.8,
+        "bue_smooth_win": 3,
+        "bue_closure_gate": true,
+        "cbt_enabled": true,
+        "cbt_recal": true,
+        "cbt_recal_caps": {
+          "RoadAccidents": 4.5,
+          "Explosion": 13.0,
+          "Shoplifting": 9.0,
+          "Shooting": 13.5
+        },
+        "cbt_recal_trigger": 1.1,
+        "classify_skip_class_agnostic": true
+      },
+      "discovery": {
+        "clip_threshold": 0.3,
+        "min_pass_rate": 0.2,
+        "max_scan_segments": 6,
+        "candidate_top_k": 3
+      },
+      "device": "cuda",
+      "anomaly_categories": [
+        "Abuse",
+        "Arrest",
+        "Arson",
+        "Assault",
+        "Burglary",
+        "Explosion",
+        "Fighting",
+        "RoadAccidents",
+        "Robbery",
+        "Shooting",
+        "Shoplifting",
+        "Stealing",
+        "Vandalism"
+      ]
+    },
+    "search_seconds": 0.0010168999433517456,
+    "search_api_metrics": {
+      "logical_calls": 0,
+      "cache_hits": 0,
+      "sdk_attempts": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0
+    },
+    "candidate_policy": "all stage4 candidates; no top-k/merge/NMS/confidence gate",
+    "confidence_source": "stage4 coarse_score",
+    "category_source": "upstream prediction",
+    "stages": {
+      "post_stage4": [
+        {
+          "t_start": 13.5,
+          "t_end": 19.5,
+          "frame_indices": [
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "coarse_score": 0.95,
+          "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type.",
+          "original_descriptions": [
+            {
+              "t_start": 13.5,
+              "t_end": 19.5,
+              "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type."
+            }
+          ],
+          "confidence": 0.95,
+          "anomaly_type": "RoadAccidents",
+          "source_candidate_ids": [
+            0
+          ]
+        }
+      ],
+      "post_mcts": [
+        {
+          "t_start": 13.5,
+          "t_end": 19.5,
+          "frame_indices": [
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "coarse_score": 0.95,
+          "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type.",
+          "original_descriptions": [
+            {
+              "t_start": 13.5,
+              "t_end": 19.5,
+              "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type."
+            }
+          ],
+          "confidence": 0.95,
+          "anomaly_type": "RoadAccidents",
+          "source_candidate_ids": [
+            0
+          ]
+        }
+      ],
+      "pre_bue": [
+        {
+          "t_start": 13.5,
+          "t_end": 19.5,
+          "frame_indices": [
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "coarse_score": 0.95,
+          "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type.",
+          "original_descriptions": [
+            {
+              "t_start": 13.5,
+              "t_end": 19.5,
+              "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type."
+            }
+          ],
+          "confidence": 0.95,
+          "anomaly_type": "RoadAccidents",
+          "source_candidate_ids": [
+            0
+          ]
+        }
+      ],
+      "post_bue": [
+        {
+          "t_start": 0.0,
+          "t_end": 26.0,
+          "frame_indices": [
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "coarse_score": 0.95,
+          "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type.",
+          "original_descriptions": [
+            {
+              "t_start": 13.5,
+              "t_end": 19.5,
+              "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type."
+            }
+          ],
+          "confidence": 0.95,
+          "anomaly_type": "RoadAccidents",
+          "source_candidate_ids": [
+            0
+          ]
+        }
+      ],
+      "post_cbt": [
+        {
+          "t_start": 19.0,
+          "t_end": 22.0,
+          "frame_indices": [
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "coarse_score": 0.95,
+          "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type.",
+          "original_descriptions": [
+            {
+              "t_start": 13.5,
+              "t_end": 19.5,
+              "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type."
+            }
+          ],
+          "confidence": 0.95,
+          "anomaly_type": "RoadAccidents",
+          "source_candidate_ids": [
+            0
+          ]
+        }
+      ]
+    },
+    "arm": "strict",
+    "tail_seconds": 0.0016297998372465372,
+    "video_api_metrics": {
+      "logical_calls": 6,
+      "cache_hits": 0,
+      "sdk_attempts": 6,
+      "prompt_tokens": 5184,
+      "completion_tokens": 219
+    }
+  },
+  "paired_results": {
+    "original_off": {
+      "video_path": "F:\\dataset\\ucf_crime\\Testing_Normal_Videos_Anomaly\\Normal_Videos_903_x264.mp4",
+      "duration": 26.333333333333332,
+      "is_normal": false,
+      "anomalies": [
+        {
+          "t_start": 19.0,
+          "t_end": 22.0,
+          "confidence": 0.95,
+          "anomaly_type": "RoadAccidents",
+          "depth": null,
+          "visits": null,
+          "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type.",
+          "original_descriptions": [
+            {
+              "t_start": 13.5,
+              "t_end": 19.5,
+              "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type."
+            }
+          ]
+        }
+      ],
+      "frame_scores": [
+        0.2154894246086262,
+        0.21510619384252977,
+        0.21395335050792805,
+        0.2116341620306577,
+        0.20772641979542028,
+        0.2017620139854821,
+        0.19389948131277757,
+        0.1853602729706646,
+        0.17761056154996285,
+        0.17149590771041046,
+        0.16779910830134048,
+        0.16806302908850507,
+        0.17379141757679784,
+        0.1850522463641215,
+        0.2017025504232311,
+        0.22865025153515678,
+        0.2799887549200118,
+        0.3723563083273374,
+        0.5070465618548364,
+        0.6584756937533108,
+        0.7858896793049137,
+        0.857048416703744,
+        0.8581056595847457,
+        0.7884360614121196,
+        0.6600552714010384,
+        0.5029567255939027,
+        0.3576419424754861,
+        0.2536295274508611,
+        0.1963168206891148,
+        0.17355527552407854,
+        0.16961875258852963,
+        0.17314237405139,
+        0.1778913676164185,
+        0.1808835102474126
+      ],
+      "timestamps": [
+        0.0,
+        1.0,
+        1.5,
+        2.0,
+        2.5,
+        3.0,
+        3.5,
+        5.5,
+        7.5,
+        9.5,
+        11.5,
+        13.5,
+        15.5,
+        16.0,
+        16.5,
+        17.0,
+        17.5,
+        18.0,
+        18.5,
+        19.0,
+        19.5,
+        20.0,
+        20.5,
+        21.0,
+        21.5,
+        22.0,
+        22.5,
+        23.0,
+        23.5,
+        24.0,
+        24.5,
+        25.0,
+        25.5,
+        26.0
+      ],
+      "pre_bue_boundaries": [
+        [
+          13.5,
+          19.5
+        ]
+      ],
+      "pre_cbt_boundaries": [
+        [
+          0.0,
+          26.0
+        ]
+      ],
+      "mcts_trace": {
+        "mode": "off",
+        "logical_requests": 0,
+        "stages": {
+          "post_stage4": [
+            {
+              "t_start": 13.5,
+              "t_end": 19.5,
+              "frame_indices": [
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19
+              ],
+              "coarse_score": 0.95,
+              "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type.",
+              "original_descriptions": [
+                {
+                  "t_start": 13.5,
+                  "t_end": 19.5,
+                  "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type."
+                }
+              ],
+              "confidence": 0.95,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ],
+          "pre_bue": [
+            {
+              "t_start": 13.5,
+              "t_end": 19.5,
+              "frame_indices": [
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19
+              ],
+              "coarse_score": 0.95,
+              "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type.",
+              "original_descriptions": [
+                {
+                  "t_start": 13.5,
+                  "t_end": 19.5,
+                  "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type."
+                }
+              ],
+              "confidence": 0.95,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ],
+          "post_bue": [
+            {
+              "t_start": 0.0,
+              "t_end": 26.0,
+              "frame_indices": [
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19
+              ],
+              "coarse_score": 0.95,
+              "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type.",
+              "original_descriptions": [
+                {
+                  "t_start": 13.5,
+                  "t_end": 19.5,
+                  "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type."
+                }
+              ],
+              "confidence": 0.95,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ],
+          "post_cbt": [
+            {
+              "t_start": 19.0,
+              "t_end": 22.0,
+              "frame_indices": [
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19
+              ],
+              "coarse_score": 0.95,
+              "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type.",
+              "original_descriptions": [
+                {
+                  "t_start": 13.5,
+                  "t_end": 19.5,
+                  "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type."
+                }
+              ],
+              "confidence": 0.95,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ]
+        },
+        "route": "stage4_direct",
+        "arm": "stage4_fixed",
+        "frame_scores_stage": "post_cbt",
+        "tail_seconds": 0.0020220999140292406
+      }
+    },
+    "relaxed_node": {
+      "video_path": "F:\\dataset\\ucf_crime\\Testing_Normal_Videos_Anomaly\\Normal_Videos_903_x264.mp4",
+      "duration": 26.333333333333332,
+      "is_normal": false,
+      "anomalies": [
+        {
+          "t_start": 19.0,
+          "t_end": 22.0,
+          "confidence": 0.95,
+          "anomaly_type": "RoadAccidents",
+          "depth": null,
+          "visits": null,
+          "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type.",
+          "original_descriptions": [
+            {
+              "t_start": 13.5,
+              "t_end": 19.5,
+              "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type."
+            }
+          ]
+        }
+      ],
+      "frame_scores": [
+        0.2154894246086262,
+        0.21510619384252977,
+        0.21395335050792805,
+        0.2116341620306577,
+        0.20772641979542028,
+        0.2017620139854821,
+        0.19389948131277757,
+        0.1853602729706646,
+        0.17761056154996285,
+        0.17149590771041046,
+        0.16779910830134048,
+        0.16806302908850507,
+        0.17379141757679784,
+        0.1850522463641215,
+        0.2017025504232311,
+        0.22865025153515678,
+        0.2799887549200118,
+        0.3723563083273374,
+        0.5070465618548364,
+        0.6584756937533108,
+        0.7858896793049137,
+        0.857048416703744,
+        0.8581056595847457,
+        0.7884360614121196,
+        0.6600552714010384,
+        0.5029567255939027,
+        0.3576419424754861,
+        0.2536295274508611,
+        0.1963168206891148,
+        0.17355527552407854,
+        0.16961875258852963,
+        0.17314237405139,
+        0.1778913676164185,
+        0.1808835102474126
+      ],
+      "timestamps": [
+        0.0,
+        1.0,
+        1.5,
+        2.0,
+        2.5,
+        3.0,
+        3.5,
+        5.5,
+        7.5,
+        9.5,
+        11.5,
+        13.5,
+        15.5,
+        16.0,
+        16.5,
+        17.0,
+        17.5,
+        18.0,
+        18.5,
+        19.0,
+        19.5,
+        20.0,
+        20.5,
+        21.0,
+        21.5,
+        22.0,
+        22.5,
+        23.0,
+        23.5,
+        24.0,
+        24.5,
+        25.0,
+        25.5,
+        26.0
+      ],
+      "pre_bue_boundaries": [
+        [
+          13.5,
+          19.5
+        ]
+      ],
+      "pre_cbt_boundaries": [
+        [
+          0.0,
+          26.0
+        ]
+      ],
+      "mcts_trace": {
+        "mode": "refine",
+        "acceptance_policy": "relaxed_node",
+        "strategy": "mcts",
+        "prompt_version": "boundary-v3-3",
+        "candidates": {
+          "0": {
+            "candidate_id": 0,
+            "applied": false,
+            "would_accept": false,
+            "baseline": [
+              13.5,
+              19.5
+            ],
+            "boundary_method": "unknown",
+            "reason": "boundary_gap_left_out"
+          }
+        },
+        "logical_requests": 0,
+        "images_sent": 0,
+        "frame_scores_stage": "post_cbt",
+        "evidence_pool": "global",
+        "decode_seconds": 0.0,
+        "encode_seconds": 0.0,
+        "route": "stage4_direct",
+        "search_category": "RoadAccidents",
+        "effective_config": {
+          "preprocess": {
+            "fps": 2,
+            "segment_duration": 6.0,
+            "segment_overlap": 0.25,
+            "motion_threshold": 1.0,
+            "min_motion_interval": 2.0
+          },
+          "clip": {
+            "model_name": "ViT-L-14",
+            "pretrained": "openai",
+            "max_frames": 200,
+            "min_frames": 3,
+            "fps_sample": 3.0,
+            "semantic_tau": 0.9
+          },
+          "mcts": {
+            "simulations": 8,
+            "max_depth": 4,
+            "padding_ratio": 0.75,
+            "early_stop_agree": 4,
+            "early_stop_min_sim": 5,
+            "mode": "refine",
+            "action_set": "shrink",
+            "search_strategy": "mcts",
+            "comparison_gate": "best_valid",
+            "acceptance_policy": "relaxed_node",
+            "trigger_policy": "all_valid",
+            "citation_repair_attempts": 1,
+            "max_candidates_per_video": 2,
+            "max_vlm_evaluations_per_candidate": 10,
+            "max_vlm_evaluations_per_video": 20,
+            "timeout_seconds_per_candidate": 90.0,
+            "contrast_threshold": 0.15,
+            "search_padding_ratio": 0.25,
+            "max_inward_shift_ratio": 0.25,
+            "max_outward_shift_ratio": 0.25,
+            "step_ratio": 0.1,
+            "min_interval_seconds": 0.5,
+            "max_images_per_evaluation": 32,
+            "context_seconds": 2.0,
+            "max_boundary_gap_seconds": 1.5,
+            "max_evidence_gap_seconds": 3.0,
+            "min_unique_evaluations": 4,
+            "patience": 3,
+            "min_reward_gain": 0.02,
+            "max_curve_quality_drop": 0.05,
+            "ucb_c": 1.0,
+            "ucb_decay": 0.0,
+            "random_seed": 42,
+            "trace_enabled": true,
+            "paired_eval": true,
+            "stage4_direct_eval": true,
+            "stage4_acceptance_eval": false,
+            "final_nms_enabled": false,
+            "final_nms_iou": 0.3,
+            "boundary_guard_enabled": false,
+            "guard_min_retained_ratio": 0.5,
+            "guard_max_shift_ratio": 0.25,
+            "guard_tolerance_seconds": 0.5,
+            "postprocess_ablation": false,
+            "dense_fps": 0.0,
+            "max_dense_frames": 512,
+            "max_enumerated_states": 10000
+          },
+          "scoring": {
+            "clip_base_weight": 0.35,
+            "gaussian_sigma_factor": 1.5,
+            "gaussian_sigma_min": 1.0,
+            "confidence_gate": 0.5,
+            "curve_smooth_seconds": 2.0,
+            "curve_half_max_weight": 0.5,
+            "curve_max_shift_ratio": 0.4,
+            "curve_core_signal_floor": 0.3,
+            "boundary_shrink_ratio": 0.35,
+            "videomae_weight": 0.15,
+            "motion_weight": 0.1,
+            "mae_window_size": 32,
+            "mae_window_stride": 16,
+            "qscore_rerank": true,
+            "qscore_base": 0.5,
+            "bue_enabled": true,
+            "bue_alpha": 1.0,
+            "bue_lmin_sec": 6.0,
+            "bue_lmax_sec": 40.0,
+            "bue_lmax_frac": 0.8,
+            "bue_smooth_win": 3,
+            "bue_closure_gate": true,
+            "cbt_enabled": true,
+            "cbt_recal": true,
+            "cbt_recal_caps": {
+              "RoadAccidents": 4.5,
+              "Explosion": 13.0,
+              "Shoplifting": 9.0,
+              "Shooting": 13.5
+            },
+            "cbt_recal_trigger": 1.1,
+            "classify_skip_class_agnostic": true
+          },
+          "discovery": {
+            "clip_threshold": 0.3,
+            "min_pass_rate": 0.2,
+            "max_scan_segments": 6,
+            "candidate_top_k": 3
+          },
+          "device": "cuda",
+          "anomaly_categories": [
+            "Abuse",
+            "Arrest",
+            "Arson",
+            "Assault",
+            "Burglary",
+            "Explosion",
+            "Fighting",
+            "RoadAccidents",
+            "Robbery",
+            "Shooting",
+            "Shoplifting",
+            "Stealing",
+            "Vandalism"
+          ]
+        },
+        "search_seconds": 0.0010035999584943056,
+        "search_api_metrics": {
+          "logical_calls": 0,
+          "cache_hits": 0,
+          "sdk_attempts": 0,
+          "prompt_tokens": 0,
+          "completion_tokens": 0
+        },
+        "candidate_policy": "all stage4 candidates; no top-k/merge/NMS/confidence gate",
+        "confidence_source": "stage4 coarse_score",
+        "category_source": "upstream prediction",
+        "stages": {
+          "post_stage4": [
+            {
+              "t_start": 13.5,
+              "t_end": 19.5,
+              "frame_indices": [
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19
+              ],
+              "coarse_score": 0.95,
+              "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type.",
+              "original_descriptions": [
+                {
+                  "t_start": 13.5,
+                  "t_end": 19.5,
+                  "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type."
+                }
+              ],
+              "confidence": 0.95,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ],
+          "post_mcts": [
+            {
+              "t_start": 13.5,
+              "t_end": 19.5,
+              "frame_indices": [
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19
+              ],
+              "coarse_score": 0.95,
+              "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type.",
+              "original_descriptions": [
+                {
+                  "t_start": 13.5,
+                  "t_end": 19.5,
+                  "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type."
+                }
+              ],
+              "confidence": 0.95,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ],
+          "pre_bue": [
+            {
+              "t_start": 13.5,
+              "t_end": 19.5,
+              "frame_indices": [
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19
+              ],
+              "coarse_score": 0.95,
+              "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type.",
+              "original_descriptions": [
+                {
+                  "t_start": 13.5,
+                  "t_end": 19.5,
+                  "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type."
+                }
+              ],
+              "confidence": 0.95,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ],
+          "post_bue": [
+            {
+              "t_start": 0.0,
+              "t_end": 26.0,
+              "frame_indices": [
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19
+              ],
+              "coarse_score": 0.95,
+              "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type.",
+              "original_descriptions": [
+                {
+                  "t_start": 13.5,
+                  "t_end": 19.5,
+                  "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type."
+                }
+              ],
+              "confidence": 0.95,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ],
+          "post_cbt": [
+            {
+              "t_start": 19.0,
+              "t_end": 22.0,
+              "frame_indices": [
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19
+              ],
+              "coarse_score": 0.95,
+              "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type.",
+              "original_descriptions": [
+                {
+                  "t_start": 13.5,
+                  "t_end": 19.5,
+                  "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type."
+                }
+              ],
+              "confidence": 0.95,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ]
+        },
+        "arm": "relaxed_node",
+        "tail_seconds": 0.0017633000388741493
+      }
+    },
+    "force_best": {
+      "video_path": "F:\\dataset\\ucf_crime\\Testing_Normal_Videos_Anomaly\\Normal_Videos_903_x264.mp4",
+      "duration": 26.333333333333332,
+      "is_normal": false,
+      "anomalies": [
+        {
+          "t_start": 19.0,
+          "t_end": 22.0,
+          "confidence": 0.95,
+          "anomaly_type": "RoadAccidents",
+          "depth": null,
+          "visits": null,
+          "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type.",
+          "original_descriptions": [
+            {
+              "t_start": 13.5,
+              "t_end": 19.5,
+              "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type."
+            }
+          ]
+        }
+      ],
+      "frame_scores": [
+        0.2154894246086262,
+        0.21510619384252977,
+        0.21395335050792805,
+        0.2116341620306577,
+        0.20772641979542028,
+        0.2017620139854821,
+        0.19389948131277757,
+        0.1853602729706646,
+        0.17761056154996285,
+        0.17149590771041046,
+        0.16779910830134048,
+        0.16806302908850507,
+        0.17379141757679784,
+        0.1850522463641215,
+        0.2017025504232311,
+        0.22865025153515678,
+        0.2799887549200118,
+        0.3723563083273374,
+        0.5070465618548364,
+        0.6584756937533108,
+        0.7858896793049137,
+        0.857048416703744,
+        0.8581056595847457,
+        0.7884360614121196,
+        0.6600552714010384,
+        0.5029567255939027,
+        0.3576419424754861,
+        0.2536295274508611,
+        0.1963168206891148,
+        0.17355527552407854,
+        0.16961875258852963,
+        0.17314237405139,
+        0.1778913676164185,
+        0.1808835102474126
+      ],
+      "timestamps": [
+        0.0,
+        1.0,
+        1.5,
+        2.0,
+        2.5,
+        3.0,
+        3.5,
+        5.5,
+        7.5,
+        9.5,
+        11.5,
+        13.5,
+        15.5,
+        16.0,
+        16.5,
+        17.0,
+        17.5,
+        18.0,
+        18.5,
+        19.0,
+        19.5,
+        20.0,
+        20.5,
+        21.0,
+        21.5,
+        22.0,
+        22.5,
+        23.0,
+        23.5,
+        24.0,
+        24.5,
+        25.0,
+        25.5,
+        26.0
+      ],
+      "pre_bue_boundaries": [
+        [
+          13.5,
+          19.5
+        ]
+      ],
+      "pre_cbt_boundaries": [
+        [
+          0.0,
+          26.0
+        ]
+      ],
+      "mcts_trace": {
+        "mode": "refine",
+        "acceptance_policy": "force_best",
+        "strategy": "mcts",
+        "prompt_version": "boundary-v3-3",
+        "candidates": {
+          "0": {
+            "candidate_id": 0,
+            "applied": false,
+            "would_accept": false,
+            "baseline": [
+              13.5,
+              19.5
+            ],
+            "boundary_method": "unknown",
+            "reason": "boundary_gap_left_out"
+          }
+        },
+        "logical_requests": 0,
+        "images_sent": 0,
+        "frame_scores_stage": "post_cbt",
+        "evidence_pool": "global",
+        "decode_seconds": 0.0,
+        "encode_seconds": 0.0,
+        "route": "stage4_direct",
+        "search_category": "RoadAccidents",
+        "effective_config": {
+          "preprocess": {
+            "fps": 2,
+            "segment_duration": 6.0,
+            "segment_overlap": 0.25,
+            "motion_threshold": 1.0,
+            "min_motion_interval": 2.0
+          },
+          "clip": {
+            "model_name": "ViT-L-14",
+            "pretrained": "openai",
+            "max_frames": 200,
+            "min_frames": 3,
+            "fps_sample": 3.0,
+            "semantic_tau": 0.9
+          },
+          "mcts": {
+            "simulations": 8,
+            "max_depth": 4,
+            "padding_ratio": 0.75,
+            "early_stop_agree": 4,
+            "early_stop_min_sim": 5,
+            "mode": "refine",
+            "action_set": "shrink",
+            "search_strategy": "mcts",
+            "comparison_gate": "best_valid",
+            "acceptance_policy": "force_best",
+            "trigger_policy": "all_valid",
+            "citation_repair_attempts": 1,
+            "max_candidates_per_video": 2,
+            "max_vlm_evaluations_per_candidate": 10,
+            "max_vlm_evaluations_per_video": 20,
+            "timeout_seconds_per_candidate": 90.0,
+            "contrast_threshold": 0.15,
+            "search_padding_ratio": 0.25,
+            "max_inward_shift_ratio": 0.25,
+            "max_outward_shift_ratio": 0.25,
+            "step_ratio": 0.1,
+            "min_interval_seconds": 0.5,
+            "max_images_per_evaluation": 32,
+            "context_seconds": 2.0,
+            "max_boundary_gap_seconds": 1.5,
+            "max_evidence_gap_seconds": 3.0,
+            "min_unique_evaluations": 4,
+            "patience": 3,
+            "min_reward_gain": 0.02,
+            "max_curve_quality_drop": 0.05,
+            "ucb_c": 1.0,
+            "ucb_decay": 0.0,
+            "random_seed": 42,
+            "trace_enabled": true,
+            "paired_eval": true,
+            "stage4_direct_eval": true,
+            "stage4_acceptance_eval": false,
+            "final_nms_enabled": false,
+            "final_nms_iou": 0.3,
+            "boundary_guard_enabled": false,
+            "guard_min_retained_ratio": 0.5,
+            "guard_max_shift_ratio": 0.25,
+            "guard_tolerance_seconds": 0.5,
+            "postprocess_ablation": false,
+            "dense_fps": 0.0,
+            "max_dense_frames": 512,
+            "max_enumerated_states": 10000
+          },
+          "scoring": {
+            "clip_base_weight": 0.35,
+            "gaussian_sigma_factor": 1.5,
+            "gaussian_sigma_min": 1.0,
+            "confidence_gate": 0.5,
+            "curve_smooth_seconds": 2.0,
+            "curve_half_max_weight": 0.5,
+            "curve_max_shift_ratio": 0.4,
+            "curve_core_signal_floor": 0.3,
+            "boundary_shrink_ratio": 0.35,
+            "videomae_weight": 0.15,
+            "motion_weight": 0.1,
+            "mae_window_size": 32,
+            "mae_window_stride": 16,
+            "qscore_rerank": true,
+            "qscore_base": 0.5,
+            "bue_enabled": true,
+            "bue_alpha": 1.0,
+            "bue_lmin_sec": 6.0,
+            "bue_lmax_sec": 40.0,
+            "bue_lmax_frac": 0.8,
+            "bue_smooth_win": 3,
+            "bue_closure_gate": true,
+            "cbt_enabled": true,
+            "cbt_recal": true,
+            "cbt_recal_caps": {
+              "RoadAccidents": 4.5,
+              "Explosion": 13.0,
+              "Shoplifting": 9.0,
+              "Shooting": 13.5
+            },
+            "cbt_recal_trigger": 1.1,
+            "classify_skip_class_agnostic": true
+          },
+          "discovery": {
+            "clip_threshold": 0.3,
+            "min_pass_rate": 0.2,
+            "max_scan_segments": 6,
+            "candidate_top_k": 3
+          },
+          "device": "cuda",
+          "anomaly_categories": [
+            "Abuse",
+            "Arrest",
+            "Arson",
+            "Assault",
+            "Burglary",
+            "Explosion",
+            "Fighting",
+            "RoadAccidents",
+            "Robbery",
+            "Shooting",
+            "Shoplifting",
+            "Stealing",
+            "Vandalism"
+          ]
+        },
+        "search_seconds": 0.0008946999441832304,
+        "search_api_metrics": {
+          "logical_calls": 0,
+          "cache_hits": 0,
+          "sdk_attempts": 0,
+          "prompt_tokens": 0,
+          "completion_tokens": 0
+        },
+        "candidate_policy": "all stage4 candidates; no top-k/merge/NMS/confidence gate",
+        "confidence_source": "stage4 coarse_score",
+        "category_source": "upstream prediction",
+        "stages": {
+          "post_stage4": [
+            {
+              "t_start": 13.5,
+              "t_end": 19.5,
+              "frame_indices": [
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19
+              ],
+              "coarse_score": 0.95,
+              "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type.",
+              "original_descriptions": [
+                {
+                  "t_start": 13.5,
+                  "t_end": 19.5,
+                  "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type."
+                }
+              ],
+              "confidence": 0.95,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ],
+          "post_mcts": [
+            {
+              "t_start": 13.5,
+              "t_end": 19.5,
+              "frame_indices": [
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19
+              ],
+              "coarse_score": 0.95,
+              "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type.",
+              "original_descriptions": [
+                {
+                  "t_start": 13.5,
+                  "t_end": 19.5,
+                  "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type."
+                }
+              ],
+              "confidence": 0.95,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ],
+          "pre_bue": [
+            {
+              "t_start": 13.5,
+              "t_end": 19.5,
+              "frame_indices": [
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19
+              ],
+              "coarse_score": 0.95,
+              "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type.",
+              "original_descriptions": [
+                {
+                  "t_start": 13.5,
+                  "t_end": 19.5,
+                  "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type."
+                }
+              ],
+              "confidence": 0.95,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ],
+          "post_bue": [
+            {
+              "t_start": 0.0,
+              "t_end": 26.0,
+              "frame_indices": [
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19
+              ],
+              "coarse_score": 0.95,
+              "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type.",
+              "original_descriptions": [
+                {
+                  "t_start": 13.5,
+                  "t_end": 19.5,
+                  "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type."
+                }
+              ],
+              "confidence": 0.95,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ],
+          "post_cbt": [
+            {
+              "t_start": 19.0,
+              "t_end": 22.0,
+              "frame_indices": [
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19
+              ],
+              "coarse_score": 0.95,
+              "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type.",
+              "original_descriptions": [
+                {
+                  "t_start": 13.5,
+                  "t_end": 19.5,
+                  "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type."
+                }
+              ],
+              "confidence": 0.95,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ]
+        },
+        "arm": "force_best",
+        "tail_seconds": 0.0016795999836176634
+      }
+    },
+    "force_best_no_tail": {
+      "video_path": "F:\\dataset\\ucf_crime\\Testing_Normal_Videos_Anomaly\\Normal_Videos_903_x264.mp4",
+      "duration": 26.333333333333332,
+      "is_normal": false,
+      "anomalies": [
+        {
+          "t_start": 13.5,
+          "t_end": 19.5,
+          "frame_indices": [
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "coarse_score": 0.95,
+          "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type.",
+          "original_descriptions": [
+            {
+              "t_start": 13.5,
+              "t_end": 19.5,
+              "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type."
+            }
+          ],
+          "confidence": 0.95,
+          "anomaly_type": "RoadAccidents",
+          "source_candidate_ids": [
+            0
+          ]
+        }
+      ],
+      "frame_scores": [
+        0.2154894246086262,
+        0.21510619384252977,
+        0.21395335050792805,
+        0.2116660840928527,
+        0.2079945785319662,
+        0.2033669895042106,
+        0.20129817693073473,
+        0.21199142371244487,
+        0.25311585984593316,
+        0.3419939153903046,
+        0.4792395415009182,
+        0.6384545439078182,
+        0.7790750184060633,
+        0.8738442944484878,
+        0.9218128642778268,
+        0.9365346663592659,
+        0.9270287344810867,
+        0.8896959229153627,
+        0.8155374048788403,
+        0.7062152615480978,
+        0.5829047693767608,
+        0.47474889843554063,
+        0.3973900934062035,
+        0.3456304456460256,
+        0.30490702491081656,
+        0.26551605618311624,
+        0.22736278491340414,
+        0.19595323320846805,
+        0.17600043514831865,
+        0.16792159934968254,
+        0.16839895174985317,
+        0.17293868171084303,
+        0.1778673369922251,
+        0.1808835102474126
+      ],
+      "timestamps": [
+        0.0,
+        1.0,
+        1.5,
+        2.0,
+        2.5,
+        3.0,
+        3.5,
+        5.5,
+        7.5,
+        9.5,
+        11.5,
+        13.5,
+        15.5,
+        16.0,
+        16.5,
+        17.0,
+        17.5,
+        18.0,
+        18.5,
+        19.0,
+        19.5,
+        20.0,
+        20.5,
+        21.0,
+        21.5,
+        22.0,
+        22.5,
+        23.0,
+        23.5,
+        24.0,
+        24.5,
+        25.0,
+        25.5,
+        26.0
+      ],
+      "frame_scores_stage": "post_mcts"
+    },
+    "stage4_only": {
+      "video_path": "F:\\dataset\\ucf_crime\\Testing_Normal_Videos_Anomaly\\Normal_Videos_903_x264.mp4",
+      "duration": 26.333333333333332,
+      "is_normal": false,
+      "anomalies": [
+        {
+          "t_start": 13.5,
+          "t_end": 19.5,
+          "frame_indices": [
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "coarse_score": 0.95,
+          "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type.",
+          "original_descriptions": [
+            {
+              "t_start": 13.5,
+              "t_end": 19.5,
+              "description": "At approximately 18.5s–19.5s, a pink and yellow bus (or large van) collides with a silver station wagon at the intersection. The impact is visible as the station wagon is struck on its driver’s side/rear quarter panel, causing it to rotate sharply and skid. This constitutes a clear vehicle collision (road accident) matching the expected anomaly type."
+            }
+          ],
+          "confidence": 0.95,
+          "anomaly_type": "RoadAccidents",
+          "source_candidate_ids": [
+            0
+          ]
+        }
+      ],
+      "frame_scores": [
+        0.2154894246086262,
+        0.21510619384252977,
+        0.21395335050792805,
+        0.2116660840928527,
+        0.2079945785319662,
+        0.2033669895042106,
+        0.20129817693073473,
+        0.21199142371244487,
+        0.25311585984593316,
+        0.3419939153903046,
+        0.4792395415009182,
+        0.6384545439078182,
+        0.7790750184060633,
+        0.8738442944484878,
+        0.9218128642778268,
+        0.9365346663592659,
+        0.9270287344810867,
+        0.8896959229153627,
+        0.8155374048788403,
+        0.7062152615480978,
+        0.5829047693767608,
+        0.47474889843554063,
+        0.3973900934062035,
+        0.3456304456460256,
+        0.30490702491081656,
+        0.26551605618311624,
+        0.22736278491340414,
+        0.19595323320846805,
+        0.17600043514831865,
+        0.16792159934968254,
+        0.16839895174985317,
+        0.17293868171084303,
+        0.1778673369922251,
+        0.1808835102474126
+      ],
+      "timestamps": [
+        0.0,
+        1.0,
+        1.5,
+        2.0,
+        2.5,
+        3.0,
+        3.5,
+        5.5,
+        7.5,
+        9.5,
+        11.5,
+        13.5,
+        15.5,
+        16.0,
+        16.5,
+        17.0,
+        17.5,
+        18.0,
+        18.5,
+        19.0,
+        19.5,
+        20.0,
+        20.5,
+        21.0,
+        21.5,
+        22.0,
+        22.5,
+        23.0,
+        23.5,
+        24.0,
+        24.5,
+        25.0,
+        25.5,
+        26.0
+      ],
+      "frame_scores_stage": "post_stage4"
+    }
+  },
+  "token_usage": {
+    "requests": 6,
+    "successful_requests": 6,
+    "failed_requests": 0,
+    "unknown_usage_requests": 0,
+    "prompt_tokens": 5184,
+    "completion_tokens": 219,
+    "total_tokens": 5403,
+    "api_queue_seconds": 7.44253890030086,
+    "api_request_seconds": 8.1921,
+    "api_backoff_seconds": 0.0,
+    "api_cancelled_queue_seconds": 0.0,
+    "by_model": {
+      "qwen3-vl-plus": {
+        "requests": 6,
+        "successful_requests": 6,
+        "failed_requests": 0,
+        "unknown_usage_requests": 0,
+        "prompt_tokens": 5184,
+        "completion_tokens": 219,
+        "total_tokens": 5403,
+        "api_queue_seconds": 7.44253890030086,
+        "api_request_seconds": 8.1921,
+        "api_backoff_seconds": 0.0,
+        "api_cancelled_queue_seconds": 0.0,
+        "by_model": {}
+      }
+    },
+    "video_path": "F:\\dataset\\ucf_crime\\Testing_Normal_Videos_Anomaly\\Normal_Videos_903_x264.mp4",
+    "status": "success"
+  },
+  "experiment_fingerprint": "93d25bd0f4d7e3129499c8c6dbde0540a4dd851fdae40405cfc1b9c5d5cfab16",
+  "diagnosis_attempt": 1,
+  "token_usage_all_attempts": {
+    "requests": 6,
+    "successful_requests": 6,
+    "failed_requests": 0,
+    "unknown_usage_requests": 0,
+    "prompt_tokens": 5184,
+    "completion_tokens": 219,
+    "total_tokens": 5403,
+    "api_queue_seconds": 7.44253890030086,
+    "api_request_seconds": 8.1921,
+    "api_backoff_seconds": 0.0,
+    "api_cancelled_queue_seconds": 0.0,
+    "by_model": {
+      "qwen3-vl-plus": {
+        "requests": 6,
+        "successful_requests": 6,
+        "failed_requests": 0,
+        "unknown_usage_requests": 0,
+        "prompt_tokens": 5184,
+        "completion_tokens": 219,
+        "total_tokens": 5403,
+        "api_queue_seconds": 7.44253890030086,
+        "api_request_seconds": 8.1921,
+        "api_backoff_seconds": 0.0,
+        "api_cancelled_queue_seconds": 0.0,
+        "by_model": {}
+      }
+    },
+    "diagnosis_attempts": 1
+  },
+  "processing_time": 6.38
+}

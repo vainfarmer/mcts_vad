@@ -66,7 +66,7 @@ all_valid仍按对比值优先排序，受候选数和请求预算限制，不�
 
 ## 相对不退步接受模式（boundary-v3-3）
 
-新增 `--mcts_acceptance_policy relative_nonloss`，宽松入口脚本已启用；普通CLI仍默认strict，旧实验文件不修改。本节取代上文对宽松入口“最终完整性条件不变”的描述。
+`--mcts_acceptance_policy relative_nonloss` 可显式启用相对不退步模式。当前普通 CLI、算法配置和宽松入口脚本均默认使用 `force_best`，直接接收最佳有效非根节点，不执行最终 A/B 比较。以下记录 strict 与 relative_nonloss 的可选协议；旧实验文件保留原配置。
 
 - strict：节点必须complete且没有event_cut；最终必须选择新提案，并complete_without_loss=true。
 - relative_nonloss：允许新旧节点都partial，但不允许complete退化为partial，也不允许新增event_cut。最终可选择新提案或tie，不强制绝对完整；新增必填布尔 `preserves_reference_content=true`，要求明确保留原区间可见目标内容。字段缺失/类型错误或判断不确定均拒绝。

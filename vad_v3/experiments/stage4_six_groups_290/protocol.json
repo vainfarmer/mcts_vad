@@ -1,0 +1,11 @@
+{
+  "scope": "140 frozen abnormal videos plus 150 freshly tested normal videos; video concurrency 2, API concurrency 2.",
+  "primary_map": "All 290 videos; predictions on normal videos are false positives for their predicted anomaly class. Macro average over 13 anomaly classes, not a synthetic Normal detection class.",
+  "additional_map": "Same 140 abnormal videos under the new sorting rule, for a controlled scope comparison.",
+  "sorting": "Per-class input ordered by video ID, retaining detection order within a video; np.argsort(-confidence) with default kind, no secondary tie keys.",
+  "coordinates": "Source-video FPS/frame count; integer half-open frames; GT unchanged.",
+  "six_groups": "Stage 4 -> off/strict/relaxed_node/force_best -> BUE -> CBT; Stage 4 -> force_best stop; Stage 4 stop.",
+  "inference": "Same Stage 1-4, candidate identities/confidences/categories and search budgets as prior 140. Normal ground-truth labels only select inputs; detector receives only video_path.",
+  "extras": "Two no-tail frame scores are computed from the same live video features; no additional VLM search.",
+  "provenance": "Abnormal outputs are frozen historical runs, normals are new requests; not a single simultaneous fresh benchmark. Existing test-set tuning/CBT-prior limitations remain."
+}

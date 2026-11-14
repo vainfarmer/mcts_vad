@@ -1,0 +1,1831 @@
+{
+  "video_path": "F:\\dataset\\ucf_crime\\Testing_Normal_Videos_Anomaly\\Normal_Videos_906_x264.mp4",
+  "duration": 22.533333333333335,
+  "is_normal": false,
+  "anomalies": [
+    {
+      "t_start": 18.0,
+      "t_end": 22.533333333333335,
+      "confidence": 0.95,
+      "anomaly_type": "RoadAccidents",
+      "depth": null,
+      "visits": null,
+      "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision.",
+      "original_descriptions": [
+        {
+          "t_start": 18.0,
+          "t_end": 22.533333333333335,
+          "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision."
+        }
+      ]
+    }
+  ],
+  "frame_scores": [
+    0.3836089035987855,
+    0.38364870676639357,
+    0.3836043420844263,
+    0.3834883342637951,
+    0.38363483071122473,
+    0.3845286730214256,
+    0.3864297301080701,
+    0.38912210744964026,
+    0.39199578406606667,
+    0.39437103105538157,
+    0.3958390758659569,
+    0.3964121146704472,
+    0.39639899317060484,
+    0.3960678155817476,
+    0.3953099481858881,
+    0.3936103750609775,
+    0.39043144430828586,
+    0.38575537648475344,
+    0.3802816994089502,
+    0.3750454553993966,
+    0.370739630731055,
+    0.3673454717579598,
+    0.36440959467747736,
+    0.36170679964134334,
+    0.3596679786400966,
+    0.35911977219366187,
+    0.3606848211979653,
+    0.36444084868220444,
+    0.37037869806882484,
+    0.37951246796863725,
+    0.394914610821013,
+    0.4216664800784917,
+    0.4650823005662507,
+    0.5276265226721324,
+    0.6062305298819081,
+    0.692088221253859,
+    0.7735956600703042,
+    0.8408876022566325,
+    0.8890548228474517,
+    0.9183469877124188,
+    0.931734196152801
+  ],
+  "timestamps": [
+    0.0,
+    0.5,
+    1.0,
+    1.5,
+    2.0,
+    2.5,
+    3.0,
+    3.5,
+    4.0,
+    4.5,
+    5.0,
+    5.5,
+    6.0,
+    6.5,
+    7.0,
+    7.5,
+    8.0,
+    8.5,
+    9.0,
+    9.5,
+    10.0,
+    10.5,
+    11.0,
+    11.5,
+    12.0,
+    12.5,
+    13.0,
+    13.5,
+    14.0,
+    14.5,
+    15.0,
+    15.5,
+    16.0,
+    17.0,
+    17.5,
+    18.0,
+    18.5,
+    19.0,
+    19.5,
+    20.0,
+    21.0
+  ],
+  "pre_bue_boundaries": [
+    [
+      18.0,
+      22.533333333333335
+    ]
+  ],
+  "pre_cbt_boundaries": [
+    [
+      18.0,
+      22.533333333333335
+    ]
+  ],
+  "mcts_trace": {
+    "mode": "refine",
+    "acceptance_policy": "strict",
+    "strategy": "mcts",
+    "prompt_version": "boundary-v3-3",
+    "candidates": {
+      "0": {
+        "candidate_id": 0,
+        "applied": false,
+        "would_accept": false,
+        "baseline": [
+          18.0,
+          22.533333333333335
+        ],
+        "boundary_method": "unknown",
+        "reason": "missing_curve_end"
+      }
+    },
+    "logical_requests": 0,
+    "images_sent": 0,
+    "frame_scores_stage": "post_cbt",
+    "evidence_pool": "global",
+    "decode_seconds": 0.0,
+    "encode_seconds": 0.0,
+    "route": "stage4_direct",
+    "search_category": "RoadAccidents",
+    "effective_config": {
+      "preprocess": {
+        "fps": 2,
+        "segment_duration": 6.0,
+        "segment_overlap": 0.25,
+        "motion_threshold": 1.0,
+        "min_motion_interval": 2.0
+      },
+      "clip": {
+        "model_name": "ViT-L-14",
+        "pretrained": "openai",
+        "max_frames": 200,
+        "min_frames": 3,
+        "fps_sample": 3.0,
+        "semantic_tau": 0.9
+      },
+      "mcts": {
+        "simulations": 8,
+        "max_depth": 4,
+        "padding_ratio": 0.75,
+        "early_stop_agree": 4,
+        "early_stop_min_sim": 5,
+        "mode": "refine",
+        "action_set": "shrink",
+        "search_strategy": "mcts",
+        "comparison_gate": "best_valid",
+        "acceptance_policy": "strict",
+        "trigger_policy": "all_valid",
+        "citation_repair_attempts": 1,
+        "max_candidates_per_video": 2,
+        "max_vlm_evaluations_per_candidate": 10,
+        "max_vlm_evaluations_per_video": 20,
+        "timeout_seconds_per_candidate": 90.0,
+        "contrast_threshold": 0.15,
+        "search_padding_ratio": 0.25,
+        "max_inward_shift_ratio": 0.25,
+        "max_outward_shift_ratio": 0.25,
+        "step_ratio": 0.1,
+        "min_interval_seconds": 0.5,
+        "max_images_per_evaluation": 32,
+        "context_seconds": 2.0,
+        "max_boundary_gap_seconds": 1.5,
+        "max_evidence_gap_seconds": 3.0,
+        "min_unique_evaluations": 4,
+        "patience": 3,
+        "min_reward_gain": 0.02,
+        "max_curve_quality_drop": 0.05,
+        "ucb_c": 1.0,
+        "ucb_decay": 0.0,
+        "random_seed": 42,
+        "trace_enabled": true,
+        "paired_eval": true,
+        "stage4_direct_eval": true,
+        "stage4_acceptance_eval": true,
+        "final_nms_enabled": false,
+        "final_nms_iou": 0.3,
+        "boundary_guard_enabled": false,
+        "guard_min_retained_ratio": 0.5,
+        "guard_max_shift_ratio": 0.25,
+        "guard_tolerance_seconds": 0.5,
+        "postprocess_ablation": false,
+        "dense_fps": 0.0,
+        "max_dense_frames": 512,
+        "max_enumerated_states": 10000
+      },
+      "scoring": {
+        "clip_base_weight": 0.35,
+        "gaussian_sigma_factor": 1.5,
+        "gaussian_sigma_min": 1.0,
+        "confidence_gate": 0.5,
+        "curve_smooth_seconds": 2.0,
+        "curve_half_max_weight": 0.5,
+        "curve_max_shift_ratio": 0.4,
+        "curve_core_signal_floor": 0.3,
+        "boundary_shrink_ratio": 0.35,
+        "videomae_weight": 0.15,
+        "motion_weight": 0.1,
+        "mae_window_size": 32,
+        "mae_window_stride": 16,
+        "qscore_rerank": true,
+        "qscore_base": 0.5,
+        "bue_enabled": true,
+        "bue_alpha": 1.0,
+        "bue_lmin_sec": 6.0,
+        "bue_lmax_sec": 40.0,
+        "bue_lmax_frac": 0.8,
+        "bue_smooth_win": 3,
+        "bue_closure_gate": true,
+        "cbt_enabled": true,
+        "cbt_recal": true,
+        "cbt_recal_caps": {
+          "RoadAccidents": 4.5,
+          "Explosion": 13.0,
+          "Shoplifting": 9.0,
+          "Shooting": 13.5
+        },
+        "cbt_recal_trigger": 1.1,
+        "classify_skip_class_agnostic": true
+      },
+      "discovery": {
+        "clip_threshold": 0.3,
+        "min_pass_rate": 0.2,
+        "max_scan_segments": 6,
+        "candidate_top_k": 3
+      },
+      "device": "cuda",
+      "anomaly_categories": [
+        "Abuse",
+        "Arrest",
+        "Arson",
+        "Assault",
+        "Burglary",
+        "Explosion",
+        "Fighting",
+        "RoadAccidents",
+        "Robbery",
+        "Shooting",
+        "Shoplifting",
+        "Stealing",
+        "Vandalism"
+      ]
+    },
+    "search_seconds": 0.0007644998840987682,
+    "search_api_metrics": {
+      "logical_calls": 0,
+      "cache_hits": 0,
+      "sdk_attempts": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0
+    },
+    "candidate_policy": "all stage4 candidates; no top-k/merge/NMS/confidence gate",
+    "confidence_source": "stage4 coarse_score",
+    "category_source": "upstream prediction",
+    "stages": {
+      "post_stage4": [
+        {
+          "t_start": 18.0,
+          "t_end": 22.533333333333335,
+          "frame_indices": [
+            35,
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "coarse_score": 0.95,
+          "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision.",
+          "original_descriptions": [
+            {
+              "t_start": 18.0,
+              "t_end": 22.533333333333335,
+              "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision."
+            }
+          ],
+          "confidence": 0.95,
+          "anomaly_type": "RoadAccidents",
+          "source_candidate_ids": [
+            0
+          ]
+        }
+      ],
+      "post_mcts": [
+        {
+          "t_start": 18.0,
+          "t_end": 22.533333333333335,
+          "frame_indices": [
+            35,
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "coarse_score": 0.95,
+          "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision.",
+          "original_descriptions": [
+            {
+              "t_start": 18.0,
+              "t_end": 22.533333333333335,
+              "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision."
+            }
+          ],
+          "confidence": 0.95,
+          "anomaly_type": "RoadAccidents",
+          "source_candidate_ids": [
+            0
+          ]
+        }
+      ],
+      "pre_bue": [
+        {
+          "t_start": 18.0,
+          "t_end": 22.533333333333335,
+          "frame_indices": [
+            35,
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "coarse_score": 0.95,
+          "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision.",
+          "original_descriptions": [
+            {
+              "t_start": 18.0,
+              "t_end": 22.533333333333335,
+              "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision."
+            }
+          ],
+          "confidence": 0.95,
+          "anomaly_type": "RoadAccidents",
+          "source_candidate_ids": [
+            0
+          ]
+        }
+      ],
+      "post_bue": [
+        {
+          "t_start": 18.0,
+          "t_end": 22.533333333333335,
+          "frame_indices": [
+            35,
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "coarse_score": 0.95,
+          "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision.",
+          "original_descriptions": [
+            {
+              "t_start": 18.0,
+              "t_end": 22.533333333333335,
+              "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision."
+            }
+          ],
+          "confidence": 0.95,
+          "anomaly_type": "RoadAccidents",
+          "source_candidate_ids": [
+            0
+          ]
+        }
+      ],
+      "post_cbt": [
+        {
+          "t_start": 18.0,
+          "t_end": 22.533333333333335,
+          "frame_indices": [
+            35,
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "coarse_score": 0.95,
+          "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision.",
+          "original_descriptions": [
+            {
+              "t_start": 18.0,
+              "t_end": 22.533333333333335,
+              "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision."
+            }
+          ],
+          "confidence": 0.95,
+          "anomaly_type": "RoadAccidents",
+          "source_candidate_ids": [
+            0
+          ]
+        }
+      ]
+    },
+    "arm": "strict",
+    "tail_seconds": 0.0008696999866515398,
+    "video_api_metrics": {
+      "logical_calls": 5,
+      "cache_hits": 0,
+      "sdk_attempts": 5,
+      "prompt_tokens": 5727,
+      "completion_tokens": 225
+    }
+  },
+  "paired_results": {
+    "original_off": {
+      "video_path": "F:\\dataset\\ucf_crime\\Testing_Normal_Videos_Anomaly\\Normal_Videos_906_x264.mp4",
+      "duration": 22.533333333333335,
+      "is_normal": false,
+      "anomalies": [
+        {
+          "t_start": 18.0,
+          "t_end": 22.533333333333335,
+          "confidence": 0.95,
+          "anomaly_type": "RoadAccidents",
+          "depth": null,
+          "visits": null,
+          "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision.",
+          "original_descriptions": [
+            {
+              "t_start": 18.0,
+              "t_end": 22.533333333333335,
+              "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision."
+            }
+          ]
+        }
+      ],
+      "frame_scores": [
+        0.3836089035987855,
+        0.38364870676639357,
+        0.3836043420844263,
+        0.3834883342637951,
+        0.38363483071122473,
+        0.3845286730214256,
+        0.3864297301080701,
+        0.38912210744964026,
+        0.39199578406606667,
+        0.39437103105538157,
+        0.3958390758659569,
+        0.3964121146704472,
+        0.39639899317060484,
+        0.3960678155817476,
+        0.3953099481858881,
+        0.3936103750609775,
+        0.39043144430828586,
+        0.38575537648475344,
+        0.3802816994089502,
+        0.3750454553993966,
+        0.370739630731055,
+        0.3673454717579598,
+        0.36440959467747736,
+        0.36170679964134334,
+        0.3596679786400966,
+        0.35911977219366187,
+        0.3606848211979653,
+        0.36444084868220444,
+        0.37037869806882484,
+        0.37951246796863725,
+        0.394914610821013,
+        0.4216664800784917,
+        0.4650823005662507,
+        0.5276265226721324,
+        0.6062305298819081,
+        0.692088221253859,
+        0.7735956600703042,
+        0.8408876022566325,
+        0.8890548228474517,
+        0.9183469877124188,
+        0.931734196152801
+      ],
+      "timestamps": [
+        0.0,
+        0.5,
+        1.0,
+        1.5,
+        2.0,
+        2.5,
+        3.0,
+        3.5,
+        4.0,
+        4.5,
+        5.0,
+        5.5,
+        6.0,
+        6.5,
+        7.0,
+        7.5,
+        8.0,
+        8.5,
+        9.0,
+        9.5,
+        10.0,
+        10.5,
+        11.0,
+        11.5,
+        12.0,
+        12.5,
+        13.0,
+        13.5,
+        14.0,
+        14.5,
+        15.0,
+        15.5,
+        16.0,
+        17.0,
+        17.5,
+        18.0,
+        18.5,
+        19.0,
+        19.5,
+        20.0,
+        21.0
+      ],
+      "pre_bue_boundaries": [
+        [
+          18.0,
+          22.533333333333335
+        ]
+      ],
+      "pre_cbt_boundaries": [
+        [
+          18.0,
+          22.533333333333335
+        ]
+      ],
+      "mcts_trace": {
+        "mode": "off",
+        "logical_requests": 0,
+        "stages": {
+          "post_stage4": [
+            {
+              "t_start": 18.0,
+              "t_end": 22.533333333333335,
+              "frame_indices": [
+                35,
+                36,
+                37,
+                38,
+                39,
+                40
+              ],
+              "coarse_score": 0.95,
+              "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision.",
+              "original_descriptions": [
+                {
+                  "t_start": 18.0,
+                  "t_end": 22.533333333333335,
+                  "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision."
+                }
+              ],
+              "confidence": 0.95,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ],
+          "pre_bue": [
+            {
+              "t_start": 18.0,
+              "t_end": 22.533333333333335,
+              "frame_indices": [
+                35,
+                36,
+                37,
+                38,
+                39,
+                40
+              ],
+              "coarse_score": 0.95,
+              "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision.",
+              "original_descriptions": [
+                {
+                  "t_start": 18.0,
+                  "t_end": 22.533333333333335,
+                  "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision."
+                }
+              ],
+              "confidence": 0.95,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ],
+          "post_bue": [
+            {
+              "t_start": 18.0,
+              "t_end": 22.533333333333335,
+              "frame_indices": [
+                35,
+                36,
+                37,
+                38,
+                39,
+                40
+              ],
+              "coarse_score": 0.95,
+              "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision.",
+              "original_descriptions": [
+                {
+                  "t_start": 18.0,
+                  "t_end": 22.533333333333335,
+                  "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision."
+                }
+              ],
+              "confidence": 0.95,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ],
+          "post_cbt": [
+            {
+              "t_start": 18.0,
+              "t_end": 22.533333333333335,
+              "frame_indices": [
+                35,
+                36,
+                37,
+                38,
+                39,
+                40
+              ],
+              "coarse_score": 0.95,
+              "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision.",
+              "original_descriptions": [
+                {
+                  "t_start": 18.0,
+                  "t_end": 22.533333333333335,
+                  "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision."
+                }
+              ],
+              "confidence": 0.95,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ]
+        },
+        "route": "stage4_direct",
+        "arm": "stage4_fixed",
+        "frame_scores_stage": "post_cbt",
+        "tail_seconds": 0.0013534999452531338
+      }
+    },
+    "relaxed_node": {
+      "video_path": "F:\\dataset\\ucf_crime\\Testing_Normal_Videos_Anomaly\\Normal_Videos_906_x264.mp4",
+      "duration": 22.533333333333335,
+      "is_normal": false,
+      "anomalies": [
+        {
+          "t_start": 18.0,
+          "t_end": 22.533333333333335,
+          "confidence": 0.95,
+          "anomaly_type": "RoadAccidents",
+          "depth": null,
+          "visits": null,
+          "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision.",
+          "original_descriptions": [
+            {
+              "t_start": 18.0,
+              "t_end": 22.533333333333335,
+              "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision."
+            }
+          ]
+        }
+      ],
+      "frame_scores": [
+        0.3836089035987855,
+        0.38364870676639357,
+        0.3836043420844263,
+        0.3834883342637951,
+        0.38363483071122473,
+        0.3845286730214256,
+        0.3864297301080701,
+        0.38912210744964026,
+        0.39199578406606667,
+        0.39437103105538157,
+        0.3958390758659569,
+        0.3964121146704472,
+        0.39639899317060484,
+        0.3960678155817476,
+        0.3953099481858881,
+        0.3936103750609775,
+        0.39043144430828586,
+        0.38575537648475344,
+        0.3802816994089502,
+        0.3750454553993966,
+        0.370739630731055,
+        0.3673454717579598,
+        0.36440959467747736,
+        0.36170679964134334,
+        0.3596679786400966,
+        0.35911977219366187,
+        0.3606848211979653,
+        0.36444084868220444,
+        0.37037869806882484,
+        0.37951246796863725,
+        0.394914610821013,
+        0.4216664800784917,
+        0.4650823005662507,
+        0.5276265226721324,
+        0.6062305298819081,
+        0.692088221253859,
+        0.7735956600703042,
+        0.8408876022566325,
+        0.8890548228474517,
+        0.9183469877124188,
+        0.931734196152801
+      ],
+      "timestamps": [
+        0.0,
+        0.5,
+        1.0,
+        1.5,
+        2.0,
+        2.5,
+        3.0,
+        3.5,
+        4.0,
+        4.5,
+        5.0,
+        5.5,
+        6.0,
+        6.5,
+        7.0,
+        7.5,
+        8.0,
+        8.5,
+        9.0,
+        9.5,
+        10.0,
+        10.5,
+        11.0,
+        11.5,
+        12.0,
+        12.5,
+        13.0,
+        13.5,
+        14.0,
+        14.5,
+        15.0,
+        15.5,
+        16.0,
+        17.0,
+        17.5,
+        18.0,
+        18.5,
+        19.0,
+        19.5,
+        20.0,
+        21.0
+      ],
+      "pre_bue_boundaries": [
+        [
+          18.0,
+          22.533333333333335
+        ]
+      ],
+      "pre_cbt_boundaries": [
+        [
+          18.0,
+          22.533333333333335
+        ]
+      ],
+      "mcts_trace": {
+        "mode": "refine",
+        "acceptance_policy": "relaxed_node",
+        "strategy": "mcts",
+        "prompt_version": "boundary-v3-3",
+        "candidates": {
+          "0": {
+            "candidate_id": 0,
+            "applied": false,
+            "would_accept": false,
+            "baseline": [
+              18.0,
+              22.533333333333335
+            ],
+            "boundary_method": "unknown",
+            "reason": "missing_curve_end"
+          }
+        },
+        "logical_requests": 0,
+        "images_sent": 0,
+        "frame_scores_stage": "post_cbt",
+        "evidence_pool": "global",
+        "decode_seconds": 0.0,
+        "encode_seconds": 0.0,
+        "route": "stage4_direct",
+        "search_category": "RoadAccidents",
+        "effective_config": {
+          "preprocess": {
+            "fps": 2,
+            "segment_duration": 6.0,
+            "segment_overlap": 0.25,
+            "motion_threshold": 1.0,
+            "min_motion_interval": 2.0
+          },
+          "clip": {
+            "model_name": "ViT-L-14",
+            "pretrained": "openai",
+            "max_frames": 200,
+            "min_frames": 3,
+            "fps_sample": 3.0,
+            "semantic_tau": 0.9
+          },
+          "mcts": {
+            "simulations": 8,
+            "max_depth": 4,
+            "padding_ratio": 0.75,
+            "early_stop_agree": 4,
+            "early_stop_min_sim": 5,
+            "mode": "refine",
+            "action_set": "shrink",
+            "search_strategy": "mcts",
+            "comparison_gate": "best_valid",
+            "acceptance_policy": "relaxed_node",
+            "trigger_policy": "all_valid",
+            "citation_repair_attempts": 1,
+            "max_candidates_per_video": 2,
+            "max_vlm_evaluations_per_candidate": 10,
+            "max_vlm_evaluations_per_video": 20,
+            "timeout_seconds_per_candidate": 90.0,
+            "contrast_threshold": 0.15,
+            "search_padding_ratio": 0.25,
+            "max_inward_shift_ratio": 0.25,
+            "max_outward_shift_ratio": 0.25,
+            "step_ratio": 0.1,
+            "min_interval_seconds": 0.5,
+            "max_images_per_evaluation": 32,
+            "context_seconds": 2.0,
+            "max_boundary_gap_seconds": 1.5,
+            "max_evidence_gap_seconds": 3.0,
+            "min_unique_evaluations": 4,
+            "patience": 3,
+            "min_reward_gain": 0.02,
+            "max_curve_quality_drop": 0.05,
+            "ucb_c": 1.0,
+            "ucb_decay": 0.0,
+            "random_seed": 42,
+            "trace_enabled": true,
+            "paired_eval": true,
+            "stage4_direct_eval": true,
+            "stage4_acceptance_eval": false,
+            "final_nms_enabled": false,
+            "final_nms_iou": 0.3,
+            "boundary_guard_enabled": false,
+            "guard_min_retained_ratio": 0.5,
+            "guard_max_shift_ratio": 0.25,
+            "guard_tolerance_seconds": 0.5,
+            "postprocess_ablation": false,
+            "dense_fps": 0.0,
+            "max_dense_frames": 512,
+            "max_enumerated_states": 10000
+          },
+          "scoring": {
+            "clip_base_weight": 0.35,
+            "gaussian_sigma_factor": 1.5,
+            "gaussian_sigma_min": 1.0,
+            "confidence_gate": 0.5,
+            "curve_smooth_seconds": 2.0,
+            "curve_half_max_weight": 0.5,
+            "curve_max_shift_ratio": 0.4,
+            "curve_core_signal_floor": 0.3,
+            "boundary_shrink_ratio": 0.35,
+            "videomae_weight": 0.15,
+            "motion_weight": 0.1,
+            "mae_window_size": 32,
+            "mae_window_stride": 16,
+            "qscore_rerank": true,
+            "qscore_base": 0.5,
+            "bue_enabled": true,
+            "bue_alpha": 1.0,
+            "bue_lmin_sec": 6.0,
+            "bue_lmax_sec": 40.0,
+            "bue_lmax_frac": 0.8,
+            "bue_smooth_win": 3,
+            "bue_closure_gate": true,
+            "cbt_enabled": true,
+            "cbt_recal": true,
+            "cbt_recal_caps": {
+              "RoadAccidents": 4.5,
+              "Explosion": 13.0,
+              "Shoplifting": 9.0,
+              "Shooting": 13.5
+            },
+            "cbt_recal_trigger": 1.1,
+            "classify_skip_class_agnostic": true
+          },
+          "discovery": {
+            "clip_threshold": 0.3,
+            "min_pass_rate": 0.2,
+            "max_scan_segments": 6,
+            "candidate_top_k": 3
+          },
+          "device": "cuda",
+          "anomaly_categories": [
+            "Abuse",
+            "Arrest",
+            "Arson",
+            "Assault",
+            "Burglary",
+            "Explosion",
+            "Fighting",
+            "RoadAccidents",
+            "Robbery",
+            "Shooting",
+            "Shoplifting",
+            "Stealing",
+            "Vandalism"
+          ]
+        },
+        "search_seconds": 0.0007477998733520508,
+        "search_api_metrics": {
+          "logical_calls": 0,
+          "cache_hits": 0,
+          "sdk_attempts": 0,
+          "prompt_tokens": 0,
+          "completion_tokens": 0
+        },
+        "candidate_policy": "all stage4 candidates; no top-k/merge/NMS/confidence gate",
+        "confidence_source": "stage4 coarse_score",
+        "category_source": "upstream prediction",
+        "stages": {
+          "post_stage4": [
+            {
+              "t_start": 18.0,
+              "t_end": 22.533333333333335,
+              "frame_indices": [
+                35,
+                36,
+                37,
+                38,
+                39,
+                40
+              ],
+              "coarse_score": 0.95,
+              "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision.",
+              "original_descriptions": [
+                {
+                  "t_start": 18.0,
+                  "t_end": 22.533333333333335,
+                  "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision."
+                }
+              ],
+              "confidence": 0.95,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ],
+          "post_mcts": [
+            {
+              "t_start": 18.0,
+              "t_end": 22.533333333333335,
+              "frame_indices": [
+                35,
+                36,
+                37,
+                38,
+                39,
+                40
+              ],
+              "coarse_score": 0.95,
+              "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision.",
+              "original_descriptions": [
+                {
+                  "t_start": 18.0,
+                  "t_end": 22.533333333333335,
+                  "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision."
+                }
+              ],
+              "confidence": 0.95,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ],
+          "pre_bue": [
+            {
+              "t_start": 18.0,
+              "t_end": 22.533333333333335,
+              "frame_indices": [
+                35,
+                36,
+                37,
+                38,
+                39,
+                40
+              ],
+              "coarse_score": 0.95,
+              "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision.",
+              "original_descriptions": [
+                {
+                  "t_start": 18.0,
+                  "t_end": 22.533333333333335,
+                  "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision."
+                }
+              ],
+              "confidence": 0.95,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ],
+          "post_bue": [
+            {
+              "t_start": 18.0,
+              "t_end": 22.533333333333335,
+              "frame_indices": [
+                35,
+                36,
+                37,
+                38,
+                39,
+                40
+              ],
+              "coarse_score": 0.95,
+              "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision.",
+              "original_descriptions": [
+                {
+                  "t_start": 18.0,
+                  "t_end": 22.533333333333335,
+                  "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision."
+                }
+              ],
+              "confidence": 0.95,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ],
+          "post_cbt": [
+            {
+              "t_start": 18.0,
+              "t_end": 22.533333333333335,
+              "frame_indices": [
+                35,
+                36,
+                37,
+                38,
+                39,
+                40
+              ],
+              "coarse_score": 0.95,
+              "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision.",
+              "original_descriptions": [
+                {
+                  "t_start": 18.0,
+                  "t_end": 22.533333333333335,
+                  "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision."
+                }
+              ],
+              "confidence": 0.95,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ]
+        },
+        "arm": "relaxed_node",
+        "tail_seconds": 0.0008147000335156918
+      }
+    },
+    "force_best": {
+      "video_path": "F:\\dataset\\ucf_crime\\Testing_Normal_Videos_Anomaly\\Normal_Videos_906_x264.mp4",
+      "duration": 22.533333333333335,
+      "is_normal": false,
+      "anomalies": [
+        {
+          "t_start": 18.0,
+          "t_end": 22.533333333333335,
+          "confidence": 0.95,
+          "anomaly_type": "RoadAccidents",
+          "depth": null,
+          "visits": null,
+          "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision.",
+          "original_descriptions": [
+            {
+              "t_start": 18.0,
+              "t_end": 22.533333333333335,
+              "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision."
+            }
+          ]
+        }
+      ],
+      "frame_scores": [
+        0.3836089035987855,
+        0.38364870676639357,
+        0.3836043420844263,
+        0.3834883342637951,
+        0.38363483071122473,
+        0.3845286730214256,
+        0.3864297301080701,
+        0.38912210744964026,
+        0.39199578406606667,
+        0.39437103105538157,
+        0.3958390758659569,
+        0.3964121146704472,
+        0.39639899317060484,
+        0.3960678155817476,
+        0.3953099481858881,
+        0.3936103750609775,
+        0.39043144430828586,
+        0.38575537648475344,
+        0.3802816994089502,
+        0.3750454553993966,
+        0.370739630731055,
+        0.3673454717579598,
+        0.36440959467747736,
+        0.36170679964134334,
+        0.3596679786400966,
+        0.35911977219366187,
+        0.3606848211979653,
+        0.36444084868220444,
+        0.37037869806882484,
+        0.37951246796863725,
+        0.394914610821013,
+        0.4216664800784917,
+        0.4650823005662507,
+        0.5276265226721324,
+        0.6062305298819081,
+        0.692088221253859,
+        0.7735956600703042,
+        0.8408876022566325,
+        0.8890548228474517,
+        0.9183469877124188,
+        0.931734196152801
+      ],
+      "timestamps": [
+        0.0,
+        0.5,
+        1.0,
+        1.5,
+        2.0,
+        2.5,
+        3.0,
+        3.5,
+        4.0,
+        4.5,
+        5.0,
+        5.5,
+        6.0,
+        6.5,
+        7.0,
+        7.5,
+        8.0,
+        8.5,
+        9.0,
+        9.5,
+        10.0,
+        10.5,
+        11.0,
+        11.5,
+        12.0,
+        12.5,
+        13.0,
+        13.5,
+        14.0,
+        14.5,
+        15.0,
+        15.5,
+        16.0,
+        17.0,
+        17.5,
+        18.0,
+        18.5,
+        19.0,
+        19.5,
+        20.0,
+        21.0
+      ],
+      "pre_bue_boundaries": [
+        [
+          18.0,
+          22.533333333333335
+        ]
+      ],
+      "pre_cbt_boundaries": [
+        [
+          18.0,
+          22.533333333333335
+        ]
+      ],
+      "mcts_trace": {
+        "mode": "refine",
+        "acceptance_policy": "force_best",
+        "strategy": "mcts",
+        "prompt_version": "boundary-v3-3",
+        "candidates": {
+          "0": {
+            "candidate_id": 0,
+            "applied": false,
+            "would_accept": false,
+            "baseline": [
+              18.0,
+              22.533333333333335
+            ],
+            "boundary_method": "unknown",
+            "reason": "missing_curve_end"
+          }
+        },
+        "logical_requests": 0,
+        "images_sent": 0,
+        "frame_scores_stage": "post_cbt",
+        "evidence_pool": "global",
+        "decode_seconds": 0.0,
+        "encode_seconds": 0.0,
+        "route": "stage4_direct",
+        "search_category": "RoadAccidents",
+        "effective_config": {
+          "preprocess": {
+            "fps": 2,
+            "segment_duration": 6.0,
+            "segment_overlap": 0.25,
+            "motion_threshold": 1.0,
+            "min_motion_interval": 2.0
+          },
+          "clip": {
+            "model_name": "ViT-L-14",
+            "pretrained": "openai",
+            "max_frames": 200,
+            "min_frames": 3,
+            "fps_sample": 3.0,
+            "semantic_tau": 0.9
+          },
+          "mcts": {
+            "simulations": 8,
+            "max_depth": 4,
+            "padding_ratio": 0.75,
+            "early_stop_agree": 4,
+            "early_stop_min_sim": 5,
+            "mode": "refine",
+            "action_set": "shrink",
+            "search_strategy": "mcts",
+            "comparison_gate": "best_valid",
+            "acceptance_policy": "force_best",
+            "trigger_policy": "all_valid",
+            "citation_repair_attempts": 1,
+            "max_candidates_per_video": 2,
+            "max_vlm_evaluations_per_candidate": 10,
+            "max_vlm_evaluations_per_video": 20,
+            "timeout_seconds_per_candidate": 90.0,
+            "contrast_threshold": 0.15,
+            "search_padding_ratio": 0.25,
+            "max_inward_shift_ratio": 0.25,
+            "max_outward_shift_ratio": 0.25,
+            "step_ratio": 0.1,
+            "min_interval_seconds": 0.5,
+            "max_images_per_evaluation": 32,
+            "context_seconds": 2.0,
+            "max_boundary_gap_seconds": 1.5,
+            "max_evidence_gap_seconds": 3.0,
+            "min_unique_evaluations": 4,
+            "patience": 3,
+            "min_reward_gain": 0.02,
+            "max_curve_quality_drop": 0.05,
+            "ucb_c": 1.0,
+            "ucb_decay": 0.0,
+            "random_seed": 42,
+            "trace_enabled": true,
+            "paired_eval": true,
+            "stage4_direct_eval": true,
+            "stage4_acceptance_eval": false,
+            "final_nms_enabled": false,
+            "final_nms_iou": 0.3,
+            "boundary_guard_enabled": false,
+            "guard_min_retained_ratio": 0.5,
+            "guard_max_shift_ratio": 0.25,
+            "guard_tolerance_seconds": 0.5,
+            "postprocess_ablation": false,
+            "dense_fps": 0.0,
+            "max_dense_frames": 512,
+            "max_enumerated_states": 10000
+          },
+          "scoring": {
+            "clip_base_weight": 0.35,
+            "gaussian_sigma_factor": 1.5,
+            "gaussian_sigma_min": 1.0,
+            "confidence_gate": 0.5,
+            "curve_smooth_seconds": 2.0,
+            "curve_half_max_weight": 0.5,
+            "curve_max_shift_ratio": 0.4,
+            "curve_core_signal_floor": 0.3,
+            "boundary_shrink_ratio": 0.35,
+            "videomae_weight": 0.15,
+            "motion_weight": 0.1,
+            "mae_window_size": 32,
+            "mae_window_stride": 16,
+            "qscore_rerank": true,
+            "qscore_base": 0.5,
+            "bue_enabled": true,
+            "bue_alpha": 1.0,
+            "bue_lmin_sec": 6.0,
+            "bue_lmax_sec": 40.0,
+            "bue_lmax_frac": 0.8,
+            "bue_smooth_win": 3,
+            "bue_closure_gate": true,
+            "cbt_enabled": true,
+            "cbt_recal": true,
+            "cbt_recal_caps": {
+              "RoadAccidents": 4.5,
+              "Explosion": 13.0,
+              "Shoplifting": 9.0,
+              "Shooting": 13.5
+            },
+            "cbt_recal_trigger": 1.1,
+            "classify_skip_class_agnostic": true
+          },
+          "discovery": {
+            "clip_threshold": 0.3,
+            "min_pass_rate": 0.2,
+            "max_scan_segments": 6,
+            "candidate_top_k": 3
+          },
+          "device": "cuda",
+          "anomaly_categories": [
+            "Abuse",
+            "Arrest",
+            "Arson",
+            "Assault",
+            "Burglary",
+            "Explosion",
+            "Fighting",
+            "RoadAccidents",
+            "Robbery",
+            "Shooting",
+            "Shoplifting",
+            "Stealing",
+            "Vandalism"
+          ]
+        },
+        "search_seconds": 0.0006341999396681786,
+        "search_api_metrics": {
+          "logical_calls": 0,
+          "cache_hits": 0,
+          "sdk_attempts": 0,
+          "prompt_tokens": 0,
+          "completion_tokens": 0
+        },
+        "candidate_policy": "all stage4 candidates; no top-k/merge/NMS/confidence gate",
+        "confidence_source": "stage4 coarse_score",
+        "category_source": "upstream prediction",
+        "stages": {
+          "post_stage4": [
+            {
+              "t_start": 18.0,
+              "t_end": 22.533333333333335,
+              "frame_indices": [
+                35,
+                36,
+                37,
+                38,
+                39,
+                40
+              ],
+              "coarse_score": 0.95,
+              "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision.",
+              "original_descriptions": [
+                {
+                  "t_start": 18.0,
+                  "t_end": 22.533333333333335,
+                  "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision."
+                }
+              ],
+              "confidence": 0.95,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ],
+          "post_mcts": [
+            {
+              "t_start": 18.0,
+              "t_end": 22.533333333333335,
+              "frame_indices": [
+                35,
+                36,
+                37,
+                38,
+                39,
+                40
+              ],
+              "coarse_score": 0.95,
+              "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision.",
+              "original_descriptions": [
+                {
+                  "t_start": 18.0,
+                  "t_end": 22.533333333333335,
+                  "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision."
+                }
+              ],
+              "confidence": 0.95,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ],
+          "pre_bue": [
+            {
+              "t_start": 18.0,
+              "t_end": 22.533333333333335,
+              "frame_indices": [
+                35,
+                36,
+                37,
+                38,
+                39,
+                40
+              ],
+              "coarse_score": 0.95,
+              "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision.",
+              "original_descriptions": [
+                {
+                  "t_start": 18.0,
+                  "t_end": 22.533333333333335,
+                  "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision."
+                }
+              ],
+              "confidence": 0.95,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ],
+          "post_bue": [
+            {
+              "t_start": 18.0,
+              "t_end": 22.533333333333335,
+              "frame_indices": [
+                35,
+                36,
+                37,
+                38,
+                39,
+                40
+              ],
+              "coarse_score": 0.95,
+              "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision.",
+              "original_descriptions": [
+                {
+                  "t_start": 18.0,
+                  "t_end": 22.533333333333335,
+                  "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision."
+                }
+              ],
+              "confidence": 0.95,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ],
+          "post_cbt": [
+            {
+              "t_start": 18.0,
+              "t_end": 22.533333333333335,
+              "frame_indices": [
+                35,
+                36,
+                37,
+                38,
+                39,
+                40
+              ],
+              "coarse_score": 0.95,
+              "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision.",
+              "original_descriptions": [
+                {
+                  "t_start": 18.0,
+                  "t_end": 22.533333333333335,
+                  "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision."
+                }
+              ],
+              "confidence": 0.95,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ]
+        },
+        "arm": "force_best",
+        "tail_seconds": 0.0007923000957816839
+      }
+    },
+    "force_best_no_tail": {
+      "video_path": "F:\\dataset\\ucf_crime\\Testing_Normal_Videos_Anomaly\\Normal_Videos_906_x264.mp4",
+      "duration": 22.533333333333335,
+      "is_normal": false,
+      "anomalies": [
+        {
+          "t_start": 18.0,
+          "t_end": 22.533333333333335,
+          "frame_indices": [
+            35,
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "coarse_score": 0.95,
+          "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision.",
+          "original_descriptions": [
+            {
+              "t_start": 18.0,
+              "t_end": 22.533333333333335,
+              "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision."
+            }
+          ],
+          "confidence": 0.95,
+          "anomaly_type": "RoadAccidents",
+          "source_candidate_ids": [
+            0
+          ]
+        }
+      ],
+      "frame_scores": [
+        0.3836089035987855,
+        0.38364870676639357,
+        0.3836043420844263,
+        0.3834883342637951,
+        0.38363483071122473,
+        0.3845286730214256,
+        0.3864297301080701,
+        0.38912210744964026,
+        0.39199578406606667,
+        0.39437103105538157,
+        0.3958390758659569,
+        0.3964121146704472,
+        0.39639899317060484,
+        0.3960678155817476,
+        0.3953099481858881,
+        0.3936103750609775,
+        0.39043144430828586,
+        0.38575537648475344,
+        0.3802816994089502,
+        0.3750454553993966,
+        0.370739630731055,
+        0.3673454717579598,
+        0.36440959467747736,
+        0.36170679964134334,
+        0.3596679786400966,
+        0.35911977219366187,
+        0.3606848211979653,
+        0.36444084868220444,
+        0.37037869806882484,
+        0.37951246796863725,
+        0.394914610821013,
+        0.4216664800784917,
+        0.4650823005662507,
+        0.5276265226721324,
+        0.6062305298819081,
+        0.692088221253859,
+        0.7735956600703042,
+        0.8408876022566325,
+        0.8890548228474517,
+        0.9183469877124188,
+        0.931734196152801
+      ],
+      "timestamps": [
+        0.0,
+        0.5,
+        1.0,
+        1.5,
+        2.0,
+        2.5,
+        3.0,
+        3.5,
+        4.0,
+        4.5,
+        5.0,
+        5.5,
+        6.0,
+        6.5,
+        7.0,
+        7.5,
+        8.0,
+        8.5,
+        9.0,
+        9.5,
+        10.0,
+        10.5,
+        11.0,
+        11.5,
+        12.0,
+        12.5,
+        13.0,
+        13.5,
+        14.0,
+        14.5,
+        15.0,
+        15.5,
+        16.0,
+        17.0,
+        17.5,
+        18.0,
+        18.5,
+        19.0,
+        19.5,
+        20.0,
+        21.0
+      ],
+      "frame_scores_stage": "post_mcts"
+    },
+    "stage4_only": {
+      "video_path": "F:\\dataset\\ucf_crime\\Testing_Normal_Videos_Anomaly\\Normal_Videos_906_x264.mp4",
+      "duration": 22.533333333333335,
+      "is_normal": false,
+      "anomalies": [
+        {
+          "t_start": 18.0,
+          "t_end": 22.533333333333335,
+          "frame_indices": [
+            35,
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "coarse_score": 0.95,
+          "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision.",
+          "original_descriptions": [
+            {
+              "t_start": 18.0,
+              "t_end": 22.533333333333335,
+              "description": "Two vehicles (a silver sedan and a dark gray sedan) collide at an intersection during the sequence: at 18.0s, the silver sedan is turning right; by 19.0s–20.0s, the dark gray sedan enters from the left and strikes the silver sedan’s side/rear, causing visible impact and abrupt change in vehicle trajectories; both cars are seen overlapping/interlocked at 20.0s–21.0s before separating slightly—consistent with a side-impact collision."
+            }
+          ],
+          "confidence": 0.95,
+          "anomaly_type": "RoadAccidents",
+          "source_candidate_ids": [
+            0
+          ]
+        }
+      ],
+      "frame_scores": [
+        0.3836089035987855,
+        0.38364870676639357,
+        0.3836043420844263,
+        0.3834883342637951,
+        0.38363483071122473,
+        0.3845286730214256,
+        0.3864297301080701,
+        0.38912210744964026,
+        0.39199578406606667,
+        0.39437103105538157,
+        0.3958390758659569,
+        0.3964121146704472,
+        0.39639899317060484,
+        0.3960678155817476,
+        0.3953099481858881,
+        0.3936103750609775,
+        0.39043144430828586,
+        0.38575537648475344,
+        0.3802816994089502,
+        0.3750454553993966,
+        0.370739630731055,
+        0.3673454717579598,
+        0.36440959467747736,
+        0.36170679964134334,
+        0.3596679786400966,
+        0.35911977219366187,
+        0.3606848211979653,
+        0.36444084868220444,
+        0.37037869806882484,
+        0.37951246796863725,
+        0.394914610821013,
+        0.4216664800784917,
+        0.4650823005662507,
+        0.5276265226721324,
+        0.6062305298819081,
+        0.692088221253859,
+        0.7735956600703042,
+        0.8408876022566325,
+        0.8890548228474517,
+        0.9183469877124188,
+        0.931734196152801
+      ],
+      "timestamps": [
+        0.0,
+        0.5,
+        1.0,
+        1.5,
+        2.0,
+        2.5,
+        3.0,
+        3.5,
+        4.0,
+        4.5,
+        5.0,
+        5.5,
+        6.0,
+        6.5,
+        7.0,
+        7.5,
+        8.0,
+        8.5,
+        9.0,
+        9.5,
+        10.0,
+        10.5,
+        11.0,
+        11.5,
+        12.0,
+        12.5,
+        13.0,
+        13.5,
+        14.0,
+        14.5,
+        15.0,
+        15.5,
+        16.0,
+        17.0,
+        17.5,
+        18.0,
+        18.5,
+        19.0,
+        19.5,
+        20.0,
+        21.0
+      ],
+      "frame_scores_stage": "post_stage4"
+    }
+  },
+  "token_usage": {
+    "requests": 5,
+    "successful_requests": 5,
+    "failed_requests": 0,
+    "unknown_usage_requests": 0,
+    "prompt_tokens": 5727,
+    "completion_tokens": 225,
+    "total_tokens": 5952,
+    "api_queue_seconds": 41.48789899982512,
+    "api_request_seconds": 13.6027,
+    "api_backoff_seconds": 0.0,
+    "api_cancelled_queue_seconds": 0.0,
+    "by_model": {
+      "qwen3-vl-plus": {
+        "requests": 5,
+        "successful_requests": 5,
+        "failed_requests": 0,
+        "unknown_usage_requests": 0,
+        "prompt_tokens": 5727,
+        "completion_tokens": 225,
+        "total_tokens": 5952,
+        "api_queue_seconds": 41.48789899982512,
+        "api_request_seconds": 13.6027,
+        "api_backoff_seconds": 0.0,
+        "api_cancelled_queue_seconds": 0.0,
+        "by_model": {}
+      }
+    },
+    "video_path": "F:\\dataset\\ucf_crime\\Testing_Normal_Videos_Anomaly\\Normal_Videos_906_x264.mp4",
+    "status": "success"
+  },
+  "experiment_fingerprint": "93d25bd0f4d7e3129499c8c6dbde0540a4dd851fdae40405cfc1b9c5d5cfab16",
+  "diagnosis_attempt": 1,
+  "token_usage_all_attempts": {
+    "requests": 5,
+    "successful_requests": 5,
+    "failed_requests": 0,
+    "unknown_usage_requests": 0,
+    "prompt_tokens": 5727,
+    "completion_tokens": 225,
+    "total_tokens": 5952,
+    "api_queue_seconds": 41.48789899982512,
+    "api_request_seconds": 13.6027,
+    "api_backoff_seconds": 0.0,
+    "api_cancelled_queue_seconds": 0.0,
+    "by_model": {
+      "qwen3-vl-plus": {
+        "requests": 5,
+        "successful_requests": 5,
+        "failed_requests": 0,
+        "unknown_usage_requests": 0,
+        "prompt_tokens": 5727,
+        "completion_tokens": 225,
+        "total_tokens": 5952,
+        "api_queue_seconds": 41.48789899982512,
+        "api_request_seconds": 13.6027,
+        "api_backoff_seconds": 0.0,
+        "api_cancelled_queue_seconds": 0.0,
+        "by_model": {}
+      }
+    },
+    "diagnosis_attempts": 1
+  },
+  "processing_time": 16.13
+}

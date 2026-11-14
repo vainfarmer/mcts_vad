@@ -168,15 +168,17 @@ class VideoMAEClassifier:
             return [n // 2], [1.0 - normal_prob]
         centers = []
         scores = []
-        tensors = [self._preprocess(frames[s:e]) for s, e in windows]
         with torch.no_grad():
-            for i, tensor in enumerate(tensors):
+            # 长视频不能一次将所有窗口张量驻留 GPU；逐窗预处理与推理，
+            # 保持原窗口、采样和计算顺序，仅限制同时存活的输入张量数量。
+            for s, e in windows:
+                tensor = self._preprocess(frames[s:e])
                 logits = self.model(tensor).logits[0]
                 probs = torch.softmax(logits, dim=-1).cpu().numpy()
                 normal_prob = float(probs[7])
-                s, e = windows[i]
                 centers.append((s + e) // 2)
                 scores.append(1.0 - normal_prob)
+                del tensor, logits
         return centers, scores
 
     def _classify_tta(self, frames: np.ndarray) -> torch.Tensor:

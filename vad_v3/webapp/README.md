@@ -55,7 +55,7 @@ DASHSCOPE_MODEL=qwen3-vl-plus
 
 任务冻结完整算法配置、MCTS 预算、后处理开关、场景、VLM 请求参数、源码内容哈希、依赖版本和缓存模型修订标识。排队后源码或运行环境改变，任务会提示重新创建。历史导入不能倒推出原执行环境。
 
-Web 新任务默认 `mcts_mode=refine`、`acceptance_policy=force_best`。页面研究参数可选择接收策略；显式传入的策略优先。打开或重试旧任务仍使用旧配置，旧目录导入保留原 strict 接收规则。四组配对实验的策略分别由实验配置指定。
+Web 新任务默认 `mcts_mode=refine`、`acceptance_policy=force_best`，命令行及算法配置的默认接收策略同样为 `force_best`。页面研究参数可选择接收策略；显式传入的策略优先。打开或重试旧任务仍使用旧配置，旧目录导入保留原 strict 接收规则。四组配对实验的策略分别由实验配置指定。
 
 ## 3. 页面与操作
 

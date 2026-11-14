@@ -11,7 +11,7 @@ class MCTSConfig:
     padding_ratio: float = 0.75  # Legacy search() only.
     early_stop_agree: int = 4
     early_stop_min_sim: int = 5
-    # off不搜索；shadow搜索但不应用；refine允许应用通过全部门槛的修改。
+    # off不搜索；shadow搜索但不应用；refine应用符合所选接收策略的修改。
     mode: str = 'off'
     action_set: str = 'shrink'
     search_strategy: str = 'mcts'
@@ -19,8 +19,8 @@ class MCTSConfig:
     comparison_gate: str = 'best_valid'
     # relative_nonloss允许原事件不完整且比较打平，但必须保留原区间已有事件内容。
     # relaxed_node保留目标/同一事件/CLIP质量；force_best接受最佳有效非根节点。
-    # 后两者是接收消融，不做最终A/B比较，也不检查奖励增益；默认仍为strict。
-    acceptance_policy: str = 'strict'
+    # 后两者不做最终A/B比较，也不检查奖励增益；普通运行默认使用force_best。
+    acceptance_policy: str = 'force_best'
     # all_valid取消对比阈值筛选，但仍要求证据有效、存在合法动作并遵守预算。
     trigger_policy: str = 'low_contrast'
     # 仅语义全部通过时允许一次引用纠正，仍占原请求预算；0可关闭。

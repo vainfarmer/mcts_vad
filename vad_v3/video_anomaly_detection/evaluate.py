@@ -337,7 +337,8 @@ def compute_temporal_map(
     all_predictions = []
     all_gt_segments = []
 
-    for video_id, gt_entry in gt.items():
+    for video_id in sorted(gt):
+        gt_entry = gt[video_id]
         for seg in gt_entry['segments']:
             all_gt_segments.append({'video_id': video_id, 'segment': seg})
 
@@ -356,8 +357,9 @@ def compute_temporal_map(
             **{f'AP@{t}': 0.0 for t in iou_thresholds},
         }
 
-    all_predictions.sort(key=lambda x:(-x['confidence'],x['video_id'],
-        x['segment']['t_start'],x['segment']['t_end']))
+    # 使用与主指标、VadCLIP 一致的置信度排序，不追加并列排序键。
+    order = np.argsort(-np.asarray([x['confidence'] for x in all_predictions], dtype=float))
+    all_predictions = [all_predictions[int(i)] for i in order]
     n_gt = len(all_gt_segments)
     results = {}
 
@@ -428,7 +430,8 @@ def compute_vadclip_temporal_map(gt, pred, fps=30, iou_thresholds=None,
     return dict(metrics,mAP=metrics['values']['AVG'],
         **{f'AP@{t:g}':metrics['values'][f'mAP@{t:.1f}'] for t in thresholds},
         protocol=dict(ap_formula='sum(precision_at_rank * TP) / N_GT',
-            interpolation='none',class_aware=True,classes=list(classes),
+            interpolation='none',sorting='numpy.argsort(-confidence)',
+            class_aware=True,classes=list(classes),
             iou_thresholds=list(thresholds),include_normal_videos=include_normal_videos,
             interval='integer source frames [start,end)',proposal_source='existing final detections'))
 

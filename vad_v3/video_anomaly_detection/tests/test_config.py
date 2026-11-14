@@ -63,6 +63,7 @@ class TestFromArgs:
         c = VADConfig.from_args(A())
         assert c.preprocess.fps == 2
         assert c.clip.model_name == "ViT-L-14"
+        assert c.mcts.acceptance_policy == 'force_best'
 
 
 class TestPersistence:
@@ -93,5 +94,6 @@ class TestPersistence:
             assert c.scoring.confidence_gate == 0.66
             assert c.scoring.clip_base_weight == 0.35  # default preserved
             assert c.mcts.simulations == 12  # default preserved
+            assert c.mcts.acceptance_policy == 'force_best'
         finally:
             os.unlink(path)

@@ -42,6 +42,8 @@ class Client:
 
 
 def run_refiner(mode='refine',client=None,**kwargs):
+    # 这些既有用例验证严格比较协议，显式固定策略，不依赖生产默认值。
+    kwargs.setdefault('acceptance_policy', 'strict')
     c=MCTSConfig(mode=mode,trace_enabled=True,max_images_per_evaluation=32,**kwargs)
     vd=data(); curve=np.ones(len(vd['timestamps']))*.5
     seeds={0:{'t_start':2.,'t_end':8.,'confidence':.8,'coarse_score':.9,'anomaly_type':'Arrest',
@@ -124,6 +126,7 @@ def test_config_all_cli_fields_and_validation():
     args=p.parse_args(['--mcts_mode','refine','--mcts_search_strategy','uniform','--mcts_trace'])
     c=MCTSConfig.from_args(args)
     assert c.mode=='refine' and c.search_strategy=='uniform' and c.trace_enabled
+    assert c.acceptance_policy=='force_best'
     assert set(asdict(c))=={f.name for f in fields(MCTSConfig)}
     with pytest.raises(ValueError): MCTSConfig(max_outward_shift_ratio=.9)
     with pytest.raises(ValueError): MCTSConfig(timeout_seconds_per_candidate=float('nan'))

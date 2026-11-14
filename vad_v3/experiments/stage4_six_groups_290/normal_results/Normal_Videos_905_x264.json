@@ -1,0 +1,1891 @@
+{
+  "video_path": "F:\\dataset\\ucf_crime\\Testing_Normal_Videos_Anomaly\\Normal_Videos_905_x264.mp4",
+  "duration": 39.86666666666667,
+  "is_normal": false,
+  "anomalies": [
+    {
+      "t_start": 0.0,
+      "t_end": 6.0,
+      "confidence": 0.95,
+      "anomaly_type": "RoadAccidents",
+      "depth": null,
+      "visits": null,
+      "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash.",
+      "original_descriptions": [
+        {
+          "t_start": 0.0,
+          "t_end": 6.0,
+          "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash."
+        }
+      ]
+    }
+  ],
+  "frame_scores": [
+    0.9494257530483511,
+    0.946548549653465,
+    0.9333967858691671,
+    0.8911589824513269,
+    0.7942225055405883,
+    0.6357716890592969,
+    0.45297382237172945,
+    0.30812245068250127,
+    0.23672871065416384,
+    0.22650342658363082,
+    0.24363311362865414,
+    0.2622429133566492,
+    0.26982213512108233,
+    0.26156027979307633,
+    0.24023018778610217,
+    0.21735603321313834,
+    0.205384833347558,
+    0.20715074991269605,
+    0.21545642498806641,
+    0.22097613442422898,
+    0.21834647846218996,
+    0.2071390095366995,
+    0.1909335474300698,
+    0.17611587245874022,
+    0.16886809516719697,
+    0.17100601700365037,
+    0.17882995820693307,
+    0.18647188866782216,
+    0.1900329951117321,
+    0.18932696402306276,
+    0.18702336618366447,
+    0.18604534690120544,
+    0.1874967487227979,
+    0.19060259845082728,
+    0.19380973671060303,
+    0.19704096157594347,
+    0.2041049189588644,
+    0.22080881862024376,
+    0.2483399629189667,
+    0.2792128178838803,
+    0.30094900323099205,
+    0.30430185426765993,
+    0.2895574521417766,
+    0.26599255488528994,
+    0.24488276318861563,
+    0.23319540144058482
+  ],
+  "timestamps": [
+    0.0,
+    0.5,
+    1.0,
+    1.5,
+    2.0,
+    4.0,
+    6.0,
+    7.0,
+    7.5,
+    8.0,
+    8.5,
+    9.0,
+    9.5,
+    10.0,
+    10.5,
+    11.0,
+    12.0,
+    13.5,
+    14.0,
+    14.5,
+    15.0,
+    15.5,
+    16.0,
+    16.5,
+    17.0,
+    17.5,
+    18.0,
+    18.5,
+    19.0,
+    19.5,
+    20.0,
+    20.5,
+    22.5,
+    24.5,
+    26.5,
+    28.5,
+    30.5,
+    31.5,
+    32.0,
+    32.5,
+    33.0,
+    33.5,
+    34.0,
+    34.5,
+    36.5,
+    38.5
+  ],
+  "pre_bue_boundaries": [
+    [
+      0.0,
+      6.0
+    ]
+  ],
+  "pre_cbt_boundaries": [
+    [
+      0.0,
+      6.0
+    ]
+  ],
+  "mcts_trace": {
+    "mode": "refine",
+    "acceptance_policy": "strict",
+    "strategy": "mcts",
+    "prompt_version": "boundary-v3-3",
+    "candidates": {
+      "0": {
+        "candidate_id": 0,
+        "applied": false,
+        "would_accept": false,
+        "baseline": [
+          0.0,
+          6.0
+        ],
+        "boundary_method": "unknown",
+        "reason": "boundary_gap_right_in"
+      }
+    },
+    "logical_requests": 0,
+    "images_sent": 0,
+    "frame_scores_stage": "post_cbt",
+    "evidence_pool": "global",
+    "decode_seconds": 0.0,
+    "encode_seconds": 0.0,
+    "route": "stage4_direct",
+    "search_category": "RoadAccidents",
+    "effective_config": {
+      "preprocess": {
+        "fps": 2,
+        "segment_duration": 6.0,
+        "segment_overlap": 0.25,
+        "motion_threshold": 1.0,
+        "min_motion_interval": 2.0
+      },
+      "clip": {
+        "model_name": "ViT-L-14",
+        "pretrained": "openai",
+        "max_frames": 200,
+        "min_frames": 3,
+        "fps_sample": 3.0,
+        "semantic_tau": 0.9
+      },
+      "mcts": {
+        "simulations": 8,
+        "max_depth": 4,
+        "padding_ratio": 0.75,
+        "early_stop_agree": 4,
+        "early_stop_min_sim": 5,
+        "mode": "refine",
+        "action_set": "shrink",
+        "search_strategy": "mcts",
+        "comparison_gate": "best_valid",
+        "acceptance_policy": "strict",
+        "trigger_policy": "all_valid",
+        "citation_repair_attempts": 1,
+        "max_candidates_per_video": 2,
+        "max_vlm_evaluations_per_candidate": 10,
+        "max_vlm_evaluations_per_video": 20,
+        "timeout_seconds_per_candidate": 90.0,
+        "contrast_threshold": 0.15,
+        "search_padding_ratio": 0.25,
+        "max_inward_shift_ratio": 0.25,
+        "max_outward_shift_ratio": 0.25,
+        "step_ratio": 0.1,
+        "min_interval_seconds": 0.5,
+        "max_images_per_evaluation": 32,
+        "context_seconds": 2.0,
+        "max_boundary_gap_seconds": 1.5,
+        "max_evidence_gap_seconds": 3.0,
+        "min_unique_evaluations": 4,
+        "patience": 3,
+        "min_reward_gain": 0.02,
+        "max_curve_quality_drop": 0.05,
+        "ucb_c": 1.0,
+        "ucb_decay": 0.0,
+        "random_seed": 42,
+        "trace_enabled": true,
+        "paired_eval": true,
+        "stage4_direct_eval": true,
+        "stage4_acceptance_eval": true,
+        "final_nms_enabled": false,
+        "final_nms_iou": 0.3,
+        "boundary_guard_enabled": false,
+        "guard_min_retained_ratio": 0.5,
+        "guard_max_shift_ratio": 0.25,
+        "guard_tolerance_seconds": 0.5,
+        "postprocess_ablation": false,
+        "dense_fps": 0.0,
+        "max_dense_frames": 512,
+        "max_enumerated_states": 10000
+      },
+      "scoring": {
+        "clip_base_weight": 0.35,
+        "gaussian_sigma_factor": 1.5,
+        "gaussian_sigma_min": 1.0,
+        "confidence_gate": 0.5,
+        "curve_smooth_seconds": 2.0,
+        "curve_half_max_weight": 0.5,
+        "curve_max_shift_ratio": 0.4,
+        "curve_core_signal_floor": 0.3,
+        "boundary_shrink_ratio": 0.35,
+        "videomae_weight": 0.15,
+        "motion_weight": 0.1,
+        "mae_window_size": 32,
+        "mae_window_stride": 16,
+        "qscore_rerank": true,
+        "qscore_base": 0.5,
+        "bue_enabled": true,
+        "bue_alpha": 1.0,
+        "bue_lmin_sec": 6.0,
+        "bue_lmax_sec": 40.0,
+        "bue_lmax_frac": 0.8,
+        "bue_smooth_win": 3,
+        "bue_closure_gate": true,
+        "cbt_enabled": true,
+        "cbt_recal": true,
+        "cbt_recal_caps": {
+          "RoadAccidents": 4.5,
+          "Explosion": 13.0,
+          "Shoplifting": 9.0,
+          "Shooting": 13.5
+        },
+        "cbt_recal_trigger": 1.1,
+        "classify_skip_class_agnostic": true
+      },
+      "discovery": {
+        "clip_threshold": 0.3,
+        "min_pass_rate": 0.2,
+        "max_scan_segments": 6,
+        "candidate_top_k": 3
+      },
+      "device": "cuda",
+      "anomaly_categories": [
+        "Abuse",
+        "Arrest",
+        "Arson",
+        "Assault",
+        "Burglary",
+        "Explosion",
+        "Fighting",
+        "RoadAccidents",
+        "Robbery",
+        "Shooting",
+        "Shoplifting",
+        "Stealing",
+        "Vandalism"
+      ]
+    },
+    "search_seconds": 0.0008303998038172722,
+    "search_api_metrics": {
+      "logical_calls": 0,
+      "cache_hits": 0,
+      "sdk_attempts": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0
+    },
+    "candidate_policy": "all stage4 candidates; no top-k/merge/NMS/confidence gate",
+    "confidence_source": "stage4 coarse_score",
+    "category_source": "upstream prediction",
+    "stages": {
+      "post_stage4": [
+        {
+          "t_start": 0.0,
+          "t_end": 6.0,
+          "frame_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "coarse_score": 0.95,
+          "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash.",
+          "original_descriptions": [
+            {
+              "t_start": 0.0,
+              "t_end": 6.0,
+              "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash."
+            }
+          ],
+          "confidence": 0.95,
+          "anomaly_type": "RoadAccidents",
+          "source_candidate_ids": [
+            0
+          ]
+        }
+      ],
+      "post_mcts": [
+        {
+          "t_start": 0.0,
+          "t_end": 6.0,
+          "frame_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "coarse_score": 0.95,
+          "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash.",
+          "original_descriptions": [
+            {
+              "t_start": 0.0,
+              "t_end": 6.0,
+              "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash."
+            }
+          ],
+          "confidence": 0.95,
+          "anomaly_type": "RoadAccidents",
+          "source_candidate_ids": [
+            0
+          ]
+        }
+      ],
+      "pre_bue": [
+        {
+          "t_start": 0.0,
+          "t_end": 6.0,
+          "frame_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "coarse_score": 0.95,
+          "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash.",
+          "original_descriptions": [
+            {
+              "t_start": 0.0,
+              "t_end": 6.0,
+              "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash."
+            }
+          ],
+          "confidence": 0.95,
+          "anomaly_type": "RoadAccidents",
+          "source_candidate_ids": [
+            0
+          ]
+        }
+      ],
+      "post_bue": [
+        {
+          "t_start": 0.0,
+          "t_end": 6.0,
+          "frame_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "coarse_score": 0.95,
+          "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash.",
+          "original_descriptions": [
+            {
+              "t_start": 0.0,
+              "t_end": 6.0,
+              "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash."
+            }
+          ],
+          "confidence": 0.95,
+          "anomaly_type": "RoadAccidents",
+          "source_candidate_ids": [
+            0
+          ]
+        }
+      ],
+      "post_cbt": [
+        {
+          "t_start": 0.0,
+          "t_end": 6.0,
+          "frame_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "coarse_score": 0.95,
+          "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash.",
+          "original_descriptions": [
+            {
+              "t_start": 0.0,
+              "t_end": 6.0,
+              "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash."
+            }
+          ],
+          "confidence": 0.95,
+          "anomaly_type": "RoadAccidents",
+          "source_candidate_ids": [
+            0
+          ]
+        }
+      ]
+    },
+    "arm": "strict",
+    "tail_seconds": 0.000830699922516942,
+    "video_api_metrics": {
+      "logical_calls": 9,
+      "cache_hits": 0,
+      "sdk_attempts": 9,
+      "prompt_tokens": 7409,
+      "completion_tokens": 294
+    }
+  },
+  "paired_results": {
+    "original_off": {
+      "video_path": "F:\\dataset\\ucf_crime\\Testing_Normal_Videos_Anomaly\\Normal_Videos_905_x264.mp4",
+      "duration": 39.86666666666667,
+      "is_normal": false,
+      "anomalies": [
+        {
+          "t_start": 0.0,
+          "t_end": 6.0,
+          "confidence": 0.95,
+          "anomaly_type": "RoadAccidents",
+          "depth": null,
+          "visits": null,
+          "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash.",
+          "original_descriptions": [
+            {
+              "t_start": 0.0,
+              "t_end": 6.0,
+              "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash."
+            }
+          ]
+        }
+      ],
+      "frame_scores": [
+        0.9494257530483511,
+        0.946548549653465,
+        0.9333967858691671,
+        0.8911589824513269,
+        0.7942225055405883,
+        0.6357716890592969,
+        0.45297382237172945,
+        0.30812245068250127,
+        0.23672871065416384,
+        0.22650342658363082,
+        0.24363311362865414,
+        0.2622429133566492,
+        0.26982213512108233,
+        0.26156027979307633,
+        0.24023018778610217,
+        0.21735603321313834,
+        0.205384833347558,
+        0.20715074991269605,
+        0.21545642498806641,
+        0.22097613442422898,
+        0.21834647846218996,
+        0.2071390095366995,
+        0.1909335474300698,
+        0.17611587245874022,
+        0.16886809516719697,
+        0.17100601700365037,
+        0.17882995820693307,
+        0.18647188866782216,
+        0.1900329951117321,
+        0.18932696402306276,
+        0.18702336618366447,
+        0.18604534690120544,
+        0.1874967487227979,
+        0.19060259845082728,
+        0.19380973671060303,
+        0.19704096157594347,
+        0.2041049189588644,
+        0.22080881862024376,
+        0.2483399629189667,
+        0.2792128178838803,
+        0.30094900323099205,
+        0.30430185426765993,
+        0.2895574521417766,
+        0.26599255488528994,
+        0.24488276318861563,
+        0.23319540144058482
+      ],
+      "timestamps": [
+        0.0,
+        0.5,
+        1.0,
+        1.5,
+        2.0,
+        4.0,
+        6.0,
+        7.0,
+        7.5,
+        8.0,
+        8.5,
+        9.0,
+        9.5,
+        10.0,
+        10.5,
+        11.0,
+        12.0,
+        13.5,
+        14.0,
+        14.5,
+        15.0,
+        15.5,
+        16.0,
+        16.5,
+        17.0,
+        17.5,
+        18.0,
+        18.5,
+        19.0,
+        19.5,
+        20.0,
+        20.5,
+        22.5,
+        24.5,
+        26.5,
+        28.5,
+        30.5,
+        31.5,
+        32.0,
+        32.5,
+        33.0,
+        33.5,
+        34.0,
+        34.5,
+        36.5,
+        38.5
+      ],
+      "pre_bue_boundaries": [
+        [
+          0.0,
+          6.0
+        ]
+      ],
+      "pre_cbt_boundaries": [
+        [
+          0.0,
+          6.0
+        ]
+      ],
+      "mcts_trace": {
+        "mode": "off",
+        "logical_requests": 0,
+        "stages": {
+          "post_stage4": [
+            {
+              "t_start": 0.0,
+              "t_end": 6.0,
+              "frame_indices": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "coarse_score": 0.95,
+              "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash.",
+              "original_descriptions": [
+                {
+                  "t_start": 0.0,
+                  "t_end": 6.0,
+                  "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash."
+                }
+              ],
+              "confidence": 0.95,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ],
+          "pre_bue": [
+            {
+              "t_start": 0.0,
+              "t_end": 6.0,
+              "frame_indices": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "coarse_score": 0.95,
+              "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash.",
+              "original_descriptions": [
+                {
+                  "t_start": 0.0,
+                  "t_end": 6.0,
+                  "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash."
+                }
+              ],
+              "confidence": 0.95,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ],
+          "post_bue": [
+            {
+              "t_start": 0.0,
+              "t_end": 6.0,
+              "frame_indices": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "coarse_score": 0.95,
+              "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash.",
+              "original_descriptions": [
+                {
+                  "t_start": 0.0,
+                  "t_end": 6.0,
+                  "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash."
+                }
+              ],
+              "confidence": 0.95,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ],
+          "post_cbt": [
+            {
+              "t_start": 0.0,
+              "t_end": 6.0,
+              "frame_indices": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "coarse_score": 0.95,
+              "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash.",
+              "original_descriptions": [
+                {
+                  "t_start": 0.0,
+                  "t_end": 6.0,
+                  "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash."
+                }
+              ],
+              "confidence": 0.95,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ]
+        },
+        "route": "stage4_direct",
+        "arm": "stage4_fixed",
+        "frame_scores_stage": "post_cbt",
+        "tail_seconds": 0.00133050000295043
+      }
+    },
+    "relaxed_node": {
+      "video_path": "F:\\dataset\\ucf_crime\\Testing_Normal_Videos_Anomaly\\Normal_Videos_905_x264.mp4",
+      "duration": 39.86666666666667,
+      "is_normal": false,
+      "anomalies": [
+        {
+          "t_start": 0.0,
+          "t_end": 6.0,
+          "confidence": 0.95,
+          "anomaly_type": "RoadAccidents",
+          "depth": null,
+          "visits": null,
+          "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash.",
+          "original_descriptions": [
+            {
+              "t_start": 0.0,
+              "t_end": 6.0,
+              "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash."
+            }
+          ]
+        }
+      ],
+      "frame_scores": [
+        0.9494257530483511,
+        0.946548549653465,
+        0.9333967858691671,
+        0.8911589824513269,
+        0.7942225055405883,
+        0.6357716890592969,
+        0.45297382237172945,
+        0.30812245068250127,
+        0.23672871065416384,
+        0.22650342658363082,
+        0.24363311362865414,
+        0.2622429133566492,
+        0.26982213512108233,
+        0.26156027979307633,
+        0.24023018778610217,
+        0.21735603321313834,
+        0.205384833347558,
+        0.20715074991269605,
+        0.21545642498806641,
+        0.22097613442422898,
+        0.21834647846218996,
+        0.2071390095366995,
+        0.1909335474300698,
+        0.17611587245874022,
+        0.16886809516719697,
+        0.17100601700365037,
+        0.17882995820693307,
+        0.18647188866782216,
+        0.1900329951117321,
+        0.18932696402306276,
+        0.18702336618366447,
+        0.18604534690120544,
+        0.1874967487227979,
+        0.19060259845082728,
+        0.19380973671060303,
+        0.19704096157594347,
+        0.2041049189588644,
+        0.22080881862024376,
+        0.2483399629189667,
+        0.2792128178838803,
+        0.30094900323099205,
+        0.30430185426765993,
+        0.2895574521417766,
+        0.26599255488528994,
+        0.24488276318861563,
+        0.23319540144058482
+      ],
+      "timestamps": [
+        0.0,
+        0.5,
+        1.0,
+        1.5,
+        2.0,
+        4.0,
+        6.0,
+        7.0,
+        7.5,
+        8.0,
+        8.5,
+        9.0,
+        9.5,
+        10.0,
+        10.5,
+        11.0,
+        12.0,
+        13.5,
+        14.0,
+        14.5,
+        15.0,
+        15.5,
+        16.0,
+        16.5,
+        17.0,
+        17.5,
+        18.0,
+        18.5,
+        19.0,
+        19.5,
+        20.0,
+        20.5,
+        22.5,
+        24.5,
+        26.5,
+        28.5,
+        30.5,
+        31.5,
+        32.0,
+        32.5,
+        33.0,
+        33.5,
+        34.0,
+        34.5,
+        36.5,
+        38.5
+      ],
+      "pre_bue_boundaries": [
+        [
+          0.0,
+          6.0
+        ]
+      ],
+      "pre_cbt_boundaries": [
+        [
+          0.0,
+          6.0
+        ]
+      ],
+      "mcts_trace": {
+        "mode": "refine",
+        "acceptance_policy": "relaxed_node",
+        "strategy": "mcts",
+        "prompt_version": "boundary-v3-3",
+        "candidates": {
+          "0": {
+            "candidate_id": 0,
+            "applied": false,
+            "would_accept": false,
+            "baseline": [
+              0.0,
+              6.0
+            ],
+            "boundary_method": "unknown",
+            "reason": "boundary_gap_right_in"
+          }
+        },
+        "logical_requests": 0,
+        "images_sent": 0,
+        "frame_scores_stage": "post_cbt",
+        "evidence_pool": "global",
+        "decode_seconds": 0.0,
+        "encode_seconds": 0.0,
+        "route": "stage4_direct",
+        "search_category": "RoadAccidents",
+        "effective_config": {
+          "preprocess": {
+            "fps": 2,
+            "segment_duration": 6.0,
+            "segment_overlap": 0.25,
+            "motion_threshold": 1.0,
+            "min_motion_interval": 2.0
+          },
+          "clip": {
+            "model_name": "ViT-L-14",
+            "pretrained": "openai",
+            "max_frames": 200,
+            "min_frames": 3,
+            "fps_sample": 3.0,
+            "semantic_tau": 0.9
+          },
+          "mcts": {
+            "simulations": 8,
+            "max_depth": 4,
+            "padding_ratio": 0.75,
+            "early_stop_agree": 4,
+            "early_stop_min_sim": 5,
+            "mode": "refine",
+            "action_set": "shrink",
+            "search_strategy": "mcts",
+            "comparison_gate": "best_valid",
+            "acceptance_policy": "relaxed_node",
+            "trigger_policy": "all_valid",
+            "citation_repair_attempts": 1,
+            "max_candidates_per_video": 2,
+            "max_vlm_evaluations_per_candidate": 10,
+            "max_vlm_evaluations_per_video": 20,
+            "timeout_seconds_per_candidate": 90.0,
+            "contrast_threshold": 0.15,
+            "search_padding_ratio": 0.25,
+            "max_inward_shift_ratio": 0.25,
+            "max_outward_shift_ratio": 0.25,
+            "step_ratio": 0.1,
+            "min_interval_seconds": 0.5,
+            "max_images_per_evaluation": 32,
+            "context_seconds": 2.0,
+            "max_boundary_gap_seconds": 1.5,
+            "max_evidence_gap_seconds": 3.0,
+            "min_unique_evaluations": 4,
+            "patience": 3,
+            "min_reward_gain": 0.02,
+            "max_curve_quality_drop": 0.05,
+            "ucb_c": 1.0,
+            "ucb_decay": 0.0,
+            "random_seed": 42,
+            "trace_enabled": true,
+            "paired_eval": true,
+            "stage4_direct_eval": true,
+            "stage4_acceptance_eval": false,
+            "final_nms_enabled": false,
+            "final_nms_iou": 0.3,
+            "boundary_guard_enabled": false,
+            "guard_min_retained_ratio": 0.5,
+            "guard_max_shift_ratio": 0.25,
+            "guard_tolerance_seconds": 0.5,
+            "postprocess_ablation": false,
+            "dense_fps": 0.0,
+            "max_dense_frames": 512,
+            "max_enumerated_states": 10000
+          },
+          "scoring": {
+            "clip_base_weight": 0.35,
+            "gaussian_sigma_factor": 1.5,
+            "gaussian_sigma_min": 1.0,
+            "confidence_gate": 0.5,
+            "curve_smooth_seconds": 2.0,
+            "curve_half_max_weight": 0.5,
+            "curve_max_shift_ratio": 0.4,
+            "curve_core_signal_floor": 0.3,
+            "boundary_shrink_ratio": 0.35,
+            "videomae_weight": 0.15,
+            "motion_weight": 0.1,
+            "mae_window_size": 32,
+            "mae_window_stride": 16,
+            "qscore_rerank": true,
+            "qscore_base": 0.5,
+            "bue_enabled": true,
+            "bue_alpha": 1.0,
+            "bue_lmin_sec": 6.0,
+            "bue_lmax_sec": 40.0,
+            "bue_lmax_frac": 0.8,
+            "bue_smooth_win": 3,
+            "bue_closure_gate": true,
+            "cbt_enabled": true,
+            "cbt_recal": true,
+            "cbt_recal_caps": {
+              "RoadAccidents": 4.5,
+              "Explosion": 13.0,
+              "Shoplifting": 9.0,
+              "Shooting": 13.5
+            },
+            "cbt_recal_trigger": 1.1,
+            "classify_skip_class_agnostic": true
+          },
+          "discovery": {
+            "clip_threshold": 0.3,
+            "min_pass_rate": 0.2,
+            "max_scan_segments": 6,
+            "candidate_top_k": 3
+          },
+          "device": "cuda",
+          "anomaly_categories": [
+            "Abuse",
+            "Arrest",
+            "Arson",
+            "Assault",
+            "Burglary",
+            "Explosion",
+            "Fighting",
+            "RoadAccidents",
+            "Robbery",
+            "Shooting",
+            "Shoplifting",
+            "Stealing",
+            "Vandalism"
+          ]
+        },
+        "search_seconds": 0.0008688000962138176,
+        "search_api_metrics": {
+          "logical_calls": 0,
+          "cache_hits": 0,
+          "sdk_attempts": 0,
+          "prompt_tokens": 0,
+          "completion_tokens": 0
+        },
+        "candidate_policy": "all stage4 candidates; no top-k/merge/NMS/confidence gate",
+        "confidence_source": "stage4 coarse_score",
+        "category_source": "upstream prediction",
+        "stages": {
+          "post_stage4": [
+            {
+              "t_start": 0.0,
+              "t_end": 6.0,
+              "frame_indices": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "coarse_score": 0.95,
+              "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash.",
+              "original_descriptions": [
+                {
+                  "t_start": 0.0,
+                  "t_end": 6.0,
+                  "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash."
+                }
+              ],
+              "confidence": 0.95,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ],
+          "post_mcts": [
+            {
+              "t_start": 0.0,
+              "t_end": 6.0,
+              "frame_indices": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "coarse_score": 0.95,
+              "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash.",
+              "original_descriptions": [
+                {
+                  "t_start": 0.0,
+                  "t_end": 6.0,
+                  "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash."
+                }
+              ],
+              "confidence": 0.95,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ],
+          "pre_bue": [
+            {
+              "t_start": 0.0,
+              "t_end": 6.0,
+              "frame_indices": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "coarse_score": 0.95,
+              "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash.",
+              "original_descriptions": [
+                {
+                  "t_start": 0.0,
+                  "t_end": 6.0,
+                  "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash."
+                }
+              ],
+              "confidence": 0.95,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ],
+          "post_bue": [
+            {
+              "t_start": 0.0,
+              "t_end": 6.0,
+              "frame_indices": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "coarse_score": 0.95,
+              "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash.",
+              "original_descriptions": [
+                {
+                  "t_start": 0.0,
+                  "t_end": 6.0,
+                  "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash."
+                }
+              ],
+              "confidence": 0.95,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ],
+          "post_cbt": [
+            {
+              "t_start": 0.0,
+              "t_end": 6.0,
+              "frame_indices": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "coarse_score": 0.95,
+              "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash.",
+              "original_descriptions": [
+                {
+                  "t_start": 0.0,
+                  "t_end": 6.0,
+                  "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash."
+                }
+              ],
+              "confidence": 0.95,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ]
+        },
+        "arm": "relaxed_node",
+        "tail_seconds": 0.0007985997945070267
+      }
+    },
+    "force_best": {
+      "video_path": "F:\\dataset\\ucf_crime\\Testing_Normal_Videos_Anomaly\\Normal_Videos_905_x264.mp4",
+      "duration": 39.86666666666667,
+      "is_normal": false,
+      "anomalies": [
+        {
+          "t_start": 0.0,
+          "t_end": 6.0,
+          "confidence": 0.95,
+          "anomaly_type": "RoadAccidents",
+          "depth": null,
+          "visits": null,
+          "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash.",
+          "original_descriptions": [
+            {
+              "t_start": 0.0,
+              "t_end": 6.0,
+              "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash."
+            }
+          ]
+        }
+      ],
+      "frame_scores": [
+        0.9494257530483511,
+        0.946548549653465,
+        0.9333967858691671,
+        0.8911589824513269,
+        0.7942225055405883,
+        0.6357716890592969,
+        0.45297382237172945,
+        0.30812245068250127,
+        0.23672871065416384,
+        0.22650342658363082,
+        0.24363311362865414,
+        0.2622429133566492,
+        0.26982213512108233,
+        0.26156027979307633,
+        0.24023018778610217,
+        0.21735603321313834,
+        0.205384833347558,
+        0.20715074991269605,
+        0.21545642498806641,
+        0.22097613442422898,
+        0.21834647846218996,
+        0.2071390095366995,
+        0.1909335474300698,
+        0.17611587245874022,
+        0.16886809516719697,
+        0.17100601700365037,
+        0.17882995820693307,
+        0.18647188866782216,
+        0.1900329951117321,
+        0.18932696402306276,
+        0.18702336618366447,
+        0.18604534690120544,
+        0.1874967487227979,
+        0.19060259845082728,
+        0.19380973671060303,
+        0.19704096157594347,
+        0.2041049189588644,
+        0.22080881862024376,
+        0.2483399629189667,
+        0.2792128178838803,
+        0.30094900323099205,
+        0.30430185426765993,
+        0.2895574521417766,
+        0.26599255488528994,
+        0.24488276318861563,
+        0.23319540144058482
+      ],
+      "timestamps": [
+        0.0,
+        0.5,
+        1.0,
+        1.5,
+        2.0,
+        4.0,
+        6.0,
+        7.0,
+        7.5,
+        8.0,
+        8.5,
+        9.0,
+        9.5,
+        10.0,
+        10.5,
+        11.0,
+        12.0,
+        13.5,
+        14.0,
+        14.5,
+        15.0,
+        15.5,
+        16.0,
+        16.5,
+        17.0,
+        17.5,
+        18.0,
+        18.5,
+        19.0,
+        19.5,
+        20.0,
+        20.5,
+        22.5,
+        24.5,
+        26.5,
+        28.5,
+        30.5,
+        31.5,
+        32.0,
+        32.5,
+        33.0,
+        33.5,
+        34.0,
+        34.5,
+        36.5,
+        38.5
+      ],
+      "pre_bue_boundaries": [
+        [
+          0.0,
+          6.0
+        ]
+      ],
+      "pre_cbt_boundaries": [
+        [
+          0.0,
+          6.0
+        ]
+      ],
+      "mcts_trace": {
+        "mode": "refine",
+        "acceptance_policy": "force_best",
+        "strategy": "mcts",
+        "prompt_version": "boundary-v3-3",
+        "candidates": {
+          "0": {
+            "candidate_id": 0,
+            "applied": false,
+            "would_accept": false,
+            "baseline": [
+              0.0,
+              6.0
+            ],
+            "boundary_method": "unknown",
+            "reason": "boundary_gap_right_in"
+          }
+        },
+        "logical_requests": 0,
+        "images_sent": 0,
+        "frame_scores_stage": "post_cbt",
+        "evidence_pool": "global",
+        "decode_seconds": 0.0,
+        "encode_seconds": 0.0,
+        "route": "stage4_direct",
+        "search_category": "RoadAccidents",
+        "effective_config": {
+          "preprocess": {
+            "fps": 2,
+            "segment_duration": 6.0,
+            "segment_overlap": 0.25,
+            "motion_threshold": 1.0,
+            "min_motion_interval": 2.0
+          },
+          "clip": {
+            "model_name": "ViT-L-14",
+            "pretrained": "openai",
+            "max_frames": 200,
+            "min_frames": 3,
+            "fps_sample": 3.0,
+            "semantic_tau": 0.9
+          },
+          "mcts": {
+            "simulations": 8,
+            "max_depth": 4,
+            "padding_ratio": 0.75,
+            "early_stop_agree": 4,
+            "early_stop_min_sim": 5,
+            "mode": "refine",
+            "action_set": "shrink",
+            "search_strategy": "mcts",
+            "comparison_gate": "best_valid",
+            "acceptance_policy": "force_best",
+            "trigger_policy": "all_valid",
+            "citation_repair_attempts": 1,
+            "max_candidates_per_video": 2,
+            "max_vlm_evaluations_per_candidate": 10,
+            "max_vlm_evaluations_per_video": 20,
+            "timeout_seconds_per_candidate": 90.0,
+            "contrast_threshold": 0.15,
+            "search_padding_ratio": 0.25,
+            "max_inward_shift_ratio": 0.25,
+            "max_outward_shift_ratio": 0.25,
+            "step_ratio": 0.1,
+            "min_interval_seconds": 0.5,
+            "max_images_per_evaluation": 32,
+            "context_seconds": 2.0,
+            "max_boundary_gap_seconds": 1.5,
+            "max_evidence_gap_seconds": 3.0,
+            "min_unique_evaluations": 4,
+            "patience": 3,
+            "min_reward_gain": 0.02,
+            "max_curve_quality_drop": 0.05,
+            "ucb_c": 1.0,
+            "ucb_decay": 0.0,
+            "random_seed": 42,
+            "trace_enabled": true,
+            "paired_eval": true,
+            "stage4_direct_eval": true,
+            "stage4_acceptance_eval": false,
+            "final_nms_enabled": false,
+            "final_nms_iou": 0.3,
+            "boundary_guard_enabled": false,
+            "guard_min_retained_ratio": 0.5,
+            "guard_max_shift_ratio": 0.25,
+            "guard_tolerance_seconds": 0.5,
+            "postprocess_ablation": false,
+            "dense_fps": 0.0,
+            "max_dense_frames": 512,
+            "max_enumerated_states": 10000
+          },
+          "scoring": {
+            "clip_base_weight": 0.35,
+            "gaussian_sigma_factor": 1.5,
+            "gaussian_sigma_min": 1.0,
+            "confidence_gate": 0.5,
+            "curve_smooth_seconds": 2.0,
+            "curve_half_max_weight": 0.5,
+            "curve_max_shift_ratio": 0.4,
+            "curve_core_signal_floor": 0.3,
+            "boundary_shrink_ratio": 0.35,
+            "videomae_weight": 0.15,
+            "motion_weight": 0.1,
+            "mae_window_size": 32,
+            "mae_window_stride": 16,
+            "qscore_rerank": true,
+            "qscore_base": 0.5,
+            "bue_enabled": true,
+            "bue_alpha": 1.0,
+            "bue_lmin_sec": 6.0,
+            "bue_lmax_sec": 40.0,
+            "bue_lmax_frac": 0.8,
+            "bue_smooth_win": 3,
+            "bue_closure_gate": true,
+            "cbt_enabled": true,
+            "cbt_recal": true,
+            "cbt_recal_caps": {
+              "RoadAccidents": 4.5,
+              "Explosion": 13.0,
+              "Shoplifting": 9.0,
+              "Shooting": 13.5
+            },
+            "cbt_recal_trigger": 1.1,
+            "classify_skip_class_agnostic": true
+          },
+          "discovery": {
+            "clip_threshold": 0.3,
+            "min_pass_rate": 0.2,
+            "max_scan_segments": 6,
+            "candidate_top_k": 3
+          },
+          "device": "cuda",
+          "anomaly_categories": [
+            "Abuse",
+            "Arrest",
+            "Arson",
+            "Assault",
+            "Burglary",
+            "Explosion",
+            "Fighting",
+            "RoadAccidents",
+            "Robbery",
+            "Shooting",
+            "Shoplifting",
+            "Stealing",
+            "Vandalism"
+          ]
+        },
+        "search_seconds": 0.0007090999279171228,
+        "search_api_metrics": {
+          "logical_calls": 0,
+          "cache_hits": 0,
+          "sdk_attempts": 0,
+          "prompt_tokens": 0,
+          "completion_tokens": 0
+        },
+        "candidate_policy": "all stage4 candidates; no top-k/merge/NMS/confidence gate",
+        "confidence_source": "stage4 coarse_score",
+        "category_source": "upstream prediction",
+        "stages": {
+          "post_stage4": [
+            {
+              "t_start": 0.0,
+              "t_end": 6.0,
+              "frame_indices": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "coarse_score": 0.95,
+              "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash.",
+              "original_descriptions": [
+                {
+                  "t_start": 0.0,
+                  "t_end": 6.0,
+                  "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash."
+                }
+              ],
+              "confidence": 0.95,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ],
+          "post_mcts": [
+            {
+              "t_start": 0.0,
+              "t_end": 6.0,
+              "frame_indices": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "coarse_score": 0.95,
+              "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash.",
+              "original_descriptions": [
+                {
+                  "t_start": 0.0,
+                  "t_end": 6.0,
+                  "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash."
+                }
+              ],
+              "confidence": 0.95,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ],
+          "pre_bue": [
+            {
+              "t_start": 0.0,
+              "t_end": 6.0,
+              "frame_indices": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "coarse_score": 0.95,
+              "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash.",
+              "original_descriptions": [
+                {
+                  "t_start": 0.0,
+                  "t_end": 6.0,
+                  "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash."
+                }
+              ],
+              "confidence": 0.95,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ],
+          "post_bue": [
+            {
+              "t_start": 0.0,
+              "t_end": 6.0,
+              "frame_indices": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "coarse_score": 0.95,
+              "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash.",
+              "original_descriptions": [
+                {
+                  "t_start": 0.0,
+                  "t_end": 6.0,
+                  "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash."
+                }
+              ],
+              "confidence": 0.95,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ],
+          "post_cbt": [
+            {
+              "t_start": 0.0,
+              "t_end": 6.0,
+              "frame_indices": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "coarse_score": 0.95,
+              "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash.",
+              "original_descriptions": [
+                {
+                  "t_start": 0.0,
+                  "t_end": 6.0,
+                  "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash."
+                }
+              ],
+              "confidence": 0.95,
+              "anomaly_type": "RoadAccidents",
+              "source_candidate_ids": [
+                0
+              ]
+            }
+          ]
+        },
+        "arm": "force_best",
+        "tail_seconds": 0.0007708000484853983
+      }
+    },
+    "force_best_no_tail": {
+      "video_path": "F:\\dataset\\ucf_crime\\Testing_Normal_Videos_Anomaly\\Normal_Videos_905_x264.mp4",
+      "duration": 39.86666666666667,
+      "is_normal": false,
+      "anomalies": [
+        {
+          "t_start": 0.0,
+          "t_end": 6.0,
+          "frame_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "coarse_score": 0.95,
+          "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash.",
+          "original_descriptions": [
+            {
+              "t_start": 0.0,
+              "t_end": 6.0,
+              "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash."
+            }
+          ],
+          "confidence": 0.95,
+          "anomaly_type": "RoadAccidents",
+          "source_candidate_ids": [
+            0
+          ]
+        }
+      ],
+      "frame_scores": [
+        0.9494257530483511,
+        0.946548549653465,
+        0.9333967858691671,
+        0.8911589824513269,
+        0.7942225055405883,
+        0.6357716890592969,
+        0.45297382237172945,
+        0.30812245068250127,
+        0.23672871065416384,
+        0.22650342658363082,
+        0.24363311362865414,
+        0.2622429133566492,
+        0.26982213512108233,
+        0.26156027979307633,
+        0.24023018778610217,
+        0.21735603321313834,
+        0.205384833347558,
+        0.20715074991269605,
+        0.21545642498806641,
+        0.22097613442422898,
+        0.21834647846218996,
+        0.2071390095366995,
+        0.1909335474300698,
+        0.17611587245874022,
+        0.16886809516719697,
+        0.17100601700365037,
+        0.17882995820693307,
+        0.18647188866782216,
+        0.1900329951117321,
+        0.18932696402306276,
+        0.18702336618366447,
+        0.18604534690120544,
+        0.1874967487227979,
+        0.19060259845082728,
+        0.19380973671060303,
+        0.19704096157594347,
+        0.2041049189588644,
+        0.22080881862024376,
+        0.2483399629189667,
+        0.2792128178838803,
+        0.30094900323099205,
+        0.30430185426765993,
+        0.2895574521417766,
+        0.26599255488528994,
+        0.24488276318861563,
+        0.23319540144058482
+      ],
+      "timestamps": [
+        0.0,
+        0.5,
+        1.0,
+        1.5,
+        2.0,
+        4.0,
+        6.0,
+        7.0,
+        7.5,
+        8.0,
+        8.5,
+        9.0,
+        9.5,
+        10.0,
+        10.5,
+        11.0,
+        12.0,
+        13.5,
+        14.0,
+        14.5,
+        15.0,
+        15.5,
+        16.0,
+        16.5,
+        17.0,
+        17.5,
+        18.0,
+        18.5,
+        19.0,
+        19.5,
+        20.0,
+        20.5,
+        22.5,
+        24.5,
+        26.5,
+        28.5,
+        30.5,
+        31.5,
+        32.0,
+        32.5,
+        33.0,
+        33.5,
+        34.0,
+        34.5,
+        36.5,
+        38.5
+      ],
+      "frame_scores_stage": "post_mcts"
+    },
+    "stage4_only": {
+      "video_path": "F:\\dataset\\ucf_crime\\Testing_Normal_Videos_Anomaly\\Normal_Videos_905_x264.mp4",
+      "duration": 39.86666666666667,
+      "is_normal": false,
+      "anomalies": [
+        {
+          "t_start": 0.0,
+          "t_end": 6.0,
+          "frame_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "coarse_score": 0.95,
+          "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash.",
+          "original_descriptions": [
+            {
+              "t_start": 0.0,
+              "t_end": 6.0,
+              "description": "A red sedan enters the intersection from the right and collides with a black SUV that is turning left across its path (visible at 0.0s–0.4s). The impact causes the red car to rotate sharply and skid sideways (0.4s–0.6s), indicating a clear vehicle collision. No debris or fire is visible, but the sudden change in vehicle trajectory and contact confirm a crash."
+            }
+          ],
+          "confidence": 0.95,
+          "anomaly_type": "RoadAccidents",
+          "source_candidate_ids": [
+            0
+          ]
+        }
+      ],
+      "frame_scores": [
+        0.9494257530483511,
+        0.946548549653465,
+        0.9333967858691671,
+        0.8911589824513269,
+        0.7942225055405883,
+        0.6357716890592969,
+        0.45297382237172945,
+        0.30812245068250127,
+        0.23672871065416384,
+        0.22650342658363082,
+        0.24363311362865414,
+        0.2622429133566492,
+        0.26982213512108233,
+        0.26156027979307633,
+        0.24023018778610217,
+        0.21735603321313834,
+        0.205384833347558,
+        0.20715074991269605,
+        0.21545642498806641,
+        0.22097613442422898,
+        0.21834647846218996,
+        0.2071390095366995,
+        0.1909335474300698,
+        0.17611587245874022,
+        0.16886809516719697,
+        0.17100601700365037,
+        0.17882995820693307,
+        0.18647188866782216,
+        0.1900329951117321,
+        0.18932696402306276,
+        0.18702336618366447,
+        0.18604534690120544,
+        0.1874967487227979,
+        0.19060259845082728,
+        0.19380973671060303,
+        0.19704096157594347,
+        0.2041049189588644,
+        0.22080881862024376,
+        0.2483399629189667,
+        0.2792128178838803,
+        0.30094900323099205,
+        0.30430185426765993,
+        0.2895574521417766,
+        0.26599255488528994,
+        0.24488276318861563,
+        0.23319540144058482
+      ],
+      "timestamps": [
+        0.0,
+        0.5,
+        1.0,
+        1.5,
+        2.0,
+        4.0,
+        6.0,
+        7.0,
+        7.5,
+        8.0,
+        8.5,
+        9.0,
+        9.5,
+        10.0,
+        10.5,
+        11.0,
+        12.0,
+        13.5,
+        14.0,
+        14.5,
+        15.0,
+        15.5,
+        16.0,
+        16.5,
+        17.0,
+        17.5,
+        18.0,
+        18.5,
+        19.0,
+        19.5,
+        20.0,
+        20.5,
+        22.5,
+        24.5,
+        26.5,
+        28.5,
+        30.5,
+        31.5,
+        32.0,
+        32.5,
+        33.0,
+        33.5,
+        34.0,
+        34.5,
+        36.5,
+        38.5
+      ],
+      "frame_scores_stage": "post_stage4"
+    }
+  },
+  "token_usage": {
+    "requests": 9,
+    "successful_requests": 9,
+    "failed_requests": 0,
+    "unknown_usage_requests": 0,
+    "prompt_tokens": 7409,
+    "completion_tokens": 294,
+    "total_tokens": 7703,
+    "api_queue_seconds": 52.59774029976688,
+    "api_request_seconds": 15.930800000000003,
+    "api_backoff_seconds": 0.0,
+    "api_cancelled_queue_seconds": 0.0,
+    "by_model": {
+      "qwen3-vl-plus": {
+        "requests": 9,
+        "successful_requests": 9,
+        "failed_requests": 0,
+        "unknown_usage_requests": 0,
+        "prompt_tokens": 7409,
+        "completion_tokens": 294,
+        "total_tokens": 7703,
+        "api_queue_seconds": 52.59774029976688,
+        "api_request_seconds": 15.930800000000003,
+        "api_backoff_seconds": 0.0,
+        "api_cancelled_queue_seconds": 0.0,
+        "by_model": {}
+      }
+    },
+    "video_path": "F:\\dataset\\ucf_crime\\Testing_Normal_Videos_Anomaly\\Normal_Videos_905_x264.mp4",
+    "status": "success"
+  },
+  "experiment_fingerprint": "93d25bd0f4d7e3129499c8c6dbde0540a4dd851fdae40405cfc1b9c5d5cfab16",
+  "diagnosis_attempt": 1,
+  "token_usage_all_attempts": {
+    "requests": 9,
+    "successful_requests": 9,
+    "failed_requests": 0,
+    "unknown_usage_requests": 0,
+    "prompt_tokens": 7409,
+    "completion_tokens": 294,
+    "total_tokens": 7703,
+    "api_queue_seconds": 52.59774029976688,
+    "api_request_seconds": 15.930800000000003,
+    "api_backoff_seconds": 0.0,
+    "api_cancelled_queue_seconds": 0.0,
+    "by_model": {
+      "qwen3-vl-plus": {
+        "requests": 9,
+        "successful_requests": 9,
+        "failed_requests": 0,
+        "unknown_usage_requests": 0,
+        "prompt_tokens": 7409,
+        "completion_tokens": 294,
+        "total_tokens": 7703,
+        "api_queue_seconds": 52.59774029976688,
+        "api_request_seconds": 15.930800000000003,
+        "api_backoff_seconds": 0.0,
+        "api_cancelled_queue_seconds": 0.0,
+        "by_model": {}
+      }
+    },
+    "diagnosis_attempts": 1
+  },
+  "processing_time": 13.11
+}

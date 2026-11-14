@@ -111,7 +111,7 @@ def effective_config(options=None, timeout=3600, model=None):
         raise ValueError('无效计算设备。')
     cfg.anomaly_categories = list(CATEGORIES)
     cfg.mcts.mode = options.get('mcts_mode', DEFAULT_MCTS_MODE)
-    # 只改变 Web 新任务默认值；算法全局 strict 和四组消融的独立策略保持各自定义。
+    # Web 与算法新任务均默认 force_best；显式配置和实验分支仍按各自策略执行。
     cfg.mcts.acceptance_policy = DEFAULT_MCTS_ACCEPTANCE_POLICY
     cfg.mcts.simulations = 8  # Match run.py's existing CLI default.
     cfg.mcts.trace_enabled = True

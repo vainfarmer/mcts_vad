@@ -14,7 +14,7 @@
 .\vad_v3\webapp\scripts\stop.ps1
 ~~~
 
-访问 http://127.0.0.1:7860。Web 新任务默认 CUDA、MCTS refine、接收策略 force_best；研究参数中可切换 strict、relaxed_node 等策略。命令行算法默认策略及四组对比的各分支独立配置保持原定义，历史任务使用其保存的配置。VLM 原始描述不要求中文。密钥由 Web 和 Worker 分别从 webapp/.env 加载，修改后重启。详见 [操作与接口手册](webapp/README.md) 和 [本次实施验收记录](../docs/系统实施与验收记录.md)。
+访问 http://127.0.0.1:7860。Web 新任务默认 CUDA、MCTS refine、接收策略 force_best；命令行及算法配置的默认接收策略也为 force_best。研究参数中可显式切换其他策略，四组对比的各分支独立指定策略，历史任务使用其保存的配置。VLM 原始描述不要求中文。密钥由 Web 和 Worker 分别从 webapp/.env 加载，修改后重启。详见 [操作与接口手册](webapp/README.md) 和 [本次实施验收记录](../docs/系统实施与验收记录.md)。
 
 2026-11-11 已重新确认本机 PyTorch 2.7.1+cu128 可导入，RTX 5060 Ti 的 CUDA 推理可用；此前 WinError 4551 环境障碍已不再复现。
 
@@ -29,20 +29,20 @@ conda run -n common python vad_v3/video_anomaly_detection/run.py --video_path "D
 
 - `--mcts_mode off`（默认）：原 V2 检测尾流程。
 - `shadow`：运行搜索并记录候选、证据、比较和拒绝原因，不修改输出边界。
-- `refine`：只应用通过最终比较的边界；这些候选跳过冻结的 Stage 5b 处理，后续合并、NMS、tighten、分类和过滤继续执行。
+- `refine`：应用符合所选接收策略的边界，默认 force_best 直接接收最佳有效非根节点，不执行最终 A/B 比较；这些候选跳过冻结的 Stage 5b 处理，后续合并、NMS、tighten、分类和过滤继续执行。
 - `--mcts_search_strategy mcts|greedy|uniform`：使用同一评价器、接受器和逻辑预算。
 - `--mcts_paired_eval`：配合 refine 执行 original_off、skip_only、on 完整尾流程，并复用相同请求。
 - `--mcts_stage4_direct_eval`：仅用于配对实验，与 refine、paired_eval 同用。两组共享 Stage 4 的全部原始候选，一组直接 BUE→CBT，另一组先运行原有 MCTS 再 BUE→CBT；跳过 Stage 5、中间精修、top-k、NMS、类别复核、置信度过滤及 QSCORE。置信度固定为发现分数，类别固定为上游预测；不改变默认完整流程。
 - `--mcts_acceptance_policy relaxed_node`：接收消融，保留节点目标存在、同一事件和 CLIP 质量下降上限，取消完整性/切断边界否决及最终 A/B 比较。每个候选采用最高奖励的合格非根节点。
-- `--mcts_acceptance_policy force_best`：强制采用每个候选最高奖励的有效非根节点，允许低于根奖励；取消额外语义、CLIP 质量和最终 A/B 接收门槛。失败/未评分节点、非法区间仍不采用。两种新策略都要求 `comparison_gate=best_valid`，保留搜索阶段预算和证据检查，默认仍是 `strict`。
-- `--mcts_stage4_acceptance_eval`：在 Stage 4 配对实验基础上同时运行 off、strict、relaxed_node、force_best 四组。要求同时开启 refine、paired_eval、stage4_direct_eval，主策略为 strict、comparison_gate 为 best_valid。off 在搜索前完成固定后处理；三个搜索分支独立运行各自策略，仅完全相同的 VLM 请求共享回复。分支耗时受缓存影响，不能作为独立部署耗时对照。
+- `--mcts_acceptance_policy force_best`（默认）：强制采用每个候选最高奖励的有效非根节点，允许低于根奖励；取消额外语义、CLIP 质量和最终 A/B 接收门槛。失败/未评分节点、非法区间仍不采用。force_best 和 relaxed_node 都要求 `comparison_gate=best_valid`，保留搜索阶段预算和证据检查。
+- `--mcts_stage4_acceptance_eval`：在 Stage 4 配对实验基础上同时运行 off、strict、relaxed_node、force_best 四组。要求同时开启 refine、paired_eval、stage4_direct_eval，并显式传入 `--mcts_acceptance_policy strict`，comparison_gate 为 best_valid。off 在搜索前完成固定后处理；三个搜索分支独立运行各自策略，仅完全相同的 VLM 请求共享回复。分支耗时受缓存影响，不能作为独立部署耗时对照。
 - `--mcts_dense_fps`：默认 0；大于零时创建独立局部密集帧池，不改变原流水线全局采样。密集解码及编码耗时另行记录，不在单候选搜索超时内。
 
 单视频和批次参数均可用 `--help` 查看。批次入口是 `video_anomaly_detection/batch_evaluate.py`。输出包含实验 manifest；配置、代码、模型或视频列表不一致时需使用新的输出目录。
 
 ## 实现内容
 
-`mcts_config.py` 定义开关与预算；`mcts_boundary_scorer.py` 提供独立时间加权边界对比、固定核心及变更区域证据校验；`boundary_search.py` 实现三种搜索；`mcts_refiner.py` 控制触发、预算、严格 JSON 解析、最终 A/B 比较及回退。证据覆盖不足、超时、接口失败或比较不通过均保留原候选。
+`mcts_config.py` 定义开关与预算；`mcts_boundary_scorer.py` 提供独立时间加权边界对比、固定核心及变更区域证据校验；`boundary_search.py` 实现三种搜索；`mcts_refiner.py` 控制触发、预算、严格 JSON 解析、按策略接收及回退。默认 force_best 不执行最终 A/B 比较；无有效候选、超时或根评价失败时保留原候选。
 
 `iteration_logs/analysis_mcts_coverage.py` 用于开发集可达性与证据覆盖检查；`iteration_logs/analysis_mcts_fusion.py` 汇总匹配 manifest 的完整结果并做视频级 bootstrap 对照。搜索不能读取测试集标注。
 
@@ -53,6 +53,8 @@ conda run -n common python vad_v3/video_anomaly_detection/run.py --video_path "D
 ## 评估口径
 
 V3 的 evaluate.py 主报告采用 VadCLIP 的非插值 AP：按置信度排序并逐类一对一匹配，AP = sum(Precision@k × TP_k) / N_GT。预测秒数按各视频真实 FPS 转为整数半开帧区间，主 mAP 对 13 个异常类别平均，IoU 为 0.1—0.5；正常视频误报单独统计。已有最终区间和置信度保持原样，不重新执行 VadCLIP 的候选生成。
+
+排序使用 VadCLIP 官方的 `np.argsort(-confidence)` 默认算法，不追加视频 ID 或区间边界作为并列排序键。输入先按视频 ID 汇总，并保留视频内预测顺序；相同置信度的排列可能受输入顺序、数量及 NumPy 版本影响。`compute_vadclip_map(..., include_normal_videos=True)` 将正常视频的异常预测纳入对应类别 FP，仍对 13 个异常类别平均。六组全 290 视频实验保存在 `experiments/stage4_six_groups_290/`，同时复算 140 异常视频子集，以分离排序变化和正常视频误报的影响。
 
 每次评估直接打开结果 `video_path` 指向的原视频读取 FPS 和帧数，不读取 FPS map/清单文件。视频搬迁后使用 `--video_root F:/dataset/ucf_crime`；文件缺失、无法解码或同名定位有歧义时明确报错。`--legacy_fixed_fps --fps 30` 仅用于显式复现旧固定帧率指标。各轮 Stage 4 对比汇总脚本同样重新读取原视频，输入清单中的历史 FPS 只作记录。
 

@@ -90,8 +90,8 @@ def main():
                 mean_best_tiou=tiou, delta_tiou=delta, before_fixed_tail=geometry(raw),
                 final_intervals=geometry(final), final_predictions=final)
         rows.append(row)
-    metrics = {p: compute_vadclip_temporal_map(gt, pred[p], fps) for p in POLICIES}
-    pre_metrics = {p: compute_vadclip_temporal_map(gt, before[p], fps) for p in POLICIES}
+    metrics = {p: compute_vadclip_temporal_map(gt, pred[p], fps,include_normal_videos=False) for p in POLICIES}
+    pre_metrics = {p: compute_vadclip_temporal_map(gt, before[p], fps,include_normal_videos=False) for p in POLICIES}
     summary = {p: dict(status[p], mean_best_tiou=statistics.mean(
         r['arms'][p]['mean_best_tiou'] for r in rows if r['category'] != 'Normal')) for p in POLICIES}
     class_contributions = {c: sum(metrics['relaxed_node']['per_class'][c][f'AP@{t:.1f}'] -

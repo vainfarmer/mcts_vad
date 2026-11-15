@@ -1,0 +1,149 @@
+{
+  "events": [
+    {
+      "t_start": 27.5,
+      "t_end": 28.0,
+      "anomaly_type": "Explosion",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "Frame f4 shows a sudden bright orange-yellow flash with linear streaks (likely shattered windshield glass), followed by full-frame saturation in f5, consistent with a near-instantaneous energy release viewed from inside a vehicle.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          27.5,
+          28.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "f4 (27.5 s) displays abrupt intense light and debris-like streaks; f5 (28.0 s) is uniformly yellow-orange saturated—indicative of a blast flash; f6–f8 show a damaged, obscured windshield with residual haze but no evidence of vehicle-to-vehicle contact or deformation required for CarAccident. Explosion is the only supported category per definitions; sustained fire alone is insufficient, but the instantaneous onset and light saturation meet explosion criteria.",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 2,
+      "output_count": 1,
+      "groups": 1,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 25.5,
+              "f1": 26.0,
+              "f2": 26.5,
+              "f3": 27.0,
+              "f4": 27.5,
+              "f5": 28.0,
+              "f6": 28.5,
+              "f7": 29.0,
+              "f8": 29.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 27.5,
+                "t_end": 27.541667,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 27.5,
+                "t_end": 27.541667,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Explosion\",\n      \"t_start\": 27.5,\n      \"t_end\": 28.0,\n      \"confidence\": 0.9,\n      \"description\": \"Sudden bright orange-yellow flash and debris streaks visible at f4, followed by intense illumination at f5, consistent with a rapid energy release (explosion) viewed from inside a vehicle.\",\n      \"reason\": \"f4 shows abrupt onset of fireball-like light and linear streaks (likely shattered glass or debris), f5 is fully saturated yellow-orange, and f6–f8 show obscured, damaged windshield with residual smoke/soot—collectively indicating an explosion event, not a car crash alone; no vehicle deformation or collision geometry is visible to support CarAccident as primary cause.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No visible vehicle impact, deformation, skid marks, or post-collision motion; the abrupt visual change is dominated by fire/light and windshield damage, better explained by explosion than a conventional car accident.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 25.5,
+              "f1": 26.0,
+              "f2": 26.5,
+              "f3": 27.0,
+              "f4": 27.5,
+              "f5": 28.0,
+              "f6": 28.5,
+              "f7": 29.0,
+              "f8": 29.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 27.5,
+                "t_end": 27.541667,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 27.5,
+                "t_end": 27.541667,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Explosion\",\n      \"t_start\": 27.5,\n      \"t_end\": 28.0,\n      \"confidence\": 0.85,\n      \"description\": \"Frame f4 shows a sudden bright orange-yellow flash with linear streaks (likely shattered windshield glass), followed by full-frame saturation in f5, consistent with a near-instantaneous energy release viewed from inside a vehicle.\",\n      \"reason\": \"f4 (27.5 s) displays abrupt intense light and debris-like streaks; f5 (28.0 s) is uniformly yellow-orange saturated—indicative of a blast flash; f6–f8 show a damaged, obscured windshield with residual haze but no evidence of vehicle-to-vehicle contact or deformation required for CarAccident. Explosion is the only supported category per definitions; sustained fire alone is insufficient, but the instantaneous onset and light saturation meet explosion criteria.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No visible collision dynamics (e.g., impact deformation, skid marks, abrupt deceleration, or vehicle contact) in any frame; the visual disruption is dominated by light and glass fracture, not crash mechanics, so CarAccident is unsupported.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "Explosion",
+              "t_start": 27.5,
+              "t_end": 28.0,
+              "confidence": 0.85,
+              "description": "Frame f4 shows a sudden bright orange-yellow flash with linear streaks (likely shattered windshield glass), followed by full-frame saturation in f5, consistent with a near-instantaneous energy release viewed from inside a vehicle.",
+              "reason": "f4 (27.5 s) displays abrupt intense light and debris-like streaks; f5 (28.0 s) is uniformly yellow-orange saturated—indicative of a blast flash; f6–f8 show a damaged, obscured windshield with residual haze but no evidence of vehicle-to-vehicle contact or deformation required for CarAccident. Explosion is the only supported category per definitions; sustained fire alone is insufficient, but the instantaneous onset and light saturation meet explosion criteria.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "No visible collision dynamics (e.g., impact deformation, skid marks, abrupt deceleration, or vehicle contact) in any frame; the visual disruption is dominated by light and glass fracture, not crash mechanics, so CarAccident is unsupported.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

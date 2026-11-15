@@ -1,0 +1,592 @@
+{
+  "events": [
+    {
+      "t_start": 12.5,
+      "t_end": 13.0,
+      "anomaly_type": "Shooting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "In f5, a soldier behind a barricade fires a rifle, producing a visible muzzle flash and expanding smoke plume; f6 shows continued smoke and recoil posture consistent with active discharge.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          12.5,
+          13.0
+        ],
+        "evidence_frame_ids": [
+          "f5",
+          "f6"
+        ],
+        "reason": "‘Shooting’ requires visible shooting (e.g., muzzle flash, bullet impact, or unambiguous discharge evidence). f5 (12.5 s) is the first frame showing a clear muzzle flash and smoke burst at the weapon’s barrel; f6 (13.0 s) confirms sustained discharge effects. The candidate interval [12.0,13.0] includes this event, but evidence only begins at 12.5 s, so t_start is adjusted accordingly. No earlier frames (f3–f4) show discharge evidence—only weapon holding amid smoke, which is insufficient for ‘Shooting’.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 17.958333,
+      "t_end": 18.541667,
+      "anomaly_type": "Shooting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A person in brown coat fires a weapon, producing a bright muzzle flash and smoke plume at f4–f5.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          18.0,
+          18.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "f4 shows a clear muzzle flash; f5 shows a distinct white smoke trail consistent with a projectile launch (e.g., grenade launcher or rifle), satisfying the 'visible shooting' requirement. Not merely holding a gun.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 19.0,
+      "t_end": 21.041667,
+      "anomaly_type": "Explosion",
+      "confidence": 0.98,
+      "coarse_score": 0.98,
+      "description": "A large fireball erupts from a building facade at f7, followed by expanding blast and debris at f8–f10.",
+      "source_candidate_ids": [
+        2,
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 1,
+        "vlm_confidence": 0.98,
+        "evidence_times": [
+          19.5,
+          20.0,
+          20.5,
+          21.0
+        ],
+        "evidence_frame_ids": [
+          "f7",
+          "f8",
+          "f9",
+          "f10"
+        ],
+        "reason": "f7 shows sudden ignition and fireball; f8–f10 show rapidly expanding smoke/fire/debris consistent with a high-energy blast (not sustained fire). Merged because f7–f10 depict a single continuous explosion event with propagation across frames.",
+        "source_categories": [
+          "Explosion",
+          "Explosion"
+        ]
+      }
+    },
+    {
+      "t_start": 21.458333,
+      "t_end": 23.0,
+      "anomaly_type": "Shooting",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "A soldier in tactical gear aims and fires a rifle near a vehicle at f11–f12, with visible muzzle flash and smoke.",
+      "source_candidate_ids": [
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 2,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          21.5,
+          22.0
+        ],
+        "evidence_frame_ids": [
+          "f11",
+          "f12"
+        ],
+        "reason": "f11 shows a bright orange muzzle flash and smoke cloud directly from the weapon’s barrel; f12 shows residual smoke and the shooter still in firing posture—sufficient for 'visible shooting'.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 32.0,
+      "t_end": 39.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A heavily damaged, rusted pickup truck is stationary beside a black van; the pickup shows extensive body damage and missing parts, consistent with a prior collision.",
+      "source_candidate_ids": [
+        10
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 3,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          35.5,
+          36.0,
+          37.0,
+          37.5,
+          38.0,
+          39.0,
+          39.5
+        ],
+        "evidence_frame_ids": [
+          "f16",
+          "f17",
+          "f18",
+          "f19",
+          "f20",
+          "f21",
+          "f22"
+        ],
+        "reason": "Frames f16–f22 show a severely damaged pickup (dented, burnt paint, missing door panel, broken windows) parked adjacent to a van; no motion or impact is visible, but the static state and damage strongly indicate a past car accident, not an ongoing event. The candidate interval aligns with when the vehicle is fully visible and undisturbed.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 12,
+      "output_count": 5,
+      "groups": 4,
+      "rejected": 6,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 10.0,
+              "f1": 10.5,
+              "f2": 11.0,
+              "f3": 11.5,
+              "f4": 12.0,
+              "f5": 12.5,
+              "f6": 13.0,
+              "f7": 13.5,
+              "f8": 14.0,
+              "f9": 14.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 12.0,
+                "t_end": 13.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Shooting\",\n      \"t_start\": 12.5,\n      \"t_end\": 13.0,\n      \"confidence\": 0.9,\n      \"description\": \"A soldier fires a rifle from behind a barricade, producing a visible muzzle flash and smoke plume in f5 and f6.\",\n      \"reason\": \"f5 shows a soldier aiming and firing with a clear muzzle flash and expanding smoke; f6 shows the same position with continued smoke and recoil posture—consistent with active shooting, not just weapon possession. The candidate’s interval (12.0–13.0) includes this event; the earliest unambiguous evidence is f5 (12.5 s), so t_start adjusted to 12.5.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"While f3–f4 show soldiers holding weapons amid smoke, no muzzle flash or bullet impact is visible; shooting cannot be confirmed before f5. However, since f5–f6 confirm shooting within the candidate’s interval, the candidate is accepted with refined bounds rather than marked uncertain.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 10.0,
+              "f1": 10.5,
+              "f2": 11.0,
+              "f3": 11.5,
+              "f4": 12.0,
+              "f5": 12.5,
+              "f6": 13.0,
+              "f7": 13.5,
+              "f8": 14.0,
+              "f9": 14.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 12.0,
+                "t_end": 13.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Shooting\",\n      \"t_start\": 12.5,\n      \"t_end\": 13.0,\n      \"confidence\": 0.9,\n      \"description\": \"In f5, a soldier behind a barricade fires a rifle, producing a visible muzzle flash and expanding smoke plume; f6 shows continued smoke and recoil posture consistent with active discharge.\",\n      \"reason\": \"‘Shooting’ requires visible shooting (e.g., muzzle flash, bullet impact, or unambiguous discharge evidence). f5 (12.5 s) is the first frame showing a clear muzzle flash and smoke burst at the weapon’s barrel; f6 (13.0 s) confirms sustained discharge effects. The candidate interval [12.0,13.0] includes this event, but evidence only begins at 12.5 s, so t_start is adjusted accordingly. No earlier frames (f3–f4) show discharge evidence—only weapon holding amid smoke, which is insufficient for ‘Shooting’.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Shooting",
+              "t_start": 12.5,
+              "t_end": 13.0,
+              "confidence": 0.9,
+              "description": "In f5, a soldier behind a barricade fires a rifle, producing a visible muzzle flash and expanding smoke plume; f6 shows continued smoke and recoil posture consistent with active discharge.",
+              "reason": "‘Shooting’ requires visible shooting (e.g., muzzle flash, bullet impact, or unambiguous discharge evidence). f5 (12.5 s) is the first frame showing a clear muzzle flash and smoke burst at the weapon’s barrel; f6 (13.0 s) confirms sustained discharge effects. The candidate interval [12.0,13.0] includes this event, but evidence only begins at 12.5 s, so t_start is adjusted accordingly. No earlier frames (f3–f4) show discharge evidence—only weapon holding amid smoke, which is insufficient for ‘Shooting’.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 16.0,
+              "f1": 16.5,
+              "f2": 17.0,
+              "f3": 17.5,
+              "f4": 18.0,
+              "f5": 18.5,
+              "f6": 19.0,
+              "f7": 19.5,
+              "f8": 20.0,
+              "f9": 20.5,
+              "f10": 21.0,
+              "f11": 21.5,
+              "f12": 22.0,
+              "f13": 22.5,
+              "f14": 23.0,
+              "f15": 23.5,
+              "f16": 24.0,
+              "f17": 24.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 17.958333,
+                "t_end": 18.541667,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 19.0,
+                "t_end": 21.041667,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 20.5,
+                "t_end": 21.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 21.458333,
+                "t_end": 23.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Shooting\",\n      \"t_start\": 17.958333,\n      \"t_end\": 18.541667,\n      \"confidence\": 0.95,\n      \"description\": \"A person in brown coat fires a weapon, producing a bright muzzle flash and smoke plume at f4–f5.\",\n      \"reason\": \"f4 shows a clear muzzle flash; f5 shows a distinct white smoke trail consistent with a projectile launch (e.g., grenade launcher or rifle), satisfying the 'visible shooting' requirement. Not merely holding a gun.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    },\n    {\n      \"source_candidate_ids\": [2, 3],\n      \"category\": \"Explosion\",\n      \"t_start\": 19.0,\n      \"t_end\": 21.041667,\n      \"confidence\": 0.98,\n      \"description\": \"A large fireball erupts from a building facade at f7, followed by expanding blast and debris at f8–f10.\",\n      \"reason\": \"f7 shows sudden ignition and fireball; f8–f10 show rapidly expanding smoke/fire/debris consistent with a high-energy blast (not sustained fire). Merged because f7–f10 depict a single continuous explosion event with propagation across frames.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\", \"f10\"]\n    },\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"Shooting\",\n      \"t_start\": 21.458333,\n      \"t_end\": 23.0,\n      \"confidence\": 0.85,\n      \"description\": \"A soldier in tactical gear aims and fires a rifle near a vehicle at f11–f12, with visible muzzle flash and smoke.\",\n      \"reason\": \"f11 shows a bright orange muzzle flash and smoke cloud directly from the weapon’s barrel; f12 shows residual smoke and the shooter still in firing posture—sufficient for 'visible shooting'.\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "Shooting",
+              "t_start": 17.958333,
+              "t_end": 18.541667,
+              "confidence": 0.95,
+              "description": "A person in brown coat fires a weapon, producing a bright muzzle flash and smoke plume at f4–f5.",
+              "reason": "f4 shows a clear muzzle flash; f5 shows a distinct white smoke trail consistent with a projectile launch (e.g., grenade launcher or rifle), satisfying the 'visible shooting' requirement. Not merely holding a gun.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                2,
+                3
+              ],
+              "category": "Explosion",
+              "t_start": 19.0,
+              "t_end": 21.041667,
+              "confidence": 0.98,
+              "description": "A large fireball erupts from a building facade at f7, followed by expanding blast and debris at f8–f10.",
+              "reason": "f7 shows sudden ignition and fireball; f8–f10 show rapidly expanding smoke/fire/debris consistent with a high-energy blast (not sustained fire). Merged because f7–f10 depict a single continuous explosion event with propagation across frames.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8",
+                "f9",
+                "f10"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                4
+              ],
+              "category": "Shooting",
+              "t_start": 21.458333,
+              "t_end": 23.0,
+              "confidence": 0.85,
+              "description": "A soldier in tactical gear aims and fires a rifle near a vehicle at f11–f12, with visible muzzle flash and smoke.",
+              "reason": "f11 shows a bright orange muzzle flash and smoke cloud directly from the weapon’s barrel; f12 shows residual smoke and the shooter still in firing posture—sufficient for 'visible shooting'.",
+              "evidence_frame_ids": [
+                "f11",
+                "f12"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          5,
+          6
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 22.5,
+              "f1": 23.0,
+              "f2": 23.5,
+              "f3": 24.0,
+              "f4": 24.5,
+              "f5": 25.0,
+              "f6": 25.5,
+              "f7": 26.0,
+              "f8": 26.5,
+              "f9": 27.0,
+              "f10": 27.5,
+              "f11": 28.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 5,
+                "t_start": 24.5,
+                "t_end": 25.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 24.8,
+                "t_end": 26.3,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"No visible muzzle flash, recoil, or bullet impact; soldiers are holding weapons in ready/aimed posture but no shooting is observed in frames f4–f6 (24.5–25.5).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"Soldiers are moving tactically in formation with weapons drawn, but no physical contact, grappling, or mutual combat is visible in f4–f7 (24.5–26.0); consistent with patrol or advance, not fighting.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 5,
+              "reason": "No visible muzzle flash, recoil, or bullet impact; soldiers are holding weapons in ready/aimed posture but no shooting is observed in frames f4–f6 (24.5–25.5).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            },
+            {
+              "candidate_id": 6,
+              "reason": "Soldiers are moving tactically in formation with weapons drawn, but no physical contact, grappling, or mutual combat is visible in f4–f7 (24.5–26.0); consistent with patrol or advance, not fighting.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 26.0,
+              "f1": 26.5,
+              "f2": 27.0,
+              "f3": 27.5,
+              "f4": 28.0,
+              "f5": 28.5,
+              "f6": 29.0,
+              "f7": 30.0,
+              "f8": 30.5,
+              "f9": 31.0,
+              "f10": 31.5,
+              "f11": 32.0,
+              "f12": 32.5,
+              "f13": 33.0,
+              "f14": 33.5,
+              "f15": 34.0,
+              "f16": 35.5,
+              "f17": 36.0,
+              "f18": 37.0,
+              "f19": 37.5,
+              "f20": 38.0,
+              "f21": 39.0,
+              "f22": 39.5,
+              "f23": 41.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 7,
+                "t_start": 28.0,
+                "t_end": 28.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 29.5,
+                "t_end": 34.2,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 9,
+                "t_start": 29.5,
+                "t_end": 31.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 10,
+                "t_start": 32.0,
+                "t_end": 39.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 11,
+                "t_start": 32.3,
+                "t_end": 33.5,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [10],\n      \"category\": \"CarAccident\",\n      \"t_start\": 32.0,\n      \"t_end\": 39.5,\n      \"confidence\": 0.9,\n      \"description\": \"A heavily damaged, rusted pickup truck is stationary beside a black van; the pickup shows extensive body damage and missing parts, consistent with a prior collision.\",\n      \"reason\": \"Frames f16–f22 show a severely damaged pickup (dented, burnt paint, missing door panel, broken windows) parked adjacent to a van; no motion or impact is visible, but the static state and damage strongly indicate a past car accident, not an ongoing event. The candidate interval aligns with when the vehicle is fully visible and undisturbed.\",\n      \"evidence_frame_ids\": [\"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"Frames f4–f5 show military vehicles moving on a street with no visible collision, debris, or vehicle damage; the scene depicts normal convoy movement, not a car accident.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    },\n    {\n      \"candidate_id\": 8,\n      \"reason\": \"Frames f7–f15 show individuals standing near bodies on the ground, but no active aggression or contact is visible; the scene appears post-event (e.g., aftermath), not ongoing abuse.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\"]\n    },\n    {\n      \"candidate_id\": 9,\n      \"reason\": \"Same as candidate 8: no visible physical aggression toward a helpless person in f7–f11; bodies are lying still while people observe—insufficient for 'Abuse' per definition requiring active aggression.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    },\n    {\n      \"candidate_id\": 11,\n      \"reason\": \"Frames f12–f14 show people near bodies and vehicles, but no interaction indicating abuse; the scene remains static and observational, not violent.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\", \"f14\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                10
+              ],
+              "category": "CarAccident",
+              "t_start": 32.0,
+              "t_end": 39.5,
+              "confidence": 0.9,
+              "description": "A heavily damaged, rusted pickup truck is stationary beside a black van; the pickup shows extensive body damage and missing parts, consistent with a prior collision.",
+              "reason": "Frames f16–f22 show a severely damaged pickup (dented, burnt paint, missing door panel, broken windows) parked adjacent to a van; no motion or impact is visible, but the static state and damage strongly indicate a past car accident, not an ongoing event. The candidate interval aligns with when the vehicle is fully visible and undisturbed.",
+              "evidence_frame_ids": [
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 7,
+              "reason": "Frames f4–f5 show military vehicles moving on a street with no visible collision, debris, or vehicle damage; the scene depicts normal convoy movement, not a car accident.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            },
+            {
+              "candidate_id": 8,
+              "reason": "Frames f7–f15 show individuals standing near bodies on the ground, but no active aggression or contact is visible; the scene appears post-event (e.g., aftermath), not ongoing abuse.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15"
+              ]
+            },
+            {
+              "candidate_id": 9,
+              "reason": "Same as candidate 8: no visible physical aggression toward a helpless person in f7–f11; bodies are lying still while people observe—insufficient for 'Abuse' per definition requiring active aggression.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11"
+              ]
+            },
+            {
+              "candidate_id": 11,
+              "reason": "Frames f12–f14 show people near bodies and vehicles, but no interaction indicating abuse; the scene remains static and observational, not violent.",
+              "evidence_frame_ids": [
+                "f12",
+                "f13",
+                "f14"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

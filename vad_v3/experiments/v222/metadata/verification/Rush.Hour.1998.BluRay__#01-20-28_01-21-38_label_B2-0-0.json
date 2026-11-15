@@ -1,0 +1,743 @@
+{
+  "events": [
+    {
+      "t_start": 3.5,
+      "t_end": 5.0,
+      "anomaly_type": "Fighting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A man in black holds and pulls a girl in school uniform while she actively resists (grimacing, leaning back, being physically restrained) across f3–f5.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          3.5,
+          4.0,
+          4.5
+        ],
+        "evidence_frame_ids": [
+          "f3",
+          "f4",
+          "f5"
+        ],
+        "reason": "Visible reciprocal force and resistance (posture, facial expression) satisfy 'Fighting' (mutual physical combat); the girl is not helpless, so 'Abuse' does not apply.",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 6.5,
+      "t_end": 7.0,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "In f9, a man is thrown backward amid a smoke plume, shattered debris, and a broken vase; f10 shows lingering smoke and wreckage, confirming a sudden blast.",
+      "source_candidate_ids": [
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 1,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          6.5,
+          7.0
+        ],
+        "evidence_frame_ids": [
+          "f9",
+          "f10"
+        ],
+        "reason": "The abrupt ballistic motion, dust/smoke cloud, and immediate destruction of nearby objects meet the definition of 'Explosion' (a blast); no firearm or projectile impact is visible.",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    },
+    {
+      "t_start": 7.5,
+      "t_end": 8.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "Two men are locked in close physical contact in f11, then one forcefully drives the other downward in f12, showing dynamic grappling.",
+      "source_candidate_ids": [
+        5
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 2,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          7.5,
+          8.0
+        ],
+        "evidence_frame_ids": [
+          "f11",
+          "f12"
+        ],
+        "reason": "Direct, reciprocal physical engagement with applied force satisfies 'Fighting'; no evidence of helplessness or one-sided aggression.",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 61.5,
+      "t_end": 62.0,
+      "anomaly_type": "Shooting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A man holding a pistol recoils sharply with muzzle flash and smoke visible at f4–f5, consistent with discharge.",
+      "source_candidate_ids": [
+        12
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 5,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          61.5,
+          62.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "Frames f4 (61.5s) and f5 (62.0s) show sudden head/shoulder recoil, smoke near muzzle, and blurred motion—indicative of firing; the gun is pointed forward and held firmly before and after, supporting intentional discharge rather than accidental movement.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 13,
+      "output_count": 4,
+      "groups": 6,
+      "rejected": 9,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 2.0,
+              "f1": 2.5,
+              "f2": 3.0,
+              "f3": 3.5,
+              "f4": 4.0,
+              "f5": 4.5,
+              "f6": 5.0,
+              "f7": 5.5,
+              "f8": 6.0,
+              "f9": 6.5,
+              "f10": 7.0,
+              "f11": 7.5,
+              "f12": 8.0,
+              "f13": 8.5,
+              "f14": 9.0,
+              "f15": 9.5,
+              "f16": 10.0,
+              "f17": 10.5,
+              "f18": 11.0,
+              "f19": 11.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 3.8,
+                "t_end": 5.3,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 4.0,
+                "t_end": 4.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 5.0,
+                "t_end": 5.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 6.5,
+                "t_end": 7.0,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 6.5,
+                "t_end": 7.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 7.5,
+                "t_end": 8.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 9.5,
+                "t_end": 10.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Fighting\",\n      \"t_start\": 3.5,\n      \"t_end\": 5.0,\n      \"confidence\": 0.9,\n      \"description\": \"A man in a black suit grabs and shoves a girl in a school uniform (f3–f5), followed by the girl being pulled away while the man turns toward another figure; this constitutes mutual physical struggle involving aggression and resistance.\",\n      \"reason\": \"f3 shows the man holding the girl’s arm while she resists; f4 shows her grimacing as he pulls her; f5 shows him physically restraining her. This is not one-sided abuse because she actively resists (visible posture and facial expression), satisfying the definition of Fighting (mutual physical combat). The candidate 'Abuse' (id 1) is subsumed because the interaction is combative, not helpless victimization.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\"]\n    },\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"Shooting\",\n      \"t_start\": 5.0,\n      \"t_end\": 5.5,\n      \"confidence\": 0.85,\n      \"description\": \"A man in suspenders points a handgun directly at the camera (f6), and immediately after (f7), a bald man in white aims a pistol forward—both actions are consistent with active shooting.\",\n      \"reason\": \"f6 shows the gun clearly aimed and held steady in a firing posture; f7 shows another armed individual in identical aiming posture. Though no muzzle flash is visible, the sustained aim across frames and context (chaos, debris, prior struggle) supports Shooting as the best-supported category per definition (visible shooting = aiming + intent implied by posture and continuity). Candidate id 2 is accepted; id 4 (also claiming shooting at 6.5–7.0) is rejected due to lack of visible gun in those frames.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\"]\n    },\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"Explosion\",\n      \"t_start\": 6.5,\n      \"t_end\": 7.0,\n      \"confidence\": 0.95,\n      \"description\": \"At f9, a man is thrown backward amid smoke, debris, and shattered objects; f10 shows lingering smoke and scattered wreckage, indicating a sudden blast event.\",\n      \"reason\": \"The abrupt displacement of the person, presence of dust/smoke plume, and destruction of nearby objects (vase, floor) in f9–f10 meet the definition of Explosion (a blast), distinct from fire or sustained damage. Candidate id 3 is confirmed; id 4 (Shooting at same interval) is inconsistent—no gun visible in f9/f10, and the motion is ballistic, not projectile-based.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\"]\n    },\n    {\n      \"source_candidate_ids\": [5],\n      \"category\": \"Fighting\",\n      \"t_start\": 7.5,\n      \"t_end\": 8.5,\n      \"confidence\": 0.8,\n      \"description\": \"Two men grapple violently: one is lifted and slammed (f11–f12), with clear physical contact and dynamic motion indicating mutual combat.\",\n      \"reason\": \"f11 shows two men locked together mid-motion; f12 shows one man driving the other downward with force. This satisfies Fighting (mutual physical combat); no evidence of helplessness or one-sided aggression. Candidate id 5 stands alone and is accepted.\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\"]\n    },\n    {\n      \"source_candidate_ids\": [6],\n      \"category\": \"Shooting\",\n      \"t_start\": 9.5,\n      \"t_end\": 10.0,\n      \"confidence\": 0.75,\n      \"description\": \"A man in white fires a pistol toward a display case (f15); subsequent wide shots (f16–f18) show multiple men reacting and taking cover, consistent with ongoing gunfire.\",\n      \"reason\": \"f15 shows the man with arm extended, gun pointed, and recoil posture; f16–f18 show others ducking and moving evasively in response. Though the gun is small and distant in later frames, the sequence supports active shooting. Confidence reduced slightly due to distance, but visible aiming + reactive behavior justifies Shooting.\",\n      \"evidence_frame_ids\": [\"f15\", \"f16\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"Frames f9–f10 show explosion effects (debris, smoke, thrown person) but no visible firearm or shooting action; thus 'Shooting' is contradicted by evidence supporting Explosion instead.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\"]\n    },\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"The girl in f3–f5 actively resists and is engaged in physical struggle, not passive victimization; therefore 'Abuse' is incorrect—the event is better classified as Fighting.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 2.0,
+              "f1": 2.5,
+              "f2": 3.0,
+              "f3": 3.5,
+              "f4": 4.0,
+              "f5": 4.5,
+              "f6": 5.0,
+              "f7": 5.5,
+              "f8": 6.0,
+              "f9": 6.5,
+              "f10": 7.0,
+              "f11": 7.5,
+              "f12": 8.0,
+              "f13": 8.5,
+              "f14": 9.0,
+              "f15": 9.5,
+              "f16": 10.0,
+              "f17": 10.5,
+              "f18": 11.0,
+              "f19": 11.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 3.8,
+                "t_end": 5.3,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 4.0,
+                "t_end": 4.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 5.0,
+                "t_end": 5.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 6.5,
+                "t_end": 7.0,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 6.5,
+                "t_end": 7.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 7.5,
+                "t_end": 8.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 9.5,
+                "t_end": 10.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Fighting\",\n      \"t_start\": 3.5,\n      \"t_end\": 5.0,\n      \"confidence\": 0.85,\n      \"description\": \"In f3, a man in black holds a girl’s arm while she resists; f4 shows her grimacing and leaning back; f5 shows him pulling her down—indicating mutual physical struggle.\",\n      \"reason\": \"Visible resistance (posture, facial expression) by the girl contradicts one-sided abuse; the interaction meets 'Fighting' definition (mutual physical combat). Candidate 1 ('Abuse') is rejected and not merged, as the evidence does not support helplessness.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\"]\n    },\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"Shooting\",\n      \"t_start\": 5.0,\n      \"t_end\": 5.5,\n      \"confidence\": 0.7,\n      \"description\": \"In f6, a man in suspenders aims a handgun forward; in f7, a bald man in white also aims a pistol forward—both in firing postures with no visible impact yet.\",\n      \"reason\": \"Definition requires 'visible shooting', which strictly means observable discharge (e.g., muzzle flash, bullet impact, recoil blur). Neither f6 nor f7 shows discharge or impact; only aiming. Thus, confidence is reduced, but per taxonomy instructions, if *only* aiming is visible and no blast/explosion occurs, it does **not** satisfy 'Shooting'. However, candidate 2 explicitly claims 'Shooting' at 5.0–5.5, and no discharge is visible—so this should be rejected, not accepted. Correction: this event is **not supported**; see rejected list below. Wait—re-evaluate: the instruction says “Shooting requires visible shooting, not merely holding a gun”. Since no discharge is visible in f6/f7, this cannot be Shooting. Therefore, candidate 2 must be rejected, not accepted. The prior response incorrectly accepted it. Revised: remove from events, place in rejected.\n    },\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"Explosion\",\n      \"t_start\": 6.5,\n      \"t_end\": 7.0,\n      \"confidence\": 0.95,\n      \"description\": \"In f9, a man is thrown backward amid smoke, debris, and shattered objects; f10 shows lingering smoke and wreckage, consistent with a sudden blast.\",\n      \"reason\": \"The abrupt ballistic motion, dust/smoke plume, and destruction of nearby objects (vase, floor) meet the definition of Explosion (a blast), distinct from fire or sustained damage. Candidate 3 is valid; candidate 4 (also at 6.5–7.0, claiming Shooting) is incompatible—no gun visible in f9/f10, and motion is explosive, not projectile-based.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\"]\n    },\n    {\n      \"source_candidate_ids\": [5],\n      \"category\": \"Fighting\",\n      \"t_start\": 7.5,\n      \"t_end\": 8.5,\n      \"confidence\": 0.85,\n      \"description\": \"In f11, two men are locked in close contact mid-motion; in f12, one man forcefully drives the other downward—clear mutual physical combat.\",\n      \"reason\": \"Visible grappling, dynamic force application, and reciprocal engagement satisfy 'Fighting'; no evidence of helplessness or one-sided aggression. Candidate 5 stands independently and is supported.\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\"]\n    },\n    {\n      \"source_candidate_ids\": [6],\n      \"category\": \"Shooting\",\n      \"t_start\": 9.5,\n      \"t_end\": 10.0,\n      \"confidence\": 0.6,\n      \"description\": \"In f15, a man in white extends his arm toward a display case in a posture consistent with firing; f16 shows others reacting evasively (ducking, running).\",\n      \"reason\": \"Per strict definition, 'Shooting' requires visible shooting—not just aiming or reaction. f15 shows no muzzle flash, recoil blur, or impact; f16–f18 show only reactions. Without visible discharge, this does **not** meet the category. Therefore, candidate 6 must be rejected. Correction: this event is unsupported. Remove from events.\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"The girl in f3–f5 actively resists (grimacing, leaning away, being pulled down), indicating mutual physical struggle, not passive victimization; thus 'Abuse' is contradicted by visible resistance.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\"]\n    },\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Frames f6 and f7 show only aiming postures with no visible discharge (muzzle flash, impact, or recoil blur); 'Shooting' requires visible shooting, not merely holding/aiming a gun.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\"]\n    },\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"Frames f9–f10 show explosion effects (debris, smoke, thrown person) but no firearm or shooting action; 'Shooting' is contradicted by evidence supporting Explosion instead.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\"]\n    },\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"Frame f15 shows a man aiming a small object (possibly a gun) but no visible discharge; f16–f18 show evasive movement but no impact or muzzle effect—insufficient for 'Shooting' per strict definition.\",\n      \"evidence_frame_ids\": [\"f15\", \"f16\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"While f3–f5 show physical struggle, the girl’s resistance is visible but the man’s intent and whether combat is truly mutual (vs. brief restraint during abduction) is ambiguous due to occlusion and short duration; however, since she actively resists and is engaged, Fighting is still best-supported—wait, no: the prior analysis concluded confidence 0.85 and included it. But per instruction: if evidence is adequate, accept; here, f3–f5 clearly show reciprocal force (she pulls back, he grabs), so it *is* adequate. Thus candidate 0 is supported and belongs in events. The only issue is that in the initial events list above, I mistakenly tried to merge 0 and 1, but 1 is rejected, and 0 stands alone. So correct events must include candidate 0 as Fighting. Let me reconstruct cleanly:\"\n    }\n  ]\n}\n\nWait—this is getting tangled. Let me restart with strict adherence:\n\n- Visible frames and definitions only.\n- Category triggers:\n  - Fighting: mutual physical combat → both parties engaged physically, resisting.\n  - Shooting: visible shooting → must see discharge (muzzle flash, bullet impact, recoil blur, or shell ejection *in frame*). Aiming alone ≠ Shooting.\n  - Explosion: blast → sudden release of energy causing displacement, smoke, debris *in same frame*.\n\nNow re-express each candidate against evidence:\n\nCandidate 0 (t=3.8–5.3, Fighting):  \nf3 (3.5): man holds girl’s arm, she leans back, mouth open — resistance.  \nf4 (4.0): girl grimacing, head tilted, being pulled — active struggle.  \nf5 (4.5): man bending over her, hands on her — physical restraint with resistance implied.  \n→ This is mutual physical combat. Accept as Fighting. Evidence: f3–f5.\n\nCandidate 1 (t=4.0–4.5, Abuse):  \nSame frames, but girl is not helpless—she resists. So Abuse is false. Reject.\n\nCandidate 2 (t=5.0–5.5, Shooting):  \nf6 (5.0): man aims gun, steady, no flash/impact.  \nf7 (5.5): bald man aims pistol, no discharge visible.  \n→ No visible shooting. Reject.\n\nCandidate 3 (t=6.5–7.0, Explosion):  \nf9 (6.5): man airborne, smoke, debris, shattered vase — classic blast effect.  \nf10 (7.0): smoke lingering, wreckage — confirms blast aftermath.  \n→ Meets Explosion definition. Accept.\n\nCandidate 4 (t=6.5–7.0, Shooting):  \nSame interval as 3, but no gun visible; motion is ballistic, not projectile. Contradicted by explosion evidence. Reject.\n\nCandidate 5 (t=7.5–8.5, Fighting):  \nf11 (7.5): two men blurred, locked, one’s face contorted — grappling.  \nf12 (8.0): one man driving other down, hands on shoulders/neck — clear mutual combat.  \n→ Accept Fighting.\n\nCandidate 6 (t=9.5–10.0, Shooting):  \nf15 (9.5): man in white pointing arm toward display; object in hand too small to confirm gun; no flash/recoil.  \nf16 (10.0): wide shot, men running—reactive, but no visible shot.  \n→ No visible shooting; reject.\n\nThus, only candidates 0, 3, and 5 are supported.\n\nFinal correct output:\n\n{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Fighting\",\n      \"t_start\": 3.5,\n      \"t_end\": 5.0,\n      \"confidence\": 0.9,\n      \"description\": \"A man in black physically restrains a girl in school uniform while she actively resists (f3–f5), showing mutual physical struggle.\",\n      \"reason\": \"Visible resistance (facial expression, posture) and reciprocal force satisfy 'Fighting'; not Abuse because victim is not helpless.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\"]\n    },\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"Explosion\",\n      \"t_start\": 6.5,\n      \"t_end\": 7.0,\n      \"confidence\": 0.95,\n      \"description\": \"A man is violently thrown backward amid smoke and debris (f9); aftermath with lingering smoke and wreckage (f10) confirms a blast event.\",\n      \"reason\": \"Sudden displacement, dust plume, and destruction of objects meet 'Explosion' definition; no firearm visible rules out Shooting.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\"]\n    },\n    {\n      \"source_candidate_ids\": [5],\n      \"category\": \"Fighting\",\n      \"t_start\": 7.5,\n      \"t_end\": 8.5,\n      \"confidence\": 0.85,\n      \"description\": \"Two men grapple intensely: locked together in f11, then one forces the other downward in f12.\",\n      \"reason\": \"Direct physical contact, dynamic force application, and reciprocal engagement fulfill 'Fighting'; no indication of helplessness.\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"The girl actively resists in f3–f5, contradicting 'Abuse' (which requires a helpless victim); the interaction is combative, not one-sided.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\"]\n    },\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"f6 and f7 show only aiming postures with no visible discharge (muzzle flash, impact, or recoil), failing the 'visible shooting' requirement.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\"]\n    },\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"f9–f10 depict explosion effects (debris, smoke, thrown person) but no gun or shooting action; 'Shooting' is contradicted by evidence.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\"]\n    },\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"f15 shows an arm extended toward a display with no visible gun discharge; f16 shows evasive movement without impact—insufficient for 'Shooting'.\",\n      \"evidence_frame_ids\": [\"f15\", \"f16\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 2.0,
+              "f1": 2.5,
+              "f2": 3.0,
+              "f3": 3.5,
+              "f4": 4.0,
+              "f5": 4.5,
+              "f6": 5.0,
+              "f7": 5.5,
+              "f8": 6.0,
+              "f9": 6.5,
+              "f10": 7.0,
+              "f11": 7.5,
+              "f12": 8.0,
+              "f13": 8.5,
+              "f14": 9.0,
+              "f15": 9.5,
+              "f16": 10.0,
+              "f17": 10.5,
+              "f18": 11.0,
+              "f19": 11.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 3.8,
+                "t_end": 5.3,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 4.0,
+                "t_end": 4.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 5.0,
+                "t_end": 5.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 6.5,
+                "t_end": 7.0,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 6.5,
+                "t_end": 7.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 7.5,
+                "t_end": 8.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 9.5,
+                "t_end": 10.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Fighting\",\n      \"t_start\": 3.5,\n      \"t_end\": 5.0,\n      \"confidence\": 0.9,\n      \"description\": \"A man in black holds and pulls a girl in school uniform while she actively resists (grimacing, leaning back, being physically restrained) across f3–f5.\",\n      \"reason\": \"Visible reciprocal force and resistance (posture, facial expression) satisfy 'Fighting' (mutual physical combat); the girl is not helpless, so 'Abuse' does not apply.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\"]\n    },\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"Explosion\",\n      \"t_start\": 6.5,\n      \"t_end\": 7.0,\n      \"confidence\": 0.95,\n      \"description\": \"In f9, a man is thrown backward amid a smoke plume, shattered debris, and a broken vase; f10 shows lingering smoke and wreckage, confirming a sudden blast.\",\n      \"reason\": \"The abrupt ballistic motion, dust/smoke cloud, and immediate destruction of nearby objects meet the definition of 'Explosion' (a blast); no firearm or projectile impact is visible.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\"]\n    },\n    {\n      \"source_candidate_ids\": [5],\n      \"category\": \"Fighting\",\n      \"t_start\": 7.5,\n      \"t_end\": 8.5,\n      \"confidence\": 0.85,\n      \"description\": \"Two men are locked in close physical contact in f11, then one forcefully drives the other downward in f12, showing dynamic grappling.\",\n      \"reason\": \"Direct, reciprocal physical engagement with applied force satisfies 'Fighting'; no evidence of helplessness or one-sided aggression.\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"The girl in f3–f5 actively resists (facial grimace, body tension, leaning away), contradicting 'Abuse', which requires a helpless victim; the interaction is combative, not passive victimization.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\"]\n    },\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"f6 and f7 show only aiming postures with no visible discharge (e.g., muzzle flash, bullet impact, recoil blur); 'Shooting' strictly requires visible shooting, not mere aiming.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\"]\n    },\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"f9–f10 depict explosion effects (smoke, debris, thrown person) but no firearm or shooting action; 'Shooting' is contradicted by the visual evidence supporting Explosion instead.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\"]\n    },\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"f15 shows an arm extended toward a display with an indistinct object; no muzzle flash, recoil, or impact is visible; f16 shows evasive movement but no observable shot—insufficient for 'Shooting'.\",\n      \"evidence_frame_ids\": [\"f15\", \"f16\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Fighting",
+              "t_start": 3.5,
+              "t_end": 5.0,
+              "confidence": 0.9,
+              "description": "A man in black holds and pulls a girl in school uniform while she actively resists (grimacing, leaning back, being physically restrained) across f3–f5.",
+              "reason": "Visible reciprocal force and resistance (posture, facial expression) satisfy 'Fighting' (mutual physical combat); the girl is not helpless, so 'Abuse' does not apply.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                3
+              ],
+              "category": "Explosion",
+              "t_start": 6.5,
+              "t_end": 7.0,
+              "confidence": 0.95,
+              "description": "In f9, a man is thrown backward amid a smoke plume, shattered debris, and a broken vase; f10 shows lingering smoke and wreckage, confirming a sudden blast.",
+              "reason": "The abrupt ballistic motion, dust/smoke cloud, and immediate destruction of nearby objects meet the definition of 'Explosion' (a blast); no firearm or projectile impact is visible.",
+              "evidence_frame_ids": [
+                "f9",
+                "f10"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                5
+              ],
+              "category": "Fighting",
+              "t_start": 7.5,
+              "t_end": 8.5,
+              "confidence": 0.85,
+              "description": "Two men are locked in close physical contact in f11, then one forcefully drives the other downward in f12, showing dynamic grappling.",
+              "reason": "Direct, reciprocal physical engagement with applied force satisfies 'Fighting'; no evidence of helplessness or one-sided aggression.",
+              "evidence_frame_ids": [
+                "f11",
+                "f12"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "The girl in f3–f5 actively resists (facial grimace, body tension, leaning away), contradicting 'Abuse', which requires a helpless victim; the interaction is combative, not passive victimization.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5"
+              ]
+            },
+            {
+              "candidate_id": 2,
+              "reason": "f6 and f7 show only aiming postures with no visible discharge (e.g., muzzle flash, bullet impact, recoil blur); 'Shooting' strictly requires visible shooting, not mere aiming.",
+              "evidence_frame_ids": [
+                "f6",
+                "f7"
+              ]
+            },
+            {
+              "candidate_id": 4,
+              "reason": "f9–f10 depict explosion effects (smoke, debris, thrown person) but no firearm or shooting action; 'Shooting' is contradicted by the visual evidence supporting Explosion instead.",
+              "evidence_frame_ids": [
+                "f9",
+                "f10"
+              ]
+            },
+            {
+              "candidate_id": 6,
+              "reason": "f15 shows an arm extended toward a display with an indistinct object; no muzzle flash, recoil, or impact is visible; f16 shows evasive movement but no observable shot—insufficient for 'Shooting'.",
+              "evidence_frame_ids": [
+                "f15",
+                "f16"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          7
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 39.5,
+              "f1": 40.0,
+              "f2": 40.5,
+              "f3": 41.0,
+              "f4": 41.5,
+              "f5": 42.0,
+              "f6": 42.5,
+              "f7": 43.0,
+              "f8": 43.5,
+              "f9": 44.0,
+              "f10": 44.5,
+              "f11": 45.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 7,
+                "t_start": 41.5,
+                "t_end": 43.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"No visible muzzle flash, recoil, or bullet impact; the man holds and aims a pistol but does not fire in any frame from f4 to f8.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 7,
+              "reason": "No visible muzzle flash, recoil, or bullet impact; the man holds and aims a pistol but does not fire in any frame from f4 to f8.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          8
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 44.5,
+              "f1": 45.0,
+              "f2": 45.5,
+              "f3": 46.0,
+              "f4": 46.5,
+              "f5": 47.0,
+              "f6": 47.5,
+              "f7": 48.0,
+              "f8": 48.5,
+              "f9": 49.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 8,
+                "t_start": 46.5,
+                "t_end": 47.3,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 8,\n      \"reason\": \"No mutual physical combat is visible; at f4–f5, one man falls or ducks while another raises a gun, but no contact or reciprocal struggle occurs—this is consistent with a non-consensual threat or shooting initiation, not Fighting.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 8,
+              "reason": "No mutual physical combat is visible; at f4–f5, one man falls or ducks while another raises a gun, but no contact or reciprocal struggle occurs—this is consistent with a non-consensual threat or shooting initiation, not Fighting.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          9
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 55.5,
+              "f1": 56.0,
+              "f2": 56.5,
+              "f3": 57.0,
+              "f4": 57.5,
+              "f5": 58.0,
+              "f6": 58.5,
+              "f7": 59.0,
+              "f8": 59.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 9,
+                "t_start": 57.5,
+                "t_end": 57.541667,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [9],\n      \"category\": \"Shooting\",\n      \"t_start\": 57.5,\n      \"t_end\": 57.5,\n      \"confidence\": 1.0,\n      \"description\": \"A man in a black suit aims a handgun directly at the camera with both hands, finger on trigger, in a clear shooting posture.\",\n      \"reason\": \"Image f4 (57.5 s) shows a firearm pointed forward with intent to fire; this satisfies the definition of 'Shooting' as visible shooting action (aiming with finger on trigger constitutes preparation and initiation of shooting in cinematic context, and no contrary evidence exists in that frame). The candidate interval is exactly matched by f4.\",\n      \"evidence_frame_ids\": [\"f4\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 55.5,
+              "f1": 56.0,
+              "f2": 56.5,
+              "f3": 57.0,
+              "f4": 57.5,
+              "f5": 58.0,
+              "f6": 58.5,
+              "f7": 59.0,
+              "f8": 59.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 9,
+                "t_start": 57.5,
+                "t_end": 57.541667,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 9,\n      \"reason\": \"Image f4 (57.5 s) shows a man aiming a handgun with finger near trigger, but no visible muzzle flash, bullet, recoil, or impact; 'Shooting' requires visible shooting (e.g., discharge), not merely aiming or weapon possession. The hypothesis is unsupported by visual evidence of actual firing.\",\n      \"evidence_frame_ids\": [\"f4\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 9,
+              "reason": "Image f4 (57.5 s) shows a man aiming a handgun with finger near trigger, but no visible muzzle flash, bullet, recoil, or impact; 'Shooting' requires visible shooting (e.g., discharge), not merely aiming or weapon possession. The hypothesis is unsupported by visual evidence of actual firing.",
+              "evidence_frame_ids": [
+                "f4"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 4,
+        "source_ids": [
+          10
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 57.5,
+              "f1": 58.0,
+              "f2": 58.5,
+              "f3": 59.0,
+              "f4": 59.5,
+              "f5": 60.0,
+              "f6": 60.5,
+              "f7": 61.0,
+              "f8": 61.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 10,
+                "t_start": 59.5,
+                "t_end": 59.541667,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 10,\n      \"reason\": \"No visible muzzle flash, recoil, or bullet impact; f4–f7 show a man holding a gun but not firing; f8 shows him ducking into smoke, not discharging the weapon.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 10,
+              "reason": "No visible muzzle flash, recoil, or bullet impact; f4–f7 show a man holding a gun but not firing; f8 shows him ducking into smoke, not discharging the weapon.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 5,
+        "source_ids": [
+          11,
+          12
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 59.5,
+              "f1": 60.0,
+              "f2": 60.5,
+              "f3": 61.0,
+              "f4": 61.5,
+              "f5": 62.0,
+              "f6": 62.5,
+              "f7": 63.0,
+              "f8": 63.5,
+              "f9": 64.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 11,
+                "t_start": 61.5,
+                "t_end": 62.3,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 12,
+                "t_start": 61.5,
+                "t_end": 62.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [12],\n      \"category\": \"Shooting\",\n      \"t_start\": 61.5,\n      \"t_end\": 62.0,\n      \"confidence\": 0.9,\n      \"description\": \"A man holding a pistol recoils sharply with muzzle flash and smoke visible at f4–f5, consistent with discharge.\",\n      \"reason\": \"Frames f4 (61.5s) and f5 (62.0s) show sudden head/shoulder recoil, smoke near muzzle, and blurred motion—indicative of firing; the gun is pointed forward and held firmly before and after, supporting intentional discharge rather than accidental movement.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 11,\n      \"reason\": \"No blast wave, debris, or rapid expansion typical of explosion; smoke appears localized to firearm muzzle and is consistent with gun discharge, not detonation of explosive material.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                12
+              ],
+              "category": "Shooting",
+              "t_start": 61.5,
+              "t_end": 62.0,
+              "confidence": 0.9,
+              "description": "A man holding a pistol recoils sharply with muzzle flash and smoke visible at f4–f5, consistent with discharge.",
+              "reason": "Frames f4 (61.5s) and f5 (62.0s) show sudden head/shoulder recoil, smoke near muzzle, and blurred motion—indicative of firing; the gun is pointed forward and held firmly before and after, supporting intentional discharge rather than accidental movement.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 11,
+              "reason": "No blast wave, debris, or rapid expansion typical of explosion; smoke appears localized to firearm muzzle and is consistent with gun discharge, not detonation of explosive material.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

@@ -1,0 +1,603 @@
+{
+  "events": [
+    {
+      "t_start": 12.0,
+      "t_end": 13.2,
+      "anomaly_type": "Shooting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A man holds two pistols pointed forward with a strained expression (f4, f7); at f5–f6, a woman is grabbed and pulled down while sparks fly on the sidewalk in f8, consistent with gunfire impact.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          12.0,
+          12.5,
+          13.0,
+          13.5,
+          14.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8"
+        ],
+        "reason": "f4 and f7 show clear aiming of two handguns; f8 shows sparks on pavement near the man’s position, indicating bullet impact; f5–f6 show the immediate aftermath of an attack (grabbing, ducking), temporally aligned with the aiming frames. This constitutes visible shooting within the interval.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 14.0,
+      "t_end": 18.0,
+      "anomaly_type": "Fighting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A man and woman engage in mutual physical struggle: the man grabs the woman (f4, f6), she resists and they grapple (f7–f10), culminating in both falling (f11).",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          12.5,
+          14.0,
+          15.0,
+          16.0,
+          16.5,
+          17.0,
+          18.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11"
+        ],
+        "reason": "Frames f4 (hand on shoulder), f6 (sparks suggest impact or contact), f7 (arms outstretched, dynamic motion), f8–f10 (close embrace with visible tension and weapon involvement) show reciprocal engagement; neither is passive—this satisfies 'Fighting' (mutual physical combat). Candidate 1’s interval (14.7–18.2) is fully covered by f6–f11 (14.0–18.0), so t_start adjusted to earliest supporting frame f6 (14.0).",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 22.5,
+      "t_end": 23.0,
+      "anomaly_type": "Shooting",
+      "confidence": 0.97,
+      "coarse_score": 0.97,
+      "description": "At f16 (22.5 s), a sudden dust/smoke cloud erupts from the ground near the woman’s head; f17 (23.0 s) shows the cloud expanding while she lies prone, consistent with a close-range discharge.",
+      "source_candidate_ids": [
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 1,
+        "vlm_confidence": 0.97,
+        "evidence_times": [
+          20.5,
+          22.5,
+          23.0
+        ],
+        "evidence_frame_ids": [
+          "f14",
+          "f16",
+          "f17"
+        ],
+        "reason": "f16 shows an abrupt localized dust burst with no prior motion suggesting fall or impact—typical of a muzzle blast on pavement; f14 shows her holding a gun to the man’s head, f19 shows her aiming again, supporting intent and capability; no other cause for the dust is visible. Candidate 3 (22.5–23.5) is supported only through f16–f17; f18 (24.0) shows aftermath but no new discharge, so t_end capped at 23.0 (f17). Candidate 5 (28.5–29.0) lacks evidence and is rejected separately.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 24.0,
+      "t_end": 27.5,
+      "anomaly_type": "Abuse",
+      "confidence": 0.93,
+      "coarse_score": 0.93,
+      "description": "The man lies supine against a wall (f19–f22), visibly incapacitated, while the woman presses a handgun to his neck/chest (f20–f22); he shows no resistance.",
+      "source_candidate_ids": [
+        2,
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 2,
+        "vlm_confidence": 0.93,
+        "evidence_times": [
+          24.0,
+          25.0,
+          26.0,
+          27.0,
+          27.5
+        ],
+        "evidence_frame_ids": [
+          "f18",
+          "f19",
+          "f20",
+          "f21",
+          "f22"
+        ],
+        "reason": "From f19 onward, the man is on his back, eyes open but unresponsive; f20–f22 show the woman actively controlling him with a weapon while he does not struggle—meeting 'Abuse' (aggression against a helpless victim). Candidate 2 (17.5–28.0) overlaps this but includes earlier fighting (f11–f18), which is separate; candidate 4 (24.5–28.0) aligns with f19–f22. Merged into one abuse event from f19 (25.0) to f22 (27.5), with t_start extended to f18 (24.0) as the transition point where she gains full control after the dust burst. f18 shows her prone but rising; f19 shows her over him—so abuse begins ~25.0, but visible control starts at f19; t_start set to 24.0 to include onset. Evidence limited to f19–f22; f18 is borderline but included for continuity.",
+        "source_categories": [
+          "Abuse",
+          "Abuse"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 7,
+      "output_count": 4,
+      "groups": 2,
+      "rejected": 2,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 1
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 10.0,
+              "f1": 10.5,
+              "f2": 11.0,
+              "f3": 11.5,
+              "f4": 12.0,
+              "f5": 12.5,
+              "f6": 13.0,
+              "f7": 13.5,
+              "f8": 14.0,
+              "f9": 14.5,
+              "f10": 15.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 12.0,
+                "t_end": 13.2,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Shooting\",\n      \"t_start\": 12.0,\n      \"t_end\": 13.2,\n      \"confidence\": 0.9,\n      \"description\": \"A man holds two pistols pointed forward with a strained expression (f4, f7); at f5–f6, a woman is grabbed and pulled down while sparks fly on the sidewalk in f8, consistent with gunfire impact.\",\n      \"reason\": \"f4 and f7 show clear aiming of two handguns; f8 shows sparks on pavement near the man’s position, indicating bullet impact; f5–f6 show the immediate aftermath of an attack (grabbing, ducking), temporally aligned with the aiming frames. This constitutes visible shooting within the interval.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Shooting",
+              "t_start": 12.0,
+              "t_end": 13.2,
+              "confidence": 0.9,
+              "description": "A man holds two pistols pointed forward with a strained expression (f4, f7); at f5–f6, a woman is grabbed and pulled down while sparks fly on the sidewalk in f8, consistent with gunfire impact.",
+              "reason": "f4 and f7 show clear aiming of two handguns; f8 shows sparks on pavement near the man’s position, indicating bullet impact; f5–f6 show the immediate aftermath of an attack (grabbing, ducking), temporally aligned with the aiming frames. This constitutes visible shooting within the interval.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 13.0,
+              "f1": 13.5,
+              "f2": 14.5,
+              "f3": 15.5,
+              "f4": 16.0,
+              "f5": 16.5,
+              "f6": 17.0,
+              "f7": 18.0,
+              "f8": 19.0,
+              "f9": 19.5,
+              "f10": 21.5,
+              "f11": 22.5,
+              "f12": 23.0,
+              "f13": 24.0,
+              "f14": 25.0,
+              "f15": 26.0,
+              "f16": 26.5,
+              "f17": 27.5,
+              "f18": 28.5,
+              "f19": 29.5,
+              "f20": 30.0,
+              "f21": 30.5,
+              "f22": 31.0,
+              "f23": 33.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 14.7,
+                "t_end": 18.2,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 17.5,
+                "t_end": 28.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 22.5,
+                "t_end": 23.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 24.5,
+                "t_end": 28.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 28.5,
+                "t_end": 29.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 29.5,
+                "t_end": 31.1,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Fighting\",\n      \"t_start\": 14.5,\n      \"t_end\": 17.0,\n      \"confidence\": 0.95,\n      \"description\": \"Two individuals engage in close physical struggle: one grabs the other from behind while both hold firearms, with dynamic motion and mutual resistance visible.\",\n      \"reason\": \"Frames f4–f6 show reciprocal grappling, weapon control attempts, and facial expressions of exertion—consistent with mutual combat, not one-sided abuse. f2 shows separation after initial contact; f3 is too dark to confirm but fits transition.\",\n      \"evidence_frame_ids\": [\"f2\", \"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"source_candidate_ids\": [3, 5],\n      \"category\": \"Shooting\",\n      \"t_start\": 22.5,\n      \"t_end\": 23.0,\n      \"confidence\": 0.98,\n      \"description\": \"A sudden burst of dust/smoke erupts near a prone woman (f11), followed by her lying still amid lingering dust (f12), consistent with a nearby gunshot impact.\",\n      \"reason\": \"f11 shows an instantaneous dust cloud at ground level near the woman’s head/shoulder, with no visible explosion source or fire; f12 shows residual dust settling—classic ballistic dust signature. No muzzle flash visible, but the abruptness and localized dust support shooting over explosion or accident. Candidate 5 (28.5–29.0) lacks visible discharge or impact evidence; f18 shows blood but no firing event.\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\"]\n    },\n    {\n      \"source_candidate_ids\": [2, 4, 6],\n      \"category\": \"Abuse\",\n      \"t_start\": 24.5,\n      \"t_end\": 28.5,\n      \"confidence\": 0.92,\n      \"description\": \"A man lies supine against a wall while another person presses a gun to his neck/throat and manipulates it, with the victim showing distress and inability to resist.\",\n      \"reason\": \"f14–f17 show one person immobilized on ground/wall, weapon applied directly to neck, hands controlling gun and victim’s body; victim’s facial expression (f15–f17) indicates pain/helplessness, not mutual combat. f18 shows aftermath with blood on aggressor’s face—consistent with violent coercion, not fighting. Candidates 2, 4, and 6 all describe overlapping phases of this same coercive act.\",\n      \"evidence_frame_ids\": [\"f14\", \"f15\", \"f16\", \"f17\", \"f18\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"No visible gun discharge, muzzle flash, or impact at t=28.5–29.0; f18 shows blood on aggressor’s face but no shooting action; f19 is obscured by smoke/dust without clear weapon use.\",\n      \"evidence_frame_ids\": [\"f18\", \"f19\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"Candidate 6 (29.5–31.1) describes 'Abuse', but f19–f22 show the woman rising, clutching chest, with no visible aggressor or contact; context suggests post-incident reaction, not ongoing abuse. Insufficient evidence to confirm active abuse in this interval.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 13.0,
+              "f1": 13.5,
+              "f2": 14.5,
+              "f3": 15.5,
+              "f4": 16.0,
+              "f5": 16.5,
+              "f6": 17.0,
+              "f7": 18.0,
+              "f8": 19.0,
+              "f9": 19.5,
+              "f10": 21.5,
+              "f11": 22.5,
+              "f12": 23.0,
+              "f13": 24.0,
+              "f14": 25.0,
+              "f15": 26.0,
+              "f16": 26.5,
+              "f17": 27.5,
+              "f18": 28.5,
+              "f19": 29.5,
+              "f20": 30.0,
+              "f21": 30.5,
+              "f22": 31.0,
+              "f23": 33.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 14.7,
+                "t_end": 18.2,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 17.5,
+                "t_end": 28.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 22.5,
+                "t_end": 23.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 24.5,
+                "t_end": 28.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 28.5,
+                "t_end": 29.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 29.5,
+                "t_end": 31.1,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Fighting\",\n      \"t_start\": 14.5,\n      \"t_end\": 17.0,\n      \"confidence\": 0.95,\n      \"description\": \"Two individuals engage in reciprocal grappling: one seizes the other from behind while both struggle for control of a firearm, with visible resistance and dynamic motion.\",\n      \"reason\": \"Frames f4–f6 show mutual physical engagement—arms interlocked, bodies twisted, facial strain—consistent with fighting; f2 (14.5 s) shows separation after initial contact, fitting the start of the struggle; f3 is too dark to confirm but lies between f2 and f4 without contradicting the sequence.\",\n      \"evidence_frame_ids\": [\"f2\", \"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"Shooting\",\n      \"t_start\": 22.5,\n      \"t_end\": 23.0,\n      \"confidence\": 0.98,\n      \"description\": \"A sudden localized dust/smoke plume erupts at ground level near a prone woman’s head/shoulder (f11), followed by settling dust and her unchanged position (f12), indicating a nearby ballistic impact.\",\n      \"reason\": \"The abrupt, directional dust cloud in f11 (22.5 s) with no fire, explosion, or vehicle involvement matches a gunshot impact on pavement; f12 (23.0 s) confirms residual dust without further action—supports shooting, not explosion or accident. Candidate 5 (28.5–29.0) lacks any discharge evidence and is rejected separately.\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\"]\n    },\n    {\n      \"source_candidate_ids\": [2, 4],\n      \"category\": \"Abuse\",\n      \"t_start\": 24.5,\n      \"t_end\": 28.5,\n      \"confidence\": 0.93,\n      \"description\": \"A man lies supine against a wall while another person holds a gun to his neck and manipulates it, with the victim immobilized and showing distress; the aggressor maintains control without reciprocal resistance.\",\n      \"reason\": \"Frames f14–f17 (25.0–27.5 s) show clear one-sided coercion: victim pinned, weapon applied directly to neck, hands controlling both gun and victim’s body; facial expressions (f15–f17) indicate helplessness, not combat. f18 (28.5 s) shows blood on aggressor’s face—aftermath of violent act—but no ongoing abuse; candidate 6 (29.5–31.1) is separate and uncertain (see below). Candidates 2 and 4 both describe overlapping phases of this same coercive event and are merged.\",\n      \"evidence_frame_ids\": [\"f14\", \"f15\", \"f16\", \"f17\", \"f18\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"No visible gun discharge, muzzle flash, or impact at t=28.5–29.0; f18 shows blood on aggressor’s face but no firing action, and f19 is obscured by smoke/dust without a weapon in discharge position—insufficient evidence for shooting.\",\n      \"evidence_frame_ids\": [\"f18\", \"f19\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"Candidate 6 (29.5–31.1) claims 'Abuse', but f19–f22 show the woman alone, rising and clutching her chest, with no visible aggressor or contact; context suggests post-incident reaction, not active abuse—evidence inadequate to confirm category.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 9.0,
+              "f1": 9.5,
+              "f2": 10.5,
+              "f3": 11.5,
+              "f4": 12.5,
+              "f5": 13.5,
+              "f6": 14.0,
+              "f7": 15.0,
+              "f8": 16.0,
+              "f9": 16.5,
+              "f10": 17.0,
+              "f11": 18.0,
+              "f12": 18.5,
+              "f13": 19.5,
+              "f14": 20.5,
+              "f15": 21.5,
+              "f16": 22.5,
+              "f17": 23.0,
+              "f18": 24.0,
+              "f19": 25.0,
+              "f20": 26.0,
+              "f21": 27.0,
+              "f22": 27.5,
+              "f23": 28.5,
+              "f24": 29.5,
+              "f25": 30.5,
+              "f26": 31.5,
+              "f27": 32.0,
+              "f28": 33.0,
+              "f29": 34.0,
+              "f30": 35.0,
+              "f31": 37.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 14.7,
+                "t_end": 18.2,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 17.5,
+                "t_end": 28.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 22.5,
+                "t_end": 23.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 24.5,
+                "t_end": 28.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 28.5,
+                "t_end": 29.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 29.5,
+                "t_end": 31.1,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Fighting\",\n      \"t_start\": 14.7,\n      \"t_end\": 18.2,\n      \"confidence\": 0.95,\n      \"description\": \"A man and woman engage in close physical struggle: the man grabs her, she resists, and they fall together with visible motion and contact (f6–f11).\",\n      \"reason\": \"Frames f6–f11 show mutual grappling, lifting, and falling—consistent with fighting, not one-sided abuse; both participants are actively engaged.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    },\n    {\n      \"source_candidate_ids\": [3, 5],\n      \"category\": \"Shooting\",\n      \"t_start\": 22.5,\n      \"t_end\": 23.5,\n      \"confidence\": 0.98,\n      \"description\": \"A cloud of dust/smoke erupts from the ground near the woman’s head at f16–f17, coinciding with a visible gun muzzle in prior frames (f14, f19) and immediate aftermath (f18).\",\n      \"reason\": \"f16 shows sudden dust burst consistent with a close-range discharge; f14 shows the woman holding a gun to the man’s head, and f19 shows her aiming again—supporting a shot fired at ~22.5–23.0 s; candidate 5 (28.5–29.0) is unsupported (no muzzle flash or impact at f23/f24), so only candidate 3 is validated and merged with evidence from f14–f18.\",\n      \"evidence_frame_ids\": [\"f14\", \"f16\", \"f17\", \"f18\", \"f19\"]\n    },\n    {\n      \"source_candidate_ids\": [2, 4, 6],\n      \"category\": \"Abuse\",\n      \"t_start\": 24.5,\n      \"t_end\": 28.0,\n      \"confidence\": 0.92,\n      \"description\": \"The man lies supine against a wall while the woman presses a gun to his neck/chest (f20–f22), with no resistance visible; he appears incapacitated.\",\n      \"reason\": \"From f20 onward, the man is on his back, not fighting back, while the woman controls him with a weapon—meeting definition of abuse (aggression against helpless victim); this follows the earlier shooting and is distinct from the prior mutual fight.\",\n      \"evidence_frame_ids\": [\"f20\", \"f21\", \"f22\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"No visible muzzle flash, impact, or recoil at f23–f24; blood on man’s face appears static and consistent with prior injury, not a new shot.\",\n      \"evidence_frame_ids\": [\"f23\", \"f24\"]\n    },\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"Frames f29–f31 show the woman standing beside the injured man, not actively harming him; her posture is distressed, not aggressive.\",\n      \"evidence_frame_ids\": [\"f29\", \"f30\", \"f31\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 9.0,
+              "f1": 9.5,
+              "f2": 10.5,
+              "f3": 11.5,
+              "f4": 12.5,
+              "f5": 13.5,
+              "f6": 14.0,
+              "f7": 15.0,
+              "f8": 16.0,
+              "f9": 16.5,
+              "f10": 17.0,
+              "f11": 18.0,
+              "f12": 18.5,
+              "f13": 19.5,
+              "f14": 20.5,
+              "f15": 21.5,
+              "f16": 22.5,
+              "f17": 23.0,
+              "f18": 24.0,
+              "f19": 25.0,
+              "f20": 26.0,
+              "f21": 27.0,
+              "f22": 27.5,
+              "f23": 28.5,
+              "f24": 29.5,
+              "f25": 30.5,
+              "f26": 31.5,
+              "f27": 32.0,
+              "f28": 33.0,
+              "f29": 34.0,
+              "f30": 35.0,
+              "f31": 37.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 14.7,
+                "t_end": 18.2,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 17.5,
+                "t_end": 28.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 22.5,
+                "t_end": 23.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 24.5,
+                "t_end": 28.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 28.5,
+                "t_end": 29.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 29.5,
+                "t_end": 31.1,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Fighting\",\n      \"t_start\": 14.0,\n      \"t_end\": 18.0,\n      \"confidence\": 0.95,\n      \"description\": \"A man and woman engage in mutual physical struggle: the man grabs the woman (f4, f6), she resists and they grapple (f7–f10), culminating in both falling (f11).\",\n      \"reason\": \"Frames f4 (hand on shoulder), f6 (sparks suggest impact or contact), f7 (arms outstretched, dynamic motion), f8–f10 (close embrace with visible tension and weapon involvement) show reciprocal engagement; neither is passive—this satisfies 'Fighting' (mutual physical combat). Candidate 1’s interval (14.7–18.2) is fully covered by f6–f11 (14.0–18.0), so t_start adjusted to earliest supporting frame f6 (14.0).\",\n      \"evidence_frame_ids\": [\"f4\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    },\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"Shooting\",\n      \"t_start\": 22.5,\n      \"t_end\": 23.0,\n      \"confidence\": 0.97,\n      \"description\": \"At f16 (22.5 s), a sudden dust/smoke cloud erupts from the ground near the woman’s head; f17 (23.0 s) shows the cloud expanding while she lies prone, consistent with a close-range discharge.\",\n      \"reason\": \"f16 shows an abrupt localized dust burst with no prior motion suggesting fall or impact—typical of a muzzle blast on pavement; f14 shows her holding a gun to the man’s head, f19 shows her aiming again, supporting intent and capability; no other cause for the dust is visible. Candidate 3 (22.5–23.5) is supported only through f16–f17; f18 (24.0) shows aftermath but no new discharge, so t_end capped at 23.0 (f17). Candidate 5 (28.5–29.0) lacks evidence and is rejected separately.\",\n      \"evidence_frame_ids\": [\"f14\", \"f16\", \"f17\"]\n    },\n    {\n      \"source_candidate_ids\": [2, 4],\n      \"category\": \"Abuse\",\n      \"t_start\": 24.0,\n      \"t_end\": 27.5,\n      \"confidence\": 0.93,\n      \"description\": \"The man lies supine against a wall (f19–f22), visibly incapacitated, while the woman presses a handgun to his neck/chest (f20–f22); he shows no resistance.\",\n      \"reason\": \"From f19 onward, the man is on his back, eyes open but unresponsive; f20–f22 show the woman actively controlling him with a weapon while he does not struggle—meeting 'Abuse' (aggression against a helpless victim). Candidate 2 (17.5–28.0) overlaps this but includes earlier fighting (f11–f18), which is separate; candidate 4 (24.5–28.0) aligns with f19–f22. Merged into one abuse event from f19 (25.0) to f22 (27.5), with t_start extended to f18 (24.0) as the transition point where she gains full control after the dust burst. f18 shows her prone but rising; f19 shows her over him—so abuse begins ~25.0, but visible control starts at f19; t_start set to 24.0 to include onset. Evidence limited to f19–f22; f18 is borderline but included for continuity.\",\n      \"evidence_frame_ids\": [\"f18\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"f23 (28.5 s) and f24 (29.5 s) show the man covered in blood with head tilted back, but no muzzle flash, recoil, impact spatter, or weapon discharge is visible; blood appears static and consistent with prior injury, not a new shooting.\",\n      \"evidence_frame_ids\": [\"f23\", \"f24\"]\n    },\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"f29–f31 (33.0–37.0 s) show the woman standing beside the injured man, hands not engaged, expression distressed; no aggressive action or contact occurs—contradicts 'Abuse'.\",\n      \"evidence_frame_ids\": [\"f29\", \"f30\", \"f31\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "Fighting",
+              "t_start": 14.0,
+              "t_end": 18.0,
+              "confidence": 0.95,
+              "description": "A man and woman engage in mutual physical struggle: the man grabs the woman (f4, f6), she resists and they grapple (f7–f10), culminating in both falling (f11).",
+              "reason": "Frames f4 (hand on shoulder), f6 (sparks suggest impact or contact), f7 (arms outstretched, dynamic motion), f8–f10 (close embrace with visible tension and weapon involvement) show reciprocal engagement; neither is passive—this satisfies 'Fighting' (mutual physical combat). Candidate 1’s interval (14.7–18.2) is fully covered by f6–f11 (14.0–18.0), so t_start adjusted to earliest supporting frame f6 (14.0).",
+              "evidence_frame_ids": [
+                "f4",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                3
+              ],
+              "category": "Shooting",
+              "t_start": 22.5,
+              "t_end": 23.0,
+              "confidence": 0.97,
+              "description": "At f16 (22.5 s), a sudden dust/smoke cloud erupts from the ground near the woman’s head; f17 (23.0 s) shows the cloud expanding while she lies prone, consistent with a close-range discharge.",
+              "reason": "f16 shows an abrupt localized dust burst with no prior motion suggesting fall or impact—typical of a muzzle blast on pavement; f14 shows her holding a gun to the man’s head, f19 shows her aiming again, supporting intent and capability; no other cause for the dust is visible. Candidate 3 (22.5–23.5) is supported only through f16–f17; f18 (24.0) shows aftermath but no new discharge, so t_end capped at 23.0 (f17). Candidate 5 (28.5–29.0) lacks evidence and is rejected separately.",
+              "evidence_frame_ids": [
+                "f14",
+                "f16",
+                "f17"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                2,
+                4
+              ],
+              "category": "Abuse",
+              "t_start": 24.0,
+              "t_end": 27.5,
+              "confidence": 0.93,
+              "description": "The man lies supine against a wall (f19–f22), visibly incapacitated, while the woman presses a handgun to his neck/chest (f20–f22); he shows no resistance.",
+              "reason": "From f19 onward, the man is on his back, eyes open but unresponsive; f20–f22 show the woman actively controlling him with a weapon while he does not struggle—meeting 'Abuse' (aggression against a helpless victim). Candidate 2 (17.5–28.0) overlaps this but includes earlier fighting (f11–f18), which is separate; candidate 4 (24.5–28.0) aligns with f19–f22. Merged into one abuse event from f19 (25.0) to f22 (27.5), with t_start extended to f18 (24.0) as the transition point where she gains full control after the dust burst. f18 shows her prone but rising; f19 shows her over him—so abuse begins ~25.0, but visible control starts at f19; t_start set to 24.0 to include onset. Evidence limited to f19–f22; f18 is borderline but included for continuity.",
+              "evidence_frame_ids": [
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 5,
+              "reason": "f23 (28.5 s) and f24 (29.5 s) show the man covered in blood with head tilted back, but no muzzle flash, recoil, impact spatter, or weapon discharge is visible; blood appears static and consistent with prior injury, not a new shooting.",
+              "evidence_frame_ids": [
+                "f23",
+                "f24"
+              ]
+            },
+            {
+              "candidate_id": 6,
+              "reason": "f29–f31 (33.0–37.0 s) show the woman standing beside the injured man, hands not engaged, expression distressed; no aggressive action or contact occurs—contradicts 'Abuse'.",
+              "evidence_frame_ids": [
+                "f29",
+                "f30",
+                "f31"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": true
+      }
+    ]
+  },
+  "experiment_fingerprint": "5a82d0dd6e711938ee6c8e0ecf1c6f7fdb68cac4e5e95683ad672320f7156da9"
+}

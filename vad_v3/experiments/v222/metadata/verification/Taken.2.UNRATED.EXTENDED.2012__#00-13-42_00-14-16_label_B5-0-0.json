@@ -1,0 +1,372 @@
+{
+  "events": [
+    {
+      "t_start": 0.0,
+      "t_end": 10.0,
+      "anomaly_type": "Abuse",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A person in a leather jacket repeatedly grabs, lifts, and forcefully covers the mouth/nose of a second person who is restrained and unable to resist, with visible blood and distress.",
+      "source_candidate_ids": [
+        0,
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          0.0,
+          0.5,
+          1.0,
+          1.5,
+          2.0,
+          2.5,
+          3.0,
+          3.5,
+          4.0,
+          4.5,
+          6.0,
+          6.5,
+          7.0,
+          7.5,
+          8.0,
+          8.5,
+          10.5,
+          11.0,
+          11.5
+        ],
+        "evidence_frame_ids": [
+          "f0",
+          "f1",
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f21",
+          "f22",
+          "f23"
+        ],
+        "reason": "The sequence shows sustained unilateral aggression: from f0–f2 the aggressor looms over the victim; f3–f4 shows the victim held upright and head tilted back; f5–f9 and f15–f17 show the aggressor’s hand clamped over the victim’s mouth/nose, causing bleeding and facial distortion; f12–f14 and f21–f23 show continued restraint with the victim limp or passive. No reciprocal action is visible—victim does not fight back—fulfilling 'Abuse' (aggression against a helpless victim). The two candidates overlap and describe the same continuous event; merged.",
+        "source_categories": [
+          "Abuse",
+          "Abuse"
+        ]
+      }
+    },
+    {
+      "t_start": 14.0,
+      "t_end": 34.0,
+      "anomaly_type": "Abuse",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A man in a dark jacket holds another man by the neck/face, who is limp, bleeding, and unresponsive; later frames show the aggressor gripping the victim’s hands and looming over him while he lies supine with visible injuries.",
+      "source_candidate_ids": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          14.0,
+          14.5,
+          15.5,
+          16.5,
+          17.0,
+          18.0,
+          22.5,
+          24.0,
+          25.0,
+          26.0,
+          26.5,
+          27.0,
+          27.5,
+          28.5,
+          29.5,
+          30.0,
+          30.5,
+          31.0,
+          32.0,
+          34.0
+        ],
+        "evidence_frame_ids": [
+          "f0",
+          "f1",
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18",
+          "f19",
+          "f20",
+          "f21",
+          "f22",
+          "f23"
+        ],
+        "reason": "The victim shows no resistance, is bloodied, and appears unconscious or incapacitated (f0–f1, f4–f5, f11–f22); the aggressor maintains dominant control throughout without reciprocal combat, satisfying Abuse (aggression against a helpless victim). The teddy bear (f2–f3) is held by the aggressor but not used as a weapon; it does not negate the abusive context. All candidate intervals fall within this continuous coercive interaction.",
+        "source_categories": [
+          "Abuse",
+          "Abuse",
+          "Abuse",
+          "Fighting",
+          "Abuse"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 7,
+      "output_count": 2,
+      "groups": 2,
+      "rejected": 0,
+      "uncertain": 0,
+      "merged_sources": 5,
+      "relabeled": 1,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0,
+              "f9": 4.5,
+              "f10": 5.0,
+              "f11": 5.5,
+              "f12": 6.0,
+              "f13": 6.5,
+              "f14": 7.0,
+              "f15": 7.5,
+              "f16": 8.0,
+              "f17": 8.5,
+              "f18": 9.0,
+              "f19": 9.5,
+              "f20": 10.0,
+              "f21": 10.5,
+              "f22": 11.0,
+              "f23": 11.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 0.0,
+                "t_end": 7.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 5.5,
+                "t_end": 10.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Abuse\",\n      \"t_start\": 0.0,\n      \"t_end\": 10.0,\n      \"confidence\": 0.95,\n      \"description\": \"A person in a leather jacket repeatedly grabs, lifts, and forcefully covers the mouth/nose of a second person who is restrained and unable to resist, with visible blood and distress.\",\n      \"reason\": \"The sequence shows sustained unilateral aggression: from f0–f2 the aggressor looms over the victim; f3–f4 shows the victim held upright and head tilted back; f5–f9 and f15–f17 show the aggressor’s hand clamped over the victim’s mouth/nose, causing bleeding and facial distortion; f12–f14 and f21–f23 show continued restraint with the victim limp or passive. No reciprocal action is visible—victim does not fight back—fulfilling 'Abuse' (aggression against a helpless victim). The two candidates overlap and describe the same continuous event; merged.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f21\", \"f22\", \"f23\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1
+              ],
+              "category": "Abuse",
+              "t_start": 0.0,
+              "t_end": 10.0,
+              "confidence": 0.95,
+              "description": "A person in a leather jacket repeatedly grabs, lifts, and forcefully covers the mouth/nose of a second person who is restrained and unable to resist, with visible blood and distress.",
+              "reason": "The sequence shows sustained unilateral aggression: from f0–f2 the aggressor looms over the victim; f3–f4 shows the victim held upright and head tilted back; f5–f9 and f15–f17 show the aggressor’s hand clamped over the victim’s mouth/nose, causing bleeding and facial distortion; f12–f14 and f21–f23 show continued restraint with the victim limp or passive. No reciprocal action is visible—victim does not fight back—fulfilling 'Abuse' (aggression against a helpless victim). The two candidates overlap and describe the same continuous event; merged.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f21",
+                "f22",
+                "f23"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 14.0,
+              "f1": 14.5,
+              "f2": 15.5,
+              "f3": 16.5,
+              "f4": 17.0,
+              "f5": 18.0,
+              "f6": 19.0,
+              "f7": 20.0,
+              "f8": 20.5,
+              "f9": 21.5,
+              "f10": 22.5,
+              "f11": 24.0,
+              "f12": 25.0,
+              "f13": 26.0,
+              "f14": 26.5,
+              "f15": 27.0,
+              "f16": 27.5,
+              "f17": 28.5,
+              "f18": 29.5,
+              "f19": 30.0,
+              "f20": 30.5,
+              "f21": 31.0,
+              "f22": 32.0,
+              "f23": 34.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 16.0,
+                "t_end": 17.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 18.3,
+                "t_end": 24.8,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 22.0,
+                "t_end": 31.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 25.0,
+                "t_end": 27.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 26.5,
+                "t_end": 34.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2, 3, 4, 5, 6],\n      \"category\": \"Abuse\",\n      \"t_start\": 14.0,\n      \"t_end\": 34.0,\n      \"confidence\": 0.95,\n      \"description\": \"A man in a dark jacket holds another man by the neck/face, who is limp, bleeding, and unresponsive; later frames show the aggressor gripping the victim’s hands and looming over him while he lies supine with visible injuries.\",\n      \"reason\": \"The victim shows no resistance, is bloodied, and appears unconscious or incapacitated (f0–f1, f4–f5, f11–f22); the aggressor maintains dominant control throughout without reciprocal combat, satisfying Abuse (aggression against a helpless victim). The teddy bear (f2–f3) is held by the aggressor but not used as a weapon; it does not negate the abusive context. All candidate intervals fall within this continuous coercive interaction.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\", \"f23\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2,
+                3,
+                4,
+                5,
+                6
+              ],
+              "category": "Abuse",
+              "t_start": 14.0,
+              "t_end": 34.0,
+              "confidence": 0.95,
+              "description": "A man in a dark jacket holds another man by the neck/face, who is limp, bleeding, and unresponsive; later frames show the aggressor gripping the victim’s hands and looming over him while he lies supine with visible injuries.",
+              "reason": "The victim shows no resistance, is bloodied, and appears unconscious or incapacitated (f0–f1, f4–f5, f11–f22); the aggressor maintains dominant control throughout without reciprocal combat, satisfying Abuse (aggression against a helpless victim). The teddy bear (f2–f3) is held by the aggressor but not used as a weapon; it does not negate the abusive context. All candidate intervals fall within this continuous coercive interaction.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22",
+                "f23"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

@@ -1,0 +1,627 @@
+{
+  "events": [
+    {
+      "t_start": 13.5,
+      "t_end": 19.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A violent blast erupts inside a corridor (f4), followed by external building damage with smoke and debris (f5–f10), then interior destruction with flying fragments and fire (f11–f16).",
+      "source_candidate_ids": [
+        0,
+        1,
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          13.5,
+          14.0,
+          14.5,
+          15.0,
+          15.5,
+          16.0,
+          16.5,
+          17.0,
+          17.5,
+          18.0,
+          18.5,
+          19.0,
+          19.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16"
+        ],
+        "reason": "f4 shows an internal explosion with debris; f5–f10 show the resulting external structural failure and smoke plume; f11–f16 show secondary internal detonation effects (sparks, fragmentation, fire). All frames depict phases of a single explosive event sequence, justifying merging.",
+        "source_categories": [
+          "Explosion",
+          "Explosion",
+          "Explosion"
+        ]
+      }
+    },
+    {
+      "t_start": 21.5,
+      "t_end": 23.5,
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "anomaly_type": "Explosion",
+      "description": "Residual effects of the explosion continue: thick smoke billows from upper floors and roofline, with visible structural damage (e.g., missing wall section) and lingering fire glow; seen in frames f11–f15.",
+      "proposal_id": "p0004",
+      "evidence_frame_ids": [
+        "f11",
+        "f12",
+        "f13",
+        "f14",
+        "f15"
+      ],
+      "source_categories": [
+        "Riot",
+        "Explosion"
+      ],
+      "reported_interval": [
+        21.5,
+        23.5
+      ],
+      "clipped_to_inspection": false,
+      "source_candidate_ids": [
+        3
+      ],
+      "verification": {
+        "status": "uncertain",
+        "group_id": 1,
+        "vlm_confidence": 0.85,
+        "reason": "schema_repair_exhausted: Reviewed event must overlap every claimed source candidate"
+      }
+    },
+    {
+      "t_start": 35.0,
+      "t_end": 36.0,
+      "anomaly_type": "Shooting",
+      "confidence": 1.0,
+      "coarse_score": 1.0,
+      "description": "A woman in red fires a handheld weapon from a boat, with visible muzzle flash at f8 (35.5 s).",
+      "source_candidate_ids": [
+        5
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 1.0,
+        "evidence_times": [
+          35.0,
+          35.5
+        ],
+        "evidence_frame_ids": [
+          "f7",
+          "f8"
+        ],
+        "reason": "f7 shows aiming, f8 shows clear muzzle flash and recoil consistent with discharge; this satisfies the 'Shooting' definition requiring visible shooting.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 36.0,
+      "t_end": 36.5,
+      "anomaly_type": "Explosion",
+      "confidence": 1.0,
+      "coarse_score": 1.0,
+      "description": "A violent blast occurs in rubble, with debris, sparks, and smoke expanding rapidly at f9 (36.0 s), followed by settling dust at f10 (36.5 s).",
+      "source_candidate_ids": [
+        6
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 1,
+        "vlm_confidence": 1.0,
+        "evidence_times": [
+          36.0,
+          36.5
+        ],
+        "evidence_frame_ids": [
+          "f9",
+          "f10"
+        ],
+        "reason": "f9 shows instantaneous expansion of material, bright sparks, and shock-like displacement—definitive visual evidence of an explosion; f10 shows aftermath. This meets the 'Explosion' criterion (blast, not sustained fire).",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 8,
+      "output_count": 4,
+      "groups": 4,
+      "rejected": 2,
+      "uncertain": 1,
+      "merged_sources": 2,
+      "relabeled": 0,
+      "context_retries": 1,
+      "schema_fallback_groups": 1
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 11.5,
+              "f1": 12.0,
+              "f2": 12.5,
+              "f3": 13.0,
+              "f4": 13.5,
+              "f5": 14.0,
+              "f6": 14.5,
+              "f7": 15.0,
+              "f8": 15.5,
+              "f9": 16.0,
+              "f10": 16.5,
+              "f11": 17.0,
+              "f12": 17.5,
+              "f13": 18.0,
+              "f14": 18.5,
+              "f15": 19.0,
+              "f16": 19.5,
+              "f17": 20.0,
+              "f18": 20.5,
+              "f19": 21.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 13.5,
+                "t_end": 16.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 16.0,
+                "t_end": 17.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 17.0,
+                "t_end": 19.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1, 2],\n      \"category\": \"Explosion\",\n      \"t_start\": 13.5,\n      \"t_end\": 19.5,\n      \"confidence\": 0.95,\n      \"description\": \"A violent blast erupts inside a corridor (f4), followed by external building damage with smoke and debris (f5–f10), then interior destruction with flying fragments and fire (f11–f16).\",\n      \"reason\": \"f4 shows an internal explosion with debris; f5–f10 show the resulting external structural failure and smoke plume; f11–f16 show secondary internal detonation effects (sparks, fragmentation, fire). All frames depict phases of a single explosive event sequence, justifying merging.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1,
+                2
+              ],
+              "category": "Explosion",
+              "t_start": 13.5,
+              "t_end": 19.5,
+              "confidence": 0.95,
+              "description": "A violent blast erupts inside a corridor (f4), followed by external building damage with smoke and debris (f5–f10), then interior destruction with flying fragments and fire (f11–f16).",
+              "reason": "f4 shows an internal explosion with debris; f5–f10 show the resulting external structural failure and smoke plume; f11–f16 show secondary internal detonation effects (sparks, fragmentation, fire). All frames depict phases of a single explosive event sequence, justifying merging.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 19.5,
+              "f1": 20.0,
+              "f2": 20.5,
+              "f3": 21.0,
+              "f4": 21.5,
+              "f5": 22.0,
+              "f6": 22.5,
+              "f7": 23.0,
+              "f8": 23.5,
+              "f9": 24.0,
+              "f10": 24.5,
+              "f11": 25.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 21.5,
+                "t_end": 23.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"Explosion\",\n      \"t_start\": 19.5,\n      \"t_end\": 20.0,\n      \"confidence\": 0.9,\n      \"description\": \"A bright orange fireball and rising smoke are visible in a debris-filled interior space, consistent with a sudden blast event.\",\n      \"reason\": \"Image f0 (19.5 s) shows a distinct fireball with rapid expansion and smoke plume inside a damaged structure—hallmarks of an explosion—not sustained fire or collapse alone; subsequent frames (f1–f3) show shattered glass and reaction, supporting a single explosive event at ~19.5 s.\",\n      \"evidence_frame_ids\": [\"f0\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"The candidate claims explosion from 21.5–23.5 s, but no blast is visible in f4–f8; instead, those frames show lingering smoke and structural damage post-event, indicating the explosion occurred earlier.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 19.5,
+              "f1": 20.0,
+              "f2": 20.5,
+              "f3": 21.0,
+              "f4": 21.5,
+              "f5": 22.0,
+              "f6": 22.5,
+              "f7": 23.0,
+              "f8": 23.5,
+              "f9": 24.0,
+              "f10": 24.5,
+              "f11": 25.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 21.5,
+                "t_end": 23.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"Explosion\",\n      \"t_start\": 19.5,\n      \"t_end\": 20.0,\n      \"confidence\": 0.9,\n      \"description\": \"A bright orange fireball with rapid expansion and rising smoke is visible in a debris-filled interior at 19.5 s, consistent with a sudden blast.\",\n      \"reason\": \"f0 (19.5 s) shows a compact, luminous fireball with upward smoke plume inside a damaged structure—characteristic of an explosion—not sustained fire or collapse; f1–f3 show immediate aftermath (shattered glass, person reacting), confirming the event occurred at ~19.5 s, not during the candidate’s claimed 21.5–23.5 s interval.\",\n      \"evidence_frame_ids\": [\"f0\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"The candidate asserts explosion from 21.5–23.5 s, but frames f4–f8 (21.5–23.5 s) show only lingering smoke, no blast wave, fireball, or rapid expansion; the explosive event is fully contained in f0 (19.5 s), making the candidate’s temporal claim invalid.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 19.5,
+              "f1": 20.0,
+              "f2": 20.5,
+              "f3": 21.0,
+              "f4": 21.5,
+              "f5": 22.0,
+              "f6": 22.5,
+              "f7": 23.0,
+              "f8": 23.5,
+              "f9": 24.0,
+              "f10": 24.5,
+              "f11": 25.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 21.5,
+                "t_end": 23.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"The candidate claims an explosion during 21.5–23.5 s (frames f4–f8), but those frames show only static smoke and structural damage with no blast, fireball, rapid expansion, or shockwave; the only visible explosive-like event is in f0 (19.5 s), which lies outside the candidate’s claimed interval, so the candidate’s temporal specification is unsupported.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"While f0 (19.5 s) shows a fireball and smoke consistent with an explosion, the candidate explicitly specifies t_start=21.5 and t_end=23.5, which does not overlap f0; since the candidate’s interval contains no evidence of explosion, and we cannot reassign the event to a different interval without violating the requirement that accepted events must overlap every source candidate’s interval, the hypothesis remains unverified for its stated timing.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 15.5,
+              "f1": 16.0,
+              "f2": 16.5,
+              "f3": 17.0,
+              "f4": 17.5,
+              "f5": 18.0,
+              "f6": 18.5,
+              "f7": 19.0,
+              "f8": 19.5,
+              "f9": 20.0,
+              "f10": 20.5,
+              "f11": 21.0,
+              "f12": 21.5,
+              "f13": 22.0,
+              "f14": 22.5,
+              "f15": 23.0,
+              "f16": 23.5,
+              "f17": 24.0,
+              "f18": 24.5,
+              "f19": 25.0,
+              "f20": 25.5,
+              "f21": 26.0,
+              "f22": 26.5,
+              "f23": 27.0,
+              "f24": 27.5,
+              "f25": 28.0,
+              "f26": 28.5,
+              "f27": 29.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 21.5,
+                "t_end": 23.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"Explosion\",\n      \"t_start\": 15.5,\n      \"t_end\": 19.5,\n      \"confidence\": 0.95,\n      \"description\": \"A large external blast ejects smoke, debris, and fire from a building facade (f0–f2), followed by interior detonation with sparks, flying fragments, and bright flash (f3–f6), then lingering fire and smoke (f7–f8).\",\n      \"reason\": \"Frames f0–f2 show a massive outward ejection of dark smoke and debris from the building’s upper structure—consistent with an explosion. Frames f3–f6 depict intense internal fragmentation, sparks, and a bright flash inside, confirming a secondary or internal blast. The candidate’s interval (21.5–23.5) is too late; the explosion is fully underway by 15.5 and subsiding by 19.5. The visible event spans f0–f8, so the candidate is re-mapped to the correct temporal bounds.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"The candidate assigns explosion to 21.5–23.5, but by f12 (21.5), the explosion has already concluded; only residual smoke remains. The actual explosion occurs earlier (15.5–19.5).\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 15.5,
+              "f1": 16.0,
+              "f2": 16.5,
+              "f3": 17.0,
+              "f4": 17.5,
+              "f5": 18.0,
+              "f6": 18.5,
+              "f7": 19.0,
+              "f8": 19.5,
+              "f9": 20.0,
+              "f10": 20.5,
+              "f11": 21.0,
+              "f12": 21.5,
+              "f13": 22.0,
+              "f14": 22.5,
+              "f15": 23.0,
+              "f16": 23.5,
+              "f17": 24.0,
+              "f18": 24.5,
+              "f19": 25.0,
+              "f20": 25.5,
+              "f21": 26.0,
+              "f22": 26.5,
+              "f23": 27.0,
+              "f24": 27.5,
+              "f25": 28.0,
+              "f26": 28.5,
+              "f27": 29.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 21.5,
+                "t_end": 23.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"Explosion\",\n      \"t_start\": 15.5,\n      \"t_end\": 19.5,\n      \"confidence\": 0.95,\n      \"description\": \"A large external blast ejects smoke, debris, and fire from a building facade (f0–f2), followed by interior detonation with sparks, flying fragments, and bright flash (f3–f6), then lingering fire and smoke (f7–f8).\",\n      \"reason\": \"Frames f0–f2 show massive outward ejection of dark smoke/debris from the building’s upper structure; f3–f6 show intense internal fragmentation, sparks, and a bright flash—definitive hallmarks of an explosion. The candidate’s claimed interval (21.5–23.5) is post-event; by f12 (21.5), only residual smoke remains (f12–f16), confirming the explosion concluded by ~19.5. The event fully overlaps the visible evidence from f0 to f8.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"The candidate’s stated interval (21.5–23.5) does not contain the explosion; however, the underlying event (explosion) is clearly visible earlier and is accepted under corrected timing. Since the candidate refers to the same physical event but misstates its timing, and we have sufficient evidence to reassign it correctly, it is not rejected but incorporated into the accepted event. No separate uncertain entry is needed for this candidate as it is fully resolved.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 15.5,
+              "f1": 16.0,
+              "f2": 16.5,
+              "f3": 17.0,
+              "f4": 17.5,
+              "f5": 18.0,
+              "f6": 18.5,
+              "f7": 19.0,
+              "f8": 19.5,
+              "f9": 20.0,
+              "f10": 20.5,
+              "f11": 21.0,
+              "f12": 21.5,
+              "f13": 22.0,
+              "f14": 22.5,
+              "f15": 23.0,
+              "f16": 23.5,
+              "f17": 24.0,
+              "f18": 24.5,
+              "f19": 25.0,
+              "f20": 25.5,
+              "f21": 26.0,
+              "f22": 26.5,
+              "f23": 27.0,
+              "f24": 27.5,
+              "f25": 28.0,
+              "f26": 28.5,
+              "f27": 29.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 21.5,
+                "t_end": 23.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"Explosion\",\n      \"t_start\": 15.5,\n      \"t_end\": 19.5,\n      \"confidence\": 0.95,\n      \"description\": \"A large external blast ejects smoke, debris, and fire from a building facade (f0–f2), followed by interior detonation with sparks, flying fragments, and bright flash (f3–f6), then lingering fire and smoke (f7–f8).\",\n      \"reason\": \"Frames f0–f2 show massive outward ejection of dark smoke/debris from the building’s upper structure; f3–f6 show intense internal fragmentation, sparks, and a bright flash—definitive hallmarks of an explosion. The candidate’s claimed interval (21.5–23.5) is post-event; by f12 (21.5), only residual smoke remains (f12–f16), confirming the explosion concluded by ~19.5. The event fully overlaps the visible evidence from f0 to f8 and encompasses the candidate’s intended physical event, so it is accepted with corrected timing.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "unresolved_schema",
+          "events": [],
+          "rejected": [],
+          "uncertain": [
+            {
+              "candidate_id": 3,
+              "reason": "schema_repair_exhausted: Reviewed event must overlap every claimed source candidate"
+            }
+          ],
+          "schema_error": "Reviewed event must overlap every claimed source candidate"
+        },
+        "context_retry": true
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          4,
+          5,
+          6
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 31.5,
+              "f1": 32.0,
+              "f2": 32.5,
+              "f3": 33.0,
+              "f4": 33.5,
+              "f5": 34.0,
+              "f6": 34.5,
+              "f7": 35.0,
+              "f8": 35.5,
+              "f9": 36.0,
+              "f10": 36.5,
+              "f11": 37.0,
+              "f12": 37.5,
+              "f13": 38.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 33.5,
+                "t_end": 34.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 35.0,
+                "t_end": 36.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 36.0,
+                "t_end": 36.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [5],\n      \"category\": \"Shooting\",\n      \"t_start\": 35.0,\n      \"t_end\": 36.0,\n      \"confidence\": 1.0,\n      \"description\": \"A woman in red fires a handheld weapon from a boat, with visible muzzle flash at f8 (35.5 s).\",\n      \"reason\": \"f7 shows aiming, f8 shows clear muzzle flash and recoil consistent with discharge; this satisfies the 'Shooting' definition requiring visible shooting.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\"]\n    },\n    {\n      \"source_candidate_ids\": [6],\n      \"category\": \"Explosion\",\n      \"t_start\": 36.0,\n      \"t_end\": 36.5,\n      \"confidence\": 1.0,\n      \"description\": \"A violent blast occurs in rubble, with debris, sparks, and smoke expanding rapidly at f9 (36.0 s), followed by settling dust at f10 (36.5 s).\",\n      \"reason\": \"f9 shows instantaneous expansion of material, bright sparks, and shock-like displacement—definitive visual evidence of an explosion; f10 shows aftermath. This meets the 'Explosion' criterion (blast, not sustained fire).\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"Frames f4–f5 show only a red laser dot on a suit; no muzzle flash, recoil, or projectile is visible, so no shooting occurs.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                5
+              ],
+              "category": "Shooting",
+              "t_start": 35.0,
+              "t_end": 36.0,
+              "confidence": 1.0,
+              "description": "A woman in red fires a handheld weapon from a boat, with visible muzzle flash at f8 (35.5 s).",
+              "reason": "f7 shows aiming, f8 shows clear muzzle flash and recoil consistent with discharge; this satisfies the 'Shooting' definition requiring visible shooting.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                6
+              ],
+              "category": "Explosion",
+              "t_start": 36.0,
+              "t_end": 36.5,
+              "confidence": 1.0,
+              "description": "A violent blast occurs in rubble, with debris, sparks, and smoke expanding rapidly at f9 (36.0 s), followed by settling dust at f10 (36.5 s).",
+              "reason": "f9 shows instantaneous expansion of material, bright sparks, and shock-like displacement—definitive visual evidence of an explosion; f10 shows aftermath. This meets the 'Explosion' criterion (blast, not sustained fire).",
+              "evidence_frame_ids": [
+                "f9",
+                "f10"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 4,
+              "reason": "Frames f4–f5 show only a red laser dot on a suit; no muzzle flash, recoil, or projectile is visible, so no shooting occurs.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          7
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 37.5,
+              "f1": 38.0,
+              "f2": 38.5,
+              "f3": 39.0,
+              "f4": 39.5,
+              "f5": 40.0,
+              "f6": 40.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 7,
+                "t_start": 39.5,
+                "t_end": 40.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"No visible muzzle flash, recoil, or bullet impact; f4 shows a man gesturing with hand near face in smoky environment, f5 shows him holding a pistol but no discharge is observed.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 7,
+              "reason": "No visible muzzle flash, recoil, or bullet impact; f4 shows a man gesturing with hand near face in smoky environment, f5 shows him holding a pistol but no discharge is observed.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

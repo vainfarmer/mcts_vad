@@ -1,0 +1,273 @@
+{
+  "events": [
+    {
+      "t_start": 4.5,
+      "t_end": 8.9,
+      "anomaly_type": "Fighting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A person descends stairs, confronts another in a narrow passage, and engages in physical struggle involving grappling, lifting, and throwing.",
+      "source_candidate_ids": [
+        0,
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          4.5,
+          5.0,
+          5.5,
+          6.0,
+          6.5,
+          7.5,
+          8.0,
+          8.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f10",
+          "f11",
+          "f12"
+        ],
+        "reason": "f4–f6 show approach and aggressive posture; f7–f8 show one person lifting another overhead; f10–f12 show the lifted person being thrown or falling through a doorway; this constitutes mutual physical combat (Fighting), not Abuse, as both parties are actively involved initially and the motion is dynamic and reciprocal in early frames.",
+        "source_categories": [
+          "Fighting",
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 9.5,
+      "t_end": 11.0,
+      "anomaly_type": "Abuse",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "One person lies on the ground while another looms over and presses a hand to their face/mouth, with the prone person showing distress (open mouth, eyes closed).",
+      "source_candidate_ids": [
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 1,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          9.5,
+          10.0,
+          10.5,
+          11.0,
+          11.5
+        ],
+        "evidence_frame_ids": [
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18"
+        ],
+        "reason": "f14–f18 show a clear power imbalance: the victim is supine and immobilized, while the aggressor applies force to the face—consistent with Abuse (aggression against a helpless victim), distinct from ongoing Fighting which ended by ~8.9s.",
+        "source_categories": [
+          "Abuse"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 4,
+      "output_count": 2,
+      "groups": 2,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 2.5,
+              "f1": 3.0,
+              "f2": 3.5,
+              "f3": 4.0,
+              "f4": 4.5,
+              "f5": 5.0,
+              "f6": 5.5,
+              "f7": 6.0,
+              "f8": 6.5,
+              "f9": 7.0,
+              "f10": 7.5,
+              "f11": 8.0,
+              "f12": 8.5,
+              "f13": 9.0,
+              "f14": 9.5,
+              "f15": 10.0,
+              "f16": 10.5,
+              "f17": 11.0,
+              "f18": 11.5,
+              "f19": 12.0,
+              "f20": 12.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 4.5,
+                "t_end": 7.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 6.0,
+                "t_end": 8.9,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 9.5,
+                "t_end": 11.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Fighting\",\n      \"t_start\": 4.5,\n      \"t_end\": 8.9,\n      \"confidence\": 0.95,\n      \"description\": \"A person descends stairs, confronts another in a narrow passage, and engages in physical struggle involving grappling, lifting, and throwing.\",\n      \"reason\": \"f4–f6 show approach and aggressive posture; f7–f8 show one person lifting another overhead; f10–f12 show the lifted person being thrown or falling through a doorway; this constitutes mutual physical combat (Fighting), not Abuse, as both parties are actively involved initially and the motion is dynamic and reciprocal in early frames.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f10\", \"f11\", \"f12\"]\n    },\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"Abuse\",\n      \"t_start\": 9.5,\n      \"t_end\": 11.0,\n      \"confidence\": 0.85,\n      \"description\": \"One person lies on the ground while another looms over and presses a hand to their face/mouth, with the prone person showing distress (open mouth, eyes closed).\",\n      \"reason\": \"f14–f18 show a clear power imbalance: the victim is supine and immobilized, while the aggressor applies force to the face—consistent with Abuse (aggression against a helpless victim), distinct from ongoing Fighting which ended by ~8.9s.\",\n      \"evidence_frame_ids\": [\"f14\", \"f15\", \"f16\", \"f17\", \"f18\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1
+              ],
+              "category": "Fighting",
+              "t_start": 4.5,
+              "t_end": 8.9,
+              "confidence": 0.95,
+              "description": "A person descends stairs, confronts another in a narrow passage, and engages in physical struggle involving grappling, lifting, and throwing.",
+              "reason": "f4–f6 show approach and aggressive posture; f7–f8 show one person lifting another overhead; f10–f12 show the lifted person being thrown or falling through a doorway; this constitutes mutual physical combat (Fighting), not Abuse, as both parties are actively involved initially and the motion is dynamic and reciprocal in early frames.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f10",
+                "f11",
+                "f12"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                2
+              ],
+              "category": "Abuse",
+              "t_start": 9.5,
+              "t_end": 11.0,
+              "confidence": 0.85,
+              "description": "One person lies on the ground while another looms over and presses a hand to their face/mouth, with the prone person showing distress (open mouth, eyes closed).",
+              "reason": "f14–f18 show a clear power imbalance: the victim is supine and immobilized, while the aggressor applies force to the face—consistent with Abuse (aggression against a helpless victim), distinct from ongoing Fighting which ended by ~8.9s.",
+              "evidence_frame_ids": [
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 10.5,
+              "f1": 11.0,
+              "f2": 11.5,
+              "f3": 12.0,
+              "f4": 12.5,
+              "f5": 13.0,
+              "f6": 13.5,
+              "f7": 14.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 12.2,
+                "t_end": 13.0,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"Fighting\",\n      \"t_start\": 10.5,\n      \"t_end\": 11.5,\n      \"confidence\": 0.9,\n      \"description\": \"A person in dark clothing is straddling and pressing down on another person lying on the ground, with visible arm motion suggesting physical struggle or restraint.\",\n      \"reason\": \"Frames f0–f2 show sustained close contact with forceful upper-body motion consistent with mutual or one-sided physical combat; the supine person’s head/face is partially obscured but posture suggests resistance or constraint, satisfying 'Fighting' (mutual or attempted mutual combat) rather than Abuse (helpless victim) due to lack of clear helplessness and presence of active engagement.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"The candidate’s stated interval (12.2–13.0) mismatches the actual visible fighting event (10.5–11.5); however, since the candidate refers to the same underlying event and we have sufficient evidence to reassign it correctly, it is accepted—not uncertain—under corrected timing. No remaining uncertainty for this candidate.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 10.5,
+              "f1": 11.0,
+              "f2": 11.5,
+              "f3": 12.0,
+              "f4": 12.5,
+              "f5": 13.0,
+              "f6": 13.5,
+              "f7": 14.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 12.2,
+                "t_end": 13.0,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"The candidate claims fighting occurs at 12.2–13.0, but frames f3–f5 (12.0–13.0) show pigeons flying in a dim architectural space with no human combat; frames f0–f2 (10.5–11.5) show a person restraining another, but that event is outside the candidate’s stated interval and not referenced by the candidate, so the candidate’s hypothesis is unsupported by its own claimed timing.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 3,
+              "reason": "The candidate claims fighting occurs at 12.2–13.0, but frames f3–f5 (12.0–13.0) show pigeons flying in a dim architectural space with no human combat; frames f0–f2 (10.5–11.5) show a person restraining another, but that event is outside the candidate’s stated interval and not referenced by the candidate, so the candidate’s hypothesis is unsupported by its own claimed timing.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

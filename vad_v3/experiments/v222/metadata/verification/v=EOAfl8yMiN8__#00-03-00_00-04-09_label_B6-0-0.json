@@ -1,0 +1,406 @@
+{
+  "events": [
+    {
+      "t_start": 18.5,
+      "t_end": 23.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A red sedan (license plate Y692EH 50) is stationary in traffic with visible flames and smoke emanating from its rear left side, consistent with a post-collision fire.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          19.0,
+          19.5,
+          20.0,
+          20.5,
+          21.0,
+          21.5,
+          22.0,
+          22.5,
+          23.0,
+          23.5
+        ],
+        "evidence_frame_ids": [
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14"
+        ],
+        "reason": "Frames f5–f14 show sustained flames and smoke at the rear of the red car, which remains immobile while surrounding traffic moves; this indicates a vehicle fire following an impact, satisfying CarAccident (crash + resulting fire). No other vehicles are visibly involved in contact, but the fire origin and immobilization strongly suggest a prior collision.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 29.5,
+      "t_end": 32.0,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "The vehicle veers off the road at f3–f4, then impacts something (likely snowbank or terrain) at f5, causing rapid windshield obscuration by snow/dust and loss of forward view by f6–f8; final frames are black, consistent with vehicle coming to rest upside-down or with camera blocked.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          29.0,
+          29.5,
+          30.0,
+          30.5,
+          31.0,
+          31.5
+        ],
+        "evidence_frame_ids": [
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8"
+        ],
+        "reason": "f3–f4 show sharp right deviation from road; f5 shows sudden violent obscuration and tilt; f6–f8 show progressive darkness and wiper motion against debris—consistent with crash dynamics, not fog or malfunction alone. No other explanation fits the abrupt transition from driving to total visual loss in <2.5 s.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 38.5,
+      "t_end": 39.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A silver sedan swerves sharply left across the lane while a yellow truck approaches from the opposite direction; at f5 (39.0), the sedan is angled mid-lane with visible debris and disturbed snow, consistent with a recent collision or near-miss impact.",
+      "source_candidate_ids": [
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          38.5,
+          39.0,
+          39.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "At f4 (38.5), the silver sedan begins an abrupt left turn/crossing; by f5 (39.0), it is heavily angled, occupying the oncoming lane, with scattered debris and snow spray visible—indicative of a crash or hard contact. By f6 (39.5), the sedan is further rotated and appears damaged, confirming a collision event within the candidate interval.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 66.5,
+      "t_end": 67.0,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A dark SUV approaches head-on in the oncoming lane, then at f5 (67.0 s) is seen extremely close to the camera vehicle with headlights glaring and snow being displaced, consistent with an imminent or just-occurring collision.",
+      "source_candidate_ids": [
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 3,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          66.5,
+          67.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "At f4 (66.5 s), the SUV is still ~10–15 m away; by f5 (67.0 s), it occupies the left half of the frame, very near the camera car, with visible snow spray and distorted perspective suggesting impact or near-impact; no recovery or separation is seen afterward (f6–f8 show the SUV gone, implying it passed or crashed off-frame). This matches a frontal collision or near-miss within the candidate interval.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 4,
+      "output_count": 4,
+      "groups": 4,
+      "rejected": 0,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 16.5,
+              "f1": 17.0,
+              "f2": 17.5,
+              "f3": 18.0,
+              "f4": 18.5,
+              "f5": 19.0,
+              "f6": 19.5,
+              "f7": 20.0,
+              "f8": 20.5,
+              "f9": 21.0,
+              "f10": 21.5,
+              "f11": 22.0,
+              "f12": 22.5,
+              "f13": 23.0,
+              "f14": 23.5,
+              "f15": 24.0,
+              "f16": 24.5,
+              "f17": 25.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 18.5,
+                "t_end": 23.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"CarAccident\",\n      \"t_start\": 18.5,\n      \"t_end\": 23.5,\n      \"confidence\": 0.95,\n      \"description\": \"A red sedan (license plate Y692EH 50) is stationary in traffic with visible flames and smoke emanating from its rear left side, consistent with a post-collision fire.\",\n      \"reason\": \"Frames f5–f14 show sustained flames and smoke at the rear of the red car, which remains immobile while surrounding traffic moves; this indicates a vehicle fire following an impact, satisfying CarAccident (crash + resulting fire). No other vehicles are visibly involved in contact, but the fire origin and immobilization strongly suggest a prior collision.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "CarAccident",
+              "t_start": 18.5,
+              "t_end": 23.5,
+              "confidence": 0.95,
+              "description": "A red sedan (license plate Y692EH 50) is stationary in traffic with visible flames and smoke emanating from its rear left side, consistent with a post-collision fire.",
+              "reason": "Frames f5–f14 show sustained flames and smoke at the rear of the red car, which remains immobile while surrounding traffic moves; this indicates a vehicle fire following an impact, satisfying CarAccident (crash + resulting fire). No other vehicles are visibly involved in contact, but the fire origin and immobilization strongly suggest a prior collision.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 27.5,
+              "f1": 28.0,
+              "f2": 28.5,
+              "f3": 29.0,
+              "f4": 29.5,
+              "f5": 30.0,
+              "f6": 30.5,
+              "f7": 31.0,
+              "f8": 31.5,
+              "f9": 32.0,
+              "f10": 32.5,
+              "f11": 33.0,
+              "f12": 33.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 29.5,
+                "t_end": 32.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"CarAccident\",\n      \"t_start\": 29.5,\n      \"t_end\": 32.0,\n      \"confidence\": 0.95,\n      \"description\": \"The vehicle veers off the road at f3–f4, then impacts something (likely snowbank or terrain) at f5, causing rapid windshield obscuration by snow/dust and loss of forward view by f6–f8; final frames are black, consistent with vehicle coming to rest upside-down or with camera blocked.\",\n      \"reason\": \"f3–f4 show sharp right deviation from road; f5 shows sudden violent obscuration and tilt; f6–f8 show progressive darkness and wiper motion against debris—consistent with crash dynamics, not fog or malfunction alone. No other explanation fits the abrupt transition from driving to total visual loss in <2.5 s.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "CarAccident",
+              "t_start": 29.5,
+              "t_end": 32.0,
+              "confidence": 0.95,
+              "description": "The vehicle veers off the road at f3–f4, then impacts something (likely snowbank or terrain) at f5, causing rapid windshield obscuration by snow/dust and loss of forward view by f6–f8; final frames are black, consistent with vehicle coming to rest upside-down or with camera blocked.",
+              "reason": "f3–f4 show sharp right deviation from road; f5 shows sudden violent obscuration and tilt; f6–f8 show progressive darkness and wiper motion against debris—consistent with crash dynamics, not fog or malfunction alone. No other explanation fits the abrupt transition from driving to total visual loss in <2.5 s.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 36.5,
+              "f1": 37.0,
+              "f2": 37.5,
+              "f3": 38.0,
+              "f4": 38.5,
+              "f5": 39.0,
+              "f6": 39.5,
+              "f7": 40.0,
+              "f8": 40.5,
+              "f9": 41.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 38.5,
+                "t_end": 39.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"CarAccident\",\n      \"t_start\": 38.5,\n      \"t_end\": 39.5,\n      \"confidence\": 0.95,\n      \"description\": \"A silver sedan swerves sharply left across the lane while a yellow truck approaches from the opposite direction; at f5 (39.0), the sedan is angled mid-lane with visible debris and disturbed snow, consistent with a recent collision or near-miss impact.\",\n      \"reason\": \"At f4 (38.5), the silver sedan begins an abrupt left turn/crossing; by f5 (39.0), it is heavily angled, occupying the oncoming lane, with scattered debris and snow spray visible—indicative of a crash or hard contact. By f6 (39.5), the sedan is further rotated and appears damaged, confirming a collision event within the candidate interval.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2
+              ],
+              "category": "CarAccident",
+              "t_start": 38.5,
+              "t_end": 39.5,
+              "confidence": 0.95,
+              "description": "A silver sedan swerves sharply left across the lane while a yellow truck approaches from the opposite direction; at f5 (39.0), the sedan is angled mid-lane with visible debris and disturbed snow, consistent with a recent collision or near-miss impact.",
+              "reason": "At f4 (38.5), the silver sedan begins an abrupt left turn/crossing; by f5 (39.0), it is heavily angled, occupying the oncoming lane, with scattered debris and snow spray visible—indicative of a crash or hard contact. By f6 (39.5), the sedan is further rotated and appears damaged, confirming a collision event within the candidate interval.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 64.5,
+              "f1": 65.0,
+              "f2": 65.5,
+              "f3": 66.0,
+              "f4": 66.5,
+              "f5": 67.0,
+              "f6": 67.5,
+              "f7": 68.0,
+              "f8": 68.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 66.5,
+                "t_end": 67.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"CarAccident\",\n      \"t_start\": 66.5,\n      \"t_end\": 67.0,\n      \"confidence\": 0.95,\n      \"description\": \"A dark SUV approaches head-on in the oncoming lane, then at f5 (67.0 s) is seen extremely close to the camera vehicle with headlights glaring and snow being displaced, consistent with an imminent or just-occurring collision.\",\n      \"reason\": \"At f4 (66.5 s), the SUV is still ~10–15 m away; by f5 (67.0 s), it occupies the left half of the frame, very near the camera car, with visible snow spray and distorted perspective suggesting impact or near-impact; no recovery or separation is seen afterward (f6–f8 show the SUV gone, implying it passed or crashed off-frame). This matches a frontal collision or near-miss within the candidate interval.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                3
+              ],
+              "category": "CarAccident",
+              "t_start": 66.5,
+              "t_end": 67.0,
+              "confidence": 0.95,
+              "description": "A dark SUV approaches head-on in the oncoming lane, then at f5 (67.0 s) is seen extremely close to the camera vehicle with headlights glaring and snow being displaced, consistent with an imminent or just-occurring collision.",
+              "reason": "At f4 (66.5 s), the SUV is still ~10–15 m away; by f5 (67.0 s), it occupies the left half of the frame, very near the camera car, with visible snow spray and distorted perspective suggesting impact or near-impact; no recovery or separation is seen afterward (f6–f8 show the SUV gone, implying it passed or crashed off-frame). This matches a frontal collision or near-miss within the candidate interval.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

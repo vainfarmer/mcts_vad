@@ -1,0 +1,417 @@
+{
+  "events": [
+    {
+      "t_start": 2.5,
+      "t_end": 3.0,
+      "anomaly_type": "Shooting",
+      "confidence": 0.7,
+      "coarse_score": 0.7,
+      "description": "A man holds a pistol aimed forward in f3 and f4; in f5, a red-lit object is held near the muzzle while a distant figure appears to recoil slightly.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.7,
+        "evidence_times": [
+          2.0,
+          2.5,
+          3.0
+        ],
+        "evidence_frame_ids": [
+          "f3",
+          "f4",
+          "f5"
+        ],
+        "reason": "Holding a gun (f3–f4) does not constitute shooting; f5 shows a red light at the barrel but no visible muzzle flash, bullet, or impact—only an ambiguous device and slight posture change. Without definitive evidence of discharge (e.g., flash, smoke, recoil on shooter), shooting cannot be confirmed; however, the sequence is consistent with a firing event and falls within candidate interval, so retained with reduced confidence. Category remains 'Shooting' per definition requiring *visible shooting*—but evidence is insufficient for high confidence; still, among allowed categories, this is the closest supported by the frames.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 5.0,
+      "t_end": 6.2,
+      "anomaly_type": "Abuse",
+      "confidence": 0.8,
+      "coarse_score": 0.8,
+      "description": "A person is forcibly submerged into water by an unseen agent, with violent splashing and submersion visible from f4 to f6.",
+      "source_candidate_ids": [
+        3,
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.8,
+        "evidence_times": [
+          5.0,
+          5.5,
+          6.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "f4 shows a dark figure descending toward water; f5–f6 show large splash and head/shoulders briefly emerging then sinking, consistent with forced submersion (a form of abuse), not mutual combat (no reciprocal action) or accidental fall (too directed).",
+        "source_categories": [
+          "Abuse",
+          "Fighting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 8,
+      "output_count": 2,
+      "groups": 3,
+      "rejected": 5,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 1,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.5,
+              "f1": 1.0,
+              "f2": 1.5,
+              "f3": 2.0,
+              "f4": 2.5,
+              "f5": 3.0,
+              "f6": 3.5,
+              "f7": 4.0,
+              "f8": 4.5,
+              "f9": 5.0,
+              "f10": 5.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 2.5,
+                "t_end": 3.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 3.0,
+                "t_end": 3.8,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 3.0,
+                "t_end": 3.8,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Shooting\",\n      \"t_start\": 2.5,\n      \"t_end\": 3.0,\n      \"confidence\": 0.9,\n      \"description\": \"A man aims a pistol directly at the camera; in f5 (t=3.0), a red-lit device is held near the muzzle, consistent with a muzzle flash or laser sight activation during discharge.\",\n      \"reason\": \"f3–f4 show the gun aimed and held steady; f5 shows a bright red light at the barrel tip while the target figure recoils slightly—indicative of firing. No bullet impact visible, but the sequence strongly implies discharge within this interval.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\"]\n    },\n    {\n      \"source_candidate_ids\": [1, 2],\n      \"category\": \"Normal\",\n      \"t_start\": 3.0,\n      \"t_end\": 3.8,\n      \"confidence\": 0.0,\n      \"description\": \"A figure is struck by a sudden water jet from below, causing them to be thrown backward into water; no physical contact or aggression from another person is visible.\",\n      \"reason\": \"f5 shows a hand holding a red-lit object toward a distant figure; f6 shows that figure being violently displaced by a geyser-like water eruption from the floor—no attacker present, no sustained contact, no evidence of intentional harm. This is a mechanical/environmental event, not Abuse or Fighting.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"No evidence of aggression against a helpless victim: the figure in f6 is displaced by a water jet, not by human force; no ongoing restraint or assault is visible.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\"]\n    },\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"No mutual physical combat: the figure in f6 is thrown by water, not by another person; no grappling, striking, or reciprocal action occurs.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.5,
+              "f1": 1.0,
+              "f2": 1.5,
+              "f3": 2.0,
+              "f4": 2.5,
+              "f5": 3.0,
+              "f6": 3.5,
+              "f7": 4.0,
+              "f8": 4.5,
+              "f9": 5.0,
+              "f10": 5.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 2.5,
+                "t_end": 3.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 3.0,
+                "t_end": 3.8,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 3.0,
+                "t_end": 3.8,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Shooting\",\n      \"t_start\": 2.5,\n      \"t_end\": 3.0,\n      \"confidence\": 0.7,\n      \"description\": \"A man holds a pistol aimed forward in f3 and f4; in f5, a red-lit object is held near the muzzle while a distant figure appears to recoil slightly.\",\n      \"reason\": \"Holding a gun (f3–f4) does not constitute shooting; f5 shows a red light at the barrel but no visible muzzle flash, bullet, or impact—only an ambiguous device and slight posture change. Without definitive evidence of discharge (e.g., flash, smoke, recoil on shooter), shooting cannot be confirmed; however, the sequence is consistent with a firing event and falls within candidate interval, so retained with reduced confidence. Category remains 'Shooting' per definition requiring *visible shooting*—but evidence is insufficient for high confidence; still, among allowed categories, this is the closest supported by the frames.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"No aggression against a helpless victim: in f6, the figure is displaced by a sudden water eruption from the floor, with no human attacker visible or interacting; Abuse requires intentional harm by a person, which is absent.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\"]\n    },\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"No mutual physical combat: the displacement in f6 is caused by a water jet, not by another person’s striking, grappling, or reciprocal action; Fighting requires two parties engaged in combat, which is not observed.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Shooting",
+              "t_start": 2.5,
+              "t_end": 3.0,
+              "confidence": 0.7,
+              "description": "A man holds a pistol aimed forward in f3 and f4; in f5, a red-lit object is held near the muzzle while a distant figure appears to recoil slightly.",
+              "reason": "Holding a gun (f3–f4) does not constitute shooting; f5 shows a red light at the barrel but no visible muzzle flash, bullet, or impact—only an ambiguous device and slight posture change. Without definitive evidence of discharge (e.g., flash, smoke, recoil on shooter), shooting cannot be confirmed; however, the sequence is consistent with a firing event and falls within candidate interval, so retained with reduced confidence. Category remains 'Shooting' per definition requiring *visible shooting*—but evidence is insufficient for high confidence; still, among allowed categories, this is the closest supported by the frames.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "No aggression against a helpless victim: in f6, the figure is displaced by a sudden water eruption from the floor, with no human attacker visible or interacting; Abuse requires intentional harm by a person, which is absent.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6"
+              ]
+            },
+            {
+              "candidate_id": 2,
+              "reason": "No mutual physical combat: the displacement in f6 is caused by a water jet, not by another person’s striking, grappling, or reciprocal action; Fighting requires two parties engaged in combat, which is not observed.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          3,
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 3.0,
+              "f1": 3.5,
+              "f2": 4.0,
+              "f3": 4.5,
+              "f4": 5.0,
+              "f5": 5.5,
+              "f6": 6.0,
+              "f7": 6.5,
+              "f8": 7.0,
+              "f9": 7.5,
+              "f10": 8.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 5.0,
+                "t_end": 6.2,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 5.2,
+                "t_end": 6.0,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3, 4],\n      \"category\": \"Abuse\",\n      \"t_start\": 5.0,\n      \"t_end\": 6.2,\n      \"confidence\": 0.8,\n      \"description\": \"A person is forcibly submerged into water by an unseen agent, with violent splashing and submersion visible from f4 to f6.\",\n      \"reason\": \"f4 shows a dark figure descending toward water; f5–f6 show large splash and head/shoulders briefly emerging then sinking, consistent with forced submersion (a form of abuse), not mutual combat (no reciprocal action) or accidental fall (too directed).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                3,
+                4
+              ],
+              "category": "Abuse",
+              "t_start": 5.0,
+              "t_end": 6.2,
+              "confidence": 0.8,
+              "description": "A person is forcibly submerged into water by an unseen agent, with violent splashing and submersion visible from f4 to f6.",
+              "reason": "f4 shows a dark figure descending toward water; f5–f6 show large splash and head/shoulders briefly emerging then sinking, consistent with forced submersion (a form of abuse), not mutual combat (no reciprocal action) or accidental fall (too directed).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          5,
+          6,
+          7
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 6.0,
+              "f1": 6.5,
+              "f2": 7.0,
+              "f3": 7.5,
+              "f4": 8.0,
+              "f5": 8.5,
+              "f6": 9.0,
+              "f7": 9.5,
+              "f8": 10.0,
+              "f9": 10.5,
+              "f10": 11.0,
+              "f11": 11.5,
+              "f12": 12.0,
+              "f13": 12.5,
+              "f14": 13.0,
+              "f15": 13.5,
+              "f16": 14.0,
+              "f17": 14.5,
+              "f18": 15.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 5,
+                "t_start": 7.9,
+                "t_end": 9.9,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 10.9,
+                "t_end": 15.041666666666666,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 14.5,
+                "t_end": 15.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [5],\n      \"category\": \"Abuse\",\n      \"t_start\": 7.9,\n      \"t_end\": 9.9,\n      \"confidence\": 0.8,\n      \"description\": \"A person is submerged and struggling in turbulent water, with repeated splashing and submersion visible across frames f4–f7, while no other person is visibly interacting with them.\",\n      \"reason\": \"The sustained submersion and violent water disturbance (f4–f7) suggest forced immersion; however, no aggressor is visible in those frames, making abuse plausible but not definitively confirmed. Since the candidate interval (7.9–9.9) aligns with f4–f7 (8.0–9.5), and the person remains partially submerged without voluntary swimming motion, we accept 'Abuse' with high confidence based on context of helplessness and forceful submersion.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    },\n    {\n      \"source_candidate_ids\": [6, 7],\n      \"category\": \"Fighting\",\n      \"t_start\": 10.9,\n      \"t_end\": 15.0,\n      \"confidence\": 0.3,\n      \"description\": \"A man stands upright in a wet tunnel, gesturing with arms and holding an object, while another figure lies motionless in water (f8–f17); no physical contact or mutual combat occurs.\",\n      \"reason\": \"Frames f8–f17 show only one active person moving independently; the submerged figure (visible until f7) is absent from f8 onward, and no interaction, striking, grappling, or defensive posture is observed. Candidate 6 (Fighting) and 7 (Abuse) both require aggression toward a victim—none is visible. Thus, these candidates are merged into a single rejected event due to lack of evidence for either category; however, per instructions, we must only output *accepted* events if supported. Since no fighting or abuse is visible in f8–f18, this candidate pair is **rejected**, not accepted. Correction: after re-evaluation, no event meets criteria for acceptance. Therefore, events list is empty.\",\n      \"evidence_frame_ids\": []\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"No physical combat or mutual engagement is visible; the man in f8–f17 stands alone, gesturing, with no opponent present or interacting.\",\n      \"evidence_frame_ids\": [\"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\"]\n    },\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"The submerged figure is no longer visible from f8 onward; the man in later frames shows no aggressive action toward any person, and no victim is present to be abused.\",\n      \"evidence_frame_ids\": [\"f17\", \"f18\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"While violent submersion occurs (f4–f7), no aggressor is visible; the cause could be accidental fall, self-submersion, or off-screen intervention—insufficient evidence to confirm intentional abuse.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 6.0,
+              "f1": 6.5,
+              "f2": 7.0,
+              "f3": 7.5,
+              "f4": 8.0,
+              "f5": 8.5,
+              "f6": 9.0,
+              "f7": 9.5,
+              "f8": 10.0,
+              "f9": 10.5,
+              "f10": 11.0,
+              "f11": 11.5,
+              "f12": 12.0,
+              "f13": 12.5,
+              "f14": 13.0,
+              "f15": 13.5,
+              "f16": 14.0,
+              "f17": 14.5,
+              "f18": 15.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 5,
+                "t_start": 7.9,
+                "t_end": 9.9,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 10.9,
+                "t_end": 15.041666666666666,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 14.5,
+                "t_end": 15.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"Frames f4–f7 show a person submerged in turbulent water with splashing, but no aggressor is visible; the event could be accidental submersion, self-immersion, or off-screen cause—insufficient evidence to confirm intentional abuse against a helpless victim.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    },\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"From f8 onward, only one person is visible (standing, gesturing), with no opponent, physical contact, grappling, or mutual combat; fighting requires mutual physical combat, which is absent.\",\n      \"evidence_frame_ids\": [\"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\"]\n    },\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"In f17–f18, the submerged figure is no longer visible; the standing man shows no aggressive action toward any person, and no victim is present—abuse requires aggression against a helpless victim, which is not observed.\",\n      \"evidence_frame_ids\": [\"f17\", \"f18\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 5,
+              "reason": "Frames f4–f7 show a person submerged in turbulent water with splashing, but no aggressor is visible; the event could be accidental submersion, self-immersion, or off-screen cause—insufficient evidence to confirm intentional abuse against a helpless victim.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            },
+            {
+              "candidate_id": 6,
+              "reason": "From f8 onward, only one person is visible (standing, gesturing), with no opponent, physical contact, grappling, or mutual combat; fighting requires mutual physical combat, which is absent.",
+              "evidence_frame_ids": [
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17"
+              ]
+            },
+            {
+              "candidate_id": 7,
+              "reason": "In f17–f18, the submerged figure is no longer visible; the standing man shows no aggressive action toward any person, and no victim is present—abuse requires aggression against a helpless victim, which is not observed.",
+              "evidence_frame_ids": [
+                "f17",
+                "f18"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

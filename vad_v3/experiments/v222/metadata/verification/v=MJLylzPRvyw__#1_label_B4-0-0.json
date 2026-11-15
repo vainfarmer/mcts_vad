@@ -1,0 +1,552 @@
+{
+  "events": [
+    {
+      "t_start": 18.3,
+      "t_end": 19.2,
+      "anomaly_type": "Fighting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A person in black hooded clothing swings a white object (possibly a sign or board) toward the driver’s side of a silver sedan while others surround the vehicle; the driver-side door is open and a person inside appears to be reacting defensively.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          18.5,
+          19.0,
+          19.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "Frames f4–f6 show repeated motion of the hooded individual striking or attempting to strike the car near the open driver’s door, with others nearby in agitated postures; this constitutes mutual or targeted physical aggression against an occupant, satisfying the definition of Fighting (not Abuse, as the occupant is not clearly helpless and appears to be resisting/escaping).",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 43.5,
+      "t_end": 45.5,
+      "anomaly_type": "Abuse",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A person in a black hoodie raises a long, thin object (appears to be a baton or stick) toward the open driver’s-side door of a silver car while another person is leaning into the car; the posture and motion suggest a threatening gesture directed at the occupant.",
+      "source_candidate_ids": [
+        5
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 4,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          43.5,
+          44.0,
+          44.5,
+          45.0,
+          45.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8"
+        ],
+        "reason": "The raised object is pointed directly at the car occupant during a non-consensual interaction; no reciprocal action from inside the car is visible, and the occupant appears passive or restrained—consistent with abuse (aggression against a helpless victim). Evidence frames f4–f8 show the object extended and held steadily toward the car interior.",
+        "source_categories": [
+          "Abuse"
+        ]
+      }
+    },
+    {
+      "t_start": 46.0,
+      "t_end": 47.0,
+      "anomaly_type": "Fighting",
+      "confidence": 0.7,
+      "coarse_score": 0.7,
+      "description": "At f9–f10, two individuals engage in close physical contact near the car: one extends an arm toward the other, who reciprocates with a hand gesture; by f11, they are in proximity with apparent mutual engagement.",
+      "source_candidate_ids": [
+        6
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 4,
+        "event_id": 1,
+        "vlm_confidence": 0.7,
+        "evidence_times": [
+          46.0,
+          46.5,
+          47.0
+        ],
+        "evidence_frame_ids": [
+          "f9",
+          "f10",
+          "f11"
+        ],
+        "reason": "Mutual physical engagement is visible: at f9, hands are near each other in a confrontational manner; at f10, both individuals are facing each other with arms raised/extended; this satisfies the definition of fighting (mutual physical combat), though intensity is low. Not merely verbal or gestural—contact or imminent contact is present.",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 10,
+      "output_count": 3,
+      "groups": 7,
+      "rejected": 7,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 12.5,
+              "f1": 13.0,
+              "f2": 13.5,
+              "f3": 14.0,
+              "f4": 14.5,
+              "f5": 15.0,
+              "f6": 15.5,
+              "f7": 16.0,
+              "f8": 16.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 14.2,
+                "t_end": 15.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"The silver sedan is stopped at an intersection with protesters around it; no impact, deformation, skid marks, or sudden motion indicating a crash—consistent with normal traffic stop during protest.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "The silver sedan is stopped at an intersection with protesters around it; no impact, deformation, skid marks, or sudden motion indicating a crash—consistent with normal traffic stop during protest.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 16.5,
+              "f1": 17.0,
+              "f2": 17.5,
+              "f3": 18.0,
+              "f4": 18.5,
+              "f5": 19.0,
+              "f6": 19.5,
+              "f7": 20.0,
+              "f8": 20.5,
+              "f9": 21.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 18.3,
+                "t_end": 19.2,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Fighting\",\n      \"t_start\": 18.3,\n      \"t_end\": 19.2,\n      \"confidence\": 0.9,\n      \"description\": \"A person in black hooded clothing swings a white object (possibly a sign or board) toward the driver’s side of a silver sedan while others surround the vehicle; the driver-side door is open and a person inside appears to be reacting defensively.\",\n      \"reason\": \"Frames f4–f6 show repeated motion of the hooded individual striking or attempting to strike the car near the open driver’s door, with others nearby in agitated postures; this constitutes mutual or targeted physical aggression against an occupant, satisfying the definition of Fighting (not Abuse, as the occupant is not clearly helpless and appears to be resisting/escaping).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "Fighting",
+              "t_start": 18.3,
+              "t_end": 19.2,
+              "confidence": 0.9,
+              "description": "A person in black hooded clothing swings a white object (possibly a sign or board) toward the driver’s side of a silver sedan while others surround the vehicle; the driver-side door is open and a person inside appears to be reacting defensively.",
+              "reason": "Frames f4–f6 show repeated motion of the hooded individual striking or attempting to strike the car near the open driver’s door, with others nearby in agitated postures; this constitutes mutual or targeted physical aggression against an occupant, satisfying the definition of Fighting (not Abuse, as the occupant is not clearly helpless and appears to be resisting/escaping).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 31.5,
+              "f1": 32.0,
+              "f2": 32.5,
+              "f3": 33.0,
+              "f4": 33.5,
+              "f5": 34.0,
+              "f6": 34.5,
+              "f7": 35.0,
+              "f8": 35.5,
+              "f9": 36.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 33.5,
+                "t_end": 34.5,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"No mutual physical combat is visible; individuals are running, one appears to draw or point an object at ~33.5–34.0 (f4–f5), but no impact, contact, or sustained engagement occurs—insufficient for 'Fighting'.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "No mutual physical combat is visible; individuals are running, one appears to draw or point an object at ~33.5–34.0 (f4–f5), but no impact, contact, or sustained engagement occurs—insufficient for 'Fighting'.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          3,
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 36.5,
+              "f1": 37.0,
+              "f2": 37.5,
+              "f3": 38.0,
+              "f4": 38.5,
+              "f5": 39.0,
+              "f6": 39.5,
+              "f7": 40.0,
+              "f8": 40.5,
+              "f9": 41.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 38.5,
+                "t_end": 39.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 38.7,
+                "t_end": 39.5,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"No mutual physical combat is visible; individuals are moving near cars and a tree, with one person opening a car door—consistent with normal street activity, not fighting.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"No aggression against a helpless victim is observed; the person in motion (e.g., f4–f6) appears to be walking or stepping away, not being abused.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 3,
+              "reason": "No mutual physical combat is visible; individuals are moving near cars and a tree, with one person opening a car door—consistent with normal street activity, not fighting.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            },
+            {
+              "candidate_id": 4,
+              "reason": "No aggression against a helpless victim is observed; the person in motion (e.g., f4–f6) appears to be walking or stepping away, not being abused.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 4,
+        "source_ids": [
+          5,
+          6
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 41.5,
+              "f1": 42.0,
+              "f2": 42.5,
+              "f3": 43.0,
+              "f4": 43.5,
+              "f5": 44.0,
+              "f6": 44.5,
+              "f7": 45.0,
+              "f8": 45.5,
+              "f9": 46.0,
+              "f10": 46.5,
+              "f11": 47.0,
+              "f12": 47.5,
+              "f13": 48.0,
+              "f14": 48.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 5,
+                "t_start": 43.5,
+                "t_end": 45.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 46.0,
+                "t_end": 47.0,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [5],\n      \"category\": \"Abuse\",\n      \"t_start\": 43.5,\n      \"t_end\": 45.5,\n      \"confidence\": 0.9,\n      \"description\": \"A person in a black hoodie raises a long, thin object (appears to be a baton or stick) toward the open driver’s-side door of a silver car while another person is leaning into the car; the posture and motion suggest a threatening gesture directed at the occupant.\",\n      \"reason\": \"The raised object is pointed directly at the car occupant during a non-consensual interaction; no reciprocal action from inside the car is visible, and the occupant appears passive or restrained—consistent with abuse (aggression against a helpless victim). Evidence frames f4–f8 show the object extended and held steadily toward the car interior.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    },\n    {\n      \"source_candidate_ids\": [6],\n      \"category\": \"Fighting\",\n      \"t_start\": 46.0,\n      \"t_end\": 47.0,\n      \"confidence\": 0.7,\n      \"description\": \"At f9–f10, two individuals engage in close physical contact near the car: one extends an arm toward the other, who reciprocates with a hand gesture; by f11, they are in proximity with apparent mutual engagement.\",\n      \"reason\": \"Mutual physical engagement is visible: at f9, hands are near each other in a confrontational manner; at f10, both individuals are facing each other with arms raised/extended; this satisfies the definition of fighting (mutual physical combat), though intensity is low. Not merely verbal or gestural—contact or imminent contact is present.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\", \"f11\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                5
+              ],
+              "category": "Abuse",
+              "t_start": 43.5,
+              "t_end": 45.5,
+              "confidence": 0.9,
+              "description": "A person in a black hoodie raises a long, thin object (appears to be a baton or stick) toward the open driver’s-side door of a silver car while another person is leaning into the car; the posture and motion suggest a threatening gesture directed at the occupant.",
+              "reason": "The raised object is pointed directly at the car occupant during a non-consensual interaction; no reciprocal action from inside the car is visible, and the occupant appears passive or restrained—consistent with abuse (aggression against a helpless victim). Evidence frames f4–f8 show the object extended and held steadily toward the car interior.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                6
+              ],
+              "category": "Fighting",
+              "t_start": 46.0,
+              "t_end": 47.0,
+              "confidence": 0.7,
+              "description": "At f9–f10, two individuals engage in close physical contact near the car: one extends an arm toward the other, who reciprocates with a hand gesture; by f11, they are in proximity with apparent mutual engagement.",
+              "reason": "Mutual physical engagement is visible: at f9, hands are near each other in a confrontational manner; at f10, both individuals are facing each other with arms raised/extended; this satisfies the definition of fighting (mutual physical combat), though intensity is low. Not merely verbal or gestural—contact or imminent contact is present.",
+              "evidence_frame_ids": [
+                "f9",
+                "f10",
+                "f11"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 5,
+        "source_ids": [
+          7,
+          8
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 47.0,
+              "f1": 47.5,
+              "f2": 48.0,
+              "f3": 48.5,
+              "f4": 49.0,
+              "f5": 49.5,
+              "f6": 50.0,
+              "f7": 50.5,
+              "f8": 51.0,
+              "f9": 51.5,
+              "f10": 52.0,
+              "f11": 52.5,
+              "f12": 53.0,
+              "f13": 53.5,
+              "f14": 54.0,
+              "f15": 54.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 7,
+                "t_start": 48.7,
+                "t_end": 51.0,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 52.0,
+                "t_end": 53.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"No collective violent unrest; individuals move near a car and disperse, with no evidence of rioting (e.g., property destruction, coordinated aggression).\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\"]\n    },\n    {\n      \"candidate_id\": 8,\n      \"reason\": \"The silver Lexus drives away normally; no impact, deformation, skid marks, or sudden stop visible—no crash occurred.\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\", \"f13\", \"f14\", \"f15\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 7,
+              "reason": "No collective violent unrest; individuals move near a car and disperse, with no evidence of rioting (e.g., property destruction, coordinated aggression).",
+              "evidence_frame_ids": [
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            },
+            {
+              "candidate_id": 8,
+              "reason": "The silver Lexus drives away normally; no impact, deformation, skid marks, or sudden stop visible—no crash occurred.",
+              "evidence_frame_ids": [
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 6,
+        "source_ids": [
+          9
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 55.5,
+              "f1": 56.0,
+              "f2": 56.5,
+              "f3": 57.0,
+              "f4": 57.5,
+              "f5": 58.0,
+              "f6": 58.5,
+              "f7": 59.0,
+              "f8": 59.5,
+              "f9": 60.0,
+              "f10": 60.5,
+              "f11": 61.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 9,
+                "t_start": 57.5,
+                "t_end": 59.1,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 9,\n      \"reason\": \"No mutual physical combat is visible; individuals are walking, holding signs, and moving near parked cars—consistent with a protest or gathering, not fighting.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 9,
+              "reason": "No mutual physical combat is visible; individuals are walking, holding signs, and moving near parked cars—consistent with a protest or gathering, not fighting.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

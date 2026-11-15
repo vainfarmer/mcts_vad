@@ -1,0 +1,517 @@
+{
+  "events": [
+    {
+      "t_start": 60.5,
+      "t_end": 61.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A vehicle (appearing to be a dark sedan) is seen mid-air, rotating and flipping over the road surface, with visible motion blur indicating rapid uncontrolled movement; this occurs after the car was driving normally in frames f7–f8 (62.0–62.5), but the flip itself is captured in f4–f5 (60.5–61.0) and resolves by f6 (61.5).",
+      "source_candidate_ids": [
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          60.5,
+          61.0,
+          61.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "Frame f4 (60.5) shows the car already airborne and inverted, with motion blur consistent with a violent launch and rotation. Frame f5 (61.0) shows continued mid-air tumbling. Frame f6 (61.5) shows the car no longer visible in the same location—likely having impacted the ground or left frame—consistent with a crash sequence. The prior frames (f7–f9, 62.0–63.0) show the car on the road again, suggesting either a separate shot or post-crash recovery; however, the temporal ordering of supplied frames (f0–f9 increasing time) implies f4–f6 occur *before* f7–f9, so the crash at 60.5–61.5 is distinct from the later driving. This satisfies CarAccident: a sudden loss of control resulting in the vehicle leaving the roadway and undergoing violent deformation/motion, even if impact point is not directly visible. No explosion, fire, or external collision partner is required for CarAccident per definition.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 147.0,
+      "t_end": 150.1,
+      "anomaly_type": "Fighting",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "A second person (partially visible, wearing dark clothing) enters the vehicle from the passenger side and engages in close physical contact with the driver; the driver’s head is forced backward and to the side, arms are raised defensively or in struggle, and both individuals are in dynamic, constrained motion consistent with mutual grappling inside a car interior.",
+      "source_candidate_ids": [
+        7
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 6,
+        "event_id": 0,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          147.0,
+          147.5,
+          148.0,
+          148.5,
+          149.0,
+          149.5,
+          150.0,
+          150.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11"
+        ],
+        "reason": "Frames f4–f11 show a clear escalation: at f4 (147.0), the driver is still seated upright; by f5 (147.5), a second figure’s arm and shoulder appear near the driver’s head; f6–f8 show the driver’s head being pushed back, mouth open, hands raised toward the intruder; f9–f11 depict sustained close contact with torsos pressed together and limbs interlocked. This satisfies the definition of Fighting: mutual physical combat within confined space. No weapon, explosion, crash, or crowd is visible. The action is continuous and coherent across frames, supporting a single event.",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 8,
+      "output_count": 2,
+      "groups": 7,
+      "rejected": 6,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 52.5,
+              "f1": 53.0,
+              "f2": 53.5,
+              "f3": 54.0,
+              "f4": 54.5,
+              "f5": 55.0,
+              "f6": 55.5,
+              "f7": 56.0,
+              "f8": 56.5,
+              "f9": 57.0,
+              "f10": 57.5,
+              "f11": 58.0,
+              "f12": 58.5,
+              "f13": 59.0,
+              "f14": 59.5,
+              "f15": 60.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 54.1,
+                "t_end": 57.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 57.7,
+                "t_end": 58.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"The frames from 54.1–57.0 (f2–f7) show a woman with an open mouth and raised hands, appearing to scream or react intensely; her motion is blurred (e.g., f3, f4, f7), consistent with sudden movement or emotional outburst, but no visible contact, restraint, or aggression toward her by another person is present. The man in the driver’s seat (f5, f16) appears focused on driving, not engaging in physical interaction. No evidence of a helpless victim being aggressed upon; thus 'Abuse' is unsupported.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\"]\n    },\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Frames 57.7–58.5 (f11–f12) show the interior of a moving vehicle at night; the windshield shows external lights and reflections, and the woman’s head is blurred due to motion, but there is no visual indication of impact, deformation, skidding, or collision—no sudden jolt, shattered glass, or change in vehicle orientation. The scene remains consistent with normal driving or passenger movement; thus 'CarAccident' is contradicted by absence of crash evidence.\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "The frames from 54.1–57.0 (f2–f7) show a woman with an open mouth and raised hands, appearing to scream or react intensely; her motion is blurred (e.g., f3, f4, f7), consistent with sudden movement or emotional outburst, but no visible contact, restraint, or aggression toward her by another person is present. The man in the driver’s seat (f5, f16) appears focused on driving, not engaging in physical interaction. No evidence of a helpless victim being aggressed upon; thus 'Abuse' is unsupported.",
+              "evidence_frame_ids": [
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            },
+            {
+              "candidate_id": 1,
+              "reason": "Frames 57.7–58.5 (f11–f12) show the interior of a moving vehicle at night; the windshield shows external lights and reflections, and the woman’s head is blurred due to motion, but there is no visual indication of impact, deformation, skidding, or collision—no sudden jolt, shattered glass, or change in vehicle orientation. The scene remains consistent with normal driving or passenger movement; thus 'CarAccident' is contradicted by absence of crash evidence.",
+              "evidence_frame_ids": [
+                "f11",
+                "f12"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 58.5,
+              "f1": 59.0,
+              "f2": 59.5,
+              "f3": 60.0,
+              "f4": 60.5,
+              "f5": 61.0,
+              "f6": 61.5,
+              "f7": 62.0,
+              "f8": 62.5,
+              "f9": 63.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 60.5,
+                "t_end": 61.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"CarAccident\",\n      \"t_start\": 60.5,\n      \"t_end\": 61.5,\n      \"confidence\": 0.95,\n      \"description\": \"A vehicle (appearing to be a dark sedan) is seen mid-air, rotating and flipping over the road surface, with visible motion blur indicating rapid uncontrolled movement; this occurs after the car was driving normally in frames f7–f8 (62.0–62.5), but the flip itself is captured in f4–f5 (60.5–61.0) and resolves by f6 (61.5).\",\n      \"reason\": \"Frame f4 (60.5) shows the car already airborne and inverted, with motion blur consistent with a violent launch and rotation. Frame f5 (61.0) shows continued mid-air tumbling. Frame f6 (61.5) shows the car no longer visible in the same location—likely having impacted the ground or left frame—consistent with a crash sequence. The prior frames (f7–f9, 62.0–63.0) show the car on the road again, suggesting either a separate shot or post-crash recovery; however, the temporal ordering of supplied frames (f0–f9 increasing time) implies f4–f6 occur *before* f7–f9, so the crash at 60.5–61.5 is distinct from the later driving. This satisfies CarAccident: a sudden loss of control resulting in the vehicle leaving the roadway and undergoing violent deformation/motion, even if impact point is not directly visible. No explosion, fire, or external collision partner is required for CarAccident per definition.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2
+              ],
+              "category": "CarAccident",
+              "t_start": 60.5,
+              "t_end": 61.5,
+              "confidence": 0.95,
+              "description": "A vehicle (appearing to be a dark sedan) is seen mid-air, rotating and flipping over the road surface, with visible motion blur indicating rapid uncontrolled movement; this occurs after the car was driving normally in frames f7–f8 (62.0–62.5), but the flip itself is captured in f4–f5 (60.5–61.0) and resolves by f6 (61.5).",
+              "reason": "Frame f4 (60.5) shows the car already airborne and inverted, with motion blur consistent with a violent launch and rotation. Frame f5 (61.0) shows continued mid-air tumbling. Frame f6 (61.5) shows the car no longer visible in the same location—likely having impacted the ground or left frame—consistent with a crash sequence. The prior frames (f7–f9, 62.0–63.0) show the car on the road again, suggesting either a separate shot or post-crash recovery; however, the temporal ordering of supplied frames (f0–f9 increasing time) implies f4–f6 occur *before* f7–f9, so the crash at 60.5–61.5 is distinct from the later driving. This satisfies CarAccident: a sudden loss of control resulting in the vehicle leaving the roadway and undergoing violent deformation/motion, even if impact point is not directly visible. No explosion, fire, or external collision partner is required for CarAccident per definition.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 61.5,
+              "f1": 62.0,
+              "f2": 62.5,
+              "f3": 63.0,
+              "f4": 63.5,
+              "f5": 64.0,
+              "f6": 64.5,
+              "f7": 65.0,
+              "f8": 65.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 63.5,
+                "t_end": 64.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"The vehicle (a dark sedan) is shown approaching, turning, and driving through the intersection across frames f0–f7 without any impact, deformation, skid marks indicating loss of control, or sudden deceleration. In f5 (64.0), the car is blurred due to motion but remains intact and on the road surface; no collision with another object or vehicle is visible. The hypothesis 'CarAccident' requires a crash event, which is not present in any frame. The motion is consistent with normal nighttime driving and turning.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 3,
+              "reason": "The vehicle (a dark sedan) is shown approaching, turning, and driving through the intersection across frames f0–f7 without any impact, deformation, skid marks indicating loss of control, or sudden deceleration. In f5 (64.0), the car is blurred due to motion but remains intact and on the road surface; no collision with another object or vehicle is visible. The hypothesis 'CarAccident' requires a crash event, which is not present in any frame. The motion is consistent with normal nighttime driving and turning.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 64.0,
+              "f1": 64.5,
+              "f2": 65.0,
+              "f3": 65.5,
+              "f4": 66.0,
+              "f5": 66.5,
+              "f6": 67.0,
+              "f7": 67.5,
+              "f8": 68.0,
+              "f9": 68.5,
+              "f10": 69.0,
+              "f11": 69.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 66.0,
+                "t_end": 67.7,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"The sequence shows a car driving at night, turning at an intersection near an 'AA APPLIANCE' store (f1–f3), then interior shots from inside the vehicle (f4–f7) showing motion blur and reflections consistent with normal driving, not impact. The later frames (f8–f11) are extreme close-ups of a hood ornament (a stylized duck or bird figure), lit by ambient light and reflecting moving light sources—no deformation, shattering, skid marks, or sudden deceleration visible. No collision, crumpling, or abrupt stop is evident in any frame; the motion is continuous and controlled. Thus, 'CarAccident' is contradicted by visible evidence.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 4,
+              "reason": "The sequence shows a car driving at night, turning at an intersection near an 'AA APPLIANCE' store (f1–f3), then interior shots from inside the vehicle (f4–f7) showing motion blur and reflections consistent with normal driving, not impact. The later frames (f8–f11) are extreme close-ups of a hood ornament (a stylized duck or bird figure), lit by ambient light and reflecting moving light sources—no deformation, shattering, skid marks, or sudden deceleration visible. No collision, crumpling, or abrupt stop is evident in any frame; the motion is continuous and controlled. Thus, 'CarAccident' is contradicted by visible evidence.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 4,
+        "source_ids": [
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 81.0,
+              "f1": 81.5,
+              "f2": 82.0,
+              "f3": 82.5,
+              "f4": 83.0,
+              "f5": 83.5,
+              "f6": 84.0,
+              "f7": 84.5,
+              "f8": 85.0,
+              "f9": 85.5,
+              "f10": 86.0,
+              "f11": 86.5,
+              "f12": 87.0,
+              "f13": 87.5,
+              "f14": 88.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 5,
+                "t_start": 83.0,
+                "t_end": 86.5,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"The visible actions show a woman with blonde hair in a dimly lit interior (likely a vehicle), raising her hands toward a surface (e.g., window or partition) while looking upward with an open mouth—suggesting distress, surprise, or pleading. Her hands are splayed and appear to press against or rest on a transparent or semi-transparent barrier; there is no visible contact with another person’s body, no evidence of forceful impact, restraint, or aggression directed *at* her by another individual. The other figure (partially visible in later frames) is mostly obscured and does not exhibit overt aggressive posture or motion toward her. The sequence is consistent with a nonviolent reaction (e.g., fear, awe, or attempting to communicate through a barrier), not Abuse, which requires intentional harmful action by an aggressor against a vulnerable person. No frame shows striking, grabbing, choking, or coercive control.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 5,
+              "reason": "The visible actions show a woman with blonde hair in a dimly lit interior (likely a vehicle), raising her hands toward a surface (e.g., window or partition) while looking upward with an open mouth—suggesting distress, surprise, or pleading. Her hands are splayed and appear to press against or rest on a transparent or semi-transparent barrier; there is no visible contact with another person’s body, no evidence of forceful impact, restraint, or aggression directed *at* her by another individual. The other figure (partially visible in later frames) is mostly obscured and does not exhibit overt aggressive posture or motion toward her. The sequence is consistent with a nonviolent reaction (e.g., fear, awe, or attempting to communicate through a barrier), not Abuse, which requires intentional harmful action by an aggressor against a vulnerable person. No frame shows striking, grabbing, choking, or coercive control.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 5,
+        "source_ids": [
+          6
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 141.0,
+              "f1": 141.5,
+              "f2": 142.0,
+              "f3": 142.5,
+              "f4": 143.0,
+              "f5": 143.5,
+              "f6": 144.0,
+              "f7": 144.5,
+              "f8": 145.0,
+              "f9": 145.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 6,
+                "t_start": 142.7,
+                "t_end": 143.7,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"The candidate claims a CarAccident occurs between t=142.7 and 143.7. Frame f4 (143.0) shows only indistinct smoke or vapor, with no vehicle structure, deformation, debris, or impact evidence. Frames f5–f9 (143.5–145.5) show a person inside a vehicle, seated, with head turned toward the window; the interior appears intact, windshield is not shattered, and there is no motion blur indicating sudden deceleration or collision. The visible context is consistent with normal driving in rain or fog at night, possibly with steam or condensation on windows. No visual evidence of crash dynamics (e.g., crumpling metal, airbag deployment, violent body displacement) is present.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 6,
+              "reason": "The candidate claims a CarAccident occurs between t=142.7 and 143.7. Frame f4 (143.0) shows only indistinct smoke or vapor, with no vehicle structure, deformation, debris, or impact evidence. Frames f5–f9 (143.5–145.5) show a person inside a vehicle, seated, with head turned toward the window; the interior appears intact, windshield is not shattered, and there is no motion blur indicating sudden deceleration or collision. The visible context is consistent with normal driving in rain or fog at night, possibly with steam or condensation on windows. No visual evidence of crash dynamics (e.g., crumpling metal, airbag deployment, violent body displacement) is present.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 6,
+        "source_ids": [
+          7
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 145.0,
+              "f1": 145.5,
+              "f2": 146.0,
+              "f3": 146.5,
+              "f4": 147.0,
+              "f5": 147.5,
+              "f6": 148.0,
+              "f7": 148.5,
+              "f8": 149.0,
+              "f9": 149.5,
+              "f10": 150.0,
+              "f11": 150.5,
+              "f12": 151.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 7,
+                "t_start": 147.0,
+                "t_end": 150.1,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [7],\n      \"category\": \"Fighting\",\n      \"t_start\": 147.0,\n      \"t_end\": 150.1,\n      \"confidence\": 0.85,\n      \"description\": \"A second person (partially visible, wearing dark clothing) enters the vehicle from the passenger side and engages in close physical contact with the driver; the driver’s head is forced backward and to the side, arms are raised defensively or in struggle, and both individuals are in dynamic, constrained motion consistent with mutual grappling inside a car interior.\",\n      \"reason\": \"Frames f4–f11 show a clear escalation: at f4 (147.0), the driver is still seated upright; by f5 (147.5), a second figure’s arm and shoulder appear near the driver’s head; f6–f8 show the driver’s head being pushed back, mouth open, hands raised toward the intruder; f9–f11 depict sustained close contact with torsos pressed together and limbs interlocked. This satisfies the definition of Fighting: mutual physical combat within confined space. No weapon, explosion, crash, or crowd is visible. The action is continuous and coherent across frames, supporting a single event.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                7
+              ],
+              "category": "Fighting",
+              "t_start": 147.0,
+              "t_end": 150.1,
+              "confidence": 0.85,
+              "description": "A second person (partially visible, wearing dark clothing) enters the vehicle from the passenger side and engages in close physical contact with the driver; the driver’s head is forced backward and to the side, arms are raised defensively or in struggle, and both individuals are in dynamic, constrained motion consistent with mutual grappling inside a car interior.",
+              "reason": "Frames f4–f11 show a clear escalation: at f4 (147.0), the driver is still seated upright; by f5 (147.5), a second figure’s arm and shoulder appear near the driver’s head; f6–f8 show the driver’s head being pushed back, mouth open, hands raised toward the intruder; f9–f11 depict sustained close contact with torsos pressed together and limbs interlocked. This satisfies the definition of Fighting: mutual physical combat within confined space. No weapon, explosion, crash, or crowd is visible. The action is continuous and coherent across frames, supporting a single event.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "f39c9b4b7fbc19153cc76f329d5c8e188a3b83d98d41666fc384b75fe6b4faab"
+}

@@ -1,0 +1,346 @@
+{
+  "events": [
+    {
+      "t_start": 2.5,
+      "t_end": 4.7,
+      "anomaly_type": "Fighting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A man in a suit grabs another bald man’s head (f4), then lifts and throws him (f5–f7), culminating in the bald man airborne across a room (f7–f9).",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          2.5,
+          3.0,
+          3.5,
+          4.0,
+          4.5,
+          5.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9"
+        ],
+        "reason": "Frames f4–f9 show continuous physical engagement: grabbing (f4), close contact (f5), arm extension (f6), and projectile motion of one person (f7–f9) — consistent with a violent throw, satisfying Fighting (mutual or one-sided physical combat initiated by contact).",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 7.0,
+      "t_end": 7.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A person is violently ejected through a window, with glass shattering and body in mid-air impact trajectory, consistent with being thrown or struck with force.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          7.0,
+          7.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "f4 shows a figure mid-ejection through a window with debris; f5 shows the aftermath with airborne fragments and a blurred body—indicating high-impact physical conflict, not accidental fall or explosion. No gun visible, no crowd unrest, no vehicle involved.",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 11.5,
+      "t_end": 12.0,
+      "anomaly_type": "Shooting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "At f4 (11.5 s), a bright muzzle flash and smoke plume erupt near the figure’s right hand as they stand beside the tracks; by f5 (12.0 s), the smoke persists and the figure is recoiling slightly into the doorway.",
+      "source_candidate_ids": [
+        2,
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          11.5,
+          12.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "The sudden localized flash and expanding smoke at f4, coinciding with the figure’s arm position and subsequent recoil, are consistent with a firearm discharge; no other plausible source (e.g., explosion, firework) fits the localized, directional nature and timing. Candidates 2 and 3 both target the same brief event and are merged.",
+        "source_categories": [
+          "Shooting",
+          "Shooting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 5,
+      "output_count": 3,
+      "groups": 4,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.5,
+              "f1": 1.0,
+              "f2": 1.5,
+              "f3": 2.0,
+              "f4": 2.5,
+              "f5": 3.0,
+              "f6": 3.5,
+              "f7": 4.0,
+              "f8": 4.5,
+              "f9": 5.0,
+              "f10": 5.5,
+              "f11": 6.0,
+              "f12": 6.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 2.5,
+                "t_end": 4.7,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Fighting\",\n      \"t_start\": 2.5,\n      \"t_end\": 4.7,\n      \"confidence\": 0.95,\n      \"description\": \"A man in a suit grabs another bald man’s head (f4), then lifts and throws him (f5–f7), culminating in the bald man airborne across a room (f7–f9).\",\n      \"reason\": \"Frames f4–f9 show continuous physical engagement: grabbing (f4), close contact (f5), arm extension (f6), and projectile motion of one person (f7–f9) — consistent with a violent throw, satisfying Fighting (mutual or one-sided physical combat initiated by contact).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Fighting",
+              "t_start": 2.5,
+              "t_end": 4.7,
+              "confidence": 0.95,
+              "description": "A man in a suit grabs another bald man’s head (f4), then lifts and throws him (f5–f7), culminating in the bald man airborne across a room (f7–f9).",
+              "reason": "Frames f4–f9 show continuous physical engagement: grabbing (f4), close contact (f5), arm extension (f6), and projectile motion of one person (f7–f9) — consistent with a violent throw, satisfying Fighting (mutual or one-sided physical combat initiated by contact).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 5.0,
+              "f1": 5.5,
+              "f2": 6.0,
+              "f3": 6.5,
+              "f4": 7.0,
+              "f5": 7.5,
+              "f6": 8.0,
+              "f7": 8.5,
+              "f8": 9.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 7.0,
+                "t_end": 7.5,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Fighting\",\n      \"t_start\": 7.0,\n      \"t_end\": 7.5,\n      \"confidence\": 0.9,\n      \"description\": \"A person is violently ejected through a window, with glass shattering and body in mid-air impact trajectory, consistent with being thrown or struck with force.\",\n      \"reason\": \"f4 shows a figure mid-ejection through a window with debris; f5 shows the aftermath with airborne fragments and a blurred body—indicating high-impact physical conflict, not accidental fall or explosion. No gun visible, no crowd unrest, no vehicle involved.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "Fighting",
+              "t_start": 7.0,
+              "t_end": 7.5,
+              "confidence": 0.9,
+              "description": "A person is violently ejected through a window, with glass shattering and body in mid-air impact trajectory, consistent with being thrown or struck with force.",
+              "reason": "f4 shows a figure mid-ejection through a window with debris; f5 shows the aftermath with airborne fragments and a blurred body—indicating high-impact physical conflict, not accidental fall or explosion. No gun visible, no crowd unrest, no vehicle involved.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          2,
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 9.5,
+              "f1": 10.0,
+              "f2": 10.5,
+              "f3": 11.0,
+              "f4": 11.5,
+              "f5": 12.0,
+              "f6": 12.5,
+              "f7": 13.0,
+              "f8": 13.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 11.5,
+                "t_end": 12.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 11.5,
+                "t_end": 11.541667,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2, 3],\n      \"category\": \"Shooting\",\n      \"t_start\": 11.5,\n      \"t_end\": 12.0,\n      \"confidence\": 0.9,\n      \"description\": \"At f4 (11.5 s), a bright muzzle flash and smoke plume erupt near the figure’s right hand as they stand beside the tracks; by f5 (12.0 s), the smoke persists and the figure is recoiling slightly into the doorway.\",\n      \"reason\": \"The sudden localized flash and expanding smoke at f4, coinciding with the figure’s arm position and subsequent recoil, are consistent with a firearm discharge; no other plausible source (e.g., explosion, firework) fits the localized, directional nature and timing. Candidates 2 and 3 both target the same brief event and are merged.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2,
+                3
+              ],
+              "category": "Shooting",
+              "t_start": 11.5,
+              "t_end": 12.0,
+              "confidence": 0.9,
+              "description": "At f4 (11.5 s), a bright muzzle flash and smoke plume erupt near the figure’s right hand as they stand beside the tracks; by f5 (12.0 s), the smoke persists and the figure is recoiling slightly into the doorway.",
+              "reason": "The sudden localized flash and expanding smoke at f4, coinciding with the figure’s arm position and subsequent recoil, are consistent with a firearm discharge; no other plausible source (e.g., explosion, firework) fits the localized, directional nature and timing. Candidates 2 and 3 both target the same brief event and are merged.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 11.5,
+              "f1": 12.0,
+              "f2": 12.5,
+              "f3": 13.0,
+              "f4": 13.5,
+              "f5": 14.0,
+              "f6": 14.5,
+              "f7": 15.0,
+              "f8": 15.5,
+              "f9": 16.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 13.3,
+                "t_end": 14.2,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"No mutual physical combat is visible; frames f3–f6 show one person moving along a wall and another emerging separately, with no contact or aggressive interaction.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 4,
+              "reason": "No mutual physical combat is visible; frames f3–f6 show one person moving along a wall and another emerging separately, with no contact or aggressive interaction.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

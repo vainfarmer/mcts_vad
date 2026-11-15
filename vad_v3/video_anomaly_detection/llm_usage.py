@@ -170,7 +170,10 @@ def track_batch_usage(func):
                            usage=batch['usage'], videos=batch['videos'],
                            calls_file=batch['calls_path'].name,
                            note='Known API usage only; unknown_usage_requests may incur unreported usage. Skipped results are excluded.')
-            emit('BATCH', summary)
+            # Keep the full per-video ledger in JSON; an 800-video array would
+            # otherwise overwhelm the readable end-of-batch metric summary.
+            emit('BATCH', {k:v for k,v in summary.items() if k!='videos'} |
+                         {'video_attempts':len(batch['videos'])})
             payload = json.dumps(summary, ensure_ascii=False, indent=2)
             (directory / f'token_usage_{run_id}.json').write_text(payload, encoding='utf-8')
             (directory / 'token_usage.json').write_text(payload, encoding='utf-8')

@@ -249,6 +249,8 @@ def test_evaluation_uses_classes_coverage_and_immutable_runs(app):
     assert row['status']=='completed',row
     metrics=row['metrics']['groups']['on']
     assert metrics['abnormal']['per_class']['Fighting']['AP@0.5']==1
+    assert metrics['all_videos']['class_count']==14
+    assert metrics['all_videos']['per_class']['Normal']['AP@0.5']==1
     assert metrics['classification']['accuracy']==1
     assert metrics['classification']['normal_false_positive_rate']==0
     assert len(experiments.list_experiments(store)[0]['evaluations'])==2
@@ -257,10 +259,14 @@ def test_evaluation_uses_classes_coverage_and_immutable_runs(app):
         experiments.create_experiment(store,b)
 
 
-def test_evaluation_missing_curves_reports_unavailable_not_zero(app):
+def test_native_normal_class_requires_curve_and_historical_frame_reports_missing(app):
     store=app.extensions['store'];b=bundle();b['groups']['on']['b'].pop('frame_scores')
     b['groups']['on']['b'].pop('timestamps')
     eid=experiments.create_experiment(store,b)['id'];rid=experiments.create_evaluation(store,eid)
+    experiments.evaluate(store,rid)
+    failed=app.test_client().get('/api/evaluations/'+rid).json
+    assert failed['status']=='failed' and 'Normal confidence' in failed['error']
+    rid=experiments.create_evaluation(store,eid,'report_historical_v1')
     experiments.evaluate(store,rid)
     frame=app.test_client().get('/api/evaluations/'+rid).json['metrics']['groups']['on']['frame']
     assert frame['auc'] is None and frame['missing_videos']==['b']

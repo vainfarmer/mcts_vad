@@ -1,0 +1,280 @@
+{
+  "events": [
+    {
+      "t_start": 23.0,
+      "t_end": 23.5,
+      "anomaly_type": "Shooting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "Man in f11 (23.5 s) holds two pistols pointed forward, with visible muzzle flash and debris indicating discharge; f10 (23.0 s) shows him raising arms into firing posture.",
+      "source_candidate_ids": [
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          23.0,
+          23.5
+        ],
+        "evidence_frame_ids": [
+          "f10",
+          "f11"
+        ],
+        "reason": "Visible muzzle flash and particle ejection in f11 confirm active shooting; f10 shows preparatory motion. This satisfies the 'Shooting' definition requiring visible shooting, not just weapon possession.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 6,
+      "output_count": 1,
+      "groups": 3,
+      "rejected": 5,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 2.5,
+              "f1": 3.0,
+              "f2": 3.5,
+              "f3": 4.0,
+              "f4": 4.5,
+              "f5": 5.0,
+              "f6": 5.5,
+              "f7": 6.0,
+              "f8": 6.5,
+              "f9": 7.0,
+              "f10": 7.5,
+              "f11": 8.0,
+              "f12": 8.5,
+              "f13": 9.0,
+              "f14": 9.5,
+              "f15": 10.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 4.5,
+                "t_end": 8.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 4.8,
+                "t_end": 8.5,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No opponent or mutual physical contact is visible; the man’s posture and facial expression suggest pain, collapse, or reaction to an off-screen event—not fighting.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    },\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"No aggressor or interaction with a victim is shown; the man appears alone, in distress, possibly injured or exhausted—no evidence of abuse.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "No opponent or mutual physical contact is visible; the man’s posture and facial expression suggest pain, collapse, or reaction to an off-screen event—not fighting.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11"
+              ]
+            },
+            {
+              "candidate_id": 1,
+              "reason": "No aggressor or interaction with a victim is shown; the man appears alone, in distress, possibly injured or exhausted—no evidence of abuse.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          2,
+          3,
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 18.0,
+              "f1": 18.5,
+              "f2": 19.0,
+              "f3": 19.5,
+              "f4": 20.0,
+              "f5": 20.5,
+              "f6": 21.0,
+              "f7": 21.5,
+              "f8": 22.0,
+              "f9": 22.5,
+              "f10": 23.0,
+              "f11": 23.5,
+              "f12": 24.0,
+              "f13": 24.5,
+              "f14": 25.0,
+              "f15": 25.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 20.0,
+                "t_end": 22.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 23.0,
+                "t_end": 23.541667,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 23.0,
+                "t_end": 24.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"Shooting\",\n      \"t_start\": 23.0,\n      \"t_end\": 23.5,\n      \"confidence\": 0.95,\n      \"description\": \"Man in f11 (23.5 s) holds two pistols pointed forward, with visible muzzle flash and debris indicating discharge; f10 (23.0 s) shows him raising arms into firing posture.\",\n      \"reason\": \"Visible muzzle flash and particle ejection in f11 confirm active shooting; f10 shows preparatory motion. This satisfies the 'Shooting' definition requiring visible shooting, not just weapon possession.\",\n      \"evidence_frame_ids\": [\"f10\", \"f11\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"From f0–f8, the man lies prone in snow with no contact or aggression from others; figures appear only later (f5 onward) at distance and do not interact with him—no evidence of abuse.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"f10–f11 show a single man rising and aiming weapons; no second person is engaged in mutual combat—no fighting occurs.\",\n      \"evidence_frame_ids\": [\"f10\", \"f11\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                4
+              ],
+              "category": "Shooting",
+              "t_start": 23.0,
+              "t_end": 23.5,
+              "confidence": 0.95,
+              "description": "Man in f11 (23.5 s) holds two pistols pointed forward, with visible muzzle flash and debris indicating discharge; f10 (23.0 s) shows him raising arms into firing posture.",
+              "reason": "Visible muzzle flash and particle ejection in f11 confirm active shooting; f10 shows preparatory motion. This satisfies the 'Shooting' definition requiring visible shooting, not just weapon possession.",
+              "evidence_frame_ids": [
+                "f10",
+                "f11"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "From f0–f8, the man lies prone in snow with no contact or aggression from others; figures appear only later (f5 onward) at distance and do not interact with him—no evidence of abuse.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            },
+            {
+              "candidate_id": 3,
+              "reason": "f10–f11 show a single man rising and aiming weapons; no second person is engaged in mutual combat—no fighting occurs.",
+              "evidence_frame_ids": [
+                "f10",
+                "f11"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 25.5,
+              "f1": 26.0,
+              "f2": 26.5,
+              "f3": 27.0,
+              "f4": 27.5,
+              "f5": 28.0,
+              "f6": 28.5,
+              "f7": 29.0,
+              "f8": 29.5,
+              "f9": 30.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 5,
+                "t_start": 27.3,
+                "t_end": 28.8,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"Frames f3–f6 show a close-up of a man’s face with eyes closed and mouth open, consistent with shouting, gasping, or distress—but no visible aggressor, contact, or helpless victim; thus no evidence of abuse.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 5,
+              "reason": "Frames f3–f6 show a close-up of a man’s face with eyes closed and mouth open, consistent with shouting, gasping, or distress—but no visible aggressor, contact, or helpless victim; thus no evidence of abuse.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

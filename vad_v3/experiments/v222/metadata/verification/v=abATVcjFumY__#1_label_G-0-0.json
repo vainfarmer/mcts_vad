@@ -1,0 +1,483 @@
+{
+  "events": [
+    {
+      "t_start": 6.5,
+      "t_end": 7.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A sudden, asymmetric plume of debris and smoke erupts upward and outward from the structure between f4 and f5, expanding through f6–f7, consistent with a blast event.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          6.5,
+          7.0,
+          7.5,
+          8.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7"
+        ],
+        "reason": "Frames f4–f7 show rapid onset and expansion of a dense, irregular cloud originating at the structure’s location, with no visible projectile or fire preceding it; this matches the definition of an explosion (a blast), distinct from fire or sustained combustion.",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    },
+    {
+      "t_start": 12.0,
+      "t_end": 17.0,
+      "anomaly_type": "Explosion",
+      "confidence": 0.8,
+      "coarse_score": 0.8,
+      "description": "A rapidly expanding plume of dark smoke/dust rises from the ground near the treeline, growing in volume and obscuring the background between f4 and f14.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.8,
+        "evidence_times": [
+          12.0,
+          12.5,
+          13.0,
+          13.5,
+          14.0,
+          14.5,
+          15.0,
+          15.5,
+          16.0,
+          16.5,
+          17.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14"
+        ],
+        "reason": "The sudden onset and progressive expansion of a dense, turbulent cloud originating from a point on the ground (visible from f4 onward) is consistent with a blast event; no other mechanism explains the rapid volumetric growth and opacity. The event begins around f4 (12.0 s) and continues through f14 (17.0 s), matching the candidate interval.",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    },
+    {
+      "t_start": 64.0,
+      "t_end": 76.0,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A sudden bright flash and rapidly expanding dark plume (smoke/debris) erupts from a ground target, followed by sustained smoke dispersion and residual thermal signature.",
+      "source_candidate_ids": [
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 3,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          64.0,
+          65.0,
+          65.5,
+          66.0,
+          66.5,
+          67.0,
+          68.0,
+          68.5,
+          69.0,
+          69.5,
+          70.0,
+          70.5,
+          71.0,
+          71.5,
+          72.0,
+          72.5,
+          73.5,
+          74.0,
+          74.5,
+          76.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18",
+          "f19",
+          "f20",
+          "f21",
+          "f22",
+          "f23"
+        ],
+        "reason": "Frames f4–f5 show an abrupt onset of a large, asymmetric cloud with high contrast against the background, consistent with a blast-induced fireball and ejecta; subsequent frames (f6–f23) show the plume rising, spreading, and cooling—typical of post-detonation dynamics. No vehicle impact or collision precedes it, ruling out CarAccident; no sustained fire without initial blast rules out mere fire; no visible projectiles or gun muzzle flash rules out Shooting.",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 5,
+      "output_count": 3,
+      "groups": 4,
+      "rejected": 2,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 4.5,
+              "f1": 5.0,
+              "f2": 5.5,
+              "f3": 6.0,
+              "f4": 6.5,
+              "f5": 7.0,
+              "f6": 7.5,
+              "f7": 8.0,
+              "f8": 8.5,
+              "f9": 9.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 6.5,
+                "t_end": 7.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Explosion\",\n      \"t_start\": 6.5,\n      \"t_end\": 7.5,\n      \"confidence\": 0.95,\n      \"description\": \"A sudden, asymmetric plume of debris and smoke erupts upward and outward from the structure between f4 and f5, expanding through f6–f7, consistent with a blast event.\",\n      \"reason\": \"Frames f4–f7 show rapid onset and expansion of a dense, irregular cloud originating at the structure’s location, with no visible projectile or fire preceding it; this matches the definition of an explosion (a blast), distinct from fire or sustained combustion.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Explosion",
+              "t_start": 6.5,
+              "t_end": 7.5,
+              "confidence": 0.95,
+              "description": "A sudden, asymmetric plume of debris and smoke erupts upward and outward from the structure between f4 and f5, expanding through f6–f7, consistent with a blast event.",
+              "reason": "Frames f4–f7 show rapid onset and expansion of a dense, irregular cloud originating at the structure’s location, with no visible projectile or fire preceding it; this matches the definition of an explosion (a blast), distinct from fire or sustained combustion.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 10.0,
+              "f1": 10.5,
+              "f2": 11.0,
+              "f3": 11.5,
+              "f4": 12.0,
+              "f5": 12.5,
+              "f6": 13.0,
+              "f7": 13.5,
+              "f8": 14.0,
+              "f9": 14.5,
+              "f10": 15.0,
+              "f11": 15.5,
+              "f12": 16.0,
+              "f13": 16.5,
+              "f14": 17.0,
+              "f15": 17.5,
+              "f16": 18.0,
+              "f17": 18.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 12.0,
+                "t_end": 17.0,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Explosion\",\n      \"t_start\": 12.0,\n      \"t_end\": 17.0,\n      \"confidence\": 0.8,\n      \"description\": \"A rapidly expanding plume of dark smoke/dust rises from the ground near the treeline, growing in volume and obscuring the background between f4 and f14.\",\n      \"reason\": \"The sudden onset and progressive expansion of a dense, turbulent cloud originating from a point on the ground (visible from f4 onward) is consistent with a blast event; no other mechanism explains the rapid volumetric growth and opacity. The event begins around f4 (12.0 s) and continues through f14 (17.0 s), matching the candidate interval.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "Explosion",
+              "t_start": 12.0,
+              "t_end": 17.0,
+              "confidence": 0.8,
+              "description": "A rapidly expanding plume of dark smoke/dust rises from the ground near the treeline, growing in volume and obscuring the background between f4 and f14.",
+              "reason": "The sudden onset and progressive expansion of a dense, turbulent cloud originating from a point on the ground (visible from f4 onward) is consistent with a blast event; no other mechanism explains the rapid volumetric growth and opacity. The event begins around f4 (12.0 s) and continues through f14 (17.0 s), matching the candidate interval.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          2,
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 47.5,
+              "f1": 48.0,
+              "f2": 48.5,
+              "f3": 49.0,
+              "f4": 49.5,
+              "f5": 50.0,
+              "f6": 50.5,
+              "f7": 51.0,
+              "f8": 51.5,
+              "f9": 52.0,
+              "f10": 52.5,
+              "f11": 53.0,
+              "f12": 53.5,
+              "f13": 54.0,
+              "f14": 54.5,
+              "f15": 55.0,
+              "f16": 55.5,
+              "f17": 56.0,
+              "f18": 56.5,
+              "f19": 57.0,
+              "f20": 57.5,
+              "f21": 58.0,
+              "f22": 58.5,
+              "f23": 59.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 49.5,
+                "t_end": 55.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 53.0,
+                "t_end": 58.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"The subject appears prone and moving slowly across terrain with a plume of dust/smoke behind; no visible aggression, restraint, or interaction with another person—consistent with a person crawling or dragging under duress (e.g., injury, evasion), not Abuse.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"Same subject continues motion with dust plume; no second individual present, no forceful contact, and no indication of intentional harm—fails Abuse definition requiring aggression against a helpless victim.\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "The subject appears prone and moving slowly across terrain with a plume of dust/smoke behind; no visible aggression, restraint, or interaction with another person—consistent with a person crawling or dragging under duress (e.g., injury, evasion), not Abuse.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15"
+              ]
+            },
+            {
+              "candidate_id": 3,
+              "reason": "Same subject continues motion with dust plume; no second individual present, no forceful contact, and no indication of intentional harm—fails Abuse definition requiring aggression against a helpless victim.",
+              "evidence_frame_ids": [
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 62.0,
+              "f1": 62.5,
+              "f2": 63.0,
+              "f3": 63.5,
+              "f4": 64.0,
+              "f5": 65.0,
+              "f6": 65.5,
+              "f7": 66.0,
+              "f8": 66.5,
+              "f9": 67.0,
+              "f10": 68.0,
+              "f11": 68.5,
+              "f12": 69.0,
+              "f13": 69.5,
+              "f14": 70.0,
+              "f15": 70.5,
+              "f16": 71.0,
+              "f17": 71.5,
+              "f18": 72.0,
+              "f19": 72.5,
+              "f20": 73.5,
+              "f21": 74.0,
+              "f22": 74.5,
+              "f23": 76.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 64.0,
+                "t_end": 76.45833333333333,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"Explosion\",\n      \"t_start\": 64.0,\n      \"t_end\": 76.0,\n      \"confidence\": 0.95,\n      \"description\": \"A sudden bright flash and rapidly expanding dark plume (smoke/debris) erupts from a ground target, followed by sustained smoke dispersion and residual thermal signature.\",\n      \"reason\": \"Frames f4–f5 show an abrupt onset of a large, asymmetric cloud with high contrast against the background, consistent with a blast-induced fireball and ejecta; subsequent frames (f6–f23) show the plume rising, spreading, and cooling—typical of post-detonation dynamics. No vehicle impact or collision precedes it, ruling out CarAccident; no sustained fire without initial blast rules out mere fire; no visible projectiles or gun muzzle flash rules out Shooting.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\", \"f23\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                4
+              ],
+              "category": "Explosion",
+              "t_start": 64.0,
+              "t_end": 76.0,
+              "confidence": 0.95,
+              "description": "A sudden bright flash and rapidly expanding dark plume (smoke/debris) erupts from a ground target, followed by sustained smoke dispersion and residual thermal signature.",
+              "reason": "Frames f4–f5 show an abrupt onset of a large, asymmetric cloud with high contrast against the background, consistent with a blast-induced fireball and ejecta; subsequent frames (f6–f23) show the plume rising, spreading, and cooling—typical of post-detonation dynamics. No vehicle impact or collision precedes it, ruling out CarAccident; no sustained fire without initial blast rules out mere fire; no visible projectiles or gun muzzle flash rules out Shooting.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22",
+                "f23"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

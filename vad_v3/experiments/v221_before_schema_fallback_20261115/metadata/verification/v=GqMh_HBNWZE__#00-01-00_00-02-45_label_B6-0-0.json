@@ -1,0 +1,495 @@
+{
+  "events": [
+    {
+      "t_start": 2.5,
+      "t_end": 3.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A dark vehicle is seen sliding sideways across the right lane with visible tire smoke at f4 (2.5s), continues skidding through f5 (3.0s), and comes to rest near the shoulder by f6 (3.5s).",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          2.5,
+          3.0,
+          3.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "The sequence shows a loss of control, sustained skid with smoke, and final stop off the travel lane—consistent with a crash or severe loss-of-control incident; no other vehicles are involved in contact in the frames, but the motion and smoke indicate a collision or impact event (e.g., hitting guardrail or curb) just before f4.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 58.5,
+      "t_end": 61.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A person in dark clothing and a red helmet is struck by the vehicle (or falls onto the hood) at ~58.5s, then slides off the hood by ~59.5s while the vehicle continues forward; rain and windshield wipers obscure full detail but impact and displacement are visible.",
+      "source_candidate_ids": [
+        5,
+        6
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 5,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          58.5,
+          59.0,
+          59.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "Frames f4–f6 show a sudden appearance of a person on the hood (f4: object entering frame near hood; f5: person clearly on hood, head/shoulders visible; f6: person sliding off left side); no other vehicle contact is visible, but the abrupt onset and motion are consistent with a pedestrian-vehicle collision. The event spans from first contact (~f4, 58.5s) through clearance (~f6, 59.5s), and candidate 6’s end at 61.5s includes aftermath (windshield still wet, no further motion), so merged interval is 58.5–61.5s with evidence in f4–f6.",
+        "source_categories": [
+          "CarAccident",
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 66.0,
+      "t_end": 67.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A motorcyclist in purple and black loses control on a muddy dirt path, slides sideways, and falls onto the grassy verge while the camera motorcycle continues forward.",
+      "source_candidate_ids": [
+        7
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 6,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          66.0,
+          66.5,
+          67.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "Frames f4–f6 show the rider leaning sharply, then lying on the ground beside the bike (f5), with visible skid/mud spray; this is a single-vehicle crash (motorcycle accident), fitting 'CarAccident' as per taxonomy’s inclusion of motorcycle crashes under that label (common in such datasets when no distinction is made). The event ends by f6, with f7 showing only the path ahead.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 8,
+      "output_count": 3,
+      "groups": 7,
+      "rejected": 4,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.5,
+              "f1": 1.0,
+              "f2": 1.5,
+              "f3": 2.0,
+              "f4": 2.5,
+              "f5": 3.0,
+              "f6": 3.5,
+              "f7": 4.0,
+              "f8": 4.5,
+              "f9": 5.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 2.5,
+                "t_end": 3.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"CarAccident\",\n      \"t_start\": 2.5,\n      \"t_end\": 3.5,\n      \"confidence\": 0.95,\n      \"description\": \"A dark vehicle is seen sliding sideways across the right lane with visible tire smoke at f4 (2.5s), continues skidding through f5 (3.0s), and comes to rest near the shoulder by f6 (3.5s).\",\n      \"reason\": \"The sequence shows a loss of control, sustained skid with smoke, and final stop off the travel lane—consistent with a crash or severe loss-of-control incident; no other vehicles are involved in contact in the frames, but the motion and smoke indicate a collision or impact event (e.g., hitting guardrail or curb) just before f4.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "CarAccident",
+              "t_start": 2.5,
+              "t_end": 3.5,
+              "confidence": 0.95,
+              "description": "A dark vehicle is seen sliding sideways across the right lane with visible tire smoke at f4 (2.5s), continues skidding through f5 (3.0s), and comes to rest near the shoulder by f6 (3.5s).",
+              "reason": "The sequence shows a loss of control, sustained skid with smoke, and final stop off the travel lane—consistent with a crash or severe loss-of-control incident; no other vehicles are involved in contact in the frames, but the motion and smoke indicate a collision or impact event (e.g., hitting guardrail or curb) just before f4.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 6.0,
+              "f1": 6.5,
+              "f2": 7.0,
+              "f3": 7.5,
+              "f4": 8.0,
+              "f5": 8.5,
+              "f6": 9.0,
+              "f7": 9.5,
+              "f8": 10.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 8.0,
+                "t_end": 8.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"No crash or collision is visible in frames f3–f8; the black sedan ahead remains intact and continues driving normally, with no deformation, skid marks, or sudden deceleration indicating an accident.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "No crash or collision is visible in frames f3–f8; the black sedan ahead remains intact and continues driving normally, with no deformation, skid marks, or sudden deceleration indicating an accident.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 9.0,
+              "f1": 9.5,
+              "f2": 10.0,
+              "f3": 10.5,
+              "f4": 11.0,
+              "f5": 11.5,
+              "f6": 12.0,
+              "f7": 12.5,
+              "f8": 13.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 10.7,
+                "t_end": 11.5,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"The object on the road (visible from f3 onward) is a small animal (likely a fox or similar) lying motionless after being struck; there is no evidence of intentional harm, interaction, or aggression toward a helpless victim—only the aftermath of a likely vehicle strike, which does not meet the definition of Abuse.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "The object on the road (visible from f3 onward) is a small animal (likely a fox or similar) lying motionless after being struck; there is no evidence of intentional harm, interaction, or aggression toward a helpless victim—only the aftermath of a likely vehicle strike, which does not meet the definition of Abuse.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 50.0,
+              "f1": 50.5,
+              "f2": 51.0,
+              "f3": 51.5,
+              "f4": 52.0,
+              "f5": 52.5,
+              "f6": 53.0,
+              "f7": 53.5,
+              "f8": 54.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 52.0,
+                "t_end": 52.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"No crash or collision is visible in f4 (52.0 s) or f5 (52.5 s); the red car is simply passing on the right, and the abrupt change to rain/windshield obstruction at f5 is due to weather, not impact.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 3,
+              "reason": "No crash or collision is visible in f4 (52.0 s) or f5 (52.5 s); the red car is simply passing on the right, and the abrupt change to rain/windshield obstruction at f5 is due to weather, not impact.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 4,
+        "source_ids": [
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 52.5,
+              "f1": 53.0,
+              "f2": 53.5,
+              "f3": 54.0,
+              "f4": 54.5,
+              "f5": 55.0,
+              "f6": 55.5,
+              "f7": 56.0,
+              "f8": 56.5,
+              "f9": 57.0,
+              "f10": 57.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 54.5,
+                "t_end": 56.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"No vehicle collision, deformation, or sudden impact is visible; the scene shows normal driving in heavy rain with windshield wipers active and a car passing on the left at f0, but no crash occurs between f4–f6.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 4,
+              "reason": "No vehicle collision, deformation, or sudden impact is visible; the scene shows normal driving in heavy rain with windshield wipers active and a car passing on the left at f0, but no crash occurs between f4–f6.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 5,
+        "source_ids": [
+          5,
+          6
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 56.5,
+              "f1": 57.0,
+              "f2": 57.5,
+              "f3": 58.0,
+              "f4": 58.5,
+              "f5": 59.0,
+              "f6": 59.5,
+              "f7": 60.0,
+              "f8": 60.5,
+              "f9": 61.0,
+              "f10": 61.5,
+              "f11": 62.0,
+              "f12": 62.5,
+              "f13": 63.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 5,
+                "t_start": 58.5,
+                "t_end": 59.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 59.0,
+                "t_end": 61.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [5, 6],\n      \"category\": \"CarAccident\",\n      \"t_start\": 58.5,\n      \"t_end\": 61.5,\n      \"confidence\": 0.9,\n      \"description\": \"A person in dark clothing and a red helmet is struck by the vehicle (or falls onto the hood) at ~58.5s, then slides off the hood by ~59.5s while the vehicle continues forward; rain and windshield wipers obscure full detail but impact and displacement are visible.\",\n      \"reason\": \"Frames f4–f6 show a sudden appearance of a person on the hood (f4: object entering frame near hood; f5: person clearly on hood, head/shoulders visible; f6: person sliding off left side); no other vehicle contact is visible, but the abrupt onset and motion are consistent with a pedestrian-vehicle collision. The event spans from first contact (~f4, 58.5s) through clearance (~f6, 59.5s), and candidate 6’s end at 61.5s includes aftermath (windshield still wet, no further motion), so merged interval is 58.5–61.5s with evidence in f4–f6.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                5,
+                6
+              ],
+              "category": "CarAccident",
+              "t_start": 58.5,
+              "t_end": 61.5,
+              "confidence": 0.9,
+              "description": "A person in dark clothing and a red helmet is struck by the vehicle (or falls onto the hood) at ~58.5s, then slides off the hood by ~59.5s while the vehicle continues forward; rain and windshield wipers obscure full detail but impact and displacement are visible.",
+              "reason": "Frames f4–f6 show a sudden appearance of a person on the hood (f4: object entering frame near hood; f5: person clearly on hood, head/shoulders visible; f6: person sliding off left side); no other vehicle contact is visible, but the abrupt onset and motion are consistent with a pedestrian-vehicle collision. The event spans from first contact (~f4, 58.5s) through clearance (~f6, 59.5s), and candidate 6’s end at 61.5s includes aftermath (windshield still wet, no further motion), so merged interval is 58.5–61.5s with evidence in f4–f6.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 6,
+        "source_ids": [
+          7
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 64.0,
+              "f1": 64.5,
+              "f2": 65.0,
+              "f3": 65.5,
+              "f4": 66.0,
+              "f5": 66.5,
+              "f6": 67.0,
+              "f7": 67.5,
+              "f8": 68.0,
+              "f9": 68.5,
+              "f10": 69.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 7,
+                "t_start": 66.0,
+                "t_end": 67.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [7],\n      \"category\": \"CarAccident\",\n      \"t_start\": 66.0,\n      \"t_end\": 67.5,\n      \"confidence\": 0.95,\n      \"description\": \"A motorcyclist in purple and black loses control on a muddy dirt path, slides sideways, and falls onto the grassy verge while the camera motorcycle continues forward.\",\n      \"reason\": \"Frames f4–f6 show the rider leaning sharply, then lying on the ground beside the bike (f5), with visible skid/mud spray; this is a single-vehicle crash (motorcycle accident), fitting 'CarAccident' as per taxonomy’s inclusion of motorcycle crashes under that label (common in such datasets when no distinction is made). The event ends by f6, with f7 showing only the path ahead.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                7
+              ],
+              "category": "CarAccident",
+              "t_start": 66.0,
+              "t_end": 67.5,
+              "confidence": 0.95,
+              "description": "A motorcyclist in purple and black loses control on a muddy dirt path, slides sideways, and falls onto the grassy verge while the camera motorcycle continues forward.",
+              "reason": "Frames f4–f6 show the rider leaning sharply, then lying on the ground beside the bike (f5), with visible skid/mud spray; this is a single-vehicle crash (motorcycle accident), fitting 'CarAccident' as per taxonomy’s inclusion of motorcycle crashes under that label (common in such datasets when no distinction is made). The event ends by f6, with f7 showing only the path ahead.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "5a82d0dd6e711938ee6c8e0ecf1c6f7fdb68cac4e5e95683ad672320f7156da9"
+}

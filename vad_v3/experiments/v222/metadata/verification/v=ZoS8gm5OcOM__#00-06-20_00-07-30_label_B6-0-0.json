@@ -1,0 +1,211 @@
+{
+  "events": [
+    {
+      "t_start": 60.0,
+      "t_end": 61.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "The motorcycle veers left under an overpass, contacts the concrete barrier (f4), loses control and flips (f5–f6), with the camera view becoming chaotic and obscured (f7–f8), indicating a crash.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          60.0,
+          60.5,
+          61.0,
+          61.5,
+          62.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8"
+        ],
+        "reason": "Frames f4–f6 show clear impact and loss of vehicle control; f7–f8 are post-impact disorientation. Candidate 0 (60.0–61.5) aligns precisely with this sequence. Candidates 1 and 2 extend beyond the visible crash dynamics into aftermath, which does not constitute a separate crash event.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 3,
+      "output_count": 1,
+      "groups": 1,
+      "rejected": 2,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 58.0,
+              "f1": 58.5,
+              "f2": 59.0,
+              "f3": 59.5,
+              "f4": 60.0,
+              "f5": 60.5,
+              "f6": 61.0,
+              "f7": 61.5,
+              "f8": 62.0,
+              "f9": 62.5,
+              "f10": 63.0,
+              "f11": 63.5,
+              "f12": 64.0,
+              "f13": 64.5,
+              "f14": 65.0,
+              "f15": 65.5,
+              "f16": 66.0,
+              "f17": 66.5,
+              "f18": 67.0,
+              "f19": 67.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 60.0,
+                "t_end": 61.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 60.5,
+                "t_end": 66.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 63.5,
+                "t_end": 66.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1, 2],\n      \"category\": \"CarAccident\",\n      \"t_start\": 60.0,\n      \"t_end\": 61.5,\n      \"confidence\": 0.95,\n      \"description\": \"The motorcycle veers sharply left under an overpass, impacts the concrete barrier (f4–f5), then flips violently (f6), with the camera view becoming chaotic and obscured (f7–f8), consistent with a crash.\",\n      \"reason\": \"Frames f4–f6 show clear loss of control, contact with barrier, and vehicle inversion; f7–f8 are post-impact disorientation. All candidate intervals overlap this core crash sequence; later frames (f11–f15) show aftermath (rider on ground, approaching truck) but no second distinct crash event.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Candidate 1 extends to 66.0, but after f8 (62.0), the scene shows recovery/aftermath (rider visible on road, truck approaching), not ongoing crash dynamics; the crash itself ends by ~61.5.\"\n    },\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Candidate 2 (63.5–66.0) captures only post-crash footage (rider on ground, truck passing); no impact or vehicle deformation occurs in these frames—only consequences of the earlier crash.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 58.0,
+              "f1": 58.5,
+              "f2": 59.0,
+              "f3": 59.5,
+              "f4": 60.0,
+              "f5": 60.5,
+              "f6": 61.0,
+              "f7": 61.5,
+              "f8": 62.0,
+              "f9": 62.5,
+              "f10": 63.0,
+              "f11": 63.5,
+              "f12": 64.0,
+              "f13": 64.5,
+              "f14": 65.0,
+              "f15": 65.5,
+              "f16": 66.0,
+              "f17": 66.5,
+              "f18": 67.0,
+              "f19": 67.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 60.0,
+                "t_end": 61.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 60.5,
+                "t_end": 66.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 63.5,
+                "t_end": 66.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"CarAccident\",\n      \"t_start\": 60.0,\n      \"t_end\": 61.5,\n      \"confidence\": 0.95,\n      \"description\": \"The motorcycle veers left under an overpass, contacts the concrete barrier (f4), loses control and flips (f5–f6), with the camera view becoming chaotic and obscured (f7–f8), indicating a crash.\",\n      \"reason\": \"Frames f4–f6 show clear impact and loss of vehicle control; f7–f8 are post-impact disorientation. Candidate 0 (60.0–61.5) aligns precisely with this sequence. Candidates 1 and 2 extend beyond the visible crash dynamics into aftermath, which does not constitute a separate crash event.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Candidate 1 (60.5–66.0) includes frames f9–f16 showing the rider on the road and a truck approaching, but no further vehicle impact or deformation occurs; these are post-crash consequences, not part of the crash event itself.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    },\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Candidate 2 (63.5–66.0) only shows the rider on the ground and a passing truck (f11–f16); no collision, vehicle damage, or crash dynamics are visible—only aftermath, which does not satisfy the 'CarAccident' definition requiring a crash.\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "CarAccident",
+              "t_start": 60.0,
+              "t_end": 61.5,
+              "confidence": 0.95,
+              "description": "The motorcycle veers left under an overpass, contacts the concrete barrier (f4), loses control and flips (f5–f6), with the camera view becoming chaotic and obscured (f7–f8), indicating a crash.",
+              "reason": "Frames f4–f6 show clear impact and loss of vehicle control; f7–f8 are post-impact disorientation. Candidate 0 (60.0–61.5) aligns precisely with this sequence. Candidates 1 and 2 extend beyond the visible crash dynamics into aftermath, which does not constitute a separate crash event.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "Candidate 1 (60.5–66.0) includes frames f9–f16 showing the rider on the road and a truck approaching, but no further vehicle impact or deformation occurs; these are post-crash consequences, not part of the crash event itself.",
+              "evidence_frame_ids": [
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16"
+              ]
+            },
+            {
+              "candidate_id": 2,
+              "reason": "Candidate 2 (63.5–66.0) only shows the rider on the ground and a passing truck (f11–f16); no collision, vehicle damage, or crash dynamics are visible—only aftermath, which does not satisfy the 'CarAccident' definition requiring a crash.",
+              "evidence_frame_ids": [
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

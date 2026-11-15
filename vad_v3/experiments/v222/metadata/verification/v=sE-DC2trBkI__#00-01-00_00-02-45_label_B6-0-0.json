@@ -1,0 +1,315 @@
+{
+  "events": [
+    {
+      "t_start": 41.5,
+      "t_end": 48.0,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A frontal collision occurs at ~41.5 s (f4), followed by a deployed driver-side airbag visible from f5 onward, indicating a crash with sufficient force to trigger the airbag.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          41.0,
+          41.5,
+          42.0,
+          42.5,
+          43.0,
+          43.5,
+          44.0,
+          44.5,
+          45.0,
+          45.5,
+          46.0,
+          46.5,
+          47.0,
+          47.5,
+          48.0
+        ],
+        "evidence_frame_ids": [
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17"
+        ],
+        "reason": "f3 shows an oncoming vehicle very close and angled toward the dashcam car; f4 is blurred/obscured consistent with impact; f5–f17 show a fully deployed driver airbag, confirming a crash event. This matches the candidate’s interval and category.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 4,
+      "output_count": 1,
+      "groups": 4,
+      "rejected": 3,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 3.0,
+              "f1": 3.5,
+              "f2": 4.0,
+              "f3": 4.5,
+              "f4": 5.0,
+              "f5": 5.5,
+              "f6": 6.0,
+              "f7": 6.5,
+              "f8": 7.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 5.0,
+                "t_end": 5.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No crash or collision is visible in frames f4–f5; vehicles are moving normally through an intersection with no impact, deformation, or sudden deceleration evident.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "No crash or collision is visible in frames f4–f5; vehicles are moving normally through an intersection with no impact, deformation, or sudden deceleration evident.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 39.5,
+              "f1": 40.0,
+              "f2": 40.5,
+              "f3": 41.0,
+              "f4": 41.5,
+              "f5": 42.0,
+              "f6": 42.5,
+              "f7": 43.0,
+              "f8": 43.5,
+              "f9": 44.0,
+              "f10": 44.5,
+              "f11": 45.0,
+              "f12": 45.5,
+              "f13": 46.0,
+              "f14": 46.5,
+              "f15": 47.0,
+              "f16": 47.5,
+              "f17": 48.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 41.5,
+                "t_end": 46.4,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"CarAccident\",\n      \"t_start\": 41.5,\n      \"t_end\": 48.0,\n      \"confidence\": 0.95,\n      \"description\": \"A frontal collision occurs at ~41.5 s (f4), followed by a deployed driver-side airbag visible from f5 onward, indicating a crash with sufficient force to trigger the airbag.\",\n      \"reason\": \"f3 shows an oncoming vehicle very close and angled toward the dashcam car; f4 is blurred/obscured consistent with impact; f5–f17 show a fully deployed driver airbag, confirming a crash event. This matches the candidate’s interval and category.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "CarAccident",
+              "t_start": 41.5,
+              "t_end": 48.0,
+              "confidence": 0.95,
+              "description": "A frontal collision occurs at ~41.5 s (f4), followed by a deployed driver-side airbag visible from f5 onward, indicating a crash with sufficient force to trigger the airbag.",
+              "reason": "f3 shows an oncoming vehicle very close and angled toward the dashcam car; f4 is blurred/obscured consistent with impact; f5–f17 show a fully deployed driver airbag, confirming a crash event. This matches the candidate’s interval and category.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 82.0,
+              "f1": 82.5,
+              "f2": 83.0,
+              "f3": 83.5,
+              "f4": 84.0,
+              "f5": 84.5,
+              "f6": 85.0,
+              "f7": 85.5,
+              "f8": 86.0,
+              "f9": 86.5,
+              "f10": 87.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 84.0,
+                "t_end": 85.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"No collision or vehicle damage is visible; the dark SUV on the right appears to be turning or maneuvering normally, and the red car ahead remains stationary with brake lights on throughout—consistent with traffic stop, not an accident.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "No collision or vehicle damage is visible; the dark SUV on the right appears to be turning or maneuvering normally, and the red car ahead remains stationary with brake lights on throughout—consistent with traffic stop, not an accident.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 86.0,
+              "f1": 86.5,
+              "f2": 87.0,
+              "f3": 87.5,
+              "f4": 88.0,
+              "f5": 88.5,
+              "f6": 89.0,
+              "f7": 89.5,
+              "f8": 90.0,
+              "f9": 90.5,
+              "f10": 91.0,
+              "f11": 91.5,
+              "f12": 92.0,
+              "f13": 92.5,
+              "f14": 93.0,
+              "f15": 93.5,
+              "f16": 94.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 88.0,
+                "t_end": 92.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"No collision or impact is visible; the dark SUV turns across traffic smoothly without contact, and all vehicles remain intact and in controlled motion throughout f4–f12.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 3,
+              "reason": "No collision or impact is visible; the dark SUV turns across traffic smoothly without contact, and all vehicles remain intact and in controlled motion throughout f4–f12.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

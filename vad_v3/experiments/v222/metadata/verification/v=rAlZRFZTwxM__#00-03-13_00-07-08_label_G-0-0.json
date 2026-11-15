@@ -1,0 +1,352 @@
+{
+  "events": [
+    {
+      "t_start": 11.0,
+      "t_end": 12.0,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A transparent humanoid figure on a platform violently disintegrates into a cloud of fragments and vapor at f3, with debris still visible at f4 and f5.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          11.0,
+          11.5,
+          12.0
+        ],
+        "evidence_frame_ids": [
+          "f3",
+          "f4",
+          "f5"
+        ],
+        "reason": "f3 shows sudden violent fragmentation and expansion consistent with a high-energy rupture (e.g., explosive shattering of glass or ice); f4 shows dense particulate dispersion; f5 shows residual plume and debris—collectively satisfying the definition of an explosion (blast event).",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    },
+    {
+      "t_start": 24.0,
+      "t_end": 28.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A transparent humanoid ice sculpture violently disintegrates into a large plume of ice fragments and vapor, with an initial orange flash at t=24.0 suggesting rapid phase change or ignition of contained material.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          24.0,
+          24.5,
+          25.0,
+          25.5,
+          26.0,
+          26.5,
+          27.0,
+          27.5,
+          28.0,
+          28.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13"
+        ],
+        "reason": "Frames f4–f13 show a sudden, energetic rupture originating from the sculpture’s base, producing a rapidly expanding cloud of solid/liquid debris and gas—consistent with a high-energy explosion (e.g., pressurized gas release or chemical reaction within the ice structure). The orange flash in f4 supports explosive initiation, not sustained fire alone.",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    },
+    {
+      "t_start": 116.0,
+      "t_end": 123.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "Two mannequin-like figures in white lab coats are violently disrupted by a sudden, upward-directed blast of white particulate matter and debris, with visible fire at the base at f2 and rapid expansion through f16.",
+      "source_candidate_ids": [
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          116.0,
+          116.5,
+          117.0,
+          117.5,
+          118.0,
+          118.5,
+          119.0,
+          119.5,
+          120.0,
+          120.5,
+          121.0,
+          121.5,
+          122.0,
+          122.5,
+          123.0,
+          123.5
+        ],
+        "evidence_frame_ids": [
+          "f1",
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16"
+        ],
+        "reason": "The event begins abruptly at f1 with a cloud of material erupting from the figures’ midsection, accompanied by flame at f2; the debris field expands outward and upward over subsequent frames, consistent with a high-energy blast (explosion), not fire alone or mechanical disintegration. The candidate’s interval (117.5–122.0) is fully contained within the visible explosion sequence (f1–f16).",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 3,
+      "output_count": 3,
+      "groups": 3,
+      "rejected": 0,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 9.5,
+              "f1": 10.0,
+              "f2": 10.5,
+              "f3": 11.0,
+              "f4": 11.5,
+              "f5": 12.0,
+              "f6": 12.5,
+              "f7": 13.0,
+              "f8": 13.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 11.5,
+                "t_end": 12.0,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Explosion\",\n      \"t_start\": 11.0,\n      \"t_end\": 12.0,\n      \"confidence\": 0.95,\n      \"description\": \"A transparent humanoid figure on a platform violently disintegrates into a cloud of fragments and vapor at f3, with debris still visible at f4 and f5.\",\n      \"reason\": \"f3 shows sudden violent fragmentation and expansion consistent with a high-energy rupture (e.g., explosive shattering of glass or ice); f4 shows dense particulate dispersion; f5 shows residual plume and debris—collectively satisfying the definition of an explosion (blast event).\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Explosion",
+              "t_start": 11.0,
+              "t_end": 12.0,
+              "confidence": 0.95,
+              "description": "A transparent humanoid figure on a platform violently disintegrates into a cloud of fragments and vapor at f3, with debris still visible at f4 and f5.",
+              "reason": "f3 shows sudden violent fragmentation and expansion consistent with a high-energy rupture (e.g., explosive shattering of glass or ice); f4 shows dense particulate dispersion; f5 shows residual plume and debris—collectively satisfying the definition of an explosion (blast event).",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 22.0,
+              "f1": 22.5,
+              "f2": 23.0,
+              "f3": 23.5,
+              "f4": 24.0,
+              "f5": 24.5,
+              "f6": 25.0,
+              "f7": 25.5,
+              "f8": 26.0,
+              "f9": 26.5,
+              "f10": 27.0,
+              "f11": 27.5,
+              "f12": 28.0,
+              "f13": 28.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 24.0,
+                "t_end": 27.0,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Explosion\",\n      \"t_start\": 24.0,\n      \"t_end\": 28.5,\n      \"confidence\": 0.95,\n      \"description\": \"A transparent humanoid ice sculpture violently disintegrates into a large plume of ice fragments and vapor, with an initial orange flash at t=24.0 suggesting rapid phase change or ignition of contained material.\",\n      \"reason\": \"Frames f4–f13 show a sudden, energetic rupture originating from the sculpture’s base, producing a rapidly expanding cloud of solid/liquid debris and gas—consistent with a high-energy explosion (e.g., pressurized gas release or chemical reaction within the ice structure). The orange flash in f4 supports explosive initiation, not sustained fire alone.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "Explosion",
+              "t_start": 24.0,
+              "t_end": 28.5,
+              "confidence": 0.95,
+              "description": "A transparent humanoid ice sculpture violently disintegrates into a large plume of ice fragments and vapor, with an initial orange flash at t=24.0 suggesting rapid phase change or ignition of contained material.",
+              "reason": "Frames f4–f13 show a sudden, energetic rupture originating from the sculpture’s base, producing a rapidly expanding cloud of solid/liquid debris and gas—consistent with a high-energy explosion (e.g., pressurized gas release or chemical reaction within the ice structure). The orange flash in f4 supports explosive initiation, not sustained fire alone.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 115.5,
+              "f1": 116.0,
+              "f2": 116.5,
+              "f3": 117.0,
+              "f4": 117.5,
+              "f5": 118.0,
+              "f6": 118.5,
+              "f7": 119.0,
+              "f8": 119.5,
+              "f9": 120.0,
+              "f10": 120.5,
+              "f11": 121.0,
+              "f12": 121.5,
+              "f13": 122.0,
+              "f14": 122.5,
+              "f15": 123.0,
+              "f16": 123.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 117.5,
+                "t_end": 122.0,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"Explosion\",\n      \"t_start\": 116.0,\n      \"t_end\": 123.5,\n      \"confidence\": 0.95,\n      \"description\": \"Two mannequin-like figures in white lab coats are violently disrupted by a sudden, upward-directed blast of white particulate matter and debris, with visible fire at the base at f2 and rapid expansion through f16.\",\n      \"reason\": \"The event begins abruptly at f1 with a cloud of material erupting from the figures’ midsection, accompanied by flame at f2; the debris field expands outward and upward over subsequent frames, consistent with a high-energy blast (explosion), not fire alone or mechanical disintegration. The candidate’s interval (117.5–122.0) is fully contained within the visible explosion sequence (f1–f16).\",\n      \"evidence_frame_ids\": [\"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2
+              ],
+              "category": "Explosion",
+              "t_start": 116.0,
+              "t_end": 123.5,
+              "confidence": 0.95,
+              "description": "Two mannequin-like figures in white lab coats are violently disrupted by a sudden, upward-directed blast of white particulate matter and debris, with visible fire at the base at f2 and rapid expansion through f16.",
+              "reason": "The event begins abruptly at f1 with a cloud of material erupting from the figures’ midsection, accompanied by flame at f2; the debris field expands outward and upward over subsequent frames, consistent with a high-energy blast (explosion), not fire alone or mechanical disintegration. The candidate’s interval (117.5–122.0) is fully contained within the visible explosion sequence (f1–f16).",
+              "evidence_frame_ids": [
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

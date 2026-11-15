@@ -1,0 +1,221 @@
+{
+  "events": [
+    {
+      "t_start": 13.5,
+      "t_end": 19.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "Two men engage in rapid, reciprocal martial arts combat: one in grey shirt and one in white gi with black belt, exchanging punches, kicks, blocks, and throws, culminating in a takedown.",
+      "source_candidate_ids": [
+        0,
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          13.0,
+          13.5,
+          14.0,
+          14.5,
+          16.0,
+          16.5,
+          17.0,
+          17.5,
+          18.0,
+          18.5,
+          19.0
+        ],
+        "evidence_frame_ids": [
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14"
+        ],
+        "reason": "Mutual physical engagement with offensive and defensive actions visible across f3–f14 (e.g., f3 kick, f5 punch, f6 counter, f8–f12 grappling/throwing, f14 takedown); spectators seated in background suggest formal sparring or demonstration, not abuse or riot.",
+        "source_categories": [
+          "Fighting",
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 20.5,
+      "t_end": 23.0,
+      "anomaly_type": "Abuse",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "A person in white gi lies motionless on the floor after being thrown; others kneel beside them, one appears to check or restrain them while they remain supine and unresponsive.",
+      "source_candidate_ids": [
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 1,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          20.5,
+          21.0,
+          21.5,
+          22.0,
+          22.5,
+          23.0,
+          23.5
+        ],
+        "evidence_frame_ids": [
+          "f16",
+          "f17",
+          "f18",
+          "f19",
+          "f20",
+          "f21",
+          "f22"
+        ],
+        "reason": "After the fight ends (f17 shows the throw landing), f18–f20 show multiple individuals kneeling around the downed person without active resistance; f21–f22 show the person still prone with bloodstain visible—suggests victim is helpless and others are controlling or subduing rather than aiding, consistent with abuse rather than medical aid or ritual.",
+        "source_categories": [
+          "Abuse"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 3,
+      "output_count": 2,
+      "groups": 1,
+      "rejected": 0,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 11.5,
+              "f1": 12.0,
+              "f2": 12.5,
+              "f3": 13.0,
+              "f4": 13.5,
+              "f5": 14.0,
+              "f6": 14.5,
+              "f7": 15.0,
+              "f8": 16.0,
+              "f9": 16.5,
+              "f10": 17.0,
+              "f11": 17.5,
+              "f12": 18.0,
+              "f13": 18.5,
+              "f14": 19.0,
+              "f15": 19.5,
+              "f16": 20.5,
+              "f17": 21.0,
+              "f18": 21.5,
+              "f19": 22.0,
+              "f20": 22.5,
+              "f21": 23.0,
+              "f22": 23.5,
+              "f23": 24.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 13.5,
+                "t_end": 19.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 17.0,
+                "t_end": 20.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 20.5,
+                "t_end": 23.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Fighting\",\n      \"t_start\": 13.5,\n      \"t_end\": 19.5,\n      \"confidence\": 0.95,\n      \"description\": \"Two men engage in rapid, reciprocal martial arts combat: one in grey shirt and one in white gi with black belt, exchanging punches, kicks, blocks, and throws, culminating in a takedown.\",\n      \"reason\": \"Mutual physical engagement with offensive and defensive actions visible across f3–f14 (e.g., f3 kick, f5 punch, f6 counter, f8–f12 grappling/throwing, f14 takedown); spectators seated in background suggest formal sparring or demonstration, not abuse or riot.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\"]\n    },\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"Abuse\",\n      \"t_start\": 20.5,\n      \"t_end\": 23.0,\n      \"confidence\": 0.85,\n      \"description\": \"A person in white gi lies motionless on the floor after being thrown; others kneel beside them, one appears to check or restrain them while they remain supine and unresponsive.\",\n      \"reason\": \"After the fight ends (f17 shows the throw landing), f18–f20 show multiple individuals kneeling around the downed person without active resistance; f21–f22 show the person still prone with bloodstain visible—suggests victim is helpless and others are controlling or subduing rather than aiding, consistent with abuse rather than medical aid or ritual.\",\n      \"evidence_frame_ids\": [\"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1
+              ],
+              "category": "Fighting",
+              "t_start": 13.5,
+              "t_end": 19.5,
+              "confidence": 0.95,
+              "description": "Two men engage in rapid, reciprocal martial arts combat: one in grey shirt and one in white gi with black belt, exchanging punches, kicks, blocks, and throws, culminating in a takedown.",
+              "reason": "Mutual physical engagement with offensive and defensive actions visible across f3–f14 (e.g., f3 kick, f5 punch, f6 counter, f8–f12 grappling/throwing, f14 takedown); spectators seated in background suggest formal sparring or demonstration, not abuse or riot.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                2
+              ],
+              "category": "Abuse",
+              "t_start": 20.5,
+              "t_end": 23.0,
+              "confidence": 0.85,
+              "description": "A person in white gi lies motionless on the floor after being thrown; others kneel beside them, one appears to check or restrain them while they remain supine and unresponsive.",
+              "reason": "After the fight ends (f17 shows the throw landing), f18–f20 show multiple individuals kneeling around the downed person without active resistance; f21–f22 show the person still prone with bloodstain visible—suggests victim is helpless and others are controlling or subduing rather than aiding, consistent with abuse rather than medical aid or ritual.",
+              "evidence_frame_ids": [
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "5a82d0dd6e711938ee6c8e0ecf1c6f7fdb68cac4e5e95683ad672320f7156da9"
+}

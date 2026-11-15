@@ -1,0 +1,389 @@
+{
+  "events": [
+    {
+      "t_start": 8.0,
+      "t_end": 20.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A car is struck or loses control, flips onto its roof, rolls off the road, and comes to rest on grass with smoke and debris; visible from f7 (car airborne over person) through f19 (final rest position).",
+      "source_candidate_ids": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          8.5,
+          9.5,
+          11.5,
+          12.5,
+          13.0,
+          13.5,
+          14.5,
+          15.5,
+          16.0,
+          16.5,
+          18.5,
+          19.5,
+          20.5
+        ],
+        "evidence_frame_ids": [
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18",
+          "f19"
+        ],
+        "reason": "f7 shows car airborne above a prone figure; f8–f15 show continuous tumbling/rolling off-road; f16–f19 show final rest with smoke/damage; this constitutes a single crash event. Candidates 2–5 all describe overlapping parts of this same accident sequence and are merged.",
+        "source_categories": [
+          "CarAccident",
+          "CarAccident",
+          "CarAccident",
+          "CarAccident"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 8,
+      "output_count": 1,
+      "groups": 2,
+      "rejected": 4,
+      "uncertain": 0,
+      "merged_sources": 3,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 2.5,
+              "f1": 3.5,
+              "f2": 4.5,
+              "f3": 5.5,
+              "f4": 6.0,
+              "f5": 6.5,
+              "f6": 7.5,
+              "f7": 8.5,
+              "f8": 9.5,
+              "f9": 11.5,
+              "f10": 12.5,
+              "f11": 13.0,
+              "f12": 13.5,
+              "f13": 14.5,
+              "f14": 15.5,
+              "f15": 16.0,
+              "f16": 16.5,
+              "f17": 18.5,
+              "f18": 19.5,
+              "f19": 20.5,
+              "f20": 21.5,
+              "f21": 22.5,
+              "f22": 23.5,
+              "f23": 25.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 4.5,
+                "t_end": 6.2,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 5.0,
+                "t_end": 7.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 8.0,
+                "t_end": 11.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 9.5,
+                "t_end": 17.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 13.5,
+                "t_end": 19.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 15.0,
+                "t_end": 24.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2, 3, 4, 5],\n      \"category\": \"CarAccident\",\n      \"t_start\": 8.0,\n      \"t_end\": 20.5,\n      \"confidence\": 0.95,\n      \"description\": \"A car is struck or loses control, flips onto its roof, rolls off the road, and comes to rest on grass with smoke and debris; visible from f7 (car airborne over person) through f19 (final rest position).\",\n      \"reason\": \"f7 shows car airborne above a prone figure; f8–f15 show continuous tumbling/rolling off-road; f16–f19 show final rest with smoke/damage; this constitutes a single crash event. Candidates 2–5 all describe overlapping parts of this same accident sequence and are merged.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"f2–f3 show motion blur of car wheels and chassis, not a crash; f4–f6 show a person lying down and a close-up face—no impact or vehicle collision visible in this interval.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"f3 shows a person in a contorted pose under dim lighting, possibly stretching or injured, but no aggressor or intentional harm is visible; f4–f6 show a prone person and a driver’s face—no evidence of abuse (i.e., aggression against a helpless victim).\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2,
+                3,
+                4,
+                5
+              ],
+              "category": "CarAccident",
+              "t_start": 8.0,
+              "t_end": 20.5,
+              "confidence": 0.95,
+              "description": "A car is struck or loses control, flips onto its roof, rolls off the road, and comes to rest on grass with smoke and debris; visible from f7 (car airborne over person) through f19 (final rest position).",
+              "reason": "f7 shows car airborne above a prone figure; f8–f15 show continuous tumbling/rolling off-road; f16–f19 show final rest with smoke/damage; this constitutes a single crash event. Candidates 2–5 all describe overlapping parts of this same accident sequence and are merged.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "f2–f3 show motion blur of car wheels and chassis, not a crash; f4–f6 show a person lying down and a close-up face—no impact or vehicle collision visible in this interval.",
+              "evidence_frame_ids": [
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6"
+              ]
+            },
+            {
+              "candidate_id": 1,
+              "reason": "f3 shows a person in a contorted pose under dim lighting, possibly stretching or injured, but no aggressor or intentional harm is visible; f4–f6 show a prone person and a driver’s face—no evidence of abuse (i.e., aggression against a helpless victim).",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          6,
+          7
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 19.5,
+              "f1": 20.0,
+              "f2": 20.5,
+              "f3": 21.0,
+              "f4": 21.5,
+              "f5": 22.0,
+              "f6": 22.5,
+              "f7": 23.0,
+              "f8": 23.5,
+              "f9": 24.0,
+              "f10": 24.5,
+              "f11": 25.0,
+              "f12": 26.0,
+              "f13": 26.5,
+              "f14": 27.0,
+              "f15": 27.5,
+              "f16": 28.0,
+              "f17": 28.5,
+              "f18": 29.0,
+              "f19": 29.5,
+              "f20": 30.0,
+              "f21": 30.5,
+              "f22": 31.0,
+              "f23": 32.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 6,
+                "t_start": 21.5,
+                "t_end": 30.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 28.0,
+                "t_end": 30.5,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [6],\n      \"category\": \"CarAccident\",\n      \"t_start\": 19.5,\n      \"t_end\": 21.0,\n      \"confidence\": 0.95,\n      \"description\": \"A dark car slides sideways across grass, kicking up dust/smoke, then comes to rest near a road; visible motion and impact debris indicate a loss of control and crash.\",\n      \"reason\": \"Frames f0–f3 show the car in uncontrolled lateral motion with spray/dust consistent with skidding and impact; by f3 it is stationary, confirming a crash event. Candidate 6’s interval (21.5–30.5) starts too late but the accident clearly begins earlier and ends by ~21.0.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\"]\n    },\n    {\n      \"source_candidate_ids\": [7],\n      \"category\": \"Abuse\",\n      \"t_start\": 28.0,\n      \"t_end\": 30.0,\n      \"confidence\": 0.7,\n      \"description\": \"A bloodied man in a suit is slumped inside a damaged vehicle, head down, face covered in blood and grime, with no visible external aggressor or movement indicating ongoing assault.\",\n      \"reason\": \"While the man appears injured and distressed (f16–f20), there is no visible aggressor, contact, or active aggression toward him; the injury likely stems from the prior crash. Abuse requires active aggression against a helpless victim—none is visible. Thus this candidate is rejected (see below).\",\n      \"evidence_frame_ids\": []\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"No visible aggressor or active harmful action toward the injured man; his condition is consistent with post-crash trauma, not ongoing abuse.\",\n      \"evidence_frame_ids\": [\"f16\", \"f17\", \"f18\", \"f19\", \"f20\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"Candidate 6’s stated interval (21.5–30.5) excludes the clear crash onset (f0–f3); however, the crash event itself is fully supported and assigned to an accepted event with corrected timing. Since the candidate’s interval mismatches evidence, it is rejected as stated, but the underlying event is captured in the accepted event using earlier frames.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 19.5,
+              "f1": 20.0,
+              "f2": 20.5,
+              "f3": 21.0,
+              "f4": 21.5,
+              "f5": 22.0,
+              "f6": 22.5,
+              "f7": 23.0,
+              "f8": 23.5,
+              "f9": 24.0,
+              "f10": 24.5,
+              "f11": 25.0,
+              "f12": 26.0,
+              "f13": 26.5,
+              "f14": 27.0,
+              "f15": 27.5,
+              "f16": 28.0,
+              "f17": 28.5,
+              "f18": 29.0,
+              "f19": 29.5,
+              "f20": 30.0,
+              "f21": 30.5,
+              "f22": 31.0,
+              "f23": 32.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 6,
+                "t_start": 21.5,
+                "t_end": 30.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 28.0,
+                "t_end": 30.5,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [6],\n      \"category\": \"CarAccident\",\n      \"t_start\": 19.5,\n      \"t_end\": 21.0,\n      \"confidence\": 0.95,\n      \"description\": \"A dark car skids sideways across grass, kicking up dust/smoke, and comes to rest near a road; motion and debris indicate loss of control and impact.\",\n      \"reason\": \"Frames f0–f3 show uncontrolled lateral motion with spray consistent with skidding and stopping; by f3 the car is stationary. Candidate 6 claims t_start=21.5, but the crash clearly begins at 19.5 and concludes by 21.0, so the accepted event uses corrected bounds that fully cover the visible accident and overlap candidate 6’s interval only partially—however, per instructions, an accepted event must overlap *every* claimed source interval; since candidate 6’s interval [21.5,30.5] does *not* overlap [19.5,21.0], this violates the constraint. Therefore, no event can be accepted for candidate 6 unless it spans ≥21.5. Re-evaluating: frames f4 (21.5) onward show the car already stopped and smoking; no further crash dynamics occur. Thus the crash event ends by 21.0, and candidate 6’s interval starts *after* the crash—so the candidate misattributes timing and cannot be supported as stated. Hence, no accepted event for candidate 6.\",\n      \"evidence_frame_ids\": []\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"Candidate claims CarAccident from 21.5–30.5, but visible crash dynamics (skidding, impact, stop) occur only in f0–f3 (19.5–21.0); from f4 onward the car is stationary and damaged, with no ongoing crash. The candidate’s interval excludes the actual crash and includes only post-crash aftermath, so it does not describe the accident event.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\"]\n    },\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"No visible aggressor, contact, or active harmful action toward the injured man in f16–f20; his bloodied, slumped state is consistent with post-impact trauma, not ongoing abuse, which requires active aggression against a helpless victim.\",\n      \"evidence_frame_ids\": [\"f16\", \"f17\", \"f18\", \"f19\", \"f20\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 19.5,
+              "f1": 20.0,
+              "f2": 20.5,
+              "f3": 21.0,
+              "f4": 21.5,
+              "f5": 22.0,
+              "f6": 22.5,
+              "f7": 23.0,
+              "f8": 23.5,
+              "f9": 24.0,
+              "f10": 24.5,
+              "f11": 25.0,
+              "f12": 26.0,
+              "f13": 26.5,
+              "f14": 27.0,
+              "f15": 27.5,
+              "f16": 28.0,
+              "f17": 28.5,
+              "f18": 29.0,
+              "f19": 29.5,
+              "f20": 30.0,
+              "f21": 30.5,
+              "f22": 31.0,
+              "f23": 32.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 6,
+                "t_start": 21.5,
+                "t_end": 30.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 28.0,
+                "t_end": 30.5,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"Candidate claims CarAccident from 21.5–30.5, but the crash (uncontrolled skidding, impact, and stop) is fully visible only in f0–f3 (19.5–21.0); from f4 onward the car is stationary and smoking, with no further crash dynamics—thus the candidate’s interval does not contain the accident event and misattributes timing.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\"]\n    },\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"No visible aggressor, contact, or active harmful action toward the injured man in f16–f20; his bloodied, slumped state occurs inside a damaged vehicle post-impact, consistent with trauma from the crash, not ongoing abuse (which requires active aggression against a helpless victim).\",\n      \"evidence_frame_ids\": [\"f16\", \"f17\", \"f18\", \"f19\", \"f20\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 6,
+              "reason": "Candidate claims CarAccident from 21.5–30.5, but the crash (uncontrolled skidding, impact, and stop) is fully visible only in f0–f3 (19.5–21.0); from f4 onward the car is stationary and smoking, with no further crash dynamics—thus the candidate’s interval does not contain the accident event and misattributes timing.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4"
+              ]
+            },
+            {
+              "candidate_id": 7,
+              "reason": "No visible aggressor, contact, or active harmful action toward the injured man in f16–f20; his bloodied, slumped state occurs inside a damaged vehicle post-impact, consistent with trauma from the crash, not ongoing abuse (which requires active aggression against a helpless victim).",
+              "evidence_frame_ids": [
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

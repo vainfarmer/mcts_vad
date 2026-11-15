@@ -1,0 +1,764 @@
+{
+  "events": [
+    {
+      "t_start": 85.5,
+      "t_end": 90.5,
+      "anomaly_type": "Abuse",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A person in dark clothing kneels over another person lying motionless on the ground, with hands near the supine person’s torso and head; the supine person shows visible facial injury and remains unresponsive.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          86.0,
+          86.5,
+          87.0,
+          88.0,
+          88.5,
+          89.0,
+          89.5,
+          90.0,
+          90.5
+        ],
+        "evidence_frame_ids": [
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18",
+          "f19",
+          "f20",
+          "f21"
+        ],
+        "reason": "The prone individual is immobile, has a visible facial wound (f14–f15), and the kneeling person’s posture and proximity (f16–f21) indicate control over a helpless victim without reciprocal action—meeting the definition of Abuse (aggression against a helpless victim).",
+        "source_categories": [
+          "Abuse"
+        ]
+      }
+    },
+    {
+      "t_start": 151.0,
+      "t_end": 152.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.8,
+      "coarse_score": 0.8,
+      "description": "Multiple individuals engage in rapid physical contact: one person in a white helmet is grabbed and pulled by at least two others while moving through a crowd; motion blur indicates forceful movement.",
+      "source_candidate_ids": [
+        1,
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.8,
+        "evidence_times": [
+          151.0,
+          151.5,
+          152.0,
+          152.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7"
+        ],
+        "reason": "Frames f4–f7 show mutual physical engagement (grasping, pulling, resisting) among several people around the helmeted individual—consistent with fighting, not one-sided abuse. Abuse requires a helpless victim; here the helmeted person actively resists (f5–f6) and participates in the struggle (f7). The event spans from initial blur/impact (f4) through active grappling (f5–f6) to separation/movement (f7), justifying merged interval.",
+        "source_categories": [
+          "Fighting",
+          "Abuse"
+        ]
+      }
+    },
+    {
+      "t_start": 170.5,
+      "t_end": 171.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "At f5 (171.0 s), bright sparks and a sudden flash erupt from the metal truss structure, accompanied by rapid expansion of smoke/dust, consistent with a blast event.",
+      "source_candidate_ids": [
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          170.5,
+          171.0,
+          171.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "f4 shows increasing smoke; f5 shows a sharp, localized burst of incandescent particles and overexposure indicative of an explosion—not sustained fire or collapse alone; f6 is blurred but follows immediately after the flash. This matches the definition: a blast event with rapid energy release.",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    },
+    {
+      "t_start": 182.4,
+      "t_end": 184.4,
+      "anomaly_type": "Fighting",
+      "confidence": 0.75,
+      "coarse_score": 0.75,
+      "description": "In frames f11–f13, individuals in white helmets and light uniforms are engaged in close physical contact with others—including grabbing, shoving, and apparent striking—amid motion blur and rain.",
+      "source_candidate_ids": [
+        5,
+        6
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 3,
+        "event_id": 0,
+        "vlm_confidence": 0.75,
+        "evidence_times": [
+          183.0,
+          183.5,
+          184.0
+        ],
+        "evidence_frame_ids": [
+          "f11",
+          "f12",
+          "f13"
+        ],
+        "reason": "Frames f11 (183.0), f12 (183.5), and f13 (184.0) show mutual physical engagement: one helmeted person lunges toward or strikes another; the interaction is reciprocal and dynamic, satisfying the definition of Fighting (mutual physical combat). Candidate 6 (184.0–184.5) overlaps and is part of the same continuous sequence; no separate event is visible at f13–f14.",
+        "source_categories": [
+          "Fighting",
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 192.5,
+      "t_end": 193.3,
+      "anomaly_type": "Fighting",
+      "confidence": 0.7,
+      "coarse_score": 0.7,
+      "description": "Two figures in close proximity with one appearing to strike or grapple the other amid debris and motion blur.",
+      "source_candidate_ids": [
+        8
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 4,
+        "event_id": 0,
+        "vlm_confidence": 0.7,
+        "evidence_times": [
+          192.5,
+          193.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "f4 shows two dark-clad figures in contact with dynamic posture and scattered rubble; f5 shows a figure recoiling against a wall with arm extended, consistent with impact or push; together they indicate mutual physical combat within the candidate interval.",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 10,
+      "output_count": 5,
+      "groups": 6,
+      "rejected": 3,
+      "uncertain": 0,
+      "merged_sources": 2,
+      "relabeled": 1,
+      "context_retries": 1,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 83.5,
+              "f1": 84.0,
+              "f2": 84.5,
+              "f3": 85.0,
+              "f4": 85.5,
+              "f5": 86.0,
+              "f6": 86.5,
+              "f7": 87.0,
+              "f8": 87.5,
+              "f9": 88.0,
+              "f10": 88.5,
+              "f11": 89.0,
+              "f12": 89.5,
+              "f13": 90.0,
+              "f14": 90.5,
+              "f15": 91.0,
+              "f16": 91.5,
+              "f17": 92.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 85.5,
+                "t_end": 90.5,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Abuse\",\n      \"t_start\": 88.0,\n      \"t_end\": 90.5,\n      \"confidence\": 0.7,\n      \"description\": \"A person lies supine on the ground, eyes closed, while another person kneels over them, holding a small bouquet near their chest; the prone person shows facial injuries and appears unresponsive.\",\n      \"reason\": \"The prone individual is motionless with visible facial trauma (e.g., f6–f8 show cuts/bruising), and the kneeling person’s posture and proximity suggest control or harm rather than aid; no clear medical intervention or consensual interaction is visible. This meets the definition of Abuse: aggression against a helpless victim.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Frames f5–f8 show only partial face with injuries but no clear perpetrator action; abuse cannot be confirmed before f9. However, since f9–f14 strongly support abuse and the candidate interval (85.5–90.5) overlaps this, the event is accepted from 88.0 onward; the earlier part (85.5–88.0) lacks sufficient evidence, so the full candidate interval is not fully supported—but per instructions, we accept the overlapping subinterval where evidence exists and assign the candidate to that event. No separate uncertain needed for this candidate since it's covered in events.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 83.5,
+              "f1": 84.0,
+              "f2": 84.5,
+              "f3": 85.0,
+              "f4": 85.5,
+              "f5": 86.0,
+              "f6": 86.5,
+              "f7": 87.0,
+              "f8": 87.5,
+              "f9": 88.0,
+              "f10": 88.5,
+              "f11": 89.0,
+              "f12": 89.5,
+              "f13": 90.0,
+              "f14": 90.5,
+              "f15": 91.0,
+              "f16": 91.5,
+              "f17": 92.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 85.5,
+                "t_end": 90.5,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Frames f9–f14 show a person lying supine with eyes closed and facial injuries, while another kneels beside them holding flowers near the chest; however, no aggressive action, restraint, or harmful contact is visible—only proximity and stillness. The scene is consistent with grief, mourning, or post-event care, not aggression against a helpless victim. Abuse requires observable aggression; absence of such evidence contradicts the hypothesis.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Frames f5–f8 show a close-up of a face with apparent injuries (cuts/bruising), but the context (who caused them, intent, relationship) is indeterminate due to occlusion and lack of interaction; frames f0–f4 show hands with minor marks and movement but no clear violence. Without visible aggression or control, abuse cannot be confirmed, and normal explanations (e.g., prior injury, accident, ritual) remain plausible.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 83.5,
+              "f1": 84.0,
+              "f2": 84.5,
+              "f3": 85.0,
+              "f4": 85.5,
+              "f5": 86.0,
+              "f6": 86.5,
+              "f7": 87.0,
+              "f8": 87.5,
+              "f9": 88.0,
+              "f10": 88.5,
+              "f11": 89.0,
+              "f12": 89.5,
+              "f13": 90.0,
+              "f14": 90.5,
+              "f15": 91.0,
+              "f16": 91.5,
+              "f17": 92.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 85.5,
+                "t_end": 90.5,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Frames f9–f14 show a person lying supine with eyes closed and facial injuries, while another kneels beside them holding a small bouquet near the chest; however, no aggressive action, restraint, harmful contact, or controlling behavior is visible—only stillness and proximity. The scene is consistent with mourning, care, or post-event presence, not aggression against a helpless victim; Abuse requires observable aggression, which is absent.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Frames f5–f8 show a close-up of a face with apparent injuries (e.g., cuts near eye/cheek), but no perpetrator, intent, or interaction is visible; frames f0–f4 show hands with minor marks and movement in dim light, insufficient to confirm violence. Without evidence of aggression or control, abuse cannot be verified, and normal explanations (e.g., prior injury, accident, ritual) remain plausible.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 79.5,
+              "f1": 80.0,
+              "f2": 80.5,
+              "f3": 81.0,
+              "f4": 81.5,
+              "f5": 82.0,
+              "f6": 82.5,
+              "f7": 83.0,
+              "f8": 83.5,
+              "f9": 84.0,
+              "f10": 84.5,
+              "f11": 85.0,
+              "f12": 85.5,
+              "f13": 86.0,
+              "f14": 86.5,
+              "f15": 87.0,
+              "f16": 88.0,
+              "f17": 88.5,
+              "f18": 89.0,
+              "f19": 89.5,
+              "f20": 90.0,
+              "f21": 90.5,
+              "f22": 91.0,
+              "f23": 91.5,
+              "f24": 92.0,
+              "f25": 92.5,
+              "f26": 93.0,
+              "f27": 93.5,
+              "f28": 94.0,
+              "f29": 94.5,
+              "f30": 95.0,
+              "f31": 96.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 85.5,
+                "t_end": 90.5,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Abuse\",\n      \"t_start\": 85.5,\n      \"t_end\": 90.5,\n      \"confidence\": 0.9,\n      \"description\": \"A person in dark clothing kneels over another person lying motionless on the ground, with hands near the supine person’s torso and head; the supine person shows visible facial injury and remains unresponsive.\",\n      \"reason\": \"The prone individual is immobile, has a visible facial wound (f14–f15), and the kneeling person’s posture and proximity (f16–f21) indicate control over a helpless victim without reciprocal action—meeting the definition of Abuse (aggression against a helpless victim).\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Abuse",
+              "t_start": 85.5,
+              "t_end": 90.5,
+              "confidence": 0.9,
+              "description": "A person in dark clothing kneels over another person lying motionless on the ground, with hands near the supine person’s torso and head; the supine person shows visible facial injury and remains unresponsive.",
+              "reason": "The prone individual is immobile, has a visible facial wound (f14–f15), and the kneeling person’s posture and proximity (f16–f21) indicate control over a helpless victim without reciprocal action—meeting the definition of Abuse (aggression against a helpless victim).",
+              "evidence_frame_ids": [
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": true
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 149.0,
+              "f1": 149.5,
+              "f2": 150.0,
+              "f3": 150.5,
+              "f4": 151.0,
+              "f5": 151.5,
+              "f6": 152.0,
+              "f7": 152.5,
+              "f8": 153.0,
+              "f9": 153.5,
+              "f10": 154.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 151.0,
+                "t_end": 152.2,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 151.5,
+                "t_end": 152.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1, 2],\n      \"category\": \"Fighting\",\n      \"t_start\": 151.0,\n      \"t_end\": 152.5,\n      \"confidence\": 0.8,\n      \"description\": \"Multiple individuals engage in rapid physical contact: one person in a white helmet is grabbed and pulled by at least two others while moving through a crowd; motion blur indicates forceful movement.\",\n      \"reason\": \"Frames f4–f7 show mutual physical engagement (grasping, pulling, resisting) among several people around the helmeted individual—consistent with fighting, not one-sided abuse. Abuse requires a helpless victim; here the helmeted person actively resists (f5–f6) and participates in the struggle (f7). The event spans from initial blur/impact (f4) through active grappling (f5–f6) to separation/movement (f7), justifying merged interval.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1,
+                2
+              ],
+              "category": "Fighting",
+              "t_start": 151.0,
+              "t_end": 152.5,
+              "confidence": 0.8,
+              "description": "Multiple individuals engage in rapid physical contact: one person in a white helmet is grabbed and pulled by at least two others while moving through a crowd; motion blur indicates forceful movement.",
+              "reason": "Frames f4–f7 show mutual physical engagement (grasping, pulling, resisting) among several people around the helmeted individual—consistent with fighting, not one-sided abuse. Abuse requires a helpless victim; here the helmeted person actively resists (f5–f6) and participates in the struggle (f7). The event spans from initial blur/impact (f4) through active grappling (f5–f6) to separation/movement (f7), justifying merged interval.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 168.5,
+              "f1": 169.0,
+              "f2": 169.5,
+              "f3": 170.0,
+              "f4": 170.5,
+              "f5": 171.0,
+              "f6": 171.5,
+              "f7": 172.0,
+              "f8": 172.5,
+              "f9": 173.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 170.5,
+                "t_end": 171.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"Explosion\",\n      \"t_start\": 170.5,\n      \"t_end\": 171.5,\n      \"confidence\": 0.9,\n      \"description\": \"At f5 (171.0 s), bright sparks and a sudden flash erupt from the metal truss structure, accompanied by rapid expansion of smoke/dust, consistent with a blast event.\",\n      \"reason\": \"f4 shows increasing smoke; f5 shows a sharp, localized burst of incandescent particles and overexposure indicative of an explosion—not sustained fire or collapse alone; f6 is blurred but follows immediately after the flash. This matches the definition: a blast event with rapid energy release.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                3
+              ],
+              "category": "Explosion",
+              "t_start": 170.5,
+              "t_end": 171.5,
+              "confidence": 0.9,
+              "description": "At f5 (171.0 s), bright sparks and a sudden flash erupt from the metal truss structure, accompanied by rapid expansion of smoke/dust, consistent with a blast event.",
+              "reason": "f4 shows increasing smoke; f5 shows a sharp, localized burst of incandescent particles and overexposure indicative of an explosion—not sustained fire or collapse alone; f6 is blurred but follows immediately after the flash. This matches the definition: a blast event with rapid energy release.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          4,
+          5,
+          6,
+          7
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 176.0,
+              "f1": 176.5,
+              "f2": 177.0,
+              "f3": 177.5,
+              "f4": 178.5,
+              "f5": 179.0,
+              "f6": 179.5,
+              "f7": 180.5,
+              "f8": 181.0,
+              "f9": 181.5,
+              "f10": 182.5,
+              "f11": 183.0,
+              "f12": 183.5,
+              "f13": 184.0,
+              "f14": 185.0,
+              "f15": 185.5,
+              "f16": 186.0,
+              "f17": 187.0,
+              "f18": 187.5,
+              "f19": 188.0,
+              "f20": 189.0,
+              "f21": 189.5,
+              "f22": 190.0,
+              "f23": 191.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 177.6,
+                "t_end": 188.1,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 182.4,
+                "t_end": 184.4,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 184.0,
+                "t_end": 184.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 188.5,
+                "t_end": 189.3,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [5, 6],\n      \"category\": \"Fighting\",\n      \"t_start\": 182.4,\n      \"t_end\": 184.4,\n      \"confidence\": 0.8,\n      \"description\": \"Individuals in white helmets and protective gear are seen physically engaging others—grappling, striking, and shoving—in a chaotic close-quarters interaction.\",\n      \"reason\": \"Frames f11–f13 show clear mutual physical contact: one person in white helmet grabs or strikes another; motion blur indicates rapid movement consistent with combat. This satisfies the definition of Fighting (mutual physical combat). Candidate 6 is subsumed into candidate 5 as same event.\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\", \"f13\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"The crowd in f0–f1 is dense and disordered but shows no coordinated violence, property destruction, or aggressive group action; later frames show isolated conflict, not collective unrest. Thus not a Riot.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    },\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"Frame f20 shows indistinct debris and water/mist; no identifiable victim or aggressor, nor evidence of targeted aggression against a helpless person. Insufficient for Abuse.\",\n      \"evidence_frame_ids\": [\"f20\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": null,\n      \"reason\": \"No candidate remains unassigned; all handled above.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 176.0,
+              "f1": 176.5,
+              "f2": 177.0,
+              "f3": 177.5,
+              "f4": 178.5,
+              "f5": 179.0,
+              "f6": 179.5,
+              "f7": 180.5,
+              "f8": 181.0,
+              "f9": 181.5,
+              "f10": 182.5,
+              "f11": 183.0,
+              "f12": 183.5,
+              "f13": 184.0,
+              "f14": 185.0,
+              "f15": 185.5,
+              "f16": 186.0,
+              "f17": 187.0,
+              "f18": 187.5,
+              "f19": 188.0,
+              "f20": 189.0,
+              "f21": 189.5,
+              "f22": 190.0,
+              "f23": 191.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 177.6,
+                "t_end": 188.1,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 182.4,
+                "t_end": 184.4,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 184.0,
+                "t_end": 184.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 188.5,
+                "t_end": 189.3,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [5, 6],\n      \"category\": \"Fighting\",\n      \"t_start\": 182.4,\n      \"t_end\": 184.4,\n      \"confidence\": 0.75,\n      \"description\": \"In frames f11–f13, individuals in white helmets and light uniforms are engaged in close physical contact with others—including grabbing, shoving, and apparent striking—amid motion blur and rain.\",\n      \"reason\": \"Frames f11 (183.0), f12 (183.5), and f13 (184.0) show mutual physical engagement: one helmeted person lunges toward or strikes another; the interaction is reciprocal and dynamic, satisfying the definition of Fighting (mutual physical combat). Candidate 6 (184.0–184.5) overlaps and is part of the same continuous sequence; no separate event is visible at f13–f14.\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\", \"f13\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"Frames f0–f3 show a dense crowd amid debris and low lighting, but no coordinated violent action, property destruction, or group aggression; later frames depict isolated conflict, not collective unrest. Thus, not a Riot.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\"]\n    },\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"Frame f20 shows blurry wet ground with indistinct shapes and debris; no identifiable aggressor, victim, or directed harmful act against a helpless person is visible. Insufficient evidence for Abuse.\",\n      \"evidence_frame_ids\": [\"f20\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                5,
+                6
+              ],
+              "category": "Fighting",
+              "t_start": 182.4,
+              "t_end": 184.4,
+              "confidence": 0.75,
+              "description": "In frames f11–f13, individuals in white helmets and light uniforms are engaged in close physical contact with others—including grabbing, shoving, and apparent striking—amid motion blur and rain.",
+              "reason": "Frames f11 (183.0), f12 (183.5), and f13 (184.0) show mutual physical engagement: one helmeted person lunges toward or strikes another; the interaction is reciprocal and dynamic, satisfying the definition of Fighting (mutual physical combat). Candidate 6 (184.0–184.5) overlaps and is part of the same continuous sequence; no separate event is visible at f13–f14.",
+              "evidence_frame_ids": [
+                "f11",
+                "f12",
+                "f13"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 4,
+              "reason": "Frames f0–f3 show a dense crowd amid debris and low lighting, but no coordinated violent action, property destruction, or group aggression; later frames depict isolated conflict, not collective unrest. Thus, not a Riot.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3"
+              ]
+            },
+            {
+              "candidate_id": 7,
+              "reason": "Frame f20 shows blurry wet ground with indistinct shapes and debris; no identifiable aggressor, victim, or directed harmful act against a helpless person is visible. Insufficient evidence for Abuse.",
+              "evidence_frame_ids": [
+                "f20"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 4,
+        "source_ids": [
+          8
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 190.5,
+              "f1": 191.0,
+              "f2": 191.5,
+              "f3": 192.0,
+              "f4": 192.5,
+              "f5": 193.0,
+              "f6": 193.5,
+              "f7": 194.0,
+              "f8": 194.5,
+              "f9": 195.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 8,
+                "t_start": 192.5,
+                "t_end": 193.3,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [8],\n      \"category\": \"Fighting\",\n      \"t_start\": 192.5,\n      \"t_end\": 193.3,\n      \"confidence\": 0.7,\n      \"description\": \"Two figures in close proximity with one appearing to strike or grapple the other amid debris and motion blur.\",\n      \"reason\": \"f4 shows two dark-clad figures in contact with dynamic posture and scattered rubble; f5 shows a figure recoiling against a wall with arm extended, consistent with impact or push; together they indicate mutual physical combat within the candidate interval.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                8
+              ],
+              "category": "Fighting",
+              "t_start": 192.5,
+              "t_end": 193.3,
+              "confidence": 0.7,
+              "description": "Two figures in close proximity with one appearing to strike or grapple the other amid debris and motion blur.",
+              "reason": "f4 shows two dark-clad figures in contact with dynamic posture and scattered rubble; f5 shows a figure recoiling against a wall with arm extended, consistent with impact or push; together they indicate mutual physical combat within the candidate interval.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 5,
+        "source_ids": [
+          9
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 192.5,
+              "f1": 193.0,
+              "f2": 193.5,
+              "f3": 194.0,
+              "f4": 194.5,
+              "f5": 195.0,
+              "f6": 195.5,
+              "f7": 196.0,
+              "f8": 196.5,
+              "f9": 197.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 9,
+                "t_start": 194.5,
+                "t_end": 195.3,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 9,\n      \"reason\": \"Images f4–f6 show indistinct silhouettes in smoke/lighting; no visible aggression, restraint, or helplessness required for Abuse; context shifts abruptly to a calm lab scene at f7, suggesting the prior frames depict environmental obscurity (e.g., dust, steam, lighting effects), not interpersonal violence.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 9,
+              "reason": "Images f4–f6 show indistinct silhouettes in smoke/lighting; no visible aggression, restraint, or helplessness required for Abuse; context shifts abruptly to a calm lab scene at f7, suggesting the prior frames depict environmental obscurity (e.g., dust, steam, lighting effects), not interpersonal violence.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

@@ -1,0 +1,445 @@
+{
+  "events": [
+    {
+      "t_start": 21.0,
+      "t_end": 28.5,
+      "anomaly_type": "Riot",
+      "confidence": 0.7,
+      "coarse_score": 0.7,
+      "description": "A large, dense crowd in a muddy street with mounted police in yellow vests advancing; individuals are seen falling, running, and scattered debris is visible across frames f2–f17.",
+      "source_candidate_ids": [
+        0,
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.7,
+        "evidence_times": [
+          21.0,
+          21.5,
+          22.0,
+          22.5,
+          23.0,
+          23.5,
+          24.0,
+          24.5,
+          25.0,
+          25.5,
+          26.0,
+          26.5,
+          27.0,
+          27.5,
+          28.0,
+          28.5
+        ],
+        "evidence_frame_ids": [
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17"
+        ],
+        "reason": "The sustained chaotic movement, presence of mounted officers pushing through a disordered crowd, people on the ground (e.g., f6, f12), and lack of evidence for controlled event or celebration meet the definition of collective violent unrest (Riot); isolated Fighting is not visually confirmed as mutual combat and is subsumed within the broader riot context.",
+        "source_categories": [
+          "Riot",
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 44.5,
+      "t_end": 47.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "Multiple uniformed officers in helmets physically restrain and grapple with a person on the ground while others surround them.",
+      "source_candidate_ids": [
+        7
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          44.5,
+          45.0,
+          45.5,
+          46.0,
+          46.5,
+          47.0,
+          47.5
+        ],
+        "evidence_frame_ids": [
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18"
+        ],
+        "reason": "Visible mutual physical struggle between officers and an individual (f12–f18); consistent with Fighting (not Abuse, as the person is actively resisting and not clearly helpless).",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 10,
+      "output_count": 2,
+      "groups": 2,
+      "rejected": 7,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 1,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 20.0,
+              "f1": 20.5,
+              "f2": 21.0,
+              "f3": 21.5,
+              "f4": 22.0,
+              "f5": 22.5,
+              "f6": 23.0,
+              "f7": 23.5,
+              "f8": 24.0,
+              "f9": 24.5,
+              "f10": 25.0,
+              "f11": 25.5,
+              "f12": 26.0,
+              "f13": 26.5,
+              "f14": 27.0,
+              "f15": 27.5,
+              "f16": 28.0,
+              "f17": 28.5,
+              "f18": 29.0,
+              "f19": 29.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 21.6,
+                "t_end": 28.0,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 23.1,
+                "t_end": 27.0,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Riot\",\n      \"t_start\": 21.0,\n      \"t_end\": 28.5,\n      \"confidence\": 0.8,\n      \"description\": \"Large crowd with mounted police in yellow vests moving through a muddy street; people are running, falling, and scattering amid dense, chaotic movement, consistent with collective violent unrest.\",\n      \"reason\": \"Frames f2–f17 show sustained disorder: mounted officers advancing through a dense, agitated crowd, individuals on ground (e.g., f6, f12), debris scattered, and no indication of controlled procession or celebration; meets definition of riot (collective violent unrest). Candidate 1’s 'Fighting' is subsumed as part of the broader riot dynamics, not isolated mutual combat.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Not uncertain—evidence supports riot; retained in merged event.\"\n    },\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Not uncertain—individual fighting not clearly isolated; actions are embedded in larger unrest, thus merged into riot event.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 20.0,
+              "f1": 20.5,
+              "f2": 21.0,
+              "f3": 21.5,
+              "f4": 22.0,
+              "f5": 22.5,
+              "f6": 23.0,
+              "f7": 23.5,
+              "f8": 24.0,
+              "f9": 24.5,
+              "f10": 25.0,
+              "f11": 25.5,
+              "f12": 26.0,
+              "f13": 26.5,
+              "f14": 27.0,
+              "f15": 27.5,
+              "f16": 28.0,
+              "f17": 28.5,
+              "f18": 29.0,
+              "f19": 29.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 21.6,
+                "t_end": 28.0,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 23.1,
+                "t_end": 27.0,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Riot\",\n      \"t_start\": 21.0,\n      \"t_end\": 28.5,\n      \"confidence\": 0.7,\n      \"description\": \"A large, dense crowd in a muddy street with mounted police in yellow vests advancing; individuals are seen falling, running, and scattered debris is visible across frames f2–f17.\",\n      \"reason\": \"The sustained chaotic movement, presence of mounted officers pushing through a disordered crowd, people on the ground (e.g., f6, f12), and lack of evidence for controlled event or celebration meet the definition of collective violent unrest (Riot); isolated Fighting is not visually confirmed as mutual combat and is subsumed within the broader riot context.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1
+              ],
+              "category": "Riot",
+              "t_start": 21.0,
+              "t_end": 28.5,
+              "confidence": 0.7,
+              "description": "A large, dense crowd in a muddy street with mounted police in yellow vests advancing; individuals are seen falling, running, and scattered debris is visible across frames f2–f17.",
+              "reason": "The sustained chaotic movement, presence of mounted officers pushing through a disordered crowd, people on the ground (e.g., f6, f12), and lack of evidence for controlled event or celebration meet the definition of collective violent unrest (Riot); isolated Fighting is not visually confirmed as mutual combat and is subsumed within the broader riot context.",
+              "evidence_frame_ids": [
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 35.5,
+              "f1": 36.0,
+              "f2": 36.5,
+              "f3": 37.5,
+              "f4": 38.0,
+              "f5": 38.5,
+              "f6": 39.5,
+              "f7": 40.0,
+              "f8": 41.0,
+              "f9": 41.5,
+              "f10": 42.0,
+              "f11": 43.0,
+              "f12": 44.5,
+              "f13": 45.0,
+              "f14": 45.5,
+              "f15": 46.0,
+              "f16": 46.5,
+              "f17": 47.0,
+              "f18": 47.5,
+              "f19": 48.0,
+              "f20": 48.5,
+              "f21": 49.0,
+              "f22": 50.0,
+              "f23": 51.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 37.5,
+                "t_end": 38.3,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 37.5,
+                "t_end": 45.0,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 39.2,
+                "t_end": 40.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 40.0,
+                "t_end": 43.0,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 44.0,
+                "t_end": 50.0,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 44.7,
+                "t_end": 46.8,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 45.0,
+                "t_end": 46.9,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 9,
+                "t_start": 47.5,
+                "t_end": 48.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [7],\n      \"category\": \"Fighting\",\n      \"t_start\": 44.5,\n      \"t_end\": 47.5,\n      \"confidence\": 0.9,\n      \"description\": \"Multiple uniformed officers in helmets physically restrain and grapple with a person on the ground while others surround them.\",\n      \"reason\": \"Visible mutual physical struggle between officers and an individual (f12–f18); consistent with Fighting (not Abuse, as the person is actively resisting and not clearly helpless).\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"At f3–f4, individuals appear to be moving quickly near horses and smoke, but no mutual combat or clear aggression is visible; likely crowd movement or response to disturbance, not Fighting.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"Frames f3–f11 show chaotic movement, mounted police, and smoke, but no sustained collective violent unrest—only isolated actions and dispersal; insufficient for Riot.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    },\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"At f6–f7, a person gestures toward mounted officers, but no aggression against a helpless victim is visible; context suggests protest or confrontation, not Abuse.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\"]\n    },\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"Frames f10–f11 show people running and officers on horseback, but no coordinated violent action by a group; not meeting Riot criteria.\",\n      \"evidence_frame_ids\": [\"f10\", \"f11\"]\n    },\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"Frames f12–f18 depict a localized arrest/scuffle, not widespread collective violence; f19–f22 are night scenes of dispersed crowds without overt violence—insufficient for Riot.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    },\n    {\n      \"candidate_id\": 8,\n      \"reason\": \"The interaction in f13–f18 involves active resistance and multiple officers restraining one person; this is Fighting, not Abuse (which requires a helpless victim).\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\"]\n    },\n    {\n      \"candidate_id\": 9,\n      \"reason\": \"Frame f18 shows ongoing restraint, not a distinct new abusive act at 47.5–48.0; no evidence of Abuse separate from the Fighting event already captured.\",\n      \"evidence_frame_ids\": [\"f18\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                7
+              ],
+              "category": "Fighting",
+              "t_start": 44.5,
+              "t_end": 47.5,
+              "confidence": 0.9,
+              "description": "Multiple uniformed officers in helmets physically restrain and grapple with a person on the ground while others surround them.",
+              "reason": "Visible mutual physical struggle between officers and an individual (f12–f18); consistent with Fighting (not Abuse, as the person is actively resisting and not clearly helpless).",
+              "evidence_frame_ids": [
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "At f3–f4, individuals appear to be moving quickly near horses and smoke, but no mutual combat or clear aggression is visible; likely crowd movement or response to disturbance, not Fighting.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4"
+              ]
+            },
+            {
+              "candidate_id": 3,
+              "reason": "Frames f3–f11 show chaotic movement, mounted police, and smoke, but no sustained collective violent unrest—only isolated actions and dispersal; insufficient for Riot.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11"
+              ]
+            },
+            {
+              "candidate_id": 4,
+              "reason": "At f6–f7, a person gestures toward mounted officers, but no aggression against a helpless victim is visible; context suggests protest or confrontation, not Abuse.",
+              "evidence_frame_ids": [
+                "f6",
+                "f7"
+              ]
+            },
+            {
+              "candidate_id": 5,
+              "reason": "Frames f10–f11 show people running and officers on horseback, but no coordinated violent action by a group; not meeting Riot criteria.",
+              "evidence_frame_ids": [
+                "f10",
+                "f11"
+              ]
+            },
+            {
+              "candidate_id": 6,
+              "reason": "Frames f12–f18 depict a localized arrest/scuffle, not widespread collective violence; f19–f22 are night scenes of dispersed crowds without overt violence—insufficient for Riot.",
+              "evidence_frame_ids": [
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22"
+              ]
+            },
+            {
+              "candidate_id": 8,
+              "reason": "The interaction in f13–f18 involves active resistance and multiple officers restraining one person; this is Fighting, not Abuse (which requires a helpless victim).",
+              "evidence_frame_ids": [
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18"
+              ]
+            },
+            {
+              "candidate_id": 9,
+              "reason": "Frame f18 shows ongoing restraint, not a distinct new abusive act at 47.5–48.0; no evidence of Abuse separate from the Fighting event already captured.",
+              "evidence_frame_ids": [
+                "f18"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

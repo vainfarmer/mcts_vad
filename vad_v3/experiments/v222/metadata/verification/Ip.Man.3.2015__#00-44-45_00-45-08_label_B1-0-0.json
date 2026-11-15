@@ -1,0 +1,489 @@
+{
+  "events": [
+    {
+      "t_start": 0.0,
+      "t_end": 5.8,
+      "anomaly_type": "Fighting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "Multiple individuals engage in physical combat: at f0 a man in red lifts and swings a child-like figure while others grapple; at f6–f7 the same man in red is seen throwing or swinging a person over his shoulder amid a group struggle; at f10–f11 a woman and man are locked in close physical struggle with visible force and resistance.",
+      "source_candidate_ids": [
+        0,
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          0.0,
+          3.0,
+          3.5,
+          5.0,
+          5.5
+        ],
+        "evidence_frame_ids": [
+          "f0",
+          "f6",
+          "f7",
+          "f10",
+          "f11"
+        ],
+        "reason": "The actions across f0, f6–f7, and f10–f11 show mutual physical engagement, imbalance, and dynamic motion consistent with fighting; the interval from 0.0 to 5.8 encompasses all visible combat frames, and candidate 0 (0.7–5.8) and candidate 1 (4.3–5.8) are subsumed within this unified event.",
+        "source_categories": [
+          "Fighting",
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 8.0,
+      "t_end": 10.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "Multiple men engage in mutual physical combat using wooden poles and fists in an alleyway.",
+      "source_candidate_ids": [
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          8.0,
+          8.5,
+          9.0,
+          9.5,
+          10.0,
+          10.5
+        ],
+        "evidence_frame_ids": [
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8"
+        ],
+        "reason": "Images f3–f8 show reciprocal striking, blocking, and grappling with weapons (poles), satisfying the definition of Fighting (mutual physical combat). The event begins at f3 (8.0s) with first contact and ends by f8 (10.5s) as the central pair disengage; f9–f11 show observers, not active combatants.",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 12.5,
+      "t_end": 15.0,
+      "anomaly_type": "Fighting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A man in a plaid shirt swings a pole at a man in white, who raises his arms defensively (f4), then is struck and falls to the ground (f7–f8), with visible facial injury in f8.",
+      "source_candidate_ids": [
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          12.5,
+          13.0,
+          13.5,
+          14.0,
+          14.5,
+          15.0
+        ],
+        "evidence_frame_ids": [
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8"
+        ],
+        "reason": "Frames f3–f6 show initiation and engagement: pole swing (f3), defensive posture and contact (f4–f5), and struggle (f6); f7 shows fall, f8 shows injured man on ground. The victim actively resists initially (f4–f5), satisfying 'mutual physical combat' for Fighting; Abuse requires aggression against a helpless victim, which is not evident at onset. Candidate 4’s interval (14.5–15.0) falls within this same event and does not represent a distinct abuse episode.",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 18.0,
+      "t_end": 22.5,
+      "anomaly_type": "Abuse",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A man in red crouches over a prone, motionless man on the ground while others stand nearby holding sticks; the man in red gestures and speaks aggressively toward the prone man.",
+      "source_candidate_ids": [
+        5
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 3,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          18.0,
+          18.5,
+          19.0,
+          19.5,
+          20.0,
+          20.5,
+          21.0,
+          21.5,
+          22.0,
+          22.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13"
+        ],
+        "reason": "The prone man shows no resistance or movement across frames f4–f13; the man in red actively leans over him, points, and exhibits hostile posture (f6–f13), satisfying the definition of abuse (aggression against a helpless victim). Evidence includes visible power imbalance and non-consensual interaction without mutual combat.",
+        "source_categories": [
+          "Abuse"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 6,
+      "output_count": 4,
+      "groups": 4,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0,
+              "f9": 4.5,
+              "f10": 5.0,
+              "f11": 5.5,
+              "f12": 6.0,
+              "f13": 6.5,
+              "f14": 7.0,
+              "f15": 7.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 0.7000000000000001,
+                "t_end": 5.8,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 4.3,
+                "t_end": 5.8,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Fighting\",\n      \"t_start\": 0.0,\n      \"t_end\": 5.8,\n      \"confidence\": 0.9,\n      \"description\": \"Multiple individuals engage in physical combat: at f0 a man in red lifts and swings a child-like figure while others grapple; at f6–f7 the same man in red is seen throwing or swinging a person over his shoulder amid a group struggle; at f10–f11 a woman and man are locked in close physical struggle with visible force and resistance.\",\n      \"reason\": \"The actions across f0, f6–f7, and f10–f11 show mutual physical engagement, imbalance, and dynamic motion consistent with fighting; the interval from 0.0 to 5.8 encompasses all visible combat frames, and candidate 0 (0.7–5.8) and candidate 1 (4.3–5.8) are subsumed within this unified event.\",\n      \"evidence_frame_ids\": [\"f0\", \"f6\", \"f7\", \"f10\", \"f11\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1
+              ],
+              "category": "Fighting",
+              "t_start": 0.0,
+              "t_end": 5.8,
+              "confidence": 0.9,
+              "description": "Multiple individuals engage in physical combat: at f0 a man in red lifts and swings a child-like figure while others grapple; at f6–f7 the same man in red is seen throwing or swinging a person over his shoulder amid a group struggle; at f10–f11 a woman and man are locked in close physical struggle with visible force and resistance.",
+              "reason": "The actions across f0, f6–f7, and f10–f11 show mutual physical engagement, imbalance, and dynamic motion consistent with fighting; the interval from 0.0 to 5.8 encompasses all visible combat frames, and candidate 0 (0.7–5.8) and candidate 1 (4.3–5.8) are subsumed within this unified event.",
+              "evidence_frame_ids": [
+                "f0",
+                "f6",
+                "f7",
+                "f10",
+                "f11"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 6.5,
+              "f1": 7.0,
+              "f2": 7.5,
+              "f3": 8.0,
+              "f4": 8.5,
+              "f5": 9.0,
+              "f6": 9.5,
+              "f7": 10.0,
+              "f8": 10.5,
+              "f9": 11.0,
+              "f10": 11.5,
+              "f11": 12.0,
+              "f12": 12.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 8.5,
+                "t_end": 11.0,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"Fighting\",\n      \"t_start\": 8.0,\n      \"t_end\": 10.5,\n      \"confidence\": 0.95,\n      \"description\": \"Multiple men engage in mutual physical combat using wooden poles and fists in an alleyway.\",\n      \"reason\": \"Images f3–f8 show reciprocal striking, blocking, and grappling with weapons (poles), satisfying the definition of Fighting (mutual physical combat). The event begins at f3 (8.0s) with first contact and ends by f8 (10.5s) as the central pair disengage; f9–f11 show observers, not active combatants.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2
+              ],
+              "category": "Fighting",
+              "t_start": 8.0,
+              "t_end": 10.5,
+              "confidence": 0.95,
+              "description": "Multiple men engage in mutual physical combat using wooden poles and fists in an alleyway.",
+              "reason": "Images f3–f8 show reciprocal striking, blocking, and grappling with weapons (poles), satisfying the definition of Fighting (mutual physical combat). The event begins at f3 (8.0s) with first contact and ends by f8 (10.5s) as the central pair disengage; f9–f11 show observers, not active combatants.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          3,
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 11.0,
+              "f1": 11.5,
+              "f2": 12.0,
+              "f3": 12.5,
+              "f4": 13.0,
+              "f5": 13.5,
+              "f6": 14.0,
+              "f7": 14.5,
+              "f8": 15.0,
+              "f9": 15.5,
+              "f10": 16.0,
+              "f11": 16.5,
+              "f12": 17.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 12.9,
+                "t_end": 15.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 14.5,
+                "t_end": 15.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3, 4],\n      \"category\": \"Fighting\",\n      \"t_start\": 12.5,\n      \"t_end\": 15.0,\n      \"confidence\": 0.95,\n      \"description\": \"A man in a plaid shirt swings a pole at a man in white, who is struck and falls to the ground; a woman watches in alarm.\",\n      \"reason\": \"Frames f3–f6 show active physical combat: swinging pole (f3), defensive posture and impact (f4–f5), and the victim falling (f7). Frame f8 shows the fallen man with facial injury, consistent with assault in a fight. Abuse requires a helpless victim; here the victim initially resists (f4–f5), indicating mutual or initiated combat, thus Fighting, not Abuse. The event spans from initiation (f3) through fall (f7), ending by f8 when he lies still.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"The alleged 'Abuse' (14.5–15.0) occurs during the same physical altercation already classified as Fighting; the victim is not helpless at onset (he is actively engaged in f4–f5), so Abuse does not apply.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 11.0,
+              "f1": 11.5,
+              "f2": 12.0,
+              "f3": 12.5,
+              "f4": 13.0,
+              "f5": 13.5,
+              "f6": 14.0,
+              "f7": 14.5,
+              "f8": 15.0,
+              "f9": 15.5,
+              "f10": 16.0,
+              "f11": 16.5,
+              "f12": 17.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 12.9,
+                "t_end": 15.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 14.5,
+                "t_end": 15.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"Fighting\",\n      \"t_start\": 12.5,\n      \"t_end\": 15.0,\n      \"confidence\": 0.9,\n      \"description\": \"A man in a plaid shirt swings a pole at a man in white, who raises his arms defensively (f4), then is struck and falls to the ground (f7–f8), with visible facial injury in f8.\",\n      \"reason\": \"Frames f3–f6 show initiation and engagement: pole swing (f3), defensive posture and contact (f4–f5), and struggle (f6); f7 shows fall, f8 shows injured man on ground. The victim actively resists initially (f4–f5), satisfying 'mutual physical combat' for Fighting; Abuse requires aggression against a helpless victim, which is not evident at onset. Candidate 4’s interval (14.5–15.0) falls within this same event and does not represent a distinct abuse episode.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"The alleged 'Abuse' (t_start=14.5, t_end=15.0) coincides with the latter phase of the same physical altercation already classified as Fighting; the victim is not shown helpless at t=14.5 (f7 shows mid-fall, still in motion from prior combat), and no evidence supports non-consensual aggression against a defenseless person independent of the fight.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                3
+              ],
+              "category": "Fighting",
+              "t_start": 12.5,
+              "t_end": 15.0,
+              "confidence": 0.9,
+              "description": "A man in a plaid shirt swings a pole at a man in white, who raises his arms defensively (f4), then is struck and falls to the ground (f7–f8), with visible facial injury in f8.",
+              "reason": "Frames f3–f6 show initiation and engagement: pole swing (f3), defensive posture and contact (f4–f5), and struggle (f6); f7 shows fall, f8 shows injured man on ground. The victim actively resists initially (f4–f5), satisfying 'mutual physical combat' for Fighting; Abuse requires aggression against a helpless victim, which is not evident at onset. Candidate 4’s interval (14.5–15.0) falls within this same event and does not represent a distinct abuse episode.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 4,
+              "reason": "The alleged 'Abuse' (t_start=14.5, t_end=15.0) coincides with the latter phase of the same physical altercation already classified as Fighting; the victim is not shown helpless at t=14.5 (f7 shows mid-fall, still in motion from prior combat), and no evidence supports non-consensual aggression against a defenseless person independent of the fight.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 16.0,
+              "f1": 16.5,
+              "f2": 17.0,
+              "f3": 17.5,
+              "f4": 18.0,
+              "f5": 18.5,
+              "f6": 19.0,
+              "f7": 19.5,
+              "f8": 20.0,
+              "f9": 20.5,
+              "f10": 21.0,
+              "f11": 21.5,
+              "f12": 22.0,
+              "f13": 22.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 5,
+                "t_start": 18.0,
+                "t_end": 21.6,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [5],\n      \"category\": \"Abuse\",\n      \"t_start\": 18.0,\n      \"t_end\": 22.5,\n      \"confidence\": 0.95,\n      \"description\": \"A man in red crouches over a prone, motionless man on the ground while others stand nearby holding sticks; the man in red gestures and speaks aggressively toward the prone man.\",\n      \"reason\": \"The prone man shows no resistance or movement across frames f4–f13; the man in red actively leans over him, points, and exhibits hostile posture (f6–f13), satisfying the definition of abuse (aggression against a helpless victim). Evidence includes visible power imbalance and non-consensual interaction without mutual combat.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                5
+              ],
+              "category": "Abuse",
+              "t_start": 18.0,
+              "t_end": 22.5,
+              "confidence": 0.95,
+              "description": "A man in red crouches over a prone, motionless man on the ground while others stand nearby holding sticks; the man in red gestures and speaks aggressively toward the prone man.",
+              "reason": "The prone man shows no resistance or movement across frames f4–f13; the man in red actively leans over him, points, and exhibits hostile posture (f6–f13), satisfying the definition of abuse (aggression against a helpless victim). Evidence includes visible power imbalance and non-consensual interaction without mutual combat.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

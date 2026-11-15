@@ -1,0 +1,509 @@
+{
+  "events": [
+    {
+      "t_start": 6.0,
+      "t_end": 10.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "Players from both teams (including Raptors #20 Knight and Cavaliers #9) engage in a physical altercation near the sideline, with pushing, grabbing, and attempts to separate by officials and teammates.",
+      "source_candidate_ids": [
+        0,
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          6.0,
+          6.5,
+          7.0,
+          7.5,
+          8.0,
+          8.5,
+          9.0,
+          9.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11"
+        ],
+        "reason": "Frames f4–f11 show mutual physical contact between opposing players (e.g., f4: Knight and #9 grappling; f5–f7: multiple players entangled; f8–f10: continued scuffle with referees intervening). This meets the definition of Fighting (mutual physical combat), not Riot (no collective unrest beyond the immediate group) or Abuse (no helpless victim). Candidate 0 and 1 describe overlapping intervals of the same event; merged.",
+        "source_categories": [
+          "Fighting",
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 19.5,
+      "t_end": 26.0,
+      "anomaly_type": "Fighting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A cluster of individuals—including players, staff, and spectators—engage in physical grappling and shoving near the sideline during a basketball game; multiple people are seen grabbing, pushing, and restraining others in a chaotic but localized scuffle.",
+      "source_candidate_ids": [
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          19.5,
+          20.0,
+          20.5,
+          21.0,
+          21.5,
+          22.0,
+          22.5,
+          23.0,
+          23.5,
+          24.0,
+          24.5,
+          25.0,
+          25.5,
+          26.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17"
+        ],
+        "reason": "Frames f4–f17 show sustained close physical contact among several individuals: arms interlocked, bodies pressed together, some falling or being held back. This meets the definition of mutual physical combat (Fighting), not Riot (no widespread unrest) or Abuse (no clear helpless victim). The event is continuous across these frames and matches candidate 3’s interval.",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 41.5,
+      "t_end": 43.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "Two players—one in red (Raptors #9) and one in black/gold (Cavaliers #0)—engage in mutual physical combat: they grab, push, and exchange punches near the basket, with referee intervening.",
+      "source_candidate_ids": [
+        7
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 3,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          41.5,
+          42.0,
+          42.5,
+          43.0,
+          43.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8"
+        ],
+        "reason": "Frames f4–f8 show sustained reciprocal physical contact: grabbing torsos (f4), clinching (f5), driving toward basket while entangled (f6), and visible punching/strangling motions (f7–f8). This meets the definition of Fighting (mutual physical combat).",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 8,
+      "output_count": 3,
+      "groups": 4,
+      "rejected": 4,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 4.0,
+              "f1": 4.5,
+              "f2": 5.0,
+              "f3": 5.5,
+              "f4": 6.0,
+              "f5": 6.5,
+              "f6": 7.0,
+              "f7": 7.5,
+              "f8": 8.0,
+              "f9": 8.5,
+              "f10": 9.0,
+              "f11": 9.5,
+              "f12": 10.0,
+              "f13": 10.5,
+              "f14": 11.0,
+              "f15": 11.5,
+              "f16": 12.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 6.0,
+                "t_end": 7.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 6.0,
+                "t_end": 10.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 6.0,
+                "t_end": 10.5,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Fighting\",\n      \"t_start\": 6.0,\n      \"t_end\": 10.5,\n      \"confidence\": 0.95,\n      \"description\": \"Players from both teams (including Raptors #20 Knight and Cavaliers #9) engage in a physical altercation near the sideline, with pushing, grabbing, and attempts to separate by officials and teammates.\",\n      \"reason\": \"Frames f4–f11 show mutual physical contact between opposing players (e.g., f4: Knight and #9 grappling; f5–f7: multiple players entangled; f8–f10: continued scuffle with referees intervening). This meets the definition of Fighting (mutual physical combat), not Riot (no collective unrest beyond the immediate group) or Abuse (no helpless victim). Candidate 0 and 1 describe overlapping intervals of the same event; merged.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"The incident involves a limited group of players and officials, not collective violent unrest among spectators or large groups; crowd is reactive but not participating in violence, so 'Riot' is incorrect.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1
+              ],
+              "category": "Fighting",
+              "t_start": 6.0,
+              "t_end": 10.5,
+              "confidence": 0.95,
+              "description": "Players from both teams (including Raptors #20 Knight and Cavaliers #9) engage in a physical altercation near the sideline, with pushing, grabbing, and attempts to separate by officials and teammates.",
+              "reason": "Frames f4–f11 show mutual physical contact between opposing players (e.g., f4: Knight and #9 grappling; f5–f7: multiple players entangled; f8–f10: continued scuffle with referees intervening). This meets the definition of Fighting (mutual physical combat), not Riot (no collective unrest beyond the immediate group) or Abuse (no helpless victim). Candidate 0 and 1 describe overlapping intervals of the same event; merged.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "The incident involves a limited group of players and officials, not collective violent unrest among spectators or large groups; crowd is reactive but not participating in violence, so 'Riot' is incorrect.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          3,
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 17.5,
+              "f1": 18.0,
+              "f2": 18.5,
+              "f3": 19.0,
+              "f4": 19.5,
+              "f5": 20.0,
+              "f6": 20.5,
+              "f7": 21.0,
+              "f8": 21.5,
+              "f9": 22.0,
+              "f10": 22.5,
+              "f11": 23.0,
+              "f12": 23.5,
+              "f13": 24.0,
+              "f14": 24.5,
+              "f15": 25.0,
+              "f16": 25.5,
+              "f17": 26.0,
+              "f18": 26.5,
+              "f19": 27.0,
+              "f20": 27.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 19.5,
+                "t_end": 26.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 22.4,
+                "t_end": 23.6,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"Fighting\",\n      \"t_start\": 19.5,\n      \"t_end\": 26.0,\n      \"confidence\": 0.95,\n      \"description\": \"A cluster of individuals—including players, staff, and spectators—engage in physical grappling and shoving near the sideline during a basketball game; multiple people are seen grabbing, pushing, and restraining others in a chaotic but localized scuffle.\",\n      \"reason\": \"Frames f4–f17 show sustained close physical contact among several individuals: arms interlocked, bodies pressed together, some falling or being held back. This meets the definition of mutual physical combat (Fighting), not Riot (no widespread unrest) or Abuse (no clear helpless victim). The event is continuous across these frames and matches candidate 3’s interval.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"No evidence of aggression against a helpless victim; the activity in frames f10–f12 (around 22.4–23.6 s) is part of the same mutual scuffle already classified as Fighting, with no indication of one-sided abuse.\",\n      \"evidence_frame_ids\": [\"f10\", \"f11\", \"f12\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                3
+              ],
+              "category": "Fighting",
+              "t_start": 19.5,
+              "t_end": 26.0,
+              "confidence": 0.95,
+              "description": "A cluster of individuals—including players, staff, and spectators—engage in physical grappling and shoving near the sideline during a basketball game; multiple people are seen grabbing, pushing, and restraining others in a chaotic but localized scuffle.",
+              "reason": "Frames f4–f17 show sustained close physical contact among several individuals: arms interlocked, bodies pressed together, some falling or being held back. This meets the definition of mutual physical combat (Fighting), not Riot (no widespread unrest) or Abuse (no clear helpless victim). The event is continuous across these frames and matches candidate 3’s interval.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 4,
+              "reason": "No evidence of aggression against a helpless victim; the activity in frames f10–f12 (around 22.4–23.6 s) is part of the same mutual scuffle already classified as Fighting, with no indication of one-sided abuse.",
+              "evidence_frame_ids": [
+                "f10",
+                "f11",
+                "f12"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          5,
+          6
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 34.5,
+              "f1": 35.0,
+              "f2": 35.5,
+              "f3": 36.0,
+              "f4": 36.5,
+              "f5": 37.0,
+              "f6": 37.5,
+              "f7": 38.0,
+              "f8": 38.5,
+              "f9": 39.0,
+              "f10": 39.5,
+              "f11": 40.0,
+              "f12": 40.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 5,
+                "t_start": 36.5,
+                "t_end": 37.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 37.0,
+                "t_end": 39.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [5, 6],\n      \"category\": \"Normal\",\n      \"t_start\": 36.5,\n      \"t_end\": 39.0,\n      \"confidence\": 0.0,\n      \"description\": \"A player in red (No. 9) falls to the floor after contact during a basketball play; another player stands over him briefly while a referee approaches; no mutual combat or aggression toward a helpless person is visible.\",\n      \"reason\": \"The fall appears incidental to gameplay (likely a foul or collision), and the standing player does not engage in continued physical aggression; the referee intervenes promptly. Neither Fighting nor Abuse criteria are met: no reciprocal violence, and the fallen player is not subjected to intentional harm beyond the initial contact. Since 'Normal' is not an allowed output category, and no allowed category applies, this event is not listed as accepted. Thus, no accepted events are returned.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"No mutual physical combat occurs; the player in red falls after contact during a shot attempt, and the opposing player does not strike or grapple with him afterward—consistent with a routine basketball foul, not Fighting.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"The fallen player is not subjected to ongoing aggression; the standing player steps away, and the referee arrives quickly—no evidence of Abuse, which requires intentional harm to a helpless victim.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\", \"f7\", \"f8\", \"f9\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 34.5,
+              "f1": 35.0,
+              "f2": 35.5,
+              "f3": 36.0,
+              "f4": 36.5,
+              "f5": 37.0,
+              "f6": 37.5,
+              "f7": 38.0,
+              "f8": 38.5,
+              "f9": 39.0,
+              "f10": 39.5,
+              "f11": 40.0,
+              "f12": 40.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 5,
+                "t_start": 36.5,
+                "t_end": 37.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 37.0,
+                "t_end": 39.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"No mutual physical combat is visible: player #9 in red falls after contact during a shot attempt (f4–f5); the opposing player does not engage in reciprocal striking, grappling, or sustained aggression—consistent with a basketball foul, not Fighting.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"The fallen player is not subjected to intentional harm after falling; the standing player steps back, and a referee intervenes by f10—no evidence of aggression toward a helpless victim, so Abuse is not supported.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 5,
+              "reason": "No mutual physical combat is visible: player #9 in red falls after contact during a shot attempt (f4–f5); the opposing player does not engage in reciprocal striking, grappling, or sustained aggression—consistent with a basketball foul, not Fighting.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            },
+            {
+              "candidate_id": 6,
+              "reason": "The fallen player is not subjected to intentional harm after falling; the standing player steps back, and a referee intervenes by f10—no evidence of aggression toward a helpless victim, so Abuse is not supported.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          7
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 39.5,
+              "f1": 40.0,
+              "f2": 40.5,
+              "f3": 41.0,
+              "f4": 41.5,
+              "f5": 42.0,
+              "f6": 42.5,
+              "f7": 43.0,
+              "f8": 43.5,
+              "f9": 44.0,
+              "f10": 44.5,
+              "f11": 45.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 7,
+                "t_start": 41.5,
+                "t_end": 43.5,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [7],\n      \"category\": \"Fighting\",\n      \"t_start\": 41.5,\n      \"t_end\": 43.5,\n      \"confidence\": 0.95,\n      \"description\": \"Two players—one in red (Raptors #9) and one in black/gold (Cavaliers #0)—engage in mutual physical combat: they grab, push, and exchange punches near the basket, with referee intervening.\",\n      \"reason\": \"Frames f4–f8 show sustained reciprocal physical contact: grabbing torsos (f4), clinching (f5), driving toward basket while entangled (f6), and visible punching/strangling motions (f7–f8). This meets the definition of Fighting (mutual physical combat).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                7
+              ],
+              "category": "Fighting",
+              "t_start": 41.5,
+              "t_end": 43.5,
+              "confidence": 0.95,
+              "description": "Two players—one in red (Raptors #9) and one in black/gold (Cavaliers #0)—engage in mutual physical combat: they grab, push, and exchange punches near the basket, with referee intervening.",
+              "reason": "Frames f4–f8 show sustained reciprocal physical contact: grabbing torsos (f4), clinching (f5), driving toward basket while entangled (f6), and visible punching/strangling motions (f7–f8). This meets the definition of Fighting (mutual physical combat).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

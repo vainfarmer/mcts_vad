@@ -1,0 +1,686 @@
+{
+  "events": [
+    {
+      "t_start": 0.0,
+      "t_end": 16.0,
+      "anomaly_type": "Abuse",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A person wearing a yellow vest is on the ground from f0 onward, with multiple police officers surrounding, pulling arms, pinning, and applying physical control while the individual remains non-resisting and visibly vulnerable.",
+      "source_candidate_ids": [
+        0,
+        4,
+        6,
+        7
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          0.0,
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          6.0,
+          7.0,
+          10.0,
+          11.5,
+          12.0,
+          13.0,
+          14.0,
+          14.5,
+          15.5,
+          16.0
+        ],
+        "evidence_frame_ids": [
+          "f0",
+          "f1",
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16"
+        ],
+        "reason": "From f0 to f16, the individual is supine or seated on pavement; officers repeatedly exert force (e.g., f2: officer grabs raised arm; f5: multiple officers restrain; f10–f13: continued holding down with batons present but not striking); no reciprocal action is visible—this satisfies 'Abuse' as one-sided aggression against a helpless victim.",
+        "source_categories": [
+          "Abuse",
+          "Abuse",
+          "Abuse",
+          "Abuse"
+        ]
+      }
+    },
+    {
+      "t_start": 17.5,
+      "t_end": 22.0,
+      "anomaly_type": "Riot",
+      "confidence": 0.8,
+      "coarse_score": 0.8,
+      "description": "Police in riot gear advance and deploy what appears to be tear gas or pepper spray against a woman in a yellow vest while other protesters are visible in the background; the scene shows coordinated law enforcement action amid a crowd, consistent with crowd control during civil unrest.",
+      "source_candidate_ids": [
+        12
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.8,
+        "evidence_times": [
+          17.5,
+          18.0,
+          18.5,
+          19.0,
+          19.5,
+          20.0,
+          20.5,
+          21.0,
+          21.5,
+          22.0
+        ],
+        "evidence_frame_ids": [
+          "f0",
+          "f1",
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9"
+        ],
+        "reason": "Multiple officers in full riot gear (helmets, shields, vests), deployment of irritant (visible cloud at f2–f4), and presence of multiple civilians including one wearing a yellow vest (a marker of the Gilets Jaunes movement) indicate collective unrest and state response—not isolated fighting or abuse. The event spans f0–f9, with peak action f2–f6; candidate 12’s interval (19.5–22.0) is fully contained within this broader visible riot context.",
+        "source_categories": [
+          "Riot"
+        ]
+      }
+    },
+    {
+      "t_start": 18.5,
+      "t_end": 21.0,
+      "anomaly_type": "Abuse",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A woman in a yellow vest is seized by an officer’s arm and forcibly moved toward a van while visibly distressed, with open hands and contorted facial expression, and no resistance observed.",
+      "source_candidate_ids": [
+        10,
+        11
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 1,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          18.5,
+          19.0,
+          19.5,
+          20.5,
+          21.0
+        ],
+        "evidence_frame_ids": [
+          "f18",
+          "f19",
+          "f20",
+          "f21",
+          "f22"
+        ],
+        "reason": "In f18–f22, the woman is pulled without any sign of combat or resistance; another officer with shield approaches closely but does not engage in mutual action—this is one-sided coercion of a non-aggressive, vulnerable person, fitting 'Abuse'.",
+        "source_categories": [
+          "Abuse",
+          "Abuse"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 13,
+      "output_count": 3,
+      "groups": 2,
+      "rejected": 6,
+      "uncertain": 0,
+      "merged_sources": 4,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 1.0,
+              "f2": 2.0,
+              "f3": 3.0,
+              "f4": 4.0,
+              "f5": 6.0,
+              "f6": 7.0,
+              "f7": 7.5,
+              "f8": 8.0,
+              "f9": 10.0,
+              "f10": 11.5,
+              "f11": 12.0,
+              "f12": 13.0,
+              "f13": 14.0,
+              "f14": 14.5,
+              "f15": 15.5,
+              "f16": 16.0,
+              "f17": 18.0,
+              "f18": 18.5,
+              "f19": 19.0,
+              "f20": 19.5,
+              "f21": 20.5,
+              "f22": 21.0,
+              "f23": 23.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 0.0,
+                "t_end": 2.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 0.0,
+                "t_end": 8.0,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 1.5,
+                "t_end": 2.7,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 4.0,
+                "t_end": 11.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 5.5,
+                "t_end": 11.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 8.0,
+                "t_end": 15.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 9.5,
+                "t_end": 14.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 12.0,
+                "t_end": 16.8,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 12.0,
+                "t_end": 19.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 9,
+                "t_start": 18.3,
+                "t_end": 19.2,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 10,
+                "t_start": 18.5,
+                "t_end": 20.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 11,
+                "t_start": 19.5,
+                "t_end": 22.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 2, 4, 6, 7],\n      \"category\": \"Abuse\",\n      \"t_start\": 0.0,\n      \"t_end\": 16.0,\n      \"confidence\": 0.95,\n      \"description\": \"A person in a yellow vest is on the ground while multiple police officers surround and physically interact with them—pulling arms, holding down, and using batons—while the individual appears non-resisting and vulnerable.\",\n      \"reason\": \"From f0 to f16, the individual remains on the ground or being subdued without visible resistance; officers apply force (e.g., f2: officer pulling arm; f5: multiple officers restraining; f10–f13: continued pinning and baton presence). This meets the definition of Abuse: aggression against a helpless victim.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    },\n    {\n      \"source_candidate_ids\": [10, 11],\n      \"category\": \"Abuse\",\n      \"t_start\": 18.5,\n      \"t_end\": 21.0,\n      \"confidence\": 0.9,\n      \"description\": \"A woman in a yellow vest is grabbed and forcibly moved by a police officer while appearing distressed and non-aggressive; another officer with a shield approaches closely.\",\n      \"reason\": \"In f18–f22, the woman is seized by the arm and pulled toward a van; her posture and facial expression indicate distress, not combat. No mutual engagement occurs—this is one-sided coercion against a non-resisting person.\",\n      \"evidence_frame_ids\": [\"f18\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"‘Riot’ requires collective violent unrest; the images show police response to individuals, not widespread coordinated violence among civilians. Background crowds are distant and not engaged in violence.\",\n      \"evidence_frame_ids\": [\"f0\", \"f7\", \"f8\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"No evidence of collective violent unrest during 4.0–11.5; only focused police restraint of one individual, which is better classified as Abuse, not Riot.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f9\", \"f10\", \"f11\"]\n    },\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"Same event as candidate 0/4/6/7 (individual restraint), not a distinct riot; ‘Riot’ misapplies when only law enforcement action against isolated persons is visible.\",\n      \"evidence_frame_ids\": [\"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    },\n    {\n      \"candidate_id\": 8,\n      \"reason\": \"The period 12.0–19.5 includes both Abuse (f12–f16) and a separate incident (f17–f19); merging into ‘Riot’ is inaccurate—no crowd-based violent unrest is shown.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\"]\n    },\n    {\n      \"candidate_id\": 9,\n      \"reason\": \"No mutual physical combat occurs at 18.3–19.2; the interaction is one-sided police restraint of a civilian (Abuse), not Fighting.\",\n      \"evidence_frame_ids\": [\"f18\", \"f19\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Fighting requires mutual combat; f1–f2 show only one person falling and being acted upon—no evidence of reciprocal force from the fallen person.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 1.0,
+              "f2": 2.0,
+              "f3": 3.0,
+              "f4": 4.0,
+              "f5": 6.0,
+              "f6": 7.0,
+              "f7": 7.5,
+              "f8": 8.0,
+              "f9": 10.0,
+              "f10": 11.5,
+              "f11": 12.0,
+              "f12": 13.0,
+              "f13": 14.0,
+              "f14": 14.5,
+              "f15": 15.5,
+              "f16": 16.0,
+              "f17": 18.0,
+              "f18": 18.5,
+              "f19": 19.0,
+              "f20": 19.5,
+              "f21": 20.5,
+              "f22": 21.0,
+              "f23": 23.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 0.0,
+                "t_end": 2.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 0.0,
+                "t_end": 8.0,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 1.5,
+                "t_end": 2.7,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 4.0,
+                "t_end": 11.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 5.5,
+                "t_end": 11.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 8.0,
+                "t_end": 15.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 9.5,
+                "t_end": 14.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 12.0,
+                "t_end": 16.8,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 12.0,
+                "t_end": 19.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 9,
+                "t_start": 18.3,
+                "t_end": 19.2,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 10,
+                "t_start": 18.5,
+                "t_end": 20.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 11,
+                "t_start": 19.5,
+                "t_end": 22.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 4, 6, 7],\n      \"category\": \"Abuse\",\n      \"t_start\": 0.0,\n      \"t_end\": 16.0,\n      \"confidence\": 0.95,\n      \"description\": \"A person in a yellow vest is on the ground from f0 onward, with police officers repeatedly pulling arms, pinning, and surrounding them while the individual shows no resistance and appears vulnerable.\",\n      \"reason\": \"From f0 to f16, the individual remains supine or seated on pavement; officers apply physical control (e.g., f2: officer grabs raised arm; f5: multiple officers restrain; f10–f13: continued holding down with batons visible but not striking; f16: still being subdued). This satisfies 'Abuse': one-sided aggression against a helpless victim, not mutual combat.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    },\n    {\n      \"source_candidate_ids\": [10, 11],\n      \"category\": \"Abuse\",\n      \"t_start\": 18.5,\n      \"t_end\": 21.0,\n      \"confidence\": 0.9,\n      \"description\": \"A woman in a yellow vest is seized by an officer’s arm and forcibly moved toward a van while visibly distressed and non-aggressive; another officer with shield approaches closely.\",\n      \"reason\": \"In f18–f22, the woman is pulled without resistance; her posture (arms open, face contorted) indicates distress, not combat. No reciprocal force is visible—this is one-sided coercion of a non-resisting person, fitting 'Abuse'.\",\n      \"evidence_frame_ids\": [\"f18\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"‘Riot’ requires collective violent unrest among civilians; images show only police responding to isolated individuals, with background crowds distant and nonviolent (e.g., f7, f8 show officers forming line, no crowd aggression).\",\n      \"evidence_frame_ids\": [\"f0\", \"f7\", \"f8\"]\n    },\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Fighting requires mutual physical combat; f1–f2 show only the person falling and being acted upon—no evidence of reciprocal force or engagement from the fallen person.\",\n      \"evidence_frame_ids\": [\"f1\", \"f2\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"No collective violent unrest during 4.0–11.5; only focused police restraint of one individual (already classified as Abuse), not riotous behavior.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f9\", \"f10\", \"f11\"]\n    },\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"The activity (police subduing one person) is the same as in candidate 0/4/6/7; labeling it ‘Riot’ misapplies the term when no crowd-based violence is visible.\",\n      \"evidence_frame_ids\": [\"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    },\n    {\n      \"candidate_id\": 8,\n      \"reason\": \"Period 12.0–19.5 includes two distinct Abuse incidents (f12–f16 and f17–f22), but no collective violent unrest; merging into ‘Riot’ contradicts definition.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\"]\n    },\n    {\n      \"candidate_id\": 9,\n      \"reason\": \"No mutual physical combat at 18.3–19.2; f18–f19 show one-sided police seizure of a civilian, consistent with Abuse, not Fighting.\",\n      \"evidence_frame_ids\": [\"f18\", \"f19\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Although candidate 2 was rejected above, per instruction to list *every* candidate exactly once and avoid duplication, this entry is retained as uncertain only if evidence were insufficient—but here evidence *is* sufficient to reject; however, since the prior response incorrectly listed it in uncertain while also rejecting it, we correct by placing it solely in rejected. To comply strictly: no candidate remains truly uncertain; all are resolved. Thus, uncertain list is empty.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 1.0,
+              "f2": 2.0,
+              "f3": 3.0,
+              "f4": 4.0,
+              "f5": 6.0,
+              "f6": 7.0,
+              "f7": 7.5,
+              "f8": 8.0,
+              "f9": 10.0,
+              "f10": 11.5,
+              "f11": 12.0,
+              "f12": 13.0,
+              "f13": 14.0,
+              "f14": 14.5,
+              "f15": 15.5,
+              "f16": 16.0,
+              "f17": 18.0,
+              "f18": 18.5,
+              "f19": 19.0,
+              "f20": 19.5,
+              "f21": 20.5,
+              "f22": 21.0,
+              "f23": 23.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 0.0,
+                "t_end": 2.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 0.0,
+                "t_end": 8.0,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 1.5,
+                "t_end": 2.7,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 4.0,
+                "t_end": 11.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 5.5,
+                "t_end": 11.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 8.0,
+                "t_end": 15.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 9.5,
+                "t_end": 14.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 12.0,
+                "t_end": 16.8,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 12.0,
+                "t_end": 19.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 9,
+                "t_start": 18.3,
+                "t_end": 19.2,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 10,
+                "t_start": 18.5,
+                "t_end": 20.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 11,
+                "t_start": 19.5,
+                "t_end": 22.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 4, 6, 7],\n      \"category\": \"Abuse\",\n      \"t_start\": 0.0,\n      \"t_end\": 16.0,\n      \"confidence\": 0.95,\n      \"description\": \"A person wearing a yellow vest is on the ground from f0 onward, with multiple police officers surrounding, pulling arms, pinning, and applying physical control while the individual remains non-resisting and visibly vulnerable.\",\n      \"reason\": \"From f0 to f16, the individual is supine or seated on pavement; officers repeatedly exert force (e.g., f2: officer grabs raised arm; f5: multiple officers restrain; f10–f13: continued holding down with batons present but not striking); no reciprocal action is visible—this satisfies 'Abuse' as one-sided aggression against a helpless victim.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    },\n    {\n      \"source_candidate_ids\": [10, 11],\n      \"category\": \"Abuse\",\n      \"t_start\": 18.5,\n      \"t_end\": 21.0,\n      \"confidence\": 0.9,\n      \"description\": \"A woman in a yellow vest is seized by an officer’s arm and forcibly moved toward a van while visibly distressed, with open hands and contorted facial expression, and no resistance observed.\",\n      \"reason\": \"In f18–f22, the woman is pulled without any sign of combat or resistance; another officer with shield approaches closely but does not engage in mutual action—this is one-sided coercion of a non-aggressive, vulnerable person, fitting 'Abuse'.\",\n      \"evidence_frame_ids\": [\"f18\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"‘Riot’ requires collective violent unrest among civilians; images show only police response to isolated individuals, with background crowds distant and nonviolent (e.g., f7, f8 show officers forming line, no crowd aggression).\",\n      \"evidence_frame_ids\": [\"f0\", \"f7\", \"f8\"]\n    },\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Fighting requires mutual physical combat; f1–f2 show only the person falling and being acted upon—no evidence of reciprocal force or engagement from the fallen person.\",\n      \"evidence_frame_ids\": [\"f1\", \"f2\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"No collective violent unrest during 4.0–11.5; only focused police restraint of one individual (already classified as Abuse), not riotous behavior.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f9\", \"f10\", \"f11\"]\n    },\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"The activity (police subduing one person) is identical to that in candidates 0/4/6/7; labeling it ‘Riot’ misapplies the term when no crowd-based violence is visible.\",\n      \"evidence_frame_ids\": [\"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    },\n    {\n      \"candidate_id\": 8,\n      \"reason\": \"Period 12.0–19.5 includes two distinct Abuse incidents (f12–f16 and f17–f22), but no collective violent unrest; merging into ‘Riot’ contradicts definition.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\"]\n    },\n    {\n      \"candidate_id\": 9,\n      \"reason\": \"No mutual physical combat at 18.3–19.2; f18–f19 show one-sided police seizure of a civilian, consistent with Abuse, not Fighting.\",\n      \"evidence_frame_ids\": [\"f18\", \"f19\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                4,
+                6,
+                7
+              ],
+              "category": "Abuse",
+              "t_start": 0.0,
+              "t_end": 16.0,
+              "confidence": 0.95,
+              "description": "A person wearing a yellow vest is on the ground from f0 onward, with multiple police officers surrounding, pulling arms, pinning, and applying physical control while the individual remains non-resisting and visibly vulnerable.",
+              "reason": "From f0 to f16, the individual is supine or seated on pavement; officers repeatedly exert force (e.g., f2: officer grabs raised arm; f5: multiple officers restrain; f10–f13: continued holding down with batons present but not striking); no reciprocal action is visible—this satisfies 'Abuse' as one-sided aggression against a helpless victim.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                10,
+                11
+              ],
+              "category": "Abuse",
+              "t_start": 18.5,
+              "t_end": 21.0,
+              "confidence": 0.9,
+              "description": "A woman in a yellow vest is seized by an officer’s arm and forcibly moved toward a van while visibly distressed, with open hands and contorted facial expression, and no resistance observed.",
+              "reason": "In f18–f22, the woman is pulled without any sign of combat or resistance; another officer with shield approaches closely but does not engage in mutual action—this is one-sided coercion of a non-aggressive, vulnerable person, fitting 'Abuse'.",
+              "evidence_frame_ids": [
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "‘Riot’ requires collective violent unrest among civilians; images show only police response to isolated individuals, with background crowds distant and nonviolent (e.g., f7, f8 show officers forming line, no crowd aggression).",
+              "evidence_frame_ids": [
+                "f0",
+                "f7",
+                "f8"
+              ]
+            },
+            {
+              "candidate_id": 2,
+              "reason": "Fighting requires mutual physical combat; f1–f2 show only the person falling and being acted upon—no evidence of reciprocal force or engagement from the fallen person.",
+              "evidence_frame_ids": [
+                "f1",
+                "f2"
+              ]
+            },
+            {
+              "candidate_id": 3,
+              "reason": "No collective violent unrest during 4.0–11.5; only focused police restraint of one individual (already classified as Abuse), not riotous behavior.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f9",
+                "f10",
+                "f11"
+              ]
+            },
+            {
+              "candidate_id": 5,
+              "reason": "The activity (police subduing one person) is identical to that in candidates 0/4/6/7; labeling it ‘Riot’ misapplies the term when no crowd-based violence is visible.",
+              "evidence_frame_ids": [
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16"
+              ]
+            },
+            {
+              "candidate_id": 8,
+              "reason": "Period 12.0–19.5 includes two distinct Abuse incidents (f12–f16 and f17–f22), but no collective violent unrest; merging into ‘Riot’ contradicts definition.",
+              "evidence_frame_ids": [
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19"
+              ]
+            },
+            {
+              "candidate_id": 9,
+              "reason": "No mutual physical combat at 18.3–19.2; f18–f19 show one-sided police seizure of a civilian, consistent with Abuse, not Fighting.",
+              "evidence_frame_ids": [
+                "f18",
+                "f19"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          12
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 17.5,
+              "f1": 18.0,
+              "f2": 18.5,
+              "f3": 19.0,
+              "f4": 19.5,
+              "f5": 20.0,
+              "f6": 20.5,
+              "f7": 21.0,
+              "f8": 21.5,
+              "f9": 22.0,
+              "f10": 22.5,
+              "f11": 23.0,
+              "f12": 23.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 12,
+                "t_start": 19.5,
+                "t_end": 22.0,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [12],\n      \"category\": \"Riot\",\n      \"t_start\": 17.5,\n      \"t_end\": 22.0,\n      \"confidence\": 0.8,\n      \"description\": \"Police in riot gear advance and deploy what appears to be tear gas or pepper spray against a woman in a yellow vest while other protesters are visible in the background; the scene shows coordinated law enforcement action amid a crowd, consistent with crowd control during civil unrest.\",\n      \"reason\": \"Multiple officers in full riot gear (helmets, shields, vests), deployment of irritant (visible cloud at f2–f4), and presence of multiple civilians including one wearing a yellow vest (a marker of the Gilets Jaunes movement) indicate collective unrest and state response—not isolated fighting or abuse. The event spans f0–f9, with peak action f2–f6; candidate 12’s interval (19.5–22.0) is fully contained within this broader visible riot context.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                12
+              ],
+              "category": "Riot",
+              "t_start": 17.5,
+              "t_end": 22.0,
+              "confidence": 0.8,
+              "description": "Police in riot gear advance and deploy what appears to be tear gas or pepper spray against a woman in a yellow vest while other protesters are visible in the background; the scene shows coordinated law enforcement action amid a crowd, consistent with crowd control during civil unrest.",
+              "reason": "Multiple officers in full riot gear (helmets, shields, vests), deployment of irritant (visible cloud at f2–f4), and presence of multiple civilians including one wearing a yellow vest (a marker of the Gilets Jaunes movement) indicate collective unrest and state response—not isolated fighting or abuse. The event spans f0–f9, with peak action f2–f6; candidate 12’s interval (19.5–22.0) is fully contained within this broader visible riot context.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

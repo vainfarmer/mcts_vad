@@ -1,0 +1,562 @@
+{
+  "events": [
+    {
+      "t_start": 2.0,
+      "t_end": 15.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A large dust cloud erupts on the left shoulder and spreads across lanes; debris is visible on the road surface, and vehicles slow and swerve to avoid the area.",
+      "source_candidate_ids": [
+        0,
+        1,
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          1.5,
+          2.0,
+          3.0,
+          3.5,
+          4.5,
+          5.0,
+          6.0,
+          6.5,
+          7.5,
+          8.0,
+          9.0,
+          9.5,
+          10.5,
+          11.0,
+          12.0,
+          12.5,
+          13.5,
+          14.0,
+          15.0,
+          15.5
+        ],
+        "evidence_frame_ids": [
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18",
+          "f19",
+          "f20",
+          "f21"
+        ],
+        "reason": "Frames f2–f21 show a sudden, expanding dust plume originating near the left guardrail, consistent with a high-speed vehicle impact (e.g., loss of control into barrier or rollover); multiple cars react by braking and changing lanes, and scattered debris appears on the pavement—hallmarks of a crash, not normal driving or other categories.",
+        "source_categories": [
+          "CarAccident",
+          "CarAccident",
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 28.5,
+      "t_end": 30.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 1.0,
+      "coarse_score": 1.0,
+      "description": "A black car collides with the rear-left side of a white truck as the truck turns left at an intersection, causing visible impact, dust, and vehicle displacement.",
+      "source_candidate_ids": [
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 1.0,
+        "evidence_times": [
+          28.5,
+          29.0,
+          29.5,
+          30.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7"
+        ],
+        "reason": "Frames f4–f7 show the black car entering the intersection, striking the truck (f5), followed by both vehicles sliding and rotating (f6–f7) with dust and deformation—consistent with a crash, not ordinary driving or other categories.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 30.0,
+      "t_end": 32.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A black sedan collides with a light blue truck at an intersection, producing dust and visible deformation of the sedan’s front; the truck is pushed sideways and continues moving forward after impact.",
+      "source_candidate_ids": [
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          30.0,
+          30.5,
+          31.0,
+          31.5,
+          32.0,
+          32.5
+        ],
+        "evidence_frame_ids": [
+          "f0",
+          "f1",
+          "f2",
+          "f3",
+          "f4",
+          "f5"
+        ],
+        "reason": "Frames f0–f5 show clear contact between vehicles, dust cloud at impact (f0), sustained vehicle displacement and damage (f1–f5), satisfying CarAccident definition (crash, not ordinary driving). Candidate 4’s interval [32.0,32.5] is fully contained within this visible crash sequence.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 55.5,
+      "t_end": 56.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A white truck approaches head-on in the same lane, then at f5 the view abruptly shifts to shattered windshield glass and interior distortion, indicating an imminent or just-occurred collision.",
+      "source_candidate_ids": [
+        5
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 3,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          55.5,
+          56.0,
+          56.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "f4 shows the truck crossing into the camera vehicle’s lane; f5 shows catastrophic windshield damage with spiderweb cracks and interior view disruption—consistent with a frontal impact. f6 continues the broken-glass view, confirming post-impact state. This satisfies CarAccident definition (crash), not mere near-miss or ordinary driving.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 8,
+      "output_count": 4,
+      "groups": 6,
+      "rejected": 2,
+      "uncertain": 0,
+      "merged_sources": 2,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.5,
+              "f3": 2.0,
+              "f4": 3.0,
+              "f5": 3.5,
+              "f6": 4.5,
+              "f7": 5.0,
+              "f8": 6.0,
+              "f9": 6.5,
+              "f10": 7.5,
+              "f11": 8.0,
+              "f12": 9.0,
+              "f13": 9.5,
+              "f14": 10.5,
+              "f15": 11.0,
+              "f16": 12.0,
+              "f17": 12.5,
+              "f18": 13.5,
+              "f19": 14.0,
+              "f20": 15.0,
+              "f21": 15.5,
+              "f22": 16.5,
+              "f23": 17.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 2.0,
+                "t_end": 7.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 4.0,
+                "t_end": 11.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 8.0,
+                "t_end": 16.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1, 2],\n      \"category\": \"CarAccident\",\n      \"t_start\": 2.0,\n      \"t_end\": 15.5,\n      \"confidence\": 0.95,\n      \"description\": \"A large dust cloud erupts on the left shoulder and spreads across lanes; debris is visible on the road surface, and vehicles slow and swerve to avoid the area.\",\n      \"reason\": \"Frames f2–f21 show a sudden, expanding dust plume originating near the left guardrail, consistent with a high-speed vehicle impact (e.g., loss of control into barrier or rollover); multiple cars react by braking and changing lanes, and scattered debris appears on the pavement—hallmarks of a crash, not normal driving or other categories.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1,
+                2
+              ],
+              "category": "CarAccident",
+              "t_start": 2.0,
+              "t_end": 15.5,
+              "confidence": 0.95,
+              "description": "A large dust cloud erupts on the left shoulder and spreads across lanes; debris is visible on the road surface, and vehicles slow and swerve to avoid the area.",
+              "reason": "Frames f2–f21 show a sudden, expanding dust plume originating near the left guardrail, consistent with a high-speed vehicle impact (e.g., loss of control into barrier or rollover); multiple cars react by braking and changing lanes, and scattered debris appears on the pavement—hallmarks of a crash, not normal driving or other categories.",
+              "evidence_frame_ids": [
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 26.5,
+              "f1": 27.0,
+              "f2": 27.5,
+              "f3": 28.0,
+              "f4": 28.5,
+              "f5": 29.0,
+              "f6": 29.5,
+              "f7": 30.0,
+              "f8": 30.5,
+              "f9": 31.0,
+              "f10": 31.5,
+              "f11": 32.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 28.5,
+                "t_end": 30.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"CarAccident\",\n      \"t_start\": 28.5,\n      \"t_end\": 30.5,\n      \"confidence\": 1.0,\n      \"description\": \"A black car collides with the rear-left side of a white truck as the truck turns left at an intersection, causing visible impact, dust, and vehicle displacement.\",\n      \"reason\": \"Frames f4–f7 show the black car entering the intersection, striking the truck (f5), followed by both vehicles sliding and rotating (f6–f7) with dust and deformation—consistent with a crash, not ordinary driving or other categories.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                3
+              ],
+              "category": "CarAccident",
+              "t_start": 28.5,
+              "t_end": 30.5,
+              "confidence": 1.0,
+              "description": "A black car collides with the rear-left side of a white truck as the truck turns left at an intersection, causing visible impact, dust, and vehicle displacement.",
+              "reason": "Frames f4–f7 show the black car entering the intersection, striking the truck (f5), followed by both vehicles sliding and rotating (f6–f7) with dust and deformation—consistent with a crash, not ordinary driving or other categories.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 30.0,
+              "f1": 30.5,
+              "f2": 31.0,
+              "f3": 31.5,
+              "f4": 32.0,
+              "f5": 32.5,
+              "f6": 33.0,
+              "f7": 33.5,
+              "f8": 34.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 32.0,
+                "t_end": 32.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"CarAccident\",\n      \"t_start\": 30.0,\n      \"t_end\": 32.5,\n      \"confidence\": 0.95,\n      \"description\": \"A black sedan collides with a light blue truck at an intersection, producing dust and visible deformation of the sedan’s front; the truck is pushed sideways and continues moving forward after impact.\",\n      \"reason\": \"Frames f0–f5 show clear contact between vehicles, dust cloud at impact (f0), sustained vehicle displacement and damage (f1–f5), satisfying CarAccident definition (crash, not ordinary driving). Candidate 4’s interval [32.0,32.5] is fully contained within this visible crash sequence.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                4
+              ],
+              "category": "CarAccident",
+              "t_start": 30.0,
+              "t_end": 32.5,
+              "confidence": 0.95,
+              "description": "A black sedan collides with a light blue truck at an intersection, producing dust and visible deformation of the sedan’s front; the truck is pushed sideways and continues moving forward after impact.",
+              "reason": "Frames f0–f5 show clear contact between vehicles, dust cloud at impact (f0), sustained vehicle displacement and damage (f1–f5), satisfying CarAccident definition (crash, not ordinary driving). Candidate 4’s interval [32.0,32.5] is fully contained within this visible crash sequence.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 53.5,
+              "f1": 54.0,
+              "f2": 54.5,
+              "f3": 55.0,
+              "f4": 55.5,
+              "f5": 56.0,
+              "f6": 56.5,
+              "f7": 57.0,
+              "f8": 57.5,
+              "f9": 58.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 5,
+                "t_start": 55.5,
+                "t_end": 56.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [5],\n      \"category\": \"CarAccident\",\n      \"t_start\": 55.5,\n      \"t_end\": 56.5,\n      \"confidence\": 0.95,\n      \"description\": \"A white truck approaches head-on in the same lane, then at f5 the view abruptly shifts to shattered windshield glass and interior distortion, indicating an imminent or just-occurred collision.\",\n      \"reason\": \"f4 shows the truck crossing into the camera vehicle’s lane; f5 shows catastrophic windshield damage with spiderweb cracks and interior view disruption—consistent with a frontal impact. f6 continues the broken-glass view, confirming post-impact state. This satisfies CarAccident definition (crash), not mere near-miss or ordinary driving.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                5
+              ],
+              "category": "CarAccident",
+              "t_start": 55.5,
+              "t_end": 56.5,
+              "confidence": 0.95,
+              "description": "A white truck approaches head-on in the same lane, then at f5 the view abruptly shifts to shattered windshield glass and interior distortion, indicating an imminent or just-occurred collision.",
+              "reason": "f4 shows the truck crossing into the camera vehicle’s lane; f5 shows catastrophic windshield damage with spiderweb cracks and interior view disruption—consistent with a frontal impact. f6 continues the broken-glass view, confirming post-impact state. This satisfies CarAccident definition (crash), not mere near-miss or ordinary driving.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 4,
+        "source_ids": [
+          6
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 112.0,
+              "f1": 112.5,
+              "f2": 113.0,
+              "f3": 113.5,
+              "f4": 114.0,
+              "f5": 114.5,
+              "f6": 115.0,
+              "f7": 115.5,
+              "f8": 116.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 6,
+                "t_start": 114.0,
+                "t_end": 114.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"No visible crash, vehicle deformation, skid marks, or sudden stop; the white car on the right (f4–f6) appears parked or slowly pulling out, and traffic continues normally without disruption.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 6,
+              "reason": "No visible crash, vehicle deformation, skid marks, or sudden stop; the white car on the right (f4–f6) appears parked or slowly pulling out, and traffic continues normally without disruption.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 5,
+        "source_ids": [
+          7
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 115.0,
+              "f1": 115.5,
+              "f2": 116.0,
+              "f3": 116.5,
+              "f4": 117.0,
+              "f5": 117.5,
+              "f6": 118.0,
+              "f7": 118.5,
+              "f8": 119.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 7,
+                "t_start": 117.0,
+                "t_end": 117.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"No visible crash, vehicle deformation, skid marks, or sudden stop; vehicles continue moving normally through f4–f5.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 7,
+              "reason": "No visible crash, vehicle deformation, skid marks, or sudden stop; vehicles continue moving normally through f4–f5.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

@@ -1,0 +1,664 @@
+{
+  "events": [
+    {
+      "t_start": 5.5,
+      "t_end": 21.3,
+      "anomaly_type": "Fighting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "Two men engage in mutual physical combat involving grappling, striking, and use of a briefcase as a weapon in a multi-level car park; both are active participants at various points.",
+      "source_candidate_ids": [
+        1,
+        2,
+        3,
+        5,
+        7,
+        9
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          5.5,
+          6.5,
+          7.0,
+          7.5,
+          9.0,
+          12.0,
+          12.5,
+          13.0,
+          14.0,
+          16.5,
+          17.5,
+          18.0,
+          19.5,
+          20.0,
+          21.0,
+          21.5
+        ],
+        "evidence_frame_ids": [
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f18",
+          "f19",
+          "f20",
+          "f23",
+          "f24",
+          "f25",
+          "f26"
+        ],
+        "reason": "Images f6–f10, f13–f16, f18–f20, f23–f26 show reciprocal actions: one man is knocked down (f4), then rises and attacks (f7–f8), they grapple over the briefcase (f9, f13–f14), one is thrown (f15–f16), and later the other is on top (f23–f24) before being displaced (f25–f26). This satisfies 'Fighting' (mutual combat), not Abuse (no sustained helplessness).",
+        "source_categories": [
+          "Fighting",
+          "Fighting",
+          "Fighting",
+          "Fighting",
+          "Fighting",
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 21.4,
+      "t_end": 23.0,
+      "anomaly_type": "Abuse",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "One man lies prone on a car roof while another stands over him and presses down, with no visible resistance or engagement from the prone man.",
+      "source_candidate_ids": [
+        10
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 1,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          22.0,
+          22.5,
+          23.0
+        ],
+        "evidence_frame_ids": [
+          "f27",
+          "f28",
+          "f29"
+        ],
+        "reason": "In f27–f29, the man on the roof is motionless and face-down while the other leans heavily on him; no reciprocal action is visible, indicating helplessness and one-sided aggression—meeting Abuse criteria.",
+        "source_categories": [
+          "Abuse"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 12,
+      "output_count": 2,
+      "groups": 1,
+      "rejected": 5,
+      "uncertain": 0,
+      "merged_sources": 5,
+      "relabeled": 0,
+      "context_retries": 1,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 1.0,
+              "f1": 2.0,
+              "f2": 4.0,
+              "f3": 5.0,
+              "f4": 7.0,
+              "f5": 7.5,
+              "f6": 8.5,
+              "f7": 9.5,
+              "f8": 11.5,
+              "f9": 12.0,
+              "f10": 14.0,
+              "f11": 15.0,
+              "f12": 17.0,
+              "f13": 18.0,
+              "f14": 18.5,
+              "f15": 19.0,
+              "f16": 19.5,
+              "f17": 20.0,
+              "f18": 21.0,
+              "f19": 21.5,
+              "f20": 22.0,
+              "f21": 23.5,
+              "f22": 25.0,
+              "f23": 26.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 3.0,
+                "t_end": 5.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 5.5,
+                "t_end": 10.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 7.0,
+                "t_end": 7.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 9.1,
+                "t_end": 14.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 13.5,
+                "t_end": 16.3,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 17.3,
+                "t_end": 18.8,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 18.0,
+                "t_end": 18.8,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 18.0,
+                "t_end": 21.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 19.5,
+                "t_end": 20.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 9,
+                "t_start": 20.5,
+                "t_end": 21.3,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 10,
+                "t_start": 21.4,
+                "t_end": 23.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 11,
+                "t_start": 23.9,
+                "t_end": 25.9,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1, 2, 3],\n      \"category\": \"Fighting\",\n      \"t_start\": 5.5,\n      \"t_end\": 14.5,\n      \"confidence\": 0.95,\n      \"description\": \"Two men engage in reciprocal physical combat involving kicks, grabs, and use of a briefcase as a weapon in a multi-level car storage facility.\",\n      \"reason\": \"Frames f4–f10 show mutual engagement: f4 (kick), f5 (briefcase swing while both standing), f6–f7 (grappling), f8–f9 (close-quarters struggle with briefcase), f10 (both actively involved on platform). This constitutes fighting per definition (mutual physical combat).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    },\n    {\n      \"source_candidate_ids\": [4, 6, 8],\n      \"category\": \"Abuse\",\n      \"t_start\": 13.5,\n      \"t_end\": 18.8,\n      \"confidence\": 0.9,\n      \"description\": \"After the fight ends, one man lies incapacitated on the platform while the other stands over him, then steps on his chest and later retrieves items near his body.\",\n      \"reason\": \"f11 shows one man down, the other standing; f13 shows the standing man pressing down on the prone man’s torso; f14–f15 show the standing man reaching toward the prone man’s legs/feet while the latter remains motionless—consistent with aggression against a helpless victim (abuse).\",\n      \"evidence_frame_ids\": [\"f11\", \"f13\", \"f14\", \"f15\"]\n    },\n    {\n      \"source_candidate_ids\": [7, 9],\n      \"category\": \"Fighting\",\n      \"t_start\": 18.0,\n      \"t_end\": 21.0,\n      \"confidence\": 0.85,\n      \"description\": \"The previously prone man rises and re-engages the other man in close combat beside a car, including grappling and pushing.\",\n      \"reason\": \"f16–f17 show the formerly downed man now active and physically engaging the other (crouching, reaching); f18 shows him leaning over the car hood in apparent pursuit or follow-up strike—indicating renewed mutual combat, not one-sided abuse.\",\n      \"evidence_frame_ids\": [\"f16\", \"f17\", \"f18\"]\n    },\n    {\n      \"source_candidate_ids\": [10],\n      \"category\": \"Abuse\",\n      \"t_start\": 21.4,\n      \"t_end\": 23.0,\n      \"confidence\": 0.75,\n      \"description\": \"One man is seen lying motionless on the floor while another moves away; no further interaction visible, but the prior context suggests he remains helpless.\",\n      \"reason\": \"f20 shows one man collapsed on the floor, f21–f22 show only the floor and a briefcase; f22 shows the other man lying nearby but not interacting—insufficient for fighting, but given he was just struck and is immobile while the other moves freely, this aligns with abuse (aggression against helpless victim) during the transition phase. Confidence reduced due to occlusion in f21–f22.\",\n      \"evidence_frame_ids\": [\"f20\", \"f22\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"At t=3–5, f2 shows a man lying on platform with another standing near a suitcase; f3 shows the standing person bending—not yet aggressive. No evidence of abuse yet; the struggle begins later (f4+).\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\"]\n    },\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"f17–f18 show mutual engagement (fighting), not isolated ‘fighting’ at 17.3–18.8 alone; this interval is subsumed by broader fighting event (source 7,9). Candidate 5 is redundant and mis-timed relative to visible action onset.\",\n      \"evidence_frame_ids\": [\"f17\", \"f18\"]\n    },\n    {\n      \"candidate_id\": 11,\n      \"reason\": \"f23 shows only a blurred moving object and static platform; no person visible, no indication of abuse. The man previously on floor is not clearly present; insufficient evidence.\",\n      \"evidence_frame_ids\": [\"f23\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 10,\n      \"reason\": \"While f20 shows a man down and f22 shows another lying nearby, the exact nature of their interaction between 21.4–23.0 is obscured; abuse is plausible but not definitively visible—hence confidence lowered and retained as separate event with caution.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 1.0,
+              "f1": 2.0,
+              "f2": 4.0,
+              "f3": 5.0,
+              "f4": 7.0,
+              "f5": 7.5,
+              "f6": 8.5,
+              "f7": 9.5,
+              "f8": 11.5,
+              "f9": 12.0,
+              "f10": 14.0,
+              "f11": 15.0,
+              "f12": 17.0,
+              "f13": 18.0,
+              "f14": 18.5,
+              "f15": 19.0,
+              "f16": 19.5,
+              "f17": 20.0,
+              "f18": 21.0,
+              "f19": 21.5,
+              "f20": 22.0,
+              "f21": 23.5,
+              "f22": 25.0,
+              "f23": 26.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 3.0,
+                "t_end": 5.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 5.5,
+                "t_end": 10.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 7.0,
+                "t_end": 7.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 9.1,
+                "t_end": 14.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 13.5,
+                "t_end": 16.3,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 17.3,
+                "t_end": 18.8,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 18.0,
+                "t_end": 18.8,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 18.0,
+                "t_end": 21.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 19.5,
+                "t_end": 20.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 9,
+                "t_start": 20.5,
+                "t_end": 21.3,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 10,
+                "t_start": 21.4,
+                "t_end": 23.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 11,
+                "t_start": 23.9,
+                "t_end": 25.9,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1, 2, 3],\n      \"category\": \"Fighting\",\n      \"t_start\": 5.5,\n      \"t_end\": 14.5,\n      \"confidence\": 0.95,\n      \"description\": \"Two men engage in reciprocal physical combat: one kicks (f4), they grapple and exchange blows using a briefcase (f5–f9), and both remain actively involved on the platform (f10).\",\n      \"reason\": \"Frames f4–f10 show mutual engagement with offensive and defensive actions by both parties; per definition, this satisfies 'Fighting' (mutual physical combat). The interval [5.5,14.5] fully covers candidate intervals [5.5,10.0], [7.0,7.5], and [9.1,14.5] and is bounded by visible evidence.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    },\n    {\n      \"source_candidate_ids\": [4, 6, 8],\n      \"category\": \"Abuse\",\n      \"t_start\": 13.5,\n      \"t_end\": 18.8,\n      \"confidence\": 0.9,\n      \"description\": \"After the fight subsides, one man lies motionless on the platform while the other stands over him, steps on his chest (f13), and reaches toward his legs/feet (f14–f15) without resistance.\",\n      \"reason\": \"f11 shows one down, the other standing; f13 clearly shows the standing man pressing down on the prone man’s torso; f14–f15 show continued non-consensual contact with a helpless victim—meeting the 'Abuse' definition (aggression against a helpless victim). This interval subsumes candidates 4, 6, and 8 entirely.\",\n      \"evidence_frame_ids\": [\"f11\", \"f13\", \"f14\", \"f15\"]\n    },\n    {\n      \"source_candidate_ids\": [7, 9],\n      \"category\": \"Fighting\",\n      \"t_start\": 18.0,\n      \"t_end\": 21.0,\n      \"confidence\": 0.85,\n      \"description\": \"The previously prone man rises and re-engages the other in active combat beside a car, including crouching, reaching, and pushing (f16–f17), followed by pursuit over the hood (f18).\",\n      \"reason\": \"f16–f18 show both individuals moving, making contact, and exhibiting offensive/defensive intent—mutual combat resumes, distinguishing it from abuse. Candidate 7 ([18.0,21.0]) and 9 ([20.5,21.3]) are fully contained within this interval and supported by evidence.\",\n      \"evidence_frame_ids\": [\"f16\", \"f17\", \"f18\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"At t=3.0–5.0 (f2–f3), one man lies on the platform while another stands near a suitcase and bends down; no aggression or contact is visible—this is pre-combat positioning, not abuse.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\"]\n    },\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"Candidate [17.3,18.8] overlaps f17–f18, but those frames are already included in the broader fighting event (sources 7,9); it is redundant and not a distinct event.\",\n      \"evidence_frame_ids\": [\"f17\", \"f18\"]\n    },\n    {\n      \"candidate_id\": 10,\n      \"reason\": \"f20 shows a man collapsed, but f21–f22 show only empty platform and a briefcase; f22 shows a different man lying nearby but no interaction occurs—no visible aggression against a helpless victim, so 'Abuse' is unsupported.\",\n      \"evidence_frame_ids\": [\"f20\", \"f21\", \"f22\"]\n    },\n    {\n      \"candidate_id\": 11,\n      \"reason\": \"f23 shows only a blurred object and static platform; no person is visible, let alone any abusive act—insufficient evidence for 'Abuse'.\",\n      \"evidence_frame_ids\": [\"f23\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 1.0,
+              "f1": 2.0,
+              "f2": 4.0,
+              "f3": 5.0,
+              "f4": 7.0,
+              "f5": 7.5,
+              "f6": 8.5,
+              "f7": 9.5,
+              "f8": 11.5,
+              "f9": 12.0,
+              "f10": 14.0,
+              "f11": 15.0,
+              "f12": 17.0,
+              "f13": 18.0,
+              "f14": 18.5,
+              "f15": 19.0,
+              "f16": 19.5,
+              "f17": 20.0,
+              "f18": 21.0,
+              "f19": 21.5,
+              "f20": 22.0,
+              "f21": 23.5,
+              "f22": 25.0,
+              "f23": 26.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 3.0,
+                "t_end": 5.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 5.5,
+                "t_end": 10.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 7.0,
+                "t_end": 7.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 9.1,
+                "t_end": 14.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 13.5,
+                "t_end": 16.3,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 17.3,
+                "t_end": 18.8,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 18.0,
+                "t_end": 18.8,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 18.0,
+                "t_end": 21.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 19.5,
+                "t_end": 20.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 9,
+                "t_start": 20.5,
+                "t_end": 21.3,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 10,
+                "t_start": 21.4,
+                "t_end": 23.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 11,
+                "t_start": 23.9,
+                "t_end": 25.9,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1, 2, 3],\n      \"category\": \"Fighting\",\n      \"t_start\": 7.0,\n      \"t_end\": 14.0,\n      \"confidence\": 0.95,\n      \"description\": \"Two men engage in reciprocal physical combat: one delivers a kick (f4), they exchange blows using a briefcase (f5–f9), and both remain actively involved on the platform (f10); mutual offensive/defensive actions confirm fighting.\",\n      \"reason\": \"Candidate intervals [5.5,10.0], [7.0,7.5], [9.1,14.5] are all fully covered by [7.0,14.0], which is bounded by visible evidence: f4 (7.0) shows first clear aggressive action (kick), f10 (14.0) shows both still engaged; earlier frames f2–f3 show only positioning, not combat. Fighting requires mutual combat—present here per definition.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    },\n    {\n      \"source_candidate_ids\": [4, 6, 8],\n      \"category\": \"Abuse\",\n      \"t_start\": 15.0,\n      \"t_end\": 19.0,\n      \"confidence\": 0.9,\n      \"description\": \"One man lies motionless on the platform while the other stands over him, steps on his chest (f13), and reaches toward his legs/feet (f14–f15) without resistance or engagement from the prone man.\",\n      \"reason\": \"Candidate intervals [13.5,16.3], [18.0,18.8], [19.5,20.5] are *not* fully overlapped by any single interval unless corrected. f11 (15.0) shows the prone man clearly down and the other standing; f13 (18.0) shows direct pressure on torso; f14–f15 (18.5–19.0) show continued contact with helpless victim. The earliest unambiguous abuse is f13; f11 is ambiguous (could be post-fight pause). To satisfy *overlap of every claimed source candidate*, we must include f11 (candidate 4 starts at 13.5, but f11=15.0 is first clear evidence), and f15 (19.0) is last clear abuse frame before re-engagement. Candidate 8 ([19.5,20.5]) is *not* supported: f16 (19.5) shows the prone man rising and re-engaging—so abuse ends by 19.0. Thus candidate 8 must be rejected, not merged. Revised: only candidates 4 and 6 are supportable; candidate 8 is contradicted by f16. But per instruction: merge *only* when images show same physical event. Since candidate 8’s interval (19.5–20.5) begins *after* abuse ends and coincides with renewed fighting (f16), it cannot be merged. Therefore, only candidates 4 and 6 can be merged into one abuse event, and candidate 8 must be rejected. However, the instruction says: “Each accepted events item: source_candidate_ids (integer list), … must overlap every claimed source candidate”. So if candidate 8 cannot be overlapped, it cannot be included. Hence, correct event uses only [4,6], not [4,6,8]. Re-evaluate: f13 (18.0) and f14–f15 (18.5–19.0) support abuse; f11 (15.0) shows one down, other standing—but no aggression yet; abuse begins at f13. Candidate 4 starts at 13.5, but earliest evidence is f13 (18.0). To overlap candidate 4’s [13.5,16.3], we need evidence at ≤16.3; f11 (15.0) is the only frame in that window, and it shows no aggression—only posture. Thus candidate 4 is *not fully supported*. Same for candidate 6 ([18.0,18.8]): f13 (18.0) and f14 (18.5) support it. So only candidate 6 is solid. But the task requires accounting for *every* candidate exactly once. After strict review:  \n      - Candidate 4 ([13.5,16.3]): f11 (15.0) shows man down, other standing—no aggression; insufficient for abuse (requires aggression against helpless victim). Reject.  \n      - Candidate 6 ([18.0,18.8]): f13 (18.0) shows clear stepping on torso → abuse. Supported.  \n      - Candidate 8 ([19.5,20.5]): f16 (19.5) shows prone man now crouching and reaching—active, not helpless; f17 (20.0) shows mutual engagement. So abuse has ended; this is fighting. Reject.  \n      Therefore, only candidate 6 is valid for abuse. But the instruction says “merge fragments” only when same event. We cannot force merge unsupported candidates. Final decision: one abuse event from candidate 6 alone. However, f14–f15 (18.5–19.0) extend the abuse slightly beyond 18.8, so t_end = 19.0 is justified. Candidate 6’s interval [18.0,18.8] is fully contained in [18.0,19.0].  \n      Revised event: source_candidate_ids = [6], category = Abuse, t_start=18.0, t_end=19.0.\n      But the problem states: “Merge fragments or competing labels ONLY when images show the same physical event”. Since no other candidate aligns, keep singular.\n      However, re-examining f11 (15.0): the man on ground is motionless, the other stands beside him—still no aggression; abuse requires *aggression*, not just proximity. So only f13 onward qualifies.\n      Final accepted events:\n        - Fighting: sources [1,2,3] → [7.0,14.0]\n        - Abuse: source [6] → [18.0,19.0]\n        - Fighting: sources [7,9] → [19.5,21.0] (f16–f18)\n      Candidate 5 ([17.3,18.8]) overlaps f17–f18, but those belong to second fighting event; however, f17 is at 20.0, not 17.3—so candidate 5’s interval is too early and unsupported (no frame at 17.3–18.0 except f13, which is abuse). Reject candidate 5.\n      Candidate 10 ([21.4,23.0]): f20 (22.0) shows man collapsed; f21 (23.5) is empty platform; no interaction visible → cannot confirm abuse. Reject.\n      Candidate 11 ([23.9,25.9]): f22 (25.0) shows a man lying on platform, but no other person interacting; f23 (26.0) is blurred—no aggression visible. Reject.\n      Candidate 0 ([3.0,5.0]): f2 (4.0), f3 (5.0) show man lying, other bending—no contact/aggression. Reject.\n      Now ensure every candidate is assigned:\n        0: rejected\n        1: in first fighting\n        2: in first fighting\n        3: in first fighting\n        4: rejected (no aggression in [13.5,16.3])\n        5: rejected\n        6: accepted as Abuse [18.0,19.0]\n        7: in second fighting\n        8: rejected (abuse ends before 19.5)\n        9: in second fighting\n        10: rejected\n        11: rejected\n      Second fighting: candidates 7 ([18.0,21.0]) and 9 ([20.5,21.3]) — f16 (19.5) is first re-engagement, f18 (21.0) last clear combat, f19 (21.5) shows pursuit but no contact, f20 (22.0) shows collapse. So [19.5,21.0] covers both candidates’ intervals (18.0–21.0 includes 19.5–21.0; 20.5–21.3 is within 19.5–21.0). Yes, [19.5,21.0] overlaps both. Use that.\n      Thus three events:\n        1. Fighting [1,2,3]: 7.0–14.0\n        2. Abuse [6]: 18.0–19.0\n        3. Fighting [7,9]: 19.5–21.0\n      All source candidates accounted.\n      Confidence for abuse: 0.95 (f13 clear step, f14–f15 continued contact).\n      Evidence for abuse: f13, f14, f15 — all within 18.0–19.0.\n      Note: f15 is 19.0, included.\n    },\n    {\n      \"source_candidate_ids\": [6],\n      \"category\": \"Abuse\",\n      \"t_start\": 18.0,\n      \"t_end\": 19.0,\n      \"confidence\": 0.95,\n      \"description\": \"One man lies motionless on the platform while the other steps on his chest (f13) and reaches toward his legs/feet (f14–f15) without resistance.\",\n      \"reason\": \"Frames f13 (18.0), f14 (18.5), f15 (19.0) show unambiguous aggression against a helpless victim; candidate 6’s interval [18.0,18.8] is fully contained. No other candidate’s interval is fully supported in this phase.\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\", \"f15\"]\n    },\n    {\n      \"source_candidate_ids\": [7, 9],\n      \"category\": \"Fighting\",\n      \"t_start\": 19.5,\n      \"t_end\": 21.0,\n      \"confidence\": 0.9,\n      \"description\": \"The previously prone man rises and re-engages the other in mutual combat: crouching and reaching (f16), active struggle beside the car (f17), and leaning over the hood in pursuit (f18).\",\n      \"reason\": \"Candidate 7 ([18.0,21.0]) and 9 ([20.5,21.3]) are both fully overlapped by [19.5,21.0]; f16 (19.5) is first clear re-engagement, f18 (21.0) last combat frame before collapse (f20). Mutual intent and contact confirm fighting.\",\n      \"evidence_frame_ids\": [\"f16\", \"f17\", \"f18\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Frames f2 (4.0) and f3 (5.0) show one man lying and another bending near a suitcase, but no aggression or contact occurs; this is pre-combat positioning, not abuse.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\"]\n    },\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"Interval [13.5,16.3] includes f11 (15.0), where one man is down and the other stands nearby, but no aggression is visible; abuse requires active aggression against a helpless victim, which only begins at f13 (18.0).\",\n      \"evidence_frame_ids\": [\"f11\"]\n    },\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"Interval [17.3,18.8] has no supporting frame: f12 (17.0) shows only hand on car, f13 (18.0) is abuse—not isolated fighting; candidate overlaps abuse event, not a distinct fight.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\"]\n    },\n    {\n      \"candidate_id\": 8,\n      \"reason\": \"Interval [19.5,20.5] corresponds to f16 (19.5) and f17 (20.0), where the formerly prone man is actively re-engaging—this is fighting, not abuse; the victim is no longer helpless.\",\n      \"evidence_frame_ids\": [\"f16\", \"f17\"]\n    },\n    {\n      \"candidate_id\": 10,\n      \"reason\": \"Frames f20 (22.0) shows a man collapsed, but f21 (23.5) and f22 (25.0) show no interaction; f22 has another man lying but no aggression—insufficient evidence for abuse.\",\n      \"evidence_frame_ids\": [\"f20\", \"f21\", \"f22\"]\n    },\n    {\n      \"candidate_id\": 11,\n      \"reason\": \"Frame f23 (26.0) shows only a blurred moving object and static platform; no person or abusive act is visible.\",\n      \"evidence_frame_ids\": [\"f23\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.5,
+              "f3": 2.5,
+              "f4": 4.0,
+              "f5": 5.0,
+              "f6": 5.5,
+              "f7": 6.5,
+              "f8": 7.0,
+              "f9": 7.5,
+              "f10": 9.0,
+              "f11": 10.0,
+              "f12": 10.5,
+              "f13": 12.0,
+              "f14": 12.5,
+              "f15": 13.0,
+              "f16": 14.0,
+              "f17": 15.0,
+              "f18": 16.5,
+              "f19": 17.5,
+              "f20": 18.0,
+              "f21": 18.5,
+              "f22": 19.0,
+              "f23": 19.5,
+              "f24": 20.0,
+              "f25": 21.0,
+              "f26": 21.5,
+              "f27": 22.0,
+              "f28": 22.5,
+              "f29": 23.0,
+              "f30": 25.0,
+              "f31": 26.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 3.0,
+                "t_end": 5.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 5.5,
+                "t_end": 10.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 7.0,
+                "t_end": 7.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 9.1,
+                "t_end": 14.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 13.5,
+                "t_end": 16.3,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 17.3,
+                "t_end": 18.8,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 18.0,
+                "t_end": 18.8,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 18.0,
+                "t_end": 21.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 19.5,
+                "t_end": 20.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 9,
+                "t_start": 20.5,
+                "t_end": 21.3,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 10,
+                "t_start": 21.4,
+                "t_end": 23.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 11,
+                "t_start": 23.9,
+                "t_end": 25.9,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1, 2, 3, 5, 7, 9],\n      \"category\": \"Fighting\",\n      \"t_start\": 5.5,\n      \"t_end\": 21.3,\n      \"confidence\": 0.95,\n      \"description\": \"Two men engage in mutual physical combat involving grappling, striking, and use of a briefcase as a weapon in a multi-level car park; both are active participants at various points.\",\n      \"reason\": \"Images f6–f10, f13–f16, f18–f20, f23–f26 show reciprocal actions: one man is knocked down (f4), then rises and attacks (f7–f8), they grapple over the briefcase (f9, f13–f14), one is thrown (f15–f16), and later the other is on top (f23–f24) before being displaced (f25–f26). This satisfies 'Fighting' (mutual combat), not Abuse (no sustained helplessness).\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f13\", \"f14\", \"f15\", \"f16\", \"f18\", \"f19\", \"f20\", \"f23\", \"f24\", \"f25\", \"f26\"]\n    },\n    {\n      \"source_candidate_ids\": [10],\n      \"category\": \"Abuse\",\n      \"t_start\": 21.4,\n      \"t_end\": 23.0,\n      \"confidence\": 0.85,\n      \"description\": \"One man lies prone on a car roof while another stands over him and presses down, with no visible resistance or engagement from the prone man.\",\n      \"reason\": \"In f27–f29, the man on the roof is motionless and face-down while the other leans heavily on him; no reciprocal action is visible, indicating helplessness and one-sided aggression—meeting Abuse criteria.\",\n      \"evidence_frame_ids\": [\"f27\", \"f28\", \"f29\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"At f3–f4, the man is on the ground but appears to have fallen during a struggle; the other man is standing nearby, not actively harming him, and soon after (f5–f6) the fallen man rises and re-engages—this is part of mutual fighting, not Abuse.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"At f16–f17, the man in white is lying on the platform but the man in black is seated beside the car, not attacking; the scene shows aftermath of prior fight, not ongoing abuse.\",\n      \"evidence_frame_ids\": [\"f16\", \"f17\"]\n    },\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"f18–f20 show the man in white on the ground while the other interacts with the car and briefcase; no direct aggressive contact is visible, and the man in white later moves (f21), contradicting sustained helplessness required for Abuse.\",\n      \"evidence_frame_ids\": [\"f18\", \"f19\", \"f20\"]\n    },\n    {\n      \"candidate_id\": 8,\n      \"reason\": \"f23–f24 show the man in white on the ground while the man in black is climbing onto the car—not actively assaulting him; the prone man is still moving (f24), and the interaction is part of the broader fight sequence already classified as Fighting.\",\n      \"evidence_frame_ids\": [\"f23\", \"f24\"]\n    },\n    {\n      \"candidate_id\": 11,\n      \"reason\": \"f30–f31 show a man lying on a platform next to a briefcase, looking up; no aggressor is visible, and no force is applied—this appears to be rest or recovery, not Abuse.\",\n      \"evidence_frame_ids\": [\"f30\", \"f31\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1,
+                2,
+                3,
+                5,
+                7,
+                9
+              ],
+              "category": "Fighting",
+              "t_start": 5.5,
+              "t_end": 21.3,
+              "confidence": 0.95,
+              "description": "Two men engage in mutual physical combat involving grappling, striking, and use of a briefcase as a weapon in a multi-level car park; both are active participants at various points.",
+              "reason": "Images f6–f10, f13–f16, f18–f20, f23–f26 show reciprocal actions: one man is knocked down (f4), then rises and attacks (f7–f8), they grapple over the briefcase (f9, f13–f14), one is thrown (f15–f16), and later the other is on top (f23–f24) before being displaced (f25–f26). This satisfies 'Fighting' (mutual combat), not Abuse (no sustained helplessness).",
+              "evidence_frame_ids": [
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f18",
+                "f19",
+                "f20",
+                "f23",
+                "f24",
+                "f25",
+                "f26"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                10
+              ],
+              "category": "Abuse",
+              "t_start": 21.4,
+              "t_end": 23.0,
+              "confidence": 0.85,
+              "description": "One man lies prone on a car roof while another stands over him and presses down, with no visible resistance or engagement from the prone man.",
+              "reason": "In f27–f29, the man on the roof is motionless and face-down while the other leans heavily on him; no reciprocal action is visible, indicating helplessness and one-sided aggression—meeting Abuse criteria.",
+              "evidence_frame_ids": [
+                "f27",
+                "f28",
+                "f29"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "At f3–f4, the man is on the ground but appears to have fallen during a struggle; the other man is standing nearby, not actively harming him, and soon after (f5–f6) the fallen man rises and re-engages—this is part of mutual fighting, not Abuse.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6"
+              ]
+            },
+            {
+              "candidate_id": 4,
+              "reason": "At f16–f17, the man in white is lying on the platform but the man in black is seated beside the car, not attacking; the scene shows aftermath of prior fight, not ongoing abuse.",
+              "evidence_frame_ids": [
+                "f16",
+                "f17"
+              ]
+            },
+            {
+              "candidate_id": 6,
+              "reason": "f18–f20 show the man in white on the ground while the other interacts with the car and briefcase; no direct aggressive contact is visible, and the man in white later moves (f21), contradicting sustained helplessness required for Abuse.",
+              "evidence_frame_ids": [
+                "f18",
+                "f19",
+                "f20"
+              ]
+            },
+            {
+              "candidate_id": 8,
+              "reason": "f23–f24 show the man in white on the ground while the man in black is climbing onto the car—not actively assaulting him; the prone man is still moving (f24), and the interaction is part of the broader fight sequence already classified as Fighting.",
+              "evidence_frame_ids": [
+                "f23",
+                "f24"
+              ]
+            },
+            {
+              "candidate_id": 11,
+              "reason": "f30–f31 show a man lying on a platform next to a briefcase, looking up; no aggressor is visible, and no force is applied—this appears to be rest or recovery, not Abuse.",
+              "evidence_frame_ids": [
+                "f30",
+                "f31"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": true
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

@@ -1,0 +1,647 @@
+{
+  "events": [
+    {
+      "t_start": 0.0,
+      "t_end": 2.0,
+      "anomaly_type": "Abuse",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A soldier kneels over a prone, seemingly incapacitated man on the ground, gripping his jaw/face with both hands while leaning in closely; the prone man shows no resistance and appears injured or unconscious.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          0.0,
+          0.5,
+          1.0,
+          1.5,
+          2.0
+        ],
+        "evidence_frame_ids": [
+          "f0",
+          "f1",
+          "f2",
+          "f3",
+          "f4"
+        ],
+        "reason": "The posture, sustained close contact, and lack of reciprocal action indicate one-sided aggression against a helpless individual, satisfying the definition of Abuse (not Fighting, which requires mutual combat). Visible across f0–f4; f5 onward shifts scene.",
+        "source_categories": [
+          "Abuse"
+        ]
+      }
+    },
+    {
+      "t_start": 4.0,
+      "t_end": 5.5,
+      "anomaly_type": "Shooting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A soldier in the background raises a rifle to his shoulder and appears to fire between f4 and f6, with muzzle flash visible at f5 and recoil motion at f6.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          4.0,
+          4.5,
+          5.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "Frame f5 shows a bright muzzle flash near the rifle’s barrel; f6 shows the soldier recoiling and lowering the weapon—consistent with firing. The target is not visible but the action satisfies 'Shooting' per definition (visible shooting, not merely holding).",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 6.0,
+      "t_end": 7.2,
+      "anomaly_type": "Fighting",
+      "confidence": 0.8,
+      "coarse_score": 0.8,
+      "description": "At f8–f10, one soldier lunges forward while another ducks and turns away, with physical contact implied by proximity and posture; at f10 the standing soldier appears to strike or grab the other.",
+      "source_candidate_ids": [
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 1,
+        "vlm_confidence": 0.8,
+        "evidence_times": [
+          6.0,
+          6.5,
+          7.0
+        ],
+        "evidence_frame_ids": [
+          "f8",
+          "f9",
+          "f10"
+        ],
+        "reason": "F8 shows the standing soldier advancing aggressively; f9–f10 show close proximity, dynamic postures (ducking, arm raised), and no visible weapon use—consistent with hand-to-hand combat. Not abuse, as both appear active participants (the second soldier moves defensively but is not immobilized).",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 10.0,
+      "t_end": 11.0,
+      "anomaly_type": "Shooting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "At f4 (10.0s), the soldier on the right raises a pistol and aims; at f5 (10.5s) and f6 (11.0s), he maintains aim with visible muzzle flash or recoil effect near his hand, consistent with firing.",
+      "source_candidate_ids": [
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          10.0,
+          10.5,
+          11.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "Visible aiming posture and apparent muzzle flash/recoil in f5–f6 confirm discharge; no other explanation fits the rapid sequence of stance change and arm position. Merged only candidate 3 as it fully aligns with frames f4–f6.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 11.0,
+      "t_end": 12.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "From f6 (11.0s) through f9 (12.5s), a sudden dust/debris cloud erupts around the left soldier, expanding rapidly and obscuring him, with visible displacement of rubble and smoke—consistent with a nearby blast.",
+      "source_candidate_ids": [
+        4,
+        5
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 1,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          11.0,
+          11.5,
+          12.0,
+          12.5
+        ],
+        "evidence_frame_ids": [
+          "f6",
+          "f7",
+          "f8",
+          "f9"
+        ],
+        "reason": "The abrupt onset and expansion of a dense dust cloud at f7 (11.5s), peaking at f8 (12.0s), matches explosion dynamics (not fire or collapse alone); candidates 4 and 5 both cover overlapping intervals within this single event, so merged.",
+        "source_categories": [
+          "Explosion",
+          "Explosion"
+        ]
+      }
+    },
+    {
+      "t_start": 15.5,
+      "t_end": 16.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A sudden burst of dust, debris, and smoke erupts around the man at f4–f5, with particles visibly propelled outward in a radial pattern consistent with a nearby blast.",
+      "source_candidate_ids": [
+        6
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 3,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          15.5,
+          16.0,
+          16.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "Frames f4 (15.5 s) and f5 (16.0 s) show a rapid expansion of dust/debris from ground level near the man’s left side, coinciding with his reactive posture (arms flung out, body recoiling); this is characteristic of an explosion, not sustained fire or collapse alone. The event ends by f6 (16.5 s) as the cloud begins to dissipate and settle.",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    },
+    {
+      "t_start": 18.0,
+      "t_end": 19.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A large dust/debris cloud expands rapidly from the left, with visible fragmentation and displacement of rubble; the man reacts by turning and bracing against a wall.",
+      "source_candidate_ids": [
+        7
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 4,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          18.0,
+          18.5,
+          19.0,
+          19.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7"
+        ],
+        "reason": "Frames f4–f7 show a sudden, voluminous dust plume expanding outward with debris in motion—consistent with a nearby blast—not sustained fire or collapse alone; the man’s posture (f5–f7) indicates reaction to an impulsive event. Merged as one explosion event.",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    },
+    {
+      "t_start": 19.958333,
+      "t_end": 20.541667,
+      "anomaly_type": "Shooting",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "At f8, a bright muzzle flash is visible near the man’s right hand as he holds a pistol; he maintains aim through f9–f10.",
+      "source_candidate_ids": [
+        8
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 4,
+        "event_id": 1,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          20.0,
+          20.5
+        ],
+        "evidence_frame_ids": [
+          "f8",
+          "f9"
+        ],
+        "reason": "Frame f8 shows a distinct white-yellow flash at the pistol’s muzzle, coinciding with his arm position and stance; no other source explains the flash. This satisfies the 'visible shooting' criterion. The interval aligns with the flash and follow-through.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 9,
+      "output_count": 8,
+      "groups": 5,
+      "rejected": 0,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 0.5,
+                "t_end": 2.5,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Abuse\",\n      \"t_start\": 0.0,\n      \"t_end\": 2.0,\n      \"confidence\": 0.9,\n      \"description\": \"A soldier kneels over a prone, seemingly incapacitated man on the ground, gripping his jaw/face with both hands while leaning in closely; the prone man shows no resistance and appears injured or unconscious.\",\n      \"reason\": \"The posture, sustained close contact, and lack of reciprocal action indicate one-sided aggression against a helpless individual, satisfying the definition of Abuse (not Fighting, which requires mutual combat). Visible across f0–f4; f5 onward shifts scene.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Abuse",
+              "t_start": 0.0,
+              "t_end": 2.0,
+              "confidence": 0.9,
+              "description": "A soldier kneels over a prone, seemingly incapacitated man on the ground, gripping his jaw/face with both hands while leaning in closely; the prone man shows no resistance and appears injured or unconscious.",
+              "reason": "The posture, sustained close contact, and lack of reciprocal action indicate one-sided aggression against a helpless individual, satisfying the definition of Abuse (not Fighting, which requires mutual combat). Visible across f0–f4; f5 onward shifts scene.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 2.0,
+              "f1": 2.5,
+              "f2": 3.0,
+              "f3": 3.5,
+              "f4": 4.0,
+              "f5": 4.5,
+              "f6": 5.0,
+              "f7": 5.5,
+              "f8": 6.0,
+              "f9": 6.5,
+              "f10": 7.0,
+              "f11": 7.5,
+              "f12": 8.0,
+              "f13": 8.5,
+              "f14": 9.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 4.0,
+                "t_end": 5.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 6.0,
+                "t_end": 7.2,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Shooting\",\n      \"t_start\": 4.0,\n      \"t_end\": 5.5,\n      \"confidence\": 0.9,\n      \"description\": \"A soldier in the background raises a rifle to his shoulder and appears to fire between f4 and f6, with muzzle flash visible at f5 and recoil motion at f6.\",\n      \"reason\": \"Frame f5 shows a bright muzzle flash near the rifle’s barrel; f6 shows the soldier recoiling and lowering the weapon—consistent with firing. The target is not visible but the action satisfies 'Shooting' per definition (visible shooting, not merely holding).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"Fighting\",\n      \"t_start\": 6.0,\n      \"t_end\": 7.2,\n      \"confidence\": 0.8,\n      \"description\": \"At f8–f10, one soldier lunges forward while another ducks and turns away, with physical contact implied by proximity and posture; at f10 the standing soldier appears to strike or grab the other.\",\n      \"reason\": \"F8 shows the standing soldier advancing aggressively; f9–f10 show close proximity, dynamic postures (ducking, arm raised), and no visible weapon use—consistent with hand-to-hand combat. Not abuse, as both appear active participants (the second soldier moves defensively but is not immobilized).\",\n      \"evidence_frame_ids\": [\"f8\", \"f9\", \"f10\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "Shooting",
+              "t_start": 4.0,
+              "t_end": 5.5,
+              "confidence": 0.9,
+              "description": "A soldier in the background raises a rifle to his shoulder and appears to fire between f4 and f6, with muzzle flash visible at f5 and recoil motion at f6.",
+              "reason": "Frame f5 shows a bright muzzle flash near the rifle’s barrel; f6 shows the soldier recoiling and lowering the weapon—consistent with firing. The target is not visible but the action satisfies 'Shooting' per definition (visible shooting, not merely holding).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                2
+              ],
+              "category": "Fighting",
+              "t_start": 6.0,
+              "t_end": 7.2,
+              "confidence": 0.8,
+              "description": "At f8–f10, one soldier lunges forward while another ducks and turns away, with physical contact implied by proximity and posture; at f10 the standing soldier appears to strike or grab the other.",
+              "reason": "F8 shows the standing soldier advancing aggressively; f9–f10 show close proximity, dynamic postures (ducking, arm raised), and no visible weapon use—consistent with hand-to-hand combat. Not abuse, as both appear active participants (the second soldier moves defensively but is not immobilized).",
+              "evidence_frame_ids": [
+                "f8",
+                "f9",
+                "f10"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          3,
+          4,
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 8.0,
+              "f1": 8.5,
+              "f2": 9.0,
+              "f3": 9.5,
+              "f4": 10.0,
+              "f5": 10.5,
+              "f6": 11.0,
+              "f7": 11.5,
+              "f8": 12.0,
+              "f9": 12.5,
+              "f10": 13.0,
+              "f11": 13.5,
+              "f12": 14.0,
+              "f13": 14.5,
+              "f14": 15.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 10.0,
+                "t_end": 11.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 11.0,
+                "t_end": 12.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 12.0,
+                "t_end": 13.2,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"Shooting\",\n      \"t_start\": 10.0,\n      \"t_end\": 11.0,\n      \"confidence\": 0.95,\n      \"description\": \"At f4 (10.0s), the soldier on the right raises a pistol and aims; at f5 (10.5s) and f6 (11.0s), he maintains aim with visible muzzle flash or recoil effect near his hand, consistent with firing.\",\n      \"reason\": \"Visible aiming posture and apparent muzzle flash/recoil in f5–f6 confirm discharge; no other explanation fits the rapid sequence of stance change and arm position. Merged only candidate 3 as it fully aligns with frames f4–f6.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"source_candidate_ids\": [4, 5],\n      \"category\": \"Explosion\",\n      \"t_start\": 11.0,\n      \"t_end\": 12.5,\n      \"confidence\": 0.85,\n      \"description\": \"From f6 (11.0s) through f9 (12.5s), a sudden dust/debris cloud erupts around the left soldier, expanding rapidly and obscuring him, with visible displacement of rubble and smoke—consistent with a nearby blast.\",\n      \"reason\": \"The abrupt onset and expansion of a dense dust cloud at f7 (11.5s), peaking at f8 (12.0s), matches explosion dynamics (not fire or collapse alone); candidates 4 and 5 both cover overlapping intervals within this single event, so merged.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\", \"f9\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                3
+              ],
+              "category": "Shooting",
+              "t_start": 10.0,
+              "t_end": 11.0,
+              "confidence": 0.95,
+              "description": "At f4 (10.0s), the soldier on the right raises a pistol and aims; at f5 (10.5s) and f6 (11.0s), he maintains aim with visible muzzle flash or recoil effect near his hand, consistent with firing.",
+              "reason": "Visible aiming posture and apparent muzzle flash/recoil in f5–f6 confirm discharge; no other explanation fits the rapid sequence of stance change and arm position. Merged only candidate 3 as it fully aligns with frames f4–f6.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                4,
+                5
+              ],
+              "category": "Explosion",
+              "t_start": 11.0,
+              "t_end": 12.5,
+              "confidence": 0.85,
+              "description": "From f6 (11.0s) through f9 (12.5s), a sudden dust/debris cloud erupts around the left soldier, expanding rapidly and obscuring him, with visible displacement of rubble and smoke—consistent with a nearby blast.",
+              "reason": "The abrupt onset and expansion of a dense dust cloud at f7 (11.5s), peaking at f8 (12.0s), matches explosion dynamics (not fire or collapse alone); candidates 4 and 5 both cover overlapping intervals within this single event, so merged.",
+              "evidence_frame_ids": [
+                "f6",
+                "f7",
+                "f8",
+                "f9"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          6
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 13.5,
+              "f1": 14.0,
+              "f2": 14.5,
+              "f3": 15.0,
+              "f4": 15.5,
+              "f5": 16.0,
+              "f6": 16.5,
+              "f7": 17.0,
+              "f8": 17.5,
+              "f9": 18.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 6,
+                "t_start": 15.5,
+                "t_end": 16.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [6],\n      \"category\": \"Explosion\",\n      \"t_start\": 15.5,\n      \"t_end\": 16.5,\n      \"confidence\": 0.9,\n      \"description\": \"A sudden burst of dust, debris, and smoke erupts around the man at f4–f5, with particles visibly propelled outward in a radial pattern consistent with a nearby blast.\",\n      \"reason\": \"Frames f4 (15.5 s) and f5 (16.0 s) show a rapid expansion of dust/debris from ground level near the man’s left side, coinciding with his reactive posture (arms flung out, body recoiling); this is characteristic of an explosion, not sustained fire or collapse alone. The event ends by f6 (16.5 s) as the cloud begins to dissipate and settle.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                6
+              ],
+              "category": "Explosion",
+              "t_start": 15.5,
+              "t_end": 16.5,
+              "confidence": 0.9,
+              "description": "A sudden burst of dust, debris, and smoke erupts around the man at f4–f5, with particles visibly propelled outward in a radial pattern consistent with a nearby blast.",
+              "reason": "Frames f4 (15.5 s) and f5 (16.0 s) show a rapid expansion of dust/debris from ground level near the man’s left side, coinciding with his reactive posture (arms flung out, body recoiling); this is characteristic of an explosion, not sustained fire or collapse alone. The event ends by f6 (16.5 s) as the cloud begins to dissipate and settle.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 4,
+        "source_ids": [
+          7,
+          8
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 16.0,
+              "f1": 16.5,
+              "f2": 17.0,
+              "f3": 17.5,
+              "f4": 18.0,
+              "f5": 18.5,
+              "f6": 19.0,
+              "f7": 19.5,
+              "f8": 20.0,
+              "f9": 20.5,
+              "f10": 21.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 7,
+                "t_start": 18.0,
+                "t_end": 19.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 19.958333,
+                "t_end": 20.541667,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [7],\n      \"category\": \"Explosion\",\n      \"t_start\": 18.0,\n      \"t_end\": 19.5,\n      \"confidence\": 0.95,\n      \"description\": \"A large dust/debris cloud expands rapidly from the left, with visible fragmentation and displacement of rubble; the man reacts by turning and bracing against a wall.\",\n      \"reason\": \"Frames f4–f7 show a sudden, voluminous dust plume expanding outward with debris in motion—consistent with a nearby blast—not sustained fire or collapse alone; the man’s posture (f5–f7) indicates reaction to an impulsive event. Merged as one explosion event.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    },\n    {\n      \"source_candidate_ids\": [8],\n      \"category\": \"Shooting\",\n      \"t_start\": 19.958333,\n      \"t_end\": 20.541667,\n      \"confidence\": 0.85,\n      \"description\": \"At f8, a bright muzzle flash is visible near the man’s right hand as he holds a pistol; he maintains aim through f9–f10.\",\n      \"reason\": \"Frame f8 shows a distinct white-yellow flash at the pistol’s muzzle, coinciding with his arm position and stance; no other source explains the flash. This satisfies the 'visible shooting' criterion. The interval aligns with the flash and follow-through.\",\n      \"evidence_frame_ids\": [\"f8\", \"f9\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                7
+              ],
+              "category": "Explosion",
+              "t_start": 18.0,
+              "t_end": 19.5,
+              "confidence": 0.95,
+              "description": "A large dust/debris cloud expands rapidly from the left, with visible fragmentation and displacement of rubble; the man reacts by turning and bracing against a wall.",
+              "reason": "Frames f4–f7 show a sudden, voluminous dust plume expanding outward with debris in motion—consistent with a nearby blast—not sustained fire or collapse alone; the man’s posture (f5–f7) indicates reaction to an impulsive event. Merged as one explosion event.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                8
+              ],
+              "category": "Shooting",
+              "t_start": 19.958333,
+              "t_end": 20.541667,
+              "confidence": 0.85,
+              "description": "At f8, a bright muzzle flash is visible near the man’s right hand as he holds a pistol; he maintains aim through f9–f10.",
+              "reason": "Frame f8 shows a distinct white-yellow flash at the pistol’s muzzle, coinciding with his arm position and stance; no other source explains the flash. This satisfies the 'visible shooting' criterion. The interval aligns with the flash and follow-through.",
+              "evidence_frame_ids": [
+                "f8",
+                "f9"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

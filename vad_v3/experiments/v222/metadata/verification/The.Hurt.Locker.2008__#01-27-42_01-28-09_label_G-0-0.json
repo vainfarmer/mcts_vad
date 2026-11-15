@@ -1,0 +1,133 @@
+{
+  "events": [
+    {
+      "t_start": 11.5,
+      "t_end": 12.0,
+      "anomaly_type": "Explosion",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A sudden bright flash and dust cloud erupt outside the vehicle window at f7–f8, consistent with a nearby explosion.",
+      "source_candidate_ids": [
+        1,
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          11.5,
+          12.0
+        ],
+        "evidence_frame_ids": [
+          "f7",
+          "f8"
+        ],
+        "reason": "f7 (11.5 s) shows a large dust plume erupting outside the right window; f8 (12.0 s) is blurred and obscured, likely due to shockwave/vibration and debris impact on the windshield—this matches an explosion event, and candidate 2’s interval aligns precisely with the visible onset; candidate 1 (10.7–11.7) overlaps but the earliest clear evidence is at f7 (11.5), so merged into one event starting at 11.5.",
+        "source_categories": [
+          "Explosion",
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 3,
+      "output_count": 1,
+      "groups": 1,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 8.0,
+              "f1": 8.5,
+              "f2": 9.0,
+              "f3": 9.5,
+              "f4": 10.0,
+              "f5": 10.5,
+              "f6": 11.0,
+              "f7": 11.5,
+              "f8": 12.0,
+              "f9": 12.5,
+              "f10": 13.0,
+              "f11": 13.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 10.0,
+                "t_end": 10.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 10.7,
+                "t_end": 11.7,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 11.5,
+                "t_end": 12.0,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1, 2],\n      \"category\": \"Explosion\",\n      \"t_start\": 11.5,\n      \"t_end\": 12.0,\n      \"confidence\": 0.9,\n      \"description\": \"A sudden bright flash and dust cloud erupt outside the vehicle window at f7–f8, consistent with a nearby explosion.\",\n      \"reason\": \"f7 (11.5 s) shows a large dust plume erupting outside the right window; f8 (12.0 s) is blurred and obscured, likely due to shockwave/vibration and debris impact on the windshield—this matches an explosion event, and candidate 2’s interval aligns precisely with the visible onset; candidate 1 (10.7–11.7) overlaps but the earliest clear evidence is at f7 (11.5), so merged into one event starting at 11.5.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No visible muzzle flash, projectile, or recoil in f4 (10.0 s) or f5 (10.5 s); the scene shows only static observation of distant figures and vehicles—no shooting occurs.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1,
+                2
+              ],
+              "category": "Explosion",
+              "t_start": 11.5,
+              "t_end": 12.0,
+              "confidence": 0.9,
+              "description": "A sudden bright flash and dust cloud erupt outside the vehicle window at f7–f8, consistent with a nearby explosion.",
+              "reason": "f7 (11.5 s) shows a large dust plume erupting outside the right window; f8 (12.0 s) is blurred and obscured, likely due to shockwave/vibration and debris impact on the windshield—this matches an explosion event, and candidate 2’s interval aligns precisely with the visible onset; candidate 1 (10.7–11.7) overlaps but the earliest clear evidence is at f7 (11.5), so merged into one event starting at 11.5.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "No visible muzzle flash, projectile, or recoil in f4 (10.0 s) or f5 (10.5 s); the scene shows only static observation of distant figures and vehicles—no shooting occurs.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

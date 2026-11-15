@@ -1,0 +1,272 @@
+{
+  "events": [
+    {
+      "t_start": 5.0,
+      "t_end": 9.0,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A red car overtakes on the right, then swerves sharply left into the path of the black car, causing a collision at ~8.0 s; the red car is subsequently pushed off the road onto the shoulder/dirt by ~9.0 s.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          4.5,
+          5.0,
+          5.5,
+          6.0,
+          6.5,
+          7.0,
+          7.5,
+          8.0
+        ],
+        "evidence_frame_ids": [
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10"
+        ],
+        "reason": "Frames f3–f5 show the red car moving into the lane beside the black car; f6–f8 show contact or near-contact with visible lateral displacement; f9–f10 show the red car veering off-road immediately after the interaction, consistent with a side-impact or rear-side collision. No other explanation (e.g., mechanical failure alone) accounts for the abrupt trajectory change and separation.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 51.0,
+      "t_end": 52.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A vehicle on the right side veers off the road into snow, kicking up a large plume and showing red taillights at an abnormal angle; another vehicle approaches with bright headlights, suggesting a possible collision or near-miss.",
+      "source_candidate_ids": [
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          51.0,
+          51.5,
+          52.0,
+          52.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7"
+        ],
+        "reason": "From f4 (51.0 s) onward, a dark vehicle on the right is seen deviating sharply rightward into deep snow, producing a growing dust/snow cloud and visible red rear lights in a non-standard orientation; by f6–f7 (52.0–52.5 s), the disturbance peaks and the vehicle appears stationary or sliding sideways—consistent with loss of control and impact with roadside snowbank or terrain, satisfying CarAccident definition (crash or abrupt unintended contact with environment).",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 3,
+      "output_count": 2,
+      "groups": 3,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 3.0,
+              "f1": 3.5,
+              "f2": 4.0,
+              "f3": 4.5,
+              "f4": 5.0,
+              "f5": 5.5,
+              "f6": 6.0,
+              "f7": 6.5,
+              "f8": 7.0,
+              "f9": 7.5,
+              "f10": 8.0,
+              "f11": 8.5,
+              "f12": 9.0,
+              "f13": 9.5,
+              "f14": 10.0,
+              "f15": 10.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 5.0,
+                "t_end": 9.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"CarAccident\",\n      \"t_start\": 5.0,\n      \"t_end\": 9.0,\n      \"confidence\": 0.95,\n      \"description\": \"A red car overtakes on the right, then swerves sharply left into the path of the black car, causing a collision at ~8.0 s; the red car is subsequently pushed off the road onto the shoulder/dirt by ~9.0 s.\",\n      \"reason\": \"Frames f3–f5 show the red car moving into the lane beside the black car; f6–f8 show contact or near-contact with visible lateral displacement; f9–f10 show the red car veering off-road immediately after the interaction, consistent with a side-impact or rear-side collision. No other explanation (e.g., mechanical failure alone) accounts for the abrupt trajectory change and separation.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "CarAccident",
+              "t_start": 5.0,
+              "t_end": 9.0,
+              "confidence": 0.95,
+              "description": "A red car overtakes on the right, then swerves sharply left into the path of the black car, causing a collision at ~8.0 s; the red car is subsequently pushed off the road onto the shoulder/dirt by ~9.0 s.",
+              "reason": "Frames f3–f5 show the red car moving into the lane beside the black car; f6–f8 show contact or near-contact with visible lateral displacement; f9–f10 show the red car veering off-road immediately after the interaction, consistent with a side-impact or rear-side collision. No other explanation (e.g., mechanical failure alone) accounts for the abrupt trajectory change and separation.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 36.0,
+              "f1": 36.5,
+              "f2": 37.0,
+              "f3": 37.5,
+              "f4": 38.0,
+              "f5": 38.5,
+              "f6": 39.0,
+              "f7": 39.5,
+              "f8": 40.0,
+              "f9": 40.5,
+              "f10": 41.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 38.0,
+                "t_end": 39.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"No collision or impact is visible; vehicles are maneuvering normally through a curve, with the black SUV and white vehicle adjusting positions without contact or loss of control.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "No collision or impact is visible; vehicles are maneuvering normally through a curve, with the black SUV and white vehicle adjusting positions without contact or loss of control.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 49.0,
+              "f1": 49.5,
+              "f2": 50.0,
+              "f3": 50.5,
+              "f4": 51.0,
+              "f5": 51.5,
+              "f6": 52.0,
+              "f7": 52.5,
+              "f8": 53.0,
+              "f9": 53.5,
+              "f10": 54.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 51.0,
+                "t_end": 52.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"CarAccident\",\n      \"t_start\": 51.0,\n      \"t_end\": 52.5,\n      \"confidence\": 0.9,\n      \"description\": \"A vehicle on the right side veers off the road into snow, kicking up a large plume and showing red taillights at an abnormal angle; another vehicle approaches with bright headlights, suggesting a possible collision or near-miss.\",\n      \"reason\": \"From f4 (51.0 s) onward, a dark vehicle on the right is seen deviating sharply rightward into deep snow, producing a growing dust/snow cloud and visible red rear lights in a non-standard orientation; by f6–f7 (52.0–52.5 s), the disturbance peaks and the vehicle appears stationary or sliding sideways—consistent with loss of control and impact with roadside snowbank or terrain, satisfying CarAccident definition (crash or abrupt unintended contact with environment).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2
+              ],
+              "category": "CarAccident",
+              "t_start": 51.0,
+              "t_end": 52.5,
+              "confidence": 0.9,
+              "description": "A vehicle on the right side veers off the road into snow, kicking up a large plume and showing red taillights at an abnormal angle; another vehicle approaches with bright headlights, suggesting a possible collision or near-miss.",
+              "reason": "From f4 (51.0 s) onward, a dark vehicle on the right is seen deviating sharply rightward into deep snow, producing a growing dust/snow cloud and visible red rear lights in a non-standard orientation; by f6–f7 (52.0–52.5 s), the disturbance peaks and the vehicle appears stationary or sliding sideways—consistent with loss of control and impact with roadside snowbank or terrain, satisfying CarAccident definition (crash or abrupt unintended contact with environment).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

@@ -1,0 +1,422 @@
+{
+  "events": [
+    {
+      "t_start": 3.5,
+      "t_end": 5.0,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A white sedan enters the intersection from the right at f3, collides with a white truck entering from the left at f4–f5, causing the sedan to rotate and skid sideways while kicking up dust; both vehicles come to rest by f7.",
+      "source_candidate_ids": [
+        0,
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          3.0,
+          3.5,
+          4.0,
+          4.5,
+          5.0
+        ],
+        "evidence_frame_ids": [
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7"
+        ],
+        "reason": "Visible impact at f4 (truck’s front lifts, sedan rotates), sustained post-impact motion and dust through f5–f6, consistent with a single collision event; candidates 0 and 1 describe overlapping intervals of the same crash, so merged.",
+        "source_categories": [
+          "CarAccident",
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 17.5,
+      "t_end": 27.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 1.0,
+      "coarse_score": 1.0,
+      "description": "A silver car on the right side of the road suddenly flips onto its roof after ejecting debris and smoke, sliding and rotating across the road while emitting dust and steam; the vehicle remains overturned through f22.",
+      "source_candidate_ids": [
+        2,
+        3,
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 1.0,
+        "evidence_times": [
+          17.5,
+          18.0,
+          18.5,
+          19.0,
+          19.5,
+          20.0,
+          20.5,
+          21.0,
+          21.5,
+          22.5,
+          23.0,
+          23.5,
+          24.0,
+          24.5,
+          25.0,
+          26.0,
+          26.5,
+          27.0,
+          27.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18",
+          "f19",
+          "f20",
+          "f21",
+          "f22"
+        ],
+        "reason": "Frames f4–f22 show a continuous crash sequence: at f4, the car begins to lift and eject material; f5 shows it airborne and rolling; f6–f11 depict full rollover and impact with the road surface; f12–f22 show the overturned car sliding and settling. All candidate intervals are subsumed by this single observed crash event.",
+        "source_categories": [
+          "CarAccident",
+          "CarAccident",
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 51.5,
+      "t_end": 53.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A dark SUV is stopped at an angle on the snow-covered shoulder with its driver-side door open; a person exits and walks toward the rear of the vehicle while traffic passes.",
+      "source_candidate_ids": [
+        5,
+        6
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          51.5,
+          52.0,
+          52.5,
+          53.0,
+          53.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8"
+        ],
+        "reason": "The SUV remains stationary in an abnormal position across multiple frames (f4–f8), with a person exiting and moving around it—consistent with a post-collision stop, not normal parking or maneuvering. No impact is visible, but the sustained abnormal posture and occupant behavior strongly indicate a prior crash.",
+        "source_categories": [
+          "CarAccident",
+          "CarAccident"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 8,
+      "output_count": 3,
+      "groups": 3,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 4,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 1.5,
+              "f1": 2.0,
+              "f2": 2.5,
+              "f3": 3.0,
+              "f4": 3.5,
+              "f5": 4.0,
+              "f6": 4.5,
+              "f7": 5.0,
+              "f8": 5.5,
+              "f9": 6.0,
+              "f10": 6.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 3.5,
+                "t_end": 4.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 4.0,
+                "t_end": 5.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"CarAccident\",\n      \"t_start\": 3.5,\n      \"t_end\": 5.0,\n      \"confidence\": 0.95,\n      \"description\": \"A white sedan enters the intersection from the right at f3, collides with a white truck entering from the left at f4–f5, causing the sedan to rotate and skid sideways while kicking up dust; both vehicles come to rest by f7.\",\n      \"reason\": \"Visible impact at f4 (truck’s front lifts, sedan rotates), sustained post-impact motion and dust through f5–f6, consistent with a single collision event; candidates 0 and 1 describe overlapping intervals of the same crash, so merged.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1
+              ],
+              "category": "CarAccident",
+              "t_start": 3.5,
+              "t_end": 5.0,
+              "confidence": 0.95,
+              "description": "A white sedan enters the intersection from the right at f3, collides with a white truck entering from the left at f4–f5, causing the sedan to rotate and skid sideways while kicking up dust; both vehicles come to rest by f7.",
+              "reason": "Visible impact at f4 (truck’s front lifts, sedan rotates), sustained post-impact motion and dust through f5–f6, consistent with a single collision event; candidates 0 and 1 describe overlapping intervals of the same crash, so merged.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          2,
+          3,
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 15.5,
+              "f1": 16.0,
+              "f2": 16.5,
+              "f3": 17.0,
+              "f4": 17.5,
+              "f5": 18.0,
+              "f6": 18.5,
+              "f7": 19.0,
+              "f8": 19.5,
+              "f9": 20.0,
+              "f10": 20.5,
+              "f11": 21.0,
+              "f12": 21.5,
+              "f13": 22.5,
+              "f14": 23.0,
+              "f15": 23.5,
+              "f16": 24.0,
+              "f17": 24.5,
+              "f18": 25.0,
+              "f19": 26.0,
+              "f20": 26.5,
+              "f21": 27.0,
+              "f22": 27.5,
+              "f23": 29.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 17.5,
+                "t_end": 19.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 17.5,
+                "t_end": 23.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 20.0,
+                "t_end": 27.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2, 3, 4],\n      \"category\": \"CarAccident\",\n      \"t_start\": 17.5,\n      \"t_end\": 27.5,\n      \"confidence\": 1.0,\n      \"description\": \"A silver car on the right side of the road suddenly flips onto its roof after ejecting debris and smoke, sliding and rotating across the road while emitting dust and steam; the vehicle remains overturned through f22.\",\n      \"reason\": \"Frames f4–f22 show a continuous crash sequence: at f4, the car begins to lift and eject material; f5 shows it airborne and rolling; f6–f11 depict full rollover and impact with the road surface; f12–f22 show the overturned car sliding and settling. All candidate intervals are subsumed by this single observed crash event.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2,
+                3,
+                4
+              ],
+              "category": "CarAccident",
+              "t_start": 17.5,
+              "t_end": 27.5,
+              "confidence": 1.0,
+              "description": "A silver car on the right side of the road suddenly flips onto its roof after ejecting debris and smoke, sliding and rotating across the road while emitting dust and steam; the vehicle remains overturned through f22.",
+              "reason": "Frames f4–f22 show a continuous crash sequence: at f4, the car begins to lift and eject material; f5 shows it airborne and rolling; f6–f11 depict full rollover and impact with the road surface; f12–f22 show the overturned car sliding and settling. All candidate intervals are subsumed by this single observed crash event.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          5,
+          6,
+          7
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 49.5,
+              "f1": 50.0,
+              "f2": 50.5,
+              "f3": 51.0,
+              "f4": 51.5,
+              "f5": 52.0,
+              "f6": 52.5,
+              "f7": 53.0,
+              "f8": 53.5,
+              "f9": 54.0,
+              "f10": 54.5,
+              "f11": 55.0,
+              "f12": 55.5,
+              "f13": 56.0,
+              "f14": 56.5,
+              "f15": 57.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 5,
+                "t_start": 51.5,
+                "t_end": 52.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 51.5,
+                "t_end": 57.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 51.5,
+                "t_end": 54.0,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [5, 6],\n      \"category\": \"CarAccident\",\n      \"t_start\": 51.5,\n      \"t_end\": 53.5,\n      \"confidence\": 0.9,\n      \"description\": \"A dark SUV is stopped at an angle on the snow-covered shoulder with its driver-side door open; a person exits and walks toward the rear of the vehicle while traffic passes.\",\n      \"reason\": \"The SUV remains stationary in an abnormal position across multiple frames (f4–f8), with a person exiting and moving around it—consistent with a post-collision stop, not normal parking or maneuvering. No impact is visible, but the sustained abnormal posture and occupant behavior strongly indicate a prior crash.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"No individuals are seen engaging in physical combat; the person exiting the SUV walks calmly and does not interact aggressively with anyone.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                5,
+                6
+              ],
+              "category": "CarAccident",
+              "t_start": 51.5,
+              "t_end": 53.5,
+              "confidence": 0.9,
+              "description": "A dark SUV is stopped at an angle on the snow-covered shoulder with its driver-side door open; a person exits and walks toward the rear of the vehicle while traffic passes.",
+              "reason": "The SUV remains stationary in an abnormal position across multiple frames (f4–f8), with a person exiting and moving around it—consistent with a post-collision stop, not normal parking or maneuvering. No impact is visible, but the sustained abnormal posture and occupant behavior strongly indicate a prior crash.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 7,
+              "reason": "No individuals are seen engaging in physical combat; the person exiting the SUV walks calmly and does not interact aggressively with anyone.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

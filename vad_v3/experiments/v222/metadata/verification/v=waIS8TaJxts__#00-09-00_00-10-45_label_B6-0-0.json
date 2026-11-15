@@ -1,0 +1,540 @@
+{
+  "events": [
+    {
+      "t_start": 15.0,
+      "t_end": 15.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A sudden bright flash and spray of water/debris appear directly ahead on the wet road at f4 (15.0 s), consistent with a frontal impact; subsequent frames f5–f6 show lingering glare and scattered light, indicating aftermath of a collision.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          15.0,
+          15.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "The abrupt onset of intense, localized illumination and splatter at f4—absent in prior frames—and its persistence through f5–f6 matches typical visual signatures of a vehicle collision at night on a wet surface; no other explanation (e.g., fireworks, headlight glare from turning) fits the spatial localization and transient nature.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 23.5,
+      "t_end": 27.0,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A sudden bright flash with sparks and smoke erupts near a parked vehicle around f6–f12, consistent with an explosion.",
+      "source_candidate_ids": [
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          23.5,
+          24.0,
+          24.5,
+          25.0,
+          25.5,
+          26.0,
+          26.5
+        ],
+        "evidence_frame_ids": [
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12"
+        ],
+        "reason": "Frames f6–f12 show a rapid onset of intense light, flying debris/sparks, and expanding smoke cloud centered near the right-side vehicle—hallmarks of a blast event; not sustained fire or collision.",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    },
+    {
+      "t_start": 63.0,
+      "t_end": 69.0,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A white car collides with the side of a blue bus at an intersection, causing visible deformation and smoke/dust; the green truck approaches but does not collide.",
+      "source_candidate_ids": [
+        4,
+        5
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          63.0,
+          63.5,
+          64.0,
+          64.5,
+          65.0,
+          65.5,
+          66.0,
+          66.5,
+          67.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12"
+        ],
+        "reason": "Frames f4–f12 show the white car entering the intersection, striking the bus (f5–f6), producing debris/smoke (f6–f10), and coming to rest near the bus (f7–f12); both candidate intervals are subsumed by this single crash event.",
+        "source_categories": [
+          "CarAccident",
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 72.0,
+      "t_end": 73.0,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A white van and a motorcycle are in contact on the road near a blue bus; the motorcycle is lying on its side at f5 (72.5s) and remains there through f6 (73.0s), with the van positioned adjacent.",
+      "source_candidate_ids": [
+        6
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 3,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          72.5,
+          73.0
+        ],
+        "evidence_frame_ids": [
+          "f5",
+          "f6"
+        ],
+        "reason": "Visible collision aftermath: motorcycle down, van stopped beside it, consistent with a crash; no motion suggesting continuation of impact beyond f5–f6. The event is fully captured within the candidate interval and visible frames.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 96.5,
+      "t_end": 98.0,
+      "anomaly_type": "CarAccident",
+      "confidence": 1.0,
+      "coarse_score": 1.0,
+      "description": "A dark SUV enters the frame from left at f1, loses control at f2 (96.5 s), slides sideways across the wet road, collides with orange/white traffic barriers, and comes to rest by f5 (98.0 s), scattering debris and spraying water.",
+      "source_candidate_ids": [
+        7
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 4,
+        "event_id": 0,
+        "vlm_confidence": 1.0,
+        "evidence_times": [
+          96.5,
+          97.0,
+          97.5,
+          98.0
+        ],
+        "evidence_frame_ids": [
+          "f2",
+          "f3",
+          "f4",
+          "f5"
+        ],
+        "reason": "Visible crash sequence: vehicle skids, impacts barriers, and stops abruptly—meeting the definition of CarAccident; the candidate’s interval (97.5–98.0) is fully contained within the observable crash event (f2–f5).",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 8,
+      "output_count": 5,
+      "groups": 5,
+      "rejected": 2,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 13.0,
+              "f1": 13.5,
+              "f2": 14.0,
+              "f3": 14.5,
+              "f4": 15.0,
+              "f5": 15.5,
+              "f6": 16.0,
+              "f7": 16.5,
+              "f8": 17.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 15.0,
+                "t_end": 15.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"CarAccident\",\n      \"t_start\": 15.0,\n      \"t_end\": 15.5,\n      \"confidence\": 0.9,\n      \"description\": \"A sudden bright flash and spray of water/debris appear directly ahead on the wet road at f4 (15.0 s), consistent with a frontal impact; subsequent frames f5–f6 show lingering glare and scattered light, indicating aftermath of a collision.\",\n      \"reason\": \"The abrupt onset of intense, localized illumination and splatter at f4—absent in prior frames—and its persistence through f5–f6 matches typical visual signatures of a vehicle collision at night on a wet surface; no other explanation (e.g., fireworks, headlight glare from turning) fits the spatial localization and transient nature.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "CarAccident",
+              "t_start": 15.0,
+              "t_end": 15.5,
+              "confidence": 0.9,
+              "description": "A sudden bright flash and spray of water/debris appear directly ahead on the wet road at f4 (15.0 s), consistent with a frontal impact; subsequent frames f5–f6 show lingering glare and scattered light, indicating aftermath of a collision.",
+              "reason": "The abrupt onset of intense, localized illumination and splatter at f4—absent in prior frames—and its persistence through f5–f6 matches typical visual signatures of a vehicle collision at night on a wet surface; no other explanation (e.g., fireworks, headlight glare from turning) fits the spatial localization and transient nature.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1,
+          2,
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 20.5,
+              "f1": 21.0,
+              "f2": 21.5,
+              "f3": 22.0,
+              "f4": 22.5,
+              "f5": 23.0,
+              "f6": 23.5,
+              "f7": 24.0,
+              "f8": 24.5,
+              "f9": 25.0,
+              "f10": 25.5,
+              "f11": 26.0,
+              "f12": 26.5,
+              "f13": 27.0,
+              "f14": 27.5,
+              "f15": 28.0,
+              "f16": 28.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 22.2,
+                "t_end": 23.2,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 23.5,
+                "t_end": 27.0,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 24.0,
+                "t_end": 25.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"Explosion\",\n      \"t_start\": 23.5,\n      \"t_end\": 27.0,\n      \"confidence\": 0.95,\n      \"description\": \"A sudden bright flash with sparks and smoke erupts near a parked vehicle around f6–f12, consistent with an explosion.\",\n      \"reason\": \"Frames f6–f12 show a rapid onset of intense light, flying debris/sparks, and expanding smoke cloud centered near the right-side vehicle—hallmarks of a blast event; not sustained fire or collision.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"No visible vehicle impact, deformation, or sudden motion between f4–f5 (22.5–23.0); the scene remains static with only ambient lighting changes.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"The vehicle position and orientation are unchanged across f7–f9 (24.0–25.0); the brightening is due to the explosion starting later (f6 onward), not a crash.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2
+              ],
+              "category": "Explosion",
+              "t_start": 23.5,
+              "t_end": 27.0,
+              "confidence": 0.95,
+              "description": "A sudden bright flash with sparks and smoke erupts near a parked vehicle around f6–f12, consistent with an explosion.",
+              "reason": "Frames f6–f12 show a rapid onset of intense light, flying debris/sparks, and expanding smoke cloud centered near the right-side vehicle—hallmarks of a blast event; not sustained fire or collision.",
+              "evidence_frame_ids": [
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "No visible vehicle impact, deformation, or sudden motion between f4–f5 (22.5–23.0); the scene remains static with only ambient lighting changes.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            },
+            {
+              "candidate_id": 3,
+              "reason": "The vehicle position and orientation are unchanged across f7–f9 (24.0–25.0); the brightening is due to the explosion starting later (f6 onward), not a crash.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8",
+                "f9"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          4,
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 61.0,
+              "f1": 61.5,
+              "f2": 62.0,
+              "f3": 62.5,
+              "f4": 63.0,
+              "f5": 63.5,
+              "f6": 64.0,
+              "f7": 64.5,
+              "f8": 65.0,
+              "f9": 65.5,
+              "f10": 66.0,
+              "f11": 66.5,
+              "f12": 67.0,
+              "f13": 67.5,
+              "f14": 68.0,
+              "f15": 68.5,
+              "f16": 69.0,
+              "f17": 69.5,
+              "f18": 70.0,
+              "f19": 70.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 63.0,
+                "t_end": 64.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 64.0,
+                "t_end": 69.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4, 5],\n      \"category\": \"CarAccident\",\n      \"t_start\": 63.0,\n      \"t_end\": 69.0,\n      \"confidence\": 0.95,\n      \"description\": \"A white car collides with the side of a blue bus at an intersection, causing visible deformation and smoke/dust; the green truck approaches but does not collide.\",\n      \"reason\": \"Frames f4–f12 show the white car entering the intersection, striking the bus (f5–f6), producing debris/smoke (f6–f10), and coming to rest near the bus (f7–f12); both candidate intervals are subsumed by this single crash event.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                4,
+                5
+              ],
+              "category": "CarAccident",
+              "t_start": 63.0,
+              "t_end": 69.0,
+              "confidence": 0.95,
+              "description": "A white car collides with the side of a blue bus at an intersection, causing visible deformation and smoke/dust; the green truck approaches but does not collide.",
+              "reason": "Frames f4–f12 show the white car entering the intersection, striking the bus (f5–f6), producing debris/smoke (f6–f10), and coming to rest near the bus (f7–f12); both candidate intervals are subsumed by this single crash event.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          6
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 70.0,
+              "f1": 70.5,
+              "f2": 71.0,
+              "f3": 71.5,
+              "f4": 72.0,
+              "f5": 72.5,
+              "f6": 73.0,
+              "f7": 73.5,
+              "f8": 74.0,
+              "f9": 74.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 6,
+                "t_start": 72.0,
+                "t_end": 73.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [6],\n      \"category\": \"CarAccident\",\n      \"t_start\": 72.0,\n      \"t_end\": 73.0,\n      \"confidence\": 0.95,\n      \"description\": \"A white van and a motorcycle are in contact on the road near a blue bus; the motorcycle is lying on its side at f5 (72.5s) and remains there through f6 (73.0s), with the van positioned adjacent.\",\n      \"reason\": \"Visible collision aftermath: motorcycle down, van stopped beside it, consistent with a crash; no motion suggesting continuation of impact beyond f5–f6. The event is fully captured within the candidate interval and visible frames.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                6
+              ],
+              "category": "CarAccident",
+              "t_start": 72.0,
+              "t_end": 73.0,
+              "confidence": 0.95,
+              "description": "A white van and a motorcycle are in contact on the road near a blue bus; the motorcycle is lying on its side at f5 (72.5s) and remains there through f6 (73.0s), with the van positioned adjacent.",
+              "reason": "Visible collision aftermath: motorcycle down, van stopped beside it, consistent with a crash; no motion suggesting continuation of impact beyond f5–f6. The event is fully captured within the candidate interval and visible frames.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 4,
+        "source_ids": [
+          7
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 95.5,
+              "f1": 96.0,
+              "f2": 96.5,
+              "f3": 97.0,
+              "f4": 97.5,
+              "f5": 98.0,
+              "f6": 98.5,
+              "f7": 99.0,
+              "f8": 99.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 7,
+                "t_start": 97.5,
+                "t_end": 98.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [7],\n      \"category\": \"CarAccident\",\n      \"t_start\": 96.5,\n      \"t_end\": 98.0,\n      \"confidence\": 1.0,\n      \"description\": \"A dark SUV enters the frame from left at f1, loses control at f2 (96.5 s), slides sideways across the wet road, collides with orange/white traffic barriers, and comes to rest by f5 (98.0 s), scattering debris and spraying water.\",\n      \"reason\": \"Visible crash sequence: vehicle skids, impacts barriers, and stops abruptly—meeting the definition of CarAccident; the candidate’s interval (97.5–98.0) is fully contained within the observable crash event (f2–f5).\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                7
+              ],
+              "category": "CarAccident",
+              "t_start": 96.5,
+              "t_end": 98.0,
+              "confidence": 1.0,
+              "description": "A dark SUV enters the frame from left at f1, loses control at f2 (96.5 s), slides sideways across the wet road, collides with orange/white traffic barriers, and comes to rest by f5 (98.0 s), scattering debris and spraying water.",
+              "reason": "Visible crash sequence: vehicle skids, impacts barriers, and stops abruptly—meeting the definition of CarAccident; the candidate’s interval (97.5–98.0) is fully contained within the observable crash event (f2–f5).",
+              "evidence_frame_ids": [
+                "f2",
+                "f3",
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

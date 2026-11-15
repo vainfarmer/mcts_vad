@@ -1,0 +1,95 @@
+{
+  "group_id": 0,
+  "calls": [
+    {
+      "pass_id": 0,
+      "frame_times": {
+        "f0": 14.0,
+        "f1": 14.5,
+        "f2": 15.0,
+        "f3": 15.5,
+        "f4": 16.0,
+        "f5": 16.5,
+        "f6": 17.0,
+        "f7": 17.5,
+        "f8": 18.0,
+        "f9": 18.5
+      },
+      "hypotheses": [
+        {
+          "candidate_id": 0,
+          "t_start": 16.0,
+          "t_end": 16.5,
+          "unverified_category": "CarAccident"
+        },
+        {
+          "candidate_id": 1,
+          "t_start": 16.0,
+          "t_end": 17.0,
+          "unverified_category": "Explosion"
+        }
+      ],
+      "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Explosion\",\n      \"t_start\": 16.0,\n      \"t_end\": 16.5,\n      \"confidence\": 1.0,\n      \"description\": \"A car on a rooftop erupts in a large fireball with rapid expansion and debris, consistent with a detonation.\",\n      \"reason\": \"f4 shows a car engulfed in a rapidly expanding fireball; f5 shows the peak of the blast with massive flame and shock-like expansion—this is an explosion, not a crash (no collision visible) or sustained fire. The candidate 'CarAccident' is incorrect because no impact or skid precedes it; the event is defined by the blast itself.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No evidence of a crash (e.g., deformation, impact, skid marks); instead, f4–f5 show a sudden detonation with fireball expansion, indicating explosion, not accident.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+    },
+    {
+      "pass_id": 0,
+      "frame_times": {
+        "f0": 14.0,
+        "f1": 14.5,
+        "f2": 15.0,
+        "f3": 15.5,
+        "f4": 16.0,
+        "f5": 16.5,
+        "f6": 17.0,
+        "f7": 17.5,
+        "f8": 18.0,
+        "f9": 18.5
+      },
+      "hypotheses": [
+        {
+          "candidate_id": 0,
+          "t_start": 16.0,
+          "t_end": 16.5,
+          "unverified_category": "CarAccident"
+        },
+        {
+          "candidate_id": 1,
+          "t_start": 16.0,
+          "t_end": 17.0,
+          "unverified_category": "Explosion"
+        }
+      ],
+      "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Explosion\",\n      \"t_start\": 16.0,\n      \"t_end\": 16.5,\n      \"confidence\": 1.0,\n      \"description\": \"A car on a rooftop is engulfed in a rapidly expanding fireball with visible blast effects and debris ejection between f4 and f5.\",\n      \"reason\": \"f4 shows the onset of a violent, sudden fireball around the car without prior collision; f5 shows peak expansion with turbulent flame and displaced material—consistent with an explosion per definition (blast, not sustained fire or crash). Candidate 0 (CarAccident) is unsupported; no impact evidence exists. Candidate 1’s interval [16.0,17.0] overlaps the visible explosion only in [16.0,16.5]; f6 onward shows interior reaction, not the explosion itself.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No crash evidence (e.g., vehicle deformation from impact, skid marks, or collision sequence); f4–f5 depict instantaneous detonation/fireball, not a CarAccident.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Candidate claims t_end=17.0, but the explosion is fully contained in f4–f5 (16.0–16.5); f6 shows aftermath (person reacting), not part of the blast event. Since the candidate’s interval exceeds the observable explosion, and the extra segment lacks explosion evidence, the full candidate interval cannot be accepted—only the overlapping subinterval is valid, so the candidate as stated is not fully supported.\"\n    }\n  ]\n}"
+    },
+    {
+      "pass_id": 0,
+      "frame_times": {
+        "f0": 14.0,
+        "f1": 14.5,
+        "f2": 15.0,
+        "f3": 15.5,
+        "f4": 16.0,
+        "f5": 16.5,
+        "f6": 17.0,
+        "f7": 17.5,
+        "f8": 18.0,
+        "f9": 18.5
+      },
+      "hypotheses": [
+        {
+          "candidate_id": 0,
+          "t_start": 16.0,
+          "t_end": 16.5,
+          "unverified_category": "CarAccident"
+        },
+        {
+          "candidate_id": 1,
+          "t_start": 16.0,
+          "t_end": 17.0,
+          "unverified_category": "Explosion"
+        }
+      ],
+      "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Explosion\",\n      \"t_start\": 16.0,\n      \"t_end\": 16.5,\n      \"confidence\": 1.0,\n      \"description\": \"A car on a rooftop undergoes sudden violent detonation, producing a rapidly expanding fireball with debris ejection between f4 and f5.\",\n      \"reason\": \"f4 shows the onset of a large, asymmetric fireball engulfing the car without prior collision; f5 shows peak blast expansion with turbulent flame and displaced material—meeting the definition of explosion (blast event), not CarAccident (no impact evidence). The explosion is fully contained within [16.0, 16.5]; f6 onward shows interior reaction, not the blast itself.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No evidence of a crash: no vehicle deformation from impact, skid marks, or collision sequence; f4–f5 depict instantaneous detonation/fireball, inconsistent with CarAccident definition.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Candidate interval [16.0, 17.0] extends beyond observable explosion (ends at 16.5); f6 (17.0) shows only interior reaction (person crouching), not part of the blast event. Since the candidate’s stated t_end is unsupported by evidence, the full candidate cannot be accepted as-is.\"\n    }\n  ]\n}"
+    }
+  ]
+}

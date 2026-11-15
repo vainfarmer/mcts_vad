@@ -1,0 +1,348 @@
+{
+  "events": [
+    {
+      "t_start": 12.0,
+      "t_end": 18.0,
+      "anomaly_type": "Abuse",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A bald man in a white shirt lifts, throws, and pins another man onto a car hood; the pinned man is restrained, shows visible distress (grimacing, sweat, open mouth), and offers no resistance across multiple frames.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          12.0,
+          12.5,
+          13.0,
+          13.5,
+          17.0,
+          17.5,
+          18.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f14",
+          "f15",
+          "f16"
+        ],
+        "reason": "Frames f4–f7 show initiation of one-sided physical control (lifting, throwing, pinning); f14–f16 confirm the victim’s helpless state under restraint with clear signs of pain; f17–f19 show the aggressor still present but victim no longer visible—abuse event plausibly ends by 18.0 (f16). Candidate 0 (Fighting) is invalid due to absence of mutual combat; candidates 2 and 3 are subsumed within this continuous abusive act and lack independent temporal boundaries.",
+        "source_categories": [
+          "Abuse"
+        ]
+      }
+    },
+    {
+      "t_start": 22.0,
+      "t_end": 26.0,
+      "anomaly_type": "Abuse",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A man lies supine with his head restrained by hands; his face is contorted in pain or distress, eyes closed, mouth open, and skin glistening—consistent with forceful restraint and suffering.",
+      "source_candidate_ids": [
+        4,
+        5
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          22.0,
+          22.5,
+          23.0,
+          23.5,
+          24.0,
+          24.5,
+          25.0,
+          25.5,
+          26.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12"
+        ],
+        "reason": "Frames f4–f12 show sustained manual pressure on the man’s head/neck area while he exhibits signs of distress (grimacing, tensed facial muscles, sweat), with no indication of mutual combat or voluntary action; this meets the definition of Abuse (aggression against a helpless victim). The two candidates describe overlapping intervals of the same continuous event and are merged.",
+        "source_categories": [
+          "Abuse",
+          "Abuse"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 6,
+      "output_count": 2,
+      "groups": 2,
+      "rejected": 3,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 10.0,
+              "f1": 10.5,
+              "f2": 11.0,
+              "f3": 11.5,
+              "f4": 12.0,
+              "f5": 12.5,
+              "f6": 13.0,
+              "f7": 13.5,
+              "f8": 14.0,
+              "f9": 14.5,
+              "f10": 15.0,
+              "f11": 15.5,
+              "f12": 16.0,
+              "f13": 16.5,
+              "f14": 17.0,
+              "f15": 17.5,
+              "f16": 18.0,
+              "f17": 18.5,
+              "f18": 19.0,
+              "f19": 19.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 12.0,
+                "t_end": 13.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 12.5,
+                "t_end": 17.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 13.5,
+                "t_end": 14.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 17.0,
+                "t_end": 18.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Abuse\",\n      \"t_start\": 12.0,\n      \"t_end\": 17.5,\n      \"confidence\": 0.95,\n      \"description\": \"A bald man in a white shirt lifts, throws, and pins another man onto a car hood; the pinned man is visibly distressed and restrained without resistance.\",\n      \"reason\": \"From f4–f7, the bald man initiates physical control (lifting, throwing, pinning) over a non-resisting individual; f14–f16 show the victim’s pained expression under restraint—consistent with abuse (aggression against a helpless victim), not mutual fighting. Candidate 0 (Fighting) is incorrect because there is no reciprocal combat; candidate 1 (Abuse) correctly identifies the nature and duration. Candidate 2 (Abuse at 13.5–14.0) is subsumed within this continuous event. Candidate 3 (Abuse at 17.0–18.0) overlaps but is redundant; the abuse clearly continues through f16 (18.0), and f17–f19 show the aggressor still present but the victim no longer visible—so the core abusive act ends by ~18.0, but the strongest evidence ends at f16.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f14\", \"f15\", \"f16\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"The interaction is not mutual combat: the second man does not resist or strike back; he is lifted, thrown, and pinned—indicating one-sided aggression, not Fighting.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    },\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"The frames f13–f14 show continuation of the same pinning/restraint from f7, not a distinct abusive episode; it is part of the single Abuse event spanning 12.0–17.5.\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"Frames f14–f16 already cover the peak distress and restraint; f17–f19 show only the aggressor looking away, with no visible victim or ongoing abuse—thus the claimed interval 17.0–18.0 lacks independent evidence of abuse beyond what is already included in the main event.\",\n      \"evidence_frame_ids\": [\"f14\", \"f15\", \"f16\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 10.0,
+              "f1": 10.5,
+              "f2": 11.0,
+              "f3": 11.5,
+              "f4": 12.0,
+              "f5": 12.5,
+              "f6": 13.0,
+              "f7": 13.5,
+              "f8": 14.0,
+              "f9": 14.5,
+              "f10": 15.0,
+              "f11": 15.5,
+              "f12": 16.0,
+              "f13": 16.5,
+              "f14": 17.0,
+              "f15": 17.5,
+              "f16": 18.0,
+              "f17": 18.5,
+              "f18": 19.0,
+              "f19": 19.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 12.0,
+                "t_end": 13.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 12.5,
+                "t_end": 17.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 13.5,
+                "t_end": 14.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 17.0,
+                "t_end": 18.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Abuse\",\n      \"t_start\": 12.0,\n      \"t_end\": 18.0,\n      \"confidence\": 0.9,\n      \"description\": \"A bald man in a white shirt lifts, throws, and pins another man onto a car hood; the pinned man is restrained, shows visible distress (grimacing, sweat, open mouth), and offers no resistance across multiple frames.\",\n      \"reason\": \"Frames f4–f7 show initiation of one-sided physical control (lifting, throwing, pinning); f14–f16 confirm the victim’s helpless state under restraint with clear signs of pain; f17–f19 show the aggressor still present but victim no longer visible—abuse event plausibly ends by 18.0 (f16). Candidate 0 (Fighting) is invalid due to absence of mutual combat; candidates 2 and 3 are subsumed within this continuous abusive act and lack independent temporal boundaries.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f14\", \"f15\", \"f16\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No reciprocal combat: the second man is lifted, thrown, and pinned without resisting or striking back (f4–f7), contradicting 'Fighting' which requires mutual physical combat.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    },\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Frame f8 (14.0) is blurry and occluded; f9 (14.5) is out of focus with no identifiable person or action—insufficient evidence for a distinct abuse episode at 13.5–14.0; it overlaps the main event but cannot be verified independently.\",\n      \"evidence_frame_ids\": [\"f8\", \"f9\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"Frames f14–f16 already capture the peak distress and restraint; f17–f19 show only the bald man looking away with no visible victim or ongoing aggression—no new abuse evidence in 17.0–18.0 beyond what is covered in the main event, making this candidate redundant and unsupported as a separate interval.\",\n      \"evidence_frame_ids\": [\"f14\", \"f15\", \"f16\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "Abuse",
+              "t_start": 12.0,
+              "t_end": 18.0,
+              "confidence": 0.9,
+              "description": "A bald man in a white shirt lifts, throws, and pins another man onto a car hood; the pinned man is restrained, shows visible distress (grimacing, sweat, open mouth), and offers no resistance across multiple frames.",
+              "reason": "Frames f4–f7 show initiation of one-sided physical control (lifting, throwing, pinning); f14–f16 confirm the victim’s helpless state under restraint with clear signs of pain; f17–f19 show the aggressor still present but victim no longer visible—abuse event plausibly ends by 18.0 (f16). Candidate 0 (Fighting) is invalid due to absence of mutual combat; candidates 2 and 3 are subsumed within this continuous abusive act and lack independent temporal boundaries.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f14",
+                "f15",
+                "f16"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "No reciprocal combat: the second man is lifted, thrown, and pinned without resisting or striking back (f4–f7), contradicting 'Fighting' which requires mutual physical combat.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            },
+            {
+              "candidate_id": 2,
+              "reason": "Frame f8 (14.0) is blurry and occluded; f9 (14.5) is out of focus with no identifiable person or action—insufficient evidence for a distinct abuse episode at 13.5–14.0; it overlaps the main event but cannot be verified independently.",
+              "evidence_frame_ids": [
+                "f8",
+                "f9"
+              ]
+            },
+            {
+              "candidate_id": 3,
+              "reason": "Frames f14–f16 already capture the peak distress and restraint; f17–f19 show only the bald man looking away with no visible victim or ongoing aggression—no new abuse evidence in 17.0–18.0 beyond what is covered in the main event, making this candidate redundant and unsupported as a separate interval.",
+              "evidence_frame_ids": [
+                "f14",
+                "f15",
+                "f16"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          4,
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 20.0,
+              "f1": 20.5,
+              "f2": 21.0,
+              "f3": 21.5,
+              "f4": 22.0,
+              "f5": 22.5,
+              "f6": 23.0,
+              "f7": 23.5,
+              "f8": 24.0,
+              "f9": 24.5,
+              "f10": 25.0,
+              "f11": 25.5,
+              "f12": 26.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 22.0,
+                "t_end": 23.2,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 22.8,
+                "t_end": 26.041666666666668,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4, 5],\n      \"category\": \"Abuse\",\n      \"t_start\": 22.0,\n      \"t_end\": 26.0,\n      \"confidence\": 0.95,\n      \"description\": \"A man lies supine with his head restrained by hands; his face is contorted in pain or distress, eyes closed, mouth open, and skin glistening—consistent with forceful restraint and suffering.\",\n      \"reason\": \"Frames f4–f12 show sustained manual pressure on the man’s head/neck area while he exhibits signs of distress (grimacing, tensed facial muscles, sweat), with no indication of mutual combat or voluntary action; this meets the definition of Abuse (aggression against a helpless victim). The two candidates describe overlapping intervals of the same continuous event and are merged.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                4,
+                5
+              ],
+              "category": "Abuse",
+              "t_start": 22.0,
+              "t_end": 26.0,
+              "confidence": 0.95,
+              "description": "A man lies supine with his head restrained by hands; his face is contorted in pain or distress, eyes closed, mouth open, and skin glistening—consistent with forceful restraint and suffering.",
+              "reason": "Frames f4–f12 show sustained manual pressure on the man’s head/neck area while he exhibits signs of distress (grimacing, tensed facial muscles, sweat), with no indication of mutual combat or voluntary action; this meets the definition of Abuse (aggression against a helpless victim). The two candidates describe overlapping intervals of the same continuous event and are merged.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "5a82d0dd6e711938ee6c8e0ecf1c6f7fdb68cac4e5e95683ad672320f7156da9"
+}

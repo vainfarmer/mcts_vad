@@ -1,0 +1,348 @@
+{
+  "events": [
+    {
+      "t_start": 1.0,
+      "t_end": 3.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A red car is seen skidding sideways across the road at f2–f3, colliding with a blue truck parked on the right shoulder; by f5–f6, the red car is stopped at an angle and a silver sedan approaches the scene, indicating a crash occurred.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          1.0,
+          1.5,
+          2.0,
+          2.5,
+          3.0
+        ],
+        "evidence_frame_ids": [
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "Frames f2–f3 show the red car losing control and crossing lanes toward the stationary truck; f4–f5 show dust/debris and the red car in abnormal orientation post-impact; f6 shows the aftermath with vehicles stationary and no motion suggesting normal driving—consistent with a collision, not near-miss or maneuver.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 31.0,
+      "t_end": 31.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "A blue car slides sideways on a snow-covered road and appears to strike a pole or curb at f4–f5, evidenced by abrupt change in orientation, snow spray, and proximity to the pole at f4 followed by rebounded position at f5.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          31.0,
+          31.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "At f4 (31.0 s), the car is sharply angled toward the sidewalk pole; at f5 (31.5 s), it has rotated further left and moved laterally away, with visible disturbance of snow near the pole—consistent with a brief impact. No sustained contact or secondary collision is visible afterward; later frames show the car driving away normally. Candidate 2’s interval (32.0–33.5) does not contain impact evidence and overlaps only the aftermath, so it is not merged.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 5,
+      "output_count": 2,
+      "groups": 4,
+      "rejected": 3,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0,
+              "f9": 4.5,
+              "f10": 5.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 1.0,
+                "t_end": 3.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"CarAccident\",\n      \"t_start\": 1.0,\n      \"t_end\": 3.5,\n      \"confidence\": 0.95,\n      \"description\": \"A red car is seen skidding sideways across the road at f2–f3, colliding with a blue truck parked on the right shoulder; by f5–f6, the red car is stopped at an angle and a silver sedan approaches the scene, indicating a crash occurred.\",\n      \"reason\": \"Frames f2–f3 show the red car losing control and crossing lanes toward the stationary truck; f4–f5 show dust/debris and the red car in abnormal orientation post-impact; f6 shows the aftermath with vehicles stationary and no motion suggesting normal driving—consistent with a collision, not near-miss or maneuver.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "CarAccident",
+              "t_start": 1.0,
+              "t_end": 3.5,
+              "confidence": 0.95,
+              "description": "A red car is seen skidding sideways across the road at f2–f3, colliding with a blue truck parked on the right shoulder; by f5–f6, the red car is stopped at an angle and a silver sedan approaches the scene, indicating a crash occurred.",
+              "reason": "Frames f2–f3 show the red car losing control and crossing lanes toward the stationary truck; f4–f5 show dust/debris and the red car in abnormal orientation post-impact; f6 shows the aftermath with vehicles stationary and no motion suggesting normal driving—consistent with a collision, not near-miss or maneuver.",
+              "evidence_frame_ids": [
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 29.0,
+              "f1": 29.5,
+              "f2": 30.0,
+              "f3": 30.5,
+              "f4": 31.0,
+              "f5": 31.5,
+              "f6": 32.0,
+              "f7": 32.5,
+              "f8": 33.0,
+              "f9": 33.5,
+              "f10": 34.0,
+              "f11": 34.5,
+              "f12": 35.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 31.0,
+                "t_end": 32.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 32.0,
+                "t_end": 33.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1, 2],\n      \"category\": \"CarAccident\",\n      \"t_start\": 31.0,\n      \"t_end\": 32.5,\n      \"confidence\": 0.9,\n      \"description\": \"A blue car slides sideways on snow-covered road, makes contact with a pole or curb near the sidewalk at f4–f5, then spins and moves away; visible impact debris and abrupt change in trajectory indicate a collision.\",\n      \"reason\": \"At f4, the car is angled sharply across the road and close to a pole; at f5, it is further left and appears to have rebounded; snow/ice spray and positional discontinuity suggest impact. The second candidate (32.0–33.5) overlaps this event and shows aftermath (car moving away, lights still on), so merged into one accident event ending at f5 (31.5 s); later frames (f6–f8) show car receding without further contact, so t_end = 32.5 is too late—corrected to 31.5 based on visible impact evidence.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"The hypothesized accident interval (32.0–33.5) occurs after the visible impact (f4–f5); frames f6–f8 show the car already moving away without further collision, so no separate accident occurs in that window.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 29.0,
+              "f1": 29.5,
+              "f2": 30.0,
+              "f3": 30.5,
+              "f4": 31.0,
+              "f5": 31.5,
+              "f6": 32.0,
+              "f7": 32.5,
+              "f8": 33.0,
+              "f9": 33.5,
+              "f10": 34.0,
+              "f11": 34.5,
+              "f12": 35.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 31.0,
+                "t_end": 32.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 32.0,
+                "t_end": 33.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"CarAccident\",\n      \"t_start\": 31.0,\n      \"t_end\": 31.5,\n      \"confidence\": 0.85,\n      \"description\": \"A blue car slides sideways on a snow-covered road and appears to strike a pole or curb at f4–f5, evidenced by abrupt change in orientation, snow spray, and proximity to the pole at f4 followed by rebounded position at f5.\",\n      \"reason\": \"At f4 (31.0 s), the car is sharply angled toward the sidewalk pole; at f5 (31.5 s), it has rotated further left and moved laterally away, with visible disturbance of snow near the pole—consistent with a brief impact. No sustained contact or secondary collision is visible afterward; later frames show the car driving away normally. Candidate 2’s interval (32.0–33.5) does not contain impact evidence and overlaps only the aftermath, so it is not merged.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Frames f6–f8 (32.0–33.0 s) show the blue car already receding down the road with no contact, debris, or abnormal motion; the hypothesized accident interval lacks any visual evidence of collision or damage.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "CarAccident",
+              "t_start": 31.0,
+              "t_end": 31.5,
+              "confidence": 0.85,
+              "description": "A blue car slides sideways on a snow-covered road and appears to strike a pole or curb at f4–f5, evidenced by abrupt change in orientation, snow spray, and proximity to the pole at f4 followed by rebounded position at f5.",
+              "reason": "At f4 (31.0 s), the car is sharply angled toward the sidewalk pole; at f5 (31.5 s), it has rotated further left and moved laterally away, with visible disturbance of snow near the pole—consistent with a brief impact. No sustained contact or secondary collision is visible afterward; later frames show the car driving away normally. Candidate 2’s interval (32.0–33.5) does not contain impact evidence and overlaps only the aftermath, so it is not merged.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "Frames f6–f8 (32.0–33.0 s) show the blue car already receding down the road with no contact, debris, or abnormal motion; the hypothesized accident interval lacks any visual evidence of collision or damage.",
+              "evidence_frame_ids": [
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 34.5,
+              "f1": 35.0,
+              "f2": 35.5,
+              "f3": 36.0,
+              "f4": 36.5,
+              "f5": 37.0,
+              "f6": 37.5,
+              "f7": 38.0,
+              "f8": 38.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 36.5,
+                "t_end": 37.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"No collision or abnormal vehicle motion is visible in f4–f5; the red Mercedes is stationary or moving slowly, and the blue car passes normally without impact.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 3,
+              "reason": "No collision or abnormal vehicle motion is visible in f4–f5; the red Mercedes is stationary or moving slowly, and the blue car passes normally without impact.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 40.5,
+              "f1": 41.0,
+              "f2": 41.5,
+              "f3": 42.0,
+              "f4": 42.5,
+              "f5": 43.0,
+              "f6": 43.5,
+              "f7": 44.0,
+              "f8": 44.5,
+              "f9": 45.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 42.5,
+                "t_end": 43.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"No visible collision or impact occurs; the red sedan and silver sedan pass each other without contact, and the black vehicle entering at f6 is separate and not involved in a crash.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 4,
+              "reason": "No visible collision or impact occurs; the red sedan and silver sedan pass each other without contact, and the black vehicle entering at f6 is separate and not involved in a crash.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

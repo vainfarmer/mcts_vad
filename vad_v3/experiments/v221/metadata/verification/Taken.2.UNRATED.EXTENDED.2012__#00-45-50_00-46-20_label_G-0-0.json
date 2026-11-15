@@ -1,0 +1,151 @@
+{
+  "events": [
+    {
+      "t_start": 16.0,
+      "t_end": 16.5,
+      "anomaly_type": "Explosion",
+      "confidence": 1.0,
+      "coarse_score": 1.0,
+      "description": "A car on a rooftop is engulfed in a rapidly expanding fireball with visible blast effects and debris ejection.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 1.0,
+        "evidence_times": [
+          16.0,
+          16.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "f4 shows the onset of violent combustion with fire and smoke erupting from the vehicle; f5 shows a large, spherical fireball with outward expansion and structural disruption—consistent with an explosion (rapid energy release), not a crash (no collision point or deformation from impact). Candidate 0 (CarAccident) is unsupported; candidate 1 correctly identifies the event as Explosion.",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 2,
+      "output_count": 1,
+      "groups": 1,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 14.0,
+              "f1": 14.5,
+              "f2": 15.0,
+              "f3": 15.5,
+              "f4": 16.0,
+              "f5": 16.5,
+              "f6": 17.0,
+              "f7": 17.5,
+              "f8": 18.0,
+              "f9": 18.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 16.0,
+                "t_end": 16.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 16.0,
+                "t_end": 17.0,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Explosion\",\n      \"t_start\": 16.0,\n      \"t_end\": 16.5,\n      \"confidence\": 1.0,\n      \"description\": \"A car on a rooftop erupts in a large fireball, with debris and flame expanding outward.\",\n      \"reason\": \"f4 shows a car engulfed in fire mid-blast; f5 shows the full expansion of the blast wave and fireball—consistent with an explosion, not a crash (no collision visible, vehicle is airborne/already on ramp). CarAccident is rejected because no impact or deformation from collision is seen; the event is driven by rapid energy release.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No evidence of a crash: the car is already airborne/on a ramp and the event is dominated by rapid fire expansion, indicating explosion rather than collision damage.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 14.0,
+              "f1": 14.5,
+              "f2": 15.0,
+              "f3": 15.5,
+              "f4": 16.0,
+              "f5": 16.5,
+              "f6": 17.0,
+              "f7": 17.5,
+              "f8": 18.0,
+              "f9": 18.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 16.0,
+                "t_end": 16.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 16.0,
+                "t_end": 17.0,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Explosion\",\n      \"t_start\": 16.0,\n      \"t_end\": 16.5,\n      \"confidence\": 1.0,\n      \"description\": \"A car on a rooftop is engulfed in a rapidly expanding fireball with visible blast effects and debris ejection.\",\n      \"reason\": \"f4 shows the onset of violent combustion with fire and smoke erupting from the vehicle; f5 shows a large, spherical fireball with outward expansion and structural disruption—consistent with an explosion (rapid energy release), not a crash (no collision point or deformation from impact). Candidate 0 (CarAccident) is unsupported; candidate 1 correctly identifies the event as Explosion.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No evidence of a collision or crash: the vehicle is already airborne/on a ramp, and the event is defined by sudden fireball expansion without impact mechanics; thus CarAccident is contradicted.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "Explosion",
+              "t_start": 16.0,
+              "t_end": 16.5,
+              "confidence": 1.0,
+              "description": "A car on a rooftop is engulfed in a rapidly expanding fireball with visible blast effects and debris ejection.",
+              "reason": "f4 shows the onset of violent combustion with fire and smoke erupting from the vehicle; f5 shows a large, spherical fireball with outward expansion and structural disruption—consistent with an explosion (rapid energy release), not a crash (no collision point or deformation from impact). Candidate 0 (CarAccident) is unsupported; candidate 1 correctly identifies the event as Explosion.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "No evidence of a collision or crash: the vehicle is already airborne/on a ramp, and the event is defined by sudden fireball expansion without impact mechanics; thus CarAccident is contradicted.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "4af12341827b76802e342c17ef0218c8de72aa645e35234598169115d851ae3d"
+}

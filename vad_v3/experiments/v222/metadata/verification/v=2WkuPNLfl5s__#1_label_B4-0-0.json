@@ -1,0 +1,301 @@
+{
+  "events": [
+    {
+      "t_start": 20.0,
+      "t_end": 33.0,
+      "anomaly_type": "Riot",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "A dense crowd of protesters, many wearing white caps and holding signs or sticks, is tightly packed around what appears to be a police vehicle or barricade; individuals raise arms, push, and some hold makeshift shields or poles while facing authorities in a confrontational but non-shooting, non-explosive standoff.",
+      "source_candidate_ids": [
+        0,
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          19.5,
+          20.5,
+          21.0,
+          21.5,
+          22.5,
+          23.0,
+          23.5,
+          24.5,
+          25.0,
+          25.5,
+          26.0,
+          27.0,
+          27.5,
+          28.0,
+          29.0,
+          29.5,
+          30.0,
+          31.0,
+          31.5,
+          32.0,
+          33.0
+        ],
+        "evidence_frame_ids": [
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18",
+          "f19",
+          "f20",
+          "f21",
+          "f22",
+          "f23"
+        ],
+        "reason": "The sustained close-quarters tension, collective pushing, raised arms, presence of barriers/vehicles, and news ticker stating 'SIX KILLED, 200 INJURED AT PROTESTS' support classification as riot (collective violent unrest), distinct from mere protest or isolated fighting; visible across f3–f23 with continuity from f3 onward.",
+        "source_categories": [
+          "Riot",
+          "Riot"
+        ]
+      }
+    },
+    {
+      "t_start": 39.5,
+      "t_end": 42.0,
+      "anomaly_type": "Riot",
+      "confidence": 0.8,
+      "coarse_score": 0.8,
+      "description": "Large crowd in Jakarta at night, densely packed, many raising arms, waving flags (including Indonesian flag), some wearing masks or head coverings, moving dynamically with apparent agitation; no clear individual combat but collective unrest consistent with protest escalation.",
+      "source_candidate_ids": [
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.8,
+        "evidence_times": [
+          39.5,
+          40.0,
+          40.5,
+          41.0,
+          41.5,
+          42.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9"
+        ],
+        "reason": "The sustained dense movement, raised arms, flag-waving, and context (on-screen text: 'SIX KILLED, 200 INJURED AT PROTESTS IN INDONESIA OVER ELECTION RESULTS') support classification as riot—collective violent unrest—not mere gathering. Frames f4–f9 show escalating density and motion without visible police line or direct violence, but the scale and reported casualties indicate riotous conditions.",
+        "source_categories": [
+          "Riot"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 4,
+      "output_count": 2,
+      "groups": 2,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 18.0,
+              "f1": 18.5,
+              "f2": 19.0,
+              "f3": 19.5,
+              "f4": 20.5,
+              "f5": 21.0,
+              "f6": 21.5,
+              "f7": 22.5,
+              "f8": 23.0,
+              "f9": 23.5,
+              "f10": 24.5,
+              "f11": 25.0,
+              "f12": 25.5,
+              "f13": 26.0,
+              "f14": 27.0,
+              "f15": 27.5,
+              "f16": 28.0,
+              "f17": 29.0,
+              "f18": 29.5,
+              "f19": 30.0,
+              "f20": 31.0,
+              "f21": 31.5,
+              "f22": 32.0,
+              "f23": 33.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 20.0,
+                "t_end": 27.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 24.0,
+                "t_end": 31.5,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Riot\",\n      \"t_start\": 20.0,\n      \"t_end\": 33.0,\n      \"confidence\": 0.85,\n      \"description\": \"A dense crowd of protesters, many wearing white caps and holding signs or sticks, is tightly packed around what appears to be a police vehicle or barricade; individuals raise arms, push, and some hold makeshift shields or poles while facing authorities in a confrontational but non-shooting, non-explosive standoff.\",\n      \"reason\": \"The sustained close-quarters tension, collective pushing, raised arms, presence of barriers/vehicles, and news ticker stating 'SIX KILLED, 200 INJURED AT PROTESTS' support classification as riot (collective violent unrest), distinct from mere protest or isolated fighting; visible across f3–f23 with continuity from f3 onward.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\", \"f23\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1
+              ],
+              "category": "Riot",
+              "t_start": 20.0,
+              "t_end": 33.0,
+              "confidence": 0.85,
+              "description": "A dense crowd of protesters, many wearing white caps and holding signs or sticks, is tightly packed around what appears to be a police vehicle or barricade; individuals raise arms, push, and some hold makeshift shields or poles while facing authorities in a confrontational but non-shooting, non-explosive standoff.",
+              "reason": "The sustained close-quarters tension, collective pushing, raised arms, presence of barriers/vehicles, and news ticker stating 'SIX KILLED, 200 INJURED AT PROTESTS' support classification as riot (collective violent unrest), distinct from mere protest or isolated fighting; visible across f3–f23 with continuity from f3 onward.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22",
+                "f23"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          2,
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 37.5,
+              "f1": 38.0,
+              "f2": 38.5,
+              "f3": 39.0,
+              "f4": 39.5,
+              "f5": 40.0,
+              "f6": 40.5,
+              "f7": 41.0,
+              "f8": 41.5,
+              "f9": 42.0,
+              "f10": 42.5,
+              "f11": 43.0,
+              "f12": 43.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 39.5,
+                "t_end": 42.0,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 41.5,
+                "t_end": 42.0,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"Riot\",\n      \"t_start\": 39.5,\n      \"t_end\": 42.0,\n      \"confidence\": 0.8,\n      \"description\": \"Large crowd in Jakarta at night, densely packed, many raising arms, waving flags (including Indonesian flag), some wearing masks or head coverings, moving dynamically with apparent agitation; no clear individual combat but collective unrest consistent with protest escalation.\",\n      \"reason\": \"The sustained dense movement, raised arms, flag-waving, and context (on-screen text: 'SIX KILLED, 200 INJURED AT PROTESTS IN INDONESIA OVER ELECTION RESULTS') support classification as riot—collective violent unrest—not mere gathering. Frames f4–f9 show escalating density and motion without visible police line or direct violence, but the scale and reported casualties indicate riotous conditions.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"No mutual physical combat is visible in frames f8–f9 (41.5–42.0); individuals are gesturing, raising hands, or moving in crowd—no grappling, striking, or defensive postures indicating fighting.\",\n      \"evidence_frame_ids\": [\"f8\", \"f9\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2
+              ],
+              "category": "Riot",
+              "t_start": 39.5,
+              "t_end": 42.0,
+              "confidence": 0.8,
+              "description": "Large crowd in Jakarta at night, densely packed, many raising arms, waving flags (including Indonesian flag), some wearing masks or head coverings, moving dynamically with apparent agitation; no clear individual combat but collective unrest consistent with protest escalation.",
+              "reason": "The sustained dense movement, raised arms, flag-waving, and context (on-screen text: 'SIX KILLED, 200 INJURED AT PROTESTS IN INDONESIA OVER ELECTION RESULTS') support classification as riot—collective violent unrest—not mere gathering. Frames f4–f9 show escalating density and motion without visible police line or direct violence, but the scale and reported casualties indicate riotous conditions.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 3,
+              "reason": "No mutual physical combat is visible in frames f8–f9 (41.5–42.0); individuals are gesturing, raising hands, or moving in crowd—no grappling, striking, or defensive postures indicating fighting.",
+              "evidence_frame_ids": [
+                "f8",
+                "f9"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

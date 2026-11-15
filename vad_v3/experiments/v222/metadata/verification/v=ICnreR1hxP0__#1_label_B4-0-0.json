@@ -1,0 +1,603 @@
+{
+  "events": [
+    {
+      "t_start": 2.5,
+      "t_end": 15.5,
+      "anomaly_type": "Riot",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "A crowd, many in yellow vests, surrounds a black Porsche Cayman; from f3 onward, individuals are seen striking the car, breaking windows (visible shattered glass by f12), and removing parts (e.g., rear bumper, interior items), while others observe or film—indicating collective violent property destruction.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          2.5,
+          3.0,
+          4.0,
+          4.5,
+          5.0,
+          5.5,
+          6.0,
+          6.5,
+          7.0,
+          8.0,
+          9.0,
+          9.5,
+          10.5,
+          11.0,
+          11.5,
+          12.5,
+          13.0,
+          14.0,
+          14.5
+        ],
+        "evidence_frame_ids": [
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18",
+          "f19",
+          "f20",
+          "f21"
+        ],
+        "reason": "The sustained group action targeting a vehicle (not person-vs-person combat) with visible damage progression (intact at f0–f2, broken windows and debris by f12, active dismantling through f21) satisfies 'Riot' as collective violent unrest involving property destruction; candidate 1 (Fighting) is unsupported, candidate 2 (CarAccident) is contradicted (car stationary, no impact shown), candidate 3 (Abuse) lacks evidence of a helpless victim being targeted.",
+        "source_categories": [
+          "Riot"
+        ]
+      }
+    },
+    {
+      "t_start": 148.0,
+      "t_end": 159.5,
+      "anomaly_type": "Riot",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "Police in riot gear advance through smoke while confronting a crowd including yellow-vested individuals; vehicles are present but not crashing, and no individual combat or shooting is visible.",
+      "source_candidate_ids": [
+        7,
+        8
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 3,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          148.5,
+          149.0,
+          149.5,
+          150.5,
+          151.0,
+          151.5,
+          152.5,
+          153.0,
+          153.5,
+          154.0,
+          155.0,
+          155.5,
+          156.0,
+          157.0,
+          157.5,
+          158.0,
+          159.0,
+          159.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18",
+          "f19",
+          "f20",
+          "f21"
+        ],
+        "reason": "Sustained deployment of riot police with shields and batons, dense smoke (likely tear gas), and a large group of civilians (some in yellow vests) moving away or resisting—consistent with collective violent unrest (riot) rather than isolated fighting or accident. Frames f4–f21 show continuous escalation and dispersal under smoke, supporting a single riot event spanning both candidate intervals.",
+        "source_categories": [
+          "Riot",
+          "Riot"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 9,
+      "output_count": 2,
+      "groups": 4,
+      "rejected": 6,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.5,
+              "f1": 1.0,
+              "f2": 1.5,
+              "f3": 2.5,
+              "f4": 3.0,
+              "f5": 4.0,
+              "f6": 4.5,
+              "f7": 5.0,
+              "f8": 5.5,
+              "f9": 6.0,
+              "f10": 6.5,
+              "f11": 7.0,
+              "f12": 8.0,
+              "f13": 9.0,
+              "f14": 9.5,
+              "f15": 10.5,
+              "f16": 11.0,
+              "f17": 11.5,
+              "f18": 12.5,
+              "f19": 13.0,
+              "f20": 14.0,
+              "f21": 14.5,
+              "f22": 15.5,
+              "f23": 17.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 2.5,
+                "t_end": 15.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 3.5,
+                "t_end": 6.6,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 6.3,
+                "t_end": 7.8,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 8.0,
+                "t_end": 14.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1, 2, 3],\n      \"category\": \"Riot\",\n      \"t_start\": 2.5,\n      \"t_end\": 15.5,\n      \"confidence\": 0.9,\n      \"description\": \"A crowd of people, many wearing yellow vests, surrounds and damages a black Porsche Cayman; the car’s windows are shattered, debris is on the ground, and individuals actively strike or dismantle parts of the vehicle while others observe or film.\",\n      \"reason\": \"The sustained collective destruction of property by a large group (visible from f3 through f21), with coordinated actions (e.g., multiple people pulling at the car, breaking windows, removing parts), meets the definition of riot as collective violent unrest—not merely a crowd or isolated fighting. The event is continuous across frames and includes both active damage and surrounding agitation.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"No mutual physical combat is visible; interactions are primarily directed at the car, not person-vs-person fighting.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"The car is stationary and already damaged in f12; no collision or impact event is shown—no evidence of a crash occurring during the interval.\",\n      \"evidence_frame_ids\": [\"f12\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"The individuals interacting with the car are not clearly helpless victims; the activity is property destruction within a riot context, not targeted abuse of a defenseless person.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\", \"f14\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.5,
+              "f1": 1.0,
+              "f2": 1.5,
+              "f3": 2.5,
+              "f4": 3.0,
+              "f5": 4.0,
+              "f6": 4.5,
+              "f7": 5.0,
+              "f8": 5.5,
+              "f9": 6.0,
+              "f10": 6.5,
+              "f11": 7.0,
+              "f12": 8.0,
+              "f13": 9.0,
+              "f14": 9.5,
+              "f15": 10.5,
+              "f16": 11.0,
+              "f17": 11.5,
+              "f18": 12.5,
+              "f19": 13.0,
+              "f20": 14.0,
+              "f21": 14.5,
+              "f22": 15.5,
+              "f23": 17.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 2.5,
+                "t_end": 15.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 3.5,
+                "t_end": 6.6,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 6.3,
+                "t_end": 7.8,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 8.0,
+                "t_end": 14.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Riot\",\n      \"t_start\": 2.5,\n      \"t_end\": 15.5,\n      \"confidence\": 0.85,\n      \"description\": \"A crowd, many in yellow vests, surrounds a black Porsche Cayman; from f3 onward, individuals are seen striking the car, breaking windows (visible shattered glass by f12), and removing parts (e.g., rear bumper, interior items), while others observe or film—indicating collective violent property destruction.\",\n      \"reason\": \"The sustained group action targeting a vehicle (not person-vs-person combat) with visible damage progression (intact at f0–f2, broken windows and debris by f12, active dismantling through f21) satisfies 'Riot' as collective violent unrest involving property destruction; candidate 1 (Fighting) is unsupported, candidate 2 (CarAccident) is contradicted (car stationary, no impact shown), candidate 3 (Abuse) lacks evidence of a helpless victim being targeted.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"No mutual physical combat is visible; all interactions involve the car or passive observation—no two individuals are engaged in reciprocal fighting.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"The car is already damaged and stationary in f12 (license plate visible, no motion blur or collision dynamics); no crash event occurs in the sequence—thus not a CarAccident.\",\n      \"evidence_frame_ids\": [\"f12\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"The individuals near the car are actively participating or observing; none appear restrained, incapacitated, or defenseless, so Abuse (aggression against a helpless victim) is not supported.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\", \"f14\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Riot",
+              "t_start": 2.5,
+              "t_end": 15.5,
+              "confidence": 0.85,
+              "description": "A crowd, many in yellow vests, surrounds a black Porsche Cayman; from f3 onward, individuals are seen striking the car, breaking windows (visible shattered glass by f12), and removing parts (e.g., rear bumper, interior items), while others observe or film—indicating collective violent property destruction.",
+              "reason": "The sustained group action targeting a vehicle (not person-vs-person combat) with visible damage progression (intact at f0–f2, broken windows and debris by f12, active dismantling through f21) satisfies 'Riot' as collective violent unrest involving property destruction; candidate 1 (Fighting) is unsupported, candidate 2 (CarAccident) is contradicted (car stationary, no impact shown), candidate 3 (Abuse) lacks evidence of a helpless victim being targeted.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "No mutual physical combat is visible; all interactions involve the car or passive observation—no two individuals are engaged in reciprocal fighting.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            },
+            {
+              "candidate_id": 2,
+              "reason": "The car is already damaged and stationary in f12 (license plate visible, no motion blur or collision dynamics); no crash event occurs in the sequence—thus not a CarAccident.",
+              "evidence_frame_ids": [
+                "f12"
+              ]
+            },
+            {
+              "candidate_id": 3,
+              "reason": "The individuals near the car are actively participating or observing; none appear restrained, incapacitated, or defenseless, so Abuse (aggression against a helpless victim) is not supported.",
+              "evidence_frame_ids": [
+                "f12",
+                "f13",
+                "f14"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          4,
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 41.5,
+              "f1": 42.0,
+              "f2": 42.5,
+              "f3": 43.0,
+              "f4": 43.5,
+              "f5": 44.0,
+              "f6": 44.5,
+              "f7": 45.0,
+              "f8": 45.5,
+              "f9": 46.0,
+              "f10": 46.5,
+              "f11": 47.0,
+              "f12": 47.5,
+              "f13": 48.0,
+              "f14": 48.5,
+              "f15": 49.0,
+              "f16": 49.5,
+              "f17": 50.0,
+              "f18": 50.5,
+              "f19": 51.0,
+              "f20": 51.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 43.5,
+                "t_end": 47.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 45.5,
+                "t_end": 50.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"No collective violent unrest is visible; only police officers observing a burning car, with no crowd engaging in violence or destruction.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    },\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"The car is already engulfed in flames and stationary at f2 (42.5s); there is no visual evidence of a crash or collision event—no impact deformation, skid marks, or preceding motion indicating an accident.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 4,
+              "reason": "No collective violent unrest is visible; only police officers observing a burning car, with no crowd engaging in violence or destruction.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11"
+              ]
+            },
+            {
+              "candidate_id": 5,
+              "reason": "The car is already engulfed in flames and stationary at f2 (42.5s); there is no visual evidence of a crash or collision event—no impact deformation, skid marks, or preceding motion indicating an accident.",
+              "evidence_frame_ids": [
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          6
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 75.5,
+              "f1": 76.0,
+              "f2": 76.5,
+              "f3": 77.0,
+              "f4": 77.5,
+              "f5": 78.0,
+              "f6": 78.5,
+              "f7": 79.0,
+              "f8": 79.5,
+              "f9": 80.0,
+              "f10": 80.5,
+              "f11": 81.0,
+              "f12": 81.5,
+              "f13": 82.0,
+              "f14": 82.5,
+              "f15": 83.0,
+              "f16": 83.5,
+              "f17": 84.0,
+              "f18": 84.5,
+              "f19": 85.0,
+              "f20": 85.5,
+              "f21": 86.0,
+              "f22": 86.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 6,
+                "t_start": 77.5,
+                "t_end": 85.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"The car is already engulfed in fire and smoke at the start of the sequence (f0, 75.5 s); no collision or crash is visible at any point—firefighting actions dominate the frames, indicating a post-incident response, not an accident in progress.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 6,
+              "reason": "The car is already engulfed in fire and smoke at the start of the sequence (f0, 75.5 s); no collision or crash is visible at any point—firefighting actions dominate the frames, indicating a post-incident response, not an accident in progress.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          7,
+          8
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 146.0,
+              "f1": 146.5,
+              "f2": 147.0,
+              "f3": 147.5,
+              "f4": 148.5,
+              "f5": 149.0,
+              "f6": 149.5,
+              "f7": 150.5,
+              "f8": 151.0,
+              "f9": 151.5,
+              "f10": 152.5,
+              "f11": 153.0,
+              "f12": 153.5,
+              "f13": 154.0,
+              "f14": 155.0,
+              "f15": 155.5,
+              "f16": 156.0,
+              "f17": 157.0,
+              "f18": 157.5,
+              "f19": 158.0,
+              "f20": 159.0,
+              "f21": 159.5,
+              "f22": 160.0,
+              "f23": 161.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 7,
+                "t_start": 148.0,
+                "t_end": 155.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 152.0,
+                "t_end": 159.5,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [7, 8],\n      \"category\": \"Riot\",\n      \"t_start\": 148.0,\n      \"t_end\": 159.5,\n      \"confidence\": 0.9,\n      \"description\": \"Police in riot gear advance through smoke while confronting a crowd including yellow-vested individuals; vehicles are present but not crashing, and no individual combat or shooting is visible.\",\n      \"reason\": \"Sustained deployment of riot police with shields and batons, dense smoke (likely tear gas), and a large group of civilians (some in yellow vests) moving away or resisting—consistent with collective violent unrest (riot) rather than isolated fighting or accident. Frames f4–f21 show continuous escalation and dispersal under smoke, supporting a single riot event spanning both candidate intervals.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                7,
+                8
+              ],
+              "category": "Riot",
+              "t_start": 148.0,
+              "t_end": 159.5,
+              "confidence": 0.9,
+              "description": "Police in riot gear advance through smoke while confronting a crowd including yellow-vested individuals; vehicles are present but not crashing, and no individual combat or shooting is visible.",
+              "reason": "Sustained deployment of riot police with shields and batons, dense smoke (likely tear gas), and a large group of civilians (some in yellow vests) moving away or resisting—consistent with collective violent unrest (riot) rather than isolated fighting or accident. Frames f4–f21 show continuous escalation and dispersal under smoke, supporting a single riot event spanning both candidate intervals.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

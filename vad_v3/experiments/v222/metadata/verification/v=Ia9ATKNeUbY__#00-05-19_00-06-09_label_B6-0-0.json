@@ -1,0 +1,440 @@
+{
+  "events": [
+    {
+      "t_start": 5.5,
+      "t_end": 15.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "At f4 (5.5 s), a sudden plume of dust and debris erupts from the right side of the road, followed by numerous fragments flying through the air and striking the windshield through f18 (14.0 s); the event lacks vehicle deformation or collision dynamics.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          5.5,
+          6.0,
+          7.0,
+          7.5,
+          8.0,
+          8.5,
+          9.0,
+          9.5,
+          10.5,
+          11.0,
+          11.5,
+          12.0,
+          12.5,
+          13.0,
+          14.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18"
+        ],
+        "reason": "Frames f4–f18 show a rapid, off-road ejection of material with expanding dust cloud and airborne debris impacting the windshield—consistent with an explosion; no vehicles collide or deform, ruling out CarAccident; candidate 0 is rejected, not merged, because it misclassifies the event and its interval (5.5–6.0) is too narrow and unsupported as a separate crash.",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    },
+    {
+      "t_start": 19.5,
+      "t_end": 22.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A vehicle on the left side of the road (visible from f5 onward) slides sideways, kicks up dust/debris, and appears to lose control or collide with the roadside barrier or terrain; debris is scattered across the windshield throughout f5–f10.",
+      "source_candidate_ids": [
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          20.0,
+          20.5,
+          21.0,
+          21.5,
+          22.0,
+          22.5
+        ],
+        "evidence_frame_ids": [
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10"
+        ],
+        "reason": "Frames f5–f10 show a sudden lateral movement of a vehicle, spray of material, and sustained debris on the windshield—consistent with a crash or loss-of-control incident; the event begins around f5 (20.0 s) and remains visible through f10 (22.5 s), matching the candidate interval.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 46.0,
+      "t_end": 49.0,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A white car enters from the left at f4 (46.0 s), collides with the recording vehicle, and the view abruptly shifts to a shattered windshield from f5 onward.",
+      "source_candidate_ids": [
+        3,
+        4,
+        5
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          46.0,
+          46.5,
+          47.0,
+          47.5,
+          48.0,
+          48.5,
+          49.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10"
+        ],
+        "reason": "f4 shows an approaching white car; f5–f10 show progressive cracking and distortion consistent with impact and broken windshield; f12 shows post-impact road view. All candidate intervals fall within this single crash event.",
+        "source_categories": [
+          "CarAccident",
+          "CarAccident",
+          "CarAccident"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 6,
+      "output_count": 3,
+      "groups": 3,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 2,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 3.5,
+              "f1": 4.0,
+              "f2": 4.5,
+              "f3": 5.0,
+              "f4": 5.5,
+              "f5": 6.0,
+              "f6": 7.0,
+              "f7": 7.5,
+              "f8": 8.0,
+              "f9": 8.5,
+              "f10": 9.0,
+              "f11": 9.5,
+              "f12": 10.5,
+              "f13": 11.0,
+              "f14": 11.5,
+              "f15": 12.0,
+              "f16": 12.5,
+              "f17": 13.0,
+              "f18": 14.0,
+              "f19": 14.5,
+              "f20": 15.0,
+              "f21": 15.5,
+              "f22": 16.0,
+              "f23": 17.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 5.5,
+                "t_end": 6.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 5.5,
+                "t_end": 15.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Explosion\",\n      \"t_start\": 5.5,\n      \"t_end\": 15.5,\n      \"confidence\": 0.95,\n      \"description\": \"A sudden large dust/debris cloud erupts from the right side of the road at ~5.5 s, followed by numerous fragments flying through the air and impacting the windshield over several seconds.\",\n      \"reason\": \"Frame f4 (5.5 s) shows a violent ejection of material and dust; f5–f18 show sustained debris field and impact on windshield—consistent with a single explosive event, not a car crash (no vehicle deformation or collision visible). Candidate 0’s CarAccident is subsumed: no evidence of vehicle-to-vehicle or vehicle-to-object impact; the event originates off-road/right-of-way and lacks crash dynamics.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No vehicle collision or crash dynamics are visible; the event is an off-road explosion with debris, not a car accident.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 3.5,
+              "f1": 4.0,
+              "f2": 4.5,
+              "f3": 5.0,
+              "f4": 5.5,
+              "f5": 6.0,
+              "f6": 7.0,
+              "f7": 7.5,
+              "f8": 8.0,
+              "f9": 8.5,
+              "f10": 9.0,
+              "f11": 9.5,
+              "f12": 10.5,
+              "f13": 11.0,
+              "f14": 11.5,
+              "f15": 12.0,
+              "f16": 12.5,
+              "f17": 13.0,
+              "f18": 14.0,
+              "f19": 14.5,
+              "f20": 15.0,
+              "f21": 15.5,
+              "f22": 16.0,
+              "f23": 17.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 5.5,
+                "t_end": 6.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 5.5,
+                "t_end": 15.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Explosion\",\n      \"t_start\": 5.5,\n      \"t_end\": 15.5,\n      \"confidence\": 0.9,\n      \"description\": \"At f4 (5.5 s), a sudden plume of dust and debris erupts from the right side of the road, followed by numerous fragments flying through the air and striking the windshield through f18 (14.0 s); the event lacks vehicle deformation or collision dynamics.\",\n      \"reason\": \"Frames f4–f18 show a rapid, off-road ejection of material with expanding dust cloud and airborne debris impacting the windshield—consistent with an explosion; no vehicles collide or deform, ruling out CarAccident; candidate 0 is rejected, not merged, because it misclassifies the event and its interval (5.5–6.0) is too narrow and unsupported as a separate crash.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No evidence of vehicle collision, deformation, or crash dynamics; the event originates off-road and involves explosive debris, not a car accident.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "Explosion",
+              "t_start": 5.5,
+              "t_end": 15.5,
+              "confidence": 0.9,
+              "description": "At f4 (5.5 s), a sudden plume of dust and debris erupts from the right side of the road, followed by numerous fragments flying through the air and striking the windshield through f18 (14.0 s); the event lacks vehicle deformation or collision dynamics.",
+              "reason": "Frames f4–f18 show a rapid, off-road ejection of material with expanding dust cloud and airborne debris impacting the windshield—consistent with an explosion; no vehicles collide or deform, ruling out CarAccident; candidate 0 is rejected, not merged, because it misclassifies the event and its interval (5.5–6.0) is too narrow and unsupported as a separate crash.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "No evidence of vehicle collision, deformation, or crash dynamics; the event originates off-road and involves explosive debris, not a car accident.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 17.5,
+              "f1": 18.0,
+              "f2": 18.5,
+              "f3": 19.0,
+              "f4": 19.5,
+              "f5": 20.0,
+              "f6": 20.5,
+              "f7": 21.0,
+              "f8": 21.5,
+              "f9": 22.0,
+              "f10": 22.5,
+              "f11": 23.0,
+              "f12": 23.5,
+              "f13": 24.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 19.5,
+                "t_end": 22.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"CarAccident\",\n      \"t_start\": 19.5,\n      \"t_end\": 22.5,\n      \"confidence\": 0.95,\n      \"description\": \"A vehicle on the left side of the road (visible from f5 onward) slides sideways, kicks up dust/debris, and appears to lose control or collide with the roadside barrier or terrain; debris is scattered across the windshield throughout f5–f10.\",\n      \"reason\": \"Frames f5–f10 show a sudden lateral movement of a vehicle, spray of material, and sustained debris on the windshield—consistent with a crash or loss-of-control incident; the event begins around f5 (20.0 s) and remains visible through f10 (22.5 s), matching the candidate interval.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2
+              ],
+              "category": "CarAccident",
+              "t_start": 19.5,
+              "t_end": 22.5,
+              "confidence": 0.95,
+              "description": "A vehicle on the left side of the road (visible from f5 onward) slides sideways, kicks up dust/debris, and appears to lose control or collide with the roadside barrier or terrain; debris is scattered across the windshield throughout f5–f10.",
+              "reason": "Frames f5–f10 show a sudden lateral movement of a vehicle, spray of material, and sustained debris on the windshield—consistent with a crash or loss-of-control incident; the event begins around f5 (20.0 s) and remains visible through f10 (22.5 s), matching the candidate interval.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          3,
+          4,
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 44.0,
+              "f1": 44.5,
+              "f2": 45.0,
+              "f3": 45.5,
+              "f4": 46.0,
+              "f5": 46.5,
+              "f6": 47.0,
+              "f7": 47.5,
+              "f8": 48.0,
+              "f9": 48.5,
+              "f10": 49.0,
+              "f11": 49.5,
+              "f12": 50.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 46.0,
+                "t_end": 48.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 46.0,
+                "t_end": 46.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 46.5,
+                "t_end": 47.3,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3, 4, 5],\n      \"category\": \"CarAccident\",\n      \"t_start\": 46.0,\n      \"t_end\": 49.0,\n      \"confidence\": 0.95,\n      \"description\": \"A white car enters from the left at f4 (46.0 s), collides with the recording vehicle, and the view abruptly shifts to a shattered windshield from f5 onward.\",\n      \"reason\": \"f4 shows an approaching white car; f5–f10 show progressive cracking and distortion consistent with impact and broken windshield; f12 shows post-impact road view. All candidate intervals fall within this single crash event.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                3,
+                4,
+                5
+              ],
+              "category": "CarAccident",
+              "t_start": 46.0,
+              "t_end": 49.0,
+              "confidence": 0.95,
+              "description": "A white car enters from the left at f4 (46.0 s), collides with the recording vehicle, and the view abruptly shifts to a shattered windshield from f5 onward.",
+              "reason": "f4 shows an approaching white car; f5–f10 show progressive cracking and distortion consistent with impact and broken windshield; f12 shows post-impact road view. All candidate intervals fall within this single crash event.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

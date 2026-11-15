@@ -1,0 +1,313 @@
+{
+  "events": [
+    {
+      "t_start": 0.0,
+      "t_end": 6.0,
+      "anomaly_type": "Riot",
+      "confidence": 0.8,
+      "coarse_score": 0.8,
+      "description": "Multiple individuals, some in yellow vests, move through a smoke-filled urban street with visible fires and scattered debris; crowd behavior appears coordinated and unrestful.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.8,
+        "evidence_times": [
+          0.0,
+          0.5,
+          1.0,
+          1.5,
+          2.0,
+          2.5,
+          3.0,
+          3.5,
+          4.5,
+          5.0
+        ],
+        "evidence_frame_ids": [
+          "f0",
+          "f1",
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f9",
+          "f10"
+        ],
+        "reason": "Persistent smoke, distant flames (f10), presence of yellow vests (f0–f4, f13–f14), and collective movement away from or toward disturbances indicate collective violent unrest, satisfying the 'Riot' definition; no individual combat dominates the scene.",
+        "source_categories": [
+          "Riot"
+        ]
+      }
+    },
+    {
+      "t_start": 656.0,
+      "t_end": 668.0,
+      "anomaly_type": "Riot",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A large crowd of people wearing yellow vests marches down a Paris street toward a source of thick black smoke and visible flames in the distance; individuals raise arms, chant, and move collectively with agitation, consistent with collective violent unrest.",
+      "source_candidate_ids": [
+        2,
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          656.0,
+          656.5,
+          657.0,
+          658.0,
+          658.5,
+          659.0,
+          659.5,
+          660.0,
+          660.5,
+          661.0,
+          662.0,
+          662.5,
+          663.0,
+          664.0,
+          664.5,
+          665.0,
+          666.0,
+          666.5,
+          667.0,
+          668.0
+        ],
+        "evidence_frame_ids": [
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18",
+          "f19",
+          "f20",
+          "f21",
+          "f22"
+        ],
+        "reason": "The sustained presence of dense black smoke and fire (visible from f3 onward), combined with coordinated movement, raised arms, masked faces, and the scale of the crowd (dozens to hundreds) moving purposefully toward the disturbance, meets the definition of riot (collective violent unrest). The two candidate intervals overlap and describe the same continuous event; merged into one.",
+        "source_categories": [
+          "Riot",
+          "Riot"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 4,
+      "output_count": 2,
+      "groups": 2,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0,
+              "f9": 4.5,
+              "f10": 5.0,
+              "f11": 5.5,
+              "f12": 6.0,
+              "f13": 6.5,
+              "f14": 7.0,
+              "f15": 7.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 0.0,
+                "t_end": 6.0,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 3.5,
+                "t_end": 4.0,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Riot\",\n      \"t_start\": 0.0,\n      \"t_end\": 6.0,\n      \"confidence\": 0.8,\n      \"description\": \"Multiple individuals, some in yellow vests, move through a smoke-filled urban street with visible fires and scattered debris; crowd behavior appears coordinated and unrestful.\",\n      \"reason\": \"Persistent smoke, distant flames (f10), presence of yellow vests (f0–f4, f13–f14), and collective movement away from or toward disturbances indicate collective violent unrest, satisfying the 'Riot' definition; no individual combat dominates the scene.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f9\", \"f10\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Frames f7–f8 show close proximity and possible confrontation, but no mutual physical combat is visible; one person holds a phone, another gestures—consistent with verbal dispute or documentation, not Fighting.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Riot",
+              "t_start": 0.0,
+              "t_end": 6.0,
+              "confidence": 0.8,
+              "description": "Multiple individuals, some in yellow vests, move through a smoke-filled urban street with visible fires and scattered debris; crowd behavior appears coordinated and unrestful.",
+              "reason": "Persistent smoke, distant flames (f10), presence of yellow vests (f0–f4, f13–f14), and collective movement away from or toward disturbances indicate collective violent unrest, satisfying the 'Riot' definition; no individual combat dominates the scene.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f9",
+                "f10"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "Frames f7–f8 show close proximity and possible confrontation, but no mutual physical combat is visible; one person holds a phone, another gestures—consistent with verbal dispute or documentation, not Fighting.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          2,
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 654.0,
+              "f1": 654.5,
+              "f2": 655.0,
+              "f3": 656.0,
+              "f4": 656.5,
+              "f5": 657.0,
+              "f6": 658.0,
+              "f7": 658.5,
+              "f8": 659.0,
+              "f9": 659.5,
+              "f10": 660.0,
+              "f11": 660.5,
+              "f12": 661.0,
+              "f13": 662.0,
+              "f14": 662.5,
+              "f15": 663.0,
+              "f16": 664.0,
+              "f17": 664.5,
+              "f18": 665.0,
+              "f19": 666.0,
+              "f20": 666.5,
+              "f21": 667.0,
+              "f22": 668.0,
+              "f23": 669.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 656.0,
+                "t_end": 663.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 660.0,
+                "t_end": 668.0,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2, 3],\n      \"category\": \"Riot\",\n      \"t_start\": 656.0,\n      \"t_end\": 668.0,\n      \"confidence\": 0.9,\n      \"description\": \"A large crowd of people wearing yellow vests marches down a Paris street toward a source of thick black smoke and visible flames in the distance; individuals raise arms, chant, and move collectively with agitation, consistent with collective violent unrest.\",\n      \"reason\": \"The sustained presence of dense black smoke and fire (visible from f3 onward), combined with coordinated movement, raised arms, masked faces, and the scale of the crowd (dozens to hundreds) moving purposefully toward the disturbance, meets the definition of riot (collective violent unrest). The two candidate intervals overlap and describe the same continuous event; merged into one.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2,
+                3
+              ],
+              "category": "Riot",
+              "t_start": 656.0,
+              "t_end": 668.0,
+              "confidence": 0.9,
+              "description": "A large crowd of people wearing yellow vests marches down a Paris street toward a source of thick black smoke and visible flames in the distance; individuals raise arms, chant, and move collectively with agitation, consistent with collective violent unrest.",
+              "reason": "The sustained presence of dense black smoke and fire (visible from f3 onward), combined with coordinated movement, raised arms, masked faces, and the scale of the crowd (dozens to hundreds) moving purposefully toward the disturbance, meets the definition of riot (collective violent unrest). The two candidate intervals overlap and describe the same continuous event; merged into one.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

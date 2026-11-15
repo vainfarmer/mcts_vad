@@ -37,7 +37,16 @@ def build_vad(
         classify_client: 分类用的（强）VLM 客户端，None 时复用 detect_client
         image_processor: 可选图像预处理器
     """
-    return MultiAnomalyVAD(
+    pipeline_class = MultiAnomalyVAD
+    if config.dataset == 'xd_violence':
+        try:
+            from .xd_pipeline import XDMultiAnomalyVAD
+        except ImportError:
+            from xd_pipeline import XDMultiAnomalyVAD
+        pipeline_class = XDMultiAnomalyVAD
+    elif config.dataset != 'ucf_crime':
+        raise ValueError('Unsupported dataset: ' + config.dataset)
+    return pipeline_class(
         llm_client=detect_client,
         config=config,
         classify_llm_client=classify_client or detect_client,

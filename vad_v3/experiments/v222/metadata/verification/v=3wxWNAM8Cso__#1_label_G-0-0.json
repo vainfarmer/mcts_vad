@@ -1,0 +1,500 @@
+{
+  "events": [
+    {
+      "t_start": 2.5,
+      "t_end": 4.5,
+      "anomaly_type": "Abuse",
+      "confidence": 0.75,
+      "coarse_score": 0.75,
+      "description": "A hand brings a syringe toward a supine child’s face and appears to insert the needle near the child’s nose/mouth while the child remains still and passive.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.75,
+        "evidence_times": [
+          2.5,
+          3.0,
+          3.5,
+          4.0,
+          4.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8"
+        ],
+        "reason": "Frames f4–f8 show a syringe being positioned and applied to a young child’s facial region without visible medical context, consent, or protective equipment; the child is immobile and looking upward, consistent with a helpless victim subjected to non-consensual intervention—meeting the definition of abuse.",
+        "source_categories": [
+          "Abuse"
+        ]
+      }
+    },
+    {
+      "t_start": 203.5,
+      "t_end": 207.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A bright flash expands into a rising fireball and mushrooming smoke plume, followed by a dust cloud engulfing buildings and interior collapse.",
+      "source_candidate_ids": [
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          203.5,
+          204.0,
+          204.5,
+          205.0,
+          205.5,
+          206.0,
+          206.5,
+          207.0,
+          207.5,
+          208.0,
+          208.5,
+          209.0
+        ],
+        "evidence_frame_ids": [
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14"
+        ],
+        "reason": "Frames f3–f11 show rapid expansion of luminous blast, characteristic fireball morphology, and subsequent smoke column; f12–f14 show massive dust cloud and structural disintegration consistent with a large explosion; the event is continuous across frames and matches explosion criteria (sudden energy release, blast wave, debris ejection).",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    },
+    {
+      "t_start": 212.0,
+      "t_end": 217.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "Frames f4–f7 show a violent, rapid ejection of dust and debris from ground level; f8–f11 depict a rising fireball and mushroom-shaped plume over terrain; f12–f15 show an aerial dust wave engulfing a dense urban area—collectively constituting a single blast event.",
+      "source_candidate_ids": [
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          212.0,
+          212.5,
+          213.0,
+          213.5,
+          214.0,
+          214.5,
+          215.0,
+          215.5,
+          216.0,
+          216.5,
+          217.0,
+          217.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15"
+        ],
+        "reason": "The sequence f4 (212.0 s) to f15 (217.5 s) shows continuous, causally linked progression: initial blast-driven debris (f4–f7), fireball/mushroom formation (f8–f11), and expanding destruction wave over buildings (f12–f15), satisfying the definition of 'Explosion' (sudden energy release producing a blast wave and massive displacement of matter). Frames after f15 lack new detonation signatures and show only secondary effects (e.g., fire in f16, settled dust in f18–f22), so the explosion event ends at 217.5 s.",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 4,
+      "output_count": 3,
+      "groups": 3,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.5,
+              "f1": 1.0,
+              "f2": 1.5,
+              "f3": 2.0,
+              "f4": 2.5,
+              "f5": 3.0,
+              "f6": 3.5,
+              "f7": 4.0,
+              "f8": 4.5,
+              "f9": 5.0,
+              "f10": 5.5,
+              "f11": 6.0,
+              "f12": 6.5,
+              "f13": 7.0,
+              "f14": 7.5,
+              "f15": 8.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 2.5,
+                "t_end": 4.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 5.3,
+                "t_end": 6.5,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Abuse\",\n      \"t_start\": 2.5,\n      \"t_end\": 4.5,\n      \"confidence\": 0.8,\n      \"description\": \"A hand holds a syringe near a child's face, then appears to insert it into the child’s nose/mouth area while the child lies still and looks upward.\",\n      \"reason\": \"The sequence (f4–f8) shows a syringe being brought to and applied to a young child’s facial region without visible consent or medical context; the child is passive and supine, consistent with non-consensual administration—meeting the definition of abuse as aggression against a helpless victim.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    },\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Abuse\",\n      \"t_start\": 5.3,\n      \"t_end\": 6.5,\n      \"confidence\": 0.7,\n      \"description\": \"A person draws liquid into a syringe from their own forearm vein, then prepares the syringe for use; no victim is visible in this segment.\",\n      \"reason\": \"Frames f9–f11 show self-injection (or preparation thereof) on an adult arm; no second person or sign of aggression toward a helpless individual is present, so this does not meet the definition of abuse. However, candidate 1 claims abuse during this interval; since the only visible action is self-administration, the hypothesis is unsupported. But note: the candidate interval overlaps f9–f11, where the subject is clearly the same person handling the syringe on their own arm — thus *not* abuse. Therefore, candidate 1 should be rejected, not accepted. Correction: this event should NOT be accepted. Re-evaluate.\",\n      \"evidence_frame_ids\": []\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Frames f9–f11 show a person drawing fluid into a syringe from their own forearm; no victim or aggressive act toward another is visible, contradicting the 'Abuse' label.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\", \"f11\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.5,
+              "f1": 1.0,
+              "f2": 1.5,
+              "f3": 2.0,
+              "f4": 2.5,
+              "f5": 3.0,
+              "f6": 3.5,
+              "f7": 4.0,
+              "f8": 4.5,
+              "f9": 5.0,
+              "f10": 5.5,
+              "f11": 6.0,
+              "f12": 6.5,
+              "f13": 7.0,
+              "f14": 7.5,
+              "f15": 8.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 2.5,
+                "t_end": 4.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 5.3,
+                "t_end": 6.5,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Abuse\",\n      \"t_start\": 2.5,\n      \"t_end\": 4.5,\n      \"confidence\": 0.75,\n      \"description\": \"A hand brings a syringe toward a supine child’s face and appears to insert the needle near the child’s nose/mouth while the child remains still and passive.\",\n      \"reason\": \"Frames f4–f8 show a syringe being positioned and applied to a young child’s facial region without visible medical context, consent, or protective equipment; the child is immobile and looking upward, consistent with a helpless victim subjected to non-consensual intervention—meeting the definition of abuse.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Frames f9–f11 show a person drawing liquid into a syringe from their own forearm (self-injection preparation); no second person, victim, or aggressive act is visible, contradicting the 'Abuse' label which requires aggression against a helpless victim.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\", \"f11\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Abuse",
+              "t_start": 2.5,
+              "t_end": 4.5,
+              "confidence": 0.75,
+              "description": "A hand brings a syringe toward a supine child’s face and appears to insert the needle near the child’s nose/mouth while the child remains still and passive.",
+              "reason": "Frames f4–f8 show a syringe being positioned and applied to a young child’s facial region without visible medical context, consent, or protective equipment; the child is immobile and looking upward, consistent with a helpless victim subjected to non-consensual intervention—meeting the definition of abuse.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "Frames f9–f11 show a person drawing liquid into a syringe from their own forearm (self-injection preparation); no second person, victim, or aggressive act is visible, contradicting the 'Abuse' label which requires aggression against a helpless victim.",
+              "evidence_frame_ids": [
+                "f9",
+                "f10",
+                "f11"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 202.0,
+              "f1": 202.5,
+              "f2": 203.0,
+              "f3": 203.5,
+              "f4": 204.0,
+              "f5": 204.5,
+              "f6": 205.0,
+              "f7": 205.5,
+              "f8": 206.0,
+              "f9": 206.5,
+              "f10": 207.0,
+              "f11": 207.5,
+              "f12": 208.0,
+              "f13": 208.5,
+              "f14": 209.0,
+              "f15": 209.5,
+              "f16": 210.0,
+              "f17": 210.5,
+              "f18": 211.0,
+              "f19": 211.5,
+              "f20": 212.0,
+              "f21": 212.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 204.0,
+                "t_end": 210.9,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"Explosion\",\n      \"t_start\": 203.5,\n      \"t_end\": 207.5,\n      \"confidence\": 0.95,\n      \"description\": \"A bright flash expands into a rising fireball and mushrooming smoke plume, followed by a dust cloud engulfing buildings and interior collapse.\",\n      \"reason\": \"Frames f3–f11 show rapid expansion of luminous blast, characteristic fireball morphology, and subsequent smoke column; f12–f14 show massive dust cloud and structural disintegration consistent with a large explosion; the event is continuous across frames and matches explosion criteria (sudden energy release, blast wave, debris ejection).\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2
+              ],
+              "category": "Explosion",
+              "t_start": 203.5,
+              "t_end": 207.5,
+              "confidence": 0.95,
+              "description": "A bright flash expands into a rising fireball and mushrooming smoke plume, followed by a dust cloud engulfing buildings and interior collapse.",
+              "reason": "Frames f3–f11 show rapid expansion of luminous blast, characteristic fireball morphology, and subsequent smoke column; f12–f14 show massive dust cloud and structural disintegration consistent with a large explosion; the event is continuous across frames and matches explosion criteria (sudden energy release, blast wave, debris ejection).",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 210.0,
+              "f1": 210.5,
+              "f2": 211.0,
+              "f3": 211.5,
+              "f4": 212.0,
+              "f5": 212.5,
+              "f6": 213.0,
+              "f7": 213.5,
+              "f8": 214.0,
+              "f9": 214.5,
+              "f10": 215.0,
+              "f11": 215.5,
+              "f12": 216.0,
+              "f13": 216.5,
+              "f14": 217.0,
+              "f15": 217.5,
+              "f16": 218.0,
+              "f17": 218.5,
+              "f18": 219.0,
+              "f19": 219.5,
+              "f20": 220.0,
+              "f21": 220.5,
+              "f22": 221.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 212.0,
+                "t_end": 219.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"Explosion\",\n      \"t_start\": 212.0,\n      \"t_end\": 217.5,\n      \"confidence\": 0.95,\n      \"description\": \"A massive dust/debris cloud erupts upward and outward, obscuring structures, followed by a mushroom-shaped plume over a cityscape (f4–f15), consistent with a large-scale explosion.\",\n      \"reason\": \"Frames f4–f7 show rapid expansion of dense particulate cloud from ground level; f8–f11 depict a classic nuclear-style mushroom cloud over terrain; f12–f15 show aerial view of widespread destruction and dust wave over buildings—collectively satisfying the definition of explosion (blast event).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"While f16–f17 show fire/smoke in windows and f18–f22 show debris/dust on ground and street, these are likely secondary effects post-explosion and not independent explosions; however, the candidate interval ends at 219.5, and frames f18–f22 (219.0–221.0) lack clear blast signature, so the explosion event is confined to f4–f15. The candidate’s t_end=219.5 slightly exceeds the clear explosion evidence, but since the core blast is fully covered and the candidate maps to one coherent event, it is accepted with confidence 0.95; no separate uncertain entry needed for this candidate. (Note: per instructions, each candidate must appear exactly once — it is accepted above.)\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 210.0,
+              "f1": 210.5,
+              "f2": 211.0,
+              "f3": 211.5,
+              "f4": 212.0,
+              "f5": 212.5,
+              "f6": 213.0,
+              "f7": 213.5,
+              "f8": 214.0,
+              "f9": 214.5,
+              "f10": 215.0,
+              "f11": 215.5,
+              "f12": 216.0,
+              "f13": 216.5,
+              "f14": 217.0,
+              "f15": 217.5,
+              "f16": 218.0,
+              "f17": 218.5,
+              "f18": 219.0,
+              "f19": 219.5,
+              "f20": 220.0,
+              "f21": 220.5,
+              "f22": 221.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 212.0,
+                "t_end": 219.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"Explosion\",\n      \"t_start\": 212.0,\n      \"t_end\": 217.5,\n      \"confidence\": 0.9,\n      \"description\": \"Frames f4–f7 show a rapidly expanding dust/debris cloud rising from ground level; f8–f11 depict a large mushroom-shaped plume over terrain; f12–f15 show aerial views of widespread destruction and a dust wave engulfing buildings—collectively indicating a single massive blast event.\",\n      \"reason\": \"The sequence from f4 (212.0 s) through f15 (217.5 s) shows continuous, coherent progression of a blast: initial debris ejection (f4–f7), formation of a fireball/mushroom cloud (f8–f11), and subsequent dust wave over urban area (f12–f15). This satisfies the definition of 'Explosion' (a sudden release of energy causing a blast wave and displacement of matter). Frames after f15 (e.g., f16–f22) show secondary effects (fire, rubble, dust settling) without new blast signatures, so the explosion event ends at 217.5 s.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"The candidate’s stated interval (212.0–219.5) extends beyond clear blast evidence (which ends at f15 = 217.5 s); frames f16–f19 (218.0–219.5 s) show fire in windows and indistinct debris/dust but no new detonation or blast wave—these are post-explosion effects. Since the core explosion is fully captured within f4–f15 and the candidate maps to one physical event, it is accepted with reduced confidence (0.9) and truncated t_end; no separate uncertain entry is needed for the candidate itself per instruction, but the extension beyond 217.5 s makes the original candidate interval partially unsupported—hence this uncertain note clarifies the boundary adjustment.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 210.0,
+              "f1": 210.5,
+              "f2": 211.0,
+              "f3": 211.5,
+              "f4": 212.0,
+              "f5": 212.5,
+              "f6": 213.0,
+              "f7": 213.5,
+              "f8": 214.0,
+              "f9": 214.5,
+              "f10": 215.0,
+              "f11": 215.5,
+              "f12": 216.0,
+              "f13": 216.5,
+              "f14": 217.0,
+              "f15": 217.5,
+              "f16": 218.0,
+              "f17": 218.5,
+              "f18": 219.0,
+              "f19": 219.5,
+              "f20": 220.0,
+              "f21": 220.5,
+              "f22": 221.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 212.0,
+                "t_end": 219.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"Explosion\",\n      \"t_start\": 212.0,\n      \"t_end\": 217.5,\n      \"confidence\": 0.95,\n      \"description\": \"Frames f4–f7 show a violent, rapid ejection of dust and debris from ground level; f8–f11 depict a rising fireball and mushroom-shaped plume over terrain; f12–f15 show an aerial dust wave engulfing a dense urban area—collectively constituting a single blast event.\",\n      \"reason\": \"The sequence f4 (212.0 s) to f15 (217.5 s) shows continuous, causally linked progression: initial blast-driven debris (f4–f7), fireball/mushroom formation (f8–f11), and expanding destruction wave over buildings (f12–f15), satisfying the definition of 'Explosion' (sudden energy release producing a blast wave and massive displacement of matter). Frames after f15 lack new detonation signatures and show only secondary effects (e.g., fire in f16, settled dust in f18–f22), so the explosion event ends at 217.5 s.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                3
+              ],
+              "category": "Explosion",
+              "t_start": 212.0,
+              "t_end": 217.5,
+              "confidence": 0.95,
+              "description": "Frames f4–f7 show a violent, rapid ejection of dust and debris from ground level; f8–f11 depict a rising fireball and mushroom-shaped plume over terrain; f12–f15 show an aerial dust wave engulfing a dense urban area—collectively constituting a single blast event.",
+              "reason": "The sequence f4 (212.0 s) to f15 (217.5 s) shows continuous, causally linked progression: initial blast-driven debris (f4–f7), fireball/mushroom formation (f8–f11), and expanding destruction wave over buildings (f12–f15), satisfying the definition of 'Explosion' (sudden energy release producing a blast wave and massive displacement of matter). Frames after f15 lack new detonation signatures and show only secondary effects (e.g., fire in f16, settled dust in f18–f22), so the explosion event ends at 217.5 s.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

@@ -1,0 +1,314 @@
+{
+  "events": [
+    {
+      "t_start": 0.0,
+      "t_end": 2.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A large truck is seen veering sharply left across the road while debris flies toward the camera vehicle, indicating a collision or near-collision event.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          0.0,
+          0.5,
+          1.0,
+          1.5,
+          2.0,
+          2.5
+        ],
+        "evidence_frame_ids": [
+          "f0",
+          "f1",
+          "f2",
+          "f3",
+          "f4",
+          "f5"
+        ],
+        "reason": "Frames f0–f5 show increasing debris on windshield, dust cloud, and the truck’s abnormal trajectory (e.g., f3–f5: truck angled across lane with visible disturbance), consistent with a crash or severe impact; the 'FATAL ERROR' overlay suggests system failure likely triggered by impact.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 5,
+      "output_count": 1,
+      "groups": 4,
+      "rejected": 4,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 0.0,
+                "t_end": 2.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"CarAccident\",\n      \"t_start\": 0.0,\n      \"t_end\": 2.5,\n      \"confidence\": 0.95,\n      \"description\": \"A large truck is seen veering sharply left across the road while debris flies toward the camera vehicle, indicating a collision or near-collision event.\",\n      \"reason\": \"Frames f0–f5 show increasing debris on windshield, dust cloud, and the truck’s abnormal trajectory (e.g., f3–f5: truck angled across lane with visible disturbance), consistent with a crash or severe impact; the 'FATAL ERROR' overlay suggests system failure likely triggered by impact.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "CarAccident",
+              "t_start": 0.0,
+              "t_end": 2.5,
+              "confidence": 0.95,
+              "description": "A large truck is seen veering sharply left across the road while debris flies toward the camera vehicle, indicating a collision or near-collision event.",
+              "reason": "Frames f0–f5 show increasing debris on windshield, dust cloud, and the truck’s abnormal trajectory (e.g., f3–f5: truck angled across lane with visible disturbance), consistent with a crash or severe impact; the 'FATAL ERROR' overlay suggests system failure likely triggered by impact.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 14.0,
+              "f1": 14.5,
+              "f2": 15.0,
+              "f3": 15.5,
+              "f4": 16.0,
+              "f5": 16.5,
+              "f6": 17.0,
+              "f7": 17.5,
+              "f8": 18.0,
+              "f9": 18.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 16.0,
+                "t_end": 17.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"No collision or impact is visible between frames f4–f6; the white SUV turns left normally without contact, and all vehicles remain intact and in controlled motion.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "No collision or impact is visible between frames f4–f6; the white SUV turns left normally without contact, and all vehicles remain intact and in controlled motion.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          2,
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 21.0,
+              "f1": 21.5,
+              "f2": 22.0,
+              "f3": 22.5,
+              "f4": 23.0,
+              "f5": 23.5,
+              "f6": 24.0,
+              "f7": 24.5,
+              "f8": 25.0,
+              "f9": 25.5,
+              "f10": 26.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 23.0,
+                "t_end": 23.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 24.0,
+                "t_end": 24.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"Fighting\",\n      \"t_start\": 23.0,\n      \"t_end\": 23.5,\n      \"confidence\": 0.9,\n      \"description\": \"A person exits the white sedan at f4 and approaches the driver’s side of the same car; by f5, they are standing beside the open driver’s door facing the driver, with posture suggesting confrontation but no visible physical contact or mutual combat.\",\n      \"reason\": \"The interaction is one-sided (person outside approaching driver), no mutual physical engagement is visible in f4–f5; however, the sudden exit, positioning, and proximity to the driver’s window in a stopped vehicle at an intersection strongly suggest an imminent or ongoing verbal/physical confrontation consistent with 'Fighting' per definition requiring mutual physical combat — but since no mutual physical contact is visible, this is borderline. Yet f5 shows both individuals upright, no clear strike or grappling; however, candidate 2 explicitly claims fighting at 23.0–23.5, and f4–f5 show the only non-normal behavior: person exiting and confronting driver. Given the strict definition ('requires mutual physical combat'), this does NOT meet criteria. Re-evaluate: no visible hitting, pushing, or grappling — only standing face-to-face. Therefore, not Fighting. Wait — correction: per instruction, *Fighting requires mutual physical combat*. No such evidence. So reject. But we must assign all candidates. Let's re-express: candidate 2 is unsupported. So it should be rejected, not accepted. Then no event for candidate 2. Candidate 3: t_start=24.0–24.5, unverified CarAccident. In f6 (24.0), white sedan still stopped, person still beside it; f7 (24.5) is a different camera angle (overhead), showing traffic flow, no crash debris, no vehicles in collision. The black SUV in f7 is turning normally, no impact. So no CarAccident. Thus both candidates are rejected. But we must check if any event qualifies. Review f7–f10: normal traffic, pedestrians crossing, no anomalies. Therefore, zero accepted events. So events = [].\",\n      \"evidence_frame_ids\": []\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"At f4–f5, a person exits a stopped white sedan and stands beside the driver’s door, but no mutual physical combat is visible; the interaction remains nonviolent and could be a routine stop or argument without fighting per strict definition.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"Frames f6–f7 show no vehicle collision: the white sedan remains intact and stationary in f6, and the overhead view in f7 shows normal traffic flow with no damage, debris, or abnormal vehicle positions indicating a crash.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 21.0,
+              "f1": 21.5,
+              "f2": 22.0,
+              "f3": 22.5,
+              "f4": 23.0,
+              "f5": 23.5,
+              "f6": 24.0,
+              "f7": 24.5,
+              "f8": 25.0,
+              "f9": 25.5,
+              "f10": 26.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 23.0,
+                "t_end": 23.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 24.0,
+                "t_end": 24.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"In f4–f5 (23.0–23.5 s), a person exits the white sedan and stands beside the driver’s door, but no mutual physical combat is visible—only standing face-to-face with no striking, grappling, or contact; per definition, Fighting requires mutual physical combat, which is absent.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"In f6 (24.0 s), the white sedan is still stationary with a person beside it; in f7 (24.5 s), an overhead view shows normal traffic flow, no vehicle damage, deformation, skid marks, or post-impact positioning—no evidence of a crash occurred.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "In f4–f5 (23.0–23.5 s), a person exits the white sedan and stands beside the driver’s door, but no mutual physical combat is visible—only standing face-to-face with no striking, grappling, or contact; per definition, Fighting requires mutual physical combat, which is absent.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            },
+            {
+              "candidate_id": 3,
+              "reason": "In f6 (24.0 s), the white sedan is still stationary with a person beside it; in f7 (24.5 s), an overhead view shows normal traffic flow, no vehicle damage, deformation, skid marks, or post-impact positioning—no evidence of a crash occurred.",
+              "evidence_frame_ids": [
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 59.0,
+              "f1": 59.5,
+              "f2": 60.0,
+              "f3": 60.5,
+              "f4": 61.0,
+              "f5": 61.5,
+              "f6": 62.0,
+              "f7": 62.5,
+              "f8": 63.0,
+              "f9": 63.5,
+              "f10": 64.0,
+              "f11": 64.5,
+              "f12": 65.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 61.0,
+                "t_end": 63.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"No crash or collision is visible; vehicles maintain lane discipline and distance, with normal merging/lanes changes observed (e.g., white sedan enters right lane at f4–f6 without impact).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 4,
+              "reason": "No crash or collision is visible; vehicles maintain lane discipline and distance, with normal merging/lanes changes observed (e.g., white sedan enters right lane at f4–f6 without impact).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

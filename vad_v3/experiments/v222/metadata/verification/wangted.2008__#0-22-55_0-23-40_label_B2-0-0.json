@@ -1,0 +1,166 @@
+{
+  "events": [
+    {
+      "t_start": 26.5,
+      "t_end": 29.0,
+      "anomaly_type": "Fighting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A man in a blue jacket is being restrained from behind by a bald man while struggling and shouting; the interaction involves physical contact and resistance consistent with mutual combat.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          26.5,
+          27.0,
+          27.5,
+          28.0,
+          28.5,
+          29.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9"
+        ],
+        "reason": "Frames f4–f9 show sustained physical contact: the bald man’s hands are on the blue-jacketed man’s shoulders/upper back, the latter leans forward with tense posture and open mouth, suggesting active struggle—not passive restraint. This meets the definition of Fighting (mutual physical combat), not Abuse (no evidence the restrained man is helpless).",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 2,
+      "output_count": 1,
+      "groups": 2,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 18.0,
+              "f1": 18.5,
+              "f2": 19.0,
+              "f3": 19.5,
+              "f4": 20.0,
+              "f5": 20.5,
+              "f6": 21.0,
+              "f7": 21.5,
+              "f8": 22.0,
+              "f9": 22.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 20.0,
+                "t_end": 21.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No visible muzzle flash, recoil, bullet impact, or projectile trajectory; the gun remains pointed but no discharge is observed in frames f4–f6 (20.0–21.0).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "No visible muzzle flash, recoil, bullet impact, or projectile trajectory; the gun remains pointed but no discharge is observed in frames f4–f6 (20.0–21.0).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 24.5,
+              "f1": 25.0,
+              "f2": 25.5,
+              "f3": 26.0,
+              "f4": 26.5,
+              "f5": 27.0,
+              "f6": 27.5,
+              "f7": 28.0,
+              "f8": 28.5,
+              "f9": 29.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 26.5,
+                "t_end": 27.5,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Fighting\",\n      \"t_start\": 26.5,\n      \"t_end\": 29.0,\n      \"confidence\": 0.9,\n      \"description\": \"A man in a blue jacket is being restrained from behind by a bald man while struggling and shouting; the interaction involves physical contact and resistance consistent with mutual combat.\",\n      \"reason\": \"Frames f4–f9 show sustained physical contact: the bald man’s hands are on the blue-jacketed man’s shoulders/upper back, the latter leans forward with tense posture and open mouth, suggesting active struggle—not passive restraint. This meets the definition of Fighting (mutual physical combat), not Abuse (no evidence the restrained man is helpless).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "Fighting",
+              "t_start": 26.5,
+              "t_end": 29.0,
+              "confidence": 0.9,
+              "description": "A man in a blue jacket is being restrained from behind by a bald man while struggling and shouting; the interaction involves physical contact and resistance consistent with mutual combat.",
+              "reason": "Frames f4–f9 show sustained physical contact: the bald man’s hands are on the blue-jacketed man’s shoulders/upper back, the latter leans forward with tense posture and open mouth, suggesting active struggle—not passive restraint. This meets the definition of Fighting (mutual physical combat), not Abuse (no evidence the restrained man is helpless).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

@@ -1,0 +1,484 @@
+{
+  "events": [
+    {
+      "t_start": 6.0,
+      "t_end": 7.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "Multiple players from opposing teams are engaged in a physical scrum against the boards, with repeated shoving, grabbing, and body contact; sticks are held but not used offensively, and no clear puck play is occurring.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          6.0,
+          6.5,
+          7.0,
+          7.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7"
+        ],
+        "reason": "The sustained close-quarters grappling, helmet-to-helmet proximity, and lack of puck engagement (e.g., f4–f7) indicate mutual combat rather than normal play or incidental contact; this meets the definition of Fighting as mutual physical combat.",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 12.0,
+      "t_end": 13.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "Players in dark blue jerseys (e.g., #19, #14) and a white/yellow jersey (#49) engage in close physical contact near the boards, with shoving, grabbing, and posturing typical of an on-ice scuffle; referee is observing but not intervening immediately.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          12.0,
+          12.5,
+          13.0,
+          13.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7"
+        ],
+        "reason": "Frames f4–f6 show multiple players locked together, pushing against the boards with sticks dropped or held loosely; f7 shows separation and players skating away—consistent with a brief hockey fight/scuffle, not sustained combat or abuse. No weapons, no helpless victim, no crowd unrest.",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 21.0,
+      "t_end": 35.0,
+      "anomaly_type": "Fighting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "Two players collide near the boards at ~21.0s (f3), one falls (f5), then multiple players converge and engage in mutual physical grappling and shoving against the boards from f7 through f22, with referees intervening by f21–f23.",
+      "source_candidate_ids": [
+        3,
+        4,
+        6,
+        7,
+        10
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 3,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          21.0,
+          21.5,
+          22.0,
+          23.5,
+          24.0,
+          24.5,
+          25.0,
+          26.5,
+          27.5,
+          28.0,
+          29.0,
+          29.5,
+          30.5,
+          31.5,
+          32.0,
+          33.0,
+          33.5,
+          34.5,
+          35.0
+        ],
+        "evidence_frame_ids": [
+          "f3",
+          "f4",
+          "f5",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18",
+          "f19",
+          "f20",
+          "f21",
+          "f22"
+        ],
+        "reason": "The sequence shows a continuous escalation from a legal check into a multi-player scrum involving reciprocal pushing, grabbing, and body contact without clear victim/helplessness; referees enter only after sustained engagement, consistent with on-ice fighting in hockey. Merged because all candidate intervals fall within one uninterrupted physical confrontation.",
+        "source_categories": [
+          "Fighting",
+          "Fighting",
+          "Fighting",
+          "Fighting",
+          "Fighting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 11,
+      "output_count": 3,
+      "groups": 4,
+      "rejected": 4,
+      "uncertain": 0,
+      "merged_sources": 4,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 4.0,
+              "f1": 4.5,
+              "f2": 5.0,
+              "f3": 5.5,
+              "f4": 6.0,
+              "f5": 6.5,
+              "f6": 7.0,
+              "f7": 7.5,
+              "f8": 8.0,
+              "f9": 8.5,
+              "f10": 9.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 6.0,
+                "t_end": 7.5,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Fighting\",\n      \"t_start\": 6.0,\n      \"t_end\": 7.5,\n      \"confidence\": 0.9,\n      \"description\": \"Multiple players from opposing teams are engaged in a physical scrum against the boards, with repeated shoving, grabbing, and body contact; sticks are held but not used offensively, and no clear puck play is occurring.\",\n      \"reason\": \"The sustained close-quarters grappling, helmet-to-helmet proximity, and lack of puck engagement (e.g., f4–f7) indicate mutual combat rather than normal play or incidental contact; this meets the definition of Fighting as mutual physical combat.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Fighting",
+              "t_start": 6.0,
+              "t_end": 7.5,
+              "confidence": 0.9,
+              "description": "Multiple players from opposing teams are engaged in a physical scrum against the boards, with repeated shoving, grabbing, and body contact; sticks are held but not used offensively, and no clear puck play is occurring.",
+              "reason": "The sustained close-quarters grappling, helmet-to-helmet proximity, and lack of puck engagement (e.g., f4–f7) indicate mutual combat rather than normal play or incidental contact; this meets the definition of Fighting as mutual physical combat.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 10.0,
+              "f1": 10.5,
+              "f2": 11.0,
+              "f3": 11.5,
+              "f4": 12.0,
+              "f5": 12.5,
+              "f6": 13.0,
+              "f7": 13.5,
+              "f8": 14.0,
+              "f9": 14.5,
+              "f10": 15.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 12.0,
+                "t_end": 13.5,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Fighting\",\n      \"t_start\": 12.0,\n      \"t_end\": 13.5,\n      \"confidence\": 0.9,\n      \"description\": \"Players in dark blue jerseys (e.g., #19, #14) and a white/yellow jersey (#49) engage in close physical contact near the boards, with shoving, grabbing, and posturing typical of an on-ice scuffle; referee is observing but not intervening immediately.\",\n      \"reason\": \"Frames f4–f6 show multiple players locked together, pushing against the boards with sticks dropped or held loosely; f7 shows separation and players skating away—consistent with a brief hockey fight/scuffle, not sustained combat or abuse. No weapons, no helpless victim, no crowd unrest.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "Fighting",
+              "t_start": 12.0,
+              "t_end": 13.5,
+              "confidence": 0.9,
+              "description": "Players in dark blue jerseys (e.g., #19, #14) and a white/yellow jersey (#49) engage in close physical contact near the boards, with shoving, grabbing, and posturing typical of an on-ice scuffle; referee is observing but not intervening immediately.",
+              "reason": "Frames f4–f6 show multiple players locked together, pushing against the boards with sticks dropped or held loosely; f7 shows separation and players skating away—consistent with a brief hockey fight/scuffle, not sustained combat or abuse. No weapons, no helpless victim, no crowd unrest.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 14.5,
+              "f1": 15.0,
+              "f2": 15.5,
+              "f3": 16.0,
+              "f4": 16.5,
+              "f5": 17.0,
+              "f6": 17.5,
+              "f7": 18.0,
+              "f8": 18.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 16.5,
+                "t_end": 17.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"No firearm or shooting action is visible; players are engaged in standard ice hockey play (puck handling, skating, checking near the net).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "No firearm or shooting action is visible; players are engaged in standard ice hockey play (puck handling, skating, checking near the net).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 19.0,
+              "f1": 19.5,
+              "f2": 20.5,
+              "f3": 21.0,
+              "f4": 21.5,
+              "f5": 22.0,
+              "f6": 22.5,
+              "f7": 23.5,
+              "f8": 24.0,
+              "f9": 24.5,
+              "f10": 25.0,
+              "f11": 26.5,
+              "f12": 27.5,
+              "f13": 28.0,
+              "f14": 29.0,
+              "f15": 29.5,
+              "f16": 30.5,
+              "f17": 31.5,
+              "f18": 32.0,
+              "f19": 33.0,
+              "f20": 33.5,
+              "f21": 34.5,
+              "f22": 35.0,
+              "f23": 37.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 21.0,
+                "t_end": 28.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 21.0,
+                "t_end": 22.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 22.0,
+                "t_end": 23.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 24.0,
+                "t_end": 31.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 28.0,
+                "t_end": 35.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 30.0,
+                "t_end": 31.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 9,
+                "t_start": 30.0,
+                "t_end": 34.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 10,
+                "t_start": 32.0,
+                "t_end": 35.5,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3, 4, 6, 7, 10],\n      \"category\": \"Fighting\",\n      \"t_start\": 21.0,\n      \"t_end\": 35.0,\n      \"confidence\": 0.95,\n      \"description\": \"Two players collide near the boards at ~21.0s (f3), one falls (f5), then multiple players converge and engage in mutual physical grappling and shoving against the boards from f7 through f22, with referees intervening by f21–f23.\",\n      \"reason\": \"The sequence shows a continuous escalation from a legal check into a multi-player scrum involving reciprocal pushing, grabbing, and body contact without clear victim/helplessness; referees enter only after sustained engagement, consistent with on-ice fighting in hockey. Merged because all candidate intervals fall within one uninterrupted physical confrontation.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"At f7–f8, the fallen player is surrounded but not being attacked while helpless; others are engaging mutually, and no evidence of targeted aggression against an incapacitated individual exists.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\"]\n    },\n    {\n      \"candidate_id\": 8,\n      \"reason\": \"Frame f17 shows a referee actively separating players; the player on ice is part of a mutual scrum, not a helpless victim being abused.\",\n      \"evidence_frame_ids\": [\"f17\"]\n    },\n    {\n      \"candidate_id\": 9,\n      \"reason\": \"Frames f19–f20 show active participation by the downed player (e.g., raising arms, resisting), inconsistent with abuse of a helpless person.\",\n      \"evidence_frame_ids\": [\"f19\", \"f20\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                3,
+                4,
+                6,
+                7,
+                10
+              ],
+              "category": "Fighting",
+              "t_start": 21.0,
+              "t_end": 35.0,
+              "confidence": 0.95,
+              "description": "Two players collide near the boards at ~21.0s (f3), one falls (f5), then multiple players converge and engage in mutual physical grappling and shoving against the boards from f7 through f22, with referees intervening by f21–f23.",
+              "reason": "The sequence shows a continuous escalation from a legal check into a multi-player scrum involving reciprocal pushing, grabbing, and body contact without clear victim/helplessness; referees enter only after sustained engagement, consistent with on-ice fighting in hockey. Merged because all candidate intervals fall within one uninterrupted physical confrontation.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 5,
+              "reason": "At f7–f8, the fallen player is surrounded but not being attacked while helpless; others are engaging mutually, and no evidence of targeted aggression against an incapacitated individual exists.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8"
+              ]
+            },
+            {
+              "candidate_id": 8,
+              "reason": "Frame f17 shows a referee actively separating players; the player on ice is part of a mutual scrum, not a helpless victim being abused.",
+              "evidence_frame_ids": [
+                "f17"
+              ]
+            },
+            {
+              "candidate_id": 9,
+              "reason": "Frames f19–f20 show active participation by the downed player (e.g., raising arms, resisting), inconsistent with abuse of a helpless person.",
+              "evidence_frame_ids": [
+                "f19",
+                "f20"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

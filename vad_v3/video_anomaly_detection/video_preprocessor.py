@@ -66,6 +66,13 @@ class VideoPreprocessor:
                 ret, frame = cap.read()
                 if not ret:
                     break
+                # XD sets this optional limit to bound memory for long HD films.
+                # UCF leaves it unset, preserving its existing input pixels.
+                max_side = getattr(self, 'max_frame_side', None)
+                if max_side and max(frame.shape[:2]) > max_side:
+                    scale = max_side / max(frame.shape[:2])
+                    frame = cv2.resize(frame, (max(1, round(frame.shape[1]*scale)),
+                                              max(1, round(frame.shape[0]*scale))))
                 frames.append(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
                 timestamps.append(idx / video_fps)
             else:

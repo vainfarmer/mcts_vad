@@ -1,0 +1,116 @@
+{
+  "group_id": 0,
+  "calls": [
+    {
+      "pass_id": 0,
+      "frame_times": {
+        "f0": 4.5,
+        "f1": 5.0,
+        "f2": 5.5,
+        "f3": 6.0,
+        "f4": 6.5,
+        "f5": 7.0,
+        "f6": 7.5,
+        "f7": 8.0,
+        "f8": 8.5,
+        "f9": 9.0,
+        "f10": 9.5,
+        "f11": 10.0,
+        "f12": 10.5,
+        "f13": 11.0,
+        "f14": 11.5,
+        "f15": 12.0,
+        "f16": 12.5
+      },
+      "hypotheses": [
+        {
+          "candidate_id": 0,
+          "t_start": 6.5,
+          "t_end": 10.6,
+          "unverified_category": "CarAccident"
+        },
+        {
+          "candidate_id": 1,
+          "t_start": 6.5,
+          "t_end": 7.5,
+          "unverified_category": "CarAccident"
+        }
+      ],
+      "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"CarAccident\",\n      \"t_start\": 6.5,\n      \"t_end\": 7.0,\n      \"confidence\": 0.95,\n      \"description\": \"A grey sedan swerves sharply right off the road while a red truck passes on the left, producing tire smoke and immediate impact with roadside terrain; the dashcam view then shows shattered glass.\",\n      \"reason\": \"f4 shows the sedan veering with visible tire smoke and loss of control just before f5, which is a chaotic view consistent with windshield shattering upon impact—this confirms a crash occurred at ~6.5–7.0 s. Later frames (f6–f14) show only broken glass, not ongoing motion, so the accident event ends by 7.0 s.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Candidate 0 extends to 10.6 s, but frames f6–f14 only show static broken glass with no further vehicle motion or secondary impact; the accident itself concluded by f5 (7.0 s). The extended interval misattributes post-impact debris view as part of the accident event.\"\n    },\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Candidate 1 ends at 7.5 s, but f6 (7.5 s) is already a blurred, static view of shattered glass with no evidence of ongoing collision; the crash is fully captured by f4–f5, so the end time is overly conservative and includes non-event frames.\"\n    }\n  ]\n}"
+    },
+    {
+      "pass_id": 0,
+      "frame_times": {
+        "f0": 4.5,
+        "f1": 5.0,
+        "f2": 5.5,
+        "f3": 6.0,
+        "f4": 6.5,
+        "f5": 7.0,
+        "f6": 7.5,
+        "f7": 8.0,
+        "f8": 8.5,
+        "f9": 9.0,
+        "f10": 9.5,
+        "f11": 10.0,
+        "f12": 10.5,
+        "f13": 11.0,
+        "f14": 11.5,
+        "f15": 12.0,
+        "f16": 12.5
+      },
+      "hypotheses": [
+        {
+          "candidate_id": 0,
+          "t_start": 6.5,
+          "t_end": 10.6,
+          "unverified_category": "CarAccident"
+        },
+        {
+          "candidate_id": 1,
+          "t_start": 6.5,
+          "t_end": 7.5,
+          "unverified_category": "CarAccident"
+        }
+      ],
+      "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"CarAccident\",\n      \"t_start\": 6.5,\n      \"t_end\": 7.0,\n      \"confidence\": 0.95,\n      \"description\": \"A grey sedan swerves sharply right off the road while a red truck passes on the left, producing tire smoke and immediate impact with roadside terrain; the dashcam view then shows shattered glass.\",\n      \"reason\": \"f4 (6.5 s) shows the sedan mid-swerve with visible tire smoke and loss of control; f5 (7.0 s) is a chaotic, blurred image consistent with windshield shattering upon impact—this confirms a crash occurred between 6.5–7.0 s. Frames f6–f14 show only static broken glass with no further motion or secondary collision, so the accident event ends by 7.0 s.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Candidate 0 claims t_end=10.6 s, but frames f6–f14 (7.5–11.5 s) show only static shattered glass with no vehicle motion or ongoing crash dynamics; the accident concluded by f5 (7.0 s), so the extended interval misattributes post-impact debris as part of the event.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\"]\n    },\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Candidate 1 claims t_end=7.5 s, but f6 (7.5 s) is already a blurred static view of broken glass with no evidence of active collision; the crash is fully captured in f4–f5, so the end time includes non-event frame f6.\",\n      \"evidence_frame_ids\": [\"f6\"]\n    }\n  ]\n}"
+    },
+    {
+      "pass_id": 0,
+      "frame_times": {
+        "f0": 4.5,
+        "f1": 5.0,
+        "f2": 5.5,
+        "f3": 6.0,
+        "f4": 6.5,
+        "f5": 7.0,
+        "f6": 7.5,
+        "f7": 8.0,
+        "f8": 8.5,
+        "f9": 9.0,
+        "f10": 9.5,
+        "f11": 10.0,
+        "f12": 10.5,
+        "f13": 11.0,
+        "f14": 11.5,
+        "f15": 12.0,
+        "f16": 12.5
+      },
+      "hypotheses": [
+        {
+          "candidate_id": 0,
+          "t_start": 6.5,
+          "t_end": 10.6,
+          "unverified_category": "CarAccident"
+        },
+        {
+          "candidate_id": 1,
+          "t_start": 6.5,
+          "t_end": 7.5,
+          "unverified_category": "CarAccident"
+        }
+      ],
+      "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"CarAccident\",\n      \"t_start\": 6.5,\n      \"t_end\": 7.0,\n      \"confidence\": 0.95,\n      \"description\": \"At 6.5 s (f4), a grey sedan swerves right off the road with visible tire smoke while a red truck passes left; at 7.0 s (f5), the view becomes chaotic and blurred, consistent with immediate impact and windshield shattering.\",\n      \"reason\": \"f4 shows loss of control and tire smoke; f5 is a sudden transition to a distorted, fragmented view typical of impact-induced camera disruption—this confirms a crash occurred between 6.5–7.0 s. Frames f6–f14 show only static shattered glass with no motion or secondary event, so the accident event ends by 7.0 s.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Candidate 0 extends to 10.6 s, but frames f6–f14 (7.5–11.5 s) show only static broken glass with no vehicle movement, deformation, or secondary impact—these are post-impact debris views, not part of the accident event itself.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\"]\n    },\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Candidate 1 ends at 7.5 s, but f6 (7.5 s) is already a static, blurred image of shattered glass with no evidence of ongoing collision dynamics; the crash is fully captured in f4–f5, so including f6 overextends the event.\",\n      \"evidence_frame_ids\": [\"f6\"]\n    }\n  ]\n}"
+    }
+  ]
+}

@@ -1,0 +1,541 @@
+{
+  "events": [
+    {
+      "t_start": 5.5,
+      "t_end": 6.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A dark sedan on the left side of the road abruptly swerves right and collides with a stationary or slow-moving vehicle at the intersection, causing visible lateral displacement and debris/sparks at f5 (6.0 s).",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          5.5,
+          6.0,
+          6.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "At f4 (5.5 s), the dark car is approaching the intersection; by f5 (6.0 s), it has struck another vehicle (partially obscured but clearly impacted, with motion blur and apparent deformation); at f6 (6.5 s), the vehicles remain interlocked/adjacent in abnormal positions. This satisfies the definition of a crash (CarAccident).",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 45.0,
+      "t_end": 45.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A white sedan collides with the side of a yellow-and-green truck while overtaking on a snowy road, causing the sedan to be pushed sideways and partially under the truck’s trailer.",
+      "source_candidate_ids": [
+        5
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 4,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          45.0,
+          45.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "In f4 (45.0 s), the sedan is alongside the truck; in f5 (45.5 s), the sedan is visibly wedged against the truck’s left rear side, with both vehicles still moving but in abnormal contact—consistent with a collision during overtaking. No other category fits: no weapons, fighting, riot, abuse, or explosion observed.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 60.5,
+      "t_end": 61.0,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A sudden bright flash and violent lateral displacement of the vehicle’s view at f5 (61.0 s), preceded by rapid approach of oncoming headlights and increasing speed in f4 (60.5 s), consistent with a high-speed collision.",
+      "source_candidate_ids": [
+        6
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 5,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          60.5,
+          61.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "f4 shows the car accelerating to 66 km/h while approaching an oncoming vehicle; f5 shows abrupt loss of road view, bright flash, and vertical streak (likely debris or light reflection from impact), matching a frontal collision. The text overlay in f6 confirms a crash with a Toyota Land Cruiser BA3-2107 that resulted in vehicle disintegration, corroborating the visual evidence.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 67.0,
+      "t_end": 69.0,
+      "anomaly_type": "CarAccident",
+      "confidence": 1.0,
+      "coarse_score": 1.0,
+      "description": "Two severely damaged vehicles lie in snow at night, one split into two sections; headlights of approaching vehicles visible in background.",
+      "source_candidate_ids": [
+        7
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 6,
+        "event_id": 0,
+        "vlm_confidence": 1.0,
+        "evidence_times": [
+          67.0,
+          67.5,
+          68.0,
+          68.5,
+          69.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8"
+        ],
+        "reason": "Images f4–f8 show wreckage consistent with a high-impact collision (split vehicle, deformation, snow displacement); text overlay in f0–f3 confirms 'razoralos na dve chasti' (torn into two parts) after collision with a Toyota Land Cruiser, satisfying CarAccident definition (crash, not ordinary driving).",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 8,
+      "output_count": 4,
+      "groups": 7,
+      "rejected": 4,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 3.5,
+              "f1": 4.0,
+              "f2": 4.5,
+              "f3": 5.0,
+              "f4": 5.5,
+              "f5": 6.0,
+              "f6": 6.5,
+              "f7": 7.0,
+              "f8": 7.5,
+              "f9": 8.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 5.5,
+                "t_end": 6.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"CarAccident\",\n      \"t_start\": 5.5,\n      \"t_end\": 6.5,\n      \"confidence\": 0.95,\n      \"description\": \"A dark sedan on the left side of the road abruptly swerves right and collides with a stationary or slow-moving vehicle at the intersection, causing visible lateral displacement and debris/sparks at f5 (6.0 s).\",\n      \"reason\": \"At f4 (5.5 s), the dark car is approaching the intersection; by f5 (6.0 s), it has struck another vehicle (partially obscured but clearly impacted, with motion blur and apparent deformation); at f6 (6.5 s), the vehicles remain interlocked/adjacent in abnormal positions. This satisfies the definition of a crash (CarAccident).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "CarAccident",
+              "t_start": 5.5,
+              "t_end": 6.5,
+              "confidence": 0.95,
+              "description": "A dark sedan on the left side of the road abruptly swerves right and collides with a stationary or slow-moving vehicle at the intersection, causing visible lateral displacement and debris/sparks at f5 (6.0 s).",
+              "reason": "At f4 (5.5 s), the dark car is approaching the intersection; by f5 (6.0 s), it has struck another vehicle (partially obscured but clearly impacted, with motion blur and apparent deformation); at f6 (6.5 s), the vehicles remain interlocked/adjacent in abnormal positions. This satisfies the definition of a crash (CarAccident).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 6.0,
+              "f1": 6.5,
+              "f2": 7.0,
+              "f3": 7.5,
+              "f4": 8.0,
+              "f5": 8.5,
+              "f6": 9.0,
+              "f7": 9.5,
+              "f8": 10.0,
+              "f9": 10.5,
+              "f10": 11.0,
+              "f11": 11.5,
+              "f12": 12.0,
+              "f13": 12.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 8.0,
+                "t_end": 10.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 10.0,
+                "t_end": 11.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"No collision or abnormal vehicle behavior is visible; vehicles cross the intersection normally with traffic lights green, and the dark SUV turns left without impact.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    },\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"The silver sedan proceeds straight through the intersection without incident; no contact, skid marks, or deformation observed.\",\n      \"evidence_frame_ids\": [\"f8\", \"f9\", \"f10\", \"f11\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "No collision or abnormal vehicle behavior is visible; vehicles cross the intersection normally with traffic lights green, and the dark SUV turns left without impact.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10"
+              ]
+            },
+            {
+              "candidate_id": 2,
+              "reason": "The silver sedan proceeds straight through the intersection without incident; no contact, skid marks, or deformation observed.",
+              "evidence_frame_ids": [
+                "f8",
+                "f9",
+                "f10",
+                "f11"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 34.0,
+              "f1": 34.5,
+              "f2": 35.0,
+              "f3": 35.5,
+              "f4": 36.0,
+              "f5": 36.5,
+              "f6": 37.0,
+              "f7": 37.5,
+              "f8": 38.0,
+              "f9": 38.5,
+              "f10": 39.0,
+              "f11": 39.5,
+              "f12": 40.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 36.0,
+                "t_end": 38.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"No crash or collision is visible; the green car ahead remains upright and moving normally, and the object on the left shoulder appears stationary (possibly a rolled tire or debris) without evidence of recent impact in frames f4–f8.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 3,
+              "reason": "No crash or collision is visible; the green car ahead remains upright and moving normally, and the object on the left shoulder appears stationary (possibly a rolled tire or debris) without evidence of recent impact in frames f4–f8.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 38.5,
+              "f1": 39.0,
+              "f2": 39.5,
+              "f3": 40.0,
+              "f4": 40.5,
+              "f5": 41.0,
+              "f6": 41.5,
+              "f7": 42.0,
+              "f8": 42.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 40.5,
+                "t_end": 41.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"No crash or collision is visible at t=40.5–41.0; the truck passes normally on the left, and the road remains intact with no debris, deformation, or sudden deceleration.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 4,
+              "reason": "No crash or collision is visible at t=40.5–41.0; the truck passes normally on the left, and the road remains intact with no debris, deformation, or sudden deceleration.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 4,
+        "source_ids": [
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 43.0,
+              "f1": 43.5,
+              "f2": 44.0,
+              "f3": 44.5,
+              "f4": 45.0,
+              "f5": 45.5,
+              "f6": 46.0,
+              "f7": 46.5,
+              "f8": 47.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 5,
+                "t_start": 45.0,
+                "t_end": 45.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [5],\n      \"category\": \"CarAccident\",\n      \"t_start\": 45.0,\n      \"t_end\": 45.5,\n      \"confidence\": 0.95,\n      \"description\": \"A white sedan collides with the side of a yellow-and-green truck while overtaking on a snowy road, causing the sedan to be pushed sideways and partially under the truck’s trailer.\",\n      \"reason\": \"In f4 (45.0 s), the sedan is alongside the truck; in f5 (45.5 s), the sedan is visibly wedged against the truck’s left rear side, with both vehicles still moving but in abnormal contact—consistent with a collision during overtaking. No other category fits: no weapons, fighting, riot, abuse, or explosion observed.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                5
+              ],
+              "category": "CarAccident",
+              "t_start": 45.0,
+              "t_end": 45.5,
+              "confidence": 0.95,
+              "description": "A white sedan collides with the side of a yellow-and-green truck while overtaking on a snowy road, causing the sedan to be pushed sideways and partially under the truck’s trailer.",
+              "reason": "In f4 (45.0 s), the sedan is alongside the truck; in f5 (45.5 s), the sedan is visibly wedged against the truck’s left rear side, with both vehicles still moving but in abnormal contact—consistent with a collision during overtaking. No other category fits: no weapons, fighting, riot, abuse, or explosion observed.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 5,
+        "source_ids": [
+          6
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 58.5,
+              "f1": 59.0,
+              "f2": 59.5,
+              "f3": 60.0,
+              "f4": 60.5,
+              "f5": 61.0,
+              "f6": 61.5,
+              "f7": 62.0,
+              "f8": 62.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 6,
+                "t_start": 60.5,
+                "t_end": 61.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [6],\n      \"category\": \"CarAccident\",\n      \"t_start\": 60.5,\n      \"t_end\": 61.0,\n      \"confidence\": 0.95,\n      \"description\": \"A sudden bright flash and violent lateral displacement of the vehicle’s view at f5 (61.0 s), preceded by rapid approach of oncoming headlights and increasing speed in f4 (60.5 s), consistent with a high-speed collision.\",\n      \"reason\": \"f4 shows the car accelerating to 66 km/h while approaching an oncoming vehicle; f5 shows abrupt loss of road view, bright flash, and vertical streak (likely debris or light reflection from impact), matching a frontal collision. The text overlay in f6 confirms a crash with a Toyota Land Cruiser BA3-2107 that resulted in vehicle disintegration, corroborating the visual evidence.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                6
+              ],
+              "category": "CarAccident",
+              "t_start": 60.5,
+              "t_end": 61.0,
+              "confidence": 0.95,
+              "description": "A sudden bright flash and violent lateral displacement of the vehicle’s view at f5 (61.0 s), preceded by rapid approach of oncoming headlights and increasing speed in f4 (60.5 s), consistent with a high-speed collision.",
+              "reason": "f4 shows the car accelerating to 66 km/h while approaching an oncoming vehicle; f5 shows abrupt loss of road view, bright flash, and vertical streak (likely debris or light reflection from impact), matching a frontal collision. The text overlay in f6 confirms a crash with a Toyota Land Cruiser BA3-2107 that resulted in vehicle disintegration, corroborating the visual evidence.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 6,
+        "source_ids": [
+          7
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 65.0,
+              "f1": 65.5,
+              "f2": 66.0,
+              "f3": 66.5,
+              "f4": 67.0,
+              "f5": 67.5,
+              "f6": 68.0,
+              "f7": 68.5,
+              "f8": 69.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 7,
+                "t_start": 67.0,
+                "t_end": 69.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [7],\n      \"category\": \"CarAccident\",\n      \"t_start\": 67.0,\n      \"t_end\": 69.0,\n      \"confidence\": 1.0,\n      \"description\": \"Two severely damaged vehicles lie in snow at night, one split into two sections; headlights of approaching vehicles visible in background.\",\n      \"reason\": \"Images f4–f8 show wreckage consistent with a high-impact collision (split vehicle, deformation, snow displacement); text overlay in f0–f3 confirms 'razoralos na dve chasti' (torn into two parts) after collision with a Toyota Land Cruiser, satisfying CarAccident definition (crash, not ordinary driving).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                7
+              ],
+              "category": "CarAccident",
+              "t_start": 67.0,
+              "t_end": 69.0,
+              "confidence": 1.0,
+              "description": "Two severely damaged vehicles lie in snow at night, one split into two sections; headlights of approaching vehicles visible in background.",
+              "reason": "Images f4–f8 show wreckage consistent with a high-impact collision (split vehicle, deformation, snow displacement); text overlay in f0–f3 confirms 'razoralos na dve chasti' (torn into two parts) after collision with a Toyota Land Cruiser, satisfying CarAccident definition (crash, not ordinary driving).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

@@ -1,11 +1,38 @@
 {
   "scope": "140 frozen abnormal videos plus 150 freshly tested normal videos; video concurrency 2, API concurrency 2.",
-  "primary_map": "All 290 videos; predictions on normal videos are false positives for their predicted anomaly class. Macro average over 13 anomaly classes, not a synthetic Normal detection class.",
-  "additional_map": "Same 140 abnormal videos under the new sorting rule, for a controlled scope comparison.",
+  "primary_map": "All 290 videos; macro average over Normal and 13 anomaly classes.",
+  "additional_map": "Explicit references: abnormal-only 140/13 and full 290/13; neither is the primary mAP.",
   "sorting": "Per-class input ordered by video ID, retaining detection order within a video; np.argsort(-confidence) with default kind, no secondary tie keys.",
   "coordinates": "Source-video FPS/frame count; integer half-open frames; GT unchanged.",
   "six_groups": "Stage 4 -> off/strict/relaxed_node/force_best -> BUE -> CBT; Stage 4 -> force_best stop; Stage 4 stop.",
   "inference": "Same Stage 1-4, candidate identities/confidences/categories and search budgets as prior 140. Normal ground-truth labels only select inputs; detector receives only video_path.",
   "extras": "Two no-tail frame scores are computed from the same live video features; no additional VLM search.",
-  "provenance": "Abnormal outputs are frozen historical runs, normals are new requests; not a single simultaneous fresh benchmark. Existing test-set tuning/CBT-prior limitations remain."
+  "provenance": "Abnormal outputs are frozen historical runs, normals are new requests; not a single simultaneous fresh benchmark. Existing test-set tuning/CBT-prior limitations remain.",
+  "classes": [
+    "Normal",
+    "Abuse",
+    "Arrest",
+    "Arson",
+    "Assault",
+    "Burglary",
+    "Explosion",
+    "Fighting",
+    "RoadAccidents",
+    "Robbery",
+    "Shooting",
+    "Shoplifting",
+    "Stealing",
+    "Vandalism"
+  ],
+  "normal_prediction": {
+    "name": "saved_video_normal_decision_v1",
+    "gate": "saved is_normal == true and no anomalous detections",
+    "interval": "[0, source_frame_count / native_fps)",
+    "confidence": "1 - mean(interpolated anomaly scores over source frames)",
+    "gt_used_for_prediction": false,
+    "vadclip_curve_decoder_reproduced": false
+  },
+  "normal_gt": "Whole source video for GT-Normal only; no Normal GT in anomalous-video gaps.",
+  "decoder_limitation": "Project whole-video Normal decoder; not VadCLIP per-class curve proposal extraction.",
+  "reevaluation": "Offline on immutable saved predictions; zero new API calls."
 }

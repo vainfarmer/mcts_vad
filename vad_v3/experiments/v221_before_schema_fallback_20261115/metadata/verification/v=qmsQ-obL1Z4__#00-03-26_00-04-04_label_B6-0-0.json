@@ -1,0 +1,216 @@
+{
+  "events": [
+    {
+      "t_start": 6.5,
+      "t_end": 8.0,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A dark SUV swerves left, collides with the guardrail, and slides sideways before exiting the frame.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          6.5,
+          7.0,
+          7.5,
+          8.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7"
+        ],
+        "reason": "Frames f4–f7 show the SUV entering from right, losing control at f4–f5, impacting the left guardrail at f6 (visible contact and spray), and rotating sideways at f7; this constitutes a crash per definition (sudden unintended impact with infrastructure).",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 24.0,
+      "t_end": 26.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A red truck approaches rapidly from the left, passes very close to the camera vehicle, and appears to make contact or near-miss with a black sedan parked on the right, generating a large dust cloud and obscuring view by f8.",
+      "source_candidate_ids": [
+        1,
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          24.0,
+          24.5,
+          25.0,
+          25.5,
+          26.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8"
+        ],
+        "reason": "Frames f4–f7 show the truck closing in with increasing proximity and dust; f8 shows sudden occlusion and dust consistent with impact or near-impact; the black sedan remains stationary and damaged (missing rear bumper) throughout, supporting collision hypothesis. Candidate 2 is fully contained within candidate 1’s interval and describes the same event.",
+        "source_categories": [
+          "CarAccident",
+          "CarAccident"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 3,
+      "output_count": 2,
+      "groups": 2,
+      "rejected": 0,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 4.5,
+              "f1": 5.0,
+              "f2": 5.5,
+              "f3": 6.0,
+              "f4": 6.5,
+              "f5": 7.0,
+              "f6": 7.5,
+              "f7": 8.0,
+              "f8": 8.5,
+              "f9": 9.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 6.5,
+                "t_end": 7.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"CarAccident\",\n      \"t_start\": 6.5,\n      \"t_end\": 8.0,\n      \"confidence\": 0.95,\n      \"description\": \"A dark SUV swerves left, collides with the guardrail, and slides sideways before exiting the frame.\",\n      \"reason\": \"Frames f4–f7 show the SUV entering from right, losing control at f4–f5, impacting the left guardrail at f6 (visible contact and spray), and rotating sideways at f7; this constitutes a crash per definition (sudden unintended impact with infrastructure).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "CarAccident",
+              "t_start": 6.5,
+              "t_end": 8.0,
+              "confidence": 0.95,
+              "description": "A dark SUV swerves left, collides with the guardrail, and slides sideways before exiting the frame.",
+              "reason": "Frames f4–f7 show the SUV entering from right, losing control at f4–f5, impacting the left guardrail at f6 (visible contact and spray), and rotating sideways at f7; this constitutes a crash per definition (sudden unintended impact with infrastructure).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 22.0,
+              "f1": 22.5,
+              "f2": 23.0,
+              "f3": 23.5,
+              "f4": 24.0,
+              "f5": 24.5,
+              "f6": 25.0,
+              "f7": 25.5,
+              "f8": 26.0,
+              "f9": 26.5,
+              "f10": 27.0,
+              "f11": 27.5,
+              "f12": 28.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 24.0,
+                "t_end": 26.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 25.5,
+                "t_end": 26.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1, 2],\n      \"category\": \"CarAccident\",\n      \"t_start\": 24.0,\n      \"t_end\": 26.5,\n      \"confidence\": 0.95,\n      \"description\": \"A red truck approaches rapidly from the left, passes very close to the camera vehicle, and appears to make contact or near-miss with a black sedan parked on the right, generating a large dust cloud and obscuring view by f8.\",\n      \"reason\": \"Frames f4–f7 show the truck closing in with increasing proximity and dust; f8 shows sudden occlusion and dust consistent with impact or near-impact; the black sedan remains stationary and damaged (missing rear bumper) throughout, supporting collision hypothesis. Candidate 2 is fully contained within candidate 1’s interval and describes the same event.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1,
+                2
+              ],
+              "category": "CarAccident",
+              "t_start": 24.0,
+              "t_end": 26.5,
+              "confidence": 0.95,
+              "description": "A red truck approaches rapidly from the left, passes very close to the camera vehicle, and appears to make contact or near-miss with a black sedan parked on the right, generating a large dust cloud and obscuring view by f8.",
+              "reason": "Frames f4–f7 show the truck closing in with increasing proximity and dust; f8 shows sudden occlusion and dust consistent with impact or near-impact; the black sedan remains stationary and damaged (missing rear bumper) throughout, supporting collision hypothesis. Candidate 2 is fully contained within candidate 1’s interval and describes the same event.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "5a82d0dd6e711938ee6c8e0ecf1c6f7fdb68cac4e5e95683ad672320f7156da9"
+}

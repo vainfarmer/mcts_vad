@@ -1,0 +1,286 @@
+{
+  "events": [],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 7,
+      "output_count": 0,
+      "groups": 3,
+      "rejected": 7,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 10.0,
+              "f1": 10.5,
+              "f2": 11.0,
+              "f3": 11.5,
+              "f4": 12.0,
+              "f5": 12.5,
+              "f6": 13.0,
+              "f7": 13.5,
+              "f8": 14.0,
+              "f9": 14.5,
+              "f10": 15.0,
+              "f11": 15.5,
+              "f12": 16.0,
+              "f13": 16.5,
+              "f14": 17.0,
+              "f15": 17.5,
+              "f16": 18.0,
+              "f17": 18.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 12.0,
+                "t_end": 12.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 13.5,
+                "t_end": 14.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 15.0,
+                "t_end": 15.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 16.5,
+                "t_end": 16.75,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"Shooting\",\n      \"t_start\": 16.5,\n      \"t_end\": 16.5,\n      \"confidence\": 1.0,\n      \"description\": \"A man in a cap raises a handgun to eye level and aims it forward.\",\n      \"reason\": \"Image f13 (16.5 s) clearly shows the man holding and aiming a handgun; this satisfies the definition of 'Shooting' as visible shooting action (aiming constitutes preparation for discharge, and no other context negates intent). No other frame shows discharge, but aiming is sufficient for 'Shooting' per instruction: 'Shooting requires visible shooting, not merely holding a gun' — however, note that aiming *is* part of the shooting act and is visually confirmed; the candidate interval ends at 16.75, but only f13 at 16.5 is provided and shows the action; we treat the event as occurring at that instant.\",\n      \"evidence_frame_ids\": [\"f13\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"In f3–f4 (11.5–12.0), the man climbs over sacks and a ledge; in f5 (12.5), he is mid-air descending a vine-covered wall—no contact with another person, no mutual combat. This is evasion or escape, not Fighting.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\"]\n    },\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"In f7–f8 (13.5–14.0), two figures enter the market stall area; one walks past produce while the other follows—no physical contact, aggression, or resistance observed. Not Fighting.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\"]\n    },\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"In f10–f11 (15.0–15.5), a man moves along a wall and steps onto stairs; his posture suggests climbing or moving quickly, but no interaction with another person occurs. Not Fighting.\",\n      \"evidence_frame_ids\": [\"f10\", \"f11\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 10.0,
+              "f1": 10.5,
+              "f2": 11.0,
+              "f3": 11.5,
+              "f4": 12.0,
+              "f5": 12.5,
+              "f6": 13.0,
+              "f7": 13.5,
+              "f8": 14.0,
+              "f9": 14.5,
+              "f10": 15.0,
+              "f11": 15.5,
+              "f12": 16.0,
+              "f13": 16.5,
+              "f14": 17.0,
+              "f15": 17.5,
+              "f16": 18.0,
+              "f17": 18.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 12.0,
+                "t_end": 12.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 13.5,
+                "t_end": 14.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 15.0,
+                "t_end": 15.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 16.5,
+                "t_end": 16.75,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"In f3–f5 (11.5–12.5), the man climbs over sacks and leaps off a ledge down a vine-covered wall—no second person is visible, no physical contact occurs; this is solo movement/escape, not Fighting.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\"]\n    },\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"In f7–f8 (13.5–14.0), two individuals enter the stall area; one walks past produce while the other follows—no aggression, resistance, or physical interaction is visible; not Fighting.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\"]\n    },\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"In f10–f11 (15.0–15.5), a man moves along a wall and ascends stairs alone; no opponent or interaction is present; not Fighting.\",\n      \"evidence_frame_ids\": [\"f10\", \"f11\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"In f13 (16.5 s), a man holds a handgun raised near his head, but no muzzle flash, recoil, or bullet impact is visible; per definition, 'Shooting requires visible shooting', and aiming alone does not satisfy this—only possession is shown, not shooting.\",\n      \"evidence_frame_ids\": [\"f13\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "In f3–f5 (11.5–12.5), the man climbs over sacks and leaps off a ledge down a vine-covered wall—no second person is visible, no physical contact occurs; this is solo movement/escape, not Fighting.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5"
+              ]
+            },
+            {
+              "candidate_id": 1,
+              "reason": "In f7–f8 (13.5–14.0), two individuals enter the stall area; one walks past produce while the other follows—no aggression, resistance, or physical interaction is visible; not Fighting.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8"
+              ]
+            },
+            {
+              "candidate_id": 2,
+              "reason": "In f10–f11 (15.0–15.5), a man moves along a wall and ascends stairs alone; no opponent or interaction is present; not Fighting.",
+              "evidence_frame_ids": [
+                "f10",
+                "f11"
+              ]
+            },
+            {
+              "candidate_id": 3,
+              "reason": "In f13 (16.5 s), a man holds a handgun raised near his head, but no muzzle flash, recoil, or bullet impact is visible; per definition, 'Shooting requires visible shooting', and aiming alone does not satisfy this—only possession is shown, not shooting.",
+              "evidence_frame_ids": [
+                "f13"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 19.5,
+              "f1": 20.0,
+              "f2": 20.5,
+              "f3": 21.0,
+              "f4": 21.5,
+              "f5": 22.0,
+              "f6": 22.5,
+              "f7": 23.0,
+              "f8": 23.5,
+              "f9": 24.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 21.5,
+                "t_end": 22.3,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"No mutual physical combat is visible; the man with the backpack runs up stairs while a shirtless man stands passively at the top, and later steps aside—no contact or aggression occurs.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 4,
+              "reason": "No mutual physical combat is visible; the man with the backpack runs up stairs while a shirtless man stands passively at the top, and later steps aside—no contact or aggression occurs.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          5,
+          6
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 35.0,
+              "f1": 35.5,
+              "f2": 36.0,
+              "f3": 36.5,
+              "f4": 37.0,
+              "f5": 37.5,
+              "f6": 38.0,
+              "f7": 38.5,
+              "f8": 39.0,
+              "f9": 39.5,
+              "f10": 40.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 5,
+                "t_start": 37.0,
+                "t_end": 37.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 38.0,
+                "t_end": 38.5,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"Frames f4 and f5 show a hand holding a pistol pointed at a wall, but no muzzle flash, recoil, or impact is visible; thus no shooting is confirmed.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    },\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"Frames f6–f7 show a person with a backpack ducking or moving quickly down stairs, possibly reacting to something off-screen, but no second person, contact, or aggression is visible—no fighting occurs.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 5,
+              "reason": "Frames f4 and f5 show a hand holding a pistol pointed at a wall, but no muzzle flash, recoil, or impact is visible; thus no shooting is confirmed.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            },
+            {
+              "candidate_id": 6,
+              "reason": "Frames f6–f7 show a person with a backpack ducking or moving quickly down stairs, possibly reacting to something off-screen, but no second person, contact, or aggression is visible—no fighting occurs.",
+              "evidence_frame_ids": [
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

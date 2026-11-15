@@ -1,0 +1,276 @@
+{
+  "events": [
+    {
+      "t_start": 11.5,
+      "t_end": 12.5,
+      "anomaly_type": "Shooting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A man in uniform aims and fires a rifle from the ship’s upper deck (f5), producing visible muzzle flash and sparks on the lower deck (f6–f7) where another person is present near containers.",
+      "source_candidate_ids": [
+        0,
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          11.5,
+          12.0,
+          12.5
+        ],
+        "evidence_frame_ids": [
+          "f5",
+          "f6",
+          "f7"
+        ],
+        "reason": "f5 shows the shooter aiming; f6 shows sparks/flash consistent with gunfire striking metal; f7 shows continued sparks and smoke—collectively confirming discharge of a firearm. Candidate 0 (11.0–12.5) and 1 (12.0–14.5) overlap in this confirmed shooting window; candidate 1 extends beyond visible evidence of firing, so event ends at 12.5.",
+        "source_categories": [
+          "Shooting",
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 16.0,
+      "t_end": 16.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.8,
+      "coarse_score": 0.8,
+      "description": "A man in uniform lies on his back on a staircase while another person leans over him, gripping his arm or torso, suggesting physical struggle.",
+      "source_candidate_ids": [
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 1,
+        "vlm_confidence": 0.8,
+        "evidence_times": [
+          16.0,
+          16.5
+        ],
+        "evidence_frame_ids": [
+          "f14",
+          "f15"
+        ],
+        "reason": "f14 shows one man supine on stairs with another leaning over him in contact; f15 shows continued close contact with hands near the supine man’s chest/shoulder—consistent with mutual or one-sided physical combat. Not merely assistance, as posture and grip suggest resistance or subduing.",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 19.0,
+      "t_end": 19.5,
+      "anomaly_type": "Shooting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A person wearing a headwrap and military-style clothing is holding a rifle in a ready-to-fire posture, with the weapon’s barrel pointed forward and their eye aligned with the sights.",
+      "source_candidate_ids": [
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          19.0,
+          19.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "In f4 and f5, the individual is actively aiming the rifle (not merely holding it), consistent with the act of shooting; no muzzle flash or impact is visible, but the posture and context strongly indicate imminent or ongoing shooting action.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 5,
+      "output_count": 3,
+      "groups": 2,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 9.0,
+              "f1": 9.5,
+              "f2": 10.0,
+              "f3": 10.5,
+              "f4": 11.0,
+              "f5": 11.5,
+              "f6": 12.0,
+              "f7": 12.5,
+              "f8": 13.0,
+              "f9": 13.5,
+              "f10": 14.0,
+              "f11": 14.5,
+              "f12": 15.0,
+              "f13": 15.5,
+              "f14": 16.0,
+              "f15": 16.5,
+              "f16": 17.0,
+              "f17": 17.5,
+              "f18": 18.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 11.0,
+                "t_end": 12.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 12.0,
+                "t_end": 14.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 14.0,
+                "t_end": 15.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 16.0,
+                "t_end": 16.5,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Shooting\",\n      \"t_start\": 11.5,\n      \"t_end\": 12.5,\n      \"confidence\": 0.9,\n      \"description\": \"A man in uniform aims and fires a rifle from the ship’s upper deck (f5), producing visible muzzle flash and sparks on the lower deck (f6–f7) where another person is present near containers.\",\n      \"reason\": \"f5 shows the shooter aiming; f6 shows sparks/flash consistent with gunfire striking metal; f7 shows continued sparks and smoke—collectively confirming discharge of a firearm. Candidate 0 (11.0–12.5) and 1 (12.0–14.5) overlap in this confirmed shooting window; candidate 1 extends beyond visible evidence of firing, so event ends at 12.5.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\", \"f7\"]\n    },\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"Fighting\",\n      \"t_start\": 16.0,\n      \"t_end\": 16.5,\n      \"confidence\": 0.8,\n      \"description\": \"A man in uniform lies on his back on a staircase while another person leans over him, gripping his arm or torso, suggesting physical struggle.\",\n      \"reason\": \"f14 shows one man supine on stairs with another leaning over him in contact; f15 shows continued close contact with hands near the supine man’s chest/shoulder—consistent with mutual or one-sided physical combat. Not merely assistance, as posture and grip suggest resistance or subduing.\",\n      \"evidence_frame_ids\": [\"f14\", \"f15\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"No visible shooting occurs between 14.0–15.5: f10 shows sparks but no gun or shooter; f11–f13 show a man holding a rifle but not discharging it (no muzzle flash, sparks, or recoil). The rifle is aimed but no evidence of firing.\",\n      \"evidence_frame_ids\": [\"f10\", \"f11\", \"f12\", \"f13\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1
+              ],
+              "category": "Shooting",
+              "t_start": 11.5,
+              "t_end": 12.5,
+              "confidence": 0.9,
+              "description": "A man in uniform aims and fires a rifle from the ship’s upper deck (f5), producing visible muzzle flash and sparks on the lower deck (f6–f7) where another person is present near containers.",
+              "reason": "f5 shows the shooter aiming; f6 shows sparks/flash consistent with gunfire striking metal; f7 shows continued sparks and smoke—collectively confirming discharge of a firearm. Candidate 0 (11.0–12.5) and 1 (12.0–14.5) overlap in this confirmed shooting window; candidate 1 extends beyond visible evidence of firing, so event ends at 12.5.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6",
+                "f7"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                3
+              ],
+              "category": "Fighting",
+              "t_start": 16.0,
+              "t_end": 16.5,
+              "confidence": 0.8,
+              "description": "A man in uniform lies on his back on a staircase while another person leans over him, gripping his arm or torso, suggesting physical struggle.",
+              "reason": "f14 shows one man supine on stairs with another leaning over him in contact; f15 shows continued close contact with hands near the supine man’s chest/shoulder—consistent with mutual or one-sided physical combat. Not merely assistance, as posture and grip suggest resistance or subduing.",
+              "evidence_frame_ids": [
+                "f14",
+                "f15"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "No visible shooting occurs between 14.0–15.5: f10 shows sparks but no gun or shooter; f11–f13 show a man holding a rifle but not discharging it (no muzzle flash, sparks, or recoil). The rifle is aimed but no evidence of firing.",
+              "evidence_frame_ids": [
+                "f10",
+                "f11",
+                "f12",
+                "f13"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 17.0,
+              "f1": 17.5,
+              "f2": 18.0,
+              "f3": 18.5,
+              "f4": 19.0,
+              "f5": 19.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 19.0,
+                "t_end": 19.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"Shooting\",\n      \"t_start\": 19.0,\n      \"t_end\": 19.5,\n      \"confidence\": 0.9,\n      \"description\": \"A person wearing a headwrap and military-style clothing is holding a rifle in a ready-to-fire posture, with the weapon’s barrel pointed forward and their eye aligned with the sights.\",\n      \"reason\": \"In f4 and f5, the individual is actively aiming the rifle (not merely holding it), consistent with the act of shooting; no muzzle flash or impact is visible, but the posture and context strongly indicate imminent or ongoing shooting action.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                4
+              ],
+              "category": "Shooting",
+              "t_start": 19.0,
+              "t_end": 19.5,
+              "confidence": 0.9,
+              "description": "A person wearing a headwrap and military-style clothing is holding a rifle in a ready-to-fire posture, with the weapon’s barrel pointed forward and their eye aligned with the sights.",
+              "reason": "In f4 and f5, the individual is actively aiming the rifle (not merely holding it), consistent with the act of shooting; no muzzle flash or impact is visible, but the posture and context strongly indicate imminent or ongoing shooting action.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

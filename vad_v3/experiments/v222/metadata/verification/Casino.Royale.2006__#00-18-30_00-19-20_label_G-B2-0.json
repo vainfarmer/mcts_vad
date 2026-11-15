@@ -1,0 +1,498 @@
+{
+  "events": [
+    {
+      "t_start": 2.0,
+      "t_end": 3.5,
+      "anomaly_type": "Abuse",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A man holds another man over his shoulder in a limp, non-resisting posture while raising a pistol in his other hand; the held man appears injured and passive.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          2.0,
+          2.5,
+          3.0,
+          3.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7"
+        ],
+        "reason": "The held individual shows no resistance or engagement, consistent with abuse (aggression against a helpless victim); visible across f4–f7 where the posture is maintained and the victim’s head hangs down limply.",
+        "source_categories": [
+          "Abuse"
+        ]
+      }
+    },
+    {
+      "t_start": 12.5,
+      "t_end": 15.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A sudden violent blast erupts at f4, propelling debris and fire outward; the expanding fireball and fragmentation persist through f10.",
+      "source_candidate_ids": [
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          12.5,
+          13.0,
+          13.5,
+          14.0,
+          14.5,
+          15.0,
+          15.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10"
+        ],
+        "reason": "f4 shows an initial blast with smoke, debris, and fire; f5–f10 show progressive expansion of the fireball and flying fragments—consistent with a single explosion event, not sustained fire or multiple blasts. The candidate’s interval (12.5–18.5) overextends; visible explosion dynamics end by ~15.5 (f10), after which only burning wreckage remains (f11–f19).",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 11,
+      "output_count": 2,
+      "groups": 5,
+      "rejected": 9,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0,
+              "f9": 4.5,
+              "f10": 5.0,
+              "f11": 5.5,
+              "f12": 6.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 1.0,
+                "t_end": 1.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 2.0,
+                "t_end": 3.2,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 4.0,
+                "t_end": 4.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Abuse\",\n      \"t_start\": 2.0,\n      \"t_end\": 3.5,\n      \"confidence\": 0.9,\n      \"description\": \"A man holds another man over his shoulder in a limp, non-resisting posture while raising a pistol in his other hand; the held man appears injured and passive.\",\n      \"reason\": \"The held individual shows no resistance or engagement, consistent with abuse (aggression against a helpless victim); visible across f4–f7 where the posture is maintained and the victim’s head hangs down limply.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"In f1–f3, the gun is pointed but no muzzle flash, recoil, or impact is visible; the scene shows a standoff with multiple armed individuals, not an active shooting.\",\n      \"evidence_frame_ids\": [\"f1\", \"f2\", \"f3\"]\n    },\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"In f8–f11, the man in the background holds a rifle but does not fire; no muzzle flash, recoil, or target reaction is visible—only weapons possession, not shooting.\",\n      \"evidence_frame_ids\": [\"f8\", \"f9\", \"f10\", \"f11\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "Abuse",
+              "t_start": 2.0,
+              "t_end": 3.5,
+              "confidence": 0.9,
+              "description": "A man holds another man over his shoulder in a limp, non-resisting posture while raising a pistol in his other hand; the held man appears injured and passive.",
+              "reason": "The held individual shows no resistance or engagement, consistent with abuse (aggression against a helpless victim); visible across f4–f7 where the posture is maintained and the victim’s head hangs down limply.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "In f1–f3, the gun is pointed but no muzzle flash, recoil, or impact is visible; the scene shows a standoff with multiple armed individuals, not an active shooting.",
+              "evidence_frame_ids": [
+                "f1",
+                "f2",
+                "f3"
+              ]
+            },
+            {
+              "candidate_id": 2,
+              "reason": "In f8–f11, the man in the background holds a rifle but does not fire; no muzzle flash, recoil, or target reaction is visible—only weapons possession, not shooting.",
+              "evidence_frame_ids": [
+                "f8",
+                "f9",
+                "f10",
+                "f11"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          3,
+          4,
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 10.5,
+              "f1": 11.0,
+              "f2": 11.5,
+              "f3": 12.0,
+              "f4": 12.5,
+              "f5": 13.0,
+              "f6": 13.5,
+              "f7": 14.0,
+              "f8": 14.5,
+              "f9": 15.0,
+              "f10": 15.5,
+              "f11": 16.0,
+              "f12": 16.5,
+              "f13": 17.0,
+              "f14": 17.5,
+              "f15": 18.0,
+              "f16": 18.5,
+              "f17": 19.0,
+              "f18": 19.5,
+              "f19": 20.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 12.5,
+                "t_end": 18.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 13.0,
+                "t_end": 13.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 13.0,
+                "t_end": 13.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"Explosion\",\n      \"t_start\": 12.5,\n      \"t_end\": 15.5,\n      \"confidence\": 0.95,\n      \"description\": \"A sudden violent blast erupts at f4, propelling debris and fire outward; the expanding fireball and fragmentation persist through f10.\",\n      \"reason\": \"f4 shows an initial blast with smoke, debris, and fire; f5–f10 show progressive expansion of the fireball and flying fragments—consistent with a single explosion event, not sustained fire or multiple blasts. The candidate’s interval (12.5–18.5) overextends; visible explosion dynamics end by ~15.5 (f10), after which only burning wreckage remains (f11–f19).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"No mutual physical combat is visible in f5–f6; figures are silhouetted within an explosion and appear to be thrown or reacting to blast forces, not engaging in fighting.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\"]\n    },\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"While guns are held in f1 and f2, no muzzle flash, bullet impact, or discharge is visible in f5–f6; the frames depict explosion aftermath, not active shooting.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                3
+              ],
+              "category": "Explosion",
+              "t_start": 12.5,
+              "t_end": 15.5,
+              "confidence": 0.95,
+              "description": "A sudden violent blast erupts at f4, propelling debris and fire outward; the expanding fireball and fragmentation persist through f10.",
+              "reason": "f4 shows an initial blast with smoke, debris, and fire; f5–f10 show progressive expansion of the fireball and flying fragments—consistent with a single explosion event, not sustained fire or multiple blasts. The candidate’s interval (12.5–18.5) overextends; visible explosion dynamics end by ~15.5 (f10), after which only burning wreckage remains (f11–f19).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 4,
+              "reason": "No mutual physical combat is visible in f5–f6; figures are silhouetted within an explosion and appear to be thrown or reacting to blast forces, not engaging in fighting.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6"
+              ]
+            },
+            {
+              "candidate_id": 5,
+              "reason": "While guns are held in f1 and f2, no muzzle flash, bullet impact, or discharge is visible in f5–f6; the frames depict explosion aftermath, not active shooting.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          6
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 18.0,
+              "f1": 18.5,
+              "f2": 19.0,
+              "f3": 19.5,
+              "f4": 20.0,
+              "f5": 20.5,
+              "f6": 21.0,
+              "f7": 21.5,
+              "f8": 22.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 6,
+                "t_start": 20.0,
+                "t_end": 20.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"No blast wave, debris ejection, or sudden pressure front is visible; instead, sustained fire and smoke evolve gradually from f2 onward, consistent with a fire spreading, not an explosion.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 6,
+              "reason": "No blast wave, debris ejection, or sudden pressure front is visible; instead, sustained fire and smoke evolve gradually from f2 onward, consistent with a fire spreading, not an explosion.",
+              "evidence_frame_ids": [
+                "f2",
+                "f3",
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          7,
+          8
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 21.5,
+              "f1": 22.0,
+              "f2": 22.5,
+              "f3": 23.0,
+              "f4": 23.5,
+              "f5": 24.0,
+              "f6": 24.5,
+              "f7": 25.0,
+              "f8": 25.5,
+              "f9": 26.0,
+              "f10": 26.5,
+              "f11": 27.0,
+              "f12": 27.5,
+              "f13": 28.0,
+              "f14": 28.5,
+              "f15": 29.0,
+              "f16": 29.5,
+              "f17": 30.0,
+              "f18": 30.5,
+              "f19": 31.0,
+              "f20": 31.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 7,
+                "t_start": 23.5,
+                "t_end": 28.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 29.5,
+                "t_end": 30.0,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"No mutual physical combat is visible; individuals are crawling on the ground amid fire and debris, consistent with survival or evacuation after an incident, not fighting.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\"]\n    },\n    {\n      \"candidate_id\": 8,\n      \"reason\": \"No blast wave, rapid expansion, or debris ejection characteristic of an explosion is visible at 29.5–30.0; fire is already burning steadily, and the scene shows aftermath, not detonation.\",\n      \"evidence_frame_ids\": [\"f16\", \"f17\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 7,
+              "reason": "No mutual physical combat is visible; individuals are crawling on the ground amid fire and debris, consistent with survival or evacuation after an incident, not fighting.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15"
+              ]
+            },
+            {
+              "candidate_id": 8,
+              "reason": "No blast wave, rapid expansion, or debris ejection characteristic of an explosion is visible at 29.5–30.0; fire is already burning steadily, and the scene shows aftermath, not detonation.",
+              "evidence_frame_ids": [
+                "f16",
+                "f17"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 4,
+        "source_ids": [
+          9,
+          10
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 31.0,
+              "f1": 31.5,
+              "f2": 32.0,
+              "f3": 32.5,
+              "f4": 33.0,
+              "f5": 33.5,
+              "f6": 34.0,
+              "f7": 34.5,
+              "f8": 35.0,
+              "f9": 35.5,
+              "f10": 36.0,
+              "f11": 36.5,
+              "f12": 37.0,
+              "f13": 37.5,
+              "f14": 38.0,
+              "f15": 38.5,
+              "f16": 39.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 9,
+                "t_start": 32.6,
+                "t_end": 35.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 10,
+                "t_start": 35.8,
+                "t_end": 37.3,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 9,\n      \"reason\": \"Frames f4–f8 show sustained fire and smoke with debris in air, but no instantaneous blast wave, rapid expansion, or structural disintegration characteristic of an explosion; the scene is consistent with post-blast aftermath or burning wreckage, not an active explosion.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    },\n    {\n      \"candidate_id\": 10,\n      \"reason\": \"Frames f9–f12 show a man climbing, then crouching and handling an object (possibly a weapon), but no second person is engaged in physical combat with him; the distant figure in f13–f14 is passive and non-confrontational, so no mutual physical combat occurs.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 9,
+              "reason": "Frames f4–f8 show sustained fire and smoke with debris in air, but no instantaneous blast wave, rapid expansion, or structural disintegration characteristic of an explosion; the scene is consistent with post-blast aftermath or burning wreckage, not an active explosion.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            },
+            {
+              "candidate_id": 10,
+              "reason": "Frames f9–f12 show a man climbing, then crouching and handling an object (possibly a weapon), but no second person is engaged in physical combat with him; the distant figure in f13–f14 is passive and non-confrontational, so no mutual physical combat occurs.",
+              "evidence_frame_ids": [
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

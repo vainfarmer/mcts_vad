@@ -1,0 +1,437 @@
+{
+  "events": [
+    {
+      "t_start": 55.5,
+      "t_end": 65.0,
+      "anomaly_type": "Riot",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A large crowd surrounds a burning object on a street at night; smoke spreads, individuals move aggressively, some appear to throw objects, and by f12 a line of riot police forms a barrier facing the crowd.",
+      "source_candidate_ids": [
+        0,
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          55.5,
+          56.0,
+          57.0,
+          58.0,
+          59.0,
+          59.5,
+          60.5,
+          61.5,
+          62.5,
+          63.5,
+          64.0,
+          65.0
+        ],
+        "evidence_frame_ids": [
+          "f0",
+          "f1",
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11"
+        ],
+        "reason": "Images f0–f11 show sustained collective violent unrest: fire as focal point, dense agitated crowd, smoke (likely from tear gas or burning material), and escalating confrontation with police lines forming in f12; this meets the definition of riot (collective violent unrest). The intervals of candidates 0 and 1 fully overlap within this continuous event, so merged.",
+        "source_categories": [
+          "Riot",
+          "Riot"
+        ]
+      }
+    },
+    {
+      "t_start": 88.8,
+      "t_end": 91.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "Multiple individuals in dark clothing engage in mutual physical combat around a prone person on wet ground, with swinging motions and grappling visible across frames f4–f9.",
+      "source_candidate_ids": [
+        5
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          89.0,
+          89.5,
+          90.0,
+          90.5,
+          91.0,
+          91.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9"
+        ],
+        "reason": "Frames f4–f9 show at least four people actively striking, pulling, and wrestling each other; the interaction is reciprocal and dynamic, satisfying the definition of Fighting (mutual physical combat), not Abuse (which requires a helpless victim).",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 92.5,
+      "t_end": 95.5,
+      "anomaly_type": "Abuse",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "A man in light shirt is forcibly held and struck by multiple uniformed individuals, then pushed to the ground and restrained while appearing unable to resist.",
+      "source_candidate_ids": [
+        6
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 1,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          92.5,
+          93.0,
+          93.5,
+          94.0,
+          94.5,
+          95.0
+        ],
+        "evidence_frame_ids": [
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16"
+        ],
+        "reason": "From f11 to f16, one individual is seized from behind, struck, driven to the ground, and pinned by several others who continue to exert force while he is on the ground—consistent with Abuse (aggression against a helpless victim), not Fighting (no reciprocal combat observed).",
+        "source_categories": [
+          "Abuse"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 7,
+      "output_count": 3,
+      "groups": 2,
+      "rejected": 3,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 55.5,
+              "f1": 56.0,
+              "f2": 57.0,
+              "f3": 58.0,
+              "f4": 59.0,
+              "f5": 59.5,
+              "f6": 60.5,
+              "f7": 61.5,
+              "f8": 62.5,
+              "f9": 63.5,
+              "f10": 64.0,
+              "f11": 65.0,
+              "f12": 66.0,
+              "f13": 67.0,
+              "f14": 67.5,
+              "f15": 68.5,
+              "f16": 69.5,
+              "f17": 70.5,
+              "f18": 71.5,
+              "f19": 72.0,
+              "f20": 72.5,
+              "f21": 73.0,
+              "f22": 74.0,
+              "f23": 76.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 57.5,
+                "t_end": 62.0,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 60.0,
+                "t_end": 74.0,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 66.0,
+                "t_end": 66.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 71.1,
+                "t_end": 74.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 74.0,
+                "t_end": 74.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Riot\",\n      \"t_start\": 55.5,\n      \"t_end\": 65.0,\n      \"confidence\": 0.95,\n      \"description\": \"A large crowd surrounds a burning object on a street at night, with smoke, movement, and later a line of riot police forming a barrier; individuals are seen throwing objects and moving aggressively toward police lines.\",\n      \"reason\": \"Images f0–f11 show sustained collective unrest: fire, dense crowd, smoke, projectiles (e.g., f12–f16 show objects being thrown), and organized police response—meeting the definition of riot as collective violent unrest. The events from 55.5–65.0 are continuous and overlapping across candidates 0 and 1, so merged.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    },\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"Shooting\",\n      \"t_start\": 66.0,\n      \"t_end\": 66.5,\n      \"confidence\": 0.3,\n      \"description\": \"A figure in dark clothing raises an arm holding a small object near a smoke cloud, but no muzzle flash, projectile, or recoil is visible.\",\n      \"reason\": \"No visible evidence of discharge (e.g., flash, smoke burst, impact) in f12 or adjacent frames; gesture could be throwing, signaling, or holding non-firearm object. Insufficient to confirm shooting; retained only due to candidate claim but low confidence—however per instructions, only accept if adequately supported. Since not supported, this should be *rejected*, not accepted. Correction: move to rejected.\",\n      \"evidence_frame_ids\": [\"f12\"]\n    },\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"Fighting\",\n      \"t_start\": 71.1,\n      \"t_end\": 74.0,\n      \"confidence\": 0.4,\n      \"description\": \"Multiple individuals in f17–f21 appear to be moving rapidly, some crouching or ducking behind barriers, with one person seemingly pulling another; however, no clear mutual physical combat is visible.\",\n      \"reason\": \"Actions may reflect evasion, panic, or assisting injured, but no reciprocal striking, grappling, or sustained combat is evident; insufficient for 'Fighting' category. Should be rejected.\",\n      \"evidence_frame_ids\": [\"f17\", \"f18\", \"f19\", \"f20\", \"f21\"]\n    },\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"Explosion\",\n      \"t_start\": 74.0,\n      \"t_end\": 74.5,\n      \"confidence\": 0.1,\n      \"description\": \"Image f22 shows structural damage to a building (collapsed roof, broken walls) in daylight, with no blast wave, debris in motion, or fireball present.\",\n      \"reason\": \"Damage is static and appears post-event; no explosion is captured in any frame—only aftermath. Does not meet 'Explosion' definition requiring a blast event. Reject.\",\n      \"evidence_frame_ids\": [\"f22\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"No visible firearm discharge, muzzle flash, or projectile in f12 or surrounding frames; the raised arm gesture is ambiguous and not sufficient evidence of shooting.\",\n      \"evidence_frame_ids\": [\"f12\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"Images f17–f21 show chaotic movement and possible assistance or evasion behind barbed wire, but no mutual physical combat required for 'Fighting' is observed.\",\n      \"evidence_frame_ids\": [\"f17\", \"f18\", \"f19\", \"f20\", \"f21\"]\n    },\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"Image f22 shows damaged building but no blast, shockwave, or instantaneous destruction; thus no explosion event is visible—only aftermath.\",\n      \"evidence_frame_ids\": [\"f22\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 55.5,
+              "f1": 56.0,
+              "f2": 57.0,
+              "f3": 58.0,
+              "f4": 59.0,
+              "f5": 59.5,
+              "f6": 60.5,
+              "f7": 61.5,
+              "f8": 62.5,
+              "f9": 63.5,
+              "f10": 64.0,
+              "f11": 65.0,
+              "f12": 66.0,
+              "f13": 67.0,
+              "f14": 67.5,
+              "f15": 68.5,
+              "f16": 69.5,
+              "f17": 70.5,
+              "f18": 71.5,
+              "f19": 72.0,
+              "f20": 72.5,
+              "f21": 73.0,
+              "f22": 74.0,
+              "f23": 76.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 57.5,
+                "t_end": 62.0,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 60.0,
+                "t_end": 74.0,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 66.0,
+                "t_end": 66.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 71.1,
+                "t_end": 74.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 74.0,
+                "t_end": 74.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Riot\",\n      \"t_start\": 55.5,\n      \"t_end\": 65.0,\n      \"confidence\": 0.95,\n      \"description\": \"A large crowd surrounds a burning object on a street at night; smoke spreads, individuals move aggressively, some appear to throw objects, and by f12 a line of riot police forms a barrier facing the crowd.\",\n      \"reason\": \"Images f0–f11 show sustained collective violent unrest: fire as focal point, dense agitated crowd, smoke (likely from tear gas or burning material), and escalating confrontation with police lines forming in f12; this meets the definition of riot (collective violent unrest). The intervals of candidates 0 and 1 fully overlap within this continuous event, so merged.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"In f12, a figure raises an arm near smoke, but no muzzle flash, projectile, recoil, or firearm discharge is visible; the gesture is ambiguous and insufficient for 'Shooting'.\",\n      \"evidence_frame_ids\": [\"f12\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"Frames f17–f21 show people moving behind barbed wire, some crouching or assisting others, but no mutual physical combat (e.g., striking, grappling) is observed—required for 'Fighting'.\",\n      \"evidence_frame_ids\": [\"f17\", \"f18\", \"f19\", \"f20\", \"f21\"]\n    },\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"f22 shows static structural damage (collapsed roof, broken walls) in daylight with no blast wave, debris in motion, or instantaneous destruction—thus no explosion event is captured, only aftermath.\",\n      \"evidence_frame_ids\": [\"f22\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1
+              ],
+              "category": "Riot",
+              "t_start": 55.5,
+              "t_end": 65.0,
+              "confidence": 0.95,
+              "description": "A large crowd surrounds a burning object on a street at night; smoke spreads, individuals move aggressively, some appear to throw objects, and by f12 a line of riot police forms a barrier facing the crowd.",
+              "reason": "Images f0–f11 show sustained collective violent unrest: fire as focal point, dense agitated crowd, smoke (likely from tear gas or burning material), and escalating confrontation with police lines forming in f12; this meets the definition of riot (collective violent unrest). The intervals of candidates 0 and 1 fully overlap within this continuous event, so merged.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "In f12, a figure raises an arm near smoke, but no muzzle flash, projectile, recoil, or firearm discharge is visible; the gesture is ambiguous and insufficient for 'Shooting'.",
+              "evidence_frame_ids": [
+                "f12"
+              ]
+            },
+            {
+              "candidate_id": 3,
+              "reason": "Frames f17–f21 show people moving behind barbed wire, some crouching or assisting others, but no mutual physical combat (e.g., striking, grappling) is observed—required for 'Fighting'.",
+              "evidence_frame_ids": [
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21"
+              ]
+            },
+            {
+              "candidate_id": 4,
+              "reason": "f22 shows static structural damage (collapsed roof, broken walls) in daylight with no blast wave, debris in motion, or instantaneous destruction—thus no explosion event is captured, only aftermath.",
+              "evidence_frame_ids": [
+                "f22"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          5,
+          6
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 87.0,
+              "f1": 87.5,
+              "f2": 88.0,
+              "f3": 88.5,
+              "f4": 89.0,
+              "f5": 89.5,
+              "f6": 90.0,
+              "f7": 90.5,
+              "f8": 91.0,
+              "f9": 91.5,
+              "f10": 92.0,
+              "f11": 92.5,
+              "f12": 93.0,
+              "f13": 93.5,
+              "f14": 94.0,
+              "f15": 94.5,
+              "f16": 95.0,
+              "f17": 95.5,
+              "f18": 96.0,
+              "f19": 96.5,
+              "f20": 97.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 5,
+                "t_start": 88.8,
+                "t_end": 91.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 92.5,
+                "t_end": 95.5,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [5],\n      \"category\": \"Fighting\",\n      \"t_start\": 88.8,\n      \"t_end\": 91.5,\n      \"confidence\": 0.9,\n      \"description\": \"Multiple individuals in dark clothing engage in mutual physical combat around a prone person on wet ground, with swinging motions and grappling visible across frames f4–f9.\",\n      \"reason\": \"Frames f4–f9 show at least four people actively striking, pulling, and wrestling each other; the interaction is reciprocal and dynamic, satisfying the definition of Fighting (mutual physical combat), not Abuse (which requires a helpless victim).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\"]\n    },\n    {\n      \"source_candidate_ids\": [6],\n      \"category\": \"Abuse\",\n      \"t_start\": 92.5,\n      \"t_end\": 95.5,\n      \"confidence\": 0.85,\n      \"description\": \"A man in light shirt is forcibly held and struck by multiple uniformed individuals, then pushed to the ground and restrained while appearing unable to resist.\",\n      \"reason\": \"From f11 to f16, one individual is seized from behind, struck, driven to the ground, and pinned by several others who continue to exert force while he is on the ground—consistent with Abuse (aggression against a helpless victim), not Fighting (no reciprocal combat observed).\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                5
+              ],
+              "category": "Fighting",
+              "t_start": 88.8,
+              "t_end": 91.5,
+              "confidence": 0.9,
+              "description": "Multiple individuals in dark clothing engage in mutual physical combat around a prone person on wet ground, with swinging motions and grappling visible across frames f4–f9.",
+              "reason": "Frames f4–f9 show at least four people actively striking, pulling, and wrestling each other; the interaction is reciprocal and dynamic, satisfying the definition of Fighting (mutual physical combat), not Abuse (which requires a helpless victim).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                6
+              ],
+              "category": "Abuse",
+              "t_start": 92.5,
+              "t_end": 95.5,
+              "confidence": 0.85,
+              "description": "A man in light shirt is forcibly held and struck by multiple uniformed individuals, then pushed to the ground and restrained while appearing unable to resist.",
+              "reason": "From f11 to f16, one individual is seized from behind, struck, driven to the ground, and pinned by several others who continue to exert force while he is on the ground—consistent with Abuse (aggression against a helpless victim), not Fighting (no reciprocal combat observed).",
+              "evidence_frame_ids": [
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "5a82d0dd6e711938ee6c8e0ecf1c6f7fdb68cac4e5e95683ad672320f7156da9"
+}

@@ -1,0 +1,192 @@
+{
+  "events": [
+    {
+      "t_start": 45.0,
+      "t_end": 49.0,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A light-colored station wagon enters the lane from the left, crosses the center line, and collides with a dark SUV traveling in the opposite direction; both vehicles are visibly impacted and displaced at impact.",
+      "source_candidate_ids": [
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          45.0,
+          45.5,
+          46.0,
+          46.5,
+          47.0,
+          47.5,
+          48.0,
+          48.5
+        ],
+        "evidence_frame_ids": [
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12"
+        ],
+        "reason": "In f5–f6, the station wagon is seen swerving left across the double yellow lines; by f7–f8, contact occurs with the oncoming SUV (visible in f10–f12), causing both vehicles to rotate and slow abruptly—consistent with a collision, not near-miss or maneuvering. The event spans frames where physical contact and post-impact motion are visible.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 3,
+      "output_count": 1,
+      "groups": 2,
+      "rejected": 2,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 19.5,
+              "f1": 20.0,
+              "f2": 20.5,
+              "f3": 21.0,
+              "f4": 21.5,
+              "f5": 22.0,
+              "f6": 22.5,
+              "f7": 23.0,
+              "f8": 23.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 21.5,
+                "t_end": 22.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 21.5,
+                "t_end": 22.0,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No visible crash or vehicle deformation; f3 shows a red car passing normally, and f4 shows bright vertical streaks (likely streetlights or reflections), not impact debris or collision dynamics.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\"]\n    },\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"f4 shows vertical light streaks without blast wave, smoke, fireball, or structural disruption; f5 is near-black with no explosion aftermath; this is consistent with camera motion blur or glare, not an explosion.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "No visible crash or vehicle deformation; f3 shows a red car passing normally, and f4 shows bright vertical streaks (likely streetlights or reflections), not impact debris or collision dynamics.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4"
+              ]
+            },
+            {
+              "candidate_id": 1,
+              "reason": "f4 shows vertical light streaks without blast wave, smoke, fireball, or structural disruption; f5 is near-black with no explosion aftermath; this is consistent with camera motion blur or glare, not an explosion.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 42.5,
+              "f1": 43.0,
+              "f2": 43.5,
+              "f3": 44.0,
+              "f4": 44.5,
+              "f5": 45.0,
+              "f6": 45.5,
+              "f7": 46.0,
+              "f8": 46.5,
+              "f9": 47.0,
+              "f10": 47.5,
+              "f11": 48.0,
+              "f12": 48.5,
+              "f13": 49.0,
+              "f14": 49.5,
+              "f15": 50.0,
+              "f16": 50.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 44.5,
+                "t_end": 49.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"CarAccident\",\n      \"t_start\": 45.0,\n      \"t_end\": 49.0,\n      \"confidence\": 0.95,\n      \"description\": \"A light-colored station wagon enters the lane from the left, crosses the center line, and collides with a dark SUV traveling in the opposite direction; both vehicles are visibly impacted and displaced at impact.\",\n      \"reason\": \"In f5–f6, the station wagon is seen swerving left across the double yellow lines; by f7–f8, contact occurs with the oncoming SUV (visible in f10–f12), causing both vehicles to rotate and slow abruptly—consistent with a collision, not near-miss or maneuvering. The event spans frames where physical contact and post-impact motion are visible.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2
+              ],
+              "category": "CarAccident",
+              "t_start": 45.0,
+              "t_end": 49.0,
+              "confidence": 0.95,
+              "description": "A light-colored station wagon enters the lane from the left, crosses the center line, and collides with a dark SUV traveling in the opposite direction; both vehicles are visibly impacted and displaced at impact.",
+              "reason": "In f5–f6, the station wagon is seen swerving left across the double yellow lines; by f7–f8, contact occurs with the oncoming SUV (visible in f10–f12), causing both vehicles to rotate and slow abruptly—consistent with a collision, not near-miss or maneuvering. The event spans frames where physical contact and post-impact motion are visible.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

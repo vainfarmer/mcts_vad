@@ -1,0 +1,108 @@
+{
+  "events": [
+    {
+      "t_start": 5.5,
+      "t_end": 6.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A sudden violent burst of debris and smoke erupts from the tank silhouette between f4 and f5, with expanding particulate matter and obscuring cloud consistent with a blast event.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          5.5,
+          6.0,
+          6.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "Frames f4 (5.5 s) to f5 (6.0 s) show rapid ejection of material upward and outward from the tank, followed by dense smoke in f6 (6.5 s); this matches the visual signature of an explosion (blast wave + debris), not sustained fire or mechanical failure alone.",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 1,
+      "output_count": 1,
+      "groups": 1,
+      "rejected": 0,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 3.5,
+              "f1": 4.0,
+              "f2": 4.5,
+              "f3": 5.0,
+              "f4": 5.5,
+              "f5": 6.0,
+              "f6": 6.5,
+              "f7": 7.0,
+              "f8": 7.5,
+              "f9": 8.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 5.5,
+                "t_end": 6.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Explosion\",\n      \"t_start\": 5.5,\n      \"t_end\": 6.5,\n      \"confidence\": 0.9,\n      \"description\": \"A sudden violent burst of debris and smoke erupts from the tank silhouette between f4 and f5, with expanding particulate matter and obscuring cloud consistent with a blast event.\",\n      \"reason\": \"Frames f4 (5.5 s) to f5 (6.0 s) show rapid ejection of material upward and outward from the tank, followed by dense smoke in f6 (6.5 s); this matches the visual signature of an explosion (blast wave + debris), not sustained fire or mechanical failure alone.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Explosion",
+              "t_start": 5.5,
+              "t_end": 6.5,
+              "confidence": 0.9,
+              "description": "A sudden violent burst of debris and smoke erupts from the tank silhouette between f4 and f5, with expanding particulate matter and obscuring cloud consistent with a blast event.",
+              "reason": "Frames f4 (5.5 s) to f5 (6.0 s) show rapid ejection of material upward and outward from the tank, followed by dense smoke in f6 (6.5 s); this matches the visual signature of an explosion (blast wave + debris), not sustained fire or mechanical failure alone.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

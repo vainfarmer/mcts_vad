@@ -1,0 +1,545 @@
+{
+  "events": [
+    {
+      "t_start": 6.5,
+      "t_end": 7.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "At f4 (6.5s), a person in dark clothing grabs another person holding a crate near a doorway; at f5 (7.0s), the two are still engaged with arms extended and bodies in contact, suggesting mutual physical struggle.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          6.5,
+          7.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "The interaction involves reciprocal force: both individuals are actively resisting or pushing, consistent with mutual combat rather than one-sided aggression or accidental contact. The motion blur and posture across f4–f5 support sustained physical engagement.",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 10.0,
+      "t_end": 13.0,
+      "anomaly_type": "Fighting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "One person tackles and grapples another in a hallway, culminating in one individual being pinned against the wall while the other maintains control on the floor.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          10.0,
+          10.5,
+          11.0,
+          11.5,
+          12.0,
+          12.5,
+          13.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10"
+        ],
+        "reason": "Frames f4–f10 show continuous physical engagement: f4 shows a tackle, f5–f6 depict one person on hands/knees while the other stands over them, f7–f10 show the standing person actively restraining or subduing the other (e.g., lifting legs, pressing against wall), consistent with mutual combat rather than one-sided abuse (the grounded person resists/shifts posture). No weapon, explosion, or crowd present.",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 17.5,
+      "t_end": 23.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "Two individuals engage in mutual physical combat: grappling (f3–f4), close-quarters striking and clinching (f6–f8), and a high kick delivered while both are upright and actively engaged (f11).",
+      "source_candidate_ids": [
+        2,
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          17.5,
+          18.5,
+          19.0,
+          20.0,
+          20.5,
+          21.0,
+          21.5,
+          22.0,
+          23.5
+        ],
+        "evidence_frame_ids": [
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11"
+        ],
+        "reason": "Frames f3 (17.5) through f11 (23.5) show reciprocal engagement—both parties standing, resisting, initiating strikes, and maneuvering; this satisfies 'Fighting' (mutual physical combat). Candidate 5 (24.0–25.0) does not belong here because the takedown is completed by f12 (24.5), and no fighting occurs at 24.0–24.5 (no frame at 24.0–24.5 shows combat); thus candidate 5 is excluded from this event.",
+        "source_categories": [
+          "Fighting",
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 24.5,
+      "t_end": 28.0,
+      "anomaly_type": "Abuse",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "After one person lies motionless on the floor (f12 at 24.5), the other stands over them and delivers repeated downward actions (f14–f17), with no resistance or defensive movement observed from the prone individual.",
+      "source_candidate_ids": [
+        4,
+        6
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 1,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          24.5,
+          25.5,
+          26.0,
+          26.5,
+          27.5
+        ],
+        "evidence_frame_ids": [
+          "f12",
+          "f14",
+          "f15",
+          "f16",
+          "f17"
+        ],
+        "reason": "From f12 onward, the victim is supine and unresponsive; frames f14–f17 show clear downward strikes/stomps by the standing person with no mutual engagement—meeting the definition of 'Abuse' (aggression against a helpless victim). Candidates 4 (23.5–28.0) and 6 (24.7–31.2) overlap this interval; the earliest unambiguous abuse begins at f12 (24.5), and ends by f17 (27.5), with f18–f22 showing aftermath without further aggression, so t_end = 28.0 is acceptable as upper bound within visible evidence.",
+        "source_categories": [
+          "Abuse",
+          "Abuse"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 8,
+      "output_count": 4,
+      "groups": 4,
+      "rejected": 2,
+      "uncertain": 0,
+      "merged_sources": 2,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 4.5,
+              "f1": 5.0,
+              "f2": 5.5,
+              "f3": 6.0,
+              "f4": 6.5,
+              "f5": 7.0,
+              "f6": 7.5,
+              "f7": 8.0,
+              "f8": 8.5,
+              "f9": 9.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 6.5,
+                "t_end": 7.5,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Fighting\",\n      \"t_start\": 6.5,\n      \"t_end\": 7.5,\n      \"confidence\": 0.9,\n      \"description\": \"At f4 (6.5s), a person in dark clothing grabs another person holding a crate near a doorway; at f5 (7.0s), the two are still engaged with arms extended and bodies in contact, suggesting mutual physical struggle.\",\n      \"reason\": \"The interaction involves reciprocal force: both individuals are actively resisting or pushing, consistent with mutual combat rather than one-sided aggression or accidental contact. The motion blur and posture across f4–f5 support sustained physical engagement.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Fighting",
+              "t_start": 6.5,
+              "t_end": 7.5,
+              "confidence": 0.9,
+              "description": "At f4 (6.5s), a person in dark clothing grabs another person holding a crate near a doorway; at f5 (7.0s), the two are still engaged with arms extended and bodies in contact, suggesting mutual physical struggle.",
+              "reason": "The interaction involves reciprocal force: both individuals are actively resisting or pushing, consistent with mutual combat rather than one-sided aggression or accidental contact. The motion blur and posture across f4–f5 support sustained physical engagement.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 8.0,
+              "f1": 8.5,
+              "f2": 9.0,
+              "f3": 9.5,
+              "f4": 10.0,
+              "f5": 10.5,
+              "f6": 11.0,
+              "f7": 11.5,
+              "f8": 12.0,
+              "f9": 12.5,
+              "f10": 13.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 10.0,
+                "t_end": 11.2,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Fighting\",\n      \"t_start\": 10.0,\n      \"t_end\": 13.0,\n      \"confidence\": 0.95,\n      \"description\": \"One person tackles and grapples another in a hallway, culminating in one individual being pinned against the wall while the other maintains control on the floor.\",\n      \"reason\": \"Frames f4–f10 show continuous physical engagement: f4 shows a tackle, f5–f6 depict one person on hands/knees while the other stands over them, f7–f10 show the standing person actively restraining or subduing the other (e.g., lifting legs, pressing against wall), consistent with mutual combat rather than one-sided abuse (the grounded person resists/shifts posture). No weapon, explosion, or crowd present.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "Fighting",
+              "t_start": 10.0,
+              "t_end": 13.0,
+              "confidence": 0.95,
+              "description": "One person tackles and grapples another in a hallway, culminating in one individual being pinned against the wall while the other maintains control on the floor.",
+              "reason": "Frames f4–f10 show continuous physical engagement: f4 shows a tackle, f5–f6 depict one person on hands/knees while the other stands over them, f7–f10 show the standing person actively restraining or subduing the other (e.g., lifting legs, pressing against wall), consistent with mutual combat rather than one-sided abuse (the grounded person resists/shifts posture). No weapon, explosion, or crowd present.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 15.5,
+              "f1": 16.0,
+              "f2": 17.0,
+              "f3": 17.5,
+              "f4": 18.5,
+              "f5": 19.0,
+              "f6": 20.0,
+              "f7": 20.5,
+              "f8": 21.0,
+              "f9": 21.5,
+              "f10": 22.0,
+              "f11": 23.5,
+              "f12": 24.5,
+              "f13": 25.0,
+              "f14": 25.5,
+              "f15": 26.0,
+              "f16": 26.5,
+              "f17": 27.5,
+              "f18": 28.0,
+              "f19": 29.0,
+              "f20": 29.5,
+              "f21": 30.5,
+              "f22": 31.0,
+              "f23": 33.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 17.5,
+                "t_end": 23.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 20.0,
+                "t_end": 22.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 23.5,
+                "t_end": 28.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 24.0,
+                "t_end": 25.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 24.7,
+                "t_end": 31.2,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2, 3, 5],\n      \"category\": \"Fighting\",\n      \"t_start\": 17.5,\n      \"t_end\": 23.5,\n      \"confidence\": 0.95,\n      \"description\": \"Two individuals engage in mutual physical combat in a narrow hallway: grappling (f3–f4), striking (f6–f8), and one executing a high kick (f11).\",\n      \"reason\": \"Frames f3–f11 show reciprocal engagement: both parties are upright, actively resisting, striking, and maneuvering—meeting the definition of Fighting (mutual physical combat). Candidate 5 (24.0–25.0) is subsumed because the kick at f11 (23.5) initiates the takedown that concludes by f12; the fight ends before 24.0.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    },\n    {\n      \"source_candidate_ids\": [4, 6],\n      \"category\": \"Abuse\",\n      \"t_start\": 24.5,\n      \"t_end\": 28.0,\n      \"confidence\": 0.9,\n      \"description\": \"After the opponent is on the ground (f12), the standing person repeatedly strikes or stomps the prone individual (f14–f17), with no resistance observed.\",\n      \"reason\": \"From f12 onward, one person lies motionless on the floor while the other stands over them and delivers downward actions (f14–f17); this satisfies Abuse (aggression against a helpless victim). Candidates 4 and 6 overlap and describe the same post-fight assault; merged accordingly.\",\n      \"evidence_frame_ids\": [\"f12\", \"f14\", \"f15\", \"f16\", \"f17\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"The alleged 'Fighting' interval (24.0–25.0) occurs after the opponent has already been knocked down (f12 at 24.5 shows him on floor); visible actions are unilateral, not mutual combat.\",\n      \"evidence_frame_ids\": [\"f12\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 15.5,
+              "f1": 16.0,
+              "f2": 17.0,
+              "f3": 17.5,
+              "f4": 18.5,
+              "f5": 19.0,
+              "f6": 20.0,
+              "f7": 20.5,
+              "f8": 21.0,
+              "f9": 21.5,
+              "f10": 22.0,
+              "f11": 23.5,
+              "f12": 24.5,
+              "f13": 25.0,
+              "f14": 25.5,
+              "f15": 26.0,
+              "f16": 26.5,
+              "f17": 27.5,
+              "f18": 28.0,
+              "f19": 29.0,
+              "f20": 29.5,
+              "f21": 30.5,
+              "f22": 31.0,
+              "f23": 33.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 17.5,
+                "t_end": 23.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 20.0,
+                "t_end": 22.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 23.5,
+                "t_end": 28.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 24.0,
+                "t_end": 25.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 24.7,
+                "t_end": 31.2,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2, 3],\n      \"category\": \"Fighting\",\n      \"t_start\": 17.5,\n      \"t_end\": 23.5,\n      \"confidence\": 0.95,\n      \"description\": \"Two individuals engage in mutual physical combat: grappling (f3–f4), close-quarters striking and clinching (f6–f8), and a high kick delivered while both are upright and actively engaged (f11).\",\n      \"reason\": \"Frames f3 (17.5) through f11 (23.5) show reciprocal engagement—both parties standing, resisting, initiating strikes, and maneuvering; this satisfies 'Fighting' (mutual physical combat). Candidate 5 (24.0–25.0) does not belong here because the takedown is completed by f12 (24.5), and no fighting occurs at 24.0–24.5 (no frame at 24.0–24.5 shows combat); thus candidate 5 is excluded from this event.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    },\n    {\n      \"source_candidate_ids\": [4, 6],\n      \"category\": \"Abuse\",\n      \"t_start\": 24.5,\n      \"t_end\": 28.0,\n      \"confidence\": 0.9,\n      \"description\": \"After one person lies motionless on the floor (f12 at 24.5), the other stands over them and delivers repeated downward actions (f14–f17), with no resistance or defensive movement observed from the prone individual.\",\n      \"reason\": \"From f12 onward, the victim is supine and unresponsive; frames f14–f17 show clear downward strikes/stomps by the standing person with no mutual engagement—meeting the definition of 'Abuse' (aggression against a helpless victim). Candidates 4 (23.5–28.0) and 6 (24.7–31.2) overlap this interval; the earliest unambiguous abuse begins at f12 (24.5), and ends by f17 (27.5), with f18–f22 showing aftermath without further aggression, so t_end = 28.0 is acceptable as upper bound within visible evidence.\",\n      \"evidence_frame_ids\": [\"f12\", \"f14\", \"f15\", \"f16\", \"f17\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"Candidate 5 claims Fighting at 24.0–25.0, but the first frame at or after 24.0 is f12 at 24.5, which already shows the opponent on the ground and no mutual combat; no image supports fighting in that interval.\",\n      \"evidence_frame_ids\": [\"f12\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2,
+                3
+              ],
+              "category": "Fighting",
+              "t_start": 17.5,
+              "t_end": 23.5,
+              "confidence": 0.95,
+              "description": "Two individuals engage in mutual physical combat: grappling (f3–f4), close-quarters striking and clinching (f6–f8), and a high kick delivered while both are upright and actively engaged (f11).",
+              "reason": "Frames f3 (17.5) through f11 (23.5) show reciprocal engagement—both parties standing, resisting, initiating strikes, and maneuvering; this satisfies 'Fighting' (mutual physical combat). Candidate 5 (24.0–25.0) does not belong here because the takedown is completed by f12 (24.5), and no fighting occurs at 24.0–24.5 (no frame at 24.0–24.5 shows combat); thus candidate 5 is excluded from this event.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                4,
+                6
+              ],
+              "category": "Abuse",
+              "t_start": 24.5,
+              "t_end": 28.0,
+              "confidence": 0.9,
+              "description": "After one person lies motionless on the floor (f12 at 24.5), the other stands over them and delivers repeated downward actions (f14–f17), with no resistance or defensive movement observed from the prone individual.",
+              "reason": "From f12 onward, the victim is supine and unresponsive; frames f14–f17 show clear downward strikes/stomps by the standing person with no mutual engagement—meeting the definition of 'Abuse' (aggression against a helpless victim). Candidates 4 (23.5–28.0) and 6 (24.7–31.2) overlap this interval; the earliest unambiguous abuse begins at f12 (24.5), and ends by f17 (27.5), with f18–f22 showing aftermath without further aggression, so t_end = 28.0 is acceptable as upper bound within visible evidence.",
+              "evidence_frame_ids": [
+                "f12",
+                "f14",
+                "f15",
+                "f16",
+                "f17"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 5,
+              "reason": "Candidate 5 claims Fighting at 24.0–25.0, but the first frame at or after 24.0 is f12 at 24.5, which already shows the opponent on the ground and no mutual combat; no image supports fighting in that interval.",
+              "evidence_frame_ids": [
+                "f12"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          7
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 30.5,
+              "f1": 31.0,
+              "f2": 31.5,
+              "f3": 32.0,
+              "f4": 32.5,
+              "f5": 33.0,
+              "f6": 33.5,
+              "f7": 34.0,
+              "f8": 34.5,
+              "f9": 35.0,
+              "f10": 35.5,
+              "f11": 36.0,
+              "f12": 36.5,
+              "f13": 37.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 7,
+                "t_start": 32.5,
+                "t_end": 35.5,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"The person on the floor moves limbs (e.g., leg lift in f3, arm motion in f5–f7) and appears conscious and active; the standing person remains at a distance, not engaging physically—no evidence of aggression toward a helpless victim.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 7,
+              "reason": "The person on the floor moves limbs (e.g., leg lift in f3, arm motion in f5–f7) and appears conscious and active; the standing person remains at a distance, not engaging physically—no evidence of aggression toward a helpless victim.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

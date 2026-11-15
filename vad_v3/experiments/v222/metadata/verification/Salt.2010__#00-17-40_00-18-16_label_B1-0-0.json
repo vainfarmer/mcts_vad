@@ -1,0 +1,327 @@
+{
+  "events": [
+    {
+      "t_start": 23.0,
+      "t_end": 29.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "Two men in suits engage in rapid physical combat inside an elevator: one is struck (f3), recoils (f5), is pushed against the wall (f7), falls (f8–f10), then rises and exchanges blows (f11, f15), with motion blur indicating forceful movement.",
+      "source_candidate_ids": [
+        0,
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          23.0,
+          24.0,
+          25.0,
+          25.5,
+          26.0,
+          26.5,
+          27.0,
+          27.5,
+          28.5,
+          29.0,
+          29.5
+        ],
+        "evidence_frame_ids": [
+          "f3",
+          "f5",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f14",
+          "f15",
+          "f16"
+        ],
+        "reason": "Multiple frames show mutual aggressive contact (pushing, striking, grappling), dynamic motion consistent with combat, and no indication of helplessness or one-sided aggression; frames f3–f16 collectively depict a continuous fight sequence, merging both candidates into one event.",
+        "source_categories": [
+          "Fighting",
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 29.0,
+      "t_end": 32.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "Two men in suits engage in rapid hand-to-hand combat inside a metallic-walled enclosure: grappling, striking, and throwing (f3, f6, f7, f8, f9).",
+      "source_candidate_ids": [
+        2,
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          29.0,
+          30.5,
+          31.0,
+          31.5,
+          32.0
+        ],
+        "evidence_frame_ids": [
+          "f3",
+          "f6",
+          "f7",
+          "f8",
+          "f9"
+        ],
+        "reason": "Frames f3, f6, f7, f8, f9 show mutual physical engagement—grabbing, punching, and takedowns—with both participants actively resisting; this satisfies the definition of Fighting (mutual combat), not Abuse.",
+        "source_categories": [
+          "Fighting",
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 33.4,
+      "t_end": 34.6,
+      "anomaly_type": "Abuse",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "A man lies on the floor while another stands over him and delivers repeated strikes to his head/upper body (f13, f14).",
+      "source_candidate_ids": [
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 1,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          34.0,
+          34.5
+        ],
+        "evidence_frame_ids": [
+          "f13",
+          "f14"
+        ],
+        "reason": "In f13 and f14, the victim is supine and motionless on the floor while the other individual leans over and appears to strike him; no reciprocal resistance is visible, satisfying Abuse (aggression against a helpless victim).",
+        "source_categories": [
+          "Abuse"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 6,
+      "output_count": 3,
+      "groups": 2,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 2,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 21.5,
+              "f1": 22.0,
+              "f2": 22.5,
+              "f3": 23.0,
+              "f4": 23.5,
+              "f5": 24.0,
+              "f6": 24.5,
+              "f7": 25.0,
+              "f8": 25.5,
+              "f9": 26.0,
+              "f10": 26.5,
+              "f11": 27.0,
+              "f12": 27.5,
+              "f13": 28.0,
+              "f14": 28.5,
+              "f15": 29.0,
+              "f16": 29.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 23.5,
+                "t_end": 28.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 25.0,
+                "t_end": 27.0,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Fighting\",\n      \"t_start\": 23.0,\n      \"t_end\": 29.5,\n      \"confidence\": 0.95,\n      \"description\": \"Two men in suits engage in rapid physical combat inside an elevator: one is struck (f3), recoils (f5), is pushed against the wall (f7), falls (f8–f10), then rises and exchanges blows (f11, f15), with motion blur indicating forceful movement.\",\n      \"reason\": \"Multiple frames show mutual aggressive contact (pushing, striking, grappling), dynamic motion consistent with combat, and no indication of helplessness or one-sided aggression; frames f3–f16 collectively depict a continuous fight sequence, merging both candidates into one event.\",\n      \"evidence_frame_ids\": [\"f3\", \"f5\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f14\", \"f15\", \"f16\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1
+              ],
+              "category": "Fighting",
+              "t_start": 23.0,
+              "t_end": 29.5,
+              "confidence": 0.95,
+              "description": "Two men in suits engage in rapid physical combat inside an elevator: one is struck (f3), recoils (f5), is pushed against the wall (f7), falls (f8–f10), then rises and exchanges blows (f11, f15), with motion blur indicating forceful movement.",
+              "reason": "Multiple frames show mutual aggressive contact (pushing, striking, grappling), dynamic motion consistent with combat, and no indication of helplessness or one-sided aggression; frames f3–f16 collectively depict a continuous fight sequence, merging both candidates into one event.",
+              "evidence_frame_ids": [
+                "f3",
+                "f5",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f14",
+                "f15",
+                "f16"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 27.5,
+              "f1": 28.0,
+              "f2": 28.5,
+              "f3": 29.0,
+              "f4": 29.5,
+              "f5": 30.0,
+              "f6": 30.5,
+              "f7": 31.0,
+              "f8": 31.5,
+              "f9": 32.0,
+              "f10": 32.5,
+              "f11": 33.0,
+              "f12": 33.5,
+              "f13": 34.0,
+              "f14": 34.5,
+              "f15": 35.0,
+              "f16": 35.5,
+              "f17": 36.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 29.1,
+                "t_end": 31.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 29.4,
+                "t_end": 32.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 33.4,
+                "t_end": 34.6,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 35.5,
+                "t_end": 36.0,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2, 3],\n      \"category\": \"Fighting\",\n      \"t_start\": 29.0,\n      \"t_end\": 32.5,\n      \"confidence\": 0.95,\n      \"description\": \"Two men in suits engage in rapid hand-to-hand combat inside a metallic-walled enclosure: grappling, striking, and throwing (f3, f6, f7, f8, f9).\",\n      \"reason\": \"Frames f3, f6, f7, f8, f9 show mutual physical engagement—grabbing, punching, and takedowns—with both participants actively resisting; this satisfies the definition of Fighting (mutual combat), not Abuse.\",\n      \"evidence_frame_ids\": [\"f3\", \"f6\", \"f7\", \"f8\", \"f9\"]\n    },\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"Abuse\",\n      \"t_start\": 33.4,\n      \"t_end\": 34.6,\n      \"confidence\": 0.85,\n      \"description\": \"A man lies on the floor while another stands over him and delivers repeated strikes to his head/upper body (f13, f14).\",\n      \"reason\": \"In f13 and f14, the victim is supine and motionless on the floor while the other individual leans over and appears to strike him; no reciprocal resistance is visible, satisfying Abuse (aggression against a helpless victim).\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"Frame f16 shows only a low-angle view of a standing man with arms spread; f17 shows him upright and composed, with no contact or aggression visible—no evidence of Fighting.\",\n      \"evidence_frame_ids\": [\"f16\", \"f17\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2,
+                3
+              ],
+              "category": "Fighting",
+              "t_start": 29.0,
+              "t_end": 32.5,
+              "confidence": 0.95,
+              "description": "Two men in suits engage in rapid hand-to-hand combat inside a metallic-walled enclosure: grappling, striking, and throwing (f3, f6, f7, f8, f9).",
+              "reason": "Frames f3, f6, f7, f8, f9 show mutual physical engagement—grabbing, punching, and takedowns—with both participants actively resisting; this satisfies the definition of Fighting (mutual combat), not Abuse.",
+              "evidence_frame_ids": [
+                "f3",
+                "f6",
+                "f7",
+                "f8",
+                "f9"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                4
+              ],
+              "category": "Abuse",
+              "t_start": 33.4,
+              "t_end": 34.6,
+              "confidence": 0.85,
+              "description": "A man lies on the floor while another stands over him and delivers repeated strikes to his head/upper body (f13, f14).",
+              "reason": "In f13 and f14, the victim is supine and motionless on the floor while the other individual leans over and appears to strike him; no reciprocal resistance is visible, satisfying Abuse (aggression against a helpless victim).",
+              "evidence_frame_ids": [
+                "f13",
+                "f14"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 5,
+              "reason": "Frame f16 shows only a low-angle view of a standing man with arms spread; f17 shows him upright and composed, with no contact or aggression visible—no evidence of Fighting.",
+              "evidence_frame_ids": [
+                "f16",
+                "f17"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

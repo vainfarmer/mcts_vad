@@ -1,0 +1,40 @@
+{
+  "video_count": 799,
+  "GT_distinct_anomaly_categories": {
+    "0": 299,
+    "1": 453,
+    "2": 43,
+    "3": 4
+  },
+  "prediction_distinct_anomaly_categories": {
+    "0": 262,
+    "1": 110,
+    "2": 196,
+    "3": 136,
+    "4": 64,
+    "5": 29,
+    "6": 2
+  },
+  "event_counts_by_stage": {
+    "raw_events": 5897,
+    "clip_events": 5897,
+    "seed_events": 4680,
+    "mcts_events": 4680,
+    "final_best": 4427
+  },
+  "videos_whose_class_set_changed_after_VLM": 0,
+  "abuse_predicted_videos": {
+    "count": 295,
+    "prior_median": 0.019903533160686493,
+    "prior_below_0_1": 244,
+    "prior_at_least_0_5": 2
+  },
+  "abuse_GT_videos": {
+    "count": 11,
+    "prior_median": 0.06361201653877895,
+    "prior_below_0_1": 7,
+    "prior_at_least_0_5": 1
+  },
+  "threshold_note": "0.1 and 0.5 are descriptive diagnostics only; the production candidate selector has no such threshold. Prior scores are top-3-window sigmoid averages, not calibrated video probabilities.",
+  "pipeline_note": "VideoMAE and CLIP rank windows for every class; VLM classifies all six classes independently from images. Postprocessing preserves each nonempty class and searches boundaries, not relabeling."
+}

@@ -1,0 +1,203 @@
+{
+  "events": [
+    {
+      "t_start": 9.0,
+      "t_end": 13.0,
+      "anomaly_type": "Abuse",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "A person in dark clothing stands over another individual lying on the sidewalk and appears to strike or kick them repeatedly before walking away.",
+      "source_candidate_ids": [
+        1,
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          9.0,
+          9.5,
+          10.0,
+          10.5,
+          11.0,
+          11.5,
+          12.0
+        ],
+        "evidence_frame_ids": [
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12"
+        ],
+        "reason": "From f6 (9.0s) through f12 (12.0s), one person is on the ground while another stands over them and makes repeated downward motions consistent with striking/kicking; the grounded person remains motionless and unresponsive, satisfying the definition of abuse (aggression against a helpless victim). Candidate 2 (12.0–13.5) overlaps and extends this same event; merged accordingly. Evidence ends around f12–f13 as the aggressor walks off and no further contact occurs.",
+        "source_categories": [
+          "Abuse",
+          "Abuse"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 4,
+      "output_count": 1,
+      "groups": 2,
+      "rejected": 2,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 6.0,
+              "f1": 6.5,
+              "f2": 7.0,
+              "f3": 7.5,
+              "f4": 8.0,
+              "f5": 8.5,
+              "f6": 9.0,
+              "f7": 9.5,
+              "f8": 10.0,
+              "f9": 10.5,
+              "f10": 11.0,
+              "f11": 11.5,
+              "f12": 12.0,
+              "f13": 12.5,
+              "f14": 13.0,
+              "f15": 13.5,
+              "f16": 14.0,
+              "f17": 14.5,
+              "f18": 15.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 8.0,
+                "t_end": 9.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 9.0,
+                "t_end": 13.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 12.0,
+                "t_end": 13.5,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1, 2],\n      \"category\": \"Abuse\",\n      \"t_start\": 9.0,\n      \"t_end\": 13.0,\n      \"confidence\": 0.85,\n      \"description\": \"A person in dark clothing stands over another individual lying on the sidewalk and appears to strike or kick them repeatedly before walking away.\",\n      \"reason\": \"From f6 (9.0s) through f12 (12.0s), one person is on the ground while another stands over them and makes repeated downward motions consistent with striking/kicking; the grounded person remains motionless and unresponsive, satisfying the definition of abuse (aggression against a helpless victim). Candidate 2 (12.0–13.5) overlaps and extends this same event; merged accordingly. Evidence ends around f12–f13 as the aggressor walks off and no further contact occurs.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"At f4–f5 (8.0–8.5s), two individuals are near each other but no mutual physical combat is visible; one appears to be approaching or interacting nonviolently before the second person falls at f6. No fighting occurs in this interval.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1,
+                2
+              ],
+              "category": "Abuse",
+              "t_start": 9.0,
+              "t_end": 13.0,
+              "confidence": 0.85,
+              "description": "A person in dark clothing stands over another individual lying on the sidewalk and appears to strike or kick them repeatedly before walking away.",
+              "reason": "From f6 (9.0s) through f12 (12.0s), one person is on the ground while another stands over them and makes repeated downward motions consistent with striking/kicking; the grounded person remains motionless and unresponsive, satisfying the definition of abuse (aggression against a helpless victim). Candidate 2 (12.0–13.5) overlaps and extends this same event; merged accordingly. Evidence ends around f12–f13 as the aggressor walks off and no further contact occurs.",
+              "evidence_frame_ids": [
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "At f4–f5 (8.0–8.5s), two individuals are near each other but no mutual physical combat is visible; one appears to be approaching or interacting nonviolently before the second person falls at f6. No fighting occurs in this interval.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 19.5,
+              "f1": 20.0,
+              "f2": 20.5,
+              "f3": 21.0,
+              "f4": 21.5,
+              "f5": 22.0,
+              "f6": 22.5,
+              "f7": 23.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 21.5,
+                "t_end": 23.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"The person is sitting on the sidewalk from f4 onward with no visible aggressor or harmful contact; posture and context suggest possible fall, fatigue, or rest—not abuse.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 3,
+              "reason": "The person is sitting on the sidewalk from f4 onward with no visible aggressor or harmful contact; posture and context suggest possible fall, fatigue, or rest—not abuse.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

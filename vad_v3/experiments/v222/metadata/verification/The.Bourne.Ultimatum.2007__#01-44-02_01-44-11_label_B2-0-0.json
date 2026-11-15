@@ -1,0 +1,135 @@
+{
+  "events": [],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 3,
+      "output_count": 0,
+      "groups": 2,
+      "rejected": 3,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0,
+              "f9": 4.5,
+              "f10": 5.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 0.0,
+                "t_end": 0.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 1.5,
+                "t_end": 3.3,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"In f0, the man holds a handgun pointed forward, but no muzzle flash, recoil, or projectile is visible; in f1 he lowers the weapon with no indication of discharge—consistent with aiming or possession, not shooting.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\"]\n    },\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Frames f2–f7 show a figure moving in darkness with no visible gun, muzzle flash, impact, or trajectory; lighting changes and motion blur do not confirm shooting—could be walking, turning, or gesturing.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "In f0, the man holds a handgun pointed forward, but no muzzle flash, recoil, or projectile is visible; in f1 he lowers the weapon with no indication of discharge—consistent with aiming or possession, not shooting.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1"
+              ]
+            },
+            {
+              "candidate_id": 1,
+              "reason": "Frames f2–f7 show a figure moving in darkness with no visible gun, muzzle flash, impact, or trajectory; lighting changes and motion blur do not confirm shooting—could be walking, turning, or gesturing.",
+              "evidence_frame_ids": [
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 5.0,
+              "f1": 5.5,
+              "f2": 6.0,
+              "f3": 6.5,
+              "f4": 7.0,
+              "f5": 7.5,
+              "f6": 8.0,
+              "f7": 8.5,
+              "f8": 9.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 7.0,
+                "t_end": 7.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Frames f4–f5 show a dark underwater scene with diffuse light and particles, not a blast wave, fireball, or rapid expansion characteristic of an explosion; the change is consistent with camera submerging or moving through water.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "Frames f4–f5 show a dark underwater scene with diffuse light and particles, not a blast wave, fireball, or rapid expansion characteristic of an explosion; the change is consistent with camera submerging or moving through water.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

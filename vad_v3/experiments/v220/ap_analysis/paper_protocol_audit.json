@@ -1,0 +1,116 @@
+{
+  "scope_note": "Read-only audit of existing predictions; no model/API rerun. Paper text scope is abnormal videos and anomaly classes; VadCLIP public default code includes Normal.",
+  "project_xd_paper_text_scope": {
+    "baseline_off": {
+      "video_count": 500,
+      "class_count": 6,
+      "percent": {
+        "mAP@0.1": 20.555918363237172,
+        "mAP@0.2": 12.98932893909757,
+        "mAP@0.3": 7.012105128044011,
+        "mAP@0.4": 3.578377831559756,
+        "mAP@0.5": 1.715312209407543,
+        "AVG": 9.17020849426921
+      }
+    },
+    "mcts": {
+      "video_count": 500,
+      "class_count": 6,
+      "percent": {
+        "mAP@0.1": 20.95076499988722,
+        "mAP@0.2": 13.398370259512236,
+        "mAP@0.3": 7.757777316125962,
+        "mAP@0.4": 4.2780966110708,
+        "mAP@0.5": 2.31390874289982,
+        "AVG": 9.739783585899206
+      }
+    },
+    "mcts_qscore": {
+      "video_count": 500,
+      "class_count": 6,
+      "percent": {
+        "mAP@0.1": 19.64023432870343,
+        "mAP@0.2": 13.680419895821219,
+        "mAP@0.3": 7.9597445698678655,
+        "mAP@0.4": 4.922375328490606,
+        "mAP@0.5": 2.8616581806737513,
+        "AVG": 9.812886460711374
+      }
+    },
+    "mcts_qscore_cbt": {
+      "video_count": 500,
+      "class_count": 6,
+      "percent": {
+        "mAP@0.1": 19.33040303790046,
+        "mAP@0.2": 13.483514745856837,
+        "mAP@0.3": 7.6828656803697175,
+        "mAP@0.4": 4.7503478337776555,
+        "mAP@0.5": 2.5629809508824994,
+        "AVG": 9.562022449757434
+      }
+    },
+    "mcts_qscore_cbt_bue": {
+      "video_count": 500,
+      "class_count": 6,
+      "percent": {
+        "mAP@0.1": 21.98995723343048,
+        "mAP@0.2": 16.279571760319957,
+        "mAP@0.3": 10.850532021156853,
+        "mAP@0.4": 7.701410026285836,
+        "mAP@0.5": 4.391157166010947,
+        "AVG": 12.242525641440816
+      }
+    },
+    "mcts_cbt_bue": {
+      "video_count": 500,
+      "class_count": 6,
+      "percent": {
+        "mAP@0.1": 23.55018963118923,
+        "mAP@0.2": 15.698135208387907,
+        "mAP@0.3": 9.527461955598461,
+        "mAP@0.4": 5.558539403345164,
+        "mAP@0.5": 3.1297410888248764,
+        "AVG": 11.492813457469127
+      }
+    }
+  },
+  "published_reference_AVG_percent": {
+    "VadCLIP": {
+      "UCF_Crime": 6.68,
+      "XD_Violence": 24.7
+    },
+    "Ex_VAD": {
+      "UCF_Crime": 10.15,
+      "XD_Violence_table_AVG": 28.23,
+      "XD_Violence_mean_of_five_printed_thresholds": 28.034000000000002
+    }
+  },
+  "limitations": [
+    "Paper text and VadCLIP public default class/video scope conflict.",
+    "Ex-VAD author evaluation implementation not verified.",
+    "Project native-frame interpolation and official 16-frame repeat/feature-length support differ.",
+    "UCF CBT caps are documented as derived from test-set GT duration statistics; this is test-label-informed hyperparameter tuning.",
+    "Different models, pretraining and inference compute; no matched-compute reproduction.",
+    "XD frame AP has 799 actual predictions, while temporal metrics retain all abnormal GT."
+  ],
+  "references": [
+    "https://arxiv.org/html/2308.11681v3",
+    "https://github.com/nwpu-zxr/VadCLIP/blob/main/src/xd_test.py",
+    "https://github.com/nwpu-zxr/VadCLIP/blob/main/src/utils/xd_detectionMAP.py",
+    "https://github.com/nwpu-zxr/VadCLIP/blob/main/list/make_gt_mAP_xd.py",
+    "https://proceedings.mlr.press/v267/huang25ad.html",
+    "https://raw.githubusercontent.com/mlresearch/v267/main/assets/huang25ad/huang25ad.pdf"
+  ],
+  "local_evidence": {
+    "UCF_current_recheck": "ucf_v217_current_evaluator_check.json",
+    "XD_coverage": "coverage_diagnostic.json",
+    "UCF_test_GT_caps_note": "vad_v3/video_anomaly_detection/iteration_logs/ideas/loop1_v155_cbt-category-boundary-tightening_20260802.md:65"
+  },
+  "clarification_current_public_code": {
+    "xd_test": "excludeNormal=False; all test inputs; range(0,7) includes Normal",
+    "ucf_test": "excludeNormal=False; all test inputs; range(0,14) includes Normal",
+    "published_table_provenance": "Paper states abnormal-only temporal mAP, but current public default code includes Normal. Exact code/config used for published table has not been established; do not assert its table is definitely 6/13-class abnormal-only.",
+    "frame_AP": "Computed over concatenated full-test binary frame labels; Normal videos are negative examples. excludeNormal affects the separate temporal metric call, not frame AP.",
+    "true_flag_bug": "Current loops remain hardcoded 7/14 and GT is not synchronously filtered when excludeNormal=True; changing only the flag is not a reliable abnormal-only evaluator."
+  }
+}

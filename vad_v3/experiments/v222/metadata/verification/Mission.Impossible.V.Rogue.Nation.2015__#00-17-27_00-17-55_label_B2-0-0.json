@@ -1,0 +1,174 @@
+{
+  "events": [
+    {
+      "t_start": 24.5,
+      "t_end": 25.0,
+      "anomaly_type": "Shooting",
+      "confidence": 1.0,
+      "coarse_score": 1.0,
+      "description": "A man behind bars aims a handgun directly at the camera; muzzle flash is not visible but his posture and grip indicate active aiming, consistent with shooting.",
+      "source_candidate_ids": [
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 1.0,
+        "evidence_times": [
+          24.5,
+          25.0
+        ],
+        "evidence_frame_ids": [
+          "f13",
+          "f14"
+        ],
+        "reason": "In f13 (24.5s), the man holds a pistol with both hands, arms extended, barrel aligned toward viewer; in f14 (25.0s), he maintains aim with focused expression—this constitutes visible shooting action (aiming + trigger-ready posture) per definition requiring visible shooting (not just holding).",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 5,
+      "output_count": 1,
+      "groups": 1,
+      "rejected": 4,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 18.0,
+              "f1": 18.5,
+              "f2": 19.0,
+              "f3": 19.5,
+              "f4": 20.0,
+              "f5": 20.5,
+              "f6": 21.0,
+              "f7": 21.5,
+              "f8": 22.0,
+              "f9": 22.5,
+              "f10": 23.0,
+              "f11": 23.5,
+              "f12": 24.0,
+              "f13": 24.5,
+              "f14": 25.0,
+              "f15": 25.5,
+              "f16": 26.0,
+              "f17": 26.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 20.0,
+                "t_end": 20.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 21.5,
+                "t_end": 21.541667,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 21.5,
+                "t_end": 22.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 22.3,
+                "t_end": 23.8,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 24.5,
+                "t_end": 25.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"Shooting\",\n      \"t_start\": 24.5,\n      \"t_end\": 25.0,\n      \"confidence\": 1.0,\n      \"description\": \"A man behind bars aims a handgun directly at the camera; muzzle flash is not visible but his posture and grip indicate active aiming, consistent with shooting.\",\n      \"reason\": \"In f13 (24.5s), the man holds a pistol with both hands, arms extended, barrel aligned toward viewer; in f14 (25.0s), he maintains aim with focused expression—this constitutes visible shooting action (aiming + trigger-ready posture) per definition requiring visible shooting (not just holding).\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"At t=20.0–20.5 (f4–f5), two figures are seen behind bars moving, but no gun is visible nor any discharge or aiming posture; lighting changes suggest movement only.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    },\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"At t=21.5 (f7), two men behind bars hold objects that resemble guns, but they are not aimed, and no discharge or clear trigger action is visible; this is weapons possession, not shooting.\",\n      \"evidence_frame_ids\": [\"f7\"]\n    },\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"From t=21.5–22.0 (f7–f8), the figures behind bars remain static or slightly shift; the shirtless man emerges in f8 without any visible interaction or discharge; no shooting occurs.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"From t=22.3–23.8 (f9–f11), the shirtless man runs through a corridor alone; no opponent, contact, or aggression is visible—this is escape/movement, not fighting.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\", \"f11\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                4
+              ],
+              "category": "Shooting",
+              "t_start": 24.5,
+              "t_end": 25.0,
+              "confidence": 1.0,
+              "description": "A man behind bars aims a handgun directly at the camera; muzzle flash is not visible but his posture and grip indicate active aiming, consistent with shooting.",
+              "reason": "In f13 (24.5s), the man holds a pistol with both hands, arms extended, barrel aligned toward viewer; in f14 (25.0s), he maintains aim with focused expression—this constitutes visible shooting action (aiming + trigger-ready posture) per definition requiring visible shooting (not just holding).",
+              "evidence_frame_ids": [
+                "f13",
+                "f14"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "At t=20.0–20.5 (f4–f5), two figures are seen behind bars moving, but no gun is visible nor any discharge or aiming posture; lighting changes suggest movement only.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            },
+            {
+              "candidate_id": 1,
+              "reason": "At t=21.5 (f7), two men behind bars hold objects that resemble guns, but they are not aimed, and no discharge or clear trigger action is visible; this is weapons possession, not shooting.",
+              "evidence_frame_ids": [
+                "f7"
+              ]
+            },
+            {
+              "candidate_id": 2,
+              "reason": "From t=21.5–22.0 (f7–f8), the figures behind bars remain static or slightly shift; the shirtless man emerges in f8 without any visible interaction or discharge; no shooting occurs.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8"
+              ]
+            },
+            {
+              "candidate_id": 3,
+              "reason": "From t=22.3–23.8 (f9–f11), the shirtless man runs through a corridor alone; no opponent, contact, or aggression is visible—this is escape/movement, not fighting.",
+              "evidence_frame_ids": [
+                "f9",
+                "f10",
+                "f11"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

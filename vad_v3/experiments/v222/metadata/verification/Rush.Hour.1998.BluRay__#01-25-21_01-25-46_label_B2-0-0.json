@@ -1,0 +1,317 @@
+{
+  "events": [
+    {
+      "t_start": 18.0,
+      "t_end": 19.0,
+      "anomaly_type": "Shooting",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "In f15 (18.0 s), the bald man holds a submachine gun with arm extended and body braced; in f16 (18.5 s) and f17 (19.0 s), the other man is violently thrown backward mid-air with legs flailing and no contact with the shooter, consistent with ballistic impact.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          18.0,
+          18.5,
+          19.0
+        ],
+        "evidence_frame_ids": [
+          "f15",
+          "f16",
+          "f17"
+        ],
+        "reason": "The sudden, unassisted backward motion of the second man (f16–f17) combined with the shooter’s recoil posture (f15) satisfies the definition: 'Shooting requires visible shooting'—here, visible *effect* (ballistic displacement) + weapon discharge posture constitutes observable shooting event per standard cinematic evidence interpretation; no alternative (e.g., push, trip) explains the motion without contact or support. Interval [18.0,19.0] fully covers candidate 1’s claimed [18.0,19.0].",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 4,
+      "output_count": 1,
+      "groups": 2,
+      "rejected": 3,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 10.0,
+              "f1": 10.5,
+              "f2": 11.0,
+              "f3": 11.5,
+              "f4": 12.0,
+              "f5": 12.5,
+              "f6": 13.0,
+              "f7": 13.5,
+              "f8": 14.0,
+              "f9": 14.5,
+              "f10": 15.0,
+              "f11": 15.5,
+              "f12": 16.5,
+              "f13": 17.0,
+              "f14": 17.5,
+              "f15": 18.0,
+              "f16": 18.5,
+              "f17": 19.0,
+              "f18": 19.5,
+              "f19": 20.0,
+              "f20": 20.5,
+              "f21": 21.0,
+              "f22": 21.5,
+              "f23": 22.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 12.0,
+                "t_end": 20.8,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 18.0,
+                "t_end": 19.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 18.5,
+                "t_end": 20.0,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Shooting\",\n      \"t_start\": 18.0,\n      \"t_end\": 19.0,\n      \"confidence\": 0.9,\n      \"description\": \"The bald man in white fires a submachine gun, recoiling visibly; the other man is thrown backward mid-air in f16–f17.\",\n      \"reason\": \"Visible muzzle flash/recoil in f15–f16 and immediate violent backward motion of the second man (f16–f17) indicate discharge and impact; consistent with shooting, not fighting or abuse.\",\n      \"evidence_frame_ids\": [\"f15\", \"f16\", \"f17\"]\n    },\n    {\n      \"source_candidate_ids\": [0, 2],\n      \"category\": \"Fighting\",\n      \"t_start\": 12.0,\n      \"t_end\": 18.0,\n      \"confidence\": 0.7,\n      \"description\": \"Two men face off with firearms pointed at each other, escalating tension; no physical contact yet, but mutual aggressive posturing precedes the shot.\",\n      \"reason\": \"From f3 to f14, both men aim weapons at each other, with dynamic shifts in stance and arm position indicating active confrontation; this qualifies as fighting (mutual armed threat/standoff), distinct from mere possession. The event ends just before the visible shot in f15.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 10.0,
+              "f1": 10.5,
+              "f2": 11.0,
+              "f3": 11.5,
+              "f4": 12.0,
+              "f5": 12.5,
+              "f6": 13.0,
+              "f7": 13.5,
+              "f8": 14.0,
+              "f9": 14.5,
+              "f10": 15.0,
+              "f11": 15.5,
+              "f12": 16.5,
+              "f13": 17.0,
+              "f14": 17.5,
+              "f15": 18.0,
+              "f16": 18.5,
+              "f17": 19.0,
+              "f18": 19.5,
+              "f19": 20.0,
+              "f20": 20.5,
+              "f21": 21.0,
+              "f22": 21.5,
+              "f23": 22.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 12.0,
+                "t_end": 20.8,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 18.0,
+                "t_end": 19.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 18.5,
+                "t_end": 20.0,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Shooting\",\n      \"t_start\": 18.0,\n      \"t_end\": 19.0,\n      \"confidence\": 0.8,\n      \"description\": \"In f15, the bald man holds a submachine gun with visible recoil posture; in f16–f17, the other man is violently thrown backward mid-air with legs flailing, consistent with being struck by gunfire.\",\n      \"reason\": \"Recoil and sudden violent displacement of the second man (f15–f17) indicate discharge and impact; no muzzle flash visible but motion dynamics strongly support shooting rather than push or fall; category 'Shooting' applies per definition requiring visible shooting—here inferred from unambiguous ballistic effect and weapon recoil posture. The interval [18.0,19.0] aligns with f15 (18.0), f16 (18.5), f17 (19.0).\",\n      \"evidence_frame_ids\": [\"f15\", \"f16\", \"f17\"]\n    },\n    {\n      \"source_candidate_ids\": [0, 2],\n      \"category\": \"Fighting\",\n      \"t_start\": 12.0,\n      \"t_end\": 18.0,\n      \"confidence\": 0.6,\n      \"description\": \"From f4 to f14, both men point firearms at each other, dynamically adjusting aim and stance; this constitutes mutual armed confrontation without physical contact, which qualifies as fighting under the provided definition (mutual physical combat includes armed standoff where threat is active and reciprocal).\",\n      \"reason\": \"Definition allows 'mutual physical combat' to include armed standoffs with dynamic threat escalation; frames f4–f14 show reciprocal aiming, shifting postures, and tension buildup; event ends before the shot at f15. However, confidence reduced due to absence of direct physical contact and ambiguity whether armed pointing alone suffices—yet per instruction, 'Fighting' includes mutual armed threat/standoff if context shows active confrontation.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"While f15–f17 strongly suggest shooting, no visible muzzle flash or bullet impact is directly observable; recoil and victim motion are inferential. Per strict requirement 'Shooting requires visible shooting', this may be insufficient—hence uncertainty remains despite high plausibility.\"\n    },\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Armed standoff (f4–f14) lacks physical contact; definition of 'Fighting' requires 'mutual physical combat', and pointing guns may not qualify as physical combat unless interpreted broadly. Given ambiguity in taxonomy, classification as Fighting is borderline.\"\n    },\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Candidate 2 (18.5–20.0, Fighting) overlaps the shooting event; the motion in f16–f19 is reactive to a shot, not mutual combat—thus cannot be Fighting independently. Merged into candidate 1’s Shooting event, but original candidate mislabels it as Fighting.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 10.0,
+              "f1": 10.5,
+              "f2": 11.0,
+              "f3": 11.5,
+              "f4": 12.0,
+              "f5": 12.5,
+              "f6": 13.0,
+              "f7": 13.5,
+              "f8": 14.0,
+              "f9": 14.5,
+              "f10": 15.0,
+              "f11": 15.5,
+              "f12": 16.5,
+              "f13": 17.0,
+              "f14": 17.5,
+              "f15": 18.0,
+              "f16": 18.5,
+              "f17": 19.0,
+              "f18": 19.5,
+              "f19": 20.0,
+              "f20": 20.5,
+              "f21": 21.0,
+              "f22": 21.5,
+              "f23": 22.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 12.0,
+                "t_end": 20.8,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 18.0,
+                "t_end": 19.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 18.5,
+                "t_end": 20.0,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Shooting\",\n      \"t_start\": 18.0,\n      \"t_end\": 19.0,\n      \"confidence\": 0.85,\n      \"description\": \"In f15 (18.0 s), the bald man holds a submachine gun with arm extended and body braced; in f16 (18.5 s) and f17 (19.0 s), the other man is violently thrown backward mid-air with legs flailing and no contact with the shooter, consistent with ballistic impact.\",\n      \"reason\": \"The sudden, unassisted backward motion of the second man (f16–f17) combined with the shooter’s recoil posture (f15) satisfies the definition: 'Shooting requires visible shooting'—here, visible *effect* (ballistic displacement) + weapon discharge posture constitutes observable shooting event per standard cinematic evidence interpretation; no alternative (e.g., push, trip) explains the motion without contact or support. Interval [18.0,19.0] fully covers candidate 1’s claimed [18.0,19.0].\",\n      \"evidence_frame_ids\": [\"f15\", \"f16\", \"f17\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Frames f4–f14 show mutual aiming of firearms but no physical contact, no impact, and no discharge; per definition, 'Fighting requires mutual physical combat', and armed pointing alone does not constitute physical combat. The standoff is nonviolent posturing, not fighting.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\"]\n    },\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Candidate 2 claims Fighting during 18.5–20.0 (f16–f19), but f16–f17 show the victim reacting to a shot (no mutual action), and f18–f19 show the shooter recoiling/falling—not combat. No physical engagement occurs; thus not Fighting.\",\n      \"evidence_frame_ids\": [\"f16\", \"f17\", \"f18\", \"f19\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "Shooting",
+              "t_start": 18.0,
+              "t_end": 19.0,
+              "confidence": 0.85,
+              "description": "In f15 (18.0 s), the bald man holds a submachine gun with arm extended and body braced; in f16 (18.5 s) and f17 (19.0 s), the other man is violently thrown backward mid-air with legs flailing and no contact with the shooter, consistent with ballistic impact.",
+              "reason": "The sudden, unassisted backward motion of the second man (f16–f17) combined with the shooter’s recoil posture (f15) satisfies the definition: 'Shooting requires visible shooting'—here, visible *effect* (ballistic displacement) + weapon discharge posture constitutes observable shooting event per standard cinematic evidence interpretation; no alternative (e.g., push, trip) explains the motion without contact or support. Interval [18.0,19.0] fully covers candidate 1’s claimed [18.0,19.0].",
+              "evidence_frame_ids": [
+                "f15",
+                "f16",
+                "f17"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "Frames f4–f14 show mutual aiming of firearms but no physical contact, no impact, and no discharge; per definition, 'Fighting requires mutual physical combat', and armed pointing alone does not constitute physical combat. The standoff is nonviolent posturing, not fighting.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14"
+              ]
+            },
+            {
+              "candidate_id": 2,
+              "reason": "Candidate 2 claims Fighting during 18.5–20.0 (f16–f19), but f16–f17 show the victim reacting to a shot (no mutual action), and f18–f19 show the shooter recoiling/falling—not combat. No physical engagement occurs; thus not Fighting.",
+              "evidence_frame_ids": [
+                "f16",
+                "f17",
+                "f18",
+                "f19"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 20.5,
+              "f1": 21.0,
+              "f2": 21.5,
+              "f3": 22.0,
+              "f4": 22.5,
+              "f5": 23.0,
+              "f6": 23.5,
+              "f7": 24.0,
+              "f8": 24.5,
+              "f9": 25.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 22.5,
+                "t_end": 24.4,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"No visible muzzle flash, recoil, or bullet impact; the man holds and aims a gun but no shooting occurs in any frame.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 3,
+              "reason": "No visible muzzle flash, recoil, or bullet impact; the man holds and aims a gun but no shooting occurs in any frame.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

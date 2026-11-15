@@ -1,0 +1,153 @@
+{
+  "events": [
+    {
+      "t_start": 24.5,
+      "t_end": 25.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A violent blast erupts ahead of a vehicle at f4, producing fire, smoke, and debris; f5 shows the windshield shattered with flying fragments; f6 shows a vehicle airborne amid fire and dust, consistent with blast overpressure and fragmentation.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          24.5,
+          25.0,
+          25.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "f4 shows a sudden bright flash and expanding fireball with debris; f5 shows immediate windshield damage and obscured view without impact deformation; f6 shows a vehicle violently displaced mid-air with fire and dust—this matches 'Explosion' (blast event), not CarAccident (no collision evidence). Candidate 1 is supported; candidate 0 is contradicted.",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 2,
+      "output_count": 1,
+      "groups": 1,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 22.5,
+              "f1": 23.0,
+              "f2": 23.5,
+              "f3": 24.0,
+              "f4": 24.5,
+              "f5": 25.0,
+              "f6": 25.5,
+              "f7": 26.0,
+              "f8": 26.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 24.5,
+                "t_end": 26.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 24.5,
+                "t_end": 26.0,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Explosion\",\n      \"t_start\": 24.5,\n      \"t_end\": 25.5,\n      \"confidence\": 0.95,\n      \"description\": \"A large explosion occurs ahead of a vehicle, producing fire, smoke, debris, and shattering the windshield; a military-style vehicle is thrown into the air in the aftermath.\",\n      \"reason\": \"f4 shows an explosion with fire and debris at the street ahead; f5 shows shattered windshield and obscured view consistent with blast impact; f6 shows the same vehicle airborne amid fire and dust—this is a single explosive event, not a collision (no contact or deformation typical of car crash), satisfying 'Explosion' definition.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No evidence of a car crash (e.g., vehicle contact, deformation, skid marks); the vehicle’s motion and destruction are caused by an external blast, not collision.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 22.5,
+              "f1": 23.0,
+              "f2": 23.5,
+              "f3": 24.0,
+              "f4": 24.5,
+              "f5": 25.0,
+              "f6": 25.5,
+              "f7": 26.0,
+              "f8": 26.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 24.5,
+                "t_end": 26.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 24.5,
+                "t_end": 26.0,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Explosion\",\n      \"t_start\": 24.5,\n      \"t_end\": 25.5,\n      \"confidence\": 0.95,\n      \"description\": \"A violent blast erupts ahead of a vehicle at f4, producing fire, smoke, and debris; f5 shows the windshield shattered with flying fragments; f6 shows a vehicle airborne amid fire and dust, consistent with blast overpressure and fragmentation.\",\n      \"reason\": \"f4 shows a sudden bright flash and expanding fireball with debris; f5 shows immediate windshield damage and obscured view without impact deformation; f6 shows a vehicle violently displaced mid-air with fire and dust—this matches 'Explosion' (blast event), not CarAccident (no collision evidence). Candidate 1 is supported; candidate 0 is contradicted.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No visual evidence of vehicle-to-vehicle or vehicle-to-object contact, deformation, or skid marks; the vehicle’s destruction and displacement in f6 result from external blast forces, not a crash.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "Explosion",
+              "t_start": 24.5,
+              "t_end": 25.5,
+              "confidence": 0.95,
+              "description": "A violent blast erupts ahead of a vehicle at f4, producing fire, smoke, and debris; f5 shows the windshield shattered with flying fragments; f6 shows a vehicle airborne amid fire and dust, consistent with blast overpressure and fragmentation.",
+              "reason": "f4 shows a sudden bright flash and expanding fireball with debris; f5 shows immediate windshield damage and obscured view without impact deformation; f6 shows a vehicle violently displaced mid-air with fire and dust—this matches 'Explosion' (blast event), not CarAccident (no collision evidence). Candidate 1 is supported; candidate 0 is contradicted.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "No visual evidence of vehicle-to-vehicle or vehicle-to-object contact, deformation, or skid marks; the vehicle’s destruction and displacement in f6 result from external blast forces, not a crash.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

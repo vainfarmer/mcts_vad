@@ -1,0 +1,473 @@
+{
+  "events": [
+    {
+      "t_start": 28.5,
+      "t_end": 29.0,
+      "anomaly_type": "Shooting",
+      "confidence": 0.8,
+      "coarse_score": 0.8,
+      "description": "A soldier aims a rifle with optical sight; frame f4 shows the weapon pointed forward, and f5 shows the eye aligned with the scope, consistent with active aiming/shooting posture.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.8,
+        "evidence_times": [
+          28.5,
+          29.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "Frames f4 and f5 depict a firearm held in firing position with eye on scope—standard visual indicators of shooting (not merely possession). Frame f6 is too blurry to confirm discharge but does not contradict. The candidate interval [28.5,29.0] aligns with these frames.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 42.5,
+      "t_end": 47.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A large dust and debris plume erupts from ground level, followed by fire and smoke, with a person running away; multiple frames show the blast wave expanding and particulate ejection consistent with a high-energy explosion.",
+      "source_candidate_ids": [
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          42.5,
+          43.0,
+          43.5,
+          44.0,
+          44.5,
+          45.0,
+          45.5,
+          46.0,
+          46.5,
+          47.0,
+          47.5,
+          48.0,
+          48.5,
+          49.0,
+          49.5,
+          50.0
+        ],
+        "evidence_frame_ids": [
+          "f1",
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16"
+        ],
+        "reason": "Frames f1–f4 show rapid expansion of a dusty blast column with visible ejecta and a figure fleeing; f5–f7 show close-up of debris being thrown upward; f8–f11 show fire, smoke, and secondary effects (e.g., satellite dish, palm fronds disturbed) confirming a single explosive event; f12–f16 show the same person mid-air amid residual dust, indicating continuity. All evidence aligns with a single explosion event spanning ~42.5–47.5 s.",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    },
+    {
+      "t_start": 54.0,
+      "t_end": 72.0,
+      "anomaly_type": "Explosion",
+      "confidence": 1.0,
+      "coarse_score": 1.0,
+      "description": "A large dust and debris cloud erupts behind a person in protective gear who is thrown backward and falls to the ground between f0 and f5, with the cloud expanding and settling through f23.",
+      "source_candidate_ids": [
+        3,
+        4,
+        5
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 3,
+        "event_id": 0,
+        "vlm_confidence": 1.0,
+        "evidence_times": [
+          54.0,
+          54.5,
+          55.5,
+          56.0,
+          57.0,
+          57.5,
+          58.5,
+          59.5,
+          60.0,
+          61.0,
+          61.5,
+          62.5,
+          63.0,
+          63.5,
+          64.0,
+          64.5,
+          66.5,
+          67.0,
+          67.5,
+          68.0,
+          68.5,
+          69.5,
+          70.0,
+          72.0
+        ],
+        "evidence_frame_ids": [
+          "f0",
+          "f1",
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18",
+          "f19",
+          "f20",
+          "f21",
+          "f22",
+          "f23"
+        ],
+        "reason": "The sudden onset of a massive, rapidly expanding dust/debris plume at f0 (54.0 s), coinciding with the person’s violent displacement and subsequent fall (f0–f7), matches the signature of a near-field explosion; all candidate intervals are subsumed within this single continuous event visible across all frames.",
+        "source_categories": [
+          "Explosion",
+          "Explosion",
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 6,
+      "output_count": 3,
+      "groups": 4,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 2,
+      "relabeled": 0,
+      "context_retries": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 24.5,
+              "f1": 25.0,
+              "f2": 25.5,
+              "f3": 26.0,
+              "f4": 26.5,
+              "f5": 27.0,
+              "f6": 27.5,
+              "f7": 28.0,
+              "f8": 28.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 26.5,
+                "t_end": 27.0,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No mutual physical combat is visible in f4–f5; the soldier is crouched behind cover, holding a weapon but not engaged in hand-to-hand or close-quarters fighting.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "No mutual physical combat is visible in f4–f5; the soldier is crouched behind cover, holding a weapon but not engaged in hand-to-hand or close-quarters fighting.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 26.5,
+              "f1": 27.0,
+              "f2": 27.5,
+              "f3": 28.0,
+              "f4": 28.5,
+              "f5": 29.0,
+              "f6": 29.5,
+              "f7": 30.0,
+              "f8": 30.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 28.5,
+                "t_end": 29.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Shooting\",\n      \"t_start\": 28.5,\n      \"t_end\": 29.0,\n      \"confidence\": 0.8,\n      \"description\": \"A soldier aims a rifle with optical sight; frame f4 shows the weapon pointed forward, and f5 shows the eye aligned with the scope, consistent with active aiming/shooting posture.\",\n      \"reason\": \"Frames f4 and f5 depict a firearm held in firing position with eye on scope—standard visual indicators of shooting (not merely possession). Frame f6 is too blurry to confirm discharge but does not contradict. The candidate interval [28.5,29.0] aligns with these frames.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "Shooting",
+              "t_start": 28.5,
+              "t_end": 29.0,
+              "confidence": 0.8,
+              "description": "A soldier aims a rifle with optical sight; frame f4 shows the weapon pointed forward, and f5 shows the eye aligned with the scope, consistent with active aiming/shooting posture.",
+              "reason": "Frames f4 and f5 depict a firearm held in firing position with eye on scope—standard visual indicators of shooting (not merely possession). Frame f6 is too blurry to confirm discharge but does not contradict. The candidate interval [28.5,29.0] aligns with these frames.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 42.0,
+              "f1": 42.5,
+              "f2": 43.0,
+              "f3": 43.5,
+              "f4": 44.0,
+              "f5": 44.5,
+              "f6": 45.0,
+              "f7": 45.5,
+              "f8": 46.0,
+              "f9": 46.5,
+              "f10": 47.0,
+              "f11": 47.5,
+              "f12": 48.0,
+              "f13": 48.5,
+              "f14": 49.0,
+              "f15": 49.5,
+              "f16": 50.0,
+              "f17": 50.5,
+              "f18": 51.0,
+              "f19": 51.5,
+              "f20": 52.0,
+              "f21": 52.5,
+              "f22": 53.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 44.0,
+                "t_end": 51.2,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"Explosion\",\n      \"t_start\": 42.5,\n      \"t_end\": 47.5,\n      \"confidence\": 0.95,\n      \"description\": \"A large dust and debris plume erupts from ground level, followed by fire and smoke, with a person running away; multiple frames show the blast wave expanding and particulate ejection consistent with a high-energy explosion.\",\n      \"reason\": \"Frames f1–f4 show rapid expansion of a dusty blast column with visible ejecta and a figure fleeing; f5–f7 show close-up of debris being thrown upward; f8–f11 show fire, smoke, and secondary effects (e.g., satellite dish, palm fronds disturbed) confirming a single explosive event; f12–f16 show the same person mid-air amid residual dust, indicating continuity. All evidence aligns with a single explosion event spanning ~42.5–47.5 s.\",\n      \"evidence_frame_ids\": [\"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2
+              ],
+              "category": "Explosion",
+              "t_start": 42.5,
+              "t_end": 47.5,
+              "confidence": 0.95,
+              "description": "A large dust and debris plume erupts from ground level, followed by fire and smoke, with a person running away; multiple frames show the blast wave expanding and particulate ejection consistent with a high-energy explosion.",
+              "reason": "Frames f1–f4 show rapid expansion of a dusty blast column with visible ejecta and a figure fleeing; f5–f7 show close-up of debris being thrown upward; f8–f11 show fire, smoke, and secondary effects (e.g., satellite dish, palm fronds disturbed) confirming a single explosive event; f12–f16 show the same person mid-air amid residual dust, indicating continuity. All evidence aligns with a single explosion event spanning ~42.5–47.5 s.",
+              "evidence_frame_ids": [
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          3,
+          4,
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 54.0,
+              "f1": 54.5,
+              "f2": 55.5,
+              "f3": 56.0,
+              "f4": 57.0,
+              "f5": 57.5,
+              "f6": 58.5,
+              "f7": 59.5,
+              "f8": 60.0,
+              "f9": 61.0,
+              "f10": 61.5,
+              "f11": 62.5,
+              "f12": 63.0,
+              "f13": 63.5,
+              "f14": 64.0,
+              "f15": 64.5,
+              "f16": 66.5,
+              "f17": 67.0,
+              "f18": 67.5,
+              "f19": 68.0,
+              "f20": 68.5,
+              "f21": 69.5,
+              "f22": 70.0,
+              "f23": 72.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 56.0,
+                "t_end": 63.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 60.0,
+                "t_end": 67.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 64.0,
+                "t_end": 71.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3, 4, 5],\n      \"category\": \"Explosion\",\n      \"t_start\": 54.0,\n      \"t_end\": 72.0,\n      \"confidence\": 1.0,\n      \"description\": \"A large dust and debris cloud erupts behind a person in protective gear who is thrown backward and falls to the ground between f0 and f5, with the cloud expanding and settling through f23.\",\n      \"reason\": \"The sudden onset of a massive, rapidly expanding dust/debris plume at f0 (54.0 s), coinciding with the person’s violent displacement and subsequent fall (f0–f7), matches the signature of a near-field explosion; all candidate intervals are subsumed within this single continuous event visible across all frames.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\", \"f23\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                3,
+                4,
+                5
+              ],
+              "category": "Explosion",
+              "t_start": 54.0,
+              "t_end": 72.0,
+              "confidence": 1.0,
+              "description": "A large dust and debris cloud erupts behind a person in protective gear who is thrown backward and falls to the ground between f0 and f5, with the cloud expanding and settling through f23.",
+              "reason": "The sudden onset of a massive, rapidly expanding dust/debris plume at f0 (54.0 s), coinciding with the person’s violent displacement and subsequent fall (f0–f7), matches the signature of a near-field explosion; all candidate intervals are subsumed within this single continuous event visible across all frames.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22",
+                "f23"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "5a82d0dd6e711938ee6c8e0ecf1c6f7fdb68cac4e5e95683ad672320f7156da9"
+}

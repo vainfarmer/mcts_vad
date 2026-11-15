@@ -1,0 +1,199 @@
+{
+  "events": [
+    {
+      "t_start": 5.0,
+      "t_end": 6.0,
+      "anomaly_type": "Shooting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A man in a leather jacket raises a handgun upward (f7), aims it toward a figure on an upper balcony (f8), and the figure on the balcony is seen recoiling with smoke/flash near their head (f9).",
+      "source_candidate_ids": [
+        1,
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          5.0,
+          5.5,
+          6.0
+        ],
+        "evidence_frame_ids": [
+          "f7",
+          "f8",
+          "f9"
+        ],
+        "reason": "f7 shows weapon raised; f8 shows aiming from below toward balcony; f9 shows figure on balcony with muzzle flash/smoke at head level and arm raised—consistent with being shot. The interval 5.0–6.0 captures the full visible sequence of aiming and impact; f10–f11 show aftermath (movement away) but no further discharge.",
+        "source_categories": [
+          "Shooting",
+          "Shooting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 5,
+      "output_count": 1,
+      "groups": 2,
+      "rejected": 3,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 1.5,
+              "f1": 2.0,
+              "f2": 2.5,
+              "f3": 3.0,
+              "f4": 3.5,
+              "f5": 4.0,
+              "f6": 4.5,
+              "f7": 5.0,
+              "f8": 5.5,
+              "f9": 6.0,
+              "f10": 6.5,
+              "f11": 7.0,
+              "f12": 7.5,
+              "f13": 8.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 3.5,
+                "t_end": 4.0,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 5.0,
+                "t_end": 6.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 5.5,
+                "t_end": 6.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1, 2],\n      \"category\": \"Shooting\",\n      \"t_start\": 5.0,\n      \"t_end\": 6.0,\n      \"confidence\": 0.9,\n      \"description\": \"A man in a leather jacket raises a handgun upward (f7), aims it toward a figure on an upper balcony (f8), and the figure on the balcony is seen recoiling with smoke/flash near their head (f9).\",\n      \"reason\": \"f7 shows weapon raised; f8 shows aiming from below toward balcony; f9 shows figure on balcony with muzzle flash/smoke at head level and arm raised—consistent with being shot. The interval 5.0–6.0 captures the full visible sequence of aiming and impact; f10–f11 show aftermath (movement away) but no further discharge.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"f4 shows white smoke/vapor rising from a lower railing, but no blast wave, debris, fire, or structural damage; consistent with a thrown smoke grenade or non-explosive discharge, not an explosion.\",\n      \"evidence_frame_ids\": [\"f4\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1,
+                2
+              ],
+              "category": "Shooting",
+              "t_start": 5.0,
+              "t_end": 6.0,
+              "confidence": 0.9,
+              "description": "A man in a leather jacket raises a handgun upward (f7), aims it toward a figure on an upper balcony (f8), and the figure on the balcony is seen recoiling with smoke/flash near their head (f9).",
+              "reason": "f7 shows weapon raised; f8 shows aiming from below toward balcony; f9 shows figure on balcony with muzzle flash/smoke at head level and arm raised—consistent with being shot. The interval 5.0–6.0 captures the full visible sequence of aiming and impact; f10–f11 show aftermath (movement away) but no further discharge.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8",
+                "f9"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "f4 shows white smoke/vapor rising from a lower railing, but no blast wave, debris, fire, or structural damage; consistent with a thrown smoke grenade or non-explosive discharge, not an explosion.",
+              "evidence_frame_ids": [
+                "f4"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          3,
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 9.0,
+              "f1": 9.5,
+              "f2": 10.0,
+              "f3": 10.5,
+              "f4": 11.0,
+              "f5": 11.5,
+              "f6": 12.0,
+              "f7": 12.5,
+              "f8": 13.0,
+              "f9": 13.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 11.0,
+                "t_end": 11.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 11.5,
+                "t_end": 12.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"f4 shows two figures in close proximity with motion blur, but no mutual physical combat is visible; one figure appears to be moving past or away, not engaging in fighting.\",\n      \"evidence_frame_ids\": [\"f4\"]\n    },\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"f5–f6 show two individuals walking together, backs turned, with no indication of aggression toward a helpless victim; context suggests coordinated movement, not abuse.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 3,
+              "reason": "f4 shows two figures in close proximity with motion blur, but no mutual physical combat is visible; one figure appears to be moving past or away, not engaging in fighting.",
+              "evidence_frame_ids": [
+                "f4"
+              ]
+            },
+            {
+              "candidate_id": 4,
+              "reason": "f5–f6 show two individuals walking together, backs turned, with no indication of aggression toward a helpless victim; context suggests coordinated movement, not abuse.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

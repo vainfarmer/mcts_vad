@@ -1,0 +1,557 @@
+{
+  "events": [
+    {
+      "t_start": 0.0,
+      "t_end": 5.5,
+      "anomaly_type": "Riot",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "A large crowd of people wearing yellow vests runs urgently down a street while white smoke (consistent with tear gas) billows ahead; individuals exhibit disorganized, evasive movement, some raising arms or carrying objects, with no police line yet visible in the frame.",
+      "source_candidate_ids": [
+        0,
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          0.0,
+          0.5,
+          1.0,
+          1.5,
+          2.0,
+          2.5,
+          3.0,
+          3.5,
+          4.0,
+          4.5,
+          5.0,
+          5.5
+        ],
+        "evidence_frame_ids": [
+          "f0",
+          "f1",
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11"
+        ],
+        "reason": "Collective rapid, disordered movement amid smoke in an urban street, without evidence of mutual combat or isolated violence, satisfies 'Riot' as collective violent unrest; this phase ends at f11 (5.5 s), just before police appear in f12 (6.5 s); candidate intervals [0.0–6.5] and [4.0–11.0] both overlap this core event, so merged to [0.0–5.5] to stay within visible evidence and exclude later police presence.",
+        "source_categories": [
+          "Riot",
+          "Riot"
+        ]
+      }
+    },
+    {
+      "t_start": 38.0,
+      "t_end": 46.0,
+      "anomaly_type": "Riot",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "Police in riot gear advance through a square amid white smoke (likely tear gas), while civilians retreat or are dispersed; the scene shows coordinated crowd control in an urban public space with no visible looting or destruction, but meets the definition of collective violent unrest due to use of force and dispersal under protest conditions.",
+      "source_candidate_ids": [
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          38.0,
+          38.5,
+          39.0,
+          39.5,
+          40.0,
+          40.5,
+          41.0,
+          41.5,
+          42.0,
+          42.5,
+          43.0,
+          43.5,
+          44.0,
+          44.5,
+          45.0,
+          45.5,
+          46.0
+        ],
+        "evidence_frame_ids": [
+          "f0",
+          "f1",
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16"
+        ],
+        "reason": "Images f0–f6 show police advancing amid smoke with civilians moving away; f7–f16 show continued dispersal and presence of multiple police units and protesters, consistent with a riot as defined (collective violent unrest involving confrontation and use of force). The smoke and formation suggest deployment of crowd-control measures during protest, not mere gathering.",
+        "source_categories": [
+          "Riot"
+        ]
+      }
+    },
+    {
+      "t_start": 41.5,
+      "t_end": 44.0,
+      "anomaly_type": "Fighting",
+      "confidence": 0.7,
+      "coarse_score": 0.7,
+      "description": "A group of individuals, including one in a yellow vest, appear to be physically restraining or grappling with another person in the street while police approach.",
+      "source_candidate_ids": [
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 1,
+        "vlm_confidence": 0.7,
+        "evidence_times": [
+          41.5,
+          42.0,
+          42.5,
+          43.0,
+          43.5,
+          44.0
+        ],
+        "evidence_frame_ids": [
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12"
+        ],
+        "reason": "In frames f7–f12, a cluster of people surrounds one individual; arms are interlocked, posture suggests physical struggle—not just escorting—though context is ambiguous. This qualifies as Fighting (mutual physical combat or restraint) even if brief and possibly non-lethal; it is distinct from the broader riot activity.",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 66.5,
+      "t_end": 67.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.8,
+      "coarse_score": 0.8,
+      "description": "Two police officers physically restrain a protester in a yellow vest; one officer grabs the protester’s arm while another holds his torso, with visible resistance and close contact.",
+      "source_candidate_ids": [
+        6
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.8,
+        "evidence_times": [
+          66.5,
+          67.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "Frames f4–f5 show clear mutual physical engagement: officers actively grabbing and holding the protester, who is resisting (leaning back, arms raised), satisfying the definition of Fighting as mutual physical combat. No weapons or excessive force beyond restraint are visible.",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 7,
+      "output_count": 4,
+      "groups": 3,
+      "rejected": 2,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0,
+              "f9": 4.5,
+              "f10": 5.0,
+              "f11": 5.5,
+              "f12": 6.5,
+              "f13": 7.0,
+              "f14": 7.5,
+              "f15": 8.0,
+              "f16": 8.5,
+              "f17": 9.0,
+              "f18": 9.5,
+              "f19": 10.0,
+              "f20": 10.5,
+              "f21": 11.0,
+              "f22": 11.5,
+              "f23": 12.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 0.0,
+                "t_end": 6.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 4.0,
+                "t_end": 11.0,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 7.0,
+                "t_end": 7.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Riot\",\n      \"t_start\": 0.0,\n      \"t_end\": 6.5,\n      \"confidence\": 0.8,\n      \"description\": \"A large group of people wearing yellow vests runs down a street while smoke (likely tear gas) billows in the background; some individuals raise arms or carry objects, and movement is urgent and disorganized.\",\n      \"reason\": \"The collective, rapid, disordered movement of a crowd amid smoke in an urban setting, with no visible police line yet engaged, meets the definition of riot as collective violent unrest (not merely protest); frames f0–f11 show this continuous event; f12 onward shifts to police response, so t_end = 6.5 aligns with last frame before police appear (f12 at 6.5 shows police, so riot phase ends just before).\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    },\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"Shooting\",\n      \"t_start\": 7.0,\n      \"t_end\": 7.5,\n      \"confidence\": 0.6,\n      \"description\": \"A person in black holds a long firearm-like object aimed forward while standing among riot police with shields; no muzzle flash or recoil visible, but posture suggests aiming.\",\n      \"reason\": \"Holding and aiming a weapon constitutes 'Shooting' only if firing is evident; here, no visible discharge (no flash, smoke, or impact), so strictly speaking, it's weapons possession—not shooting. However, per instruction, 'Shooting requires visible shooting', and none is visible; thus this candidate should be rejected. Wait—re-evaluate: the instruction says *reject* if hypothesis contradicted by visible evidence. Since no shot is visible, 'Shooting' is unsupported. Therefore, this candidate must be rejected, not accepted. Correction: no accepted 'Shooting' event.\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"No visible discharge (muzzle flash, smoke, recoil, or projectile) from the weapon; the individual is holding and aiming but not shooting, which does not satisfy the 'Shooting' category definition.\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\", \"f15\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0,
+              "f9": 4.5,
+              "f10": 5.0,
+              "f11": 5.5,
+              "f12": 6.5,
+              "f13": 7.0,
+              "f14": 7.5,
+              "f15": 8.0,
+              "f16": 8.5,
+              "f17": 9.0,
+              "f18": 9.5,
+              "f19": 10.0,
+              "f20": 10.5,
+              "f21": 11.0,
+              "f22": 11.5,
+              "f23": 12.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 0.0,
+                "t_end": 6.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 4.0,
+                "t_end": 11.0,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 7.0,
+                "t_end": 7.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Riot\",\n      \"t_start\": 0.0,\n      \"t_end\": 5.5,\n      \"confidence\": 0.85,\n      \"description\": \"A large crowd of people wearing yellow vests runs urgently down a street while white smoke (consistent with tear gas) billows ahead; individuals exhibit disorganized, evasive movement, some raising arms or carrying objects, with no police line yet visible in the frame.\",\n      \"reason\": \"Collective rapid, disordered movement amid smoke in an urban street, without evidence of mutual combat or isolated violence, satisfies 'Riot' as collective violent unrest; this phase ends at f11 (5.5 s), just before police appear in f12 (6.5 s); candidate intervals [0.0–6.5] and [4.0–11.0] both overlap this core event, so merged to [0.0–5.5] to stay within visible evidence and exclude later police presence.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"The individual holds a long object resembling a launcher or firearm and aims it, but no muzzle flash, recoil, projectile, or impact is visible in frames f13–f15 (7.0–8.0 s); per definition, 'Shooting' requires visible shooting, which is absent.\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\", \"f15\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1
+              ],
+              "category": "Riot",
+              "t_start": 0.0,
+              "t_end": 5.5,
+              "confidence": 0.85,
+              "description": "A large crowd of people wearing yellow vests runs urgently down a street while white smoke (consistent with tear gas) billows ahead; individuals exhibit disorganized, evasive movement, some raising arms or carrying objects, with no police line yet visible in the frame.",
+              "reason": "Collective rapid, disordered movement amid smoke in an urban street, without evidence of mutual combat or isolated violence, satisfies 'Riot' as collective violent unrest; this phase ends at f11 (5.5 s), just before police appear in f12 (6.5 s); candidate intervals [0.0–6.5] and [4.0–11.0] both overlap this core event, so merged to [0.0–5.5] to stay within visible evidence and exclude later police presence.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "The individual holds a long object resembling a launcher or firearm and aims it, but no muzzle flash, recoil, projectile, or impact is visible in frames f13–f15 (7.0–8.0 s); per definition, 'Shooting' requires visible shooting, which is absent.",
+              "evidence_frame_ids": [
+                "f13",
+                "f14",
+                "f15"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          3,
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 38.0,
+              "f1": 38.5,
+              "f2": 39.0,
+              "f3": 39.5,
+              "f4": 40.0,
+              "f5": 40.5,
+              "f6": 41.0,
+              "f7": 41.5,
+              "f8": 42.0,
+              "f9": 42.5,
+              "f10": 43.0,
+              "f11": 43.5,
+              "f12": 44.0,
+              "f13": 44.5,
+              "f14": 45.0,
+              "f15": 45.5,
+              "f16": 46.0,
+              "f17": 46.5,
+              "f18": 47.0,
+              "f19": 47.5,
+              "f20": 48.0,
+              "f21": 48.5,
+              "f22": 49.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 40.0,
+                "t_end": 47.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 41.5,
+                "t_end": 44.0,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"Riot\",\n      \"t_start\": 38.0,\n      \"t_end\": 46.0,\n      \"confidence\": 0.9,\n      \"description\": \"Police in riot gear advance through a square amid white smoke (likely tear gas), while civilians retreat or are dispersed; the scene shows coordinated crowd control in an urban public space with no visible looting or destruction, but meets the definition of collective violent unrest due to use of force and dispersal under protest conditions.\",\n      \"reason\": \"Images f0–f6 show police advancing amid smoke with civilians moving away; f7–f16 show continued dispersal and presence of multiple police units and protesters, consistent with a riot as defined (collective violent unrest involving confrontation and use of force). The smoke and formation suggest deployment of crowd-control measures during protest, not mere gathering.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    },\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"Fighting\",\n      \"t_start\": 41.5,\n      \"t_end\": 44.0,\n      \"confidence\": 0.7,\n      \"description\": \"A group of individuals, including one in a yellow vest, appear to be physically restraining or grappling with another person in the street while police approach.\",\n      \"reason\": \"In frames f7–f12, a cluster of people surrounds one individual; arms are interlocked, posture suggests physical struggle—not just escorting—though context is ambiguous. This qualifies as Fighting (mutual physical combat or restraint) even if brief and possibly non-lethal; it is distinct from the broader riot activity.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                3
+              ],
+              "category": "Riot",
+              "t_start": 38.0,
+              "t_end": 46.0,
+              "confidence": 0.9,
+              "description": "Police in riot gear advance through a square amid white smoke (likely tear gas), while civilians retreat or are dispersed; the scene shows coordinated crowd control in an urban public space with no visible looting or destruction, but meets the definition of collective violent unrest due to use of force and dispersal under protest conditions.",
+              "reason": "Images f0–f6 show police advancing amid smoke with civilians moving away; f7–f16 show continued dispersal and presence of multiple police units and protesters, consistent with a riot as defined (collective violent unrest involving confrontation and use of force). The smoke and formation suggest deployment of crowd-control measures during protest, not mere gathering.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                4
+              ],
+              "category": "Fighting",
+              "t_start": 41.5,
+              "t_end": 44.0,
+              "confidence": 0.7,
+              "description": "A group of individuals, including one in a yellow vest, appear to be physically restraining or grappling with another person in the street while police approach.",
+              "reason": "In frames f7–f12, a cluster of people surrounds one individual; arms are interlocked, posture suggests physical struggle—not just escorting—though context is ambiguous. This qualifies as Fighting (mutual physical combat or restraint) even if brief and possibly non-lethal; it is distinct from the broader riot activity.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          5,
+          6
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 64.5,
+              "f1": 65.0,
+              "f2": 65.5,
+              "f3": 66.0,
+              "f4": 66.5,
+              "f5": 67.0,
+              "f6": 67.5,
+              "f7": 68.0,
+              "f8": 68.5,
+              "f9": 69.0,
+              "f10": 69.5,
+              "f11": 70.0,
+              "f12": 70.5,
+              "f13": 71.0,
+              "f14": 71.5,
+              "f15": 72.0,
+              "f16": 72.5,
+              "f17": 73.0,
+              "f18": 73.5,
+              "f19": 74.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 5,
+                "t_start": 66.3,
+                "t_end": 72.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 66.5,
+                "t_end": 67.5,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [6],\n      \"category\": \"Fighting\",\n      \"t_start\": 66.5,\n      \"t_end\": 67.5,\n      \"confidence\": 0.8,\n      \"description\": \"Two police officers physically restrain a protester in a yellow vest; one officer grabs the protester’s arm while another holds his torso, with visible resistance and close contact.\",\n      \"reason\": \"Frames f4–f5 show clear mutual physical engagement: officers actively grabbing and holding the protester, who is resisting (leaning back, arms raised), satisfying the definition of Fighting as mutual physical combat. No weapons or excessive force beyond restraint are visible.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"No collective violent unrest is visible: the crowd remains largely stationary or moving calmly; interactions are limited to isolated confrontations (e.g., one restraint) and verbal exchanges, not coordinated violence or destruction.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                6
+              ],
+              "category": "Fighting",
+              "t_start": 66.5,
+              "t_end": 67.5,
+              "confidence": 0.8,
+              "description": "Two police officers physically restrain a protester in a yellow vest; one officer grabs the protester’s arm while another holds his torso, with visible resistance and close contact.",
+              "reason": "Frames f4–f5 show clear mutual physical engagement: officers actively grabbing and holding the protester, who is resisting (leaning back, arms raised), satisfying the definition of Fighting as mutual physical combat. No weapons or excessive force beyond restraint are visible.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 5,
+              "reason": "No collective violent unrest is visible: the crowd remains largely stationary or moving calmly; interactions are limited to isolated confrontations (e.g., one restraint) and verbal exchanges, not coordinated violence or destruction.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

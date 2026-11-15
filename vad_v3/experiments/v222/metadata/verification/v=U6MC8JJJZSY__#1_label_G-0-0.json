@@ -1,0 +1,548 @@
+{
+  "events": [
+    {
+      "t_start": 6.5,
+      "t_end": 7.0,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A large, rapidly expanding dust and debris cloud erupts from the ground near a road, obscuring figures and vehicles.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          6.5,
+          7.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "Frame f4 (6.5 s) shows a sudden, symmetric, hemispherical blast cloud rising from the roadside; f5 (7.0 s) shows the cloud still expanding and obscuring the scene—consistent with a high-order explosion, not fire or crash. The event is brief and matches the candidate’s interval.",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    },
+    {
+      "t_start": 14.5,
+      "t_end": 30.0,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A large, rapid expansion of white vapor followed by a fireball and smoke plume erupts from the ground near a vehicle, with multiple distinct blast phases visible across frames.",
+      "source_candidate_ids": [
+        1,
+        2,
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          14.5,
+          15.0,
+          16.0,
+          18.0,
+          18.5,
+          19.5,
+          20.5,
+          21.5,
+          22.0,
+          22.5,
+          23.0,
+          24.0,
+          25.0,
+          25.5,
+          26.5,
+          27.5,
+          28.5,
+          29.0,
+          30.0
+        ],
+        "evidence_frame_ids": [
+          "f3",
+          "f4",
+          "f5",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18",
+          "f19",
+          "f20",
+          "f21",
+          "f22"
+        ],
+        "reason": "Frames f3–f5 show an initial massive white vapor dome (likely water/steam or dust displacement), f5 and f16 show incandescent fire and black smoke indicating combustion, and f7–f22 show sustained fire and smoke evolution consistent with a single explosive event (possibly a fuel-air or high-explosive detonation). The temporal continuity and overlapping visual features confirm one explosion event spanning ~14.5–30.0 s; candidate intervals are fragments of this same event.",
+        "source_categories": [
+          "Explosion",
+          "Explosion",
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 6,
+      "output_count": 2,
+      "groups": 3,
+      "rejected": 2,
+      "uncertain": 0,
+      "merged_sources": 2,
+      "relabeled": 0,
+      "context_retries": 1,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 4.5,
+              "f1": 5.0,
+              "f2": 5.5,
+              "f3": 6.0,
+              "f4": 6.5,
+              "f5": 7.0,
+              "f6": 7.5,
+              "f7": 8.0,
+              "f8": 8.5,
+              "f9": 9.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 6.5,
+                "t_end": 7.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Explosion\",\n      \"t_start\": 6.5,\n      \"t_end\": 7.0,\n      \"confidence\": 0.95,\n      \"description\": \"A large, rapidly expanding dust and debris cloud erupts from the ground near a road, obscuring figures and vehicles.\",\n      \"reason\": \"Frame f4 (6.5 s) shows a sudden, symmetric, hemispherical blast cloud rising from the roadside; f5 (7.0 s) shows the cloud still expanding and obscuring the scene—consistent with a high-order explosion, not fire or crash. The event is brief and matches the candidate’s interval.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Explosion",
+              "t_start": 6.5,
+              "t_end": 7.0,
+              "confidence": 0.95,
+              "description": "A large, rapidly expanding dust and debris cloud erupts from the ground near a road, obscuring figures and vehicles.",
+              "reason": "Frame f4 (6.5 s) shows a sudden, symmetric, hemispherical blast cloud rising from the roadside; f5 (7.0 s) shows the cloud still expanding and obscuring the scene—consistent with a high-order explosion, not fire or crash. The event is brief and matches the candidate’s interval.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1,
+          2,
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 12.0,
+              "f1": 12.5,
+              "f2": 13.5,
+              "f3": 14.5,
+              "f4": 15.0,
+              "f5": 16.0,
+              "f6": 17.0,
+              "f7": 18.0,
+              "f8": 18.5,
+              "f9": 19.5,
+              "f10": 20.5,
+              "f11": 21.5,
+              "f12": 22.0,
+              "f13": 22.5,
+              "f14": 23.0,
+              "f15": 24.0,
+              "f16": 25.0,
+              "f17": 25.5,
+              "f18": 26.5,
+              "f19": 27.5,
+              "f20": 28.5,
+              "f21": 29.0,
+              "f22": 30.0,
+              "f23": 32.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 14.0,
+                "t_end": 23.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 18.0,
+                "t_end": 27.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 24.5,
+                "t_end": 30.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1, 2, 3],\n      \"category\": \"Explosion\",\n      \"t_start\": 14.5,\n      \"t_end\": 30.0,\n      \"confidence\": 0.95,\n      \"description\": \"A large, rapid expansion of white vapor followed by a fireball and smoke plume erupts from the ground near a vehicle, with multiple distinct blast phases visible across frames.\",\n      \"reason\": \"Frames f3–f5 show an initial massive white vapor dome (likely water/steam or dust displacement), f5 and f16 show incandescent fire and black smoke indicating combustion, and f7–f22 show sustained fire and smoke evolution consistent with a single explosive event (possibly a fuel-air or high-explosive detonation). The temporal continuity and overlapping visual features confirm one explosion event spanning ~14.5–30.0 s; candidate intervals are fragments of this same event.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1,
+                2,
+                3
+              ],
+              "category": "Explosion",
+              "t_start": 14.5,
+              "t_end": 30.0,
+              "confidence": 0.95,
+              "description": "A large, rapid expansion of white vapor followed by a fireball and smoke plume erupts from the ground near a vehicle, with multiple distinct blast phases visible across frames.",
+              "reason": "Frames f3–f5 show an initial massive white vapor dome (likely water/steam or dust displacement), f5 and f16 show incandescent fire and black smoke indicating combustion, and f7–f22 show sustained fire and smoke evolution consistent with a single explosive event (possibly a fuel-air or high-explosive detonation). The temporal continuity and overlapping visual features confirm one explosion event spanning ~14.5–30.0 s; candidate intervals are fragments of this same event.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          4,
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 30.0,
+              "f1": 30.5,
+              "f2": 31.0,
+              "f3": 31.5,
+              "f4": 32.0,
+              "f5": 32.5,
+              "f6": 33.0,
+              "f7": 33.5,
+              "f8": 34.0,
+              "f9": 34.5,
+              "f10": 35.0,
+              "f11": 35.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 32.0,
+                "t_end": 32.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 32.0,
+                "t_end": 33.6,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"Explosion\",\n      \"t_start\": 30.0,\n      \"t_end\": 32.0,\n      \"confidence\": 0.95,\n      \"description\": \"A large fireball with orange flame and dark smoke erupts and expands rapidly near ground level, with debris and shock effects visible in f0–f3; by f4 the plume is drifting rightward and people are retreating.\",\n      \"reason\": \"Frames f0–f3 show a classic explosive blast signature (rapid expansion, fireball, mushrooming smoke), satisfying the definition of 'Explosion'; candidate 4’s interval (32.0–32.5) starts too late—explosion is already well underway at 30.0 and peaks before 32.0. Merged into one event covering full visible blast phase.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"No collective violent unrest is visible: people are seen walking/running away from the explosion (f4–f6), not engaging in coordinated aggression or destruction; the scene shows evacuation, not rioting.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 30.0,
+              "f1": 30.5,
+              "f2": 31.0,
+              "f3": 31.5,
+              "f4": 32.0,
+              "f5": 32.5,
+              "f6": 33.0,
+              "f7": 33.5,
+              "f8": 34.0,
+              "f9": 34.5,
+              "f10": 35.0,
+              "f11": 35.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 32.0,
+                "t_end": 32.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 32.0,
+                "t_end": 33.6,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"Explosion\",\n      \"t_start\": 30.0,\n      \"t_end\": 32.0,\n      \"confidence\": 0.95,\n      \"description\": \"A large fireball with orange flame and dark smoke erupts and expands rapidly near ground level in f0–f3; by f4 the plume is drifting rightward and people are retreating, indicating the blast phase concluded by ~32.0 s.\",\n      \"reason\": \"Frames f0–f3 show rapid expansion, fireball, and mushrooming smoke consistent with an explosion; f4 shows the aftermath (drifting plume, no further blast dynamics), satisfying the definition of 'Explosion'. Candidate 4 claims t_start=32.0, but the explosion is clearly ongoing at 30.0–31.5 and largely subsiding by 32.0, so the supported interval must begin at 30.0 and end by 32.0 to fully cover the visible blast event and remain within observed bounds.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"No collective violent unrest is visible: individuals are walking or running away from the explosion site (f4–f6), not engaging in coordinated aggression, property destruction, or confrontation; this is evacuation, not rioting.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 30.0,
+              "f1": 30.5,
+              "f2": 31.0,
+              "f3": 31.5,
+              "f4": 32.0,
+              "f5": 32.5,
+              "f6": 33.0,
+              "f7": 33.5,
+              "f8": 34.0,
+              "f9": 34.5,
+              "f10": 35.0,
+              "f11": 35.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 32.0,
+                "t_end": 32.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 32.0,
+                "t_end": 33.6,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"Explosion\",\n      \"t_start\": 30.0,\n      \"t_end\": 32.0,\n      \"confidence\": 0.95,\n      \"description\": \"A large fireball with orange flame and dark smoke erupts and expands rapidly near ground level in f0–f3; by f4 the plume is drifting rightward and people are retreating, indicating the blast phase concluded by ~32.0 s.\",\n      \"reason\": \"Frames f0–f3 (30.0–31.5 s) show rapid expansion, fireball, and mushrooming smoke consistent with an explosion; f4 (32.0 s) shows the aftermath with no further blast dynamics. Candidate 4 claims t_start=32.0, but the explosion is visibly ongoing from 30.0 onward and largely subsided by 32.0; the supported interval [30.0, 32.0] overlaps the candidate’s claimed interval [32.0, 32.5] only at the single point t=32.0, which is insufficient per requirement that the reviewed event must overlap *every* claimed source candidate interval. However, since the explosion is clearly visible *before* 32.0 and the candidate’s start time is too late, and no frame at or after 32.0 shows a new or separate explosion, the only defensible action is to reject candidate 4 as mis-timed — the visible explosion does not occur within its claimed interval [32.0, 32.5]. Therefore, no event can be accepted for candidate 4 under the constraint that the event must overlap the candidate’s full interval.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"Candidate 4 claims explosion occurs during [32.0, 32.5], but frames f4 (32.0) and f5 (32.5) show only the drifting smoke plume and people evacuating—no blast, fireball, or rapid expansion; the actual explosion is fully contained in f0–f3 (30.0–31.5), outside the candidate’s interval. Since the event must overlap the candidate’s claimed interval and it does not, candidate 4 is rejected.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    },\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"Candidate 5 claims riot during [32.0, 33.6], but frames f4–f6 (32.0–33.0) show individuals walking/running away from the explosion site without aggression, coordination, or property destruction; this is evacuation, not collective violent unrest.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 26.0,
+              "f1": 26.5,
+              "f2": 27.0,
+              "f3": 27.5,
+              "f4": 28.0,
+              "f5": 28.5,
+              "f6": 29.0,
+              "f7": 29.5,
+              "f8": 30.0,
+              "f9": 30.5,
+              "f10": 31.0,
+              "f11": 31.5,
+              "f12": 32.0,
+              "f13": 32.5,
+              "f14": 33.0,
+              "f15": 33.5,
+              "f16": 34.0,
+              "f17": 34.5,
+              "f18": 35.0,
+              "f19": 35.5,
+              "f20": 36.0,
+              "f21": 36.5,
+              "f22": 37.0,
+              "f23": 37.5,
+              "f24": 38.0,
+              "f25": 38.5,
+              "f26": 39.0,
+              "f27": 39.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 32.0,
+                "t_end": 32.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 32.0,
+                "t_end": 33.6,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"Explosion\",\n      \"t_start\": 26.0,\n      \"t_end\": 31.5,\n      \"confidence\": 0.98,\n      \"description\": \"A large fireball with orange flame and dense black/brown smoke erupts from ground level near a road, rapidly expanding and rising over ~5.5 seconds.\",\n      \"reason\": \"Frames f0–f11 show a classic explosive blast: sudden volumetric expansion, fire core, and debris cloud; the event peaks around f5–f7 and decays by f11. Candidate 4’s interval (32.0–32.5) is too late—by f12 the fireball has already collapsed into a smoke plume and people are moving away; thus candidate 4 misidentifies the timing but the explosion itself is clearly visible earlier. The correct explosion interval is 26.0–31.5, supported by f0–f11.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"No collective violent unrest is visible; after the explosion (ending ~31.5 s), people are seen walking or running away calmly (f12–f14), not engaging in riotous behavior. The scene shows dispersal, not coordinated violence or property destruction.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\", \"f14\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 26.0,
+              "f1": 26.5,
+              "f2": 27.0,
+              "f3": 27.5,
+              "f4": 28.0,
+              "f5": 28.5,
+              "f6": 29.0,
+              "f7": 29.5,
+              "f8": 30.0,
+              "f9": 30.5,
+              "f10": 31.0,
+              "f11": 31.5,
+              "f12": 32.0,
+              "f13": 32.5,
+              "f14": 33.0,
+              "f15": 33.5,
+              "f16": 34.0,
+              "f17": 34.5,
+              "f18": 35.0,
+              "f19": 35.5,
+              "f20": 36.0,
+              "f21": 36.5,
+              "f22": 37.0,
+              "f23": 37.5,
+              "f24": 38.0,
+              "f25": 38.5,
+              "f26": 39.0,
+              "f27": 39.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 32.0,
+                "t_end": 32.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 32.0,
+                "t_end": 33.6,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"Explosion\",\n      \"t_start\": 26.0,\n      \"t_end\": 31.5,\n      \"confidence\": 0.98,\n      \"description\": \"A large fireball with bright orange flame and dense black/brown smoke erupts from ground level near a road, expanding rapidly and rising over ~5.5 seconds before collapsing into a smoke plume.\",\n      \"reason\": \"Frames f0–f11 (26.0–31.5 s) show a sudden volumetric expansion, incandescent core, and debris-laden shock cloud characteristic of an explosion; by f12 (32.0 s), the fireball has fully dissipated into a drifting smoke column and no further blast activity is visible. Candidate 4’s claimed interval (32.0–32.5 s) is incorrect—it occurs after the explosion has ended—but the explosion itself is unambiguously present in f0–f11, so the event is accepted with corrected timing that overlaps the candidate’s *claimed* interval only if we reinterpret the candidate as mis-timed; however, per instructions, the accepted event must overlap *every* claimed source interval. Since candidate 4 claims t_start=32.0, and the explosion ends by 31.5, the event does **not** overlap candidate 4’s interval. Therefore, the prior acceptance is invalid. Re-evaluation: no frame within candidate 4’s interval (f12–f13) shows an explosion—only smoke dispersal and people moving away. Thus, candidate 4 is unsupported and must be rejected or marked uncertain. But the explosion *is* visible earlier; however, since the candidate explicitly specifies t_start=32.0, and the taxonomy requires the accepted event to overlap all source intervals, we cannot accept an event that starts at 26.0 for candidate 4. The only valid option is to reject candidate 4 due to timing mismatch, and treat the explosion as an unclaimed event—but the task says *only* process the supplied candidates. Per instructions: 'Merge fragments or competing labels ONLY when images show the same physical event; keep independent/simultaneous activities separate.' And: 'Correct an incorrect category. Use the visible context to recover complete event boundaries; do not invent unseen time.' Crucially: 'Accepted intervals must overlap all their source intervals'. Since candidate 4 claims [32.0, 32.5] and no explosion occurs then, it cannot be accepted. However, the explosion is clearly visible in f0–f11, but no candidate covers it. The instruction says: 'Return JSON with status=\\\"ok\\\", events, rejected and uncertain lists. Account for EVERY candidate exactly once across all lists.' So we must assign each candidate to one of: accepted (only if its interval is fully overlapped by a visible event of that category), rejected (if evidence contradicts), or uncertain (if inadequate). For candidate 4: claimed interval [32.0,32.5] = frames f12–f13. In f12, the explosion has already collapsed into a smoke plume; there is no blast, fire, or rapid expansion—only residual smoke and people moving. Thus, no explosion occurs in that interval. Therefore, candidate 4 is **rejected**. For candidate 5: [32.0,33.6] = f12–f14. People are walking/running away calmly; no collective violence, property destruction, or unrest. Not a riot. Rejected. There is a visible explosion in f0–f11, but since no candidate claims it, we do *not* create a new event—only process the given candidates. Final decision: both candidates rejected; no accepted events.\",\n      \"evidence_frame_ids\": []\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"No explosion occurs in the claimed interval [32.0,32.5] (f12–f13); by f12 the fireball has collapsed into a drifting smoke plume with no blast characteristics, contradicting the 'Explosion' label.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\"]\n    },\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"No collective violent unrest is visible in [32.0,33.6] (f12–f14); people are dispersing calmly along the road, lacking riot hallmarks such as coordinated aggression, property destruction, or confrontation.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\", \"f14\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 26.0,
+              "f1": 26.5,
+              "f2": 27.0,
+              "f3": 27.5,
+              "f4": 28.0,
+              "f5": 28.5,
+              "f6": 29.0,
+              "f7": 29.5,
+              "f8": 30.0,
+              "f9": 30.5,
+              "f10": 31.0,
+              "f11": 31.5,
+              "f12": 32.0,
+              "f13": 32.5,
+              "f14": 33.0,
+              "f15": 33.5,
+              "f16": 34.0,
+              "f17": 34.5,
+              "f18": 35.0,
+              "f19": 35.5,
+              "f20": 36.0,
+              "f21": 36.5,
+              "f22": 37.0,
+              "f23": 37.5,
+              "f24": 38.0,
+              "f25": 38.5,
+              "f26": 39.0,
+              "f27": 39.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 32.0,
+                "t_end": 32.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 32.0,
+                "t_end": 33.6,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"The claimed interval [32.0, 32.5] (frames f12–f13) shows only residual smoke and people moving away; no blast, fire core, or rapid expansion is visible—contradicting the 'Explosion' category, which requires a blast event.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\"]\n    },\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"The claimed interval [32.0, 33.6] (frames f12–f14) shows individuals dispersing calmly along a road with no collective violence, property destruction, or unrest—failing to meet the 'Riot' definition.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\", \"f14\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 4,
+              "reason": "The claimed interval [32.0, 32.5] (frames f12–f13) shows only residual smoke and people moving away; no blast, fire core, or rapid expansion is visible—contradicting the 'Explosion' category, which requires a blast event.",
+              "evidence_frame_ids": [
+                "f12",
+                "f13"
+              ]
+            },
+            {
+              "candidate_id": 5,
+              "reason": "The claimed interval [32.0, 33.6] (frames f12–f14) shows individuals dispersing calmly along a road with no collective violence, property destruction, or unrest—failing to meet the 'Riot' definition.",
+              "evidence_frame_ids": [
+                "f12",
+                "f13",
+                "f14"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": true
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

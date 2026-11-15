@@ -1,0 +1,681 @@
+{
+  "events": [
+    {
+      "t_start": 3.0,
+      "t_end": 9.0,
+      "anomaly_type": "CarAccident",
+      "confidence": 1.0,
+      "coarse_score": 1.0,
+      "description": "A silver sedan is flanked by two motorcycles, then struck on both sides (f5–f6), resulting in visible damage, a rider being thrown (f7–f8), the car spinning and colliding with a motorcycle (f9), shattering the windshield (f10–f11), and a rider lying on the ground (f16).",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 1.0,
+        "evidence_times": [
+          3.0,
+          3.5,
+          4.0,
+          4.5,
+          5.0,
+          5.5,
+          6.0,
+          6.5,
+          7.0,
+          8.5,
+          9.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f15",
+          "f16"
+        ],
+        "reason": "Frames f4–f9 show direct physical contact between the car and motorcycles, deformation of the car body, ejection of a rider, and loss of vehicle control—meeting the definition of a crash. The event spans from initial impact (f5) through post-impact motion and debris (f16), all within the candidate interval.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 12.5,
+      "t_end": 13.0,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A motorcycle collides with a car, shattering the windshield and causing visible impact deformation.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          12.5,
+          13.0,
+          13.5
+        ],
+        "evidence_frame_ids": [
+          "f5",
+          "f6",
+          "f7"
+        ],
+        "reason": "f6 (13.0) shows a cracked windshield from inside the car with occupants reacting in shock; f5 (12.5) shows the motorcycle approaching rapidly just before impact; f7 (13.5) shows the motorcycle ahead post-impact, confirming collision occurred between f5 and f6. This satisfies CarAccident (crash), not merely driving or near-miss.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 18.5,
+      "t_end": 20.0,
+      "anomaly_type": "Fighting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A man in a patterned shirt is leaning over the driver’s seat, gripping the steering wheel and raising his hands toward the driver’s face in an aggressive posture; the driver (visible in f3–f7) appears to be resisting or recoiling.",
+      "source_candidate_ids": [
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          18.5,
+          19.0,
+          19.5,
+          20.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7"
+        ],
+        "reason": "Frames f4–f7 show sustained close physical interaction with raised hands, facial tension, and body positioning consistent with mutual physical struggle inside the vehicle; this meets the definition of Fighting (mutual physical combat). The event begins by f4 (18.5 s) and ends by f7 (20.0 s), fully covering candidate interval [18.3,19.5].",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 24.0,
+      "t_end": 39.0,
+      "anomaly_type": "CarAccident",
+      "confidence": 1.0,
+      "coarse_score": 1.0,
+      "description": "A silver car launches airborne from a ramp (f2–f3), flies over a plaza (f4–f5), impacts and rolls onto its roof in a parking lot (f12–f14), and comes to rest upside-down with visible damage (f15–f16); interior frames (f6–f8, f9–f11) show occupants jostled and airbags deployed during the same sequence.",
+      "source_candidate_ids": [
+        4,
+        7,
+        8
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 3,
+        "event_id": 0,
+        "vlm_confidence": 1.0,
+        "evidence_times": [
+          24.0,
+          24.5,
+          26.0,
+          27.0,
+          28.0,
+          29.5,
+          30.5,
+          31.5,
+          33.5,
+          35.0,
+          35.5,
+          36.0,
+          37.5,
+          38.0,
+          39.0
+        ],
+        "evidence_frame_ids": [
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16"
+        ],
+        "reason": "All cited frames depict a single continuous crash event: launch (f2–f3), flight (f4–f5), impact/rollover (f12–f14), final inverted position (f15–f16), and interior reactions (f6–f11). Candidates 4, 7, and 8 cover overlapping subintervals of this one accident; per instructions, they are merged into one CarAccident event.",
+        "source_categories": [
+          "CarAccident",
+          "CarAccident",
+          "CarAccident"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 13,
+      "output_count": 4,
+      "groups": 4,
+      "rejected": 7,
+      "uncertain": 0,
+      "merged_sources": 2,
+      "relabeled": 0,
+      "context_retries": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 1.0,
+              "f1": 1.5,
+              "f2": 2.0,
+              "f3": 2.5,
+              "f4": 3.0,
+              "f5": 3.5,
+              "f6": 4.0,
+              "f7": 4.5,
+              "f8": 5.0,
+              "f9": 5.5,
+              "f10": 6.0,
+              "f11": 6.5,
+              "f12": 7.0,
+              "f13": 7.5,
+              "f14": 8.0,
+              "f15": 8.5,
+              "f16": 9.0,
+              "f17": 9.5,
+              "f18": 10.0,
+              "f19": 10.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 3.0,
+                "t_end": 9.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"CarAccident\",\n      \"t_start\": 3.0,\n      \"t_end\": 9.0,\n      \"confidence\": 1.0,\n      \"description\": \"A silver sedan is flanked by two motorcycles, then struck on both sides (f5–f6), resulting in visible damage, a rider being thrown (f7–f8), the car spinning and colliding with a motorcycle (f9), shattering the windshield (f10–f11), and a rider lying on the ground (f16).\",\n      \"reason\": \"Frames f4–f9 show direct physical contact between the car and motorcycles, deformation of the car body, ejection of a rider, and loss of vehicle control—meeting the definition of a crash. The event spans from initial impact (f5) through post-impact motion and debris (f16), all within the candidate interval.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f15\", \"f16\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "CarAccident",
+              "t_start": 3.0,
+              "t_end": 9.0,
+              "confidence": 1.0,
+              "description": "A silver sedan is flanked by two motorcycles, then struck on both sides (f5–f6), resulting in visible damage, a rider being thrown (f7–f8), the car spinning and colliding with a motorcycle (f9), shattering the windshield (f10–f11), and a rider lying on the ground (f16).",
+              "reason": "Frames f4–f9 show direct physical contact between the car and motorcycles, deformation of the car body, ejection of a rider, and loss of vehicle control—meeting the definition of a crash. The event spans from initial impact (f5) through post-impact motion and debris (f16), all within the candidate interval.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f15",
+                "f16"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 10.0,
+              "f1": 10.5,
+              "f2": 11.0,
+              "f3": 11.5,
+              "f4": 12.0,
+              "f5": 12.5,
+              "f6": 13.0,
+              "f7": 13.5,
+              "f8": 14.0,
+              "f9": 14.5,
+              "f10": 15.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 12.0,
+                "t_end": 13.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 12.5,
+                "t_end": 13.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"CarAccident\",\n      \"t_start\": 12.5,\n      \"t_end\": 13.0,\n      \"confidence\": 0.95,\n      \"description\": \"A motorcycle collides with a car, shattering the windshield and causing visible impact deformation.\",\n      \"reason\": \"f6 (13.0) shows a cracked windshield from inside the car with occupants reacting in shock; f5 (12.5) shows the motorcycle approaching rapidly just before impact; f7 (13.5) shows the motorcycle ahead post-impact, confirming collision occurred between f5 and f6. This satisfies CarAccident (crash), not merely driving or near-miss.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"No visible firearm discharge, muzzle flash, or bullet impact is shown in f5–f6; the rider’s hand position on the handlebar does not confirm shooting, and the shattered windshield in f6 is consistent with collision, not gunfire.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "CarAccident",
+              "t_start": 12.5,
+              "t_end": 13.0,
+              "confidence": 0.95,
+              "description": "A motorcycle collides with a car, shattering the windshield and causing visible impact deformation.",
+              "reason": "f6 (13.0) shows a cracked windshield from inside the car with occupants reacting in shock; f5 (12.5) shows the motorcycle approaching rapidly just before impact; f7 (13.5) shows the motorcycle ahead post-impact, confirming collision occurred between f5 and f6. This satisfies CarAccident (crash), not merely driving or near-miss.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "No visible firearm discharge, muzzle flash, or bullet impact is shown in f5–f6; the rider’s hand position on the handlebar does not confirm shooting, and the shattered windshield in f6 is consistent with collision, not gunfire.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 16.5,
+              "f1": 17.0,
+              "f2": 17.5,
+              "f3": 18.0,
+              "f4": 18.5,
+              "f5": 19.0,
+              "f6": 19.5,
+              "f7": 20.0,
+              "f8": 20.5,
+              "f9": 21.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 18.3,
+                "t_end": 19.5,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"Fighting\",\n      \"t_start\": 18.5,\n      \"t_end\": 20.0,\n      \"confidence\": 0.9,\n      \"description\": \"A man in a patterned shirt is leaning over the driver’s seat, gripping the steering wheel and raising his hands toward the driver’s face in an aggressive posture; the driver (visible in f3–f7) appears to be resisting or recoiling.\",\n      \"reason\": \"Frames f4–f7 show sustained close physical interaction with raised hands, facial tension, and body positioning consistent with mutual physical struggle inside the vehicle; this meets the definition of Fighting (mutual physical combat). The event begins by f4 (18.5 s) and ends by f7 (20.0 s), fully covering candidate interval [18.3,19.5].\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                3
+              ],
+              "category": "Fighting",
+              "t_start": 18.5,
+              "t_end": 20.0,
+              "confidence": 0.9,
+              "description": "A man in a patterned shirt is leaning over the driver’s seat, gripping the steering wheel and raising his hands toward the driver’s face in an aggressive posture; the driver (visible in f3–f7) appears to be resisting or recoiling.",
+              "reason": "Frames f4–f7 show sustained close physical interaction with raised hands, facial tension, and body positioning consistent with mutual physical struggle inside the vehicle; this meets the definition of Fighting (mutual physical combat). The event begins by f4 (18.5 s) and ends by f7 (20.0 s), fully covering candidate interval [18.3,19.5].",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 22.0,
+              "f1": 23.0,
+              "f2": 24.0,
+              "f3": 24.5,
+              "f4": 26.0,
+              "f5": 27.0,
+              "f6": 28.0,
+              "f7": 29.5,
+              "f8": 30.5,
+              "f9": 31.5,
+              "f10": 33.5,
+              "f11": 35.0,
+              "f12": 35.5,
+              "f13": 36.0,
+              "f14": 37.5,
+              "f15": 38.0,
+              "f16": 39.0,
+              "f17": 40.0,
+              "f18": 42.0,
+              "f19": 42.5,
+              "f20": 43.5,
+              "f21": 44.0,
+              "f22": 44.5,
+              "f23": 47.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 24.0,
+                "t_end": 25.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 26.3,
+                "t_end": 30.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 31.0,
+                "t_end": 31.541667,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 32.5,
+                "t_end": 38.1,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 36.5,
+                "t_end": 39.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 9,
+                "t_start": 38.5,
+                "t_end": 39.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 10,
+                "t_start": 39.9,
+                "t_end": 44.4,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 11,
+                "t_start": 43.1,
+                "t_end": 45.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 12,
+                "t_start": 43.3,
+                "t_end": 44.8,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4, 7, 8],\n      \"category\": \"CarAccident\",\n      \"t_start\": 24.0,\n      \"t_end\": 39.0,\n      \"confidence\": 1.0,\n      \"description\": \"A silver car is launched airborne from a ramp (f2–f3), flies over a plaza (f4–f5), lands violently on its roof in a parking lot (f12–f14), and slides to rest upside-down (f15–f16), with occupants thrown inside.\",\n      \"reason\": \"Frames f1–f3 show the car launching; f4–f5 show it airborne; f12–f14 show impact and rollover; f15–f16 confirm final inverted position and damage—constituting a single crash sequence. Candidates 4, 7, and 8 all describe overlapping parts of this same event and are merged.\",\n      \"evidence_frame_ids\": [\"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    },\n    {\n      \"source_candidate_ids\": [5],\n      \"category\": \"CarAccident\",\n      \"t_start\": 26.3,\n      \"t_end\": 30.0,\n      \"confidence\": 0.95,\n      \"description\": \"Interior view shows the car flipping and occupants being jostled as airbags deploy and debris flies (f6–f8).\",\n      \"reason\": \"This is the interior perspective of the same crash event (airborne → impact); f6 shows the upside-down car from inside, f7–f8 show chaotic motion and airbag deployment—consistent with the crash, not a separate incident. Candidate 5 is subsumed into the main CarAccident but listed separately due to distinct viewpoint; however per instructions, merge if same physical event. Since f6–f8 are part of the same crash (24–39s), and candidate 5’s interval lies within that, it is merged above. Thus candidate 5 is *not* a separate event and should be rejected as redundant. Correction: per instruction 'Merge fragments... ONLY when images show the same physical event', and since f6–f8 are part of the same crash, candidate 5 is redundant and will be rejected (see below). Re-evaluating: we must not create duplicate events. So only one CarAccident event covering 24–39s. Therefore candidate 5 is rejected as overlapping fragment of accepted event.\",\n      \"evidence_frame_ids\": []\n    },\n    {\n      \"source_candidate_ids\": [6],\n      \"category\": \"CarAccident\",\n      \"t_start\": 31.0,\n      \"t_end\": 31.541667,\n      \"confidence\": 0.9,\n      \"description\": \"Occupants react inside the car post-impact: driver looks alert while passenger appears dazed (f9).\",\n      \"reason\": \"f9 shows immediate aftermath inside the vehicle after the crash; though no new collision occurs here, it is part of the continuous CarAccident sequence (24–39s). Since candidate 6’s interval falls within the accepted event’s span and shows consequence of the crash, it is not a separate event and should be merged—not listed separately. Per rules, we only list distinct events; thus candidate 6 is rejected as fragment of the main CarAccident.\",\n      \"evidence_frame_ids\": []\n    },\n    {\n      \"source_candidate_ids\": [9],\n      \"category\": \"CarAccident\",\n      \"t_start\": 38.5,\n      \"t_end\": 39.5,\n      \"confidence\": 0.85,\n      \"description\": \"Close-up of damaged wheel and undercarriage as the car settles upside-down (f15–f16).\",\n      \"reason\": \"This is a detail of the same crash (f14–f16); no new accident occurs. Merged into main event; candidate 9 rejected as fragment.\",\n      \"evidence_frame_ids\": []\n    },\n    {\n      \"source_candidate_ids\": [10, 11, 12],\n      \"category\": \"Abuse\",\n      \"t_start\": 39.9,\n      \"t_end\": 44.5,\n      \"confidence\": 0.3,\n      \"description\": \"Two individuals are seen in close proximity inside the overturned car; one leans over the other, who is lying down, with hands near head/neck area (f17–f22).\",\n      \"reason\": \"While proximity and positioning suggest possible interaction, no clear aggression, restraint, or harm is visible; both appear conscious and possibly assisting or stabilizing each other post-crash. Without evidence of intent to harm or victim helplessness, Abuse cannot be confirmed. The frames show ambiguous contact, not definitive abuse. Thus candidates 10–12 are uncertain—not rejected outright due to occlusion and angle, but insufficient for confident classification. However, per instruction: 'reject only when adequately visible evidence contradicts'; here evidence is inadequate, so mark *uncertain*.\",\n      \"evidence_frame_ids\": [\"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"Frames f6–f8 depict interior during the same crash event (24–39s); not a separate CarAccident.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\"]\n    },\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"f9 shows occupants reacting immediately after the crash; no new collision occurs, so not a distinct CarAccident.\",\n      \"evidence_frame_ids\": [\"f9\"]\n    },\n    {\n      \"candidate_id\": 9,\n      \"reason\": \"f15–f16 are close-ups of the same overturned car from the main crash; no second impact.\",\n      \"evidence_frame_ids\": [\"f15\", \"f16\"]\n    },\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"Overlaps and is subsumed by the primary CarAccident event (24–39s); not independent.\",\n      \"evidence_frame_ids\": [\"f10\", \"f11\", \"f12\", \"f13\", \"f14\"]\n    },\n    {\n      \"candidate_id\": 8,\n      \"reason\": \"f12–f16 are part of the single crash sequence; no separate accident at 36.5–39.0.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 10,\n      \"reason\": \"Frames f17–f22 show two people in close contact inside the wrecked car, but no clear aggression or victim helplessness is visible; intent and nature of contact cannot be determined.\"\n    },\n    {\n      \"candidate_id\": 11,\n      \"reason\": \"Same as candidate 10; insufficient visual evidence to confirm Abuse.\"\n    },\n    {\n      \"candidate_id\": 12,\n      \"reason\": \"No mutual physical combat is visible; the interaction could be consensual, accidental, or assistive—Fighting requires observable reciprocal aggression, which is absent.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 22.0,
+              "f1": 23.0,
+              "f2": 24.0,
+              "f3": 24.5,
+              "f4": 26.0,
+              "f5": 27.0,
+              "f6": 28.0,
+              "f7": 29.5,
+              "f8": 30.5,
+              "f9": 31.5,
+              "f10": 33.5,
+              "f11": 35.0,
+              "f12": 35.5,
+              "f13": 36.0,
+              "f14": 37.5,
+              "f15": 38.0,
+              "f16": 39.0,
+              "f17": 40.0,
+              "f18": 42.0,
+              "f19": 42.5,
+              "f20": 43.5,
+              "f21": 44.0,
+              "f22": 44.5,
+              "f23": 47.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 24.0,
+                "t_end": 25.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 26.3,
+                "t_end": 30.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 31.0,
+                "t_end": 31.541667,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 32.5,
+                "t_end": 38.1,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 36.5,
+                "t_end": 39.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 9,
+                "t_start": 38.5,
+                "t_end": 39.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 10,
+                "t_start": 39.9,
+                "t_end": 44.4,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 11,
+                "t_start": 43.1,
+                "t_end": 45.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 12,
+                "t_start": 43.3,
+                "t_end": 44.8,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4, 7, 8],\n      \"category\": \"CarAccident\",\n      \"t_start\": 24.0,\n      \"t_end\": 39.0,\n      \"confidence\": 1.0,\n      \"description\": \"A silver car launches airborne from a ramp (f2–f3), flies over a plaza (f4–f5), impacts and rolls onto its roof in a parking lot (f12–f14), and comes to rest upside-down with visible damage (f15–f16); interior frames (f6–f8, f9–f11) show occupants jostled and airbags deployed during the same sequence.\",\n      \"reason\": \"All cited frames depict a single continuous crash event: launch (f2–f3), flight (f4–f5), impact/rollover (f12–f14), final inverted position (f15–f16), and interior reactions (f6–f11). Candidates 4, 7, and 8 cover overlapping subintervals of this one accident; per instructions, they are merged into one CarAccident event.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"Frames f6–f8 show interior during the same crash (24.0–39.0 s); no separate accident occurs—this is a viewpoint fragment of the accepted CarAccident, not an independent event.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\"]\n    },\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"f9 shows occupants reacting post-impact inside the same vehicle; no new collision occurs, so not a distinct CarAccident.\",\n      \"evidence_frame_ids\": [\"f9\"]\n    },\n    {\n      \"candidate_id\": 9,\n      \"reason\": \"f15–f16 are close-ups of the overturned car’s wheel and undercarriage during the same crash sequence; no second impact or separate accident.\",\n      \"evidence_frame_ids\": [\"f15\", \"f16\"]\n    },\n    {\n      \"candidate_id\": 10,\n      \"reason\": \"Frames f17–f22 show two people in proximity inside the wrecked car, but no aggression, restraint, or harm is visible; both appear conscious and possibly interacting nonviolently—Abuse requires observable aggression against a helpless victim, which is absent.\",\n      \"evidence_frame_ids\": [\"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    },\n    {\n      \"candidate_id\": 11,\n      \"reason\": \"Same as candidate 10: no evidence of aggression or helplessness; interaction is ambiguous and insufficient for Abuse classification.\",\n      \"evidence_frame_ids\": [\"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    },\n    {\n      \"candidate_id\": 12,\n      \"reason\": \"No mutual physical combat is visible in f17–f22; Fighting requires reciprocal aggression, which is not depicted—only close proximity and possible assistance or disorientation post-crash.\",\n      \"evidence_frame_ids\": [\"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                4,
+                7,
+                8
+              ],
+              "category": "CarAccident",
+              "t_start": 24.0,
+              "t_end": 39.0,
+              "confidence": 1.0,
+              "description": "A silver car launches airborne from a ramp (f2–f3), flies over a plaza (f4–f5), impacts and rolls onto its roof in a parking lot (f12–f14), and comes to rest upside-down with visible damage (f15–f16); interior frames (f6–f8, f9–f11) show occupants jostled and airbags deployed during the same sequence.",
+              "reason": "All cited frames depict a single continuous crash event: launch (f2–f3), flight (f4–f5), impact/rollover (f12–f14), final inverted position (f15–f16), and interior reactions (f6–f11). Candidates 4, 7, and 8 cover overlapping subintervals of this one accident; per instructions, they are merged into one CarAccident event.",
+              "evidence_frame_ids": [
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 5,
+              "reason": "Frames f6–f8 show interior during the same crash (24.0–39.0 s); no separate accident occurs—this is a viewpoint fragment of the accepted CarAccident, not an independent event.",
+              "evidence_frame_ids": [
+                "f6",
+                "f7",
+                "f8"
+              ]
+            },
+            {
+              "candidate_id": 6,
+              "reason": "f9 shows occupants reacting post-impact inside the same vehicle; no new collision occurs, so not a distinct CarAccident.",
+              "evidence_frame_ids": [
+                "f9"
+              ]
+            },
+            {
+              "candidate_id": 9,
+              "reason": "f15–f16 are close-ups of the overturned car’s wheel and undercarriage during the same crash sequence; no second impact or separate accident.",
+              "evidence_frame_ids": [
+                "f15",
+                "f16"
+              ]
+            },
+            {
+              "candidate_id": 10,
+              "reason": "Frames f17–f22 show two people in proximity inside the wrecked car, but no aggression, restraint, or harm is visible; both appear conscious and possibly interacting nonviolently—Abuse requires observable aggression against a helpless victim, which is absent.",
+              "evidence_frame_ids": [
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22"
+              ]
+            },
+            {
+              "candidate_id": 11,
+              "reason": "Same as candidate 10: no evidence of aggression or helplessness; interaction is ambiguous and insufficient for Abuse classification.",
+              "evidence_frame_ids": [
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22"
+              ]
+            },
+            {
+              "candidate_id": 12,
+              "reason": "No mutual physical combat is visible in f17–f22; Fighting requires reciprocal aggression, which is not depicted—only close proximity and possible assistance or disorientation post-crash.",
+              "evidence_frame_ids": [
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "5a82d0dd6e711938ee6c8e0ecf1c6f7fdb68cac4e5e95683ad672320f7156da9"
+}

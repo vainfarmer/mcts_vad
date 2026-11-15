@@ -1,0 +1,80 @@
+{
+  "group_id": 2,
+  "calls": [
+    {
+      "pass_id": 0,
+      "frame_times": {
+        "f0": 40.0,
+        "f1": 40.5,
+        "f2": 41.0,
+        "f3": 41.5,
+        "f4": 42.0,
+        "f5": 42.5,
+        "f6": 43.0,
+        "f7": 43.5,
+        "f8": 44.0,
+        "f9": 44.5,
+        "f10": 45.0
+      },
+      "hypotheses": [
+        {
+          "candidate_id": 16,
+          "t_start": 41.9,
+          "t_end": 43.1,
+          "unverified_category": "Abuse"
+        }
+      ],
+      "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [16],\n      \"category\": \"Abuse\",\n      \"t_start\": 41.9,\n      \"t_end\": 43.1,\n      \"confidence\": 0.9,\n      \"description\": \"A man in a dark jacket is seen gripping and forcing the head/neck of a uniformed officer who is on the ground and screaming (f4–f6), with visible struggle and asymmetry indicating aggression against a helpless victim.\",\n      \"reason\": \"Frames f4–f6 show the officer lying or being held down, mouth open in distress, while the other man exerts force on his head/neck; no reciprocal combat is visible, satisfying Abuse (aggression against a helpless victim). The candidate interval [41.9,43.1] aligns with f4 (42.0) to f6 (43.0).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"source_candidate_ids\": [],\n      \"category\": \"Fighting\",\n      \"t_start\": 43.5,\n      \"t_end\": 45.0,\n      \"confidence\": 0.85,\n      \"description\": \"A man in a green jacket grabs and presses a handgun into the mouth of a screaming uniformed officer (f7, f10), while another officer aims a pistol from prone position (f8–f9); the interaction involves mutual physical struggle and weapon use but is not one-sided helplessness.\",\n      \"reason\": \"In f7 and f10, both individuals are upright and engaged in active physical contest—officer resists, attacker forces gun into mouth—indicating mutual combat (Fighting), distinct from Abuse. The prone officer aiming (f8–f9) is a simultaneous but separate activity; however, since it occurs during same time window and involves same confrontation, it is part of the same event cluster. No shooting is visible (no muzzle flash, recoil, or impact), so not Shooting.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\", \"f10\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+    },
+    {
+      "pass_id": 0,
+      "frame_times": {
+        "f0": 40.0,
+        "f1": 40.5,
+        "f2": 41.0,
+        "f3": 41.5,
+        "f4": 42.0,
+        "f5": 42.5,
+        "f6": 43.0,
+        "f7": 43.5,
+        "f8": 44.0,
+        "f9": 44.5,
+        "f10": 45.0
+      },
+      "hypotheses": [
+        {
+          "candidate_id": 16,
+          "t_start": 41.9,
+          "t_end": 43.1,
+          "unverified_category": "Abuse"
+        }
+      ],
+      "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [16],\n      \"category\": \"Abuse\",\n      \"t_start\": 42.0,\n      \"t_end\": 43.0,\n      \"confidence\": 0.85,\n      \"description\": \"A man in a dark jacket is seen gripping the head/neck of a uniformed officer who is on the ground and screaming (f4–f6), with no visible resistance or reciprocal combat.\",\n      \"reason\": \"Frames f4 (42.0) to f6 (43.0) show the officer lying or being held down, mouth open in distress, while the other man exerts force on his head/neck; the officer appears helpless and unable to counter, satisfying the definition of Abuse (aggression against a helpless victim). The candidate interval [41.9, 43.1] overlaps this visible segment, so t_start/t_end are adjusted to exact frame timestamps within visible bounds.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"source_candidate_ids\": [],\n      \"category\": \"Fighting\",\n      \"t_start\": 43.5,\n      \"t_end\": 45.0,\n      \"confidence\": 0.75,\n      \"description\": \"A man in a green jacket physically struggles with a uniformed officer, forcing a handgun toward the officer’s face/mouth while the officer resists (f7, f10); both are upright and actively engaged.\",\n      \"reason\": \"In f7 (43.5) and f10 (45.0), the officer is not helpless—he is actively resisting (head turned, arms engaged), and the attacker is using force in a mutual physical contest, meeting the definition of Fighting. No shooting occurs (no muzzle flash, recoil, or bullet impact visible). The prone officer aiming (f8–f9) is a separate activity: he is not involved in the physical struggle and is aiming at an unseen target; thus it does *not* merge into the same event. It is omitted from this event due to lack of direct interaction with the fighting pair.\",\n      \"evidence_frame_ids\": [\"f7\", \"f10\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 16,\n      \"reason\": \"The candidate interval [41.9, 43.1] slightly exceeds visible evidence; abuse is only clearly supported from f4 (42.0) to f6 (43.0). However, since the core claim (Abuse) is substantiated within the visible window, it is accepted with corrected bounds—not rejected. No rejection applies to candidate 16.\",\n      \"evidence_frame_ids\": []\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": null,\n      \"reason\": \"The prone officer aiming a pistol (f8–f9) shows weapon possession and aiming, but no shooting is visible (no muzzle flash, recoil, impact, or bullet trajectory). Without evidence of discharge, 'Shooting' cannot be confirmed; however, since the candidate list contains only #16 and no other candidate references this activity, and the instruction requires accounting for *every candidate*, this activity remains unassigned and is not part of any candidate—thus no uncertain entry is required for it. Candidate 16 is fully addressed above.\",\n      \"evidence_frame_ids\": [\"f8\", \"f9\"]\n    }\n  ]\n}"
+    },
+    {
+      "pass_id": 0,
+      "frame_times": {
+        "f0": 40.0,
+        "f1": 40.5,
+        "f2": 41.0,
+        "f3": 41.5,
+        "f4": 42.0,
+        "f5": 42.5,
+        "f6": 43.0,
+        "f7": 43.5,
+        "f8": 44.0,
+        "f9": 44.5,
+        "f10": 45.0
+      },
+      "hypotheses": [
+        {
+          "candidate_id": 16,
+          "t_start": 41.9,
+          "t_end": 43.1,
+          "unverified_category": "Abuse"
+        }
+      ],
+      "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [16],\n      \"category\": \"Abuse\",\n      \"t_start\": 42.0,\n      \"t_end\": 43.0,\n      \"confidence\": 0.85,\n      \"description\": \"A man in a dark jacket grips and forces the head/neck of a uniformed officer who is on the ground, screaming and unable to resist (f4–f6).\",\n      \"reason\": \"Frames f4 (42.0), f5 (42.5), and f6 (43.0) show the officer supine or partially restrained, mouth open in distress, with no visible reciprocal force or combat; the attacker dominates physically, satisfying 'Abuse' (aggression against a helpless victim). The candidate interval [41.9, 43.1] overlaps this segment, so bounds are tightened to exact frame timestamps.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"source_candidate_ids\": [],\n      \"category\": \"Fighting\",\n      \"t_start\": 43.5,\n      \"t_end\": 45.0,\n      \"confidence\": 0.75,\n      \"description\": \"A man in a green jacket and a uniformed officer engage in mutual physical struggle, with the attacker pressing a handgun toward the officer’s face while the officer actively resists (f7, f10).\",\n      \"reason\": \"In f7 (43.5) and f10 (45.0), both individuals are upright, arms engaged, and the officer shows active resistance (head turning, tensed posture); this meets 'Fighting' (mutual physical combat). No shooting is visible (no muzzle flash, recoil, or impact), so not Shooting. The prone officer aiming (f8–f9) is separate—no interaction with the fighting pair—and thus excluded from this event.\",\n      \"evidence_frame_ids\": [\"f7\", \"f10\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+    }
+  ]
+}

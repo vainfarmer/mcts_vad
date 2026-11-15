@@ -1,0 +1,120 @@
+{
+  "events": [
+    {
+      "t_start": 1.5,
+      "t_end": 2.0,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A large fireball with rapidly expanding smoke and debris erupts behind a black car, consistent with a sudden blast.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          1.5,
+          2.0
+        ],
+        "evidence_frame_ids": [
+          "f3",
+          "f4"
+        ],
+        "reason": "f3 shows a massive fireball rising above a car with smoke and distortion; f4 shows the same fireball still expanding with visible shock/dust cloud and vehicle deformation—meeting the definition of explosion (blast), not just sustained fire or crash.",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 2,
+      "output_count": 1,
+      "groups": 1,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 1.0,
+                "t_end": 2.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 1.5,
+                "t_end": 2.0,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Explosion\",\n      \"t_start\": 1.5,\n      \"t_end\": 2.0,\n      \"confidence\": 0.95,\n      \"description\": \"A large fireball with rapidly expanding smoke and debris erupts behind a black car, consistent with a sudden blast.\",\n      \"reason\": \"f3 shows a massive fireball rising above a car with smoke and distortion; f4 shows the same fireball still expanding with visible shock/dust cloud and vehicle deformation—meeting the definition of explosion (blast), not just sustained fire or crash.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No visible collision or impact between vehicles; the black car is stationary when the explosion occurs, and no pre-impact motion or deformation indicating a crash is seen in f2–f4.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "Explosion",
+              "t_start": 1.5,
+              "t_end": 2.0,
+              "confidence": 0.95,
+              "description": "A large fireball with rapidly expanding smoke and debris erupts behind a black car, consistent with a sudden blast.",
+              "reason": "f3 shows a massive fireball rising above a car with smoke and distortion; f4 shows the same fireball still expanding with visible shock/dust cloud and vehicle deformation—meeting the definition of explosion (blast), not just sustained fire or crash.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "No visible collision or impact between vehicles; the black car is stationary when the explosion occurs, and no pre-impact motion or deformation indicating a crash is seen in f2–f4.",
+              "evidence_frame_ids": [
+                "f2",
+                "f3",
+                "f4"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

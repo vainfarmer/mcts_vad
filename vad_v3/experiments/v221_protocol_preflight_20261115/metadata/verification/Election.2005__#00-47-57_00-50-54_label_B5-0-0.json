@@ -1,0 +1,457 @@
+{
+  "events": [
+    {
+      "t_start": 6.5,
+      "t_end": 7.5,
+      "anomaly_type": "Abuse",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "A standing person in red lifts a log (f4), swings it downward (f5), and strikes a motionless prone person on the ground (f6), with the log resting on or near them by f7.",
+      "source_candidate_ids": [
+        0,
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          6.5,
+          7.0,
+          7.5,
+          8.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7"
+        ],
+        "reason": "Frames f4–f6 show clear intent and execution of a forceful strike using a log against a non-resisting, prone individual; f7 shows the log in contact/post-impact position. This satisfies 'Abuse' (aggression against a helpless victim). Candidate 0 (6.5–7.5) and candidate 1 (7.0–8.0) both describe the same physical event; the visible abusive act concludes by f6–f7, so the merged interval is bounded by earliest action (f4=6.5) and latest clear impact (f6=7.0) extended to f7=7.5 for aftermath inclusion per visible evidence. f8–f10 show only static aftermath with no further aggression.",
+        "source_categories": [
+          "Abuse",
+          "Abuse"
+        ]
+      }
+    },
+    {
+      "t_start": 47.1,
+      "t_end": 52.5,
+      "anomaly_type": "Abuse",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A man in red stands over a bloodied, prone person; at f10 he raises and swings a log downward, then lowers it while the injured person remains motionless on the ground.",
+      "source_candidate_ids": [
+        2,
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          46.5,
+          47.0,
+          47.5,
+          48.0,
+          48.5,
+          49.0,
+          49.5,
+          50.0,
+          50.5,
+          51.0,
+          51.5,
+          52.0,
+          52.5
+        ],
+        "evidence_frame_ids": [
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14"
+        ],
+        "reason": "From f2 onward, the foreground person shows visible head wounds and is lying still; the standing man holds a log, and at f10 executes a clear downward strike with it—consistent with abuse of a helpless victim, not mutual combat or accident. Candidate 3 (50.5–51.0) is fully contained within this continuous abusive act and thus merged.",
+        "source_categories": [
+          "Abuse",
+          "Abuse"
+        ]
+      }
+    },
+    {
+      "t_start": 57.0,
+      "t_end": 62.5,
+      "anomaly_type": "Abuse",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "A man in a red shirt holds a log over another man lying prone and muddy in tall grass; the prone man moves slightly but remains on the ground while the log is positioned near his head/upper body (f15).",
+      "source_candidate_ids": [
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          57.0,
+          57.5,
+          58.0,
+          58.5,
+          59.0,
+          59.5,
+          60.0,
+          60.5,
+          61.0,
+          61.5,
+          62.0,
+          62.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15"
+        ],
+        "reason": "The sequence shows one person standing with a log above a second person who is on the ground, immobile or struggling minimally, consistent with aggression against a helpless victim; f12–f15 show the log being brought down and held over the prone man’s head, satisfying the definition of Abuse.",
+        "source_categories": [
+          "Abuse"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 6,
+      "output_count": 3,
+      "groups": 4,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 2,
+      "relabeled": 0,
+      "context_retries": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 4.5,
+              "f1": 5.0,
+              "f2": 5.5,
+              "f3": 6.0,
+              "f4": 6.5,
+              "f5": 7.0,
+              "f6": 7.5,
+              "f7": 8.0,
+              "f8": 8.5,
+              "f9": 9.0,
+              "f10": 9.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 6.5,
+                "t_end": 7.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 7.0,
+                "t_end": 8.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Abuse\",\n      \"t_start\": 6.5,\n      \"t_end\": 7.5,\n      \"confidence\": 0.9,\n      \"description\": \"A person in red lifts and swings a log toward a prone individual on the ground, making contact around f5–f6.\",\n      \"reason\": \"Frames f4–f6 show the standing person grasping a log, raising it (f5), and bringing it down onto the prone person (f6); the prone person remains motionless and appears helpless, satisfying the definition of abuse (aggression against a helpless victim). Candidate 1’s interval (7.0–8.0) is fully contained within this action and overlaps the same physical event; thus merged.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Although candidate 1 overlaps the abuse event, its interval starts at 7.0 (f5) and ends at 8.0 (f7), but by f7 the log is already on the ground and no further striking is visible; however, since the core abusive act occurs 6.5–7.5 and candidate 1 is subsumed into the accepted event, it is not listed separately—this uncertainty note reflects that the *end* of candidate 1 (f7–f8) shows aftermath, not active abuse, but the candidate is still covered by the merged event.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 4.5,
+              "f1": 5.0,
+              "f2": 5.5,
+              "f3": 6.0,
+              "f4": 6.5,
+              "f5": 7.0,
+              "f6": 7.5,
+              "f7": 8.0,
+              "f8": 8.5,
+              "f9": 9.0,
+              "f10": 9.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 6.5,
+                "t_end": 7.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 7.0,
+                "t_end": 8.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Abuse\",\n      \"t_start\": 6.5,\n      \"t_end\": 7.5,\n      \"confidence\": 0.85,\n      \"description\": \"A standing person in red lifts a log (f4), swings it downward (f5), and strikes a motionless prone person on the ground (f6), with the log resting on or near them by f7.\",\n      \"reason\": \"Frames f4–f6 show clear intent and execution of a forceful strike using a log against a non-resisting, prone individual; f7 shows the log in contact/post-impact position. This satisfies 'Abuse' (aggression against a helpless victim). Candidate 0 (6.5–7.5) and candidate 1 (7.0–8.0) both describe the same physical event; the visible abusive act concludes by f6–f7, so the merged interval is bounded by earliest action (f4=6.5) and latest clear impact (f6=7.0) extended to f7=7.5 for aftermath inclusion per visible evidence. f8–f10 show only static aftermath with no further aggression.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1
+              ],
+              "category": "Abuse",
+              "t_start": 6.5,
+              "t_end": 7.5,
+              "confidence": 0.85,
+              "description": "A standing person in red lifts a log (f4), swings it downward (f5), and strikes a motionless prone person on the ground (f6), with the log resting on or near them by f7.",
+              "reason": "Frames f4–f6 show clear intent and execution of a forceful strike using a log against a non-resisting, prone individual; f7 shows the log in contact/post-impact position. This satisfies 'Abuse' (aggression against a helpless victim). Candidate 0 (6.5–7.5) and candidate 1 (7.0–8.0) both describe the same physical event; the visible abusive act concludes by f6–f7, so the merged interval is bounded by earliest action (f4=6.5) and latest clear impact (f6=7.0) extended to f7=7.5 for aftermath inclusion per visible evidence. f8–f10 show only static aftermath with no further aggression.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          2,
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 45.5,
+              "f1": 46.0,
+              "f2": 46.5,
+              "f3": 47.0,
+              "f4": 47.5,
+              "f5": 48.0,
+              "f6": 48.5,
+              "f7": 49.0,
+              "f8": 49.5,
+              "f9": 50.0,
+              "f10": 50.5,
+              "f11": 51.0,
+              "f12": 51.5,
+              "f13": 52.0,
+              "f14": 52.5,
+              "f15": 53.0,
+              "f16": 53.5,
+              "f17": 54.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 47.1,
+                "t_end": 52.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 50.5,
+                "t_end": 51.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2, 3],\n      \"category\": \"Abuse\",\n      \"t_start\": 47.1,\n      \"t_end\": 52.5,\n      \"confidence\": 0.95,\n      \"description\": \"A man in red stands over a bloodied, prone person; at f10 he raises and swings a log downward, then lowers it while the injured person remains motionless on the ground.\",\n      \"reason\": \"From f2 onward, the foreground person shows visible head wounds and is lying still; the standing man holds a log, and at f10 executes a clear downward strike with it—consistent with abuse of a helpless victim, not mutual combat or accident. Candidate 3 (50.5–51.0) is fully contained within this continuous abusive act and thus merged.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2,
+                3
+              ],
+              "category": "Abuse",
+              "t_start": 47.1,
+              "t_end": 52.5,
+              "confidence": 0.95,
+              "description": "A man in red stands over a bloodied, prone person; at f10 he raises and swings a log downward, then lowers it while the injured person remains motionless on the ground.",
+              "reason": "From f2 onward, the foreground person shows visible head wounds and is lying still; the standing man holds a log, and at f10 executes a clear downward strike with it—consistent with abuse of a helpless victim, not mutual combat or accident. Candidate 3 (50.5–51.0) is fully contained within this continuous abusive act and thus merged.",
+              "evidence_frame_ids": [
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 55.0,
+              "f1": 55.5,
+              "f2": 56.0,
+              "f3": 56.5,
+              "f4": 57.0,
+              "f5": 57.5,
+              "f6": 58.0,
+              "f7": 58.5,
+              "f8": 59.0,
+              "f9": 59.5,
+              "f10": 60.0,
+              "f11": 60.5,
+              "f12": 61.0,
+              "f13": 61.5,
+              "f14": 62.0,
+              "f15": 62.5,
+              "f16": 63.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 57.0,
+                "t_end": 61.2,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"Abuse\",\n      \"t_start\": 57.0,\n      \"t_end\": 62.5,\n      \"confidence\": 0.85,\n      \"description\": \"A man in a red shirt holds a log over another man lying prone and muddy in tall grass; the prone man moves slightly but remains on the ground while the log is positioned near his head/upper body (f15).\",\n      \"reason\": \"The sequence shows one person standing with a log above a second person who is on the ground, immobile or struggling minimally, consistent with aggression against a helpless victim; f12–f15 show the log being brought down and held over the prone man’s head, satisfying the definition of Abuse.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                4
+              ],
+              "category": "Abuse",
+              "t_start": 57.0,
+              "t_end": 62.5,
+              "confidence": 0.85,
+              "description": "A man in a red shirt holds a log over another man lying prone and muddy in tall grass; the prone man moves slightly but remains on the ground while the log is positioned near his head/upper body (f15).",
+              "reason": "The sequence shows one person standing with a log above a second person who is on the ground, immobile or struggling minimally, consistent with aggression against a helpless victim; f12–f15 show the log being brought down and held over the prone man’s head, satisfying the definition of Abuse.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 153.5,
+              "f1": 154.0,
+              "f2": 154.5,
+              "f3": 155.0,
+              "f4": 155.5,
+              "f5": 156.0,
+              "f6": 156.5,
+              "f7": 157.0,
+              "f8": 157.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 5,
+                "t_start": 155.5,
+                "t_end": 156.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"No visible muzzle flash, recoil, or projectile; the gun is merely held and pointed, not fired.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 5,
+              "reason": "No visible muzzle flash, recoil, or projectile; the gun is merely held and pointed, not fired.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "66ad9fcfade10cd82ecdac71d80faa31aba86d9d76287532cddfe4ebe1519c32"
+}

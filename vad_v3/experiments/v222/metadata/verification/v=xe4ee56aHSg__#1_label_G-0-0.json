@@ -1,0 +1,246 @@
+{
+  "events": [
+    {
+      "t_start": 11.5,
+      "t_end": 20.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A sudden bright flash at f4 (11.5 s) initiates a rapidly expanding fireball and smoke cloud that obscures the object; debris and intense light persist through f22 (20.5 s), consistent with a single explosive event.",
+      "source_candidate_ids": [
+        0,
+        1,
+        3,
+        4,
+        6
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          11.5,
+          12.0,
+          12.5,
+          13.0,
+          13.5,
+          14.0,
+          14.5,
+          15.0,
+          15.5,
+          16.0,
+          16.5,
+          17.0,
+          17.5,
+          18.0,
+          18.5,
+          19.0,
+          19.5,
+          20.0,
+          20.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18",
+          "f19",
+          "f20",
+          "f21",
+          "f22"
+        ],
+        "reason": "Frames f4–f22 show a continuous progression from ignition (f4), peak blast (f5–f6), to dissipating smoke and residual glow (f7–f22); all candidate intervals fall within this unified sequence, indicating one explosion, not multiple discrete events.",
+        "source_categories": [
+          "Explosion",
+          "Explosion",
+          "Explosion",
+          "Explosion",
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 7,
+      "output_count": 1,
+      "groups": 1,
+      "rejected": 2,
+      "uncertain": 0,
+      "merged_sources": 4,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 9.5,
+              "f1": 10.0,
+              "f2": 10.5,
+              "f3": 11.0,
+              "f4": 11.5,
+              "f5": 12.0,
+              "f6": 12.5,
+              "f7": 13.0,
+              "f8": 13.5,
+              "f9": 14.0,
+              "f10": 14.5,
+              "f11": 15.0,
+              "f12": 15.5,
+              "f13": 16.0,
+              "f14": 16.5,
+              "f15": 17.0,
+              "f16": 17.5,
+              "f17": 18.0,
+              "f18": 18.5,
+              "f19": 19.0,
+              "f20": 19.5,
+              "f21": 20.0,
+              "f22": 20.5,
+              "f23": 22.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 11.5,
+                "t_end": 12.3,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 12.0,
+                "t_end": 15.0,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 14.0,
+                "t_end": 16.9,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 14.5,
+                "t_end": 15.7,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 16.5,
+                "t_end": 17.3,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 17.9,
+                "t_end": 19.1,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 19.0,
+                "t_end": 20.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1, 3, 4, 6],\n      \"category\": \"Explosion\",\n      \"t_start\": 11.5,\n      \"t_end\": 20.5,\n      \"confidence\": 0.9,\n      \"description\": \"A sudden bright flash at f4 (11.5 s) initiates a rapidly expanding fireball and smoke cloud that obscures the object; debris and intense light persist through f22 (20.5 s), consistent with a single explosive event.\",\n      \"reason\": \"Frames f4–f22 show a continuous progression from ignition (f4), peak blast (f5–f6), to dissipating smoke and residual glow (f7–f22); all candidate intervals fall within this unified sequence, indicating one explosion, not multiple discrete events.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"No visible individuals or mutual physical combat; the obscured motion in f9–f14 is consistent with debris and smoke from the explosion, not fighting.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\"]\n    },\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"No identifiable victim or aggressor; the faint shapes in f17–f19 are indistinct and embedded in post-explosion smoke, insufficient to support abuse.\",\n      \"evidence_frame_ids\": [\"f17\", \"f18\", \"f19\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1,
+                3,
+                4,
+                6
+              ],
+              "category": "Explosion",
+              "t_start": 11.5,
+              "t_end": 20.5,
+              "confidence": 0.9,
+              "description": "A sudden bright flash at f4 (11.5 s) initiates a rapidly expanding fireball and smoke cloud that obscures the object; debris and intense light persist through f22 (20.5 s), consistent with a single explosive event.",
+              "reason": "Frames f4–f22 show a continuous progression from ignition (f4), peak blast (f5–f6), to dissipating smoke and residual glow (f7–f22); all candidate intervals fall within this unified sequence, indicating one explosion, not multiple discrete events.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "No visible individuals or mutual physical combat; the obscured motion in f9–f14 is consistent with debris and smoke from the explosion, not fighting.",
+              "evidence_frame_ids": [
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14"
+              ]
+            },
+            {
+              "candidate_id": 5,
+              "reason": "No identifiable victim or aggressor; the faint shapes in f17–f19 are indistinct and embedded in post-explosion smoke, insufficient to support abuse.",
+              "evidence_frame_ids": [
+                "f17",
+                "f18",
+                "f19"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

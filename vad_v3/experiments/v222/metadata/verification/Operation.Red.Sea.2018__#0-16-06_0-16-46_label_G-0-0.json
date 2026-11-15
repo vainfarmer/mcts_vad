@@ -1,0 +1,168 @@
+{
+  "events": [
+    {
+      "t_start": 26.5,
+      "t_end": 27.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A sudden bright flash with sparks and fire erupts behind the person at ~27.0 s, consistent with a blast event.",
+      "source_candidate_ids": [
+        0,
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          27.0,
+          27.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "Frames f4 (27.0 s) and f5 (27.5 s) show an instantaneous fireball with outward-spreading sparks and debris, characteristic of an explosion—not sustained fire or crash—occurring while the person is still upright; the car is intact before this moment (f3 at 26.0 s), ruling out prior accident.",
+        "source_categories": [
+          "Explosion",
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 4,
+      "output_count": 1,
+      "groups": 1,
+      "rejected": 2,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 24.5,
+              "f1": 25.0,
+              "f2": 25.5,
+              "f3": 26.0,
+              "f4": 27.0,
+              "f5": 27.5,
+              "f6": 28.0,
+              "f7": 29.0,
+              "f8": 29.5,
+              "f9": 30.0,
+              "f10": 31.0,
+              "f11": 31.5,
+              "f12": 32.0,
+              "f13": 32.5,
+              "f14": 33.5,
+              "f15": 34.0,
+              "f16": 34.5,
+              "f17": 35.5,
+              "f18": 36.0,
+              "f19": 36.5,
+              "f20": 37.5,
+              "f21": 38.0,
+              "f22": 38.5,
+              "f23": 39.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 26.5,
+                "t_end": 27.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 26.5,
+                "t_end": 34.0,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 27.5,
+                "t_end": 30.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 33.5,
+                "t_end": 40.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Explosion\",\n      \"t_start\": 26.5,\n      \"t_end\": 27.5,\n      \"confidence\": 0.95,\n      \"description\": \"A sudden bright flash with sparks and fire erupts behind the person at ~27.0 s, consistent with a blast event.\",\n      \"reason\": \"Frames f4 (27.0 s) and f5 (27.5 s) show an instantaneous fireball with outward-spreading sparks and debris, characteristic of an explosion—not sustained fire or crash—occurring while the person is still upright; the car is intact before this moment (f3 at 26.0 s), ruling out prior accident.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"No evidence of a car accident: the SUV is stationary and undamaged in frames f0–f3 (24.5–26.0 s); the fire appears suddenly at f4 without impact deformation or skid marks, indicating explosion rather than collision.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"The burning SUV (f17–f23) shows no signs of collision damage (e.g., crumpled body, broken glass from impact); fire is post-explosion and sustained, not resulting from a crash; CarAccident requires a crash, which is not visible.\",\n      \"evidence_frame_ids\": [\"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\", \"f23\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1
+              ],
+              "category": "Explosion",
+              "t_start": 26.5,
+              "t_end": 27.5,
+              "confidence": 0.95,
+              "description": "A sudden bright flash with sparks and fire erupts behind the person at ~27.0 s, consistent with a blast event.",
+              "reason": "Frames f4 (27.0 s) and f5 (27.5 s) show an instantaneous fireball with outward-spreading sparks and debris, characteristic of an explosion—not sustained fire or crash—occurring while the person is still upright; the car is intact before this moment (f3 at 26.0 s), ruling out prior accident.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "No evidence of a car accident: the SUV is stationary and undamaged in frames f0–f3 (24.5–26.0 s); the fire appears suddenly at f4 without impact deformation or skid marks, indicating explosion rather than collision.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4"
+              ]
+            },
+            {
+              "candidate_id": 3,
+              "reason": "The burning SUV (f17–f23) shows no signs of collision damage (e.g., crumpled body, broken glass from impact); fire is post-explosion and sustained, not resulting from a crash; CarAccident requires a crash, which is not visible.",
+              "evidence_frame_ids": [
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22",
+                "f23"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

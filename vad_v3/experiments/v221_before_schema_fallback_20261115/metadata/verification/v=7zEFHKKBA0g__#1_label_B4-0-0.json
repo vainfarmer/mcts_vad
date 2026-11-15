@@ -1,0 +1,638 @@
+{
+  "events": [
+    {
+      "t_start": 34.5,
+      "t_end": 35.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A white Ford sedan (license plate ending 9605) has a shattered windshield and visible damage, parked adjacent to a white pickup truck with a cracked windshield; both vehicles show impact damage consistent with a collision.",
+      "source_candidate_ids": [
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          34.5,
+          35.0,
+          35.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "Frames f4–f6 show two vehicles with matching windshield damage and close proximity, indicating a recent crash rather than incidental damage or vandalism; no motion is visible but the static damage pattern supports a collision event.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 50.0,
+      "t_end": 58.5,
+      "anomaly_type": "Riot",
+      "confidence": 0.8,
+      "coarse_score": 0.8,
+      "description": "Police in riot gear deploy smoke/tear gas behind a chain-link barrier while a crowd of civilians and officers confront each other on a street; later frames show officers advancing toward a larger crowd with visible tension and movement, consistent with collective violent unrest.",
+      "source_candidate_ids": [
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.8,
+        "evidence_times": [
+          50.0,
+          51.0,
+          51.5,
+          52.0,
+          52.5,
+          53.0,
+          53.5,
+          54.0,
+          54.5,
+          55.0,
+          55.5,
+          56.0,
+          56.5,
+          57.0,
+          57.5,
+          58.0
+        ],
+        "evidence_frame_ids": [
+          "f0",
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16"
+        ],
+        "reason": "Sustained presence of tear gas/smoke (f0–f9), coordinated police formation, crowd confrontation, and dynamic movement (f10–f16) meet the definition of riot as collective violent unrest—not merely protest or crowd. Merged candidate 4 into one event spanning f0–f16 (50.0–58.5s).",
+        "source_categories": [
+          "Riot"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 10,
+      "output_count": 2,
+      "groups": 4,
+      "rejected": 8,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.5,
+              "f9": 5.0,
+              "f10": 5.5,
+              "f11": 6.0,
+              "f12": 6.5,
+              "f13": 7.0,
+              "f14": 7.5,
+              "f15": 8.0,
+              "f16": 8.5,
+              "f17": 9.0,
+              "f18": 9.5,
+              "f19": 10.0,
+              "f20": 10.5,
+              "f21": 11.0,
+              "f22": 11.5,
+              "f23": 13.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 0.0,
+                "t_end": 7.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 4.0,
+                "t_end": 4.8,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 5.5,
+                "t_end": 11.5,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 2],\n      \"category\": \"Riot\",\n      \"t_start\": 5.5,\n      \"t_end\": 11.0,\n      \"confidence\": 0.7,\n      \"description\": \"Large crowd confronts police in riot gear; officers form lines and advance while protesters gather densely, some holding signs including a 'TRUMP' banner.\",\n      \"reason\": \"Frames f10–f21 show escalating tension: police in helmets and shields (f12–f16), dense crowd pressing forward (f17–f19), and visible political signage (f20–f21); this meets the definition of collective violent unrest (riot) as distinct from mere protest or isolated fighting.\",\n      \"evidence_frame_ids\": [\"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Frames f7–f9 show close-up of people holding cameras and phones, possibly recording; no mutual physical combat or aggression is visible—only proximity and gesturing, consistent with documentation, not fighting.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Frames f0–f6 depict a crowd with police present but no clear evidence of violent unrest; interactions appear tense but nonviolent (e.g., talking, standing), insufficient to confirm riot before t=5.5.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\"]\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.5,
+              "f9": 5.0,
+              "f10": 5.5,
+              "f11": 6.0,
+              "f12": 6.5,
+              "f13": 7.0,
+              "f14": 7.5,
+              "f15": 8.0,
+              "f16": 8.5,
+              "f17": 9.0,
+              "f18": 9.5,
+              "f19": 10.0,
+              "f20": 10.5,
+              "f21": 11.0,
+              "f22": 11.5,
+              "f23": 13.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 0.0,
+                "t_end": 7.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 4.0,
+                "t_end": 4.8,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 5.5,
+                "t_end": 11.5,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"Riot\",\n      \"t_start\": 5.5,\n      \"t_end\": 11.0,\n      \"confidence\": 0.6,\n      \"description\": \"Police in riot gear (helmets, shields, batons) form a line and advance toward a dense crowd of protesters; some protesters hold signs including a 'TRUMP' banner, and the crowd appears confrontational but no overt violence is visible in any single frame.\",\n      \"reason\": \"Per definition, 'Riot' requires collective violent unrest; however, frames f10–f21 show only tense standoff, police deployment, and crowd density—no throwing, charging, destruction, or physical combat is evident. Thus, the event does *not* meet the required threshold for 'Riot'. The hypothesis is unsupported; this event should be rejected, not accepted. Correction: no event satisfies the taxonomy. See rejected list.\",\n      \"evidence_frame_ids\": [\"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Frames f0–f6 show a crowd with uniformed officers present, but interactions are nonviolent (e.g., standing, talking, observing); no collective violent unrest is visible, contradicting 'Riot'.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Frames f7–f9 depict people holding cameras/phones and gesturing near each other, but no mutual physical combat is visible—only documentation behavior, inconsistent with 'Fighting'.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\"]\n    },\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Frames f10–f21 show police in riot gear facing a large crowd and a 'TRUMP' banner, but there is no evidence of violent unrest (e.g., throwing objects, clashing, property damage, or sustained aggression); the scene is a tense protest, not a riot per definition.\",\n      \"evidence_frame_ids\": [\"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.5,
+              "f9": 5.0,
+              "f10": 5.5,
+              "f11": 6.0,
+              "f12": 6.5,
+              "f13": 7.0,
+              "f14": 7.5,
+              "f15": 8.0,
+              "f16": 8.5,
+              "f17": 9.0,
+              "f18": 9.5,
+              "f19": 10.0,
+              "f20": 10.5,
+              "f21": 11.0,
+              "f22": 11.5,
+              "f23": 13.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 0.0,
+                "t_end": 7.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 4.0,
+                "t_end": 4.8,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 5.5,
+                "t_end": 11.5,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Frames f0–f6 show a crowd with police present, but all interactions are nonviolent (standing, observing, talking); no collective violent unrest is visible, contradicting 'Riot'.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Frames f7–f9 show people holding cameras/phones and gesturing; no mutual physical combat or aggression is visible—only documentation behavior, inconsistent with 'Fighting'.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\"]\n    },\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Frames f10–f21 depict police in riot gear facing a dense crowd and a 'TRUMP' banner, but there is no evidence of violent unrest (e.g., throwing, charging, destruction, or physical combat); the scene remains a tense standoff/protest, not a riot per definition.\",\n      \"evidence_frame_ids\": [\"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "Frames f0–f6 show a crowd with police present, but all interactions are nonviolent (standing, observing, talking); no collective violent unrest is visible, contradicting 'Riot'.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6"
+              ]
+            },
+            {
+              "candidate_id": 1,
+              "reason": "Frames f7–f9 show people holding cameras/phones and gesturing; no mutual physical combat or aggression is visible—only documentation behavior, inconsistent with 'Fighting'.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8",
+                "f9"
+              ]
+            },
+            {
+              "candidate_id": 2,
+              "reason": "Frames f10–f21 depict police in riot gear facing a dense crowd and a 'TRUMP' banner, but there is no evidence of violent unrest (e.g., throwing, charging, destruction, or physical combat); the scene remains a tense standoff/protest, not a riot per definition.",
+              "evidence_frame_ids": [
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 32.5,
+              "f1": 33.0,
+              "f2": 33.5,
+              "f3": 34.0,
+              "f4": 34.5,
+              "f5": 35.0,
+              "f6": 35.5,
+              "f7": 36.0,
+              "f8": 36.5,
+              "f9": 37.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 34.5,
+                "t_end": 35.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"CarAccident\",\n      \"t_start\": 34.5,\n      \"t_end\": 35.5,\n      \"confidence\": 0.95,\n      \"description\": \"A white Ford sedan (license plate ending 9605) has a shattered windshield and visible damage, parked adjacent to a white pickup truck with a cracked windshield; both vehicles show impact damage consistent with a collision.\",\n      \"reason\": \"Frames f4–f6 show two vehicles with matching windshield damage and close proximity, indicating a recent crash rather than incidental damage or vandalism; no motion is visible but the static damage pattern supports a collision event.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                3
+              ],
+              "category": "CarAccident",
+              "t_start": 34.5,
+              "t_end": 35.5,
+              "confidence": 0.95,
+              "description": "A white Ford sedan (license plate ending 9605) has a shattered windshield and visible damage, parked adjacent to a white pickup truck with a cracked windshield; both vehicles show impact damage consistent with a collision.",
+              "reason": "Frames f4–f6 show two vehicles with matching windshield damage and close proximity, indicating a recent crash rather than incidental damage or vandalism; no motion is visible but the static damage pattern supports a collision event.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          4,
+          5,
+          6
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 50.0,
+              "f1": 50.5,
+              "f2": 51.0,
+              "f3": 51.5,
+              "f4": 52.0,
+              "f5": 52.5,
+              "f6": 53.0,
+              "f7": 53.5,
+              "f8": 54.0,
+              "f9": 54.5,
+              "f10": 55.0,
+              "f11": 55.5,
+              "f12": 56.0,
+              "f13": 56.5,
+              "f14": 57.0,
+              "f15": 57.5,
+              "f16": 58.0,
+              "f17": 58.5,
+              "f18": 59.0,
+              "f19": 59.5,
+              "f20": 60.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 52.0,
+                "t_end": 58.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 56.0,
+                "t_end": 57.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 56.3,
+                "t_end": 57.2,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"Riot\",\n      \"t_start\": 50.0,\n      \"t_end\": 58.5,\n      \"confidence\": 0.8,\n      \"description\": \"Police in riot gear deploy smoke/tear gas behind a chain-link barrier while a crowd of civilians and officers confront each other on a street; later frames show officers advancing toward a larger crowd with visible tension and movement, consistent with collective violent unrest.\",\n      \"reason\": \"Sustained presence of tear gas/smoke (f0–f9), coordinated police formation, crowd confrontation, and dynamic movement (f10–f16) meet the definition of riot as collective violent unrest—not merely protest or crowd. Merged candidate 4 into one event spanning f0–f16 (50.0–58.5s).\",\n      \"evidence_frame_ids\": [\"f0\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"No visible mutual physical combat: frames f12–f16 show officers moving toward a crowd and one person on the ground, but no clear exchange of blows or grappling; the scene is consistent with dispersal or arrest, not fighting.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    },\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"No evidence of aggression against a helpless victim: the person on the ground (f12–f16) is not shown being struck, restrained violently, or otherwise abused; context suggests possible fall or arrest, but abuse requires clear aggressive act toward a defenseless individual, which is absent.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                4
+              ],
+              "category": "Riot",
+              "t_start": 50.0,
+              "t_end": 58.5,
+              "confidence": 0.8,
+              "description": "Police in riot gear deploy smoke/tear gas behind a chain-link barrier while a crowd of civilians and officers confront each other on a street; later frames show officers advancing toward a larger crowd with visible tension and movement, consistent with collective violent unrest.",
+              "reason": "Sustained presence of tear gas/smoke (f0–f9), coordinated police formation, crowd confrontation, and dynamic movement (f10–f16) meet the definition of riot as collective violent unrest—not merely protest or crowd. Merged candidate 4 into one event spanning f0–f16 (50.0–58.5s).",
+              "evidence_frame_ids": [
+                "f0",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 5,
+              "reason": "No visible mutual physical combat: frames f12–f16 show officers moving toward a crowd and one person on the ground, but no clear exchange of blows or grappling; the scene is consistent with dispersal or arrest, not fighting.",
+              "evidence_frame_ids": [
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16"
+              ]
+            },
+            {
+              "candidate_id": 6,
+              "reason": "No evidence of aggression against a helpless victim: the person on the ground (f12–f16) is not shown being struck, restrained violently, or otherwise abused; context suggests possible fall or arrest, but abuse requires clear aggressive act toward a defenseless individual, which is absent.",
+              "evidence_frame_ids": [
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          7,
+          8,
+          9
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 95.0,
+              "f1": 95.5,
+              "f2": 96.0,
+              "f3": 96.5,
+              "f4": 97.0,
+              "f5": 97.5,
+              "f6": 98.0,
+              "f7": 98.5,
+              "f8": 99.0,
+              "f9": 99.5,
+              "f10": 100.0,
+              "f11": 100.5,
+              "f12": 101.0,
+              "f13": 101.5,
+              "f14": 102.0,
+              "f15": 102.5,
+              "f16": 103.0,
+              "f17": 103.5,
+              "f18": 104.0,
+              "f19": 104.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 7,
+                "t_start": 97.0,
+                "t_end": 98.9,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 97.0,
+                "t_end": 99.3,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 9,
+                "t_start": 100.0,
+                "t_end": 103.0,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [7, 8],\n      \"category\": \"Normal\",\n      \"t_start\": 97.0,\n      \"t_end\": 100.0,\n      \"confidence\": 0.0,\n      \"description\": \"A person in a cap holds a microphone toward a police officer’s helmet while officers stand nearby; no physical contact or aggression is visible.\",\n      \"reason\": \"The frames f3–f10 show a reporter or protester holding a microphone near an officer’s helmet, with officers standing still and no signs of assault, restraint, or mutual combat; this is consistent with documentation or verbal confrontation, not Abuse or Fighting.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    },\n    {\n      \"source_candidate_ids\": [9],\n      \"category\": \"Normal\",\n      \"t_start\": 100.0,\n      \"t_end\": 103.0,\n      \"confidence\": 0.0,\n      \"description\": \"Crowd members hold signs and banners, some raising arms, while police remain in formation in the background; no violent unrest or destruction is observed.\",\n      \"reason\": \"Frames f11–f15 depict a dense crowd with signs (e.g., '¡Aquí estamos y no nos vamos!'), gesturing, and filming—typical of protest—but no collective violence, property damage, or aggressive clashes; thus not a Riot.\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\", \"f13\", \"f14\", \"f15\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"No evidence of abuse: the officer remains upright, no restraint or harm is visible; the person with the mic appears to be recording or speaking, not assaulting.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    },\n    {\n      \"candidate_id\": 8,\n      \"reason\": \"No mutual physical combat: officers and individuals are stationary or moving minimally; no punches, grappling, or weapon use is seen.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    },\n    {\n      \"candidate_id\": 9,\n      \"reason\": \"No collective violent unrest: crowd is animated but non-destructive; police line remains intact without breach or escalation into violence.\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\", \"f13\", \"f14\", \"f15\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 95.0,
+              "f1": 95.5,
+              "f2": 96.0,
+              "f3": 96.5,
+              "f4": 97.0,
+              "f5": 97.5,
+              "f6": 98.0,
+              "f7": 98.5,
+              "f8": 99.0,
+              "f9": 99.5,
+              "f10": 100.0,
+              "f11": 100.5,
+              "f12": 101.0,
+              "f13": 101.5,
+              "f14": 102.0,
+              "f15": 102.5,
+              "f16": 103.0,
+              "f17": 103.5,
+              "f18": 104.0,
+              "f19": 104.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 7,
+                "t_start": 97.0,
+                "t_end": 98.9,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 97.0,
+                "t_end": 99.3,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 9,
+                "t_start": 100.0,
+                "t_end": 103.0,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"No evidence of abuse: frames f3–f10 show a person holding a microphone near an officer’s helmet, with no restraint, force, or harm applied; the officer remains standing and unimpeded.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    },\n    {\n      \"candidate_id\": 8,\n      \"reason\": \"No fighting: frames f3–f10 show no mutual physical combat—no striking, grappling, or weapon use; individuals are stationary or minimally moving, consistent with verbal confrontation or documentation.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    },\n    {\n      \"candidate_id\": 9,\n      \"reason\": \"No riot: frames f11–f15 show a dense protest crowd with signs and gestures, but no collective violent unrest, property destruction, or aggressive clashes with police; the police line remains orderly and unbreached.\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\", \"f13\", \"f14\", \"f15\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 7,
+              "reason": "No evidence of abuse: frames f3–f10 show a person holding a microphone near an officer’s helmet, with no restraint, force, or harm applied; the officer remains standing and unimpeded.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10"
+              ]
+            },
+            {
+              "candidate_id": 8,
+              "reason": "No fighting: frames f3–f10 show no mutual physical combat—no striking, grappling, or weapon use; individuals are stationary or minimally moving, consistent with verbal confrontation or documentation.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10"
+              ]
+            },
+            {
+              "candidate_id": 9,
+              "reason": "No riot: frames f11–f15 show a dense protest crowd with signs and gestures, but no collective violent unrest, property destruction, or aggressive clashes with police; the police line remains orderly and unbreached.",
+              "evidence_frame_ids": [
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "5a82d0dd6e711938ee6c8e0ecf1c6f7fdb68cac4e5e95683ad672320f7156da9"
+}

@@ -1,0 +1,200 @@
+{
+  "events": [
+    {
+      "t_start": 11.0,
+      "t_end": 12.0,
+      "anomaly_type": "Abuse",
+      "confidence": 0.8,
+      "coarse_score": 0.8,
+      "description": "A man in a dark jacket is seen gripping and covering the face of a distressed young girl (f5), with prior motion blur suggesting rapid movement toward her (f4–f5).",
+      "source_candidate_ids": [
+        3,
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.8,
+        "evidence_times": [
+          11.0,
+          11.5,
+          12.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "f4 shows torso/hip motion consistent with lunging; f5 clearly shows the man’s hands over the girl’s mouth/nose while she appears distressed and unable to resist—meeting criteria for abuse (aggression against a helpless victim). f6 shows the man alone, looking down, consistent with aftermath.",
+        "source_categories": [
+          "Abuse",
+          "Abuse"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 5,
+      "output_count": 1,
+      "groups": 2,
+      "rejected": 3,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 3.5,
+              "f1": 4.0,
+              "f2": 4.5,
+              "f3": 5.0,
+              "f4": 5.5,
+              "f5": 6.0,
+              "f6": 6.5,
+              "f7": 7.0,
+              "f8": 7.5,
+              "f9": 8.0,
+              "f10": 8.5,
+              "f11": 9.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 5.5,
+                "t_end": 6.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 5.9,
+                "t_end": 7.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 5.9,
+                "t_end": 7.5,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Images f4–f6 show a person with blonde hair being pushed or moving rapidly near a window, but no clear aggression toward a helpless victim; motion blur and occlusion prevent confirmation of abuse; the scene could reflect a struggle, evasion, or accidental collision.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Same interval as candidate 0; visible actions (blurred motion, possible contact) do not confirm intentional harm to a helpless person; insufficient evidence for Abuse.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\", \"f7\", \"f8\"]\n    },\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"No mutual physical combat is visible: frames f5–f8 show motion blur and partial occlusion, but no clear reciprocal engagement; one figure appears dominant, the other obscured—insufficient for Fighting.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "Images f4–f6 show a person with blonde hair being pushed or moving rapidly near a window, but no clear aggression toward a helpless victim; motion blur and occlusion prevent confirmation of abuse; the scene could reflect a struggle, evasion, or accidental collision.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            },
+            {
+              "candidate_id": 1,
+              "reason": "Same interval as candidate 0; visible actions (blurred motion, possible contact) do not confirm intentional harm to a helpless person; insufficient evidence for Abuse.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            },
+            {
+              "candidate_id": 2,
+              "reason": "No mutual physical combat is visible: frames f5–f8 show motion blur and partial occlusion, but no clear reciprocal engagement; one figure appears dominant, the other obscured—insufficient for Fighting.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          3,
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 9.0,
+              "f1": 9.5,
+              "f2": 10.0,
+              "f3": 10.5,
+              "f4": 11.0,
+              "f5": 11.5,
+              "f6": 12.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 11.0,
+                "t_end": 11.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 11.2,
+                "t_end": 12.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3, 4],\n      \"category\": \"Abuse\",\n      \"t_start\": 11.0,\n      \"t_end\": 12.0,\n      \"confidence\": 0.8,\n      \"description\": \"A man in a dark jacket is seen gripping and covering the face of a distressed young girl (f5), with prior motion blur suggesting rapid movement toward her (f4–f5).\",\n      \"reason\": \"f4 shows torso/hip motion consistent with lunging; f5 clearly shows the man’s hands over the girl’s mouth/nose while she appears distressed and unable to resist—meeting criteria for abuse (aggression against a helpless victim). f6 shows the man alone, looking down, consistent with aftermath.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                3,
+                4
+              ],
+              "category": "Abuse",
+              "t_start": 11.0,
+              "t_end": 12.0,
+              "confidence": 0.8,
+              "description": "A man in a dark jacket is seen gripping and covering the face of a distressed young girl (f5), with prior motion blur suggesting rapid movement toward her (f4–f5).",
+              "reason": "f4 shows torso/hip motion consistent with lunging; f5 clearly shows the man’s hands over the girl’s mouth/nose while she appears distressed and unable to resist—meeting criteria for abuse (aggression against a helpless victim). f6 shows the man alone, looking down, consistent with aftermath.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

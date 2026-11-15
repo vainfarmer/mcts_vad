@@ -1,0 +1,441 @@
+{
+  "events": [
+    {
+      "t_start": 0.0,
+      "t_end": 4.0,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A motorcycle lies on its side in the road with a person near it and a parked SUV nearby; no collision is visible in the frames, but the scene is consistent with a recent crash.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          0.0,
+          0.5,
+          1.0,
+          1.5,
+          2.0,
+          2.5,
+          3.0,
+          3.5,
+          4.0
+        ],
+        "evidence_frame_ids": [
+          "f0",
+          "f1",
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8"
+        ],
+        "reason": "The motorcycle is stationary on the road surface (f0–f8), and a person appears beside the SUV starting at f5, suggesting post-impact activity; no active crash occurs in the frames, but the static aftermath strongly indicates a prior car/motorcycle accident. The candidate’s interval aligns with the visible aftermath.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 20.5,
+      "t_end": 22.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "The dashcam vehicle collides with a white van at an intersection, causing severe camera shake, windshield deformation, and loss of forward view.",
+      "source_candidate_ids": [
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          20.0,
+          20.5,
+          21.0,
+          21.5,
+          22.0,
+          22.5
+        ],
+        "evidence_frame_ids": [
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8"
+        ],
+        "reason": "f3 shows the van crossing the intersection just before impact; f4 captures the moment of contact (van’s side filling frame); f5–f8 show violent motion blur, shattered windshield streaks, and distorted view consistent with a high-impact crash—meeting the definition of CarAccident (a crash, not ordinary driving).",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 86.0,
+      "t_end": 90.0,
+      "anomaly_type": "CarAccident",
+      "confidence": 1.0,
+      "coarse_score": 1.0,
+      "description": "A silver sedan is sideways across the road with visible damage and smoke, while a blue car lies overturned on the grass verge; both vehicles are stationary post-collision.",
+      "source_candidate_ids": [
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 1.0,
+        "evidence_times": [
+          86.0,
+          86.5,
+          87.0,
+          87.5,
+          88.0,
+          88.5,
+          89.0,
+          89.5,
+          90.0
+        ],
+        "evidence_frame_ids": [
+          "f0",
+          "f1",
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8"
+        ],
+        "reason": "Frames f0–f8 show a clear post-crash scene: the silver car is angled across lanes with front-end damage and emitting smoke (f7–f8), and the blue car is on its roof on the shoulder (f0–f8). This satisfies the definition of CarAccident (a crash event). The candidate’s interval [88.0,90.0] is fully contained within the visible accident sequence, so it is merged into the full event from f0 to f8.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 111.5,
+      "t_end": 113.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A vehicle is overturned on the right shoulder with debris scattered across the road and shoulder, visible from f4 onward and persisting through f8.",
+      "source_candidate_ids": [
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 3,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          111.5,
+          112.0,
+          112.5,
+          113.0,
+          113.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8"
+        ],
+        "reason": "The overturned vehicle and debris are stationary and consistent across frames f4–f8, indicating a prior crash; no motion suggests ongoing collision, but the scene matches post-impact CarAccident criteria (crash occurred before or at f4). The candidate interval [111.5,112.0] is fully contained within the visible accident scene, so the event is extended to cover all frames where the aftermath is clearly visible (f4–f8).",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 5,
+      "output_count": 4,
+      "groups": 4,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0,
+              "f9": 4.5,
+              "f10": 5.0,
+              "f11": 5.5,
+              "f12": 6.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 0.0,
+                "t_end": 4.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 3.5,
+                "t_end": 4.5,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"CarAccident\",\n      \"t_start\": 0.0,\n      \"t_end\": 4.0,\n      \"confidence\": 0.95,\n      \"description\": \"A motorcycle lies on its side in the road with a person near it and a parked SUV nearby; no collision is visible in the frames, but the scene is consistent with a recent crash.\",\n      \"reason\": \"The motorcycle is stationary on the road surface (f0–f8), and a person appears beside the SUV starting at f5, suggesting post-impact activity; no active crash occurs in the frames, but the static aftermath strongly indicates a prior car/motorcycle accident. The candidate’s interval aligns with the visible aftermath.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"No evidence of abuse: the person near the SUV (f5–f8) appears to be standing or crouching normally beside the vehicle, possibly attending to the motorcycle or themselves; there is no visible aggression, restraint, or victimization.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "CarAccident",
+              "t_start": 0.0,
+              "t_end": 4.0,
+              "confidence": 0.95,
+              "description": "A motorcycle lies on its side in the road with a person near it and a parked SUV nearby; no collision is visible in the frames, but the scene is consistent with a recent crash.",
+              "reason": "The motorcycle is stationary on the road surface (f0–f8), and a person appears beside the SUV starting at f5, suggesting post-impact activity; no active crash occurs in the frames, but the static aftermath strongly indicates a prior car/motorcycle accident. The candidate’s interval aligns with the visible aftermath.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "No evidence of abuse: the person near the SUV (f5–f8) appears to be standing or crouching normally beside the vehicle, possibly attending to the motorcycle or themselves; there is no visible aggression, restraint, or victimization.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 18.5,
+              "f1": 19.0,
+              "f2": 19.5,
+              "f3": 20.0,
+              "f4": 20.5,
+              "f5": 21.0,
+              "f6": 21.5,
+              "f7": 22.0,
+              "f8": 22.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 20.5,
+                "t_end": 21.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"CarAccident\",\n      \"t_start\": 20.5,\n      \"t_end\": 22.5,\n      \"confidence\": 0.95,\n      \"description\": \"The dashcam vehicle collides with a white van at an intersection, causing severe camera shake, windshield deformation, and loss of forward view.\",\n      \"reason\": \"f3 shows the van crossing the intersection just before impact; f4 captures the moment of contact (van’s side filling frame); f5–f8 show violent motion blur, shattered windshield streaks, and distorted view consistent with a high-impact crash—meeting the definition of CarAccident (a crash, not ordinary driving).\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2
+              ],
+              "category": "CarAccident",
+              "t_start": 20.5,
+              "t_end": 22.5,
+              "confidence": 0.95,
+              "description": "The dashcam vehicle collides with a white van at an intersection, causing severe camera shake, windshield deformation, and loss of forward view.",
+              "reason": "f3 shows the van crossing the intersection just before impact; f4 captures the moment of contact (van’s side filling frame); f5–f8 show violent motion blur, shattered windshield streaks, and distorted view consistent with a high-impact crash—meeting the definition of CarAccident (a crash, not ordinary driving).",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 86.0,
+              "f1": 86.5,
+              "f2": 87.0,
+              "f3": 87.5,
+              "f4": 88.0,
+              "f5": 88.5,
+              "f6": 89.0,
+              "f7": 89.5,
+              "f8": 90.0,
+              "f9": 90.5,
+              "f10": 91.0,
+              "f11": 91.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 88.0,
+                "t_end": 90.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"CarAccident\",\n      \"t_start\": 86.0,\n      \"t_end\": 90.0,\n      \"confidence\": 1.0,\n      \"description\": \"A silver sedan is sideways across the road with visible damage and smoke, while a blue car lies overturned on the grass verge; both vehicles are stationary post-collision.\",\n      \"reason\": \"Frames f0–f8 show a clear post-crash scene: the silver car is angled across lanes with front-end damage and emitting smoke (f7–f8), and the blue car is on its roof on the shoulder (f0–f8). This satisfies the definition of CarAccident (a crash event). The candidate’s interval [88.0,90.0] is fully contained within the visible accident sequence, so it is merged into the full event from f0 to f8.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                3
+              ],
+              "category": "CarAccident",
+              "t_start": 86.0,
+              "t_end": 90.0,
+              "confidence": 1.0,
+              "description": "A silver sedan is sideways across the road with visible damage and smoke, while a blue car lies overturned on the grass verge; both vehicles are stationary post-collision.",
+              "reason": "Frames f0–f8 show a clear post-crash scene: the silver car is angled across lanes with front-end damage and emitting smoke (f7–f8), and the blue car is on its roof on the shoulder (f0–f8). This satisfies the definition of CarAccident (a crash event). The candidate’s interval [88.0,90.0] is fully contained within the visible accident sequence, so it is merged into the full event from f0 to f8.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 109.5,
+              "f1": 110.0,
+              "f2": 110.5,
+              "f3": 111.0,
+              "f4": 111.5,
+              "f5": 112.0,
+              "f6": 112.5,
+              "f7": 113.0,
+              "f8": 113.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 111.5,
+                "t_end": 112.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"CarAccident\",\n      \"t_start\": 111.5,\n      \"t_end\": 113.5,\n      \"confidence\": 0.95,\n      \"description\": \"A vehicle is overturned on the right shoulder with debris scattered across the road and shoulder, visible from f4 onward and persisting through f8.\",\n      \"reason\": \"The overturned vehicle and debris are stationary and consistent across frames f4–f8, indicating a prior crash; no motion suggests ongoing collision, but the scene matches post-impact CarAccident criteria (crash occurred before or at f4). The candidate interval [111.5,112.0] is fully contained within the visible accident scene, so the event is extended to cover all frames where the aftermath is clearly visible (f4–f8).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                4
+              ],
+              "category": "CarAccident",
+              "t_start": 111.5,
+              "t_end": 113.5,
+              "confidence": 0.95,
+              "description": "A vehicle is overturned on the right shoulder with debris scattered across the road and shoulder, visible from f4 onward and persisting through f8.",
+              "reason": "The overturned vehicle and debris are stationary and consistent across frames f4–f8, indicating a prior crash; no motion suggests ongoing collision, but the scene matches post-impact CarAccident criteria (crash occurred before or at f4). The candidate interval [111.5,112.0] is fully contained within the visible accident scene, so the event is extended to cover all frames where the aftermath is clearly visible (f4–f8).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

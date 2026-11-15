@@ -1,0 +1,293 @@
+{
+  "events": [
+    {
+      "t_start": 3.5,
+      "t_end": 15.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A sudden dark plume erupts from ground level at ~3.5 s, rapidly expands and rises, obscuring the background by ~12 s, consistent with a single explosive event followed by smoke dispersion.",
+      "source_candidate_ids": [
+        0,
+        1,
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          3.5,
+          4.5,
+          5.0,
+          5.5,
+          6.0,
+          6.5,
+          7.0,
+          7.5,
+          8.5,
+          9.0,
+          9.5,
+          10.0,
+          11.0,
+          11.5,
+          12.0,
+          13.0,
+          13.5,
+          14.0,
+          15.0,
+          15.5
+        ],
+        "evidence_frame_ids": [
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18",
+          "f19",
+          "f20",
+          "f21",
+          "f22"
+        ],
+        "reason": "Frame f2 (3.0 s) shows no plume; f3 (3.5 s) shows first visible dark eruption; f4–f17 show continuous expansion and upward drift of dense black smoke without secondary distinct initiations—indicating one explosion, not multiple. The rapid onset, vertical rise, and volumetric growth match explosion dynamics, not fire or vehicle exhaust.",
+        "source_categories": [
+          "Explosion",
+          "Explosion",
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 6,
+      "output_count": 1,
+      "groups": 2,
+      "rejected": 3,
+      "uncertain": 0,
+      "merged_sources": 2,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 2.0,
+              "f1": 2.5,
+              "f2": 3.0,
+              "f3": 3.5,
+              "f4": 4.5,
+              "f5": 5.0,
+              "f6": 5.5,
+              "f7": 6.0,
+              "f8": 6.5,
+              "f9": 7.0,
+              "f10": 7.5,
+              "f11": 8.5,
+              "f12": 9.0,
+              "f13": 9.5,
+              "f14": 10.0,
+              "f15": 11.0,
+              "f16": 11.5,
+              "f17": 12.0,
+              "f18": 13.0,
+              "f19": 13.5,
+              "f20": 14.0,
+              "f21": 15.0,
+              "f22": 15.5,
+              "f23": 17.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 3.9,
+                "t_end": 8.4,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 5.5,
+                "t_end": 10.0,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 8.0,
+                "t_end": 15.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1, 2],\n      \"category\": \"Explosion\",\n      \"t_start\": 3.5,\n      \"t_end\": 15.5,\n      \"confidence\": 0.95,\n      \"description\": \"A sudden dark plume erupts from ground level at ~3.5 s, rapidly expands and rises, obscuring the background by ~12 s, consistent with a single explosive event followed by smoke dispersion.\",\n      \"reason\": \"Frame f2 (3.0 s) shows no plume; f3 (3.5 s) shows first visible dark eruption; f4–f17 show continuous expansion and upward drift of dense black smoke without secondary distinct initiations—indicating one explosion, not multiple. The rapid onset, vertical rise, and volumetric growth match explosion dynamics, not fire or vehicle exhaust.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1,
+                2
+              ],
+              "category": "Explosion",
+              "t_start": 3.5,
+              "t_end": 15.5,
+              "confidence": 0.95,
+              "description": "A sudden dark plume erupts from ground level at ~3.5 s, rapidly expands and rises, obscuring the background by ~12 s, consistent with a single explosive event followed by smoke dispersion.",
+              "reason": "Frame f2 (3.0 s) shows no plume; f3 (3.5 s) shows first visible dark eruption; f4–f17 show continuous expansion and upward drift of dense black smoke without secondary distinct initiations—indicating one explosion, not multiple. The rapid onset, vertical rise, and volumetric growth match explosion dynamics, not fire or vehicle exhaust.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          3,
+          4,
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 49.0,
+              "f1": 49.5,
+              "f2": 50.0,
+              "f3": 50.5,
+              "f4": 51.0,
+              "f5": 51.5,
+              "f6": 52.0,
+              "f7": 52.5,
+              "f8": 53.0,
+              "f9": 53.5,
+              "f10": 54.0,
+              "f11": 54.5,
+              "f12": 55.0,
+              "f13": 55.5,
+              "f14": 56.0,
+              "f15": 56.5,
+              "f16": 57.0,
+              "f17": 57.5,
+              "f18": 58.0,
+              "f19": 58.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 50.7,
+                "t_end": 54.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 52.7,
+                "t_end": 54.8,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 55.5,
+                "t_end": 56.7,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"Images f3–f11 show a distressed face and motion in low light, but no clear aggression toward a helpless person; the context is ambiguous and could be medical, accidental, or self-induced distress—not verifiable abuse.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    },\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"No mutual physical combat is visible; frames f7–f12 show indistinct movement and proximity but lack evidence of reciprocal force exchange required for Fighting.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\"]\n    },\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"Frames f13–f15 show obscured motion with no identifiable victim or aggressive act; insufficient evidence to confirm Abuse.\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\", \"f15\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 3,
+              "reason": "Images f3–f11 show a distressed face and motion in low light, but no clear aggression toward a helpless person; the context is ambiguous and could be medical, accidental, or self-induced distress—not verifiable abuse.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11"
+              ]
+            },
+            {
+              "candidate_id": 4,
+              "reason": "No mutual physical combat is visible; frames f7–f12 show indistinct movement and proximity but lack evidence of reciprocal force exchange required for Fighting.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12"
+              ]
+            },
+            {
+              "candidate_id": 5,
+              "reason": "Frames f13–f15 show obscured motion with no identifiable victim or aggressive act; insufficient evidence to confirm Abuse.",
+              "evidence_frame_ids": [
+                "f13",
+                "f14",
+                "f15"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

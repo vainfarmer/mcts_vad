@@ -1,0 +1,292 @@
+{
+  "events": [
+    {
+      "t_start": 8.0,
+      "t_end": 12.0,
+      "anomaly_type": "Fighting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "Two men engage in close physical struggle near a gate and vehicle; one is pulled from a truck (f5–f6), then they grapple (f7–f10), with mutual resistance evident.",
+      "source_candidate_ids": [
+        0,
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          8.0,
+          8.5,
+          9.0,
+          9.5,
+          10.0,
+          10.5,
+          11.0,
+          11.5,
+          12.0
+        ],
+        "evidence_frame_ids": [
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10"
+        ],
+        "reason": "Frames f2–f10 show rapid motion, grappling, and reciprocal force: f5 shows one man pulling another from a vehicle, f6–f8 show mutual clinching and takedown attempts, f9–f10 show continued struggle with both participants actively resisting—meeting the definition of Fighting (mutual physical combat).",
+        "source_categories": [
+          "Fighting",
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 15.5,
+      "t_end": 16.0,
+      "anomaly_type": "Shooting",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "A man points a handgun at another’s head (f17), then the gun is visibly discharged (muzzle flash/blur in f18) as the target recoils.",
+      "source_candidate_ids": [
+        3,
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 1,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          15.5,
+          16.0
+        ],
+        "evidence_frame_ids": [
+          "f17",
+          "f18"
+        ],
+        "reason": "f17 shows clear aim; f18 shows rapid arm motion, muzzle blur consistent with discharge, and the target’s head jerking back—sufficient for Shooting (visible shooting), per definition requiring visible firing, not just possession.",
+        "source_categories": [
+          "Shooting",
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 16.0,
+      "t_end": 17.0,
+      "anomaly_type": "Abuse",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "After the shot, the shooter grabs the now-fallen victim and drags him while the third man watches; the victim is non-resisting and on the ground (f19–f20).",
+      "source_candidate_ids": [
+        5,
+        6
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 2,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          16.5,
+          17.0
+        ],
+        "evidence_frame_ids": [
+          "f19",
+          "f20"
+        ],
+        "reason": "From f19 onward, the victim is on the ground or slumped, no longer resisting; the shooter physically controls and moves him (f20), satisfying Abuse (aggression against a helpless victim). This follows the shooting and is distinct from prior mutual combat.",
+        "source_categories": [
+          "Abuse",
+          "Fighting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 7,
+      "output_count": 3,
+      "groups": 1,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 3,
+      "relabeled": 1,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 7.0,
+              "f1": 7.5,
+              "f2": 8.0,
+              "f3": 8.5,
+              "f4": 9.0,
+              "f5": 9.5,
+              "f6": 10.0,
+              "f7": 10.5,
+              "f8": 11.0,
+              "f9": 11.5,
+              "f10": 12.0,
+              "f11": 12.5,
+              "f12": 13.0,
+              "f13": 13.5,
+              "f14": 14.0,
+              "f15": 14.5,
+              "f16": 15.0,
+              "f17": 15.5,
+              "f18": 16.0,
+              "f19": 16.5,
+              "f20": 17.0,
+              "f21": 17.5,
+              "f22": 18.0,
+              "f23": 18.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 8.7,
+                "t_end": 11.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 8.7,
+                "t_end": 14.8,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 12.3,
+                "t_end": 16.3,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 15.5,
+                "t_end": 16.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 15.5,
+                "t_end": 15.541667,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 16.0,
+                "t_end": 16.8,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 16.0,
+                "t_end": 16.5,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Fighting\",\n      \"t_start\": 8.0,\n      \"t_end\": 12.0,\n      \"confidence\": 0.95,\n      \"description\": \"Two men engage in close physical struggle near a gate and vehicle; one is pulled from a truck (f5–f6), then they grapple (f7–f10), with mutual resistance evident.\",\n      \"reason\": \"Frames f2–f10 show rapid motion, grappling, and reciprocal force: f5 shows one man pulling another from a vehicle, f6–f8 show mutual clinching and takedown attempts, f9–f10 show continued struggle with both participants actively resisting—meeting the definition of Fighting (mutual physical combat).\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    },\n    {\n      \"source_candidate_ids\": [3, 4],\n      \"category\": \"Shooting\",\n      \"t_start\": 15.5,\n      \"t_end\": 16.0,\n      \"confidence\": 0.85,\n      \"description\": \"A man points a handgun at another’s head (f17), then the gun is visibly discharged (muzzle flash/blur in f18) as the target recoils.\",\n      \"reason\": \"f17 shows clear aim; f18 shows rapid arm motion, muzzle blur consistent with discharge, and the target’s head jerking back—sufficient for Shooting (visible shooting), per definition requiring visible firing, not just possession.\",\n      \"evidence_frame_ids\": [\"f17\", \"f18\"]\n    },\n    {\n      \"source_candidate_ids\": [5, 6],\n      \"category\": \"Abuse\",\n      \"t_start\": 16.0,\n      \"t_end\": 17.0,\n      \"confidence\": 0.9,\n      \"description\": \"After the shot, the shooter grabs the now-fallen victim and drags him while the third man watches; the victim is non-resisting and on the ground (f19–f20).\",\n      \"reason\": \"From f19 onward, the victim is on the ground or slumped, no longer resisting; the shooter physically controls and moves him (f20), satisfying Abuse (aggression against a helpless victim). This follows the shooting and is distinct from prior mutual combat.\",\n      \"evidence_frame_ids\": [\"f19\", \"f20\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"The interval 12.3–16.3 includes mutual struggle (f11–f16) where the central figure resists and participates actively (e.g., f13–f15 hand contact, f16 raising hand), contradicting Abuse which requires a helpless victim; this phase is part of the earlier Fighting event.\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1
+              ],
+              "category": "Fighting",
+              "t_start": 8.0,
+              "t_end": 12.0,
+              "confidence": 0.95,
+              "description": "Two men engage in close physical struggle near a gate and vehicle; one is pulled from a truck (f5–f6), then they grapple (f7–f10), with mutual resistance evident.",
+              "reason": "Frames f2–f10 show rapid motion, grappling, and reciprocal force: f5 shows one man pulling another from a vehicle, f6–f8 show mutual clinching and takedown attempts, f9–f10 show continued struggle with both participants actively resisting—meeting the definition of Fighting (mutual physical combat).",
+              "evidence_frame_ids": [
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                3,
+                4
+              ],
+              "category": "Shooting",
+              "t_start": 15.5,
+              "t_end": 16.0,
+              "confidence": 0.85,
+              "description": "A man points a handgun at another’s head (f17), then the gun is visibly discharged (muzzle flash/blur in f18) as the target recoils.",
+              "reason": "f17 shows clear aim; f18 shows rapid arm motion, muzzle blur consistent with discharge, and the target’s head jerking back—sufficient for Shooting (visible shooting), per definition requiring visible firing, not just possession.",
+              "evidence_frame_ids": [
+                "f17",
+                "f18"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                5,
+                6
+              ],
+              "category": "Abuse",
+              "t_start": 16.0,
+              "t_end": 17.0,
+              "confidence": 0.9,
+              "description": "After the shot, the shooter grabs the now-fallen victim and drags him while the third man watches; the victim is non-resisting and on the ground (f19–f20).",
+              "reason": "From f19 onward, the victim is on the ground or slumped, no longer resisting; the shooter physically controls and moves him (f20), satisfying Abuse (aggression against a helpless victim). This follows the shooting and is distinct from prior mutual combat.",
+              "evidence_frame_ids": [
+                "f19",
+                "f20"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "The interval 12.3–16.3 includes mutual struggle (f11–f16) where the central figure resists and participates actively (e.g., f13–f15 hand contact, f16 raising hand), contradicting Abuse which requires a helpless victim; this phase is part of the earlier Fighting event.",
+              "evidence_frame_ids": [
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

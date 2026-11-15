@@ -1,0 +1,362 @@
+{
+  "events": [
+    {
+      "t_start": 3.5,
+      "t_end": 5.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A sudden, violent fireball erupts inside a wooden structure, displacing debris (e.g., signboard at f5) and expanding rapidly across frames f2–f5.",
+      "source_candidate_ids": [
+        0,
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          3.0,
+          4.0,
+          4.5,
+          5.0
+        ],
+        "evidence_frame_ids": [
+          "f2",
+          "f3",
+          "f4",
+          "f5"
+        ],
+        "reason": "Frames f2–f5 show rapid onset and expansion of a high-energy blast with visible displacement of structural elements (e.g., sign at f5), satisfying the definition of explosion (a sudden release of energy causing blast wave and fragmentation); this event is fully contained within [3.5,5.5] and overlaps both candidates 0 and 1.",
+        "source_categories": [
+          "Explosion",
+          "Explosion"
+        ]
+      }
+    },
+    {
+      "t_start": 6.0,
+      "t_end": 14.0,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A large-scale structural explosion destroys a metal lattice tower, producing an immediate fireball (f7), rapid fragmentation (f8–f10), and progressive collapse (f11–f14).",
+      "source_candidate_ids": [
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 1,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          6.0,
+          8.0,
+          9.0,
+          10.0,
+          11.0,
+          12.0,
+          13.0,
+          14.0
+        ],
+        "evidence_frame_ids": [
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14"
+        ],
+        "reason": "f7 shows the initial detonation at the tower; f8–f10 show expanding fireball and falling debris with helicopter nearby; f11–f14 depict continuing structural disintegration—consistent with one major explosion and its immediate aftermath. Candidate 2 claims [6.0,16.5], but f15 (16.0) shows only residual burning wreckage without evidence of new explosive energy release; thus the explosion event ends by f14 (14.0). Candidates 3, 4, and 5 are not subsumed because they either fall outside the primary blast phase or lack independent evidence of distinct explosions.",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 7,
+      "output_count": 2,
+      "groups": 2,
+      "rejected": 4,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 1.5,
+              "f1": 2.0,
+              "f2": 3.0,
+              "f3": 4.0,
+              "f4": 4.5,
+              "f5": 5.0,
+              "f6": 5.5,
+              "f7": 6.0,
+              "f8": 8.0,
+              "f9": 9.0,
+              "f10": 10.0,
+              "f11": 11.0,
+              "f12": 12.0,
+              "f13": 13.0,
+              "f14": 14.0,
+              "f15": 16.0,
+              "f16": 17.0,
+              "f17": 18.0,
+              "f18": 19.0,
+              "f19": 20.0,
+              "f20": 21.0,
+              "f21": 21.5,
+              "f22": 22.0,
+              "f23": 24.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 3.5,
+                "t_end": 5.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 4.0,
+                "t_end": 7.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 6.0,
+                "t_end": 16.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 10.5,
+                "t_end": 11.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 16.0,
+                "t_end": 22.3,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 21.5,
+                "t_end": 22.0,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Explosion\",\n      \"t_start\": 3.5,\n      \"t_end\": 5.5,\n      \"confidence\": 0.95,\n      \"description\": \"A rapidly expanding fireball erupts inside a wooden structure, with visible blast wave and debris ejection (e.g., signboard dislodged at f5).\",\n      \"reason\": \"Frames f2–f5 show progressive ignition and expansion of a high-energy blast within an enclosed space; f5 shows a sign reading 'DANGER! FLAMMABLE' being displaced by the force, confirming explosive rather than sustained fire origin.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\", \"f5\"]\n    },\n    {\n      \"source_candidate_ids\": [2, 3, 4, 5],\n      \"category\": \"Explosion\",\n      \"t_start\": 6.0,\n      \"t_end\": 16.0,\n      \"confidence\": 0.98,\n      \"description\": \"A large structural explosion occurs at a metal tower, producing a massive fireball, rapid fragmentation, and collapse of the lattice structure, observed from multiple angles including aerial view.\",\n      \"reason\": \"f7 shows initial detonation at tower base; f8–f10 show expanding fireball and falling debris with helicopter nearby; f11–f15 depict continuing structural disintegration and secondary fragmentation—consistent with a single major explosion event with aftermath, not multiple independent blasts.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 1.5,
+              "f1": 2.0,
+              "f2": 3.0,
+              "f3": 4.0,
+              "f4": 4.5,
+              "f5": 5.0,
+              "f6": 5.5,
+              "f7": 6.0,
+              "f8": 8.0,
+              "f9": 9.0,
+              "f10": 10.0,
+              "f11": 11.0,
+              "f12": 12.0,
+              "f13": 13.0,
+              "f14": 14.0,
+              "f15": 16.0,
+              "f16": 17.0,
+              "f17": 18.0,
+              "f18": 19.0,
+              "f19": 20.0,
+              "f20": 21.0,
+              "f21": 21.5,
+              "f22": 22.0,
+              "f23": 24.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 3.5,
+                "t_end": 5.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 4.0,
+                "t_end": 7.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 6.0,
+                "t_end": 16.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 10.5,
+                "t_end": 11.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 16.0,
+                "t_end": 22.3,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 21.5,
+                "t_end": 22.0,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Explosion\",\n      \"t_start\": 3.5,\n      \"t_end\": 5.5,\n      \"confidence\": 0.9,\n      \"description\": \"A sudden, violent fireball erupts inside a wooden structure, displacing debris (e.g., signboard at f5) and expanding rapidly across frames f2–f5.\",\n      \"reason\": \"Frames f2–f5 show rapid onset and expansion of a high-energy blast with visible displacement of structural elements (e.g., sign at f5), satisfying the definition of explosion (a sudden release of energy causing blast wave and fragmentation); this event is fully contained within [3.5,5.5] and overlaps both candidates 0 and 1.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\", \"f5\"]\n    },\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"Explosion\",\n      \"t_start\": 6.0,\n      \"t_end\": 14.0,\n      \"confidence\": 0.95,\n      \"description\": \"A large-scale structural explosion destroys a metal lattice tower, producing an immediate fireball (f7), rapid fragmentation (f8–f10), and progressive collapse (f11–f14).\",\n      \"reason\": \"f7 shows the initial detonation at the tower; f8–f10 show expanding fireball and falling debris with helicopter nearby; f11–f14 depict continuing structural disintegration—consistent with one major explosion and its immediate aftermath. Candidate 2 claims [6.0,16.5], but f15 (16.0) shows only residual burning wreckage without evidence of new explosive energy release; thus the explosion event ends by f14 (14.0). Candidates 3, 4, and 5 are not subsumed because they either fall outside the primary blast phase or lack independent evidence of distinct explosions.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"No distinct secondary explosion occurs between 10.5–11.5; f11 shows ongoing fire and debris from the same tower explosion (candidate 2), not a new blast event.\",\n      \"evidence_frame_ids\": [\"f11\"]\n    },\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"f15 shows smoldering wreckage and scattered fires, not a new explosion; no blast wave, fragmentation, or rapid expansion is visible—only post-explosion combustion.\",\n      \"evidence_frame_ids\": [\"f15\"]\n    },\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"f21–f22 show glowing embers and structural remnants in smoke; no sudden energy release, blast, or fragmentation is visible—insufficient for explosion classification.\",\n      \"evidence_frame_ids\": [\"f21\", \"f22\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1
+              ],
+              "category": "Explosion",
+              "t_start": 3.5,
+              "t_end": 5.5,
+              "confidence": 0.9,
+              "description": "A sudden, violent fireball erupts inside a wooden structure, displacing debris (e.g., signboard at f5) and expanding rapidly across frames f2–f5.",
+              "reason": "Frames f2–f5 show rapid onset and expansion of a high-energy blast with visible displacement of structural elements (e.g., sign at f5), satisfying the definition of explosion (a sudden release of energy causing blast wave and fragmentation); this event is fully contained within [3.5,5.5] and overlaps both candidates 0 and 1.",
+              "evidence_frame_ids": [
+                "f2",
+                "f3",
+                "f4",
+                "f5"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                2
+              ],
+              "category": "Explosion",
+              "t_start": 6.0,
+              "t_end": 14.0,
+              "confidence": 0.95,
+              "description": "A large-scale structural explosion destroys a metal lattice tower, producing an immediate fireball (f7), rapid fragmentation (f8–f10), and progressive collapse (f11–f14).",
+              "reason": "f7 shows the initial detonation at the tower; f8–f10 show expanding fireball and falling debris with helicopter nearby; f11–f14 depict continuing structural disintegration—consistent with one major explosion and its immediate aftermath. Candidate 2 claims [6.0,16.5], but f15 (16.0) shows only residual burning wreckage without evidence of new explosive energy release; thus the explosion event ends by f14 (14.0). Candidates 3, 4, and 5 are not subsumed because they either fall outside the primary blast phase or lack independent evidence of distinct explosions.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 3,
+              "reason": "No distinct secondary explosion occurs between 10.5–11.5; f11 shows ongoing fire and debris from the same tower explosion (candidate 2), not a new blast event.",
+              "evidence_frame_ids": [
+                "f11"
+              ]
+            },
+            {
+              "candidate_id": 4,
+              "reason": "f15 shows smoldering wreckage and scattered fires, not a new explosion; no blast wave, fragmentation, or rapid expansion is visible—only post-explosion combustion.",
+              "evidence_frame_ids": [
+                "f15"
+              ]
+            },
+            {
+              "candidate_id": 5,
+              "reason": "f21–f22 show glowing embers and structural remnants in smoke; no sudden energy release, blast, or fragmentation is visible—insufficient for explosion classification.",
+              "evidence_frame_ids": [
+                "f21",
+                "f22"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          6
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 21.5,
+              "f1": 22.0,
+              "f2": 22.5,
+              "f3": 23.0,
+              "f4": 23.5,
+              "f5": 24.0,
+              "f6": 24.5,
+              "f7": 25.0,
+              "f8": 25.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 6,
+                "t_start": 23.5,
+                "t_end": 24.0,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"No sudden blast, shockwave, or rapid expansion visible; fire and debris are consistent with sustained structural collapse and burning, not an explosion.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 6,
+              "reason": "No sudden blast, shockwave, or rapid expansion visible; fire and debris are consistent with sustained structural collapse and burning, not an explosion.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "5a82d0dd6e711938ee6c8e0ecf1c6f7fdb68cac4e5e95683ad672320f7156da9"
+}

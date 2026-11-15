@@ -1,0 +1,389 @@
+{
+  "events": [
+    {
+      "t_start": 2.0,
+      "t_end": 2.041667,
+      "anomaly_type": "Shooting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A woman points a handgun directly at the camera; muzzle flash and smoke are visible in f4, indicating discharge.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          2.0
+        ],
+        "evidence_frame_ids": [
+          "f4"
+        ],
+        "reason": "f4 shows clear muzzle flash and smoke consistent with a firearm being discharged at close range; this satisfies the 'Shooting' definition requiring visible shooting.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 2.5,
+      "t_end": 3.0,
+      "anomaly_type": "Abuse",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A man in camouflage stands over a person lying motionless on a bed while gesturing aggressively toward a door or wall.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 1,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          2.5,
+          3.0
+        ],
+        "evidence_frame_ids": [
+          "f5",
+          "f6"
+        ],
+        "reason": "In f5 and f6, the man looms over a prone, seemingly helpless individual (face down, no resistance), and his posture and motion suggest aggression toward a non-consenting, vulnerable person—meeting the 'Abuse' criterion (aggression against a helpless victim).",
+        "source_categories": [
+          "Abuse"
+        ]
+      }
+    },
+    {
+      "t_start": 4.0,
+      "t_end": 5.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "A woman and a soldier engage in physical combat on a staircase: she swings an object, he lunges, they grapple, and she pulls him over a railing.",
+      "source_candidate_ids": [
+        2,
+        3,
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 2,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          4.0,
+          4.5,
+          5.0
+        ],
+        "evidence_frame_ids": [
+          "f8",
+          "f9",
+          "f10"
+        ],
+        "reason": "f8 shows the woman swinging at the soldier; f9 shows close contact/grappling; f10 shows her pulling him over the railing—mutual physical combat satisfying 'Fighting'. The intervals overlap and form one continuous struggle.",
+        "source_categories": [
+          "Fighting",
+          "Fighting",
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 12.5,
+      "t_end": 13.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A man in a patterned shirt physically restrains another man from behind, maintaining contact and forcing him forward toward a counter across frames f4–f6.",
+      "source_candidate_ids": [
+        6
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          12.5,
+          13.0,
+          13.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "Frames f4–f6 show sustained physical grappling: f4 (grab from behind), f5 (arm around torso, active control), f6 (restrained man guided toward surface while still held); this meets the definition of Fighting as mutual or one-sided physical combat; victim is not clearly helpless (resisting posture visible in f5), so not Abuse.",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 8,
+      "output_count": 4,
+      "groups": 2,
+      "rejected": 2,
+      "uncertain": 0,
+      "merged_sources": 2,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0,
+              "f9": 4.5,
+              "f10": 5.0,
+              "f11": 5.5,
+              "f12": 6.0,
+              "f13": 6.5,
+              "f14": 7.0,
+              "f15": 7.5,
+              "f16": 8.0,
+              "f17": 8.5,
+              "f18": 9.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 2.0,
+                "t_end": 2.041667,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 2.5,
+                "t_end": 3.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 4.0,
+                "t_end": 5.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 4.0,
+                "t_end": 4.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 5.0,
+                "t_end": 6.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 6.7,
+                "t_end": 7.5,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Shooting\",\n      \"t_start\": 2.0,\n      \"t_end\": 2.041667,\n      \"confidence\": 0.95,\n      \"description\": \"A woman points a handgun directly at the camera; muzzle flash and smoke are visible in f4, indicating discharge.\",\n      \"reason\": \"f4 shows clear muzzle flash and smoke consistent with a firearm being discharged at close range; this satisfies the 'Shooting' definition requiring visible shooting.\",\n      \"evidence_frame_ids\": [\"f4\"]\n    },\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Abuse\",\n      \"t_start\": 2.5,\n      \"t_end\": 3.0,\n      \"confidence\": 0.9,\n      \"description\": \"A man in camouflage stands over a person lying motionless on a bed while gesturing aggressively toward a door or wall.\",\n      \"reason\": \"In f5 and f6, the man looms over a prone, seemingly helpless individual (face down, no resistance), and his posture and motion suggest aggression toward a non-consenting, vulnerable person—meeting the 'Abuse' criterion (aggression against a helpless victim).\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\"]\n    },\n    {\n      \"source_candidate_ids\": [2, 3, 4],\n      \"category\": \"Fighting\",\n      \"t_start\": 4.0,\n      \"t_end\": 5.5,\n      \"confidence\": 0.85,\n      \"description\": \"A woman and a soldier engage in physical combat on a staircase: she swings an object, he lunges, they grapple, and she pulls him over a railing.\",\n      \"reason\": \"f8 shows the woman swinging at the soldier; f9 shows close contact/grappling; f10 shows her pulling him over the railing—mutual physical combat satisfying 'Fighting'. The intervals overlap and form one continuous struggle.\",\n      \"evidence_frame_ids\": [\"f8\", \"f9\", \"f10\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"Frames f13–f15 show the woman standing alone on a balcony, holding fabric, with no opponent or physical contact; no fighting occurs.\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\", \"f15\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Shooting",
+              "t_start": 2.0,
+              "t_end": 2.041667,
+              "confidence": 0.95,
+              "description": "A woman points a handgun directly at the camera; muzzle flash and smoke are visible in f4, indicating discharge.",
+              "reason": "f4 shows clear muzzle flash and smoke consistent with a firearm being discharged at close range; this satisfies the 'Shooting' definition requiring visible shooting.",
+              "evidence_frame_ids": [
+                "f4"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "Abuse",
+              "t_start": 2.5,
+              "t_end": 3.0,
+              "confidence": 0.9,
+              "description": "A man in camouflage stands over a person lying motionless on a bed while gesturing aggressively toward a door or wall.",
+              "reason": "In f5 and f6, the man looms over a prone, seemingly helpless individual (face down, no resistance), and his posture and motion suggest aggression toward a non-consenting, vulnerable person—meeting the 'Abuse' criterion (aggression against a helpless victim).",
+              "evidence_frame_ids": [
+                "f5",
+                "f6"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                2,
+                3,
+                4
+              ],
+              "category": "Fighting",
+              "t_start": 4.0,
+              "t_end": 5.5,
+              "confidence": 0.85,
+              "description": "A woman and a soldier engage in physical combat on a staircase: she swings an object, he lunges, they grapple, and she pulls him over a railing.",
+              "reason": "f8 shows the woman swinging at the soldier; f9 shows close contact/grappling; f10 shows her pulling him over the railing—mutual physical combat satisfying 'Fighting'. The intervals overlap and form one continuous struggle.",
+              "evidence_frame_ids": [
+                "f8",
+                "f9",
+                "f10"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 5,
+              "reason": "Frames f13–f15 show the woman standing alone on a balcony, holding fabric, with no opponent or physical contact; no fighting occurs.",
+              "evidence_frame_ids": [
+                "f13",
+                "f14",
+                "f15"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          6,
+          7
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 10.5,
+              "f1": 11.0,
+              "f2": 11.5,
+              "f3": 12.0,
+              "f4": 12.5,
+              "f5": 13.0,
+              "f6": 13.5,
+              "f7": 14.0,
+              "f8": 14.5,
+              "f9": 15.0,
+              "f10": 15.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 6,
+                "t_start": 12.3,
+                "t_end": 13.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 14.0,
+                "t_end": 15.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [6],\n      \"category\": \"Fighting\",\n      \"t_start\": 12.3,\n      \"t_end\": 13.5,\n      \"confidence\": 0.95,\n      \"description\": \"A man in a patterned shirt grabs and restrains another man from behind, then forces him forward toward a counter while both are in physical contact.\",\n      \"reason\": \"Frames f4–f6 show sustained physical grappling: f4 shows the grab from behind, f5 shows continued control with arm around torso, f6 shows the restrained man being guided/forced toward a surface—consistent with mutual or one-sided combat (Fighting), not Abuse (victim not clearly helpless) nor Shooting.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"source_candidate_ids\": [7],\n      \"category\": \"Shooting\",\n      \"t_start\": 14.0,\n      \"t_end\": 15.0,\n      \"confidence\": 0.3,\n      \"description\": \"A man aims a silver handgun forward with both hands; no muzzle flash, recoil, or bullet impact is visible.\",\n      \"reason\": \"Holding and aiming a gun (f7–f9) does not constitute 'Shooting' per definition, which requires visible shooting (e.g., muzzle flash, recoil, impact). No such evidence appears; thus the hypothesis is unsupported. However, since the candidate interval aligns exactly with frames where the gun is aimed and the prior fighting ends at f6, and given the strict taxonomy, this cannot be classified as Shooting. Confidence low; but per instruction, we must reject if unsupported — yet the prompt says *only* output categories if they match definitions. Since no shooting is visible, it must be rejected, not accepted. Correction: this event should be **rejected**, not accepted. Re-evaluate.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"No visible shooting occurs: frames f7–f9 show only aiming of a handgun without muzzle flash, recoil, or impact; 'Shooting' requires visible discharge, which is absent.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 10.5,
+              "f1": 11.0,
+              "f2": 11.5,
+              "f3": 12.0,
+              "f4": 12.5,
+              "f5": 13.0,
+              "f6": 13.5,
+              "f7": 14.0,
+              "f8": 14.5,
+              "f9": 15.0,
+              "f10": 15.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 6,
+                "t_start": 12.3,
+                "t_end": 13.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 14.0,
+                "t_end": 15.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [6],\n      \"category\": \"Fighting\",\n      \"t_start\": 12.5,\n      \"t_end\": 13.5,\n      \"confidence\": 0.95,\n      \"description\": \"A man in a patterned shirt physically restrains another man from behind, maintaining contact and forcing him forward toward a counter across frames f4–f6.\",\n      \"reason\": \"Frames f4–f6 show sustained physical grappling: f4 (grab from behind), f5 (arm around torso, active control), f6 (restrained man guided toward surface while still held); this meets the definition of Fighting as mutual or one-sided physical combat; victim is not clearly helpless (resisting posture visible in f5), so not Abuse.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"No visible shooting occurs: frames f7–f9 show only aiming a handgun with no muzzle flash, recoil, bullet impact, or other evidence of discharge; 'Shooting' requires visible firing, which is absent per definition.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                6
+              ],
+              "category": "Fighting",
+              "t_start": 12.5,
+              "t_end": 13.5,
+              "confidence": 0.95,
+              "description": "A man in a patterned shirt physically restrains another man from behind, maintaining contact and forcing him forward toward a counter across frames f4–f6.",
+              "reason": "Frames f4–f6 show sustained physical grappling: f4 (grab from behind), f5 (arm around torso, active control), f6 (restrained man guided toward surface while still held); this meets the definition of Fighting as mutual or one-sided physical combat; victim is not clearly helpless (resisting posture visible in f5), so not Abuse.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 7,
+              "reason": "No visible shooting occurs: frames f7–f9 show only aiming a handgun with no muzzle flash, recoil, bullet impact, or other evidence of discharge; 'Shooting' requires visible firing, which is absent per definition.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8",
+                "f9"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

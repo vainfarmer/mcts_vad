@@ -1,0 +1,435 @@
+{
+  "events": [
+    {
+      "t_start": 4.0,
+      "t_end": 5.0,
+      "anomaly_type": "Shooting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "At f4 (4.0s), a man in the driver’s seat points a handgun forward; at f5 (4.5s), bright muzzle-like sparks erupt from the passenger-side window as he leans out, consistent with discharge.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          4.0,
+          4.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "Visible muzzle flash/sparks at f5 confirm firing; f4 shows weapon aimed—this satisfies 'Shooting' (visible shooting).",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 5.0,
+      "t_end": 5.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "At f6 (5.0s), two SUVs approach head-on on a dirt road; by f7 (5.5s), the left vehicle is heavily damaged with visible deformation and debris, indicating a recent collision.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 1,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          5.0,
+          5.5
+        ],
+        "evidence_frame_ids": [
+          "f6",
+          "f7"
+        ],
+        "reason": "Frame f6 shows imminent impact; f7 shows post-impact damage (crumpled front, displaced parts) without recovery motion—supports 'CarAccident'.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 6.5,
+      "t_end": 7.0,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.7,
+      "coarse_score": 0.7,
+      "description": "At f9 (6.5s), an SUV is seen entering a metal structure; at f10 (7.0s), the interior view shows violent motion blur and a bright light source consistent with impact inside the structure.",
+      "source_candidate_ids": [
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 2,
+        "vlm_confidence": 0.7,
+        "evidence_times": [
+          6.5,
+          7.0
+        ],
+        "evidence_frame_ids": [
+          "f9",
+          "f10"
+        ],
+        "reason": "f9 shows vehicle approaching obstruction; f10 shows chaotic interior motion and illumination change typical of sudden deceleration/impact—supports 'CarAccident', though less direct than candidate 1.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 14.5,
+      "t_end": 15.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A heavily damaged, mud-splattered SUV with broken windshield and bent structure is stationary with headlights on; another vehicle appears to have collided with it or been involved in a crash nearby.",
+      "source_candidate_ids": [
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          14.5,
+          15.0,
+          15.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "f4 shows two vehicles in close proximity with visible deformation and debris; f5 shows the front of a Mercedes SUV covered in mud and with shattered windshield, consistent with post-collision state; f6 shows a large excavator wheel near the scene, suggesting recovery or aftermath—not part of the accident itself—but the damage is evident and not explainable by normal driving. No motion blur indicating ongoing impact, but static damage confirms a prior crash within this interval.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 17.5,
+      "t_end": 18.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A silver SUV is crushed under the bucket of a front-end loader, with visible deformation and smoke at impact (f5), and remains pinned in f6.",
+      "source_candidate_ids": [
+        5
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 3,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          17.5,
+          18.0,
+          18.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "f4 shows the SUV approaching; f5 shows immediate post-impact with vehicle compressed and smoke; f6 confirms sustained crushing—this satisfies CarAccident (crash involving vehicle deformation due to collision with heavy machinery).",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 6,
+      "output_count": 5,
+      "groups": 4,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 2.0,
+              "f1": 2.5,
+              "f2": 3.0,
+              "f3": 3.5,
+              "f4": 4.0,
+              "f5": 4.5,
+              "f6": 5.0,
+              "f7": 5.5,
+              "f8": 6.0,
+              "f9": 6.5,
+              "f10": 7.0,
+              "f11": 7.5,
+              "f12": 8.0,
+              "f13": 8.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 4.0,
+                "t_end": 5.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 5.0,
+                "t_end": 5.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 6.5,
+                "t_end": 7.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Shooting\",\n      \"t_start\": 4.0,\n      \"t_end\": 5.0,\n      \"confidence\": 0.9,\n      \"description\": \"At f4 (4.0s), a man in the driver’s seat points a handgun forward; at f5 (4.5s), bright muzzle-like sparks erupt from the passenger-side window as he leans out, consistent with discharge.\",\n      \"reason\": \"Visible muzzle flash/sparks at f5 confirm firing; f4 shows weapon aimed—this satisfies 'Shooting' (visible shooting).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    },\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"CarAccident\",\n      \"t_start\": 5.0,\n      \"t_end\": 5.5,\n      \"confidence\": 0.85,\n      \"description\": \"At f6 (5.0s), two SUVs approach head-on on a dirt road; by f7 (5.5s), the left vehicle is heavily damaged with visible deformation and debris, indicating a recent collision.\",\n      \"reason\": \"Frame f6 shows imminent impact; f7 shows post-impact damage (crumpled front, displaced parts) without recovery motion—supports 'CarAccident'.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\"]\n    },\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"CarAccident\",\n      \"t_start\": 6.5,\n      \"t_end\": 7.0,\n      \"confidence\": 0.7,\n      \"description\": \"At f9 (6.5s), an SUV is seen entering a metal structure; at f10 (7.0s), the interior view shows violent motion blur and a bright light source consistent with impact inside the structure.\",\n      \"reason\": \"f9 shows vehicle approaching obstruction; f10 shows chaotic interior motion and illumination change typical of sudden deceleration/impact—supports 'CarAccident', though less direct than candidate 1.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Shooting",
+              "t_start": 4.0,
+              "t_end": 5.0,
+              "confidence": 0.9,
+              "description": "At f4 (4.0s), a man in the driver’s seat points a handgun forward; at f5 (4.5s), bright muzzle-like sparks erupt from the passenger-side window as he leans out, consistent with discharge.",
+              "reason": "Visible muzzle flash/sparks at f5 confirm firing; f4 shows weapon aimed—this satisfies 'Shooting' (visible shooting).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "CarAccident",
+              "t_start": 5.0,
+              "t_end": 5.5,
+              "confidence": 0.85,
+              "description": "At f6 (5.0s), two SUVs approach head-on on a dirt road; by f7 (5.5s), the left vehicle is heavily damaged with visible deformation and debris, indicating a recent collision.",
+              "reason": "Frame f6 shows imminent impact; f7 shows post-impact damage (crumpled front, displaced parts) without recovery motion—supports 'CarAccident'.",
+              "evidence_frame_ids": [
+                "f6",
+                "f7"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                2
+              ],
+              "category": "CarAccident",
+              "t_start": 6.5,
+              "t_end": 7.0,
+              "confidence": 0.7,
+              "description": "At f9 (6.5s), an SUV is seen entering a metal structure; at f10 (7.0s), the interior view shows violent motion blur and a bright light source consistent with impact inside the structure.",
+              "reason": "f9 shows vehicle approaching obstruction; f10 shows chaotic interior motion and illumination change typical of sudden deceleration/impact—supports 'CarAccident', though less direct than candidate 1.",
+              "evidence_frame_ids": [
+                "f9",
+                "f10"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 8.5,
+              "f1": 9.0,
+              "f2": 9.5,
+              "f3": 10.0,
+              "f4": 10.5,
+              "f5": 11.0,
+              "f6": 11.5,
+              "f7": 12.0,
+              "f8": 12.5,
+              "f9": 13.0,
+              "f10": 13.5,
+              "f11": 14.0,
+              "f12": 14.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 10.5,
+                "t_end": 13.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"No visible crash or vehicle deformation; f4–f5 show a SUV driving through smoke/dust, f9 shows motion blur of a passing vehicle but no impact, and f12 shows two vehicles side-by-side with no collision evidence.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f9\", \"f12\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 3,
+              "reason": "No visible crash or vehicle deformation; f4–f5 show a SUV driving through smoke/dust, f9 shows motion blur of a passing vehicle but no impact, and f12 shows two vehicles side-by-side with no collision evidence.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f9",
+                "f12"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 12.5,
+              "f1": 13.0,
+              "f2": 13.5,
+              "f3": 14.0,
+              "f4": 14.5,
+              "f5": 15.0,
+              "f6": 15.5,
+              "f7": 16.0,
+              "f8": 16.5,
+              "f9": 17.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 14.5,
+                "t_end": 15.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"CarAccident\",\n      \"t_start\": 14.5,\n      \"t_end\": 15.5,\n      \"confidence\": 0.9,\n      \"description\": \"A heavily damaged, mud-splattered SUV with broken windshield and bent structure is stationary with headlights on; another vehicle appears to have collided with it or been involved in a crash nearby.\",\n      \"reason\": \"f4 shows two vehicles in close proximity with visible deformation and debris; f5 shows the front of a Mercedes SUV covered in mud and with shattered windshield, consistent with post-collision state; f6 shows a large excavator wheel near the scene, suggesting recovery or aftermath—not part of the accident itself—but the damage is evident and not explainable by normal driving. No motion blur indicating ongoing impact, but static damage confirms a prior crash within this interval.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                4
+              ],
+              "category": "CarAccident",
+              "t_start": 14.5,
+              "t_end": 15.5,
+              "confidence": 0.9,
+              "description": "A heavily damaged, mud-splattered SUV with broken windshield and bent structure is stationary with headlights on; another vehicle appears to have collided with it or been involved in a crash nearby.",
+              "reason": "f4 shows two vehicles in close proximity with visible deformation and debris; f5 shows the front of a Mercedes SUV covered in mud and with shattered windshield, consistent with post-collision state; f6 shows a large excavator wheel near the scene, suggesting recovery or aftermath—not part of the accident itself—but the damage is evident and not explainable by normal driving. No motion blur indicating ongoing impact, but static damage confirms a prior crash within this interval.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 15.5,
+              "f1": 16.0,
+              "f2": 16.5,
+              "f3": 17.0,
+              "f4": 17.5,
+              "f5": 18.0,
+              "f6": 18.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 5,
+                "t_start": 17.5,
+                "t_end": 18.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [5],\n      \"category\": \"CarAccident\",\n      \"t_start\": 17.5,\n      \"t_end\": 18.5,\n      \"confidence\": 0.95,\n      \"description\": \"A silver SUV is crushed under the bucket of a front-end loader, with visible deformation and smoke at impact (f5), and remains pinned in f6.\",\n      \"reason\": \"f4 shows the SUV approaching; f5 shows immediate post-impact with vehicle compressed and smoke; f6 confirms sustained crushing—this satisfies CarAccident (crash involving vehicle deformation due to collision with heavy machinery).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                5
+              ],
+              "category": "CarAccident",
+              "t_start": 17.5,
+              "t_end": 18.5,
+              "confidence": 0.95,
+              "description": "A silver SUV is crushed under the bucket of a front-end loader, with visible deformation and smoke at impact (f5), and remains pinned in f6.",
+              "reason": "f4 shows the SUV approaching; f5 shows immediate post-impact with vehicle compressed and smoke; f6 confirms sustained crushing—this satisfies CarAccident (crash involving vehicle deformation due to collision with heavy machinery).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

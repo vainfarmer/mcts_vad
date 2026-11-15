@@ -1,0 +1,213 @@
+{
+  "events": [
+    {
+      "t_start": 40.5,
+      "t_end": 42.0,
+      "anomaly_type": "Explosion",
+      "confidence": 0.8,
+      "coarse_score": 0.8,
+      "description": "A bright flash and rapid expansion of smoke/dust at the doorway (f4–f5), followed by a figure being thrown backward and lying motionless (f6–f7).",
+      "source_candidate_ids": [
+        0,
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.8,
+        "evidence_times": [
+          40.5,
+          41.0,
+          41.5,
+          42.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7"
+        ],
+        "reason": "f4 shows a bright flash and motion blur consistent with a blast; f5 shows dense smoke filling the doorway; f6–f7 show the person on the ground with dust settling—this sequence matches an explosion’s immediate effects (blast wave, displacement, debris), not a gunshot alone. Candidate 0 (Shooting) is subsumed because no firearm discharge is visible and the scale of displacement suggests a blast.",
+        "source_categories": [
+          "Shooting",
+          "Explosion"
+        ]
+      }
+    },
+    {
+      "t_start": 42.0,
+      "t_end": 46.2,
+      "anomaly_type": "Abuse",
+      "confidence": 0.7,
+      "coarse_score": 0.7,
+      "description": "A person lies motionless on dusty ground after being thrown back through a doorway, with blood visible on their torso in later overhead shots.",
+      "source_candidate_ids": [
+        2,
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 1,
+        "vlm_confidence": 0.7,
+        "evidence_times": [
+          42.0,
+          42.5,
+          43.0,
+          43.5,
+          44.0,
+          44.5,
+          45.0,
+          45.5,
+          46.0
+        ],
+        "evidence_frame_ids": [
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15"
+        ],
+        "reason": "From f7 onward, the person remains prone without movement; f13–f15 show bloodstains on clothing and dust settling, indicating injury and helplessness. No aggressor is visible, but the prior explosion (f4–f5) likely caused the trauma, and the sustained immobility with injury satisfies Abuse (aggression against a helpless victim) if the explosion was intentional—however, since intent is unseen, confidence is reduced; still, the visible state (injured, immobile, bloodied) meets the definition given the context of sudden violent displacement.",
+        "source_categories": [
+          "Abuse",
+          "Abuse"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 4,
+      "output_count": 2,
+      "groups": 1,
+      "rejected": 0,
+      "uncertain": 0,
+      "merged_sources": 2,
+      "relabeled": 1,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 38.5,
+              "f1": 39.0,
+              "f2": 39.5,
+              "f3": 40.0,
+              "f4": 40.5,
+              "f5": 41.0,
+              "f6": 41.5,
+              "f7": 42.0,
+              "f8": 42.5,
+              "f9": 43.0,
+              "f10": 43.5,
+              "f11": 44.0,
+              "f12": 44.5,
+              "f13": 45.0,
+              "f14": 45.5,
+              "f15": 46.0,
+              "f16": 46.5,
+              "f17": 47.0,
+              "f18": 47.5,
+              "f19": 48.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 40.5,
+                "t_end": 41.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 41.0,
+                "t_end": 42.0,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 42.0,
+                "t_end": 46.2,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 42.0,
+                "t_end": 43.2,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Explosion\",\n      \"t_start\": 40.5,\n      \"t_end\": 42.0,\n      \"confidence\": 0.8,\n      \"description\": \"A bright flash and rapid expansion of smoke/dust at the doorway (f4–f5), followed by a figure being thrown backward and lying motionless (f6–f7).\",\n      \"reason\": \"f4 shows a bright flash and motion blur consistent with a blast; f5 shows dense smoke filling the doorway; f6–f7 show the person on the ground with dust settling—this sequence matches an explosion’s immediate effects (blast wave, displacement, debris), not a gunshot alone. Candidate 0 (Shooting) is subsumed because no firearm discharge is visible and the scale of displacement suggests a blast.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    },\n    {\n      \"source_candidate_ids\": [2, 3],\n      \"category\": \"Abuse\",\n      \"t_start\": 42.0,\n      \"t_end\": 46.2,\n      \"confidence\": 0.7,\n      \"description\": \"A person lies motionless on dusty ground after being thrown back through a doorway, with blood visible on their torso in later overhead shots.\",\n      \"reason\": \"From f7 onward, the person remains prone without movement; f13–f15 show bloodstains on clothing and dust settling, indicating injury and helplessness. No aggressor is visible, but the prior explosion (f4–f5) likely caused the trauma, and the sustained immobility with injury satisfies Abuse (aggression against a helpless victim) if the explosion was intentional—however, since intent is unseen, confidence is reduced; still, the visible state (injured, immobile, bloodied) meets the definition given the context of sudden violent displacement.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1
+              ],
+              "category": "Explosion",
+              "t_start": 40.5,
+              "t_end": 42.0,
+              "confidence": 0.8,
+              "description": "A bright flash and rapid expansion of smoke/dust at the doorway (f4–f5), followed by a figure being thrown backward and lying motionless (f6–f7).",
+              "reason": "f4 shows a bright flash and motion blur consistent with a blast; f5 shows dense smoke filling the doorway; f6–f7 show the person on the ground with dust settling—this sequence matches an explosion’s immediate effects (blast wave, displacement, debris), not a gunshot alone. Candidate 0 (Shooting) is subsumed because no firearm discharge is visible and the scale of displacement suggests a blast.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                2,
+                3
+              ],
+              "category": "Abuse",
+              "t_start": 42.0,
+              "t_end": 46.2,
+              "confidence": 0.7,
+              "description": "A person lies motionless on dusty ground after being thrown back through a doorway, with blood visible on their torso in later overhead shots.",
+              "reason": "From f7 onward, the person remains prone without movement; f13–f15 show bloodstains on clothing and dust settling, indicating injury and helplessness. No aggressor is visible, but the prior explosion (f4–f5) likely caused the trauma, and the sustained immobility with injury satisfies Abuse (aggression against a helpless victim) if the explosion was intentional—however, since intent is unseen, confidence is reduced; still, the visible state (injured, immobile, bloodied) meets the definition given the context of sudden violent displacement.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

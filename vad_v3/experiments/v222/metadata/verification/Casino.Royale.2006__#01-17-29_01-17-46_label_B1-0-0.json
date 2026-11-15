@@ -1,0 +1,186 @@
+{
+  "events": [
+    {
+      "t_start": 10.0,
+      "t_end": 14.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A dark-skinned man grabs and restrains a light-skinned man in close physical combat; the struggle includes grappling, lifting, and forced movement across the room, with visible strain and resistance.",
+      "source_candidate_ids": [
+        1,
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          9.5,
+          10.0,
+          10.5,
+          11.0,
+          11.5,
+          12.0,
+          12.5,
+          13.0,
+          13.5,
+          14.0,
+          14.5
+        ],
+        "evidence_frame_ids": [
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13"
+        ],
+        "reason": "Frames f3–f13 show continuous mutual physical engagement: f3 shows sudden contact, f4–f6 depict dynamic struggle (lifting, falling), f7–f8 show the aggressor seated with restrained victim, f9–f13 show sustained close grappling with facial expressions of exertion and distress—consistent with fighting, not one-sided abuse (victim resists, e.g., f10–f13). Merged because all frames depict the same uninterrupted altercation.",
+        "source_categories": [
+          "Fighting",
+          "Fighting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 4,
+      "output_count": 1,
+      "groups": 1,
+      "rejected": 2,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 8.0,
+              "f1": 8.5,
+              "f2": 9.0,
+              "f3": 9.5,
+              "f4": 10.0,
+              "f5": 10.5,
+              "f6": 11.0,
+              "f7": 11.5,
+              "f8": 12.0,
+              "f9": 12.5,
+              "f10": 13.0,
+              "f11": 13.5,
+              "f12": 14.0,
+              "f13": 14.5,
+              "f14": 15.0,
+              "f15": 15.5,
+              "f16": 16.0,
+              "f17": 16.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 10.0,
+                "t_end": 11.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 10.3,
+                "t_end": 11.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 10.5,
+                "t_end": 15.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 13.0,
+                "t_end": 14.5,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1, 2],\n      \"category\": \"Fighting\",\n      \"t_start\": 10.0,\n      \"t_end\": 14.5,\n      \"confidence\": 0.95,\n      \"description\": \"A dark-skinned man grabs and restrains a light-skinned man in close physical combat; the struggle includes grappling, lifting, and forced movement across the room, with visible strain and resistance.\",\n      \"reason\": \"Frames f3–f13 show continuous mutual physical engagement: f3 shows sudden contact, f4–f6 depict dynamic struggle (lifting, falling), f7–f8 show the aggressor seated with restrained victim, f9–f13 show sustained close grappling with facial expressions of exertion and distress—consistent with fighting, not one-sided abuse (victim resists, e.g., f10–f13). Merged because all frames depict the same uninterrupted altercation.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"The interaction from 10.0–11.5 is mutual physical combat (visible resistance, dynamic motion), not one-sided abuse; abuse requires a helpless victim, but the light-skinned man actively struggles (e.g., f4, f6, f10).\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f10\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"From 13.0–14.5, the light-skinned man is still resisting (facial tension, head movement) while being held—indicating ongoing fighting, not passive abuse; no evidence of helplessness or sustained domination without resistance.\",\n      \"evidence_frame_ids\": [\"f10\", \"f11\", \"f12\", \"f13\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1,
+                2
+              ],
+              "category": "Fighting",
+              "t_start": 10.0,
+              "t_end": 14.5,
+              "confidence": 0.95,
+              "description": "A dark-skinned man grabs and restrains a light-skinned man in close physical combat; the struggle includes grappling, lifting, and forced movement across the room, with visible strain and resistance.",
+              "reason": "Frames f3–f13 show continuous mutual physical engagement: f3 shows sudden contact, f4–f6 depict dynamic struggle (lifting, falling), f7–f8 show the aggressor seated with restrained victim, f9–f13 show sustained close grappling with facial expressions of exertion and distress—consistent with fighting, not one-sided abuse (victim resists, e.g., f10–f13). Merged because all frames depict the same uninterrupted altercation.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "The interaction from 10.0–11.5 is mutual physical combat (visible resistance, dynamic motion), not one-sided abuse; abuse requires a helpless victim, but the light-skinned man actively struggles (e.g., f4, f6, f10).",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f10"
+              ]
+            },
+            {
+              "candidate_id": 3,
+              "reason": "From 13.0–14.5, the light-skinned man is still resisting (facial tension, head movement) while being held—indicating ongoing fighting, not passive abuse; no evidence of helplessness or sustained domination without resistance.",
+              "evidence_frame_ids": [
+                "f10",
+                "f11",
+                "f12",
+                "f13"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

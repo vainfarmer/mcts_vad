@@ -1,0 +1,176 @@
+{
+  "events": [
+    {
+      "t_start": 19.5,
+      "t_end": 28.0,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A sudden large blast erupts at a building complex at f4 (19.5 s), producing a rising fireball and expanding smoke plume that peaks around f7–f8 and continues to billow through f13–f21, with debris visible and dust cloud obscuring the site.",
+      "source_candidate_ids": [
+        0,
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          19.5,
+          20.0,
+          20.5,
+          21.0,
+          21.5,
+          22.0,
+          22.5,
+          23.0,
+          23.5,
+          24.0,
+          24.5,
+          25.0,
+          25.5,
+          26.0,
+          26.5,
+          27.0,
+          27.5,
+          28.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18",
+          "f19",
+          "f20",
+          "f21"
+        ],
+        "reason": "Frames f4–f12 show a rapid onset of a fireball and expanding smoke/dust consistent with a high-energy explosion; subsequent frames (f13–f21) show sustained dust and structural damage without signs of ongoing fire or combat—supporting a single explosive event rather than multiple or sustained activity. The two candidates describe overlapping intervals of the same physical event, so they are merged.",
+        "source_categories": [
+          "Explosion",
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 2,
+      "output_count": 1,
+      "groups": 1,
+      "rejected": 0,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 17.5,
+              "f1": 18.0,
+              "f2": 18.5,
+              "f3": 19.0,
+              "f4": 19.5,
+              "f5": 20.0,
+              "f6": 20.5,
+              "f7": 21.0,
+              "f8": 21.5,
+              "f9": 22.0,
+              "f10": 22.5,
+              "f11": 23.0,
+              "f12": 23.5,
+              "f13": 24.0,
+              "f14": 24.5,
+              "f15": 25.0,
+              "f16": 25.5,
+              "f17": 26.0,
+              "f18": 26.5,
+              "f19": 27.0,
+              "f20": 27.5,
+              "f21": 28.0,
+              "f22": 28.5,
+              "f23": 29.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 19.5,
+                "t_end": 23.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 21.5,
+                "t_end": 28.0,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Explosion\",\n      \"t_start\": 19.5,\n      \"t_end\": 28.0,\n      \"confidence\": 0.95,\n      \"description\": \"A sudden large blast erupts at a building complex at f4 (19.5 s), producing a rising fireball and expanding smoke plume that peaks around f7–f8 and continues to billow through f13–f21, with debris visible and dust cloud obscuring the site.\",\n      \"reason\": \"Frames f4–f12 show a rapid onset of a fireball and expanding smoke/dust consistent with a high-energy explosion; subsequent frames (f13–f21) show sustained dust and structural damage without signs of ongoing fire or combat—supporting a single explosive event rather than multiple or sustained activity. The two candidates describe overlapping intervals of the same physical event, so they are merged.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1
+              ],
+              "category": "Explosion",
+              "t_start": 19.5,
+              "t_end": 28.0,
+              "confidence": 0.95,
+              "description": "A sudden large blast erupts at a building complex at f4 (19.5 s), producing a rising fireball and expanding smoke plume that peaks around f7–f8 and continues to billow through f13–f21, with debris visible and dust cloud obscuring the site.",
+              "reason": "Frames f4–f12 show a rapid onset of a fireball and expanding smoke/dust consistent with a high-energy explosion; subsequent frames (f13–f21) show sustained dust and structural damage without signs of ongoing fire or combat—supporting a single explosive event rather than multiple or sustained activity. The two candidates describe overlapping intervals of the same physical event, so they are merged.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "5a82d0dd6e711938ee6c8e0ecf1c6f7fdb68cac4e5e95683ad672320f7156da9"
+}

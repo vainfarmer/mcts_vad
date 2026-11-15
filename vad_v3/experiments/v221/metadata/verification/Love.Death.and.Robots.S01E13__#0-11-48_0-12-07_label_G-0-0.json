@@ -1,0 +1,382 @@
+{
+  "events": [
+    {
+      "t_start": 1.0,
+      "t_end": 1.5,
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "anomaly_type": "Shooting",
+      "description": "A soldier in tactical gear is seen aiming and firing a rifle; muzzle flash is visible in frame f2 (1.0s) and a blue energy beam (likely from a sci-fi weapon) is visible in frame f3 (1.5s), indicating active shooting.",
+      "proposal_id": "p0000",
+      "evidence_frame_ids": [
+        "f2",
+        "f3"
+      ],
+      "source_categories": [
+        "Fighting",
+        "Shooting",
+        "Riot",
+        "CarAccident",
+        "Explosion"
+      ],
+      "reported_interval": [
+        1.0,
+        1.5
+      ],
+      "clipped_to_inspection": false,
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "uncertain",
+        "group_id": 0,
+        "vlm_confidence": 0.85,
+        "reason": "schema_repair_exhausted: Invalid confidence or interval [1.0, 1.0]; visible bounds=(0.0, 7.5), confidence must be 0..1"
+      }
+    },
+    {
+      "t_start": 3.0,
+      "t_end": 5.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A sudden bright fireball erupts at the aircraft wreckage in f4, expands rapidly through f5, and begins dissipating by f6, with visible debris ejection and shock front.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          3.0,
+          3.5,
+          4.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "Frames f4–f6 show a rapid energy release with expanding fireball, fragmentation, and displacement of material—defining features of an explosion; f7 onward shows only smoke, embers, and falling sparks without blast dynamics, so the explosion phase ends by ~5.5 s.",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 2,
+      "output_count": 2,
+      "groups": 2,
+      "rejected": 0,
+      "uncertain": 1,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 1,
+      "schema_fallback_groups": 1
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 1.0,
+                "t_end": 1.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Shooting\",\n      \"t_start\": 1.0,\n      \"t_end\": 1.5,\n      \"confidence\": 0.9,\n      \"description\": \"A figure in tactical gear aims a rifle while a bright blue energy beam (likely from the weapon) streaks horizontally across the frame in f2; f1 shows the same figure holding the rifle in a ready position, and f2 is the only frame showing the beam, consistent with a single shot discharge.\",\n      \"reason\": \"The blue beam in f2 is a transient visual effect aligned with the rifle’s muzzle and direction of aim, satisfying the 'visible shooting' criterion; no other frames show sustained fire or multiple shots, so the event is bounded by f1–f2 (0.5–1.0 s) but candidate interval [1.0,1.5] overlaps this and includes f2 where the shot is visible; we accept the candidate interval as it contains the key evidence frame f2 and aligns with the action onset.\",\n      \"evidence_frame_ids\": [\"f1\", \"f2\"]\n    },\n    {\n      \"source_candidate_ids\": [],\n      \"category\": \"Explosion\",\n      \"t_start\": 3.0,\n      \"t_end\": 3.0,\n      \"confidence\": 1.0,\n      \"description\": \"A large fireball erupts at the location of the crashed aircraft in f6, with expanding smoke and debris, indicating a sudden blast.\",\n      \"reason\": \"f6 shows a clear detonation event—rapid expansion, bright core, and displaced material—meeting the definition of explosion; no prior frame shows buildup, but the event is fully captured in f6, so t_start = t_end = 3.0 is valid for a instantaneous blast.\",\n      \"evidence_frame_ids\": [\"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 1.0,
+                "t_end": 1.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Shooting\",\n      \"t_start\": 1.0,\n      \"t_end\": 1.5,\n      \"confidence\": 0.8,\n      \"description\": \"In f2 (1.0 s), a figure in tactical gear aims a rifle and a bright blue horizontal beam emanates from near the muzzle, consistent with a single energy-based discharge; f1 (0.5 s) shows the same figure holding the rifle in a ready posture, supporting the action sequence.\",\n      \"reason\": \"The blue beam in f2 is transient, aligned with the weapon’s aim, and absent in adjacent frames—satisfying 'visible shooting' per definition; candidate interval [1.0,1.5] includes f2 (the only frame showing the discharge) and starts at the onset of the visible shot, so it is accepted despite f1 being earlier—interval remains within visible bounds and overlaps the event.\",\n      \"evidence_frame_ids\": [\"f1\", \"f2\"]\n    },\n    {\n      \"source_candidate_ids\": [],\n      \"category\": \"Explosion\",\n      \"t_start\": 3.0,\n      \"t_end\": 3.0,\n      \"confidence\": 1.0,\n      \"description\": \"In f6 (3.0 s), a large fireball with rapidly expanding smoke and debris erupts at the aircraft’s location, indicating a sudden blast.\",\n      \"reason\": \"f6 alone shows a classic explosion: bright core, outward expansion, and displaced material; no prior buildup is visible, but the definition requires only a blast—not sustained fire—and this is fully captured in one frame, so t_start = t_end = 3.0 is valid.\",\n      \"evidence_frame_ids\": [\"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 1.0,
+                "t_end": 1.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Shooting\",\n      \"t_start\": 1.0,\n      \"t_end\": 1.0,\n      \"confidence\": 0.9,\n      \"description\": \"In f2 (1.0 s), a figure aims a rifle and a bright blue horizontal energy beam is visible extending from near the muzzle, consistent with a single discharge event.\",\n      \"reason\": \"The definition requires 'visible shooting', i.e., visible discharge—not just weapon possession. The blue beam in f2 is transient, aligned with the weapon’s aim, and absent in f1 (0.5 s) and f3 (1.5 s), confirming a single instantaneous shot at t=1.0 s; the candidate interval [1.0,1.5] includes the shot but extends beyond the visible event—so the supported interval is truncated to t_start = t_end = 1.0 to reflect the only frame showing the discharge.\",\n      \"evidence_frame_ids\": [\"f2\"]\n    },\n    {\n      \"source_candidate_ids\": [],\n      \"category\": \"Explosion\",\n      \"t_start\": 3.0,\n      \"t_end\": 3.0,\n      \"confidence\": 1.0,\n      \"description\": \"In f6 (3.0 s), a large fireball with rapid outward expansion, bright core, and displaced debris erupts at the aircraft’s location, indicating a sudden blast.\",\n      \"reason\": \"f6 shows a clear detonation: abrupt energy release, expanding shock front, and material displacement—meeting the 'Explosion' definition; no prior frames show buildup, but the event is fully captured in one frame, so t_start = t_end = 3.0 is valid.\",\n      \"evidence_frame_ids\": [\"f6\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"The candidate proposes interval [1.0,1.5] for Shooting, but the only evidence of discharge is in f2 (1.0 s); f3 (1.5 s) shows no beam or recoil, so the event does not persist to 1.5 s. The accepted event uses corrected interval [1.0,1.0] to match visible evidence, thus the original candidate interval is rejected as overextended.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0,
+              "f9": 4.5,
+              "f10": 5.0,
+              "f11": 5.5,
+              "f12": 6.0,
+              "f13": 6.5,
+              "f14": 7.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 1.0,
+                "t_end": 1.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Shooting\",\n      \"t_start\": 1.0,\n      \"t_end\": 1.5,\n      \"confidence\": 0.9,\n      \"description\": \"A figure in tactical gear aims a rifle while a bright blue energy beam (likely a weapon discharge) streaks horizontally across the frame in f2.\",\n      \"reason\": \"The visible blue beam in f2 (t=1.0) is consistent with a directed-energy weapon firing; the shooter is in aiming posture, and the beam originates from near the weapon’s muzzle. This satisfies the 'Shooting' definition requiring visible shooting, not just holding a gun.\",\n      \"evidence_frame_ids\": [\"f2\"]\n    },\n    {\n      \"source_candidate_ids\": [],\n      \"category\": \"Explosion\",\n      \"t_start\": 3.0,\n      \"t_end\": 4.0,\n      \"confidence\": 1.0,\n      \"description\": \"A large fireball erupts from the crashed aircraft in f6, expanding rapidly through f7–f8, with debris and shockwave effects visible.\",\n      \"reason\": \"Frames f6–f8 show a sudden, violent blast with rapid expansion, fireball, and ejection of material—meeting the definition of 'Explosion'. No candidate was provided for this, but it is a clearly visible event within the interval and must be reported as an independent event per instructions.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0,
+              "f9": 4.5,
+              "f10": 5.0,
+              "f11": 5.5,
+              "f12": 6.0,
+              "f13": 6.5,
+              "f14": 7.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 1.0,
+                "t_end": 1.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Shooting\",\n      \"t_start\": 1.0,\n      \"t_end\": 1.5,\n      \"confidence\": 0.8,\n      \"description\": \"In f2 (t=1.0), a figure in tactical gear aims a rifle and a bright blue horizontal beam originates near the weapon, consistent with a directed-energy discharge.\",\n      \"reason\": \"The blue beam is visible at t=1.0 and aligns spatially with the weapon’s muzzle; this constitutes visible shooting per definition (requires visible shooting, not merely holding a gun). No subsequent frame (f3 at t=1.5) shows continuation or impact, but the discharge itself is captured in f2.\",\n      \"evidence_frame_ids\": [\"f2\"]\n    },\n    {\n      \"source_candidate_ids\": [],\n      \"category\": \"Explosion\",\n      \"t_start\": 3.0,\n      \"t_end\": 4.0,\n      \"confidence\": 1.0,\n      \"description\": \"A large fireball erupts from the aircraft in f6 (t=3.0), expands through f7 (t=3.5) and f8 (t=4.0), with debris ejection and shockwave-like expansion.\",\n      \"reason\": \"Frames f6–f8 show a sudden, violent blast with rapid fireball growth and material displacement—meeting the 'Explosion' definition. This event is independent of candidate 0 and must be reported as a separate event per instructions.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0,
+              "f9": 4.5,
+              "f10": 5.0,
+              "f11": 5.5,
+              "f12": 6.0,
+              "f13": 6.5,
+              "f14": 7.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 1.0,
+                "t_end": 1.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Shooting\",\n      \"t_start\": 1.0,\n      \"t_end\": 1.0,\n      \"confidence\": 0.7,\n      \"description\": \"In f2 (t=1.0), a figure in tactical gear aims a rifle and a bright blue horizontal beam originates near the weapon’s muzzle, consistent with a visible discharge.\",\n      \"reason\": \"The definition of 'Shooting' requires visible shooting (not just holding a gun); the blue beam in f2 is spatially aligned with the weapon and appears instantaneous, satisfying the criterion. However, no preceding or following frame confirms continuity, and the beam could be ambient lighting or visual effect; thus confidence is reduced. The event is confined to t=1.0 (f2) only, not extended to t=1.5 (f3), as f3 shows no beam or discharge.\",\n      \"evidence_frame_ids\": [\"f2\"]\n    },\n    {\n      \"source_candidate_ids\": [],\n      \"category\": \"Explosion\",\n      \"t_start\": 3.0,\n      \"t_end\": 4.0,\n      \"confidence\": 1.0,\n      \"description\": \"A large fireball erupts from the crashed aircraft in f6 (t=3.0), expands through f7 (t=3.5) and f8 (t=4.0), with rapid expansion, debris ejection, and shockwave-like displacement of material.\",\n      \"reason\": \"Frames f6–f8 show a sudden, violent blast with characteristic fireball growth and material expulsion—meeting the strict definition of 'Explosion'. This is an independent, clearly visible event not covered by candidate 0.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"The candidate specifies interval [1.0, 1.5], but visible evidence of shooting occurs only at t=1.0 (f2); f3 (t=1.5) shows no beam, impact, or continuation, so the full interval is unsupported. The event is accepted only at t=1.0, not the full candidate interval.\"\n    }\n  ]\n}"
+          }
+        ],
+        "decision": {
+          "status": "unresolved_schema",
+          "events": [],
+          "rejected": [],
+          "uncertain": [
+            {
+              "candidate_id": 0,
+              "reason": "schema_repair_exhausted: Invalid confidence or interval [1.0, 1.0]; visible bounds=(0.0, 7.5), confidence must be 0..1"
+            }
+          ],
+          "schema_error": "Invalid confidence or interval [1.0, 1.0]; visible bounds=(0.0, 7.5), confidence must be 0..1"
+        },
+        "context_retry": true
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 1.0,
+              "f1": 1.5,
+              "f2": 2.0,
+              "f3": 2.5,
+              "f4": 3.0,
+              "f5": 3.5,
+              "f6": 4.0,
+              "f7": 4.5,
+              "f8": 5.0,
+              "f9": 5.5,
+              "f10": 6.0,
+              "f11": 6.5,
+              "f12": 7.0,
+              "f13": 7.5,
+              "f14": 8.0,
+              "f15": 8.5,
+              "f16": 9.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 3.0,
+                "t_end": 7.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Explosion\",\n      \"t_start\": 3.0,\n      \"t_end\": 5.5,\n      \"confidence\": 0.95,\n      \"description\": \"A large fireball erupts from the aircraft wreckage at f4, expanding and dissipating through f5–f6, with debris and smoke visible.\",\n      \"reason\": \"Frames f4–f6 show a sudden bright blast originating at the aircraft location, consistent with an explosion; f7 onward shows aftermath (smoke, dimming fire), but no further blast phase—so explosion interval ends by ~5.5 s.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"The candidate’s end time (7.5 s) extends beyond visible explosion dynamics; after f6, only smoke/dim embers remain (f7–f10), insufficient for continued explosion classification.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 1.0,
+              "f1": 1.5,
+              "f2": 2.0,
+              "f3": 2.5,
+              "f4": 3.0,
+              "f5": 3.5,
+              "f6": 4.0,
+              "f7": 4.5,
+              "f8": 5.0,
+              "f9": 5.5,
+              "f10": 6.0,
+              "f11": 6.5,
+              "f12": 7.0,
+              "f13": 7.5,
+              "f14": 8.0,
+              "f15": 8.5,
+              "f16": 9.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 3.0,
+                "t_end": 7.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Explosion\",\n      \"t_start\": 3.0,\n      \"t_end\": 5.5,\n      \"confidence\": 0.95,\n      \"description\": \"A sudden bright fireball erupts at the aircraft location in f4, expands through f5, and begins dissipating by f6, with visible debris and shock effects.\",\n      \"reason\": \"Frames f4–f6 show a rapid energy release with expanding fireball, fragmentation, and displacement of material—defining features of an explosion; f7 onward shows only smoke and embers without blast dynamics, so explosion ends by ~5.5 s.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"The candidate’s stated interval (3.0–7.5 s) includes f7–f12 where no explosive blast is visible—only smoke, dimming fire, and falling sparks—so the end time is unsupported; however, the core explosion event (f4–f6) is verified and captured in the accepted event.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 1.0,
+              "f1": 1.5,
+              "f2": 2.0,
+              "f3": 2.5,
+              "f4": 3.0,
+              "f5": 3.5,
+              "f6": 4.0,
+              "f7": 4.5,
+              "f8": 5.0,
+              "f9": 5.5,
+              "f10": 6.0,
+              "f11": 6.5,
+              "f12": 7.0,
+              "f13": 7.5,
+              "f14": 8.0,
+              "f15": 8.5,
+              "f16": 9.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 3.0,
+                "t_end": 7.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Explosion\",\n      \"t_start\": 3.0,\n      \"t_end\": 5.5,\n      \"confidence\": 0.95,\n      \"description\": \"A sudden bright fireball erupts at the aircraft wreckage in f4, expands rapidly through f5, and begins dissipating by f6, with visible debris ejection and shock front.\",\n      \"reason\": \"Frames f4–f6 show a rapid energy release with expanding fireball, fragmentation, and displacement of material—defining features of an explosion; f7 onward shows only smoke, embers, and falling sparks without blast dynamics, so the explosion phase ends by ~5.5 s.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "Explosion",
+              "t_start": 3.0,
+              "t_end": 5.5,
+              "confidence": 0.95,
+              "description": "A sudden bright fireball erupts at the aircraft wreckage in f4, expands rapidly through f5, and begins dissipating by f6, with visible debris ejection and shock front.",
+              "reason": "Frames f4–f6 show a rapid energy release with expanding fireball, fragmentation, and displacement of material—defining features of an explosion; f7 onward shows only smoke, embers, and falling sparks without blast dynamics, so the explosion phase ends by ~5.5 s.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "4af12341827b76802e342c17ef0218c8de72aa645e35234598169115d851ae3d"
+}

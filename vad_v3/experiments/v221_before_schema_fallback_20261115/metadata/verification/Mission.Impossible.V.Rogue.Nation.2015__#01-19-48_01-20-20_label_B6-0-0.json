@@ -1,0 +1,330 @@
+{
+  "events": [
+    {
+      "t_start": 8.5,
+      "t_end": 14.0,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A motorcycle slides and crashes on a dirt road, kicking up dust, then comes to rest overturned.",
+      "source_candidate_ids": [
+        0,
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          8.5,
+          9.0,
+          10.0,
+          11.0,
+          11.5,
+          12.5,
+          13.5
+        ],
+        "evidence_frame_ids": [
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14"
+        ],
+        "reason": "Frames f8–f14 show a motorcycle losing control (f8–f9), sliding (f10–f12), impacting the ground (f13), and settling in a cloud of dust (f14); this is a single crash event, not multiple accidents; merged candidates 0 and 1 cover overlapping parts of the same crash sequence.",
+        "source_categories": [
+          "CarAccident",
+          "CarAccident"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 5,
+      "output_count": 1,
+      "groups": 1,
+      "rejected": 3,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 1
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 6.0,
+              "f1": 6.5,
+              "f2": 7.5,
+              "f3": 8.0,
+              "f4": 9.0,
+              "f5": 9.5,
+              "f6": 10.5,
+              "f7": 11.0,
+              "f8": 12.0,
+              "f9": 12.5,
+              "f10": 13.5,
+              "f11": 14.0,
+              "f12": 15.0,
+              "f13": 15.5,
+              "f14": 16.0,
+              "f15": 16.5,
+              "f16": 17.0,
+              "f17": 18.0,
+              "f18": 18.5,
+              "f19": 19.5,
+              "f20": 20.0,
+              "f21": 21.0,
+              "f22": 21.5,
+              "f23": 23.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 8.0,
+                "t_end": 14.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 12.5,
+                "t_end": 15.3,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 14.5,
+                "t_end": 22.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 14.5,
+                "t_end": 17.4,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 19.0,
+                "t_end": 21.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"CarAccident\",\n      \"t_start\": 8.0,\n      \"t_end\": 14.0,\n      \"confidence\": 0.95,\n      \"description\": \"A motorcycle rider loses control on a curve, slides sideways, crashes into the dirt, and kicks up a large dust cloud while the bike tumbles and comes to rest.\",\n      \"reason\": \"f3 shows the rider leaning sharply in a turn; f4 shows the bike sliding sideways with dust; f5–f8 show the rider tumbling through dust; f9 shows the bike skidding on its side with heavy dust; f10–f11 show the dust cloud obscuring the scene—consistent with a single high-speed motorcycle crash, not a car accident, but 'CarAccident' is the only allowed category that approximates a vehicle crash (motorcycle included under broad interpretation of vehicle crash in this taxonomy). No other vehicle present; candidate 0 and 1 describe overlapping phases of same event.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    },\n    {\n      \"source_candidate_ids\": [2, 3],\n      \"category\": \"Abuse\",\n      \"t_start\": 14.5,\n      \"t_end\": 22.0,\n      \"confidence\": 0.3,\n      \"description\": \"A person lies motionless on the ground while another figure on a motorcycle approaches slowly in the background; no physical contact or aggression is visible.\",\n      \"reason\": \"f12–f17 show the injured person lying still; f18–f21 show the motorcyclist approaching from distance, but no interaction occurs; f22 shows the rider looking toward the person, still no contact. Without visible aggression or physical action against a helpless victim, 'Abuse' is unsupported; however, since candidates 2 and 3 map to the same interval and the only visible activity is proximity without violence, and the taxonomy forces a choice, we retain as low-confidence 'Abuse' only because the scenario *could* imply intent—but evidence is insufficient. Per instructions, if inadequate, use 'uncertain'; thus this should be uncertain—not accepted. Correction: move to uncertain.\",\n      \"evidence_frame_ids\": []\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"No second crash or vehicle impact is visible between 19.0–21.5; only the aftermath of the earlier motorcycle crash and the motorcyclist observing the fallen person are shown (f18–f21).\",\n      \"evidence_frame_ids\": [\"f18\", \"f19\", \"f20\", \"f21\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"The motorcyclist approaches the downed person (f18–f22), but no physical contact, aggression, or harmful action is visible; cannot confirm abuse without evidence of intentional harm.\"\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"Same as candidate 2; interval overlaps and lacks visual evidence of abuse—only static proximity observed.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 6.0,
+              "f1": 6.5,
+              "f2": 7.5,
+              "f3": 8.0,
+              "f4": 9.0,
+              "f5": 9.5,
+              "f6": 10.5,
+              "f7": 11.0,
+              "f8": 12.0,
+              "f9": 12.5,
+              "f10": 13.5,
+              "f11": 14.0,
+              "f12": 15.0,
+              "f13": 15.5,
+              "f14": 16.0,
+              "f15": 16.5,
+              "f16": 17.0,
+              "f17": 18.0,
+              "f18": 18.5,
+              "f19": 19.5,
+              "f20": 20.0,
+              "f21": 21.0,
+              "f22": 21.5,
+              "f23": 23.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 8.0,
+                "t_end": 14.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 12.5,
+                "t_end": 15.3,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 14.5,
+                "t_end": 22.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 14.5,
+                "t_end": 17.4,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 19.0,
+                "t_end": 21.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"CarAccident\",\n      \"t_start\": 8.0,\n      \"t_end\": 14.0,\n      \"confidence\": 0.9,\n      \"description\": \"A motorcycle rider leans sharply in a curve (f3), loses control and slides sideways (f4), tumbles through dust (f5–f8), the bike skids on its side kicking up dust (f9), and the scene is obscured by a dust cloud (f10–f11).\",\n      \"reason\": \"All frames f3–f11 depict a continuous high-speed motorcycle crash sequence; though technically a motorcycle, the only allowed category covering vehicle crash is 'CarAccident', and no other vehicle or event is present. Candidates 0 and 1 describe overlapping phases of this single crash.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"No second crash or impact occurs between 19.0–21.5; frames f18–f21 show only the aftermath of the earlier crash and the motorcyclist stationary or slowly approaching in the background, with no vehicle motion or collision.\",\n      \"evidence_frame_ids\": [\"f18\", \"f19\", \"f20\", \"f21\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Frames f12–f22 show a person lying injured on the ground and a motorcyclist observing from distance (f18–f22), but no physical contact, aggression, or harmful action is visible; abuse requires observable aggression against a helpless victim, which is absent.\"\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"Same as candidate 2: interval overlaps f12–f17 where the injured person lies still, but no perpetrator action or interaction is shown; insufficient evidence to support 'Abuse'.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 2.0,
+              "f1": 2.5,
+              "f2": 3.5,
+              "f3": 4.0,
+              "f4": 5.0,
+              "f5": 6.0,
+              "f6": 6.5,
+              "f7": 7.5,
+              "f8": 8.5,
+              "f9": 9.0,
+              "f10": 10.0,
+              "f11": 11.0,
+              "f12": 11.5,
+              "f13": 12.5,
+              "f14": 13.5,
+              "f15": 14.0,
+              "f16": 15.0,
+              "f17": 15.5,
+              "f18": 16.0,
+              "f19": 16.5,
+              "f20": 17.5,
+              "f21": 18.0,
+              "f22": 19.0,
+              "f23": 20.0,
+              "f24": 20.5,
+              "f25": 21.5,
+              "f26": 22.5,
+              "f27": 23.0,
+              "f28": 24.0,
+              "f29": 25.0,
+              "f30": 25.5,
+              "f31": 27.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 8.0,
+                "t_end": 14.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 12.5,
+                "t_end": 15.3,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 14.5,
+                "t_end": 22.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 14.5,
+                "t_end": 17.4,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 19.0,
+                "t_end": 21.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"CarAccident\",\n      \"t_start\": 8.5,\n      \"t_end\": 14.0,\n      \"confidence\": 0.95,\n      \"description\": \"A motorcycle slides and crashes on a dirt road, kicking up dust, then comes to rest overturned.\",\n      \"reason\": \"Frames f8–f14 show a motorcycle losing control (f8–f9), sliding (f10–f12), impacting the ground (f13), and settling in a cloud of dust (f14); this is a single crash event, not multiple accidents; merged candidates 0 and 1 cover overlapping parts of the same crash sequence.\",\n      \"evidence_frame_ids\": [\"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"No visible aggression or contact toward the prone person; the rider in helmet remains at distance and does not approach or act toward the fallen person in frames f22–f24 or f25–f27.\",\n      \"evidence_frame_ids\": [\"f22\", \"f23\", \"f24\", \"f25\", \"f26\", \"f27\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"The person lies motionless on the ground (f16–f21) while dust settles; no perpetrator is present or interacting with them during this interval, so abuse cannot be inferred.\",\n      \"evidence_frame_ids\": [\"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\"]\n    },\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"Frames f22–f24 show the crashed motorcycle in the background and the fallen person in foreground, but no second vehicle or collision occurs; this is aftermath, not a new car accident.\",\n      \"evidence_frame_ids\": [\"f22\", \"f23\", \"f24\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1
+              ],
+              "category": "CarAccident",
+              "t_start": 8.5,
+              "t_end": 14.0,
+              "confidence": 0.95,
+              "description": "A motorcycle slides and crashes on a dirt road, kicking up dust, then comes to rest overturned.",
+              "reason": "Frames f8–f14 show a motorcycle losing control (f8–f9), sliding (f10–f12), impacting the ground (f13), and settling in a cloud of dust (f14); this is a single crash event, not multiple accidents; merged candidates 0 and 1 cover overlapping parts of the same crash sequence.",
+              "evidence_frame_ids": [
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "No visible aggression or contact toward the prone person; the rider in helmet remains at distance and does not approach or act toward the fallen person in frames f22–f24 or f25–f27.",
+              "evidence_frame_ids": [
+                "f22",
+                "f23",
+                "f24",
+                "f25",
+                "f26",
+                "f27"
+              ]
+            },
+            {
+              "candidate_id": 3,
+              "reason": "The person lies motionless on the ground (f16–f21) while dust settles; no perpetrator is present or interacting with them during this interval, so abuse cannot be inferred.",
+              "evidence_frame_ids": [
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21"
+              ]
+            },
+            {
+              "candidate_id": 4,
+              "reason": "Frames f22–f24 show the crashed motorcycle in the background and the fallen person in foreground, but no second vehicle or collision occurs; this is aftermath, not a new car accident.",
+              "evidence_frame_ids": [
+                "f22",
+                "f23",
+                "f24"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": true
+      }
+    ]
+  },
+  "experiment_fingerprint": "5a82d0dd6e711938ee6c8e0ecf1c6f7fdb68cac4e5e95683ad672320f7156da9"
+}

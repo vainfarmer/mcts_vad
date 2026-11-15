@@ -1,0 +1,703 @@
+{
+  "events": [
+    {
+      "t_start": 2.0,
+      "t_end": 22.0,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A silver sedan is severely damaged—roof caved in, windows shattered, doors open—and surrounded by a crowd filming; the car appears stationary throughout, with no motion indicating ongoing collision.",
+      "source_candidate_ids": [
+        0,
+        7,
+        9,
+        10,
+        11
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          1.0,
+          3.0,
+          4.0,
+          4.5,
+          5.0,
+          5.5,
+          7.0,
+          7.5,
+          8.0,
+          10.0,
+          11.0,
+          12.0,
+          12.5,
+          14.0,
+          14.5,
+          15.0,
+          15.5,
+          17.0,
+          18.0,
+          19.0,
+          20.5,
+          21.0,
+          23.5
+        ],
+        "evidence_frame_ids": [
+          "f1",
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18",
+          "f19",
+          "f20",
+          "f21",
+          "f22",
+          "f23"
+        ],
+        "reason": "Images f1–f23 consistently show the same wrecked vehicle with progressive views: initial crowd gathering (f1), visible roof collapse (f2–f4), people reaching into car (f11–f13), and final view of mangled structure (f16–f22). No evidence of explosion, fire, or multiple vehicles involved; damage pattern suggests single-vehicle crash (e.g., rollover or high-impact strike). Merged all car-damage candidates into one continuous event as they depict the same incident from different angles/times.",
+        "source_categories": [
+          "CarAccident",
+          "CarAccident",
+          "CarAccident",
+          "CarAccident",
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 22.0,
+      "t_end": 27.5,
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "anomaly_type": "Riot",
+      "description": "A large, agitated crowd surrounds the crashed vehicle; individuals climb onto the car, raise arms, and engage in collective celebratory or provocative behavior under night lighting, consistent with violent unrest rather than a controlled emergency response.",
+      "proposal_id": "p0005",
+      "evidence_frame_ids": [
+        "f4",
+        "f5",
+        "f6",
+        "f7",
+        "f8",
+        "f9",
+        "f10",
+        "f11",
+        "f12",
+        "f13",
+        "f14",
+        "f15"
+      ],
+      "source_categories": [
+        "Explosion"
+      ],
+      "reported_interval": [
+        22.0,
+        27.5
+      ],
+      "clipped_to_inspection": false,
+      "source_candidate_ids": [
+        12
+      ],
+      "verification": {
+        "status": "uncertain",
+        "group_id": 1,
+        "vlm_confidence": 0.85,
+        "reason": "schema_repair_exhausted: Unknown, duplicate or empty source_candidate_ids"
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 15,
+      "output_count": 2,
+      "groups": 3,
+      "rejected": 9,
+      "uncertain": 1,
+      "merged_sources": 4,
+      "relabeled": 0,
+      "context_retries": 1,
+      "schema_fallback_groups": 1
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 1.0,
+              "f2": 3.0,
+              "f3": 4.0,
+              "f4": 4.5,
+              "f5": 5.0,
+              "f6": 5.5,
+              "f7": 7.0,
+              "f8": 7.5,
+              "f9": 8.0,
+              "f10": 10.0,
+              "f11": 11.0,
+              "f12": 12.0,
+              "f13": 12.5,
+              "f14": 14.0,
+              "f15": 14.5,
+              "f16": 15.0,
+              "f17": 15.5,
+              "f18": 17.0,
+              "f19": 18.0,
+              "f20": 19.0,
+              "f21": 20.5,
+              "f22": 21.0,
+              "f23": 23.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 2.0,
+                "t_end": 6.6,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 4.0,
+                "t_end": 6.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 4.0,
+                "t_end": 11.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 5.0,
+                "t_end": 5.8,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 6.5,
+                "t_end": 7.7,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 10.5,
+                "t_end": 12.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 12.0,
+                "t_end": 13.2,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 12.9,
+                "t_end": 17.4,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 13.5,
+                "t_end": 18.0,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 9,
+                "t_start": 14.0,
+                "t_end": 15.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 10,
+                "t_start": 14.5,
+                "t_end": 22.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 11,
+                "t_start": 20.0,
+                "t_end": 21.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 7, 9, 10, 11],\n      \"category\": \"CarAccident\",\n      \"t_start\": 2.0,\n      \"t_end\": 22.0,\n      \"confidence\": 0.95,\n      \"description\": \"A silver sedan is severely damaged—roof caved in, windows shattered, doors open—and surrounded by a crowd filming; the car appears stationary throughout, with no motion indicating ongoing collision.\",\n      \"reason\": \"Images f1–f23 consistently show the same wrecked vehicle with progressive views: initial crowd gathering (f1), visible roof collapse (f2–f4), people reaching into car (f11–f13), and final view of mangled structure (f16–f22). No evidence of explosion, fire, or multiple vehicles involved; damage pattern suggests single-vehicle crash (e.g., rollover or high-impact strike). Merged all car-damage candidates into one continuous event as they depict the same incident from different angles/times.\",\n      \"evidence_frame_ids\": [\"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\", \"f23\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"No mutual physical combat visible; individuals near car are reaching in or filming, not exchanging blows.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\"]\n    },\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Crowd is gathered and filming a wrecked car, not engaging in collective violent unrest; no property destruction beyond the car, no aggression toward authorities or others.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"Person in yellow shirt (f5) is leaning into car, possibly assisting or retrieving something; no clear victim or aggressive act against a helpless person.\",\n      \"evidence_frame_ids\": [\"f5\"]\n    },\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"Frame f7 shows a hand holding a phone near the car; no identifiable abusive act or helpless victim present.\",\n      \"evidence_frame_ids\": [\"f7\"]\n    },\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"At f11–f12, a man reaches into the car while others film; no reciprocal fighting or striking observed.\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\"]\n    },\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"Frame f12–f13 shows a person leaning into the car; no evidence of aggression toward a defenseless individual.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\"]\n    },\n    {\n      \"candidate_id\": 8,\n      \"reason\": \"Same crowd and car as CarAccident event; no riot behavior (e.g., looting, arson, coordinated violence) observed.\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                7,
+                9,
+                10,
+                11
+              ],
+              "category": "CarAccident",
+              "t_start": 2.0,
+              "t_end": 22.0,
+              "confidence": 0.95,
+              "description": "A silver sedan is severely damaged—roof caved in, windows shattered, doors open—and surrounded by a crowd filming; the car appears stationary throughout, with no motion indicating ongoing collision.",
+              "reason": "Images f1–f23 consistently show the same wrecked vehicle with progressive views: initial crowd gathering (f1), visible roof collapse (f2–f4), people reaching into car (f11–f13), and final view of mangled structure (f16–f22). No evidence of explosion, fire, or multiple vehicles involved; damage pattern suggests single-vehicle crash (e.g., rollover or high-impact strike). Merged all car-damage candidates into one continuous event as they depict the same incident from different angles/times.",
+              "evidence_frame_ids": [
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22",
+                "f23"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "No mutual physical combat visible; individuals near car are reaching in or filming, not exchanging blows.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5"
+              ]
+            },
+            {
+              "candidate_id": 2,
+              "reason": "Crowd is gathered and filming a wrecked car, not engaging in collective violent unrest; no property destruction beyond the car, no aggression toward authorities or others.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11"
+              ]
+            },
+            {
+              "candidate_id": 3,
+              "reason": "Person in yellow shirt (f5) is leaning into car, possibly assisting or retrieving something; no clear victim or aggressive act against a helpless person.",
+              "evidence_frame_ids": [
+                "f5"
+              ]
+            },
+            {
+              "candidate_id": 4,
+              "reason": "Frame f7 shows a hand holding a phone near the car; no identifiable abusive act or helpless victim present.",
+              "evidence_frame_ids": [
+                "f7"
+              ]
+            },
+            {
+              "candidate_id": 5,
+              "reason": "At f11–f12, a man reaches into the car while others film; no reciprocal fighting or striking observed.",
+              "evidence_frame_ids": [
+                "f11",
+                "f12"
+              ]
+            },
+            {
+              "candidate_id": 6,
+              "reason": "Frame f12–f13 shows a person leaning into the car; no evidence of aggression toward a defenseless individual.",
+              "evidence_frame_ids": [
+                "f12",
+                "f13"
+              ]
+            },
+            {
+              "candidate_id": 8,
+              "reason": "Same crowd and car as CarAccident event; no riot behavior (e.g., looting, arson, coordinated violence) observed.",
+              "evidence_frame_ids": [
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          12
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 20.0,
+              "f1": 20.5,
+              "f2": 21.0,
+              "f3": 21.5,
+              "f4": 22.0,
+              "f5": 22.5,
+              "f6": 23.0,
+              "f7": 23.5,
+              "f8": 24.0,
+              "f9": 24.5,
+              "f10": 25.0,
+              "f11": 25.5,
+              "f12": 26.0,
+              "f13": 26.5,
+              "f14": 27.0,
+              "f15": 27.5,
+              "f16": 28.0,
+              "f17": 28.5,
+              "f18": 29.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 12,
+                "t_start": 22.0,
+                "t_end": 27.5,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [12],\n      \"category\": \"CarAccident\",\n      \"t_start\": 20.0,\n      \"t_end\": 24.5,\n      \"confidence\": 0.95,\n      \"description\": \"A silver car is overturned on its roof with visible damage (e.g., detached wheel, crumpled body) at night; people gather around and film, but no active violence or crowd unrest is evident.\",\n      \"reason\": \"Frames f0–f8 show a clearly crashed/overturned vehicle with structural damage; crowd behavior is observational (filming, standing), not violent or coordinated unrest. This fits CarAccident, not Riot.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 12,\n      \"reason\": \"The hypothesis 'Riot' is contradicted: the crowd is gathered around a crashed car, many filming; no evidence of collective violent action, property destruction beyond the crash itself, or aggression. Behavior is consistent with onlookers at an accident scene.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 20.0,
+              "f1": 20.5,
+              "f2": 21.0,
+              "f3": 21.5,
+              "f4": 22.0,
+              "f5": 22.5,
+              "f6": 23.0,
+              "f7": 23.5,
+              "f8": 24.0,
+              "f9": 24.5,
+              "f10": 25.0,
+              "f11": 25.5,
+              "f12": 26.0,
+              "f13": 26.5,
+              "f14": 27.0,
+              "f15": 27.5,
+              "f16": 28.0,
+              "f17": 28.5,
+              "f18": 29.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 12,
+                "t_start": 22.0,
+                "t_end": 27.5,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [12],\n      \"category\": \"CarAccident\",\n      \"t_start\": 20.0,\n      \"t_end\": 24.5,\n      \"confidence\": 0.95,\n      \"description\": \"A silver car is overturned on its roof with visible damage (e.g., detached wheel, crumpled front, open door) at night; people surround it, filming with phones, but no active violence or coordinated unrest occurs.\",\n      \"reason\": \"Frames f0–f8 show the vehicle clearly crashed and inverted; crowd behavior is observational (filming, standing, some climbing onto the car non-aggressively), not violent or riotous. The event matches CarAccident per definition: a crash is evident, and no collective violent unrest is present.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 12,\n      \"reason\": \"The unverified hypothesis 'Riot' is contradicted: the crowd gathers around a single crashed vehicle, many recording; no evidence of collective violent action, destruction beyond the crash, or aggression toward persons/property. Behavior aligns with onlookers at an accident, not rioting.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 20.0,
+              "f1": 20.5,
+              "f2": 21.0,
+              "f3": 21.5,
+              "f4": 22.0,
+              "f5": 22.5,
+              "f6": 23.0,
+              "f7": 23.5,
+              "f8": 24.0,
+              "f9": 24.5,
+              "f10": 25.0,
+              "f11": 25.5,
+              "f12": 26.0,
+              "f13": 26.5,
+              "f14": 27.0,
+              "f15": 27.5,
+              "f16": 28.0,
+              "f17": 28.5,
+              "f18": 29.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 12,
+                "t_start": 22.0,
+                "t_end": 27.5,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [12],\n      \"category\": \"CarAccident\",\n      \"t_start\": 20.0,\n      \"t_end\": 24.5,\n      \"confidence\": 0.95,\n      \"description\": \"A silver car is overturned on its roof with visible damage (detached wheel, crumpled body, open door) at night; people surround it, filming with phones, and some climb onto the vehicle non-aggressively.\",\n      \"reason\": \"Frames f0–f8 clearly show a single vehicle in post-crash state (inverted, structural damage); crowd behavior is observational and nonviolent—no coordinated destruction, aggression, or unrest. This satisfies CarAccident (a crash event) and contradicts Riot, which requires collective violent unrest.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 12,\n      \"reason\": \"The unverified hypothesis 'Riot' is invalid: no evidence of collective violent action, property destruction beyond the initial crash, or aggression toward persons; the gathering is consistent with onlookers at an accident scene, not rioting.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 16.0,
+              "f1": 16.5,
+              "f2": 17.0,
+              "f3": 17.5,
+              "f4": 18.0,
+              "f5": 18.5,
+              "f6": 19.0,
+              "f7": 19.5,
+              "f8": 20.0,
+              "f9": 20.5,
+              "f10": 21.0,
+              "f11": 22.0,
+              "f12": 22.5,
+              "f13": 23.0,
+              "f14": 23.5,
+              "f15": 24.0,
+              "f16": 24.5,
+              "f17": 25.0,
+              "f18": 25.5,
+              "f19": 26.0,
+              "f20": 26.5,
+              "f21": 27.5,
+              "f22": 28.0,
+              "f23": 28.5,
+              "f24": 29.0,
+              "f25": 29.5,
+              "f26": 30.0,
+              "f27": 30.5,
+              "f28": 31.0,
+              "f29": 31.5,
+              "f30": 32.0,
+              "f31": 33.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 12,
+                "t_start": 22.0,
+                "t_end": 27.5,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [12],\n      \"category\": \"CarAccident\",\n      \"t_start\": 16.0,\n      \"t_end\": 22.0,\n      \"confidence\": 0.95,\n      \"description\": \"A severely damaged, overturned light-colored vehicle lies on its side in the street at night; people gather around and film it.\",\n      \"reason\": \"Frames f0–f11 show a static wrecked car with missing doors, roof collapse, and visible deformation—consistent with a crash, not ongoing violence or riot. No evidence of fighting, shooting, abuse, explosion, or collective unrest is present in these frames.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    },\n    {\n      \"source_candidate_ids\": [],\n      \"category\": \"Normal\",\n      \"t_start\": 22.0,\n      \"t_end\": 33.0,\n      \"confidence\": 0.98,\n      \"description\": \"A crowd gathers around the crashed car; individuals climb onto the vehicle, raise arms, cheer, and record with phones under ambient street lighting.\",\n      \"reason\": \"Frames f12–f31 depict celebratory or attention-seeking behavior (e.g., standing on the car, waving, filming), not violent unrest. The gathering is dense but non-aggressive; no property destruction beyond the initial crash, no attacks, no weapons, no coordinated violence—thus not a riot.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\", \"f23\", \"f24\", \"f25\", \"f26\", \"f27\", \"f28\", \"f29\", \"f30\", \"f31\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 12,\n      \"reason\": \"The candidate labels the interval 22.0–27.5 as 'Riot', but visible actions are nonviolent crowd behavior around a pre-existing crash site; no collective violent action, arson, looting, or assault occurs.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 16.0,
+              "f1": 16.5,
+              "f2": 17.0,
+              "f3": 17.5,
+              "f4": 18.0,
+              "f5": 18.5,
+              "f6": 19.0,
+              "f7": 19.5,
+              "f8": 20.0,
+              "f9": 20.5,
+              "f10": 21.0,
+              "f11": 22.0,
+              "f12": 22.5,
+              "f13": 23.0,
+              "f14": 23.5,
+              "f15": 24.0,
+              "f16": 24.5,
+              "f17": 25.0,
+              "f18": 25.5,
+              "f19": 26.0,
+              "f20": 26.5,
+              "f21": 27.5,
+              "f22": 28.0,
+              "f23": 28.5,
+              "f24": 29.0,
+              "f25": 29.5,
+              "f26": 30.0,
+              "f27": 30.5,
+              "f28": 31.0,
+              "f29": 31.5,
+              "f30": 32.0,
+              "f31": 33.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 12,
+                "t_start": 22.0,
+                "t_end": 27.5,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [],\n      \"category\": \"CarAccident\",\n      \"t_start\": 16.0,\n      \"t_end\": 22.0,\n      \"confidence\": 0.95,\n      \"description\": \"A light-colored vehicle is severely damaged and lying on its side in the street at night, with missing doors, roof deformation, and visible structural failure; people are gathered around filming.\",\n      \"reason\": \"Frames f0–f11 consistently show a static wrecked car with clear crash damage (e.g., f0, f3, f8); no motion indicating ongoing collision, and no evidence of fighting, shooting, abuse, explosion, or riot. This satisfies the definition of CarAccident (a crash event, even if observed post-impact).\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    },\n    {\n      \"source_candidate_ids\": [12],\n      \"category\": \"Normal\",\n      \"t_start\": 22.0,\n      \"t_end\": 33.0,\n      \"confidence\": 0.98,\n      \"description\": \"A crowd surrounds the crashed vehicle; individuals climb onto it, raise arms, cheer, and record with phones under streetlights—no aggression, destruction beyond the initial crash, or coordinated violence.\",\n      \"reason\": \"The candidate claims 'Riot' for 22.0–27.5, but frames f12–f31 show nonviolent, celebratory/attention-seeking behavior (e.g., man in teal shirt standing on car, waving, f16–f29); no assault, arson, looting, or collective violent unrest. Per taxonomy, this is not a riot; it is ordinary crowd behavior at a crash site. Since 'Normal' is not an allowed output category, and the only valid categories are the six listed, this activity must be *rejected* as not matching any allowed category—but the instructions require output only from the six categories, and 'Normal' is explicitly disallowed. Therefore, since no allowed category applies to the post-crash gathering, and the candidate’s 'Riot' is unsupported, the correct handling is to reject the candidate and not create a 'Normal' event. Revised: no accepted event for f12–f31 under allowed categories; only CarAccident is valid for f0–f11.\",\n      \"evidence_frame_ids\": []\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 12,\n      \"reason\": \"The candidate labels 22.0–27.5 as 'Riot', but frames f12–f21 show only a dense, nonviolent crowd gathering around a pre-existing crash; individuals film, climb the car, and gesture, with no evidence of collective violent unrest (e.g., no attacks, property destruction beyond the crash, or coordinated aggression). Riot requires violent unrest, which is absent.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 16.0,
+              "f1": 16.5,
+              "f2": 17.0,
+              "f3": 17.5,
+              "f4": 18.0,
+              "f5": 18.5,
+              "f6": 19.0,
+              "f7": 19.5,
+              "f8": 20.0,
+              "f9": 20.5,
+              "f10": 21.0,
+              "f11": 22.0,
+              "f12": 22.5,
+              "f13": 23.0,
+              "f14": 23.5,
+              "f15": 24.0,
+              "f16": 24.5,
+              "f17": 25.0,
+              "f18": 25.5,
+              "f19": 26.0,
+              "f20": 26.5,
+              "f21": 27.5,
+              "f22": 28.0,
+              "f23": 28.5,
+              "f24": 29.0,
+              "f25": 29.5,
+              "f26": 30.0,
+              "f27": 30.5,
+              "f28": 31.0,
+              "f29": 31.5,
+              "f30": 32.0,
+              "f31": 33.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 12,
+                "t_start": 22.0,
+                "t_end": 27.5,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [],\n      \"category\": \"CarAccident\",\n      \"t_start\": 16.0,\n      \"t_end\": 22.0,\n      \"confidence\": 0.95,\n      \"description\": \"A light-colored vehicle is severely damaged and lying on its side in the street at night, with missing doors, roof collapse, and visible structural deformation; people are gathered around filming.\",\n      \"reason\": \"Frames f0–f11 show a static wrecked car with clear post-crash damage (e.g., f0, f3, f8); no motion indicating ongoing collision, and no evidence of fighting, shooting, abuse, explosion, or riot. This satisfies the definition of CarAccident as a crash event observed post-impact.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 12,\n      \"reason\": \"The candidate claims 'Riot' for 22.0–27.5, but frames f12–f21 show only nonviolent crowd behavior around a pre-existing crash: people film, climb onto the car, raise arms, and cheer—no collective violent unrest, assault, arson, looting, or coordinated aggression. Riot requires violent unrest, which is absent.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "unresolved_schema",
+          "events": [],
+          "rejected": [],
+          "uncertain": [
+            {
+              "candidate_id": 12,
+              "reason": "schema_repair_exhausted: Unknown, duplicate or empty source_candidate_ids"
+            }
+          ],
+          "schema_error": "Unknown, duplicate or empty source_candidate_ids"
+        },
+        "context_retry": true
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          13,
+          14
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 38.0,
+              "f1": 38.5,
+              "f2": 39.0,
+              "f3": 39.5,
+              "f4": 40.0,
+              "f5": 40.5,
+              "f6": 41.0,
+              "f7": 41.5,
+              "f8": 42.0,
+              "f9": 42.5,
+              "f10": 43.0,
+              "f11": 43.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 13,
+                "t_start": 39.7,
+                "t_end": 40.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 14,
+                "t_start": 41.2,
+                "t_end": 42.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 13,\n      \"reason\": \"No mutual physical combat visible; individuals on vehicle appear to be dancing or gesturing, with one raising arms (f5–f6), and no contact indicating fighting.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"candidate_id\": 14,\n      \"reason\": \"No aggression against a helpless victim observed; people on vehicle interact casually, and crowd records with phones—no signs of abuse in f7–f8.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 13,
+              "reason": "No mutual physical combat visible; individuals on vehicle appear to be dancing or gesturing, with one raising arms (f5–f6), and no contact indicating fighting.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6"
+              ]
+            },
+            {
+              "candidate_id": 14,
+              "reason": "No aggression against a helpless victim observed; people on vehicle interact casually, and crowd records with phones—no signs of abuse in f7–f8.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

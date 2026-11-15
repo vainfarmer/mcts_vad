@@ -1,0 +1,586 @@
+{
+  "events": [
+    {
+      "t_start": 28.5,
+      "t_end": 29.0,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A sudden white flash and expanding smoke plume erupts near the center of the crowd at f4 (28.5 s), consistent with a small explosive device detonating.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          28.5,
+          29.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "f4 shows an abrupt bright flash and rapidly expanding white smoke cloud originating from ground level amid the crowd; f5 shows the smoke dispersing—this matches a single explosive event, not sustained fire or tear gas deployment (which typically has slower onset and different color/shape).",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    },
+    {
+      "t_start": 28.5,
+      "t_end": 41.5,
+      "anomaly_type": "Riot",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "After the explosion, the crowd becomes highly agitated, with groups clashing, swinging objects, and moving chaotically across the street through f23.",
+      "source_candidate_ids": [
+        1,
+        2,
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 1,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          28.5,
+          29.0,
+          29.5,
+          30.0,
+          31.0,
+          31.5,
+          32.0,
+          33.0,
+          33.5,
+          34.0,
+          34.5,
+          35.5,
+          36.0,
+          36.5,
+          37.5,
+          38.0,
+          38.5,
+          39.5,
+          40.0,
+          41.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18",
+          "f19",
+          "f20",
+          "f21",
+          "f22",
+          "f23"
+        ],
+        "reason": "From f4 onward, smoke persists, people scatter and converge aggressively; by f18–f23, multiple individuals are engaged in mutual physical combat (swinging sticks, grappling), and the collective behavior meets the definition of riot: large-scale violent unrest involving groups, not just isolated fighting. The events are continuous and overlapping, so merged into one riot episode.",
+        "source_categories": [
+          "Riot",
+          "Riot",
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 41.5,
+      "t_end": 46.5,
+      "anomaly_type": "Riot",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "Large group of people engaged in chaotic, collective physical clashes on a street, with multiple individuals swinging objects, grappling, and moving aggressively as a crowd; smoke is present and flags are carried amid the unrest.",
+      "source_candidate_ids": [
+        4,
+        5
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          41.5,
+          42.0,
+          42.5,
+          43.0,
+          43.5,
+          44.0,
+          44.5,
+          45.0,
+          45.5,
+          46.0,
+          46.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14"
+        ],
+        "reason": "The sustained, widespread violent interaction across many participants over >5 seconds exceeds isolated Fighting and meets the definition of Riot (collective violent unrest); candidate 4’s Fighting is subsumed within this broader event; candidate 5’s Riot interval aligns with visible evidence from f4 through f14.",
+        "source_categories": [
+          "Fighting",
+          "Riot"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 10,
+      "output_count": 3,
+      "groups": 4,
+      "rejected": 4,
+      "uncertain": 0,
+      "merged_sources": 3,
+      "relabeled": 2,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 26.5,
+              "f1": 27.0,
+              "f2": 27.5,
+              "f3": 28.0,
+              "f4": 28.5,
+              "f5": 29.0,
+              "f6": 29.5,
+              "f7": 30.0,
+              "f8": 31.0,
+              "f9": 31.5,
+              "f10": 32.0,
+              "f11": 33.0,
+              "f12": 33.5,
+              "f13": 34.0,
+              "f14": 34.5,
+              "f15": 35.5,
+              "f16": 36.0,
+              "f17": 36.5,
+              "f18": 37.5,
+              "f19": 38.0,
+              "f20": 38.5,
+              "f21": 39.5,
+              "f22": 40.0,
+              "f23": 41.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 28.5,
+                "t_end": 29.0,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 28.5,
+                "t_end": 35.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 32.0,
+                "t_end": 39.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 37.5,
+                "t_end": 40.0,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Explosion\",\n      \"t_start\": 28.5,\n      \"t_end\": 29.0,\n      \"confidence\": 0.95,\n      \"description\": \"A sudden white flash and expanding smoke plume erupts near the center of the crowd at f4 (28.5 s), consistent with a small explosive device detonating.\",\n      \"reason\": \"f4 shows an abrupt bright flash and rapidly expanding white smoke cloud originating from ground level amid the crowd; f5 shows the smoke dispersing—this matches a single explosive event, not sustained fire or tear gas deployment (which typically has slower onset and different color/shape).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    },\n    {\n      \"source_candidate_ids\": [1, 2, 3],\n      \"category\": \"Riot\",\n      \"t_start\": 28.5,\n      \"t_end\": 41.5,\n      \"confidence\": 0.85,\n      \"description\": \"After the explosion, the crowd becomes highly agitated, with groups clashing, swinging objects, and moving chaotically across the street through f23.\",\n      \"reason\": \"From f4 onward, smoke persists, people scatter and converge aggressively; by f18–f23, multiple individuals are engaged in mutual physical combat (swinging sticks, grappling), and the collective behavior meets the definition of riot: large-scale violent unrest involving groups, not just isolated fighting. The events are continuous and overlapping, so merged into one riot episode.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\", \"f23\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Explosion",
+              "t_start": 28.5,
+              "t_end": 29.0,
+              "confidence": 0.95,
+              "description": "A sudden white flash and expanding smoke plume erupts near the center of the crowd at f4 (28.5 s), consistent with a small explosive device detonating.",
+              "reason": "f4 shows an abrupt bright flash and rapidly expanding white smoke cloud originating from ground level amid the crowd; f5 shows the smoke dispersing—this matches a single explosive event, not sustained fire or tear gas deployment (which typically has slower onset and different color/shape).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                1,
+                2,
+                3
+              ],
+              "category": "Riot",
+              "t_start": 28.5,
+              "t_end": 41.5,
+              "confidence": 0.85,
+              "description": "After the explosion, the crowd becomes highly agitated, with groups clashing, swinging objects, and moving chaotically across the street through f23.",
+              "reason": "From f4 onward, smoke persists, people scatter and converge aggressively; by f18–f23, multiple individuals are engaged in mutual physical combat (swinging sticks, grappling), and the collective behavior meets the definition of riot: large-scale violent unrest involving groups, not just isolated fighting. The events are continuous and overlapping, so merged into one riot episode.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22",
+                "f23"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          4,
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 39.5,
+              "f1": 40.0,
+              "f2": 40.5,
+              "f3": 41.0,
+              "f4": 41.5,
+              "f5": 42.0,
+              "f6": 42.5,
+              "f7": 43.0,
+              "f8": 43.5,
+              "f9": 44.0,
+              "f10": 44.5,
+              "f11": 45.0,
+              "f12": 45.5,
+              "f13": 46.0,
+              "f14": 46.5,
+              "f15": 47.0,
+              "f16": 47.5,
+              "f17": 48.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 41.5,
+                "t_end": 46.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 41.5,
+                "t_end": 46.5,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4, 5],\n      \"category\": \"Riot\",\n      \"t_start\": 41.5,\n      \"t_end\": 46.5,\n      \"confidence\": 0.95,\n      \"description\": \"Large group of people engaged in chaotic, collective physical clashes on a street, with multiple individuals swinging objects, grappling, and moving aggressively as a crowd; smoke is present and flags are carried amid the unrest.\",\n      \"reason\": \"The sustained, widespread violent interaction across many participants over >5 seconds exceeds isolated Fighting and meets the definition of Riot (collective violent unrest); candidate 4’s Fighting is subsumed within this broader event; candidate 5’s Riot interval aligns with visible evidence from f4 through f14.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                4,
+                5
+              ],
+              "category": "Riot",
+              "t_start": 41.5,
+              "t_end": 46.5,
+              "confidence": 0.95,
+              "description": "Large group of people engaged in chaotic, collective physical clashes on a street, with multiple individuals swinging objects, grappling, and moving aggressively as a crowd; smoke is present and flags are carried amid the unrest.",
+              "reason": "The sustained, widespread violent interaction across many participants over >5 seconds exceeds isolated Fighting and meets the definition of Riot (collective violent unrest); candidate 4’s Fighting is subsumed within this broader event; candidate 5’s Riot interval aligns with visible evidence from f4 through f14.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          6,
+          7
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 105.0,
+              "f1": 105.5,
+              "f2": 106.0,
+              "f3": 106.5,
+              "f4": 107.0,
+              "f5": 107.5,
+              "f6": 108.0,
+              "f7": 108.5,
+              "f8": 109.0,
+              "f9": 109.5,
+              "f10": 110.0,
+              "f11": 110.5,
+              "f12": 111.0,
+              "f13": 111.5,
+              "f14": 112.0,
+              "f15": 112.5,
+              "f16": 113.0,
+              "f17": 113.5,
+              "f18": 114.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 6,
+                "t_start": 107.0,
+                "t_end": 112.4,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 111.0,
+                "t_end": 111.5,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"No collective violent unrest is visible; instead, police in riot gear are deployed on a flatbed truck and SUV, moving through a street with onlookers and protesters—consistent with crowd control, not rioting.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\"]\n    },\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"At f11–f12, a person in red pants walks across the intersection while others stand nearby; no aggression or helplessness is evident—no abuse occurs.\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 6,
+              "reason": "No collective violent unrest is visible; instead, police in riot gear are deployed on a flatbed truck and SUV, moving through a street with onlookers and protesters—consistent with crowd control, not rioting.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18"
+              ]
+            },
+            {
+              "candidate_id": 7,
+              "reason": "At f11–f12, a person in red pants walks across the intersection while others stand nearby; no aggression or helplessness is evident—no abuse occurs.",
+              "evidence_frame_ids": [
+                "f11",
+                "f12"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          8,
+          9
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 134.0,
+              "f1": 134.5,
+              "f2": 135.0,
+              "f3": 135.5,
+              "f4": 136.0,
+              "f5": 136.5,
+              "f6": 137.0,
+              "f7": 137.5,
+              "f8": 138.0,
+              "f9": 138.5,
+              "f10": 139.0,
+              "f11": 139.5,
+              "f12": 140.0,
+              "f13": 140.5,
+              "f14": 141.0,
+              "f15": 141.5,
+              "f16": 142.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 8,
+                "t_start": 136.0,
+                "t_end": 137.2,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 9,
+                "t_start": 136.9,
+                "t_end": 140.5,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [8, 9],\n      \"category\": \"Normal\",\n      \"t_start\": 135.5,\n      \"t_end\": 142.0,\n      \"confidence\": 0.0,\n      \"description\": \"A bald man with a head wound is lying on the ground while police and medical personnel attend to him; no mutual combat or aggression is visible.\",\n      \"reason\": \"The frames from f3 onward show responders (police, medic, and another uniformed individual) attending to a seated/lying injured person; the man appears cooperative, not resisting, and there is no evidence of fighting, abuse, or violence occurring during the interval. Since 'Normal' is not an allowed output category and none of the required categories apply, this event is not listed in events—only valid categories may appear. Therefore, no event qualifies for the allowed categories.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 8,\n      \"reason\": \"No mutual physical combat is visible; the scene shows responders attending to an injured person on the ground, not active fighting.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\"]\n    },\n    {\n      \"candidate_id\": 9,\n      \"reason\": \"The injured person is being attended to by multiple personnel without signs of aggression toward a helpless victim; actions are consistent with medical aid and restraint, not abuse.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 134.0,
+              "f1": 134.5,
+              "f2": 135.0,
+              "f3": 135.5,
+              "f4": 136.0,
+              "f5": 136.5,
+              "f6": 137.0,
+              "f7": 137.5,
+              "f8": 138.0,
+              "f9": 138.5,
+              "f10": 139.0,
+              "f11": 139.5,
+              "f12": 140.0,
+              "f13": 140.5,
+              "f14": 141.0,
+              "f15": 141.5,
+              "f16": 142.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 8,
+                "t_start": 136.0,
+                "t_end": 137.2,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 9,
+                "t_start": 136.9,
+                "t_end": 140.5,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 8,\n      \"reason\": \"No mutual physical combat is visible in frames f3–f12; instead, police and medical personnel are attending to a seated/lying injured bald man, who shows no resistance or engagement in fighting.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\"]\n    },\n    {\n      \"candidate_id\": 9,\n      \"reason\": \"The injured man is being assisted by responders (police, medic, uniformed individual); he is cooperative, not helpless under aggression—no evidence of abuse as defined (aggression against a helpless victim).\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 8,
+              "reason": "No mutual physical combat is visible in frames f3–f12; instead, police and medical personnel are attending to a seated/lying injured bald man, who shows no resistance or engagement in fighting.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12"
+              ]
+            },
+            {
+              "candidate_id": 9,
+              "reason": "The injured man is being assisted by responders (police, medic, uniformed individual); he is cooperative, not helpless under aggression—no evidence of abuse as defined (aggression against a helpless victim).",
+              "evidence_frame_ids": [
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

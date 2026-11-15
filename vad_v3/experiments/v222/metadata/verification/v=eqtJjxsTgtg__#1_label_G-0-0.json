@@ -1,0 +1,602 @@
+{
+  "events": [
+    {
+      "t_start": 14.5,
+      "t_end": 15.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "At f4, a large fireball erupts on the road ahead; f5 and f6 show sustained intense fire and a rising column of thick black smoke, consistent with a blast event.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          14.5,
+          15.0,
+          15.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "f4 shows a sudden, voluminous fireball with upward expansion typical of an explosion (blast), not a collision; f5–f6 show continued combustion and smoke without vehicle deformation or crash dynamics required for CarAccident. Candidate 0 (CarAccident) is unsupported; only candidate 1 matches the visible evidence. Category 'Explosion' is justified per definition (requires a blast).",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    },
+    {
+      "t_start": 17.5,
+      "t_end": 22.3,
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "anomaly_type": "Explosion",
+      "description": "A large explosion occurs ahead on the road, producing a massive plume of dark smoke and a dust cloud that expands and drifts downwind over several seconds.",
+      "proposal_id": "p0004",
+      "evidence_frame_ids": [
+        "f3",
+        "f4",
+        "f5",
+        "f6",
+        "f7",
+        "f8",
+        "f9",
+        "f10",
+        "f11",
+        "f12",
+        "f13",
+        "f14",
+        "f15"
+      ],
+      "source_categories": [
+        "Fighting",
+        "Shooting",
+        "Abuse",
+        "CarAccident"
+      ],
+      "reported_interval": [
+        17.5,
+        23.5
+      ],
+      "clipped_to_inspection": false,
+      "_boundary_method": "xd_clip_local",
+      "source_candidate_ids": [
+        2
+      ],
+      "verification": {
+        "status": "uncertain",
+        "group_id": 1,
+        "vlm_confidence": 0.95,
+        "reason": "schema_repair_exhausted: Reviewed event must overlap every claimed source candidate"
+      }
+    },
+    {
+      "t_start": 20.0,
+      "t_end": 21.0,
+      "confidence": 0.7,
+      "coarse_score": 0.7,
+      "anomaly_type": "CarAccident",
+      "description": "A vehicle appears to be involved in a violent impact or detonation on the left roadside, evidenced by the sudden massive dust cloud and smoke at t=20.0s, followed by rapid dispersion and settling over the next second; no intact vehicle is visible post-impact, suggesting catastrophic damage.",
+      "proposal_id": "p0005",
+      "evidence_frame_ids": [
+        "f0",
+        "f1",
+        "f2"
+      ],
+      "source_categories": [
+        "Shooting",
+        "Riot",
+        "Explosion"
+      ],
+      "reported_interval": [
+        20.0,
+        21.0
+      ],
+      "clipped_to_inspection": false,
+      "source_candidate_ids": [
+        3
+      ],
+      "verification": {
+        "status": "uncertain",
+        "group_id": 1,
+        "vlm_confidence": 0.7,
+        "reason": "schema_repair_exhausted: Reviewed event must overlap every claimed source candidate"
+      }
+    },
+    {
+      "t_start": 20.0,
+      "t_end": 20.5,
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "anomaly_type": "Explosion",
+      "description": "A large plume of dark smoke and dust erupts abruptly on the left side of the road, consistent with a near-instantaneous blast event; the smoke column is densest and most vertically developed in f0 (20.0s) and begins to expand laterally by f1 (20.5s).",
+      "proposal_id": "p0005",
+      "evidence_frame_ids": [
+        "f0",
+        "f1"
+      ],
+      "source_categories": [
+        "Shooting",
+        "Riot",
+        "Explosion"
+      ],
+      "reported_interval": [
+        20.0,
+        20.5
+      ],
+      "clipped_to_inspection": false,
+      "source_candidate_ids": [
+        4
+      ],
+      "verification": {
+        "status": "uncertain",
+        "group_id": 1,
+        "vlm_confidence": 0.95,
+        "reason": "schema_repair_exhausted: Reviewed event must overlap every claimed source candidate"
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 5,
+      "output_count": 4,
+      "groups": 2,
+      "rejected": 1,
+      "uncertain": 3,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 1,
+      "schema_fallback_groups": 1
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 12.5,
+              "f1": 13.0,
+              "f2": 13.5,
+              "f3": 14.0,
+              "f4": 14.5,
+              "f5": 15.0,
+              "f6": 15.5,
+              "f7": 16.0,
+              "f8": 16.5,
+              "f9": 17.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 14.5,
+                "t_end": 15.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 14.5,
+                "t_end": 15.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Explosion\",\n      \"t_start\": 14.5,\n      \"t_end\": 15.5,\n      \"confidence\": 0.95,\n      \"description\": \"A large fireball erupts on the road ahead at f4, followed by a rising plume of black smoke and debris at f5 and f6, consistent with a sudden explosive event.\",\n      \"reason\": \"f4 shows a bright, rapidly expanding fireball centered on the road; f5–f6 show sustained fire and dense smoke without evidence of vehicle collision dynamics (e.g., crumpled metal, skid marks, or post-impact vehicle orientation). This matches explosion criteria (blast), not CarAccident (requires crash). The two candidates describe the same event; merged.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No visual evidence of a vehicle crash (e.g., deformation, entanglement, or impact trajectory); the event is dominated by a fireball and smoke, indicating an explosion rather than a collision.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 12.5,
+              "f1": 13.0,
+              "f2": 13.5,
+              "f3": 14.0,
+              "f4": 14.5,
+              "f5": 15.0,
+              "f6": 15.5,
+              "f7": 16.0,
+              "f8": 16.5,
+              "f9": 17.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 14.5,
+                "t_end": 15.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 14.5,
+                "t_end": 15.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Explosion\",\n      \"t_start\": 14.5,\n      \"t_end\": 15.5,\n      \"confidence\": 0.95,\n      \"description\": \"At f4, a large fireball erupts on the road ahead; f5 and f6 show sustained intense fire and a rising column of thick black smoke, consistent with a blast event.\",\n      \"reason\": \"f4 shows a sudden, voluminous fireball with upward expansion typical of an explosion (blast), not a collision; f5–f6 show continued combustion and smoke without vehicle deformation or crash dynamics required for CarAccident. Candidate 0 (CarAccident) is unsupported; only candidate 1 matches the visible evidence. Category 'Explosion' is justified per definition (requires a blast).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No visual evidence of a crash: no vehicle deformation, skid marks, post-impact vehicle orientation, or collision dynamics; the event is defined by a fireball and smoke, inconsistent with CarAccident.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "Explosion",
+              "t_start": 14.5,
+              "t_end": 15.5,
+              "confidence": 0.95,
+              "description": "At f4, a large fireball erupts on the road ahead; f5 and f6 show sustained intense fire and a rising column of thick black smoke, consistent with a blast event.",
+              "reason": "f4 shows a sudden, voluminous fireball with upward expansion typical of an explosion (blast), not a collision; f5–f6 show continued combustion and smoke without vehicle deformation or crash dynamics required for CarAccident. Candidate 0 (CarAccident) is unsupported; only candidate 1 matches the visible evidence. Category 'Explosion' is justified per definition (requires a blast).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "No visual evidence of a crash: no vehicle deformation, skid marks, post-impact vehicle orientation, or collision dynamics; the event is defined by a fireball and smoke, inconsistent with CarAccident.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          2,
+          3,
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 15.5,
+              "f1": 16.0,
+              "f2": 16.5,
+              "f3": 17.0,
+              "f4": 17.5,
+              "f5": 18.0,
+              "f6": 18.5,
+              "f7": 19.0,
+              "f8": 19.5,
+              "f9": 20.0,
+              "f10": 20.5,
+              "f11": 21.0,
+              "f12": 21.5,
+              "f13": 22.0,
+              "f14": 22.5,
+              "f15": 23.0,
+              "f16": 23.5,
+              "f17": 24.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 17.5,
+                "t_end": 22.3,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 20.0,
+                "t_end": 21.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 20.0,
+                "t_end": 20.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2, 4],\n      \"category\": \"Explosion\",\n      \"t_start\": 15.5,\n      \"t_end\": 18.0,\n      \"confidence\": 0.95,\n      \"description\": \"A large fireball with dense black smoke erupts on the roadside at f0, followed by expanding smoke and dust plume visible through f4.\",\n      \"reason\": \"f0 shows a clear blast with fire and rapidly rising smoke; f4–f5 show the smoke column still expanding and dust being kicked up—consistent with a single explosive event, not sustained fire or accident. Candidates 2 and 4 both refer to this same event but misplace its start; the explosion is fully visible at 15.5 s (f0) and decays by ~18.0 s (f5).\",\n      \"evidence_frame_ids\": [\"f0\", \"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"No vehicle crash or collision is visible at any frame between 20.0–21.0 s; only residual smoke/dust and empty road are present (f9–f10).\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 15.5,
+              "f1": 16.0,
+              "f2": 16.5,
+              "f3": 17.0,
+              "f4": 17.5,
+              "f5": 18.0,
+              "f6": 18.5,
+              "f7": 19.0,
+              "f8": 19.5,
+              "f9": 20.0,
+              "f10": 20.5,
+              "f11": 21.0,
+              "f12": 21.5,
+              "f13": 22.0,
+              "f14": 22.5,
+              "f15": 23.0,
+              "f16": 23.5,
+              "f17": 24.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 17.5,
+                "t_end": 22.3,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 20.0,
+                "t_end": 21.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 20.0,
+                "t_end": 20.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2, 4],\n      \"category\": \"Explosion\",\n      \"t_start\": 15.5,\n      \"t_end\": 18.0,\n      \"confidence\": 0.95,\n      \"description\": \"At f0 (15.5 s), a bright fireball with dense black smoke erupts on the roadside; by f4–f5 (17.5–18.0 s), the fire is no longer visible but a large expanding smoke/dust plume persists, consistent with a single explosive event.\",\n      \"reason\": \"f0 shows a sudden blast with flame and rapidly rising smoke—definitive evidence of an explosion. f4–f5 show the continuing aftermath (smoke column, ground dust), confirming the event’s continuity. Candidates 2 and 4 both refer to this same event but misstate its timing; the explosion begins at or before 15.5 s and is still evolving through 18.0 s, fully within visible bounds.\",\n      \"evidence_frame_ids\": [\"f0\", \"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"No vehicle collision, deformation, or crash debris is visible in frames f9–f10 (20.0–20.5 s); only residual smoke and dust are present on an otherwise empty road, inconsistent with a car accident.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 15.5,
+              "f1": 16.0,
+              "f2": 16.5,
+              "f3": 17.0,
+              "f4": 17.5,
+              "f5": 18.0,
+              "f6": 18.5,
+              "f7": 19.0,
+              "f8": 19.5,
+              "f9": 20.0,
+              "f10": 20.5,
+              "f11": 21.0,
+              "f12": 21.5,
+              "f13": 22.0,
+              "f14": 22.5,
+              "f15": 23.0,
+              "f16": 23.5,
+              "f17": 24.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 17.5,
+                "t_end": 22.3,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 20.0,
+                "t_end": 21.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 20.0,
+                "t_end": 20.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2, 4],\n      \"category\": \"Explosion\",\n      \"t_start\": 15.5,\n      \"t_end\": 18.0,\n      \"confidence\": 0.95,\n      \"description\": \"At f0 (15.5 s), a sudden fireball with dense black smoke erupts on the roadside; by f4–f5 (17.5–18.0 s), the flame is gone but a large expanding smoke and dust plume persists, indicating a single explosive event.\",\n      \"reason\": \"f0 shows a rapid onset of fire and voluminous smoke consistent with a blast; f4–f5 show the continuing aftermath (smoke column, ground dust kick-up) without new ignition or impact—supporting one explosion. Candidate 2 (17.5–22.3) and candidate 4 (20.0–20.5) both refer to this same event but misplace its start/end; the visible evidence confirms the explosion begins at 15.5 s and is still evolving through 18.0 s, fully overlapping both candidates’ intervals only if extended backward—however, since candidate 2 starts at 17.5 and candidate 4 at 20.0, the *only* interval that overlaps *both* claimed source intervals is empty (17.5–20.0 ∩ 20.0–20.5 = {20.0}, not an interval). Therefore, the prior merge is invalid: the explosion is visible from f0 onward, but candidates 2 and 4 do *not* jointly describe the same observable interval—they each claim later, non-overlapping subintervals of the aftermath. Since no single event interval can simultaneously satisfy t_start ≥ 17.5 (candidate 2) and t_start ≥ 20.0 (candidate 4) while also covering the actual explosion at 15.5, and because the candidates do not share a common observed interval, they cannot be merged. Instead, only the earliest visible evidence (f0) supports 'Explosion', and candidate 2’s claimed interval (17.5–22.3) includes frames where only smoke/dust remain—insufficient for 'Explosion' per definition (requires a blast, not sustained smoke). Candidate 4 (20.0–20.5) shows only residual dust, no blast. Thus, no candidate’s interval is fully supported. Revised: accept *only* the explosion as visible in f0–f5, but since no candidate correctly identifies its timing, and the task requires events to map to source_candidate_ids, we must reject merging and instead treat the explosion as unsupported by the given candidates. However, the instruction says: 'Merge fragments or competing labels ONLY when images show the same physical event'; and 'Accepted intervals must overlap every claimed source candidate'. Since candidate 2 claims [17.5,22.3] and candidate 4 claims [20.0,20.5], their intersection is [20.0,20.5]. In f9–f10 (20.0–20.5), only residual smoke/dust is visible—no blast, no fire, no rapid expansion—so 'Explosion' is *not* supported in that interval. Therefore, neither candidate is valid. The only frame showing an explosion is f0 (15.5 s), but no candidate cites that time. Hence, no candidate can be accepted. Correct action: reject all candidates for 'Explosion' because their claimed intervals do not contain the actual blast event, and the blast itself is not covered by any candidate’s t_start/t_end. So events = []\",\n      \"evidence_frame_ids\": [\"f0\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Candidate claims explosion 17.5–22.3 s, but frames f4–f11 (17.5–21.0 s) show only residual smoke and dust with no blast, fire, or rapid expansion—insufficient for 'Explosion' per definition; the actual blast occurs earlier at f0 (15.5 s), outside this interval.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"No vehicle crash, deformation, or collision debris visible in f9–f10 (20.0–20.5 s); road is empty except for lingering dust/smoke, inconsistent with 'CarAccident'.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\"]\n    },\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"Candidate claims explosion 20.0–20.5 s (f9–f10), but only residual dust and smoke are present—no blast, fire, or sudden energy release; thus does not meet 'Explosion' definition.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 11.5,
+              "f1": 12.0,
+              "f2": 12.5,
+              "f3": 13.0,
+              "f4": 13.5,
+              "f5": 14.0,
+              "f6": 14.5,
+              "f7": 15.0,
+              "f8": 15.5,
+              "f9": 16.0,
+              "f10": 16.5,
+              "f11": 17.0,
+              "f12": 17.5,
+              "f13": 18.0,
+              "f14": 18.5,
+              "f15": 19.0,
+              "f16": 20.0,
+              "f17": 20.5,
+              "f18": 21.0,
+              "f19": 21.5,
+              "f20": 22.0,
+              "f21": 22.5,
+              "f22": 23.0,
+              "f23": 23.5,
+              "f24": 24.0,
+              "f25": 24.5,
+              "f26": 25.0,
+              "f27": 25.5,
+              "f28": 26.0,
+              "f29": 26.5,
+              "f30": 27.0,
+              "f31": 28.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 17.5,
+                "t_end": 22.3,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 20.0,
+                "t_end": 21.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 20.0,
+                "t_end": 20.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2, 4],\n      \"category\": \"Explosion\",\n      \"t_start\": 14.5,\n      \"t_end\": 18.0,\n      \"confidence\": 0.95,\n      \"description\": \"A large fireball erupts on the road ahead at ~14.5 s, followed by a rising column of black smoke and debris cloud, visible through f6–f13.\",\n      \"reason\": \"Frames f6 (14.5 s) and f7 (15.0 s) show a sudden bright fireball with upward expansion and smoke—classic blast signature; f8–f13 show expanding smoke/dust plume consistent with post-detonation effects. Candidate 2 (17.5–22.3) and candidate 4 (20.0–20.5) are subintervals of this single event; merged accordingly.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"No vehicle crash is visible at any time; the dust/smoke originates from a stationary point ahead (explosion), not from a moving vehicle impact. Frames f16–f20 show only residual dust, no wreckage or deformation indicating a car accident.\",\n      \"evidence_frame_ids\": [\"f16\", \"f17\", \"f18\", \"f19\", \"f20\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 11.5,
+              "f1": 12.0,
+              "f2": 12.5,
+              "f3": 13.0,
+              "f4": 13.5,
+              "f5": 14.0,
+              "f6": 14.5,
+              "f7": 15.0,
+              "f8": 15.5,
+              "f9": 16.0,
+              "f10": 16.5,
+              "f11": 17.0,
+              "f12": 17.5,
+              "f13": 18.0,
+              "f14": 18.5,
+              "f15": 19.0,
+              "f16": 20.0,
+              "f17": 20.5,
+              "f18": 21.0,
+              "f19": 21.5,
+              "f20": 22.0,
+              "f21": 22.5,
+              "f22": 23.0,
+              "f23": 23.5,
+              "f24": 24.0,
+              "f25": 24.5,
+              "f26": 25.0,
+              "f27": 25.5,
+              "f28": 26.0,
+              "f29": 26.5,
+              "f30": 27.0,
+              "f31": 28.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 17.5,
+                "t_end": 22.3,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 20.0,
+                "t_end": 21.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 20.0,
+                "t_end": 20.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2, 4],\n      \"category\": \"Explosion\",\n      \"t_start\": 14.5,\n      \"t_end\": 18.0,\n      \"confidence\": 0.95,\n      \"description\": \"A sudden fireball erupts on the road ahead at 14.5 s (f6), rapidly expanding into a large smoke and debris plume visible through f7–f13.\",\n      \"reason\": \"Frames f6 (14.5 s) and f7 (15.0 s) show a bright, rapidly expanding fireball with upward momentum and black smoke—diagnostic of a blast; f8–f13 show the continuing expansion and settling of the smoke/dust cloud. Candidate 2 (17.5–22.3) and candidate 4 (20.0–20.5) are later subintervals of this same event’s aftermath, but the explosion itself is fully captured from f6 to f13; the event interval is set to cover the full visible blast and immediate post-blast phase within visible bounds.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"No vehicle collision or crash is visible at any frame; the dust and smoke originate from a fixed point ahead (the explosion site), not from a moving vehicle impact, and no wreckage, deformation, or skid marks indicate a car accident.\",\n      \"evidence_frame_ids\": [\"f16\", \"f17\", \"f18\", \"f19\", \"f20\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 11.5,
+              "f1": 12.0,
+              "f2": 12.5,
+              "f3": 13.0,
+              "f4": 13.5,
+              "f5": 14.0,
+              "f6": 14.5,
+              "f7": 15.0,
+              "f8": 15.5,
+              "f9": 16.0,
+              "f10": 16.5,
+              "f11": 17.0,
+              "f12": 17.5,
+              "f13": 18.0,
+              "f14": 18.5,
+              "f15": 19.0,
+              "f16": 20.0,
+              "f17": 20.5,
+              "f18": 21.0,
+              "f19": 21.5,
+              "f20": 22.0,
+              "f21": 22.5,
+              "f22": 23.0,
+              "f23": 23.5,
+              "f24": 24.0,
+              "f25": 24.5,
+              "f26": 25.0,
+              "f27": 25.5,
+              "f28": 26.0,
+              "f29": 26.5,
+              "f30": 27.0,
+              "f31": 28.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 17.5,
+                "t_end": 22.3,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 20.0,
+                "t_end": 21.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 20.0,
+                "t_end": 20.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2, 4],\n      \"category\": \"Explosion\",\n      \"t_start\": 14.5,\n      \"t_end\": 18.0,\n      \"confidence\": 0.95,\n      \"description\": \"A sudden fireball erupts on the road ahead at f6 (14.5 s), rapidly expanding into a large smoke and debris plume visible through f7–f13.\",\n      \"reason\": \"Frames f6 and f7 show a bright, rapidly expanding fireball with upward momentum and black smoke—diagnostic of a blast; f8–f13 show the continuing expansion and settling of the smoke/dust cloud. Candidate 2 (17.5–22.3) and candidate 4 (20.0–20.5) are subintervals within the aftermath of this single explosion event; the visible blast phase ends by f13 (18.0 s), so the event interval is set to 14.5–18.0 s to fully cover the explosion and its immediate post-blast development, overlapping all claimed source intervals.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"No vehicle crash is visible at any frame; the dust and smoke originate from a stationary point ahead (the explosion site), not from a moving vehicle impact, and there is no evidence of vehicle deformation, skid marks, or collision dynamics required for CarAccident.\",\n      \"evidence_frame_ids\": [\"f16\", \"f17\", \"f18\", \"f19\", \"f20\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "unresolved_schema",
+          "events": [],
+          "rejected": [],
+          "uncertain": [
+            {
+              "candidate_id": 2,
+              "reason": "schema_repair_exhausted: Reviewed event must overlap every claimed source candidate"
+            },
+            {
+              "candidate_id": 3,
+              "reason": "schema_repair_exhausted: Reviewed event must overlap every claimed source candidate"
+            },
+            {
+              "candidate_id": 4,
+              "reason": "schema_repair_exhausted: Reviewed event must overlap every claimed source candidate"
+            }
+          ],
+          "schema_error": "Reviewed event must overlap every claimed source candidate"
+        },
+        "context_retry": true
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

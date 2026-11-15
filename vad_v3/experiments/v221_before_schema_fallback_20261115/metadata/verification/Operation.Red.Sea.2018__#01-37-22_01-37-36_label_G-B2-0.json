@@ -1,0 +1,389 @@
+{
+  "events": [
+    {
+      "t_start": 5.8,
+      "t_end": 7.0,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A bright flash and expanding fireball with sparks and debris occur at f5–f6, followed by overexposed frame f7 indicating intense blast luminance.",
+      "source_candidate_ids": [
+        3,
+        4,
+        5
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          6.0,
+          6.5,
+          7.0
+        ],
+        "evidence_frame_ids": [
+          "f5",
+          "f6",
+          "f7"
+        ],
+        "reason": "f5 shows sudden bright ignition and sparks; f6 shows expanding fireball and smoke; f7 is fully washed out (consistent with blast overexposure); all align with a single explosive event starting ~6.0s and peaking through 6.5–7.0s. Candidates 3, 4, and 5 describe overlapping intervals of the same explosion and are merged.",
+        "source_categories": [
+          "Explosion",
+          "Explosion",
+          "Explosion"
+        ]
+      }
+    },
+    {
+      "t_start": 8.0,
+      "t_end": 8.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "Two individuals are in close physical contact amid debris and firelight at f9–f10, with one appearing to strike or grapple the other.",
+      "source_candidate_ids": [
+        6
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 1,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          8.0,
+          8.5
+        ],
+        "evidence_frame_ids": [
+          "f9",
+          "f10"
+        ],
+        "reason": "f9 shows two figures in dynamic, close-quarters interaction with arms raised and bodies contorted; f10 continues this motion with visible impact posture—consistent with mutual physical combat, not just falling or recoil. No weapon discharge visible; context follows explosion, but action is distinct.",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 13.0,
+      "t_end": 13.5,
+      "anomaly_type": "Shooting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A man with facial injuries aims a rifle with a visible muzzle flash/light source near the barrel, consistent with firing.",
+      "source_candidate_ids": [
+        8
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 3,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          13.0
+        ],
+        "evidence_frame_ids": [
+          "f6"
+        ],
+        "reason": "f6 shows a rifle held in aiming posture with bright light at muzzle; f7 shows same man immediately after, still holding weapon but no flash—suggests single shot occurred between frames. This satisfies 'Shooting' (visible shooting), not just possession.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 9,
+      "output_count": 3,
+      "groups": 4,
+      "rejected": 4,
+      "uncertain": 0,
+      "merged_sources": 2,
+      "relabeled": 0,
+      "context_retries": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 0.5,
+                "t_end": 1.7,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No mutual physical combat is visible; frames f1–f4 show individuals moving with weapons and taking cover, but no direct engagement or striking between persons. The scene suggests tactical movement or preparation, not fighting.\",\n      \"evidence_frame_ids\": [\"f1\", \"f2\", \"f3\", \"f4\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "No mutual physical combat is visible; frames f1–f4 show individuals moving with weapons and taking cover, but no direct engagement or striking between persons. The scene suggests tactical movement or preparation, not fighting.",
+              "evidence_frame_ids": [
+                "f1",
+                "f2",
+                "f3",
+                "f4"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 1.0,
+              "f1": 1.5,
+              "f2": 2.0,
+              "f3": 2.5,
+              "f4": 3.0,
+              "f5": 3.5,
+              "f6": 4.0,
+              "f7": 4.5,
+              "f8": 5.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 3.0,
+                "t_end": 3.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"No visible discharge, muzzle flash, or bullet impact; the person holds a firearm but no shooting occurs in f3–f4 (t=2.5–3.0) or f5 (t=3.5); the gun is carried or aimed but not fired.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "No visible discharge, muzzle flash, or bullet impact; the person holds a firearm but no shooting occurs in f3–f4 (t=2.5–3.0) or f5 (t=3.5); the gun is carried or aimed but not fired.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 3.5,
+              "f1": 4.0,
+              "f2": 4.5,
+              "f3": 5.0,
+              "f4": 5.5,
+              "f5": 6.0,
+              "f6": 6.5,
+              "f7": 7.0,
+              "f8": 7.5,
+              "f9": 8.0,
+              "f10": 8.5,
+              "f11": 9.0,
+              "f12": 9.5,
+              "f13": 10.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 5.5,
+                "t_end": 6.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 5.8,
+                "t_end": 7.0,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 6.0,
+                "t_end": 8.0,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 6.5,
+                "t_end": 7.0,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 8.0,
+                "t_end": 8.5,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3, 4, 5],\n      \"category\": \"Explosion\",\n      \"t_start\": 5.8,\n      \"t_end\": 7.0,\n      \"confidence\": 0.95,\n      \"description\": \"A bright flash and expanding fireball with sparks and debris occur at f5–f6, followed by overexposed frame f7 indicating intense blast luminance.\",\n      \"reason\": \"f5 shows sudden bright ignition and sparks; f6 shows expanding fireball and smoke; f7 is fully washed out (consistent with blast overexposure); all align with a single explosive event starting ~6.0s and peaking through 6.5–7.0s. Candidates 3, 4, and 5 describe overlapping intervals of the same explosion and are merged.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\", \"f7\"]\n    },\n    {\n      \"source_candidate_ids\": [6],\n      \"category\": \"Fighting\",\n      \"t_start\": 8.0,\n      \"t_end\": 8.5,\n      \"confidence\": 0.85,\n      \"description\": \"Two individuals are in close physical contact amid debris and firelight at f9–f10, with one appearing to strike or grapple the other.\",\n      \"reason\": \"f9 shows two figures in dynamic, close-quarters interaction with arms raised and bodies contorted; f10 continues this motion with visible impact posture—consistent with mutual physical combat, not just falling or recoil. No weapon discharge visible; context follows explosion, but action is distinct.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"f4 shows a person holding a long object resembling a rocket launcher, but no muzzle flash, projectile, or recoil is visible in f5; the subsequent blast is better explained as an explosion (e.g., detonation of a placed charge), not shooting.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                3,
+                4,
+                5
+              ],
+              "category": "Explosion",
+              "t_start": 5.8,
+              "t_end": 7.0,
+              "confidence": 0.95,
+              "description": "A bright flash and expanding fireball with sparks and debris occur at f5–f6, followed by overexposed frame f7 indicating intense blast luminance.",
+              "reason": "f5 shows sudden bright ignition and sparks; f6 shows expanding fireball and smoke; f7 is fully washed out (consistent with blast overexposure); all align with a single explosive event starting ~6.0s and peaking through 6.5–7.0s. Candidates 3, 4, and 5 describe overlapping intervals of the same explosion and are merged.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6",
+                "f7"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                6
+              ],
+              "category": "Fighting",
+              "t_start": 8.0,
+              "t_end": 8.5,
+              "confidence": 0.85,
+              "description": "Two individuals are in close physical contact amid debris and firelight at f9–f10, with one appearing to strike or grapple the other.",
+              "reason": "f9 shows two figures in dynamic, close-quarters interaction with arms raised and bodies contorted; f10 continues this motion with visible impact posture—consistent with mutual physical combat, not just falling or recoil. No weapon discharge visible; context follows explosion, but action is distinct.",
+              "evidence_frame_ids": [
+                "f9",
+                "f10"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "f4 shows a person holding a long object resembling a rocket launcher, but no muzzle flash, projectile, or recoil is visible in f5; the subsequent blast is better explained as an explosion (e.g., detonation of a placed charge), not shooting.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          7,
+          8
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 10.0,
+              "f1": 10.5,
+              "f2": 11.0,
+              "f3": 11.5,
+              "f4": 12.0,
+              "f5": 12.5,
+              "f6": 13.0,
+              "f7": 13.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 7,
+                "t_start": 12.0,
+                "t_end": 13.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 13.0,
+                "t_end": 13.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [8],\n      \"category\": \"Shooting\",\n      \"t_start\": 13.0,\n      \"t_end\": 13.5,\n      \"confidence\": 0.9,\n      \"description\": \"A man with facial injuries aims a rifle with a visible muzzle flash/light source near the barrel, consistent with firing.\",\n      \"reason\": \"f6 shows a rifle held in aiming posture with bright light at muzzle; f7 shows same man immediately after, still holding weapon but no flash—suggests single shot occurred between frames. This satisfies 'Shooting' (visible shooting), not just possession.\",\n      \"evidence_frame_ids\": [\"f6\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"No collective violent unrest: f4–f5 show armed individuals moving through debris, but no crowd, coordinated aggression, or chaotic public disorder; actions are localized and appear tactical, not riotous.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                8
+              ],
+              "category": "Shooting",
+              "t_start": 13.0,
+              "t_end": 13.5,
+              "confidence": 0.9,
+              "description": "A man with facial injuries aims a rifle with a visible muzzle flash/light source near the barrel, consistent with firing.",
+              "reason": "f6 shows a rifle held in aiming posture with bright light at muzzle; f7 shows same man immediately after, still holding weapon but no flash—suggests single shot occurred between frames. This satisfies 'Shooting' (visible shooting), not just possession.",
+              "evidence_frame_ids": [
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 7,
+              "reason": "No collective violent unrest: f4–f5 show armed individuals moving through debris, but no crowd, coordinated aggression, or chaotic public disorder; actions are localized and appear tactical, not riotous.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "5a82d0dd6e711938ee6c8e0ecf1c6f7fdb68cac4e5e95683ad672320f7156da9"
+}

@@ -1,0 +1,309 @@
+{
+  "events": [
+    {
+      "t_start": 10.5,
+      "t_end": 11.0,
+      "anomaly_type": "Shooting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A child holds a handgun pointed forward while an adult stands beside her; in f5 (11.0), the gun is aligned with the child’s eye and muzzle flash or bright light appears at the barrel tip, consistent with discharge.",
+      "source_candidate_ids": [
+        2,
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          10.5,
+          11.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "f4 (10.5) shows the gun aimed; f5 (11.0) shows bright muzzle illumination and facial reaction suggesting firing; this satisfies 'Shooting' (visible shooting). Candidate 3 and 5 claim 'Abuse', but the adult’s expression is smiling/encouraging, not aggressive, and the child appears engaged—not helpless—so abuse is unsupported.",
+        "source_categories": [
+          "Shooting",
+          "Shooting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 7,
+      "output_count": 1,
+      "groups": 4,
+      "rejected": 5,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 1.5,
+              "f1": 2.0,
+              "f2": 2.5,
+              "f3": 3.0,
+              "f4": 3.5,
+              "f5": 4.0,
+              "f6": 4.5,
+              "f7": 5.0,
+              "f8": 5.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 3.5,
+                "t_end": 4.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Frame f4 shows a hand near the child’s face, but the child is smiling broadly in f5 and f6, and no pain, fear, or coercion is visible; the interaction appears playful or affectionate, not abusive.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "Frame f4 shows a hand near the child’s face, but the child is smiling broadly in f5 and f6, and no pain, fear, or coercion is visible; the interaction appears playful or affectionate, not abusive.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 5.0,
+              "f1": 5.5,
+              "f2": 6.0,
+              "f3": 6.5,
+              "f4": 7.0,
+              "f5": 7.5,
+              "f6": 8.0,
+              "f7": 8.5,
+              "f8": 9.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 7.0,
+                "t_end": 7.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"In f3–f4 (6.5–7.0), a man holds a handgun pointed downward and smiles; in f5–f6 (7.5–8.0), the gun is no longer visible and he continues smiling—no muzzle flash, recoil, or impact evidence of shooting occurs in any frame.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "In f3–f4 (6.5–7.0), a man holds a handgun pointed downward and smiles; in f5–f6 (7.5–8.0), the gun is no longer visible and he continues smiling—no muzzle flash, recoil, or impact evidence of shooting occurs in any frame.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 8.5,
+              "f1": 9.0,
+              "f2": 9.5,
+              "f3": 10.0,
+              "f4": 10.5,
+              "f5": 11.0,
+              "f6": 11.5,
+              "f7": 12.0,
+              "f8": 12.5,
+              "f9": 13.0,
+              "f10": 13.5,
+              "f11": 14.0,
+              "f12": 14.5,
+              "f13": 15.0,
+              "f14": 15.5,
+              "f15": 16.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 10.5,
+                "t_end": 11.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 10.7,
+                "t_end": 11.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 10.7,
+                "t_end": 11.7,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 11.0,
+                "t_end": 14.5,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2, 4],\n      \"category\": \"Shooting\",\n      \"t_start\": 10.5,\n      \"t_end\": 11.0,\n      \"confidence\": 0.9,\n      \"description\": \"A child holds a handgun pointed forward while an adult stands beside her; in f5 (11.0), the gun is aligned with the child’s eye and muzzle flash or bright light appears at the barrel tip, consistent with discharge.\",\n      \"reason\": \"f4 (10.5) shows the gun aimed; f5 (11.0) shows bright muzzle illumination and facial reaction suggesting firing; this satisfies 'Shooting' (visible shooting). Candidate 3 and 5 claim 'Abuse', but the adult’s expression is smiling/encouraging, not aggressive, and the child appears engaged—not helpless—so abuse is unsupported.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"No aggression toward a helpless victim: adult is smiling and close to child, child is actively holding and aiming the gun; context suggests instruction or participation, not abuse.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\", \"f12\", \"f14\"]\n    },\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"The adult’s demeanor is consistently supportive (smiling, close proximity) and the child is active and expressive—not passive or distressed—ruling out abuse across f5–f14.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2,
+                4
+              ],
+              "category": "Shooting",
+              "t_start": 10.5,
+              "t_end": 11.0,
+              "confidence": 0.9,
+              "description": "A child holds a handgun pointed forward while an adult stands beside her; in f5 (11.0), the gun is aligned with the child’s eye and muzzle flash or bright light appears at the barrel tip, consistent with discharge.",
+              "reason": "f4 (10.5) shows the gun aimed; f5 (11.0) shows bright muzzle illumination and facial reaction suggesting firing; this satisfies 'Shooting' (visible shooting). Candidate 3 and 5 claim 'Abuse', but the adult’s expression is smiling/encouraging, not aggressive, and the child appears engaged—not helpless—so abuse is unsupported.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 3,
+              "reason": "No aggression toward a helpless victim: adult is smiling and close to child, child is actively holding and aiming the gun; context suggests instruction or participation, not abuse.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6",
+                "f12",
+                "f14"
+              ]
+            },
+            {
+              "candidate_id": 5,
+              "reason": "The adult’s demeanor is consistently supportive (smiling, close proximity) and the child is active and expressive—not passive or distressed—ruling out abuse across f5–f14.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          6
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 26.5,
+              "f1": 27.0,
+              "f2": 27.5,
+              "f3": 28.0,
+              "f4": 28.5,
+              "f5": 29.0,
+              "f6": 29.5,
+              "f7": 30.0,
+              "f8": 30.5,
+              "f9": 31.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 6,
+                "t_start": 28.5,
+                "t_end": 29.3,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"No visible discharge, muzzle flash, or bullet impact; the gun is held but not fired—only weapons possession is shown, which is not 'Shooting' per definition.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 6,
+              "reason": "No visible discharge, muzzle flash, or bullet impact; the gun is held but not fired—only weapons possession is shown, which is not 'Shooting' per definition.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

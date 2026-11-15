@@ -1,0 +1,310 @@
+{
+  "events": [
+    {
+      "t_start": 4.5,
+      "t_end": 5.5,
+      "anomaly_type": "Shooting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A person on the left fires a rifle, producing visible muzzle smoke; a second person on the right aims a handgun toward them.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          4.5,
+          5.0,
+          5.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "Frames f4–f6 show sustained muzzle smoke (f4–f6) from the left figure’s rifle and the right figure holding a handgun in an aiming posture; this constitutes visible shooting (muzzle flash/smoke + weapon discharge posture).",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 14.0,
+      "t_end": 14.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "In f5, a man raises a dark object overhead; in f6, he brings it down toward another person who recoils and raises arms defensively—indicating mutual physical combat.",
+      "source_candidate_ids": [
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          14.0,
+          14.5
+        ],
+        "evidence_frame_ids": [
+          "f5",
+          "f6"
+        ],
+        "reason": "F5–f6 show an aggressive strike motion and a reactive defensive posture by the target, satisfying the definition of Fighting (mutual physical combat); Abuse is not supported because the target is actively resisting, not helpless.",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 5,
+      "output_count": 2,
+      "groups": 3,
+      "rejected": 3,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 0.0,
+                "t_end": 1.6,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No mutual physical combat is visible: f0 shows one person swinging an object while the other stands at distance; f1–f3 show individuals separately (one holding a gun in f3 but not firing); f4–f5 show two people on a rooftop with no contact or aggression; f6–f7 show a person holding a bat-like object near face, not engaged in fighting. The sequence lacks evidence of Fighting.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "No mutual physical combat is visible: f0 shows one person swinging an object while the other stands at distance; f1–f3 show individuals separately (one holding a gun in f3 but not firing); f4–f5 show two people on a rooftop with no contact or aggression; f6–f7 show a person holding a bat-like object near face, not engaged in fighting. The sequence lacks evidence of Fighting.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 2.5,
+              "f1": 3.0,
+              "f2": 3.5,
+              "f3": 4.0,
+              "f4": 4.5,
+              "f5": 5.0,
+              "f6": 5.5,
+              "f7": 6.0,
+              "f8": 6.5,
+              "f9": 7.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 4.5,
+                "t_end": 5.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Shooting\",\n      \"t_start\": 4.5,\n      \"t_end\": 5.5,\n      \"confidence\": 0.9,\n      \"description\": \"A person on the left fires a rifle, producing visible muzzle smoke; a second person on the right aims a handgun toward them.\",\n      \"reason\": \"Frames f4–f6 show sustained muzzle smoke (f4–f6) from the left figure’s rifle and the right figure holding a handgun in an aiming posture; this constitutes visible shooting (muzzle flash/smoke + weapon discharge posture).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "Shooting",
+              "t_start": 4.5,
+              "t_end": 5.5,
+              "confidence": 0.9,
+              "description": "A person on the left fires a rifle, producing visible muzzle smoke; a second person on the right aims a handgun toward them.",
+              "reason": "Frames f4–f6 show sustained muzzle smoke (f4–f6) from the left figure’s rifle and the right figure holding a handgun in an aiming posture; this constitutes visible shooting (muzzle flash/smoke + weapon discharge posture).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          2,
+          3,
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 11.5,
+              "f1": 12.0,
+              "f2": 12.5,
+              "f3": 13.0,
+              "f4": 13.5,
+              "f5": 14.0,
+              "f6": 14.5,
+              "f7": 15.0,
+              "f8": 15.5,
+              "f9": 16.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 13.5,
+                "t_end": 13.541667,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 14.0,
+                "t_end": 14.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 14.5,
+                "t_end": 15.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3, 4],\n      \"category\": \"Fighting\",\n      \"t_start\": 14.0,\n      \"t_end\": 14.5,\n      \"confidence\": 0.9,\n      \"description\": \"A man in a leather jacket swings a dark object (possibly a baton or pipe) downward toward another person’s head/shoulder area while the latter is partially visible from behind; the recipient recoils and raises arms defensively in f6.\",\n      \"reason\": \"Frames f5–f6 show a clear aggressive motion (swinging weapon-like object) and reactive defensive posture, satisfying mutual physical combat criteria for Fighting; Abuse requires victim helplessness, but here the target appears to resist/defend, and the action is brief and reciprocal in nature. Candidate 4 (Abuse) is subsumed because the interaction is combative, not one-sided domination.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Frame f4 shows a man holding a pistol pointed forward, but no muzzle flash, recoil, or impact is visible; no shooting occurs in the supplied frames.\",\n      \"evidence_frame_ids\": [\"f4\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"No candidate ID 1 provided; all supplied candidates accounted for.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 11.5,
+              "f1": 12.0,
+              "f2": 12.5,
+              "f3": 13.0,
+              "f4": 13.5,
+              "f5": 14.0,
+              "f6": 14.5,
+              "f7": 15.0,
+              "f8": 15.5,
+              "f9": 16.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 13.5,
+                "t_end": 13.541667,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 14.0,
+                "t_end": 14.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 14.5,
+                "t_end": 15.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"Fighting\",\n      \"t_start\": 14.0,\n      \"t_end\": 14.5,\n      \"confidence\": 0.85,\n      \"description\": \"In f5, a man raises a dark object overhead; in f6, he brings it down toward another person who recoils and raises arms defensively—indicating mutual physical combat.\",\n      \"reason\": \"F5–f6 show an aggressive strike motion and a reactive defensive posture by the target, satisfying the definition of Fighting (mutual physical combat); Abuse is not supported because the target is actively resisting, not helpless.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Frame f4 shows a man holding a pistol pointed forward, but no muzzle flash, bullet impact, or recoil is visible; shooting is not evidenced in any frame.\",\n      \"evidence_frame_ids\": [\"f4\"]\n    },\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"Candidate 4 claims Abuse at t=14.5–15.0, but f6 (14.5) shows the target still actively resisting (arms up), and f7 (15.0) shows separation with no contact or domination; no evidence of one-sided aggression against a helpless victim.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                3
+              ],
+              "category": "Fighting",
+              "t_start": 14.0,
+              "t_end": 14.5,
+              "confidence": 0.85,
+              "description": "In f5, a man raises a dark object overhead; in f6, he brings it down toward another person who recoils and raises arms defensively—indicating mutual physical combat.",
+              "reason": "F5–f6 show an aggressive strike motion and a reactive defensive posture by the target, satisfying the definition of Fighting (mutual physical combat); Abuse is not supported because the target is actively resisting, not helpless.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "Frame f4 shows a man holding a pistol pointed forward, but no muzzle flash, bullet impact, or recoil is visible; shooting is not evidenced in any frame.",
+              "evidence_frame_ids": [
+                "f4"
+              ]
+            },
+            {
+              "candidate_id": 4,
+              "reason": "Candidate 4 claims Abuse at t=14.5–15.0, but f6 (14.5) shows the target still actively resisting (arms up), and f7 (15.0) shows separation with no contact or domination; no evidence of one-sided aggression against a helpless victim.",
+              "evidence_frame_ids": [
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

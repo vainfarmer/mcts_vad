@@ -1,0 +1,364 @@
+{
+  "events": [
+    {
+      "t_start": 18.0,
+      "t_end": 22.0,
+      "anomaly_type": "Riot",
+      "confidence": 0.75,
+      "coarse_score": 0.75,
+      "description": "A crowd in a city intersection reacts to white smoke (likely tear gas or smoke canisters) by dispersing, running, and crouching; a person holds a sign aloft while others retreat, and a line of uniformed officers is visible in the background from f6 onward.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.75,
+        "evidence_times": [
+          18.0,
+          18.5,
+          19.0,
+          19.5,
+          20.0,
+          20.5,
+          21.0,
+          21.5,
+          22.0
+        ],
+        "evidence_frame_ids": [
+          "f0",
+          "f1",
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8"
+        ],
+        "reason": "The sustained dense smoke, coordinated group movement away from its origin, presence of law enforcement, and absence of isolated combat support 'Riot' as collective violent unrest (per definition requiring more than mere crowd presence); candidate 0’s interval (20.0–22.5) is subsumed within the broader visible event (f0–f8), but the event ends by f8 (22.0) before the camera drops to ground level at f9. No mutual physical combat is visible, so 'Fighting' is not supported.",
+        "source_categories": [
+          "Riot"
+        ]
+      }
+    },
+    {
+      "t_start": 54.958333,
+      "t_end": 59.0,
+      "anomaly_type": "Riot",
+      "confidence": 0.8,
+      "coarse_score": 0.8,
+      "description": "A large plume of white smoke erupts near a crowd and a cyclist; people scatter, some raise hands or shields, and a line of uniformed officers appears in the background as smoke spreads across the street.",
+      "source_candidate_ids": [
+        3,
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.8,
+        "evidence_times": [
+          55.0,
+          55.5,
+          56.0,
+          56.5,
+          57.0,
+          57.5,
+          58.0,
+          58.5,
+          59.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12"
+        ],
+        "reason": "The sudden smoke (likely from a canister), dispersal behavior, presence of uniformed personnel, and crowd reaction indicate collective unrest consistent with a riot; images f4–f12 show continuous smoke and crowd movement without evidence of isolated fighting or accident.",
+        "source_categories": [
+          "Riot",
+          "Riot"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 5,
+      "output_count": 2,
+      "groups": 3,
+      "rejected": 2,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 18.0,
+              "f1": 18.5,
+              "f2": 19.0,
+              "f3": 19.5,
+              "f4": 20.0,
+              "f5": 20.5,
+              "f6": 21.0,
+              "f7": 21.5,
+              "f8": 22.0,
+              "f9": 22.5,
+              "f10": 23.0,
+              "f11": 23.5,
+              "f12": 24.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 20.0,
+                "t_end": 22.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 20.2,
+                "t_end": 21.2,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Riot\",\n      \"t_start\": 18.0,\n      \"t_end\": 22.0,\n      \"confidence\": 0.8,\n      \"description\": \"A crowd in a city intersection disperses amid rising white smoke (likely tear gas or smoke canisters), with individuals running, crouching, and one person holding a sign aloft while others retreat; police line visible in background at f6–f7.\",\n      \"reason\": \"The sustained presence of dense smoke, coordinated movement away from its source, visible law enforcement line, and group behavior across multiple frames (f0–f8) indicate collective unrest meeting the definition of riot (violent public disorder), not isolated fighting or normal protest. Candidate 1’s 'Fighting' is subsumed: no mutual physical combat is visible—individuals are fleeing or reacting to smoke, not engaging each other.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Candidate 0’s interval (20.0–22.5) is partially supported, but the riot begins earlier (f0 at 18.0) and ends before 22.5 (by f9 the scene is emptying and camera tilts down); however, since the broader event is captured and merged into the accepted event, this candidate is not rejected but absorbed.\"\n    },\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"No frame shows two individuals engaged in mutual physical combat; movements are evasive or reactive to smoke, not aggressive toward each other—thus 'Fighting' is unsupported and merged into the riot context.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 18.0,
+              "f1": 18.5,
+              "f2": 19.0,
+              "f3": 19.5,
+              "f4": 20.0,
+              "f5": 20.5,
+              "f6": 21.0,
+              "f7": 21.5,
+              "f8": 22.0,
+              "f9": 22.5,
+              "f10": 23.0,
+              "f11": 23.5,
+              "f12": 24.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 20.0,
+                "t_end": 22.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 20.2,
+                "t_end": 21.2,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Riot\",\n      \"t_start\": 18.0,\n      \"t_end\": 22.0,\n      \"confidence\": 0.75,\n      \"description\": \"A crowd in a city intersection reacts to white smoke (likely tear gas or smoke canisters) by dispersing, running, and crouching; a person holds a sign aloft while others retreat, and a line of uniformed officers is visible in the background from f6 onward.\",\n      \"reason\": \"The sustained dense smoke, coordinated group movement away from its origin, presence of law enforcement, and absence of isolated combat support 'Riot' as collective violent unrest (per definition requiring more than mere crowd presence); candidate 0’s interval (20.0–22.5) is subsumed within the broader visible event (f0–f8), but the event ends by f8 (22.0) before the camera drops to ground level at f9. No mutual physical combat is visible, so 'Fighting' is not supported.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"No frame shows two individuals engaged in mutual physical combat; movements are evasive or reactive to smoke, not aggressive toward each other—thus 'Fighting' is contradicted by visible evidence.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Riot",
+              "t_start": 18.0,
+              "t_end": 22.0,
+              "confidence": 0.75,
+              "description": "A crowd in a city intersection reacts to white smoke (likely tear gas or smoke canisters) by dispersing, running, and crouching; a person holds a sign aloft while others retreat, and a line of uniformed officers is visible in the background from f6 onward.",
+              "reason": "The sustained dense smoke, coordinated group movement away from its origin, presence of law enforcement, and absence of isolated combat support 'Riot' as collective violent unrest (per definition requiring more than mere crowd presence); candidate 0’s interval (20.0–22.5) is subsumed within the broader visible event (f0–f8), but the event ends by f8 (22.0) before the camera drops to ground level at f9. No mutual physical combat is visible, so 'Fighting' is not supported.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "No frame shows two individuals engaged in mutual physical combat; movements are evasive or reactive to smoke, not aggressive toward each other—thus 'Fighting' is contradicted by visible evidence.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 23.5,
+              "f1": 24.0,
+              "f2": 24.5,
+              "f3": 25.0,
+              "f4": 25.5,
+              "f5": 26.0,
+              "f6": 26.5,
+              "f7": 27.0,
+              "f8": 27.5,
+              "f9": 28.0,
+              "f10": 28.5,
+              "f11": 29.0,
+              "f12": 29.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 25.5,
+                "t_end": 28.0,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"The scene shows a protest with individuals holding signs, a line of police in formation, and no visible collective violent unrest, destruction, or assault; smoke is present but not from an explosion or fire, and actions are nonviolent (e.g., person holding sign, others observing or filming).\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "The scene shows a protest with individuals holding signs, a line of police in formation, and no visible collective violent unrest, destruction, or assault; smoke is present but not from an explosion or fire, and actions are nonviolent (e.g., person holding sign, others observing or filming).",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          3,
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 53.0,
+              "f1": 53.5,
+              "f2": 54.0,
+              "f3": 54.5,
+              "f4": 55.0,
+              "f5": 55.5,
+              "f6": 56.0,
+              "f7": 56.5,
+              "f8": 57.0,
+              "f9": 57.5,
+              "f10": 58.0,
+              "f11": 58.5,
+              "f12": 59.0,
+              "f13": 59.5,
+              "f14": 60.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 54.958333,
+                "t_end": 57.041667,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 55.7,
+                "t_end": 59.0,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3, 4],\n      \"category\": \"Riot\",\n      \"t_start\": 54.958333,\n      \"t_end\": 59.0,\n      \"confidence\": 0.8,\n      \"description\": \"A large plume of white smoke erupts near a crowd and a cyclist; people scatter, some raise hands or shields, and a line of uniformed officers appears in the background as smoke spreads across the street.\",\n      \"reason\": \"The sudden smoke (likely from a canister), dispersal behavior, presence of uniformed personnel, and crowd reaction indicate collective unrest consistent with a riot; images f4–f12 show continuous smoke and crowd movement without evidence of isolated fighting or accident.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                3,
+                4
+              ],
+              "category": "Riot",
+              "t_start": 54.958333,
+              "t_end": 59.0,
+              "confidence": 0.8,
+              "description": "A large plume of white smoke erupts near a crowd and a cyclist; people scatter, some raise hands or shields, and a line of uniformed officers appears in the background as smoke spreads across the street.",
+              "reason": "The sudden smoke (likely from a canister), dispersal behavior, presence of uniformed personnel, and crowd reaction indicate collective unrest consistent with a riot; images f4–f12 show continuous smoke and crowd movement without evidence of isolated fighting or accident.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

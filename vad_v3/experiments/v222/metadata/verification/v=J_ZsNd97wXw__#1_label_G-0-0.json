@@ -1,0 +1,445 @@
+{
+  "events": [
+    {
+      "t_start": 3.0,
+      "t_end": 7.0,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A large fireball erupts from an industrial structure, rapidly expanding and producing a dense smoke plume, consistent with a high-energy blast.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          3.0,
+          3.5,
+          4.0,
+          4.5,
+          5.0,
+          5.5,
+          6.0,
+          6.5,
+          7.0
+        ],
+        "evidence_frame_ids": [
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10"
+        ],
+        "reason": "Frames f2–f5 show a sudden, violent expansion of flame and gas (classic fireball morphology) originating from a fixed point, followed by rising smoke in f6–f10; this matches the definition of explosion (blast event), not sustained fire alone. The candidate’s interval [4.0,7.0] is fully contained within the visible explosive phase (f2–f10), so merged into one event spanning f2–f10 for completeness.",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    },
+    {
+      "t_start": 6.5,
+      "t_end": 9.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A large fireball erupts from an industrial facility, rapidly expanding and producing dense black smoke; multiple frames show the blast wave and fireball growth consistent with a high-energy explosion.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          6.5,
+          7.0,
+          8.5,
+          9.0
+        ],
+        "evidence_frame_ids": [
+          "f0",
+          "f1",
+          "f4",
+          "f5"
+        ],
+        "reason": "Frames f0–f5 show a sudden, violent release of energy: initial plume (f0), rapid fireball expansion (f1, f4, f5), and structural obscuration by blast effects—meeting the definition of explosion (blast, not sustained fire). The candidate’s interval [8.5,9.5] is fully contained within this visible event; merging is justified as same physical event.",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    },
+    {
+      "t_start": 22.0,
+      "t_end": 24.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A large mushroom-shaped smoke plume rises rapidly at 22.0–22.5 s, followed by visible fire and structural damage to buildings from 23.0 s onward, consistent with a blast event.",
+      "source_candidate_ids": [
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          22.0,
+          22.5,
+          23.0,
+          23.5,
+          24.0,
+          24.5
+        ],
+        "evidence_frame_ids": [
+          "f0",
+          "f1",
+          "f2",
+          "f3",
+          "f4",
+          "f5"
+        ],
+        "reason": "The rapid formation of a classic explosion-induced smoke column (f0–f1) precedes observed fire and building damage (f2–f5); the sequence matches a single explosive event rather than sustained fire or accident. The candidate’s interval (24.0–26.2) is subsumed within the full visible explosion aftermath; event boundaries extended to earliest smoke onset (f0) and latest clear fire/damage onset (f5).",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    },
+    {
+      "t_start": 26.0,
+      "t_end": 28.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A large fire and smoke plume erupts from a building at f0, followed by visible structural damage (shattered windows, debris) across f1–f4, with dust/blast wave propagating outward through f5–f6.",
+      "source_candidate_ids": [
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 3,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          26.0,
+          26.5,
+          27.0,
+          27.5,
+          28.0,
+          28.5,
+          29.0
+        ],
+        "evidence_frame_ids": [
+          "f0",
+          "f1",
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "The rapid onset of fire, simultaneous window shattering, and outward-moving debris/dust cloud in f0–f6 are consistent with a blast event; the subtitle 'The windows of nearby buildings were shattered' corroborates a sudden pressure wave, not sustained fire alone. The candidate’s interval (28.0–29.2) is too narrow and starts after the initial blast; the full event begins at f0 (26.0).",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 5,
+      "output_count": 4,
+      "groups": 4,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 2.0,
+              "f1": 2.5,
+              "f2": 3.0,
+              "f3": 3.5,
+              "f4": 4.0,
+              "f5": 4.5,
+              "f6": 5.0,
+              "f7": 5.5,
+              "f8": 6.0,
+              "f9": 6.5,
+              "f10": 7.0,
+              "f11": 7.5,
+              "f12": 8.0,
+              "f13": 8.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 4.0,
+                "t_end": 7.0,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Explosion\",\n      \"t_start\": 3.0,\n      \"t_end\": 7.0,\n      \"confidence\": 0.95,\n      \"description\": \"A large fireball erupts from an industrial structure, rapidly expanding and producing a dense smoke plume, consistent with a high-energy blast.\",\n      \"reason\": \"Frames f2–f5 show a sudden, violent expansion of flame and gas (classic fireball morphology) originating from a fixed point, followed by rising smoke in f6–f10; this matches the definition of explosion (blast event), not sustained fire alone. The candidate’s interval [4.0,7.0] is fully contained within the visible explosive phase (f2–f10), so merged into one event spanning f2–f10 for completeness.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Explosion",
+              "t_start": 3.0,
+              "t_end": 7.0,
+              "confidence": 0.95,
+              "description": "A large fireball erupts from an industrial structure, rapidly expanding and producing a dense smoke plume, consistent with a high-energy blast.",
+              "reason": "Frames f2–f5 show a sudden, violent expansion of flame and gas (classic fireball morphology) originating from a fixed point, followed by rising smoke in f6–f10; this matches the definition of explosion (blast event), not sustained fire alone. The candidate’s interval [4.0,7.0] is fully contained within the visible explosive phase (f2–f10), so merged into one event spanning f2–f10 for completeness.",
+              "evidence_frame_ids": [
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 6.5,
+              "f1": 7.0,
+              "f2": 7.5,
+              "f3": 8.0,
+              "f4": 8.5,
+              "f5": 9.0,
+              "f6": 9.5,
+              "f7": 10.0,
+              "f8": 10.5,
+              "f9": 11.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 8.5,
+                "t_end": 9.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Explosion\",\n      \"t_start\": 6.5,\n      \"t_end\": 9.5,\n      \"confidence\": 0.95,\n      \"description\": \"A large fireball erupts from an industrial facility, rapidly expanding and producing dense black smoke; multiple frames show the blast wave and fireball growth consistent with a high-energy explosion.\",\n      \"reason\": \"Frames f0–f5 show a sudden, violent release of energy: initial plume (f0), rapid fireball expansion (f1, f4, f5), and structural obscuration by blast effects—meeting the definition of explosion (blast, not sustained fire). The candidate’s interval [8.5,9.5] is fully contained within this visible event; merging is justified as same physical event.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "Explosion",
+              "t_start": 6.5,
+              "t_end": 9.5,
+              "confidence": 0.95,
+              "description": "A large fireball erupts from an industrial facility, rapidly expanding and producing dense black smoke; multiple frames show the blast wave and fireball growth consistent with a high-energy explosion.",
+              "reason": "Frames f0–f5 show a sudden, violent release of energy: initial plume (f0), rapid fireball expansion (f1, f4, f5), and structural obscuration by blast effects—meeting the definition of explosion (blast, not sustained fire). The candidate’s interval [8.5,9.5] is fully contained within this visible event; merging is justified as same physical event.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 22.0,
+              "f1": 22.5,
+              "f2": 23.0,
+              "f3": 23.5,
+              "f4": 24.0,
+              "f5": 24.5,
+              "f6": 25.0,
+              "f7": 25.5,
+              "f8": 26.0,
+              "f9": 26.5,
+              "f10": 27.0,
+              "f11": 27.5,
+              "f12": 28.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 24.0,
+                "t_end": 26.2,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"Explosion\",\n      \"t_start\": 22.0,\n      \"t_end\": 24.5,\n      \"confidence\": 0.9,\n      \"description\": \"A large mushroom-shaped smoke plume rises rapidly at 22.0–22.5 s, followed by visible fire and structural damage to buildings from 23.0 s onward, consistent with a blast event.\",\n      \"reason\": \"The rapid formation of a classic explosion-induced smoke column (f0–f1) precedes observed fire and building damage (f2–f5); the sequence matches a single explosive event rather than sustained fire or accident. The candidate’s interval (24.0–26.2) is subsumed within the full visible explosion aftermath; event boundaries extended to earliest smoke onset (f0) and latest clear fire/damage onset (f5).\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2
+              ],
+              "category": "Explosion",
+              "t_start": 22.0,
+              "t_end": 24.5,
+              "confidence": 0.9,
+              "description": "A large mushroom-shaped smoke plume rises rapidly at 22.0–22.5 s, followed by visible fire and structural damage to buildings from 23.0 s onward, consistent with a blast event.",
+              "reason": "The rapid formation of a classic explosion-induced smoke column (f0–f1) precedes observed fire and building damage (f2–f5); the sequence matches a single explosive event rather than sustained fire or accident. The candidate’s interval (24.0–26.2) is subsumed within the full visible explosion aftermath; event boundaries extended to earliest smoke onset (f0) and latest clear fire/damage onset (f5).",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          3,
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 26.0,
+              "f1": 26.5,
+              "f2": 27.0,
+              "f3": 27.5,
+              "f4": 28.0,
+              "f5": 28.5,
+              "f6": 29.0,
+              "f7": 29.5,
+              "f8": 30.0,
+              "f9": 30.5,
+              "f10": 31.0,
+              "f11": 31.5,
+              "f12": 32.0,
+              "f13": 32.5,
+              "f14": 33.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 28.0,
+                "t_end": 29.2,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 29.5,
+                "t_end": 31.3,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"Explosion\",\n      \"t_start\": 26.0,\n      \"t_end\": 28.5,\n      \"confidence\": 0.9,\n      \"description\": \"A large fire and smoke plume erupts from a building at f0, followed by visible structural damage (shattered windows, debris) across f1–f4, with dust/blast wave propagating outward through f5–f6.\",\n      \"reason\": \"The rapid onset of fire, simultaneous window shattering, and outward-moving debris/dust cloud in f0–f6 are consistent with a blast event; the subtitle 'The windows of nearby buildings were shattered' corroborates a sudden pressure wave, not sustained fire alone. The candidate’s interval (28.0–29.2) is too narrow and starts after the initial blast; the full event begins at f0 (26.0).\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"No vehicle collision is visible: f7–f8 show vehicles stationary or moving normally amid dust/debris; f9 shows two men near cars but no impact, deformation, or skid marks; f10–f14 depict injured people reacting post-event, not an accident in progress.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                3
+              ],
+              "category": "Explosion",
+              "t_start": 26.0,
+              "t_end": 28.5,
+              "confidence": 0.9,
+              "description": "A large fire and smoke plume erupts from a building at f0, followed by visible structural damage (shattered windows, debris) across f1–f4, with dust/blast wave propagating outward through f5–f6.",
+              "reason": "The rapid onset of fire, simultaneous window shattering, and outward-moving debris/dust cloud in f0–f6 are consistent with a blast event; the subtitle 'The windows of nearby buildings were shattered' corroborates a sudden pressure wave, not sustained fire alone. The candidate’s interval (28.0–29.2) is too narrow and starts after the initial blast; the full event begins at f0 (26.0).",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 4,
+              "reason": "No vehicle collision is visible: f7–f8 show vehicles stationary or moving normally amid dust/debris; f9 shows two men near cars but no impact, deformation, or skid marks; f10–f14 depict injured people reacting post-event, not an accident in progress.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

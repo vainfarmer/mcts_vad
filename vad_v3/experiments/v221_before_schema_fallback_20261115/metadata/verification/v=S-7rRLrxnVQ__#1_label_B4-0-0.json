@@ -1,0 +1,179 @@
+{
+  "events": [
+    {
+      "t_start": 1.6,
+      "t_end": 15.5,
+      "anomaly_type": "Riot",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "A large crowd of people wearing yellow vests gathers at night on a road, with flares emitting red/orange light and smoke, vehicles stopped or surrounded, and some individuals raising arms or moving assertively; the scene matches collective violent unrest as defined (blocked traffic, tear gas mentioned in chyron, aggressive posturing).",
+      "source_candidate_ids": [
+        0,
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          2.0,
+          2.5,
+          3.5,
+          4.0,
+          5.0,
+          5.5,
+          6.5,
+          7.0,
+          8.0,
+          8.5,
+          9.5,
+          10.0,
+          11.0,
+          11.5,
+          12.5,
+          13.0,
+          14.0,
+          14.5,
+          15.5
+        ],
+        "evidence_frame_ids": [
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18",
+          "f19",
+          "f20",
+          "f21"
+        ],
+        "reason": "Frames f3–f21 show sustained crowd density, smoke/flare illumination, blocked vehicles, and agitated movement without evidence of routine protest; the chyron explicitly states 'ANGER, TEAR GAS, BLOCKED TRAFFIC - \"YELLOW VEST\" PROTESTS HIT CALAIS', supporting riot classification per definition requiring collective violent unrest—not merely crowds. The event spans both candidate intervals continuously.",
+        "source_categories": [
+          "Riot",
+          "Riot"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 2,
+      "output_count": 1,
+      "groups": 1,
+      "rejected": 0,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 2.0,
+              "f4": 2.5,
+              "f5": 3.5,
+              "f6": 4.0,
+              "f7": 5.0,
+              "f8": 5.5,
+              "f9": 6.5,
+              "f10": 7.0,
+              "f11": 8.0,
+              "f12": 8.5,
+              "f13": 9.5,
+              "f14": 10.0,
+              "f15": 11.0,
+              "f16": 11.5,
+              "f17": 12.5,
+              "f18": 13.0,
+              "f19": 14.0,
+              "f20": 14.5,
+              "f21": 15.5,
+              "f22": 16.0,
+              "f23": 17.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 1.6,
+                "t_end": 9.6,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 8.0,
+                "t_end": 15.5,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Riot\",\n      \"t_start\": 1.6,\n      \"t_end\": 15.5,\n      \"confidence\": 0.85,\n      \"description\": \"A large crowd of people wearing yellow vests gathers at night on a road, with flares emitting red/orange light and smoke, vehicles stopped or surrounded, and some individuals raising arms or moving assertively; the scene matches collective violent unrest as defined (blocked traffic, tear gas mentioned in chyron, aggressive posturing).\",\n      \"reason\": \"Frames f3–f21 show sustained crowd density, smoke/flare illumination, blocked vehicles, and agitated movement without evidence of routine protest; the chyron explicitly states 'ANGER, TEAR GAS, BLOCKED TRAFFIC - \\\"YELLOW VEST\\\" PROTESTS HIT CALAIS', supporting riot classification per definition requiring collective violent unrest—not merely crowds. The event spans both candidate intervals continuously.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1
+              ],
+              "category": "Riot",
+              "t_start": 1.6,
+              "t_end": 15.5,
+              "confidence": 0.85,
+              "description": "A large crowd of people wearing yellow vests gathers at night on a road, with flares emitting red/orange light and smoke, vehicles stopped or surrounded, and some individuals raising arms or moving assertively; the scene matches collective violent unrest as defined (blocked traffic, tear gas mentioned in chyron, aggressive posturing).",
+              "reason": "Frames f3–f21 show sustained crowd density, smoke/flare illumination, blocked vehicles, and agitated movement without evidence of routine protest; the chyron explicitly states 'ANGER, TEAR GAS, BLOCKED TRAFFIC - \"YELLOW VEST\" PROTESTS HIT CALAIS', supporting riot classification per definition requiring collective violent unrest—not merely crowds. The event spans both candidate intervals continuously.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "5a82d0dd6e711938ee6c8e0ecf1c6f7fdb68cac4e5e95683ad672320f7156da9"
+}

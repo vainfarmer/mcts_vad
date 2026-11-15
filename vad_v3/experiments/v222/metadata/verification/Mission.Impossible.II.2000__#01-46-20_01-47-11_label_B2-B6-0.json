@@ -1,0 +1,871 @@
+{
+  "events": [
+    {
+      "t_start": 3.5,
+      "t_end": 6.0,
+      "anomaly_type": "Shooting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A person on a motorcycle fires a handgun (visible muzzle flash at f4), continues aiming while moving (f5, f6, f9), and a bullet impact is seen on the SUV windshield at f8 (crack/spark), with smoke present in multiple frames.",
+      "source_candidate_ids": [
+        0,
+        1,
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          3.5,
+          4.0,
+          4.5,
+          5.0,
+          5.5,
+          6.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9"
+        ],
+        "reason": "f4 shows clear muzzle flash; f6 shows gun pointed forward with smoke; f8 shows a fresh impact mark on the windshield consistent with a bullet strike; f7 and f9 show continued aiming/gun handling during motion. All evidence supports a single sustained shooting episode from ~3.5s to ~6.0s.",
+        "source_categories": [
+          "Shooting",
+          "Shooting",
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 8.0,
+      "t_end": 10.0,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A black SUV with bull bar (license DIW 242) is struck on the front left, causing visible damage and debris spray at f4; by f5 the vehicle is airborne and rotating, indicating a high-impact collision; f6–f7 show rapid motion and aftermath consistent with crash dynamics.",
+      "source_candidate_ids": [
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          8.0,
+          8.5,
+          9.0,
+          9.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7"
+        ],
+        "reason": "f4 shows impact-induced water/debris splash on front left headlight; f5 shows the SUV mid-air with undercarriage exposed and rear wheels off ground, confirming loss of control from collision; f6–f7 show continued rapid motion and blurred context consistent with post-impact trajectory. This satisfies CarAccident (crash event), not mere driving or near-miss.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 14.5,
+      "t_end": 17.0,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A dark vehicle is airborne, colliding with and crushing the roof/windshield of a red car, then landing on other parked cars, causing fire and smoke.",
+      "source_candidate_ids": [
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          14.5,
+          15.0,
+          15.5,
+          16.0,
+          16.5,
+          17.0
+        ],
+        "evidence_frame_ids": [
+          "f0",
+          "f1",
+          "f2",
+          "f3",
+          "f4",
+          "f5"
+        ],
+        "reason": "Frames f0–f2 show the dark vehicle mid-air impacting the red car; f3 shows shattered glass and deformation; f4–f5 show the dark vehicle resting atop other cars with flames and smoke—consistent with a single crash sequence, not an explosion (no blast wave or rapid expansion). Candidate 4’s interval (16.5–17.0) falls within this event, so merged into full crash duration.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 25.0,
+      "t_end": 25.5,
+      "anomaly_type": "Shooting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "Man on motorcycle aims and fires a handgun directly toward camera; muzzle flash visible in f5.",
+      "source_candidate_ids": [
+        6
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 3,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          25.0,
+          25.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "f4 shows gun pointed forward; f5 shows clear muzzle flash at barrel tip, consistent with discharge; no other object obscures barrel. This satisfies 'Shooting' (visible shooting).",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 26.5,
+      "t_end": 27.0,
+      "anomaly_type": "Shooting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "Bright flash and debris erupt from motorcycle front at f7, coinciding with rider’s posture suggesting recoil or impact; consistent with a second shot fired from the same position.",
+      "source_candidate_ids": [
+        7,
+        8
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 3,
+        "event_id": 1,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          26.0,
+          26.5,
+          27.0
+        ],
+        "evidence_frame_ids": [
+          "f6",
+          "f7",
+          "f8"
+        ],
+        "reason": "f7 shows intense white flash and flying fragments near handlebars, with rider flinching—typical of close-range discharge or impact from gunfire; f6 shows rider still holding gun, f8 shows rider recovering post-flash. Merged because both candidates refer to same flash event at t=26.5 and its immediate aftermath.",
+        "source_categories": [
+          "Shooting",
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 29.0,
+      "t_end": 30.0,
+      "anomaly_type": "Shooting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A man aims a handgun forward (f4), then sparks erupt from the motorcycle’s front near the handlebars (f5), and a close-up shows sparks flying from the bike’s lower front (f6), consistent with a bullet striking metal.",
+      "source_candidate_ids": [
+        9,
+        10
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 4,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          29.0,
+          29.5,
+          30.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "f4 shows a clear aiming posture with a handgun; f5 and f6 show localized bright sparks at the motorcycle’s front—typical of bullet impact on metal—not a blast or explosion. No muzzle flash is visible, but the sequence strongly supports a gunshot causing the sparks. Merged because both candidates describe the same causal event: a shot fired at the motorcycle.",
+        "source_categories": [
+          "Shooting",
+          "Explosion"
+        ]
+      }
+    },
+    {
+      "t_start": 34.0,
+      "t_end": 34.041667,
+      "anomaly_type": "Shooting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "Man in sunglasses aims a handgun directly at camera; muzzle flash is not visible but posture and grip indicate active firing stance consistent with shooting.",
+      "source_candidate_ids": [
+        12
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 5,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          34.0
+        ],
+        "evidence_frame_ids": [
+          "f4"
+        ],
+        "reason": "f4 shows clear aiming with finger on trigger and gun extended; though no muzzle flash, the context (immediate subsequent sparks/explosions) supports that a shot was fired; candidate 12’s narrow interval aligns with this single-frame action.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 35.0,
+      "t_end": 35.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.98,
+      "coarse_score": 0.98,
+      "description": "Bright flash and radial shower of sparks erupt behind motorcycle, consistent with an explosive impact or detonation.",
+      "source_candidate_ids": [
+        13
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 5,
+        "event_id": 1,
+        "vlm_confidence": 0.98,
+        "evidence_times": [
+          35.0
+        ],
+        "evidence_frame_ids": [
+          "f6"
+        ],
+        "reason": "f6 shows intense light, smoke, and directional sparks radiating outward from rear of motorcycle—hallmarks of an explosion, not fire or collision alone; f5 shows pre-impact, f7 shows aftermath with shooter still aiming, confirming discrete event.",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    },
+    {
+      "t_start": 35.5,
+      "t_end": 36.5,
+      "anomaly_type": "Shooting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "Man continues aiming and appears to fire handgun again, with visible recoil and muzzle orientation consistent with discharge.",
+      "source_candidate_ids": [
+        14
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 5,
+        "event_id": 2,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          35.5,
+          36.0,
+          36.5
+        ],
+        "evidence_frame_ids": [
+          "f7",
+          "f8",
+          "f9"
+        ],
+        "reason": "f7–f9 show sustained aiming with slight hand movement and facial tension; f8 shows gun slightly displaced backward (recoil), supporting repeated shooting; interval overlaps visible frames showing continuous firing posture after explosion.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 39.0,
+      "t_end": 39.5,
+      "anomaly_type": "Shooting",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "Man on red motorcycle extends arm holding handgun forward while leaning, consistent with firing while riding.",
+      "source_candidate_ids": [
+        16
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 5,
+        "event_id": 3,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          39.0,
+          39.5
+        ],
+        "evidence_frame_ids": [
+          "f14",
+          "f15"
+        ],
+        "reason": "f14 shows clear extension of arm with gun pointed ahead; f15 shows immediate follow-through with rider airborne—suggesting recoil or evasive maneuver post-shot; no visible impact, but posture and timing support shooting.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 17,
+      "output_count": 10,
+      "groups": 6,
+      "rejected": 3,
+      "uncertain": 0,
+      "merged_sources": 4,
+      "relabeled": 1,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 1.5,
+              "f1": 2.0,
+              "f2": 2.5,
+              "f3": 3.0,
+              "f4": 3.5,
+              "f5": 4.0,
+              "f6": 4.5,
+              "f7": 5.0,
+              "f8": 5.5,
+              "f9": 6.0,
+              "f10": 6.5,
+              "f11": 7.0,
+              "f12": 7.5,
+              "f13": 8.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 3.5,
+                "t_end": 4.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 4.0,
+                "t_end": 6.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 5.0,
+                "t_end": 6.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1, 2],\n      \"category\": \"Shooting\",\n      \"t_start\": 3.5,\n      \"t_end\": 6.0,\n      \"confidence\": 0.95,\n      \"description\": \"A person on a motorcycle fires a handgun (visible muzzle flash at f4), continues aiming while moving (f5, f6, f9), and a bullet impact is seen on the SUV windshield at f8 (crack/spark), with smoke present in multiple frames.\",\n      \"reason\": \"f4 shows clear muzzle flash; f6 shows gun pointed forward with smoke; f8 shows a fresh impact mark on the windshield consistent with a bullet strike; f7 and f9 show continued aiming/gun handling during motion. All evidence supports a single sustained shooting episode from ~3.5s to ~6.0s.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1,
+                2
+              ],
+              "category": "Shooting",
+              "t_start": 3.5,
+              "t_end": 6.0,
+              "confidence": 0.95,
+              "description": "A person on a motorcycle fires a handgun (visible muzzle flash at f4), continues aiming while moving (f5, f6, f9), and a bullet impact is seen on the SUV windshield at f8 (crack/spark), with smoke present in multiple frames.",
+              "reason": "f4 shows clear muzzle flash; f6 shows gun pointed forward with smoke; f8 shows a fresh impact mark on the windshield consistent with a bullet strike; f7 and f9 show continued aiming/gun handling during motion. All evidence supports a single sustained shooting episode from ~3.5s to ~6.0s.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 6.0,
+              "f1": 6.5,
+              "f2": 7.0,
+              "f3": 7.5,
+              "f4": 8.0,
+              "f5": 8.5,
+              "f6": 9.0,
+              "f7": 9.5,
+              "f8": 10.0,
+              "f9": 10.5,
+              "f10": 11.0,
+              "f11": 11.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 8.0,
+                "t_end": 10.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"CarAccident\",\n      \"t_start\": 8.0,\n      \"t_end\": 10.0,\n      \"confidence\": 0.95,\n      \"description\": \"A black SUV with bull bar (license DIW 242) is struck on the front left, causing visible damage and debris spray at f4; by f5 the vehicle is airborne and rotating, indicating a high-impact collision; f6–f7 show rapid motion and aftermath consistent with crash dynamics.\",\n      \"reason\": \"f4 shows impact-induced water/debris splash on front left headlight; f5 shows the SUV mid-air with undercarriage exposed and rear wheels off ground, confirming loss of control from collision; f6–f7 show continued rapid motion and blurred context consistent with post-impact trajectory. This satisfies CarAccident (crash event), not mere driving or near-miss.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                3
+              ],
+              "category": "CarAccident",
+              "t_start": 8.0,
+              "t_end": 10.0,
+              "confidence": 0.95,
+              "description": "A black SUV with bull bar (license DIW 242) is struck on the front left, causing visible damage and debris spray at f4; by f5 the vehicle is airborne and rotating, indicating a high-impact collision; f6–f7 show rapid motion and aftermath consistent with crash dynamics.",
+              "reason": "f4 shows impact-induced water/debris splash on front left headlight; f5 shows the SUV mid-air with undercarriage exposed and rear wheels off ground, confirming loss of control from collision; f6–f7 show continued rapid motion and blurred context consistent with post-impact trajectory. This satisfies CarAccident (crash event), not mere driving or near-miss.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          4,
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 14.5,
+              "f1": 15.0,
+              "f2": 15.5,
+              "f3": 16.0,
+              "f4": 16.5,
+              "f5": 17.0,
+              "f6": 17.5,
+              "f7": 18.0,
+              "f8": 18.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 16.5,
+                "t_end": 17.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 16.5,
+                "t_end": 17.0,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"CarAccident\",\n      \"t_start\": 14.5,\n      \"t_end\": 17.0,\n      \"confidence\": 0.95,\n      \"description\": \"A dark vehicle is airborne, colliding with and crushing the roof/windshield of a red car, then landing on other parked cars, causing fire and smoke.\",\n      \"reason\": \"Frames f0–f2 show the dark vehicle mid-air impacting the red car; f3 shows shattered glass and deformation; f4–f5 show the dark vehicle resting atop other cars with flames and smoke—consistent with a single crash sequence, not an explosion (no blast wave or rapid expansion). Candidate 4’s interval (16.5–17.0) falls within this event, so merged into full crash duration.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"No explosion is visible: frames f4–f5 show fire and smoke after impact, but no blast, shockwave, or instantaneous detonation; fire appears secondary to collision damage.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                4
+              ],
+              "category": "CarAccident",
+              "t_start": 14.5,
+              "t_end": 17.0,
+              "confidence": 0.95,
+              "description": "A dark vehicle is airborne, colliding with and crushing the roof/windshield of a red car, then landing on other parked cars, causing fire and smoke.",
+              "reason": "Frames f0–f2 show the dark vehicle mid-air impacting the red car; f3 shows shattered glass and deformation; f4–f5 show the dark vehicle resting atop other cars with flames and smoke—consistent with a single crash sequence, not an explosion (no blast wave or rapid expansion). Candidate 4’s interval (16.5–17.0) falls within this event, so merged into full crash duration.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 5,
+              "reason": "No explosion is visible: frames f4–f5 show fire and smoke after impact, but no blast, shockwave, or instantaneous detonation; fire appears secondary to collision damage.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          6,
+          7,
+          8
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 23.0,
+              "f1": 23.5,
+              "f2": 24.0,
+              "f3": 24.5,
+              "f4": 25.0,
+              "f5": 25.5,
+              "f6": 26.0,
+              "f7": 26.5,
+              "f8": 27.0,
+              "f9": 27.5,
+              "f10": 28.0,
+              "f11": 28.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 6,
+                "t_start": 25.0,
+                "t_end": 25.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 26.5,
+                "t_end": 26.541667,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 26.5,
+                "t_end": 27.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [6],\n      \"category\": \"Shooting\",\n      \"t_start\": 25.0,\n      \"t_end\": 25.5,\n      \"confidence\": 0.95,\n      \"description\": \"Man on motorcycle aims and fires a handgun directly toward camera; muzzle flash visible in f5.\",\n      \"reason\": \"f4 shows gun pointed forward; f5 shows clear muzzle flash at barrel tip, consistent with discharge; no other object obscures barrel. This satisfies 'Shooting' (visible shooting).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    },\n    {\n      \"source_candidate_ids\": [7, 8],\n      \"category\": \"Shooting\",\n      \"t_start\": 26.5,\n      \"t_end\": 27.0,\n      \"confidence\": 0.9,\n      \"description\": \"Bright flash and debris erupt from motorcycle front at f7, coinciding with rider’s posture suggesting recoil or impact; consistent with a second shot fired from the same position.\",\n      \"reason\": \"f7 shows intense white flash and flying fragments near handlebars, with rider flinching—typical of close-range discharge or impact from gunfire; f6 shows rider still holding gun, f8 shows rider recovering post-flash. Merged because both candidates refer to same flash event at t=26.5 and its immediate aftermath.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                6
+              ],
+              "category": "Shooting",
+              "t_start": 25.0,
+              "t_end": 25.5,
+              "confidence": 0.95,
+              "description": "Man on motorcycle aims and fires a handgun directly toward camera; muzzle flash visible in f5.",
+              "reason": "f4 shows gun pointed forward; f5 shows clear muzzle flash at barrel tip, consistent with discharge; no other object obscures barrel. This satisfies 'Shooting' (visible shooting).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                7,
+                8
+              ],
+              "category": "Shooting",
+              "t_start": 26.5,
+              "t_end": 27.0,
+              "confidence": 0.9,
+              "description": "Bright flash and debris erupt from motorcycle front at f7, coinciding with rider’s posture suggesting recoil or impact; consistent with a second shot fired from the same position.",
+              "reason": "f7 shows intense white flash and flying fragments near handlebars, with rider flinching—typical of close-range discharge or impact from gunfire; f6 shows rider still holding gun, f8 shows rider recovering post-flash. Merged because both candidates refer to same flash event at t=26.5 and its immediate aftermath.",
+              "evidence_frame_ids": [
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 4,
+        "source_ids": [
+          9,
+          10,
+          11
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 27.0,
+              "f1": 27.5,
+              "f2": 28.0,
+              "f3": 28.5,
+              "f4": 29.0,
+              "f5": 29.5,
+              "f6": 30.0,
+              "f7": 30.5,
+              "f8": 31.0,
+              "f9": 31.5,
+              "f10": 32.0,
+              "f11": 32.5,
+              "f12": 33.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 9,
+                "t_start": 29.0,
+                "t_end": 30.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 10,
+                "t_start": 29.5,
+                "t_end": 30.0,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 11,
+                "t_start": 30.0,
+                "t_end": 31.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [9, 10],\n      \"category\": \"Shooting\",\n      \"t_start\": 29.0,\n      \"t_end\": 30.0,\n      \"confidence\": 0.9,\n      \"description\": \"A man aims a handgun forward (f4), then sparks erupt from the motorcycle’s front near the handlebars (f5), and a close-up shows sparks flying from the bike’s lower front (f6), consistent with a bullet striking metal.\",\n      \"reason\": \"f4 shows a clear aiming posture with a handgun; f5 and f6 show localized bright sparks at the motorcycle’s front—typical of bullet impact on metal—not a blast or explosion. No muzzle flash is visible, but the sequence strongly supports a gunshot causing the sparks. Merged because both candidates describe the same causal event: a shot fired at the motorcycle.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 11,\n      \"reason\": \"No vehicle crash or collision is visible: the motorcycle remains upright and in motion across f11–f12; f7–f8 show motion blur and low-light instability, not impact damage or debris indicative of an accident.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f11\", \"f12\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                9,
+                10
+              ],
+              "category": "Shooting",
+              "t_start": 29.0,
+              "t_end": 30.0,
+              "confidence": 0.9,
+              "description": "A man aims a handgun forward (f4), then sparks erupt from the motorcycle’s front near the handlebars (f5), and a close-up shows sparks flying from the bike’s lower front (f6), consistent with a bullet striking metal.",
+              "reason": "f4 shows a clear aiming posture with a handgun; f5 and f6 show localized bright sparks at the motorcycle’s front—typical of bullet impact on metal—not a blast or explosion. No muzzle flash is visible, but the sequence strongly supports a gunshot causing the sparks. Merged because both candidates describe the same causal event: a shot fired at the motorcycle.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 11,
+              "reason": "No vehicle crash or collision is visible: the motorcycle remains upright and in motion across f11–f12; f7–f8 show motion blur and low-light instability, not impact damage or debris indicative of an accident.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8",
+                "f11",
+                "f12"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 5,
+        "source_ids": [
+          12,
+          13,
+          14,
+          15,
+          16
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 32.0,
+              "f1": 32.5,
+              "f2": 33.0,
+              "f3": 33.5,
+              "f4": 34.0,
+              "f5": 34.5,
+              "f6": 35.0,
+              "f7": 35.5,
+              "f8": 36.0,
+              "f9": 36.5,
+              "f10": 37.0,
+              "f11": 37.5,
+              "f12": 38.0,
+              "f13": 38.5,
+              "f14": 39.0,
+              "f15": 39.5,
+              "f16": 40.0,
+              "f17": 40.5,
+              "f18": 41.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 12,
+                "t_start": 34.0,
+                "t_end": 34.041667,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 13,
+                "t_start": 35.0,
+                "t_end": 35.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 14,
+                "t_start": 35.5,
+                "t_end": 36.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 15,
+                "t_start": 37.5,
+                "t_end": 38.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 16,
+                "t_start": 39.0,
+                "t_end": 39.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [12],\n      \"category\": \"Shooting\",\n      \"t_start\": 34.0,\n      \"t_end\": 34.041667,\n      \"confidence\": 0.95,\n      \"description\": \"Man in sunglasses aims a handgun directly at camera; muzzle flash is not visible but posture and grip indicate active firing stance consistent with shooting.\",\n      \"reason\": \"f4 shows clear aiming with finger on trigger and gun extended; though no muzzle flash, the context (immediate subsequent sparks/explosions) supports that a shot was fired; candidate 12’s narrow interval aligns with this single-frame action.\",\n      \"evidence_frame_ids\": [\"f4\"]\n    },\n    {\n      \"source_candidate_ids\": [13],\n      \"category\": \"Explosion\",\n      \"t_start\": 35.0,\n      \"t_end\": 35.5,\n      \"confidence\": 0.98,\n      \"description\": \"Bright flash and radial shower of sparks erupt behind motorcycle, consistent with an explosive impact or detonation.\",\n      \"reason\": \"f6 shows intense light, smoke, and directional sparks radiating outward from rear of motorcycle—hallmarks of an explosion, not fire or collision alone; f5 shows pre-impact, f7 shows aftermath with shooter still aiming, confirming discrete event.\",\n      \"evidence_frame_ids\": [\"f6\"]\n    },\n    {\n      \"source_candidate_ids\": [14],\n      \"category\": \"Shooting\",\n      \"t_start\": 35.5,\n      \"t_end\": 36.5,\n      \"confidence\": 0.9,\n      \"description\": \"Man continues aiming and appears to fire handgun again, with visible recoil and muzzle orientation consistent with discharge.\",\n      \"reason\": \"f7–f9 show sustained aiming with slight hand movement and facial tension; f8 shows gun slightly displaced backward (recoil), supporting repeated shooting; interval overlaps visible frames showing continuous firing posture after explosion.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\"]\n    },\n    {\n      \"source_candidate_ids\": [16],\n      \"category\": \"Shooting\",\n      \"t_start\": 39.0,\n      \"t_end\": 39.5,\n      \"confidence\": 0.85,\n      \"description\": \"Man on red motorcycle extends arm holding handgun forward while leaning, consistent with firing while riding.\",\n      \"reason\": \"f14 shows clear extension of arm with gun pointed ahead; f15 shows immediate follow-through with rider airborne—suggesting recoil or evasive maneuver post-shot; no visible impact, but posture and timing support shooting.\",\n      \"evidence_frame_ids\": [\"f14\", \"f15\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 15,\n      \"reason\": \"f11 shows sparks near front of black motorcycle, but no gun is visible; f12 shows distant rider without weapon; no evidence of shooting occurs between 37.5–38.0—sparks likely from mechanical contact or prior explosion debris, not active firearm discharge.\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                12
+              ],
+              "category": "Shooting",
+              "t_start": 34.0,
+              "t_end": 34.041667,
+              "confidence": 0.95,
+              "description": "Man in sunglasses aims a handgun directly at camera; muzzle flash is not visible but posture and grip indicate active firing stance consistent with shooting.",
+              "reason": "f4 shows clear aiming with finger on trigger and gun extended; though no muzzle flash, the context (immediate subsequent sparks/explosions) supports that a shot was fired; candidate 12’s narrow interval aligns with this single-frame action.",
+              "evidence_frame_ids": [
+                "f4"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                13
+              ],
+              "category": "Explosion",
+              "t_start": 35.0,
+              "t_end": 35.5,
+              "confidence": 0.98,
+              "description": "Bright flash and radial shower of sparks erupt behind motorcycle, consistent with an explosive impact or detonation.",
+              "reason": "f6 shows intense light, smoke, and directional sparks radiating outward from rear of motorcycle—hallmarks of an explosion, not fire or collision alone; f5 shows pre-impact, f7 shows aftermath with shooter still aiming, confirming discrete event.",
+              "evidence_frame_ids": [
+                "f6"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                14
+              ],
+              "category": "Shooting",
+              "t_start": 35.5,
+              "t_end": 36.5,
+              "confidence": 0.9,
+              "description": "Man continues aiming and appears to fire handgun again, with visible recoil and muzzle orientation consistent with discharge.",
+              "reason": "f7–f9 show sustained aiming with slight hand movement and facial tension; f8 shows gun slightly displaced backward (recoil), supporting repeated shooting; interval overlaps visible frames showing continuous firing posture after explosion.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8",
+                "f9"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                16
+              ],
+              "category": "Shooting",
+              "t_start": 39.0,
+              "t_end": 39.5,
+              "confidence": 0.85,
+              "description": "Man on red motorcycle extends arm holding handgun forward while leaning, consistent with firing while riding.",
+              "reason": "f14 shows clear extension of arm with gun pointed ahead; f15 shows immediate follow-through with rider airborne—suggesting recoil or evasive maneuver post-shot; no visible impact, but posture and timing support shooting.",
+              "evidence_frame_ids": [
+                "f14",
+                "f15"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 15,
+              "reason": "f11 shows sparks near front of black motorcycle, but no gun is visible; f12 shows distant rider without weapon; no evidence of shooting occurs between 37.5–38.0—sparks likely from mechanical contact or prior explosion debris, not active firearm discharge.",
+              "evidence_frame_ids": [
+                "f11",
+                "f12"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

@@ -1,0 +1,133 @@
+{
+  "events": [
+    {
+      "t_start": 3.0,
+      "t_end": 7.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A sudden, large fireball erupts behind the central palm tree at f4 (3.0 s), rapidly expanding into a massive plume of fire, smoke, and debris that engulfs the background and lifts dust; the blast wave and ejecta are visible through f10 (6.0 s), with smoke continuing to billow through f12 (7.0 s).",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          3.0,
+          3.5,
+          4.0,
+          4.5,
+          5.0,
+          5.5,
+          6.0,
+          6.5,
+          7.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12"
+        ],
+        "reason": "The abrupt onset of intense fire, rapid expansion, and ejection of material (e.g., dark fragments in f6–f7) are characteristic of a high-energy explosion, not sustained fire or accident; the event is fully contained within the visible interval and matches the candidate’s timing.",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 1,
+      "output_count": 1,
+      "groups": 1,
+      "rejected": 0,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 1.0,
+              "f1": 1.5,
+              "f2": 2.0,
+              "f3": 2.5,
+              "f4": 3.0,
+              "f5": 3.5,
+              "f6": 4.0,
+              "f7": 4.5,
+              "f8": 5.0,
+              "f9": 5.5,
+              "f10": 6.0,
+              "f11": 6.5,
+              "f12": 7.0,
+              "f13": 7.5,
+              "f14": 8.0,
+              "f15": 8.5,
+              "f16": 9.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 3.0,
+                "t_end": 7.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Explosion\",\n      \"t_start\": 3.0,\n      \"t_end\": 7.5,\n      \"confidence\": 0.95,\n      \"description\": \"A sudden, large fireball erupts behind the central palm tree at f4 (3.0 s), rapidly expanding into a massive plume of fire, smoke, and debris that engulfs the background and lifts dust; the blast wave and ejecta are visible through f10 (6.0 s), with smoke continuing to billow through f12 (7.0 s).\",\n      \"reason\": \"The abrupt onset of intense fire, rapid expansion, and ejection of material (e.g., dark fragments in f6–f7) are characteristic of a high-energy explosion, not sustained fire or accident; the event is fully contained within the visible interval and matches the candidate’s timing.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Explosion",
+              "t_start": 3.0,
+              "t_end": 7.5,
+              "confidence": 0.95,
+              "description": "A sudden, large fireball erupts behind the central palm tree at f4 (3.0 s), rapidly expanding into a massive plume of fire, smoke, and debris that engulfs the background and lifts dust; the blast wave and ejecta are visible through f10 (6.0 s), with smoke continuing to billow through f12 (7.0 s).",
+              "reason": "The abrupt onset of intense fire, rapid expansion, and ejection of material (e.g., dark fragments in f6–f7) are characteristic of a high-energy explosion, not sustained fire or accident; the event is fully contained within the visible interval and matches the candidate’s timing.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

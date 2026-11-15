@@ -1,0 +1,308 @@
+{
+  "events": [
+    {
+      "t_start": 7.0,
+      "t_end": 8.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A silver van pulls out from the right roadside into the lane of the dashcam vehicle, leading to an imminent collision; by f7 the van is extremely close and the camera view abruptly tilts upward, indicating impact and vehicle disruption.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          7.5,
+          8.0,
+          8.5,
+          9.0
+        ],
+        "evidence_frame_ids": [
+          "f5",
+          "f6",
+          "f7",
+          "f8"
+        ],
+        "reason": "f5–f6 show the van beginning to move into the road; f7 shows the van occupying the dashcam vehicle’s lane at point-blank range with motion blur and camera shake; f8–f10 show the sky and interior roof, consistent with the vehicle being struck and the camera rotating violently—this sequence satisfies the definition of a crash (CarAccident).",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 22.5,
+      "t_end": 25.0,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A white semi-truck in the right lane suddenly swerves left, loses control, and jackknifes, kicking up dust and debris; its trailer separates and slides sideways across the road.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          22.5,
+          23.0,
+          23.5,
+          24.0,
+          24.5,
+          25.0
+        ],
+        "evidence_frame_ids": [
+          "f1",
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "Frames f1–f6 show the truck initiating a sharp left maneuver (f1), then rotating and shedding its trailer (f2–f4), with the trailer lying across the shoulder and road by f5–f6—consistent with a loss-of-control crash, not normal driving.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 42.5,
+      "t_end": 43.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A black sedan (with yellow markings) collides with a silver sedan at the intersection, causing visible lateral displacement and deformation of both vehicles.",
+      "source_candidate_ids": [
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          42.5,
+          43.0,
+          43.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "In f4 (42.5s), the black car is turning left and contacts the silver car’s front-right side; in f5 (43.0s), both cars are interlocked and sliding sideways, indicating impact and loss of control; by f6 (43.5s), they have separated but remain distorted—consistent with a crash, not near-miss or braking.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 3,
+      "output_count": 3,
+      "groups": 3,
+      "rejected": 0,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 5.0,
+              "f1": 5.5,
+              "f2": 6.0,
+              "f3": 6.5,
+              "f4": 7.0,
+              "f5": 7.5,
+              "f6": 8.0,
+              "f7": 8.5,
+              "f8": 9.0,
+              "f9": 9.5,
+              "f10": 10.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 7.0,
+                "t_end": 8.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"CarAccident\",\n      \"t_start\": 7.0,\n      \"t_end\": 8.5,\n      \"confidence\": 0.95,\n      \"description\": \"A silver van pulls out from the right roadside into the lane of the dashcam vehicle, leading to an imminent collision; by f7 the van is extremely close and the camera view abruptly tilts upward, indicating impact and vehicle disruption.\",\n      \"reason\": \"f5–f6 show the van beginning to move into the road; f7 shows the van occupying the dashcam vehicle’s lane at point-blank range with motion blur and camera shake; f8–f10 show the sky and interior roof, consistent with the vehicle being struck and the camera rotating violently—this sequence satisfies the definition of a crash (CarAccident).\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "CarAccident",
+              "t_start": 7.0,
+              "t_end": 8.5,
+              "confidence": 0.95,
+              "description": "A silver van pulls out from the right roadside into the lane of the dashcam vehicle, leading to an imminent collision; by f7 the van is extremely close and the camera view abruptly tilts upward, indicating impact and vehicle disruption.",
+              "reason": "f5–f6 show the van beginning to move into the road; f7 shows the van occupying the dashcam vehicle’s lane at point-blank range with motion blur and camera shake; f8–f10 show the sky and interior roof, consistent with the vehicle being struck and the camera rotating violently—this sequence satisfies the definition of a crash (CarAccident).",
+              "evidence_frame_ids": [
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 22.0,
+              "f1": 22.5,
+              "f2": 23.0,
+              "f3": 23.5,
+              "f4": 24.0,
+              "f5": 24.5,
+              "f6": 25.0,
+              "f7": 25.5,
+              "f8": 26.0,
+              "f9": 26.5,
+              "f10": 27.0,
+              "f11": 27.5,
+              "f12": 28.0,
+              "f13": 28.5,
+              "f14": 29.0,
+              "f15": 29.5,
+              "f16": 30.0,
+              "f17": 30.5,
+              "f18": 31.0,
+              "f19": 31.5,
+              "f20": 32.0,
+              "f21": 32.5,
+              "f22": 33.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 24.0,
+                "t_end": 31.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"CarAccident\",\n      \"t_start\": 22.5,\n      \"t_end\": 25.0,\n      \"confidence\": 0.95,\n      \"description\": \"A white semi-truck in the right lane suddenly swerves left, loses control, and jackknifes, kicking up dust and debris; its trailer separates and slides sideways across the road.\",\n      \"reason\": \"Frames f1–f6 show the truck initiating a sharp left maneuver (f1), then rotating and shedding its trailer (f2–f4), with the trailer lying across the shoulder and road by f5–f6—consistent with a loss-of-control crash, not normal driving.\",\n      \"evidence_frame_ids\": [\"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "CarAccident",
+              "t_start": 22.5,
+              "t_end": 25.0,
+              "confidence": 0.95,
+              "description": "A white semi-truck in the right lane suddenly swerves left, loses control, and jackknifes, kicking up dust and debris; its trailer separates and slides sideways across the road.",
+              "reason": "Frames f1–f6 show the truck initiating a sharp left maneuver (f1), then rotating and shedding its trailer (f2–f4), with the trailer lying across the shoulder and road by f5–f6—consistent with a loss-of-control crash, not normal driving.",
+              "evidence_frame_ids": [
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 40.5,
+              "f1": 41.0,
+              "f2": 41.5,
+              "f3": 42.0,
+              "f4": 42.5,
+              "f5": 43.0,
+              "f6": 43.5,
+              "f7": 44.0,
+              "f8": 44.5,
+              "f9": 45.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 42.5,
+                "t_end": 43.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"CarAccident\",\n      \"t_start\": 42.5,\n      \"t_end\": 43.5,\n      \"confidence\": 0.95,\n      \"description\": \"A black sedan (with yellow markings) collides with a silver sedan at the intersection, causing visible lateral displacement and deformation of both vehicles.\",\n      \"reason\": \"In f4 (42.5s), the black car is turning left and contacts the silver car’s front-right side; in f5 (43.0s), both cars are interlocked and sliding sideways, indicating impact and loss of control; by f6 (43.5s), they have separated but remain distorted—consistent with a crash, not near-miss or braking.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2
+              ],
+              "category": "CarAccident",
+              "t_start": 42.5,
+              "t_end": 43.5,
+              "confidence": 0.95,
+              "description": "A black sedan (with yellow markings) collides with a silver sedan at the intersection, causing visible lateral displacement and deformation of both vehicles.",
+              "reason": "In f4 (42.5s), the black car is turning left and contacts the silver car’s front-right side; in f5 (43.0s), both cars are interlocked and sliding sideways, indicating impact and loss of control; by f6 (43.5s), they have separated but remain distorted—consistent with a crash, not near-miss or braking.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

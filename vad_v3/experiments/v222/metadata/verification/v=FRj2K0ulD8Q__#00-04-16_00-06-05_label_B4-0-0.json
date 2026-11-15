@@ -1,0 +1,691 @@
+{
+  "events": [
+    {
+      "t_start": 8.6,
+      "t_end": 10.5,
+      "anomaly_type": "Abuse",
+      "confidence": 0.8,
+      "coarse_score": 0.8,
+      "description": "A person with curly hair kneels beside a person lying on the ground, placing hands on their torso/shoulders while others gather; the prone person appears unresponsive and is later seen with arms outstretched in blue clothing.",
+      "source_candidate_ids": [
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.8,
+        "evidence_times": [
+          9.0,
+          9.5,
+          10.0,
+          10.5,
+          11.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8"
+        ],
+        "reason": "The prone individual shows no voluntary movement across frames f4–f8, while the curly-haired person maintains contact in a manner consistent with restraining or subduing rather than aiding (no clear medical aid like CPR, head tilt, or checking pulse); surrounding individuals do not intervene to assist the prone person, suggesting non-consensual control. This meets the definition of Abuse: aggression against a helpless victim.",
+        "source_categories": [
+          "Abuse"
+        ]
+      }
+    },
+    {
+      "t_start": 80.5,
+      "t_end": 84.5,
+      "anomaly_type": "Riot",
+      "confidence": 0.75,
+      "coarse_score": 0.75,
+      "description": "A large, dense crowd moves chaotically across a street with scattered debris; uniformed officers in helmets and shields advance amid running individuals and fallen objects.",
+      "source_candidate_ids": [
+        8
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 6,
+        "event_id": 0,
+        "vlm_confidence": 0.75,
+        "evidence_times": [
+          80.5,
+          81.0,
+          81.5,
+          82.5,
+          83.0,
+          83.5,
+          84.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10"
+        ],
+        "reason": "Frames f4–f10 show collective agitation, uncoordinated movement, debris on ground, and police in riot gear engaging the crowd—consistent with collective violent unrest (Riot), not isolated incidents. Candidate 9’s ‘Fighting’ is not supported as no mutual combat is visible; it is subsumed within the broader riot context.",
+        "source_categories": [
+          "Riot"
+        ]
+      }
+    },
+    {
+      "t_start": 85.5,
+      "t_end": 87.0,
+      "anomaly_type": "Abuse",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "A person in a light shirt lies motionless on the ground while a helmeted officer stands over them holding a shield labeled 'POLICE' and then raises a baton; the prone individual shows no resistance.",
+      "source_candidate_ids": [
+        10
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 6,
+        "event_id": 1,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          85.5,
+          86.0,
+          87.0
+        ],
+        "evidence_frame_ids": [
+          "f12",
+          "f13",
+          "f14"
+        ],
+        "reason": "In f12–f14, the person on the ground is supine and non-reactive while the officer looms and prepares to strike—this satisfies Abuse (aggression against a helpless victim); candidate 11’s ‘Fighting’ is contradicted by absence of mutual engagement.",
+        "source_categories": [
+          "Abuse"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 12,
+      "output_count": 3,
+      "groups": 7,
+      "rejected": 9,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 0.8,
+                "t_end": 2.3,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"The person on the ground (f1–f4) appears to be receiving aid or being attended to by others; hands are placed gently near the head/shoulders, no signs of aggression or restraint. Later frames (f5–f8) show a person with reddish hair bending over, possibly assisting or checking on someone—consistent with medical response or concern, not abuse.\",\n      \"evidence_frame_ids\": [\"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "The person on the ground (f1–f4) appears to be receiving aid or being attended to by others; hands are placed gently near the head/shoulders, no signs of aggression or restraint. Later frames (f5–f8) show a person with reddish hair bending over, possibly assisting or checking on someone—consistent with medical response or concern, not abuse.",
+              "evidence_frame_ids": [
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 2.0,
+              "f1": 2.5,
+              "f2": 3.0,
+              "f3": 3.5,
+              "f4": 4.0,
+              "f5": 4.5,
+              "f6": 5.0,
+              "f7": 5.5,
+              "f8": 6.0,
+              "f9": 6.5,
+              "f10": 7.0,
+              "f11": 7.5,
+              "f12": 8.0,
+              "f13": 8.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 3.9,
+                "t_end": 7.0,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"The sequence shows a person with curly hair kneeling and interacting calmly with others; no mutual physical combat is visible—actions include pointing, smiling, and assisting, consistent with nonviolent aid or coordination.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "The sequence shows a person with curly hair kneeling and interacting calmly with others; no mutual physical combat is visible—actions include pointing, smiling, and assisting, consistent with nonviolent aid or coordination.",
+              "evidence_frame_ids": [
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 7.0,
+              "f1": 7.5,
+              "f2": 8.0,
+              "f3": 8.5,
+              "f4": 9.0,
+              "f5": 9.5,
+              "f6": 10.0,
+              "f7": 10.5,
+              "f8": 11.0,
+              "f9": 11.5,
+              "f10": 12.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 8.6,
+                "t_end": 10.5,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"Abuse\",\n      \"t_start\": 8.6,\n      \"t_end\": 10.5,\n      \"confidence\": 0.8,\n      \"description\": \"A person with curly hair kneels beside a person lying on the ground, placing hands on their torso/shoulders while others gather; the prone person appears unresponsive and is later seen with arms outstretched in blue clothing.\",\n      \"reason\": \"The prone individual shows no voluntary movement across frames f4–f8, while the curly-haired person maintains contact in a manner consistent with restraining or subduing rather than aiding (no clear medical aid like CPR, head tilt, or checking pulse); surrounding individuals do not intervene to assist the prone person, suggesting non-consensual control. This meets the definition of Abuse: aggression against a helpless victim.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2
+              ],
+              "category": "Abuse",
+              "t_start": 8.6,
+              "t_end": 10.5,
+              "confidence": 0.8,
+              "description": "A person with curly hair kneels beside a person lying on the ground, placing hands on their torso/shoulders while others gather; the prone person appears unresponsive and is later seen with arms outstretched in blue clothing.",
+              "reason": "The prone individual shows no voluntary movement across frames f4–f8, while the curly-haired person maintains contact in a manner consistent with restraining or subduing rather than aiding (no clear medical aid like CPR, head tilt, or checking pulse); surrounding individuals do not intervene to assist the prone person, suggesting non-consensual control. This meets the definition of Abuse: aggression against a helpless victim.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 10.5,
+              "f1": 11.0,
+              "f2": 11.5,
+              "f3": 12.0,
+              "f4": 12.5,
+              "f5": 13.0,
+              "f6": 13.5,
+              "f7": 14.0,
+              "f8": 14.5,
+              "f9": 15.0,
+              "f10": 15.5,
+              "f11": 16.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 12.4,
+                "t_end": 14.4,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"Images f3–f7 show a crowd around a large vehicle (possibly a bus or truck) with no visible crash dynamics, deformation, or impact; the scene resembles a news report of an incident rather than an active car accident. The timestamp overlay '21/11/03-90' suggests archival footage, and no frames depict collision, skid marks, or sudden motion consistent with a car accident.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 3,
+              "reason": "Images f3–f7 show a crowd around a large vehicle (possibly a bus or truck) with no visible crash dynamics, deformation, or impact; the scene resembles a news report of an incident rather than an active car accident. The timestamp overlay '21/11/03-90' suggests archival footage, and no frames depict collision, skid marks, or sudden motion consistent with a car accident.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 4,
+        "source_ids": [
+          4,
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 27.5,
+              "f1": 28.0,
+              "f2": 28.5,
+              "f3": 29.0,
+              "f4": 29.5,
+              "f5": 30.0,
+              "f6": 30.5,
+              "f7": 31.0,
+              "f8": 31.5,
+              "f9": 32.0,
+              "f10": 32.5,
+              "f11": 33.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 29.1,
+                "t_end": 30.9,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 29.5,
+                "t_end": 31.5,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"The scene shows a crowd moving around a white van with some individuals near it, but no collective violent unrest, destruction, or coordinated aggression is visible; activity appears consistent with an emergency response or evacuation, not a riot.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\"]\n    },\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"No mutual physical combat is visible: individuals near the van (e.g., f4–f6) appear to be assisting, pulling, or moving quickly, but no clear striking, grappling, or sustained aggressive interaction occurs; motion blur and occlusion prevent confirmation of fighting, and ordinary explanations (e.g., helping someone, rapid dispersal) suffice.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 4,
+              "reason": "The scene shows a crowd moving around a white van with some individuals near it, but no collective violent unrest, destruction, or coordinated aggression is visible; activity appears consistent with an emergency response or evacuation, not a riot.",
+              "evidence_frame_ids": [
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            },
+            {
+              "candidate_id": 5,
+              "reason": "No mutual physical combat is visible: individuals near the van (e.g., f4–f6) appear to be assisting, pulling, or moving quickly, but no clear striking, grappling, or sustained aggressive interaction occurs; motion blur and occlusion prevent confirmation of fighting, and ordinary explanations (e.g., helping someone, rapid dispersal) suffice.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 5,
+        "source_ids": [
+          6,
+          7
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 67.5,
+              "f1": 68.0,
+              "f2": 68.5,
+              "f3": 69.0,
+              "f4": 69.5,
+              "f5": 70.0,
+              "f6": 70.5,
+              "f7": 71.0,
+              "f8": 71.5,
+              "f9": 72.0,
+              "f10": 72.5,
+              "f11": 73.0,
+              "f12": 73.5,
+              "f13": 74.0,
+              "f14": 74.5,
+              "f15": 75.0,
+              "f16": 75.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 6,
+                "t_start": 69.5,
+                "t_end": 74.0,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 70.4,
+                "t_end": 71.6,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"The scene shows a crowd moving through debris-strewn street with no collective violent behavior; people walk, some bend to pick up items (e.g., f16 yellow object), consistent with post-event dispersal or cleanup, not riot.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    },\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"No mutual physical combat is visible between individuals in f7–f8; people are standing close, possibly assisting or observing, but no striking, grappling, or aggression is evident.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 6,
+              "reason": "The scene shows a crowd moving through debris-strewn street with no collective violent behavior; people walk, some bend to pick up items (e.g., f16 yellow object), consistent with post-event dispersal or cleanup, not riot.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16"
+              ]
+            },
+            {
+              "candidate_id": 7,
+              "reason": "No mutual physical combat is visible between individuals in f7–f8; people are standing close, possibly assisting or observing, but no striking, grappling, or aggression is evident.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 6,
+        "source_ids": [
+          8,
+          9,
+          10,
+          11
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 78.0,
+              "f1": 78.5,
+              "f2": 79.0,
+              "f3": 79.5,
+              "f4": 80.5,
+              "f5": 81.0,
+              "f6": 81.5,
+              "f7": 82.5,
+              "f8": 83.0,
+              "f9": 83.5,
+              "f10": 84.5,
+              "f11": 85.0,
+              "f12": 85.5,
+              "f13": 86.0,
+              "f14": 87.0,
+              "f15": 87.5,
+              "f16": 88.0,
+              "f17": 89.0,
+              "f18": 89.5,
+              "f19": 90.0,
+              "f20": 91.0,
+              "f21": 91.5,
+              "f22": 92.0,
+              "f23": 93.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 8,
+                "t_start": 80.0,
+                "t_end": 91.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 9,
+                "t_start": 82.4,
+                "t_end": 84.4,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 10,
+                "t_start": 85.5,
+                "t_end": 87.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 11,
+                "t_start": 86.0,
+                "t_end": 86.5,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [8, 9],\n      \"category\": \"Riot\",\n      \"t_start\": 80.5,\n      \"t_end\": 84.5,\n      \"confidence\": 0.8,\n      \"description\": \"Large crowd surges forward with scattered debris and multiple individuals running or falling; police in riot gear advance amid chaos.\",\n      \"reason\": \"Images f4–f10 show a dense, agitated crowd moving chaotically, objects on ground, and uniformed officers with shields engaging the crowd—consistent with collective violent unrest (riot), not isolated fighting. Candidate 9’s ‘Fighting’ is subsumed as part of the broader riot dynamics.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    },\n    {\n      \"source_candidate_ids\": [10, 11],\n      \"category\": \"Abuse\",\n      \"t_start\": 85.5,\n      \"t_end\": 87.0,\n      \"confidence\": 0.9,\n      \"description\": \"A person lies on the ground while a helmeted officer stands over them holding a shield and baton; the prone individual appears non-resisting.\",\n      \"reason\": \"In f12–f14, the person on ground (light shirt) is motionless while officer (blue helmet, 'POLICE' shield) looms and then raises baton—no mutual combat, indicating aggression against a helpless victim, satisfying Abuse definition. Candidate 11’s ‘Fighting’ is contradicted by lack of resistance.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\", \"f14\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 9,\n      \"reason\": \"Subsumed into the broader riot event (f4–f10); no isolated mutual combat visible—actions are part of crowd-scale unrest.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\"]\n    },\n    {\n      \"candidate_id\": 11,\n      \"reason\": \"The prone individual shows no resistance or engagement; officer’s posture and baton use indicate one-sided aggression, not mutual fighting.\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 78.0,
+              "f1": 78.5,
+              "f2": 79.0,
+              "f3": 79.5,
+              "f4": 80.5,
+              "f5": 81.0,
+              "f6": 81.5,
+              "f7": 82.5,
+              "f8": 83.0,
+              "f9": 83.5,
+              "f10": 84.5,
+              "f11": 85.0,
+              "f12": 85.5,
+              "f13": 86.0,
+              "f14": 87.0,
+              "f15": 87.5,
+              "f16": 88.0,
+              "f17": 89.0,
+              "f18": 89.5,
+              "f19": 90.0,
+              "f20": 91.0,
+              "f21": 91.5,
+              "f22": 92.0,
+              "f23": 93.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 8,
+                "t_start": 80.0,
+                "t_end": 91.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 9,
+                "t_start": 82.4,
+                "t_end": 84.4,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 10,
+                "t_start": 85.5,
+                "t_end": 87.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 11,
+                "t_start": 86.0,
+                "t_end": 86.5,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [8],\n      \"category\": \"Riot\",\n      \"t_start\": 80.5,\n      \"t_end\": 84.5,\n      \"confidence\": 0.75,\n      \"description\": \"A large, dense crowd moves chaotically across a street with scattered debris; uniformed officers in helmets and shields advance amid running individuals and fallen objects.\",\n      \"reason\": \"Frames f4–f10 show collective agitation, uncoordinated movement, debris on ground, and police in riot gear engaging the crowd—consistent with collective violent unrest (Riot), not isolated incidents. Candidate 9’s ‘Fighting’ is not supported as no mutual combat is visible; it is subsumed within the broader riot context.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    },\n    {\n      \"source_candidate_ids\": [10],\n      \"category\": \"Abuse\",\n      \"t_start\": 85.5,\n      \"t_end\": 87.0,\n      \"confidence\": 0.85,\n      \"description\": \"A person in a light shirt lies motionless on the ground while a helmeted officer stands over them holding a shield labeled 'POLICE' and then raises a baton; the prone individual shows no resistance.\",\n      \"reason\": \"In f12–f14, the person on the ground is supine and non-reactive while the officer looms and prepares to strike—this satisfies Abuse (aggression against a helpless victim); candidate 11’s ‘Fighting’ is contradicted by absence of mutual engagement.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\", \"f14\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 9,\n      \"reason\": \"No visible mutual physical combat in f7–f9; actions are part of crowd-scale chaos and police response, not isolated fighting.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\"]\n    },\n    {\n      \"candidate_id\": 11,\n      \"reason\": \"Frame f13–f14 shows a prone, non-resisting individual and an officer preparing to strike with a baton—this is one-sided aggression, not mutual fighting.\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                8
+              ],
+              "category": "Riot",
+              "t_start": 80.5,
+              "t_end": 84.5,
+              "confidence": 0.75,
+              "description": "A large, dense crowd moves chaotically across a street with scattered debris; uniformed officers in helmets and shields advance amid running individuals and fallen objects.",
+              "reason": "Frames f4–f10 show collective agitation, uncoordinated movement, debris on ground, and police in riot gear engaging the crowd—consistent with collective violent unrest (Riot), not isolated incidents. Candidate 9’s ‘Fighting’ is not supported as no mutual combat is visible; it is subsumed within the broader riot context.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                10
+              ],
+              "category": "Abuse",
+              "t_start": 85.5,
+              "t_end": 87.0,
+              "confidence": 0.85,
+              "description": "A person in a light shirt lies motionless on the ground while a helmeted officer stands over them holding a shield labeled 'POLICE' and then raises a baton; the prone individual shows no resistance.",
+              "reason": "In f12–f14, the person on the ground is supine and non-reactive while the officer looms and prepares to strike—this satisfies Abuse (aggression against a helpless victim); candidate 11’s ‘Fighting’ is contradicted by absence of mutual engagement.",
+              "evidence_frame_ids": [
+                "f12",
+                "f13",
+                "f14"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 9,
+              "reason": "No visible mutual physical combat in f7–f9; actions are part of crowd-scale chaos and police response, not isolated fighting.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8",
+                "f9"
+              ]
+            },
+            {
+              "candidate_id": 11,
+              "reason": "Frame f13–f14 shows a prone, non-resisting individual and an officer preparing to strike with a baton—this is one-sided aggression, not mutual fighting.",
+              "evidence_frame_ids": [
+                "f13",
+                "f14"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

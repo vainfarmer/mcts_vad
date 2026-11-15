@@ -1,0 +1,834 @@
+{
+  "events": [
+    {
+      "t_start": 10.5,
+      "t_end": 11.5,
+      "anomaly_type": "Shooting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A soldier in silhouette fires a rifle, producing visible muzzle flash and smoke at f15–f16.",
+      "source_candidate_ids": [
+        1,
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          11.0,
+          11.5
+        ],
+        "evidence_frame_ids": [
+          "f15",
+          "f16"
+        ],
+        "reason": "Frames f15 and f16 show clear muzzle flash and smoke from a weapon discharge; f14 shows aiming but no discharge, f17 onward shows aftermath without further firing. Candidate 1’s broader interval (10.5–14.5) includes non-firing frames, but the actual shooting is confined to 10.5–11.5, so merged with candidate 2 which correctly identifies that window.",
+        "source_categories": [
+          "Shooting",
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 13.5,
+      "t_end": 14.5,
+      "anomaly_type": "Shooting",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "Multiple armed soldiers in tactical formation aim rifles toward off-screen targets; no muzzle flash visible, but posture and context indicate active engagement.",
+      "source_candidate_ids": [
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 1,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          13.5,
+          14.0,
+          14.5
+        ],
+        "evidence_frame_ids": [
+          "f20",
+          "f21",
+          "f22"
+        ],
+        "reason": "Frames f20–f22 show soldiers in coordinated aiming stance behind cover, consistent with sustained fire or imminent shooting; though no flash is visible (likely due to angle/lighting), the collective readiness and prior confirmed shooting support classification as Shooting (not just weapons possession). Candidate 3 (Riot) is invalid—no crowd unrest or chaotic behavior.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 24.5,
+      "t_end": 25.0,
+      "anomaly_type": "Shooting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A figure on a mound fires a weapon, producing a visible muzzle flash and dust/debris displacement at f4; a second figure appears to fire simultaneously in f5.",
+      "source_candidate_ids": [
+        5
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          24.5,
+          25.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "f4 shows clear muzzle flash and recoil-induced motion; f5 shows two figures with weapons discharging (dust plumes, blurred motion consistent with firing), satisfying the 'Shooting' definition (visible shooting). The candidate interval [24.2,25.2] is supported by f4 (24.5) and f5 (25.0); f3 (24.0) shows aiming but no discharge, so event starts at f4.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 26.5,
+      "t_end": 27.5,
+      "anomaly_type": "Shooting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A soldier in tactical gear fires a rifle from behind cover, with visible muzzle flash and recoil at f5 (27.0s); the action continues through f6 (27.5s) with sustained aiming and weapon discharge.",
+      "source_candidate_ids": [
+        6
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          27.0,
+          27.5
+        ],
+        "evidence_frame_ids": [
+          "f5",
+          "f6"
+        ],
+        "reason": "Muzzle flash and weapon recoil are visible in f5; the soldier maintains firing posture across f5–f6, satisfying the 'Shooting' definition (visible shooting, not merely holding). The candidate interval [26.5,27.5] aligns with f4–f6, but only f5–f6 show unambiguous discharge; however, f4 shows preparation (weapon raised, ready), and the event boundary is conservatively set to match the candidate’s stated interval while staying within visible evidence. Evidence frames f5 and f6 confirm active shooting; f4 supports continuity.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 28.0,
+      "t_end": 31.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "Two armed soldiers engage in close-quarters physical struggle: one pushes, grabs, and attempts to subdue the other against a wall while both resist and maintain combat readiness.",
+      "source_candidate_ids": [
+        7
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 3,
+        "event_id": 0,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          28.0,
+          28.5,
+          29.0,
+          29.5,
+          30.0,
+          30.5,
+          31.0,
+          31.5
+        ],
+        "evidence_frame_ids": [
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9"
+        ],
+        "reason": "Frames f2–f9 show mutual physical engagement: f2 (28.0s) initiates contact with forceful push; f3–f5 show reciprocal grappling, helmet manipulation, and defensive arm positioning by both; f6–f8 depict sustained hold with visible resistance (e.g., f7 shows hands actively pushing back); f9 (31.5s) still shows active struggle before separation in f10. No frame shows one party fully helpless or non-resisting, ruling out Abuse. The event is bounded by first clear mutual contact (f2) and last visible struggle (f9), within candidate 7’s interval (28.7–31.0) — adjusted to visible evidence, extending slightly to include full onset and resolution.",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 42.5,
+      "t_end": 43.0,
+      "anomaly_type": "Shooting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "Soldiers in combat gear advance while holding rifles; one soldier in f4 is aiming a rifle with muzzle flash visible in f5 (43.0), indicating discharge.",
+      "source_candidate_ids": [
+        9
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 4,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          42.5,
+          43.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "Muzzle flash in f5 confirms firing at t=43.0; the preceding frame f4 (42.5) shows the same soldier in aiming posture, supporting continuous action of shooting during [42.5,43.0].",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 13,
+      "output_count": 6,
+      "groups": 6,
+      "rejected": 6,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 1
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 7.0,
+              "f1": 7.5,
+              "f2": 8.0,
+              "f3": 8.5,
+              "f4": 9.0,
+              "f5": 9.5,
+              "f6": 10.0,
+              "f7": 10.5,
+              "f8": 11.0,
+              "f9": 11.5,
+              "f10": 12.0,
+              "f11": 12.5,
+              "f12": 13.0,
+              "f13": 13.5,
+              "f14": 14.0,
+              "f15": 14.5,
+              "f16": 15.0,
+              "f17": 15.5,
+              "f18": 16.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 9.0,
+                "t_end": 9.8,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 10.5,
+                "t_end": 14.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 10.5,
+                "t_end": 11.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 13.5,
+                "t_end": 14.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 13.5,
+                "t_end": 14.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1, 2],\n      \"category\": \"Shooting\",\n      \"t_start\": 10.5,\n      \"t_end\": 11.5,\n      \"confidence\": 0.95,\n      \"description\": \"A soldier in silhouette fires a rifle, producing visible muzzle flash and smoke at f8 and f9.\",\n      \"reason\": \"Frames f7–f9 show a figure aiming and discharging a firearm: f8 shows a bright muzzle flash and smoke plume emerging from the barrel; f9 shows continued smoke and recoil posture. This satisfies the 'Shooting' definition (visible shooting). Candidate 1’s broader interval (10.5–14.5) includes non-shooting frames (e.g., f10–f15 show aiming or tension without discharge), so only the confirmed discharge window (f7–f9, i.e., 10.5–11.5) is accepted. Candidates 1 and 2 both refer to this same discharge event; merged.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\"]\n    },\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"Shooting\",\n      \"t_start\": 13.5,\n      \"t_end\": 14.5,\n      \"confidence\": 0.85,\n      \"description\": \"Multiple armed soldiers in tactical formation hold rifles aimed forward; no visible muzzle flash or smoke in f13–f15, but context suggests active engagement.\",\n      \"reason\": \"Although no explicit muzzle flash appears in f13–f15, the soldiers are in tight combat posture behind cover, weapons raised and aimed, with dust/debris suggesting recent or ongoing fire. However, per strict definition, 'Shooting' requires *visible* shooting. Since no discharge is captured in these frames, this candidate is **not** supported. Wait—re-evaluation: The instruction says reject if evidence contradicts or is inadequate. Here, evidence is inadequate (no visible shot), so this should be *uncertain*, not accepted. Correction: This candidate must go to uncertain, not accepted. Let me restructure.\",\n      \"evidence_frame_ids\": []\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Frames f4–f6 show soldiers taking cover behind a wrecked vehicle and wall; no mutual physical combat or contact between individuals is visible — only defensive positioning and dust, not Fighting.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"Frames f13–f15 depict organized military personnel in tactical formation, not collective violent unrest; no crowd, looting, or indiscriminate violence — inconsistent with Riot.\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\", \"f15\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"While shooting occurs at 10.5–11.5 (f7–f9), the interval 10.5–14.5 extends into f10–f15 where no visible discharge occurs; insufficient evidence to confirm shooting throughout the full interval.\"\n    },\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"Frames f13–f15 show soldiers aiming rifles but no visible muzzle flash, smoke, or bullet impact; cannot confirm actual shooting occurred in this segment.\"\n    }\n  ]\n}\n\nWait — I made an error in the events list by including candidate 4 as accepted. Per instructions, I must assign every candidate exactly once, and only accept if *visible shooting* is present.\n\nLet me redo cleanly:\n\n- Candidate 0 (9.0–9.8, Fighting): f4–f6 show soldiers behind cover, no hand-to-hand or physical combat → reject.\n- Candidate 1 (10.5–14.5, Shooting): only f8–f9 show visible discharge; f10–f15 do not → insufficient for full interval → uncertain.\n- Candidate 2 (10.5–11.5, Shooting): matches f7–f9 where muzzle flash/smoke visible → accept.\n- Candidate 3 (13.5–14.5, Riot): clearly not riot → reject.\n- Candidate 4 (13.5–14.5, Shooting): no visible shot in f13–f15 (only aiming) → uncertain.\n\nBut note: candidate 2 is fully covered by visible evidence (f7–f9 = 10.5–11.5). So accept candidate 2 alone.\n\nFinal correct version:\n\n{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"Shooting\",\n      \"t_start\": 10.5,\n      \"t_end\": 11.5,\n      \"confidence\": 0.95,\n      \"description\": \"A soldier fires a rifle, producing visible muzzle flash and smoke in frames f8 and f9.\",\n      \"reason\": \"Frames f8 and f9 clearly show a bright muzzle flash and expanding smoke plume from the weapon barrel, satisfying the 'Shooting' definition. Frame f7 shows aiming just before discharge.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Frames f4–f6 show soldiers in cover with no physical contact or combat between individuals; thus not Fighting.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"Frames f13–f15 depict disciplined military personnel in formation, not collective violent unrest; thus not Riot.\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\", \"f15\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Shooting is confirmed only at 10.5–11.5 (f7–f9); the extended interval to 14.5 includes frames (f10–f15) with no visible discharge, so full interval unsupported.\",\n      \"evidence_frame_ids\": [\"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\"]\n    },\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"Frames f13–f15 show soldiers aiming rifles but no visible muzzle flash, smoke, or impact; insufficient evidence to confirm shooting occurred.\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\", \"f15\"]\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 7.0,
+              "f1": 7.5,
+              "f2": 8.0,
+              "f3": 8.5,
+              "f4": 9.0,
+              "f5": 9.5,
+              "f6": 10.0,
+              "f7": 10.5,
+              "f8": 11.0,
+              "f9": 11.5,
+              "f10": 12.0,
+              "f11": 12.5,
+              "f12": 13.0,
+              "f13": 13.5,
+              "f14": 14.0,
+              "f15": 14.5,
+              "f16": 15.0,
+              "f17": 15.5,
+              "f18": 16.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 9.0,
+                "t_end": 9.8,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 10.5,
+                "t_end": 14.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 10.5,
+                "t_end": 11.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 13.5,
+                "t_end": 14.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 13.5,
+                "t_end": 14.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"Shooting\",\n      \"t_start\": 10.5,\n      \"t_end\": 11.5,\n      \"confidence\": 0.95,\n      \"description\": \"A soldier in silhouette discharges a rifle, producing visible muzzle flash and smoke plume in f8 and f9.\",\n      \"reason\": \"Frame f8 shows a bright muzzle flash and expanding smoke at the barrel; f9 shows continued smoke and recoil posture; f7 shows aiming just prior—this satisfies the 'Shooting' definition (visible shooting). Candidate 2 exactly matches this confirmed discharge window.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Frames f4–f6 show soldiers taking cover behind a wrecked vehicle and wall with dust/debris, but no mutual physical contact or combat between individuals is visible—thus not Fighting.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"Frames f13–f15 depict organized military personnel in tactical formation behind cover, not collective violent unrest, looting, or indiscriminate public disorder—thus not Riot.\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\", \"f15\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"While shooting is confirmed in f7–f9 (10.5–11.5), the interval 10.5–14.5 extends into f10–f15 where no muzzle flash, smoke, or other evidence of discharge appears; insufficient evidence to confirm shooting throughout the full interval.\",\n      \"evidence_frame_ids\": [\"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\"]\n    },\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"Frames f13–f15 show soldiers aiming rifles in combat posture, but no visible muzzle flash, smoke, or bullet impact occurs; per strict definition, 'Shooting' requires visible discharge, which is absent here.\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\", \"f15\"]\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 3.0,
+              "f1": 3.5,
+              "f2": 4.0,
+              "f3": 4.5,
+              "f4": 5.0,
+              "f5": 5.5,
+              "f6": 6.0,
+              "f7": 6.5,
+              "f8": 7.0,
+              "f9": 7.5,
+              "f10": 8.0,
+              "f11": 9.0,
+              "f12": 9.5,
+              "f13": 10.0,
+              "f14": 10.5,
+              "f15": 11.0,
+              "f16": 11.5,
+              "f17": 12.0,
+              "f18": 12.5,
+              "f19": 13.0,
+              "f20": 13.5,
+              "f21": 14.0,
+              "f22": 14.5,
+              "f23": 15.0,
+              "f24": 15.5,
+              "f25": 16.0,
+              "f26": 16.5,
+              "f27": 17.0,
+              "f28": 17.5,
+              "f29": 18.0,
+              "f30": 18.5,
+              "f31": 20.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 9.0,
+                "t_end": 9.8,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 10.5,
+                "t_end": 14.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 10.5,
+                "t_end": 11.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 13.5,
+                "t_end": 14.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 13.5,
+                "t_end": 14.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1, 2],\n      \"category\": \"Shooting\",\n      \"t_start\": 10.5,\n      \"t_end\": 11.5,\n      \"confidence\": 0.95,\n      \"description\": \"A soldier in silhouette fires a rifle, producing visible muzzle flash and smoke at f15–f16.\",\n      \"reason\": \"Frames f15 and f16 show clear muzzle flash and smoke from a weapon discharge; f14 shows aiming but no discharge, f17 onward shows aftermath without further firing. Candidate 1’s broader interval (10.5–14.5) includes non-firing frames, but the actual shooting is confined to 10.5–11.5, so merged with candidate 2 which correctly identifies that window.\",\n      \"evidence_frame_ids\": [\"f15\", \"f16\"]\n    },\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"Shooting\",\n      \"t_start\": 13.5,\n      \"t_end\": 14.5,\n      \"confidence\": 0.85,\n      \"description\": \"Multiple armed soldiers in tactical formation aim rifles toward off-screen targets; no muzzle flash visible, but posture and context indicate active engagement.\",\n      \"reason\": \"Frames f20–f22 show soldiers in coordinated aiming stance behind cover, consistent with sustained fire or imminent shooting; though no flash is visible (likely due to angle/lighting), the collective readiness and prior confirmed shooting support classification as Shooting (not just weapons possession). Candidate 3 (Riot) is invalid—no crowd unrest or chaotic behavior.\",\n      \"evidence_frame_ids\": [\"f20\", \"f21\", \"f22\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Frames f11–f13 show soldiers taking cover behind a wrecked vehicle and wall, with dust kicked up possibly from movement or nearby impact, but no mutual physical combat or direct contact between individuals; thus not Fighting.\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\", \"f13\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"Frames f20–f22 depict disciplined military personnel in tactical formation, not a chaotic crowd or collective unrest; Riot requires mass disorder, which is absent.\",\n      \"evidence_frame_ids\": [\"f20\", \"f21\", \"f22\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1,
+                2
+              ],
+              "category": "Shooting",
+              "t_start": 10.5,
+              "t_end": 11.5,
+              "confidence": 0.95,
+              "description": "A soldier in silhouette fires a rifle, producing visible muzzle flash and smoke at f15–f16.",
+              "reason": "Frames f15 and f16 show clear muzzle flash and smoke from a weapon discharge; f14 shows aiming but no discharge, f17 onward shows aftermath without further firing. Candidate 1’s broader interval (10.5–14.5) includes non-firing frames, but the actual shooting is confined to 10.5–11.5, so merged with candidate 2 which correctly identifies that window.",
+              "evidence_frame_ids": [
+                "f15",
+                "f16"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                4
+              ],
+              "category": "Shooting",
+              "t_start": 13.5,
+              "t_end": 14.5,
+              "confidence": 0.85,
+              "description": "Multiple armed soldiers in tactical formation aim rifles toward off-screen targets; no muzzle flash visible, but posture and context indicate active engagement.",
+              "reason": "Frames f20–f22 show soldiers in coordinated aiming stance behind cover, consistent with sustained fire or imminent shooting; though no flash is visible (likely due to angle/lighting), the collective readiness and prior confirmed shooting support classification as Shooting (not just weapons possession). Candidate 3 (Riot) is invalid—no crowd unrest or chaotic behavior.",
+              "evidence_frame_ids": [
+                "f20",
+                "f21",
+                "f22"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "Frames f11–f13 show soldiers taking cover behind a wrecked vehicle and wall, with dust kicked up possibly from movement or nearby impact, but no mutual physical combat or direct contact between individuals; thus not Fighting.",
+              "evidence_frame_ids": [
+                "f11",
+                "f12",
+                "f13"
+              ]
+            },
+            {
+              "candidate_id": 3,
+              "reason": "Frames f20–f22 depict disciplined military personnel in tactical formation, not a chaotic crowd or collective unrest; Riot requires mass disorder, which is absent.",
+              "evidence_frame_ids": [
+                "f20",
+                "f21",
+                "f22"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": true
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 22.5,
+              "f1": 23.0,
+              "f2": 23.5,
+              "f3": 24.0,
+              "f4": 24.5,
+              "f5": 25.0,
+              "f6": 25.5,
+              "f7": 26.0,
+              "f8": 26.5,
+              "f9": 27.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 5,
+                "t_start": 24.2,
+                "t_end": 25.2,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [5],\n      \"category\": \"Shooting\",\n      \"t_start\": 24.5,\n      \"t_end\": 25.0,\n      \"confidence\": 0.95,\n      \"description\": \"A figure on a mound fires a weapon, producing a visible muzzle flash and dust/debris displacement at f4; a second figure appears to fire simultaneously in f5.\",\n      \"reason\": \"f4 shows clear muzzle flash and recoil-induced motion; f5 shows two figures with weapons discharging (dust plumes, blurred motion consistent with firing), satisfying the 'Shooting' definition (visible shooting). The candidate interval [24.2,25.2] is supported by f4 (24.5) and f5 (25.0); f3 (24.0) shows aiming but no discharge, so event starts at f4.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                5
+              ],
+              "category": "Shooting",
+              "t_start": 24.5,
+              "t_end": 25.0,
+              "confidence": 0.95,
+              "description": "A figure on a mound fires a weapon, producing a visible muzzle flash and dust/debris displacement at f4; a second figure appears to fire simultaneously in f5.",
+              "reason": "f4 shows clear muzzle flash and recoil-induced motion; f5 shows two figures with weapons discharging (dust plumes, blurred motion consistent with firing), satisfying the 'Shooting' definition (visible shooting). The candidate interval [24.2,25.2] is supported by f4 (24.5) and f5 (25.0); f3 (24.0) shows aiming but no discharge, so event starts at f4.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          6
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 24.5,
+              "f1": 25.0,
+              "f2": 25.5,
+              "f3": 26.0,
+              "f4": 26.5,
+              "f5": 27.0,
+              "f6": 27.5,
+              "f7": 28.0,
+              "f8": 28.5,
+              "f9": 29.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 6,
+                "t_start": 26.5,
+                "t_end": 27.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [6],\n      \"category\": \"Shooting\",\n      \"t_start\": 26.5,\n      \"t_end\": 27.5,\n      \"confidence\": 0.95,\n      \"description\": \"A soldier in tactical gear fires a rifle from behind cover, with visible muzzle flash and recoil at f5 (27.0s); the action continues through f6 (27.5s) with sustained aiming and weapon discharge.\",\n      \"reason\": \"Muzzle flash and weapon recoil are visible in f5; the soldier maintains firing posture across f5–f6, satisfying the 'Shooting' definition (visible shooting, not merely holding). The candidate interval [26.5,27.5] aligns with f4–f6, but only f5–f6 show unambiguous discharge; however, f4 shows preparation (weapon raised, ready), and the event boundary is conservatively set to match the candidate’s stated interval while staying within visible evidence. Evidence frames f5 and f6 confirm active shooting; f4 supports continuity.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                6
+              ],
+              "category": "Shooting",
+              "t_start": 26.5,
+              "t_end": 27.5,
+              "confidence": 0.95,
+              "description": "A soldier in tactical gear fires a rifle from behind cover, with visible muzzle flash and recoil at f5 (27.0s); the action continues through f6 (27.5s) with sustained aiming and weapon discharge.",
+              "reason": "Muzzle flash and weapon recoil are visible in f5; the soldier maintains firing posture across f5–f6, satisfying the 'Shooting' definition (visible shooting, not merely holding). The candidate interval [26.5,27.5] aligns with f4–f6, but only f5–f6 show unambiguous discharge; however, f4 shows preparation (weapon raised, ready), and the event boundary is conservatively set to match the candidate’s stated interval while staying within visible evidence. Evidence frames f5 and f6 confirm active shooting; f4 supports continuity.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          7,
+          8
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 27.0,
+              "f1": 27.5,
+              "f2": 28.0,
+              "f3": 28.5,
+              "f4": 29.0,
+              "f5": 29.5,
+              "f6": 30.0,
+              "f7": 30.5,
+              "f8": 31.0,
+              "f9": 31.5,
+              "f10": 32.0,
+              "f11": 32.5,
+              "f12": 33.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 7,
+                "t_start": 28.7,
+                "t_end": 31.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 28.8,
+                "t_end": 31.2,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [7, 8],\n      \"category\": \"Fighting\",\n      \"t_start\": 28.0,\n      \"t_end\": 31.5,\n      \"confidence\": 0.9,\n      \"description\": \"Two soldiers in close contact: one is grabbing and pressing the other against a wall while both are armed and in combat gear; the interaction involves mutual physical struggle with visible resistance.\",\n      \"reason\": \"Frames f2–f10 show sustained physical engagement: f2 shows one soldier pushing another; f3–f5 depict grappling, helmet removal attempt, and defensive posture; f6–f9 show continued close hold and struggle; f10 shows separation but still tense proximity. No evidence of one-sided helplessness (ruling out Abuse); mutual resistance confirms Fighting, not Abuse. The event spans from first clear contact (f2, 28.0s) through last visible struggle (f9, 31.5s).\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 8,\n      \"reason\": \"Abuse requires one party to be helpless and non-resisting; here the 'victim' actively resists (e.g., f3, f4, f5 facial expression and arm positioning indicate struggle), so it is not Abuse.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 27.0,
+              "f1": 27.5,
+              "f2": 28.0,
+              "f3": 28.5,
+              "f4": 29.0,
+              "f5": 29.5,
+              "f6": 30.0,
+              "f7": 30.5,
+              "f8": 31.0,
+              "f9": 31.5,
+              "f10": 32.0,
+              "f11": 32.5,
+              "f12": 33.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 7,
+                "t_start": 28.7,
+                "t_end": 31.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 28.8,
+                "t_end": 31.2,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [7],\n      \"category\": \"Fighting\",\n      \"t_start\": 28.0,\n      \"t_end\": 31.5,\n      \"confidence\": 0.85,\n      \"description\": \"Two armed soldiers engage in close-quarters physical struggle: one pushes, grabs, and attempts to subdue the other against a wall while both resist and maintain combat readiness.\",\n      \"reason\": \"Frames f2–f9 show mutual physical engagement: f2 (28.0s) initiates contact with forceful push; f3–f5 show reciprocal grappling, helmet manipulation, and defensive arm positioning by both; f6–f8 depict sustained hold with visible resistance (e.g., f7 shows hands actively pushing back); f9 (31.5s) still shows active struggle before separation in f10. No frame shows one party fully helpless or non-resisting, ruling out Abuse. The event is bounded by first clear mutual contact (f2) and last visible struggle (f9), within candidate 7’s interval (28.7–31.0) — adjusted to visible evidence, extending slightly to include full onset and resolution.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 8,\n      \"reason\": \"Abuse requires aggression against a helpless, non-resisting victim; here the second soldier actively resists (e.g., f3 mouth open in exertion, f4/f5 arms engaged defensively, f7 hands pushing), indicating mutual combat, not one-sided abuse.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f7\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                7
+              ],
+              "category": "Fighting",
+              "t_start": 28.0,
+              "t_end": 31.5,
+              "confidence": 0.85,
+              "description": "Two armed soldiers engage in close-quarters physical struggle: one pushes, grabs, and attempts to subdue the other against a wall while both resist and maintain combat readiness.",
+              "reason": "Frames f2–f9 show mutual physical engagement: f2 (28.0s) initiates contact with forceful push; f3–f5 show reciprocal grappling, helmet manipulation, and defensive arm positioning by both; f6–f8 depict sustained hold with visible resistance (e.g., f7 shows hands actively pushing back); f9 (31.5s) still shows active struggle before separation in f10. No frame shows one party fully helpless or non-resisting, ruling out Abuse. The event is bounded by first clear mutual contact (f2) and last visible struggle (f9), within candidate 7’s interval (28.7–31.0) — adjusted to visible evidence, extending slightly to include full onset and resolution.",
+              "evidence_frame_ids": [
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 8,
+              "reason": "Abuse requires aggression against a helpless, non-resisting victim; here the second soldier actively resists (e.g., f3 mouth open in exertion, f4/f5 arms engaged defensively, f7 hands pushing), indicating mutual combat, not one-sided abuse.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f7"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 4,
+        "source_ids": [
+          9,
+          10
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 40.5,
+              "f1": 41.0,
+              "f2": 41.5,
+              "f3": 42.0,
+              "f4": 42.5,
+              "f5": 43.0,
+              "f6": 43.5,
+              "f7": 44.0,
+              "f8": 44.5,
+              "f9": 45.0,
+              "f10": 45.5,
+              "f11": 46.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 9,
+                "t_start": 42.5,
+                "t_end": 43.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 10,
+                "t_start": 43.5,
+                "t_end": 44.5,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [9],\n      \"category\": \"Shooting\",\n      \"t_start\": 42.5,\n      \"t_end\": 43.0,\n      \"confidence\": 0.9,\n      \"description\": \"Soldiers in combat gear advance while holding rifles; one soldier in f4 is aiming a rifle with muzzle flash visible in f5 (43.0), indicating discharge.\",\n      \"reason\": \"Muzzle flash in f5 confirms firing at t=43.0; the preceding frame f4 (42.5) shows the same soldier in aiming posture, supporting continuous action of shooting during [42.5,43.0].\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 10,\n      \"reason\": \"Frames f6–f8 show distant figures moving in an open area with no signs of collective violent unrest, crowd aggression, or destruction; activity appears to be tactical movement or patrol, not rioting.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                9
+              ],
+              "category": "Shooting",
+              "t_start": 42.5,
+              "t_end": 43.0,
+              "confidence": 0.9,
+              "description": "Soldiers in combat gear advance while holding rifles; one soldier in f4 is aiming a rifle with muzzle flash visible in f5 (43.0), indicating discharge.",
+              "reason": "Muzzle flash in f5 confirms firing at t=43.0; the preceding frame f4 (42.5) shows the same soldier in aiming posture, supporting continuous action of shooting during [42.5,43.0].",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 10,
+              "reason": "Frames f6–f8 show distant figures moving in an open area with no signs of collective violent unrest, crowd aggression, or destruction; activity appears to be tactical movement or patrol, not rioting.",
+              "evidence_frame_ids": [
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 5,
+        "source_ids": [
+          11,
+          12
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 44.0,
+              "f1": 44.5,
+              "f2": 45.0,
+              "f3": 45.5,
+              "f4": 46.0,
+              "f5": 46.5,
+              "f6": 47.0,
+              "f7": 47.5,
+              "f8": 48.0,
+              "f9": 48.5,
+              "f10": 49.0,
+              "f11": 49.5,
+              "f12": 50.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 11,
+                "t_start": 46.0,
+                "t_end": 47.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 12,
+                "t_start": 48.0,
+                "t_end": 49.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 11,\n      \"reason\": \"Frames f4–f5 show a figure in a broken window but no visible muzzle flash, recoil, or projectile; frames f6–f7 show soldiers advancing and taking cover without any indication of active firing; no shooting is visually confirmed.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    },\n    {\n      \"candidate_id\": 12,\n      \"reason\": \"Frames f8–f11 depict silhouetted soldiers moving and raising weapons, but no muzzle flash, smoke, or impact evidence of discharge; the bright backlight obscures detail, and weapon posture alone does not confirm shooting.\",\n      \"evidence_frame_ids\": [\"f8\", \"f9\", \"f10\", \"f11\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 11,
+              "reason": "Frames f4–f5 show a figure in a broken window but no visible muzzle flash, recoil, or projectile; frames f6–f7 show soldiers advancing and taking cover without any indication of active firing; no shooting is visually confirmed.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            },
+            {
+              "candidate_id": 12,
+              "reason": "Frames f8–f11 depict silhouetted soldiers moving and raising weapons, but no muzzle flash, smoke, or impact evidence of discharge; the bright backlight obscures detail, and weapon posture alone does not confirm shooting.",
+              "evidence_frame_ids": [
+                "f8",
+                "f9",
+                "f10",
+                "f11"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "5a82d0dd6e711938ee6c8e0ecf1c6f7fdb68cac4e5e95683ad672320f7156da9"
+}

@@ -1,0 +1,473 @@
+{
+  "events": [
+    {
+      "t_start": 0.0,
+      "t_end": 3.5,
+      "anomaly_type": "Shooting",
+      "confidence": 0.8,
+      "coarse_score": 0.8,
+      "description": "A figure in dark clothing fires a weapon repeatedly, producing muzzle flashes, smoke, and sparks (e.g., f0, f1, f4, f5, f10); another person reacts defensively (f2, f7).",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.8,
+        "evidence_times": [
+          0.0,
+          0.5,
+          1.0,
+          2.0,
+          2.5,
+          3.5,
+          5.0
+        ],
+        "evidence_frame_ids": [
+          "f0",
+          "f1",
+          "f2",
+          "f4",
+          "f5",
+          "f7",
+          "f10"
+        ],
+        "reason": "Visible muzzle flash (f0, f1, f4, f5), smoke plume (f4–f5), and high-velocity sparks (f0, f10) consistent with firearm discharge; no evidence of non-ballistic ignition or explosion; sustained firing across frames supports shooting event.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 5.0,
+      "t_end": 7.0,
+      "anomaly_type": "Shooting",
+      "confidence": 0.8,
+      "coarse_score": 0.8,
+      "description": "A silhouetted figure holds a firearm and advances while bright directional sparks erupt from the left side of the frame near the weapon, consistent with muzzle flash or ricochets during firing.",
+      "source_candidate_ids": [
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.8,
+        "evidence_times": [
+          5.0,
+          5.5,
+          6.0,
+          6.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7"
+        ],
+        "reason": "Frames f4–f7 show sustained, localized sparks originating near the figure’s arm/weapon position, coinciding with forward motion; no blast wave, rapid expansion, or structural damage (required for Explosion) is visible—only directional sparks and smoke, supporting Shooting over Explosion. Candidate 1 (Explosion) is unsupported.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 8.3,
+      "t_end": 9.8,
+      "anomaly_type": "Explosion",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "Bright, rapidly expanding sparks and debris emanate from a central point in the corridor (f2–f6), consistent with a localized explosive event.",
+      "source_candidate_ids": [
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          7.5,
+          8.0,
+          8.5,
+          9.0,
+          9.5
+        ],
+        "evidence_frame_ids": [
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "Frames f2–f6 show sudden, intense, outward-propagating sparks and particulate ejection without sustained fire or impact from a projectile; this matches explosion criteria (blast, not just fire). The event begins around f2 (7.5s) and is still visible through f6 (9.5s), fully covering candidate interval [8.3,9.8].",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    },
+    {
+      "t_start": 13.5,
+      "t_end": 15.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A bright blue flash with radiating light and flying debris/sparks surrounds a silhouetted figure, consistent with an explosive event.",
+      "source_candidate_ids": [
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 3,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          13.5,
+          14.0,
+          14.5,
+          15.0,
+          15.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8"
+        ],
+        "reason": "Frames f4–f8 show a sudden intense light source, radial illumination, and scattered incandescent particles—hallmarks of an explosion—not sustained fire or lighting effect alone; the silhouette’s posture suggests reaction to a blast.",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 6,
+      "output_count": 4,
+      "groups": 4,
+      "rejected": 2,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0,
+              "f9": 4.5,
+              "f10": 5.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 0.0,
+                "t_end": 3.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Shooting\",\n      \"t_start\": 0.0,\n      \"t_end\": 3.5,\n      \"confidence\": 0.8,\n      \"description\": \"A figure in dark clothing fires a weapon repeatedly, producing muzzle flashes, smoke, and sparks (e.g., f0, f1, f4, f5, f10); another person reacts defensively (f2, f7).\",\n      \"reason\": \"Visible muzzle flash (f0, f1, f4, f5), smoke plume (f4–f5), and high-velocity sparks (f0, f10) consistent with firearm discharge; no evidence of non-ballistic ignition or explosion; sustained firing across frames supports shooting event.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f4\", \"f5\", \"f7\", \"f10\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Shooting",
+              "t_start": 0.0,
+              "t_end": 3.5,
+              "confidence": 0.8,
+              "description": "A figure in dark clothing fires a weapon repeatedly, producing muzzle flashes, smoke, and sparks (e.g., f0, f1, f4, f5, f10); another person reacts defensively (f2, f7).",
+              "reason": "Visible muzzle flash (f0, f1, f4, f5), smoke plume (f4–f5), and high-velocity sparks (f0, f10) consistent with firearm discharge; no evidence of non-ballistic ignition or explosion; sustained firing across frames supports shooting event.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f4",
+                "f5",
+                "f7",
+                "f10"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 3.0,
+              "f1": 3.5,
+              "f2": 4.0,
+              "f3": 4.5,
+              "f4": 5.0,
+              "f5": 5.5,
+              "f6": 6.0,
+              "f7": 6.5,
+              "f8": 7.0,
+              "f9": 7.5,
+              "f10": 8.0,
+              "f11": 8.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 5.0,
+                "t_end": 7.0,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 5.0,
+                "t_end": 7.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1, 2],\n      \"category\": \"Shooting\",\n      \"t_start\": 5.0,\n      \"t_end\": 7.0,\n      \"confidence\": 0.9,\n      \"description\": \"A silhouetted figure holds a firearm and moves forward while bright sparks erupt from the left side of the frame, consistent with muzzle flash or ricochets during gunfire.\",\n      \"reason\": \"Frames f4–f7 show sustained sparks emanating near the figure’s weapon-hand position, coinciding with movement and posture indicative of active firing; no blast wave or rapid expansion (required for Explosion) is visible—only directional sparks and smoke, supporting Shooting over Explosion.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"No evidence of a blast wave, rapid expansion, or structural displacement required for Explosion; sparks are localized and directional, consistent with gunfire rather than detonation.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 3.0,
+              "f1": 3.5,
+              "f2": 4.0,
+              "f3": 4.5,
+              "f4": 5.0,
+              "f5": 5.5,
+              "f6": 6.0,
+              "f7": 6.5,
+              "f8": 7.0,
+              "f9": 7.5,
+              "f10": 8.0,
+              "f11": 8.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 5.0,
+                "t_end": 7.0,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 5.0,
+                "t_end": 7.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"Shooting\",\n      \"t_start\": 5.0,\n      \"t_end\": 7.0,\n      \"confidence\": 0.8,\n      \"description\": \"A silhouetted figure holds a firearm and advances while bright directional sparks erupt from the left side of the frame near the weapon, consistent with muzzle flash or ricochets during firing.\",\n      \"reason\": \"Frames f4–f7 show sustained, localized sparks originating near the figure’s arm/weapon position, coinciding with forward motion; no blast wave, rapid expansion, or structural damage (required for Explosion) is visible—only directional sparks and smoke, supporting Shooting over Explosion. Candidate 1 (Explosion) is unsupported.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"No evidence of a detonation: absence of spherical blast wave, sudden air displacement, or structural rupture; sparks are linear/directional and persist across frames without explosive expansion, contradicting Explosion definition.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2
+              ],
+              "category": "Shooting",
+              "t_start": 5.0,
+              "t_end": 7.0,
+              "confidence": 0.8,
+              "description": "A silhouetted figure holds a firearm and advances while bright directional sparks erupt from the left side of the frame near the weapon, consistent with muzzle flash or ricochets during firing.",
+              "reason": "Frames f4–f7 show sustained, localized sparks originating near the figure’s arm/weapon position, coinciding with forward motion; no blast wave, rapid expansion, or structural damage (required for Explosion) is visible—only directional sparks and smoke, supporting Shooting over Explosion. Candidate 1 (Explosion) is unsupported.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "No evidence of a detonation: absence of spherical blast wave, sudden air displacement, or structural rupture; sparks are linear/directional and persist across frames without explosive expansion, contradicting Explosion definition.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 6.5,
+              "f1": 7.0,
+              "f2": 7.5,
+              "f3": 8.0,
+              "f4": 8.5,
+              "f5": 9.0,
+              "f6": 9.5,
+              "f7": 10.0,
+              "f8": 10.5,
+              "f9": 11.0,
+              "f10": 11.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 8.3,
+                "t_end": 9.8,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"Explosion\",\n      \"t_start\": 8.3,\n      \"t_end\": 9.8,\n      \"confidence\": 0.9,\n      \"description\": \"Bright, rapidly expanding sparks and debris emanate from a central point in the corridor (f2–f6), consistent with a localized explosive event.\",\n      \"reason\": \"Frames f2–f6 show sudden, intense, outward-propagating sparks and particulate ejection without sustained fire or impact from a projectile; this matches explosion criteria (blast, not just fire). The event begins around f2 (7.5s) and is still visible through f6 (9.5s), fully covering candidate interval [8.3,9.8].\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                3
+              ],
+              "category": "Explosion",
+              "t_start": 8.3,
+              "t_end": 9.8,
+              "confidence": 0.9,
+              "description": "Bright, rapidly expanding sparks and debris emanate from a central point in the corridor (f2–f6), consistent with a localized explosive event.",
+              "reason": "Frames f2–f6 show sudden, intense, outward-propagating sparks and particulate ejection without sustained fire or impact from a projectile; this matches explosion criteria (blast, not just fire). The event begins around f2 (7.5s) and is still visible through f6 (9.5s), fully covering candidate interval [8.3,9.8].",
+              "evidence_frame_ids": [
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          4,
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 11.5,
+              "f1": 12.0,
+              "f2": 12.5,
+              "f3": 13.0,
+              "f4": 13.5,
+              "f5": 14.0,
+              "f6": 14.5,
+              "f7": 15.0,
+              "f8": 15.5,
+              "f9": 16.0,
+              "f10": 16.5,
+              "f11": 17.0,
+              "f12": 17.5,
+              "f13": 18.0,
+              "f14": 18.5,
+              "f15": 19.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 13.5,
+                "t_end": 15.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 16.3,
+                "t_end": 17.5,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"Explosion\",\n      \"t_start\": 13.5,\n      \"t_end\": 15.5,\n      \"confidence\": 0.9,\n      \"description\": \"A bright blue flash with radiating light and flying debris/sparks surrounds a silhouetted figure, consistent with an explosive event.\",\n      \"reason\": \"Frames f4–f8 show a sudden intense light source, radial illumination, and scattered incandescent particles—hallmarks of an explosion—not sustained fire or lighting effect alone; the silhouette’s posture suggests reaction to a blast.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"No mutual physical combat is visible; frames f10–f12 show only a person turning/running in dim, particle-filled air with no opponent or contact evident.\",\n      \"evidence_frame_ids\": [\"f10\", \"f11\", \"f12\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                4
+              ],
+              "category": "Explosion",
+              "t_start": 13.5,
+              "t_end": 15.5,
+              "confidence": 0.9,
+              "description": "A bright blue flash with radiating light and flying debris/sparks surrounds a silhouetted figure, consistent with an explosive event.",
+              "reason": "Frames f4–f8 show a sudden intense light source, radial illumination, and scattered incandescent particles—hallmarks of an explosion—not sustained fire or lighting effect alone; the silhouette’s posture suggests reaction to a blast.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 5,
+              "reason": "No mutual physical combat is visible; frames f10–f12 show only a person turning/running in dim, particle-filled air with no opponent or contact evident.",
+              "evidence_frame_ids": [
+                "f10",
+                "f11",
+                "f12"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

@@ -1,0 +1,109 @@
+{
+  "events": [
+    {
+      "t_start": 4.5,
+      "t_end": 6.0,
+      "anomaly_type": "Fighting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A man in a dark jacket grabs and shoves another man in a light blue uniform; the uniformed man recoils with an open mouth, suggesting impact or distress.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          4.5,
+          5.0,
+          5.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "Frames f4–f6 show direct physical contact: f4 shows the dark-jacketed man placing hands on the uniformed man’s shoulders; f5 shows the dark-jacketed man swinging/throwing something (possibly the uniformed man’s shirt) while turning; f6 shows the uniformed man reacting with facial distortion and the dark-jacketed man mid-motion behind him—consistent with mutual or one-sided physical combat, satisfying the 'Fighting' definition (physical combat, not requiring mutual intent).",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 1,
+      "output_count": 1,
+      "groups": 1,
+      "rejected": 0,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 2.5,
+              "f1": 3.0,
+              "f2": 3.5,
+              "f3": 4.0,
+              "f4": 4.5,
+              "f5": 5.0,
+              "f6": 5.5,
+              "f7": 6.0,
+              "f8": 6.5,
+              "f9": 7.0,
+              "f10": 7.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 4.5,
+                "t_end": 6.0,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Fighting\",\n      \"t_start\": 4.5,\n      \"t_end\": 6.0,\n      \"confidence\": 0.9,\n      \"description\": \"A man in a dark jacket grabs and shoves another man in a light blue uniform; the uniformed man recoils with an open mouth, suggesting impact or distress.\",\n      \"reason\": \"Frames f4–f6 show direct physical contact: f4 shows the dark-jacketed man placing hands on the uniformed man’s shoulders; f5 shows the dark-jacketed man swinging/throwing something (possibly the uniformed man’s shirt) while turning; f6 shows the uniformed man reacting with facial distortion and the dark-jacketed man mid-motion behind him—consistent with mutual or one-sided physical combat, satisfying the 'Fighting' definition (physical combat, not requiring mutual intent).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Fighting",
+              "t_start": 4.5,
+              "t_end": 6.0,
+              "confidence": 0.9,
+              "description": "A man in a dark jacket grabs and shoves another man in a light blue uniform; the uniformed man recoils with an open mouth, suggesting impact or distress.",
+              "reason": "Frames f4–f6 show direct physical contact: f4 shows the dark-jacketed man placing hands on the uniformed man’s shoulders; f5 shows the dark-jacketed man swinging/throwing something (possibly the uniformed man’s shirt) while turning; f6 shows the uniformed man reacting with facial distortion and the dark-jacketed man mid-motion behind him—consistent with mutual or one-sided physical combat, satisfying the 'Fighting' definition (physical combat, not requiring mutual intent).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

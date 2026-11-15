@@ -1,0 +1,405 @@
+{
+  "events": [
+    {
+      "t_start": 4.5,
+      "t_end": 5.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A dark vehicle veers sharply left, collides with the guardrail, and flips onto its side/roof between f4 and f5, with the camera vehicle passing the wreckage by f6.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          4.5,
+          5.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "f4 shows the vehicle beginning to skid/cross into the left lane; f5 shows it fully overturned on the left shoulder; f6 is blacked out but follows immediately after impact—consistent with a single crash event. No other activity matches the definition of the other categories.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 47.5,
+      "t_end": 48.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A white car on the left rapidly swerves across the lane, collides with or near the recording vehicle, producing a spray of snow/road debris and abrupt camera shake.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          47.5,
+          48.0,
+          48.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "Frames f4–f6 show the white car moving laterally into the path of the dashcam vehicle, followed by sudden motion blur, obscuration by spray, and loss of stable view—consistent with an impact or near-impact collision; no other explanation fits the abrupt change in vehicle position and visual disruption.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 62.5,
+      "t_end": 69.0,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.98,
+      "coarse_score": 0.98,
+      "description": "A white cab-over truck loses control on a snowy road, veers right off the pavement, and overturns onto its side in the snowbank while a red-and-white box truck (with 'Красное & Белое' branding) brakes sharply and stops beside it.",
+      "source_candidate_ids": [
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.98,
+        "evidence_times": [
+          62.5,
+          63.0,
+          63.5,
+          64.0,
+          64.5,
+          65.0,
+          65.5,
+          66.0,
+          67.0,
+          67.5,
+          68.0,
+          68.5,
+          69.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16"
+        ],
+        "reason": "Frames f4–f5 show the white truck beginning to skid; f6–f8 capture the rollover with snow spray and vehicle deformation; f9–f16 show the aftermath with the overturned cab and stationary box truck—consistent with a single traffic collision; no evidence of fighting, shooting, riot, abuse, or explosion.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 4,
+      "output_count": 3,
+      "groups": 4,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 2.5,
+              "f1": 3.0,
+              "f2": 3.5,
+              "f3": 4.0,
+              "f4": 4.5,
+              "f5": 5.0,
+              "f6": 5.5,
+              "f7": 6.0,
+              "f8": 6.5,
+              "f9": 7.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 4.5,
+                "t_end": 5.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"CarAccident\",\n      \"t_start\": 4.5,\n      \"t_end\": 5.5,\n      \"confidence\": 0.95,\n      \"description\": \"A dark vehicle veers sharply left, collides with the guardrail, and flips onto its side/roof between f4 and f5, with the camera vehicle passing the wreckage by f6.\",\n      \"reason\": \"f4 shows the vehicle beginning to skid/cross into the left lane; f5 shows it fully overturned on the left shoulder; f6 is blacked out but follows immediately after impact—consistent with a single crash event. No other activity matches the definition of the other categories.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "CarAccident",
+              "t_start": 4.5,
+              "t_end": 5.5,
+              "confidence": 0.95,
+              "description": "A dark vehicle veers sharply left, collides with the guardrail, and flips onto its side/roof between f4 and f5, with the camera vehicle passing the wreckage by f6.",
+              "reason": "f4 shows the vehicle beginning to skid/cross into the left lane; f5 shows it fully overturned on the left shoulder; f6 is blacked out but follows immediately after impact—consistent with a single crash event. No other activity matches the definition of the other categories.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 45.5,
+              "f1": 46.0,
+              "f2": 46.5,
+              "f3": 47.0,
+              "f4": 47.5,
+              "f5": 48.0,
+              "f6": 48.5,
+              "f7": 49.0,
+              "f8": 49.5,
+              "f9": 50.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 47.5,
+                "t_end": 48.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"CarAccident\",\n      \"t_start\": 47.5,\n      \"t_end\": 48.5,\n      \"confidence\": 0.95,\n      \"description\": \"A white car on the left rapidly swerves across the lane, collides with or near the recording vehicle, producing a spray of snow/road debris and abrupt camera shake.\",\n      \"reason\": \"Frames f4–f6 show the white car moving laterally into the path of the dashcam vehicle, followed by sudden motion blur, obscuration by spray, and loss of stable view—consistent with an impact or near-impact collision; no other explanation fits the abrupt change in vehicle position and visual disruption.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "CarAccident",
+              "t_start": 47.5,
+              "t_end": 48.5,
+              "confidence": 0.95,
+              "description": "A white car on the left rapidly swerves across the lane, collides with or near the recording vehicle, producing a spray of snow/road debris and abrupt camera shake.",
+              "reason": "Frames f4–f6 show the white car moving laterally into the path of the dashcam vehicle, followed by sudden motion blur, obscuration by spray, and loss of stable view—consistent with an impact or near-impact collision; no other explanation fits the abrupt change in vehicle position and visual disruption.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 60.5,
+              "f1": 61.0,
+              "f2": 61.5,
+              "f3": 62.0,
+              "f4": 62.5,
+              "f5": 63.0,
+              "f6": 63.5,
+              "f7": 64.0,
+              "f8": 64.5,
+              "f9": 65.0,
+              "f10": 65.5,
+              "f11": 66.0,
+              "f12": 67.0,
+              "f13": 67.5,
+              "f14": 68.0,
+              "f15": 68.5,
+              "f16": 69.0,
+              "f17": 69.5,
+              "f18": 70.0,
+              "f19": 70.5,
+              "f20": 71.0,
+              "f21": 71.5,
+              "f22": 72.0,
+              "f23": 73.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 62.5,
+                "t_end": 71.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"CarAccident\",\n      \"t_start\": 62.5,\n      \"t_end\": 69.0,\n      \"confidence\": 0.98,\n      \"description\": \"A white truck loses control on snowy road, veers right, and overturns onto the snowbank while a red-and-white box truck brakes sharply beside it.\",\n      \"reason\": \"Frames f4–f16 show progressive loss of control (f4–f5), impact/rollover (f6–f8), and aftermath with overturned cab (f9–f16); consistent with a single crash event; no evidence of fighting, shooting, riot, abuse, or explosion.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"The candidate’s t_end=71.5 extends beyond the last visible accident frame (f16 at 69.0); frames f17–f23 show a different scene (summer road, split-screen), unrelated to the crash. However, the core accident is fully captured in f4–f16, so the candidate is accepted with corrected t_end=69.0.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 60.5,
+              "f1": 61.0,
+              "f2": 61.5,
+              "f3": 62.0,
+              "f4": 62.5,
+              "f5": 63.0,
+              "f6": 63.5,
+              "f7": 64.0,
+              "f8": 64.5,
+              "f9": 65.0,
+              "f10": 65.5,
+              "f11": 66.0,
+              "f12": 67.0,
+              "f13": 67.5,
+              "f14": 68.0,
+              "f15": 68.5,
+              "f16": 69.0,
+              "f17": 69.5,
+              "f18": 70.0,
+              "f19": 70.5,
+              "f20": 71.0,
+              "f21": 71.5,
+              "f22": 72.0,
+              "f23": 73.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 62.5,
+                "t_end": 71.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"CarAccident\",\n      \"t_start\": 62.5,\n      \"t_end\": 69.0,\n      \"confidence\": 0.98,\n      \"description\": \"A white cab-over truck loses control on a snowy road, veers right off the pavement, and overturns onto its side in the snowbank while a red-and-white box truck (with 'Красное & Белое' branding) brakes sharply and stops beside it.\",\n      \"reason\": \"Frames f4–f5 show the white truck beginning to skid; f6–f8 capture the rollover with snow spray and vehicle deformation; f9–f16 show the aftermath with the overturned cab and stationary box truck—consistent with a single traffic collision; no evidence of fighting, shooting, riot, abuse, or explosion.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2
+              ],
+              "category": "CarAccident",
+              "t_start": 62.5,
+              "t_end": 69.0,
+              "confidence": 0.98,
+              "description": "A white cab-over truck loses control on a snowy road, veers right off the pavement, and overturns onto its side in the snowbank while a red-and-white box truck (with 'Красное & Белое' branding) brakes sharply and stops beside it.",
+              "reason": "Frames f4–f5 show the white truck beginning to skid; f6–f8 capture the rollover with snow spray and vehicle deformation; f9–f16 show the aftermath with the overturned cab and stationary box truck—consistent with a single traffic collision; no evidence of fighting, shooting, riot, abuse, or explosion.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 75.5,
+              "f1": 76.0,
+              "f2": 76.5,
+              "f3": 77.0,
+              "f4": 77.5,
+              "f5": 78.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 77.5,
+                "t_end": 78.083333,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"No crash or collision is visible; the silver SUV overtakes and proceeds normally ahead of the camera vehicle, with no impact, skid marks, or vehicle deformation observed.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 3,
+              "reason": "No crash or collision is visible; the silver SUV overtakes and proceeds normally ahead of the camera vehicle, with no impact, skid marks, or vehicle deformation observed.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

@@ -1,0 +1,224 @@
+{
+  "events": [
+    {
+      "t_start": 11.0,
+      "t_end": 16.0,
+      "anomaly_type": "Abuse",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "Multiple individuals in white protective suits with bloodstains are positioned overhead, manipulating instruments near a central point; one hand holds a bloody instrument (e.g., scalpel or forceps) while others assist, suggesting invasive action on a non-visible subject below.",
+      "source_candidate_ids": [
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          11.0,
+          11.5,
+          12.0,
+          12.5,
+          13.0,
+          13.5,
+          14.0,
+          14.5,
+          15.0,
+          15.5,
+          16.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14"
+        ],
+        "reason": "The low-angle view shows coordinated, focused manipulation by multiple suited figures with blood on their gear and tools, consistent with aggressive intervention on a restrained or helpless individual—meeting the definition of Abuse (aggression against a helpless victim). No mutual combat, crowd unrest, discharge, explosion, or vehicle involvement is visible.",
+        "source_categories": [
+          "Abuse"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 4,
+      "output_count": 1,
+      "groups": 2,
+      "rejected": 3,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0,
+              "f9": 4.5,
+              "f10": 5.0,
+              "f11": 5.5,
+              "f12": 6.0,
+              "f13": 6.5,
+              "f14": 7.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 0.5,
+                "t_end": 2.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 2.5,
+                "t_end": 3.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 4.0,
+                "t_end": 5.5,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No mutual physical combat is visible; f1–f4 show a single injured person turning and moving, with no opponent or contact evident.\",\n      \"evidence_frame_ids\": [\"f1\", \"f2\", \"f3\", \"f4\"]\n    },\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"In f5, three figures hold flashlights and weapons but no discharge, muzzle flash, or recoil is visible; in f6, the figure appears injured but no shooting action occurs.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\"]\n    },\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"From f8 to f11, the injured person is alone, upright or leaning, with no aggressor present or interaction indicating abuse; posture suggests collapse or reaction, not inflicted harm.\",\n      \"evidence_frame_ids\": [\"f8\", \"f9\", \"f10\", \"f11\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "No mutual physical combat is visible; f1–f4 show a single injured person turning and moving, with no opponent or contact evident.",
+              "evidence_frame_ids": [
+                "f1",
+                "f2",
+                "f3",
+                "f4"
+              ]
+            },
+            {
+              "candidate_id": 1,
+              "reason": "In f5, three figures hold flashlights and weapons but no discharge, muzzle flash, or recoil is visible; in f6, the figure appears injured but no shooting action occurs.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6"
+              ]
+            },
+            {
+              "candidate_id": 2,
+              "reason": "From f8 to f11, the injured person is alone, upright or leaning, with no aggressor present or interaction indicating abuse; posture suggests collapse or reaction, not inflicted harm.",
+              "evidence_frame_ids": [
+                "f8",
+                "f9",
+                "f10",
+                "f11"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 9.0,
+              "f1": 9.5,
+              "f2": 10.0,
+              "f3": 10.5,
+              "f4": 11.0,
+              "f5": 11.5,
+              "f6": 12.0,
+              "f7": 12.5,
+              "f8": 13.0,
+              "f9": 13.5,
+              "f10": 14.0,
+              "f11": 14.5,
+              "f12": 15.0,
+              "f13": 15.5,
+              "f14": 16.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 11.0,
+                "t_end": 16.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"Abuse\",\n      \"t_start\": 11.0,\n      \"t_end\": 16.0,\n      \"confidence\": 0.85,\n      \"description\": \"Multiple individuals in white protective suits with bloodstains are positioned overhead, manipulating instruments near a central point; one hand holds a bloody instrument (e.g., scalpel or forceps) while others assist, suggesting invasive action on a non-visible subject below.\",\n      \"reason\": \"The low-angle view shows coordinated, focused manipulation by multiple suited figures with blood on their gear and tools, consistent with aggressive intervention on a restrained or helpless individual—meeting the definition of Abuse (aggression against a helpless victim). No mutual combat, crowd unrest, discharge, explosion, or vehicle involvement is visible.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                3
+              ],
+              "category": "Abuse",
+              "t_start": 11.0,
+              "t_end": 16.0,
+              "confidence": 0.85,
+              "description": "Multiple individuals in white protective suits with bloodstains are positioned overhead, manipulating instruments near a central point; one hand holds a bloody instrument (e.g., scalpel or forceps) while others assist, suggesting invasive action on a non-visible subject below.",
+              "reason": "The low-angle view shows coordinated, focused manipulation by multiple suited figures with blood on their gear and tools, consistent with aggressive intervention on a restrained or helpless individual—meeting the definition of Abuse (aggression against a helpless victim). No mutual combat, crowd unrest, discharge, explosion, or vehicle involvement is visible.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

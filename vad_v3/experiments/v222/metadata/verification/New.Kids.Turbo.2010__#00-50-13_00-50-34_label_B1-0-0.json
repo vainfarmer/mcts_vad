@@ -1,0 +1,194 @@
+{
+  "events": [
+    {
+      "t_start": 14.5,
+      "t_end": 16.1,
+      "anomaly_type": "Fighting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A man in a red plaid shirt is struck (f4), stumbles (f5–f6), and falls backward over a bench (f7), with visible motion blur and impact dust suggesting physical contact.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          14.5,
+          15.0,
+          15.5,
+          16.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7"
+        ],
+        "reason": "Frames f4–f7 show a rapid sequence: the man is hit (f4, motion blur of arm), recoils (f5–f6), and lands on his back over a bench (f7). This constitutes mutual or one-sided physical combat; no weapon or firearm visible, and the action is brief and localized—consistent with Fighting, not Abuse (victim not clearly helpless beforehand) nor Explosion.",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 16.5,
+      "t_end": 18.9,
+      "anomaly_type": "Abuse",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "After being thrown over the bench, the man lies motionless on the ground while the other man stands above him, raises arms triumphantly, and gestures downward, indicating dominance over a non-resisting person.",
+      "source_candidate_ids": [
+        1,
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 1,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          16.5,
+          17.0,
+          17.5,
+          18.0,
+          18.5,
+          19.0,
+          19.5
+        ],
+        "evidence_frame_ids": [
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14"
+        ],
+        "reason": "From f8 onward, the fallen man remains supine and still (f8–f14), while the standing man performs celebratory gestures (f11–f14) and points down at him (f15), with no indication of resistance or ongoing combat—this fits Abuse (aggression against a helpless victim) rather than Fighting, which requires mutual engagement.",
+        "source_categories": [
+          "Abuse",
+          "Abuse"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 3,
+      "output_count": 2,
+      "groups": 1,
+      "rejected": 0,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 12.5,
+              "f1": 13.0,
+              "f2": 13.5,
+              "f3": 14.0,
+              "f4": 14.5,
+              "f5": 15.0,
+              "f6": 15.5,
+              "f7": 16.0,
+              "f8": 16.5,
+              "f9": 17.0,
+              "f10": 17.5,
+              "f11": 18.0,
+              "f12": 18.5,
+              "f13": 19.0,
+              "f14": 19.5,
+              "f15": 20.0,
+              "f16": 20.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 14.5,
+                "t_end": 16.1,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 16.5,
+                "t_end": 17.3,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 16.5,
+                "t_end": 18.9,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Fighting\",\n      \"t_start\": 14.5,\n      \"t_end\": 16.1,\n      \"confidence\": 0.95,\n      \"description\": \"A man in a red plaid shirt is struck (f4), stumbles (f5–f6), and falls backward over a bench (f7), with visible motion blur and impact dust suggesting physical contact.\",\n      \"reason\": \"Frames f4–f7 show a rapid sequence: the man is hit (f4, motion blur of arm), recoils (f5–f6), and lands on his back over a bench (f7). This constitutes mutual or one-sided physical combat; no weapon or firearm visible, and the action is brief and localized—consistent with Fighting, not Abuse (victim not clearly helpless beforehand) nor Explosion.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    },\n    {\n      \"source_candidate_ids\": [1, 2],\n      \"category\": \"Abuse\",\n      \"t_start\": 16.5,\n      \"t_end\": 18.9,\n      \"confidence\": 0.85,\n      \"description\": \"After being thrown over the bench, the man lies motionless on the ground while the other man stands above him, raises arms triumphantly, and gestures downward, indicating dominance over a non-resisting person.\",\n      \"reason\": \"From f8 onward, the fallen man remains supine and still (f8–f14), while the standing man performs celebratory gestures (f11–f14) and points down at him (f15), with no indication of resistance or ongoing combat—this fits Abuse (aggression against a helpless victim) rather than Fighting, which requires mutual engagement.\",\n      \"evidence_frame_ids\": [\"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Fighting",
+              "t_start": 14.5,
+              "t_end": 16.1,
+              "confidence": 0.95,
+              "description": "A man in a red plaid shirt is struck (f4), stumbles (f5–f6), and falls backward over a bench (f7), with visible motion blur and impact dust suggesting physical contact.",
+              "reason": "Frames f4–f7 show a rapid sequence: the man is hit (f4, motion blur of arm), recoils (f5–f6), and lands on his back over a bench (f7). This constitutes mutual or one-sided physical combat; no weapon or firearm visible, and the action is brief and localized—consistent with Fighting, not Abuse (victim not clearly helpless beforehand) nor Explosion.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                1,
+                2
+              ],
+              "category": "Abuse",
+              "t_start": 16.5,
+              "t_end": 18.9,
+              "confidence": 0.85,
+              "description": "After being thrown over the bench, the man lies motionless on the ground while the other man stands above him, raises arms triumphantly, and gestures downward, indicating dominance over a non-resisting person.",
+              "reason": "From f8 onward, the fallen man remains supine and still (f8–f14), while the standing man performs celebratory gestures (f11–f14) and points down at him (f15), with no indication of resistance or ongoing combat—this fits Abuse (aggression against a helpless victim) rather than Fighting, which requires mutual engagement.",
+              "evidence_frame_ids": [
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

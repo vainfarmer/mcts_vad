@@ -1,0 +1,202 @@
+{
+  "events": [
+    {
+      "t_start": 1.6,
+      "t_end": 7.0,
+      "anomaly_type": "Fighting",
+      "confidence": 0.8,
+      "coarse_score": 0.8,
+      "description": "Police officers in high-visibility jackets and caps are physically engaging with individuals in a dense crowd; visible pushing, grabbing, and restraining actions occur (e.g., f3–f12), with at least one officer extending arms to control or move a person in plaid clothing.",
+      "source_candidate_ids": [
+        0,
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.8,
+        "evidence_times": [
+          1.5,
+          2.0,
+          2.5,
+          3.0,
+          3.5,
+          4.0,
+          4.5,
+          5.0,
+          5.5,
+          6.0
+        ],
+        "evidence_frame_ids": [
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12"
+        ],
+        "reason": "Multiple frames show mutual physical contact between officers and civilians—grasping arms, leaning into each other, and forceful redirection—not merely crowd management. This meets the definition of Fighting (mutual physical combat), as both sides are actively involved in the physical struggle. Candidate 0 and 2 describe overlapping intervals and same behavior; merged.",
+        "source_categories": [
+          "Fighting",
+          "Fighting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 4,
+      "output_count": 1,
+      "groups": 1,
+      "rejected": 2,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0,
+              "f9": 4.5,
+              "f10": 5.0,
+              "f11": 5.5,
+              "f12": 6.0,
+              "f13": 6.5,
+              "f14": 7.0,
+              "f15": 7.5,
+              "f16": 8.0,
+              "f17": 8.5,
+              "f18": 9.0,
+              "f19": 9.5,
+              "f20": 10.0,
+              "f21": 10.5,
+              "f22": 11.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 1.6,
+                "t_end": 7.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 3.5,
+                "t_end": 9.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 4.0,
+                "t_end": 6.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 5.5,
+                "t_end": 7.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 2],\n      \"category\": \"Fighting\",\n      \"t_start\": 1.6,\n      \"t_end\": 7.0,\n      \"confidence\": 0.8,\n      \"description\": \"Police officers in high-visibility jackets and caps are physically engaging with individuals in a dense crowd; visible pushing, grabbing, and restraining actions occur (e.g., f3–f12), with at least one officer extending arms to control or move a person in plaid clothing.\",\n      \"reason\": \"Multiple frames show mutual physical contact between officers and civilians—grasping arms, leaning into each other, and forceful redirection—not merely crowd management. This meets the definition of Fighting (mutual physical combat), as both sides are actively involved in the physical struggle. Candidate 0 and 2 describe overlapping intervals and same behavior; merged.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"No collective violent unrest is visible: the crowd is dense but largely stationary or moving slowly; police form a line and engage individuals, but there is no widespread destruction, arson, looting, or coordinated aggression by the crowd. The scene resembles a protest with localized enforcement, not a riot.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"The interaction (e.g., f11–f12) shows physical restraint during a struggle, but the civilian is not clearly helpless nor is the officer acting unilaterally against a passive victim; both parties are engaged, so it does not meet the Abuse definition (aggression against a helpless victim).\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\", \"f13\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                2
+              ],
+              "category": "Fighting",
+              "t_start": 1.6,
+              "t_end": 7.0,
+              "confidence": 0.8,
+              "description": "Police officers in high-visibility jackets and caps are physically engaging with individuals in a dense crowd; visible pushing, grabbing, and restraining actions occur (e.g., f3–f12), with at least one officer extending arms to control or move a person in plaid clothing.",
+              "reason": "Multiple frames show mutual physical contact between officers and civilians—grasping arms, leaning into each other, and forceful redirection—not merely crowd management. This meets the definition of Fighting (mutual physical combat), as both sides are actively involved in the physical struggle. Candidate 0 and 2 describe overlapping intervals and same behavior; merged.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "No collective violent unrest is visible: the crowd is dense but largely stationary or moving slowly; police form a line and engage individuals, but there is no widespread destruction, arson, looting, or coordinated aggression by the crowd. The scene resembles a protest with localized enforcement, not a riot.",
+              "evidence_frame_ids": [
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21"
+              ]
+            },
+            {
+              "candidate_id": 3,
+              "reason": "The interaction (e.g., f11–f12) shows physical restraint during a struggle, but the civilian is not clearly helpless nor is the officer acting unilaterally against a passive victim; both parties are engaged, so it does not meet the Abuse definition (aggression against a helpless victim).",
+              "evidence_frame_ids": [
+                "f11",
+                "f12",
+                "f13"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

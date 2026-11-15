@@ -1,0 +1,252 @@
+{
+  "events": [
+    {
+      "t_start": 17.5,
+      "t_end": 24.0,
+      "anomaly_type": "Fighting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A man in dark clothing engages in physical combat with another person: pigeons scatter (f5), a flash of smoke/gas appears near the man’s hand (f6), he is struck and thrown backward (f7–f8), stumbles (f11–f12), falls upside-down (f13), and is later seen on the ground while the opponent moves away (f15–f16).",
+      "source_candidate_ids": [
+        0,
+        3,
+        5
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          18.0,
+          18.5,
+          19.0,
+          19.5,
+          21.0,
+          21.5,
+          22.0,
+          23.0,
+          23.5
+        ],
+        "evidence_frame_ids": [
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f11",
+          "f12",
+          "f13",
+          "f15",
+          "f16"
+        ],
+        "reason": "Multiple frames show reciprocal physical contact, loss of balance, and dynamic motion consistent with mutual combat; no evidence of one-sided helplessness or weapon discharge.",
+        "source_categories": [
+          "Fighting",
+          "Fighting",
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 18.5,
+      "t_end": 19.0,
+      "anomaly_type": "Shooting",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "At f6 (18.5 s), a visible muzzle flash and smoke plume emanate from the man’s right hand as he extends his arm forward; at f7 (19.0 s), the same man recoils with arms outstretched, consistent with recoil and follow-through of a firearm discharge.",
+      "source_candidate_ids": [
+        1,
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 1,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          18.5,
+          19.0
+        ],
+        "evidence_frame_ids": [
+          "f6",
+          "f7"
+        ],
+        "reason": "The bright conical flash and expanding smoke at f6 are characteristic of a gunshot; the posture change at f7 supports recoil. No other explanation fits the visual evidence.",
+        "source_categories": [
+          "Shooting",
+          "Shooting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 7,
+      "output_count": 2,
+      "groups": 1,
+      "rejected": 2,
+      "uncertain": 0,
+      "merged_sources": 3,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 15.5,
+              "f1": 16.0,
+              "f2": 16.5,
+              "f3": 17.0,
+              "f4": 17.5,
+              "f5": 18.0,
+              "f6": 18.5,
+              "f7": 19.0,
+              "f8": 19.5,
+              "f9": 20.0,
+              "f10": 20.5,
+              "f11": 21.0,
+              "f12": 21.5,
+              "f13": 22.0,
+              "f14": 22.5,
+              "f15": 23.0,
+              "f16": 23.5,
+              "f17": 24.0,
+              "f18": 24.5,
+              "f19": 25.0,
+              "f20": 25.5,
+              "f21": 26.0,
+              "f22": 26.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 17.5,
+                "t_end": 22.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 18.5,
+                "t_end": 19.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 18.5,
+                "t_end": 18.541667,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 21.0,
+                "t_end": 23.9,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 22.9,
+                "t_end": 24.9,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 23.0,
+                "t_end": 24.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 24.0,
+                "t_end": 24.5,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 3, 5],\n      \"category\": \"Fighting\",\n      \"t_start\": 17.5,\n      \"t_end\": 24.0,\n      \"confidence\": 0.9,\n      \"description\": \"A man in dark clothing engages in physical combat with another person: pigeons scatter (f5), a flash of smoke/gas appears near the man’s hand (f6), he is struck and thrown backward (f7–f8), stumbles (f11–f12), falls upside-down (f13), and is later seen on the ground while the opponent moves away (f15–f16).\",\n      \"reason\": \"Multiple frames show reciprocal physical contact, loss of balance, and dynamic motion consistent with mutual combat; no evidence of one-sided helplessness or weapon discharge.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\", \"f7\", \"f8\", \"f11\", \"f12\", \"f13\", \"f15\", \"f16\"]\n    },\n    {\n      \"source_candidate_ids\": [1, 2],\n      \"category\": \"Shooting\",\n      \"t_start\": 18.5,\n      \"t_end\": 19.0,\n      \"confidence\": 0.85,\n      \"description\": \"At f6 (18.5 s), a visible muzzle flash and smoke plume emanate from the man’s right hand as he extends his arm forward; at f7 (19.0 s), the same man recoils with arms outstretched, consistent with recoil and follow-through of a firearm discharge.\",\n      \"reason\": \"The bright conical flash and expanding smoke at f6 are characteristic of a gunshot; the posture change at f7 supports recoil. No other explanation fits the visual evidence.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"Frames f15–f18 show a person on the ground and another moving away, but no sustained aggression toward a helpless victim; the prior sequence indicates mutual combat, not one-sided abuse.\",\n      \"evidence_frame_ids\": [\"f15\", \"f16\", \"f17\", \"f18\"]\n    },\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"Frame f18 shows a person lying down and another standing above, but the context (immediately following combat and recoil) suggests aftermath of fighting, not deliberate abuse; no clear act of aggression against a helpless person is visible.\",\n      \"evidence_frame_ids\": [\"f18\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                3,
+                5
+              ],
+              "category": "Fighting",
+              "t_start": 17.5,
+              "t_end": 24.0,
+              "confidence": 0.9,
+              "description": "A man in dark clothing engages in physical combat with another person: pigeons scatter (f5), a flash of smoke/gas appears near the man’s hand (f6), he is struck and thrown backward (f7–f8), stumbles (f11–f12), falls upside-down (f13), and is later seen on the ground while the opponent moves away (f15–f16).",
+              "reason": "Multiple frames show reciprocal physical contact, loss of balance, and dynamic motion consistent with mutual combat; no evidence of one-sided helplessness or weapon discharge.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f11",
+                "f12",
+                "f13",
+                "f15",
+                "f16"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                1,
+                2
+              ],
+              "category": "Shooting",
+              "t_start": 18.5,
+              "t_end": 19.0,
+              "confidence": 0.85,
+              "description": "At f6 (18.5 s), a visible muzzle flash and smoke plume emanate from the man’s right hand as he extends his arm forward; at f7 (19.0 s), the same man recoils with arms outstretched, consistent with recoil and follow-through of a firearm discharge.",
+              "reason": "The bright conical flash and expanding smoke at f6 are characteristic of a gunshot; the posture change at f7 supports recoil. No other explanation fits the visual evidence.",
+              "evidence_frame_ids": [
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 4,
+              "reason": "Frames f15–f18 show a person on the ground and another moving away, but no sustained aggression toward a helpless victim; the prior sequence indicates mutual combat, not one-sided abuse.",
+              "evidence_frame_ids": [
+                "f15",
+                "f16",
+                "f17",
+                "f18"
+              ]
+            },
+            {
+              "candidate_id": 6,
+              "reason": "Frame f18 shows a person lying down and another standing above, but the context (immediately following combat and recoil) suggests aftermath of fighting, not deliberate abuse; no clear act of aggression against a helpless person is visible.",
+              "evidence_frame_ids": [
+                "f18"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

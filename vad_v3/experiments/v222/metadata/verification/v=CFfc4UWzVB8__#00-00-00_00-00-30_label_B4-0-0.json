@@ -1,0 +1,235 @@
+{
+  "events": [
+    {
+      "t_start": 21.5,
+      "t_end": 22.0,
+      "anomaly_type": "Fighting",
+      "confidence": 0.8,
+      "coarse_score": 0.8,
+      "description": "Blurred indoor scene shows multiple people in close physical contact, with one person appearing to be pushed or struck while others surround them.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.8,
+        "evidence_times": [
+          21.5,
+          22.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "Image f4 shows motion-blurred figures in a tight cluster with postures suggesting grappling or shoving; f5 continues the blur with apparent movement away from the cluster—consistent with a brief physical altercation, not crowd movement alone.",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 23.0,
+      "t_end": 29.5,
+      "anomaly_type": "Riot",
+      "confidence": 0.7,
+      "coarse_score": 0.7,
+      "description": "Large group of youths running and gathering in open spaces and streets, with police presence, smoke, and chaotic movement; overlaid title confirms 'Teenage Riot: May Day in Eskilstuna'.",
+      "source_candidate_ids": [
+        1,
+        3,
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 1,
+        "vlm_confidence": 0.7,
+        "evidence_times": [
+          23.0,
+          23.5,
+          24.0,
+          25.5,
+          26.0,
+          26.5,
+          27.0,
+          27.5,
+          28.0,
+          28.5,
+          29.0,
+          29.5
+        ],
+        "evidence_frame_ids": [
+          "f7",
+          "f8",
+          "f9",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18",
+          "f19",
+          "f20"
+        ],
+        "reason": "Frames f7–f9 show a large, agitated crowd moving rapidly across grass and pavement with some climbing barriers; f17 shows smoke and crowd near building; f18–f20 show police in formation amid crowd; combined with title overlay (f12–f21), this constitutes collective violent unrest meeting riot definition—not merely protest or dispersal.",
+        "source_categories": [
+          "Riot",
+          "Riot",
+          "Riot"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 5,
+      "output_count": 2,
+      "groups": 1,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 2,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 19.5,
+              "f1": 20.0,
+              "f2": 20.5,
+              "f3": 21.0,
+              "f4": 21.5,
+              "f5": 22.0,
+              "f6": 22.5,
+              "f7": 23.0,
+              "f8": 23.5,
+              "f9": 24.0,
+              "f10": 24.5,
+              "f11": 25.0,
+              "f12": 25.5,
+              "f13": 26.0,
+              "f14": 26.5,
+              "f15": 27.0,
+              "f16": 27.5,
+              "f17": 28.0,
+              "f18": 28.5,
+              "f19": 29.0,
+              "f20": 29.5,
+              "f21": 30.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 21.5,
+                "t_end": 22.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 22.7,
+                "t_end": 28.7,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 23.0,
+                "t_end": 23.8,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 23.0,
+                "t_end": 24.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 25.5,
+                "t_end": 29.1,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Fighting\",\n      \"t_start\": 21.5,\n      \"t_end\": 22.0,\n      \"confidence\": 0.8,\n      \"description\": \"Blurred indoor scene shows multiple people in close physical contact, with one person appearing to be pushed or struck while others surround them.\",\n      \"reason\": \"Image f4 shows motion-blurred figures in a tight cluster with postures suggesting grappling or shoving; f5 continues the blur with apparent movement away from the cluster—consistent with a brief physical altercation, not crowd movement alone.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    },\n    {\n      \"source_candidate_ids\": [1, 3, 4],\n      \"category\": \"Riot\",\n      \"t_start\": 23.0,\n      \"t_end\": 29.5,\n      \"confidence\": 0.7,\n      \"description\": \"Large group of youths running and gathering in open spaces and streets, with police presence, smoke, and chaotic movement; overlaid title confirms 'Teenage Riot: May Day in Eskilstuna'.\",\n      \"reason\": \"Frames f7–f9 show a large, agitated crowd moving rapidly across grass and pavement with some climbing barriers; f17 shows smoke and crowd near building; f18–f20 show police in formation amid crowd; combined with title overlay (f12–f21), this constitutes collective violent unrest meeting riot definition—not merely protest or dispersal.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Images f7–f9 show a dispersed crowd running and moving, but no clear mutual physical combat between individuals; actions are consistent with fleeing or evading, not fighting.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Fighting",
+              "t_start": 21.5,
+              "t_end": 22.0,
+              "confidence": 0.8,
+              "description": "Blurred indoor scene shows multiple people in close physical contact, with one person appearing to be pushed or struck while others surround them.",
+              "reason": "Image f4 shows motion-blurred figures in a tight cluster with postures suggesting grappling or shoving; f5 continues the blur with apparent movement away from the cluster—consistent with a brief physical altercation, not crowd movement alone.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                1,
+                3,
+                4
+              ],
+              "category": "Riot",
+              "t_start": 23.0,
+              "t_end": 29.5,
+              "confidence": 0.7,
+              "description": "Large group of youths running and gathering in open spaces and streets, with police presence, smoke, and chaotic movement; overlaid title confirms 'Teenage Riot: May Day in Eskilstuna'.",
+              "reason": "Frames f7–f9 show a large, agitated crowd moving rapidly across grass and pavement with some climbing barriers; f17 shows smoke and crowd near building; f18–f20 show police in formation amid crowd; combined with title overlay (f12–f21), this constitutes collective violent unrest meeting riot definition—not merely protest or dispersal.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8",
+                "f9",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "Images f7–f9 show a dispersed crowd running and moving, but no clear mutual physical combat between individuals; actions are consistent with fleeing or evading, not fighting.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8",
+                "f9"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

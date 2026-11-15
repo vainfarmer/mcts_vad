@@ -1,0 +1,470 @@
+{
+  "events": [
+    {
+      "t_start": 1.0,
+      "t_end": 2.0,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A truck approaches head-on in the same lane, then at f2 (1.0 s) contact occurs; f3 (1.5 s) shows shattered windshield and interior intrusion, consistent with a frontal collision.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          1.0,
+          1.5,
+          2.0
+        ],
+        "evidence_frame_ids": [
+          "f2",
+          "f3",
+          "f4"
+        ],
+        "reason": "f2 shows a large truck occupying the camera vehicle’s lane just before impact; f3 and f4 show immediate post-impact view: cracked windshield, distorted interior, and rapid loss of external scene—diagnostic of a crash. The event ends by f4 (2.0 s) as the view becomes fully obscured.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 18.5,
+      "t_end": 21.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A snowplow and a semi-truck collide head-on or at an angle on a snowy road, with the truck veering into the plow’s lane and making contact around f4–f7, resulting in the truck sliding past the plow by f9.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          18.5,
+          19.0,
+          19.5,
+          20.0,
+          20.5,
+          21.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9"
+        ],
+        "reason": "Frames f4–f7 show the vehicles converging rapidly; f6–f7 depict clear contact and lateral displacement of the truck relative to the plow; f8–f9 show the truck passing closely alongside/overlapping the plow, consistent with a collision and loss of control—not mere near-miss or normal driving. The event fits CarAccident (crash) per definition.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 56.5,
+      "t_end": 61.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "The camera vehicle veers sharply right, collides with a white-and-green bus (f0), then tumbles and comes to rest against an orange Kamaz truck (f10–f14), with violent motion blur and orientation change indicating impact.",
+      "source_candidate_ids": [
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 3,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          57.0,
+          57.5,
+          58.0,
+          58.5,
+          59.0,
+          59.5,
+          60.0,
+          60.5,
+          61.0,
+          61.5
+        ],
+        "evidence_frame_ids": [
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14"
+        ],
+        "reason": "Frames f5–f7 show rapid rotation and loss of road view; f7 shows the bus reappearing at an abnormal angle; f8–f9 are obscured (likely impact/ground contact); f10–f14 show close-up of orange Kamaz cab with visible 'KAMAZ' logo and cracked windshield—consistent with secondary collision or final resting position after crash. The sequence matches a multi-vehicle collision event.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 104.0,
+      "t_end": 104.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A motorcycle (or scooter) lying on its side in the road lane, having just crossed from left to right and apparently collided with or been struck by the bus ahead; the bus is swerving left and braking.",
+      "source_candidate_ids": [
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 4,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          104.0,
+          104.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "In f4 (104.0s), a dark object—clearly a two-wheeled vehicle—is on its side mid-lane, directly in front of the bus, which is visibly swerving left and decelerating; by f5 (104.5s), the object remains on the ground and the bus has moved further left, consistent with an immediate post-impact state. No other vehicles appear involved, and the scene shows a single crash event.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 5,
+      "output_count": 4,
+      "groups": 5,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 1.0,
+                "t_end": 2.2,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"CarAccident\",\n      \"t_start\": 1.0,\n      \"t_end\": 2.0,\n      \"confidence\": 0.95,\n      \"description\": \"A truck approaches head-on in the same lane, then at f2 (1.0 s) contact occurs; f3 (1.5 s) shows shattered windshield and interior intrusion, consistent with a frontal collision.\",\n      \"reason\": \"f2 shows a large truck occupying the camera vehicle’s lane just before impact; f3 and f4 show immediate post-impact view: cracked windshield, distorted interior, and rapid loss of external scene—diagnostic of a crash. The event ends by f4 (2.0 s) as the view becomes fully obscured.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "CarAccident",
+              "t_start": 1.0,
+              "t_end": 2.0,
+              "confidence": 0.95,
+              "description": "A truck approaches head-on in the same lane, then at f2 (1.0 s) contact occurs; f3 (1.5 s) shows shattered windshield and interior intrusion, consistent with a frontal collision.",
+              "reason": "f2 shows a large truck occupying the camera vehicle’s lane just before impact; f3 and f4 show immediate post-impact view: cracked windshield, distorted interior, and rapid loss of external scene—diagnostic of a crash. The event ends by f4 (2.0 s) as the view becomes fully obscured.",
+              "evidence_frame_ids": [
+                "f2",
+                "f3",
+                "f4"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 16.5,
+              "f1": 17.0,
+              "f2": 17.5,
+              "f3": 18.0,
+              "f4": 18.5,
+              "f5": 19.0,
+              "f6": 19.5,
+              "f7": 20.0,
+              "f8": 20.5,
+              "f9": 21.0,
+              "f10": 21.5,
+              "f11": 22.0,
+              "f12": 22.5,
+              "f13": 23.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 18.5,
+                "t_end": 21.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"CarAccident\",\n      \"t_start\": 18.5,\n      \"t_end\": 21.5,\n      \"confidence\": 0.95,\n      \"description\": \"A snowplow and a semi-truck collide head-on or at an angle on a snowy road, with the truck veering into the plow’s lane and making contact around f4–f7, resulting in the truck sliding past the plow by f9.\",\n      \"reason\": \"Frames f4–f7 show the vehicles converging rapidly; f6–f7 depict clear contact and lateral displacement of the truck relative to the plow; f8–f9 show the truck passing closely alongside/overlapping the plow, consistent with a collision and loss of control—not mere near-miss or normal driving. The event fits CarAccident (crash) per definition.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "CarAccident",
+              "t_start": 18.5,
+              "t_end": 21.5,
+              "confidence": 0.95,
+              "description": "A snowplow and a semi-truck collide head-on or at an angle on a snowy road, with the truck veering into the plow’s lane and making contact around f4–f7, resulting in the truck sliding past the plow by f9.",
+              "reason": "Frames f4–f7 show the vehicles converging rapidly; f6–f7 depict clear contact and lateral displacement of the truck relative to the plow; f8–f9 show the truck passing closely alongside/overlapping the plow, consistent with a collision and loss of control—not mere near-miss or normal driving. The event fits CarAccident (crash) per definition.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 28.0,
+              "f1": 28.5,
+              "f2": 29.0,
+              "f3": 29.5,
+              "f4": 30.0,
+              "f5": 30.5,
+              "f6": 31.0,
+              "f7": 31.5,
+              "f8": 32.0,
+              "f9": 32.5,
+              "f10": 33.0,
+              "f11": 33.5,
+              "f12": 34.0,
+              "f13": 34.5,
+              "f14": 35.0,
+              "f15": 35.5,
+              "f16": 36.0,
+              "f17": 36.5,
+              "f18": 37.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 30.0,
+                "t_end": 35.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"No collision or impact is visible; the truck passes closely beside the sedan without contact, consistent with normal traffic maneuvering at an intersection.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "No collision or impact is visible; the truck passes closely beside the sedan without contact, consistent with normal traffic maneuvering at an intersection.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 54.5,
+              "f1": 55.0,
+              "f2": 55.5,
+              "f3": 56.0,
+              "f4": 56.5,
+              "f5": 57.0,
+              "f6": 57.5,
+              "f7": 58.0,
+              "f8": 58.5,
+              "f9": 59.0,
+              "f10": 59.5,
+              "f11": 60.0,
+              "f12": 60.5,
+              "f13": 61.0,
+              "f14": 61.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 56.5,
+                "t_end": 59.8,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"CarAccident\",\n      \"t_start\": 56.5,\n      \"t_end\": 61.5,\n      \"confidence\": 0.95,\n      \"description\": \"The camera vehicle veers sharply right, collides with a white-and-green bus (f0), then tumbles and comes to rest against an orange Kamaz truck (f10–f14), with violent motion blur and orientation change indicating impact.\",\n      \"reason\": \"Frames f5–f7 show rapid rotation and loss of road view; f7 shows the bus reappearing at an abnormal angle; f8–f9 are obscured (likely impact/ground contact); f10–f14 show close-up of orange Kamaz cab with visible 'KAMAZ' logo and cracked windshield—consistent with secondary collision or final resting position after crash. The sequence matches a multi-vehicle collision event.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                3
+              ],
+              "category": "CarAccident",
+              "t_start": 56.5,
+              "t_end": 61.5,
+              "confidence": 0.95,
+              "description": "The camera vehicle veers sharply right, collides with a white-and-green bus (f0), then tumbles and comes to rest against an orange Kamaz truck (f10–f14), with violent motion blur and orientation change indicating impact.",
+              "reason": "Frames f5–f7 show rapid rotation and loss of road view; f7 shows the bus reappearing at an abnormal angle; f8–f9 are obscured (likely impact/ground contact); f10–f14 show close-up of orange Kamaz cab with visible 'KAMAZ' logo and cracked windshield—consistent with secondary collision or final resting position after crash. The sequence matches a multi-vehicle collision event.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 4,
+        "source_ids": [
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 102.0,
+              "f1": 102.5,
+              "f2": 103.0,
+              "f3": 103.5,
+              "f4": 104.0,
+              "f5": 104.5,
+              "f6": 105.0,
+              "f7": 105.5,
+              "f8": 106.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 104.0,
+                "t_end": 104.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"CarAccident\",\n      \"t_start\": 104.0,\n      \"t_end\": 104.5,\n      \"confidence\": 0.95,\n      \"description\": \"A motorcycle (or scooter) lying on its side in the road lane, having just crossed from left to right and apparently collided with or been struck by the bus ahead; the bus is swerving left and braking.\",\n      \"reason\": \"In f4 (104.0s), a dark object—clearly a two-wheeled vehicle—is on its side mid-lane, directly in front of the bus, which is visibly swerving left and decelerating; by f5 (104.5s), the object remains on the ground and the bus has moved further left, consistent with an immediate post-impact state. No other vehicles appear involved, and the scene shows a single crash event.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                4
+              ],
+              "category": "CarAccident",
+              "t_start": 104.0,
+              "t_end": 104.5,
+              "confidence": 0.95,
+              "description": "A motorcycle (or scooter) lying on its side in the road lane, having just crossed from left to right and apparently collided with or been struck by the bus ahead; the bus is swerving left and braking.",
+              "reason": "In f4 (104.0s), a dark object—clearly a two-wheeled vehicle—is on its side mid-lane, directly in front of the bus, which is visibly swerving left and decelerating; by f5 (104.5s), the object remains on the ground and the bus has moved further left, consistent with an immediate post-impact state. No other vehicles appear involved, and the scene shows a single crash event.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

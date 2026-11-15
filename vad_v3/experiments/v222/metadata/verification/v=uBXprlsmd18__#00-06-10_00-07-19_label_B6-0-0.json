@@ -1,0 +1,325 @@
+{
+  "events": [
+    {
+      "t_start": 15.5,
+      "t_end": 18.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "Vehicle rapidly rotates and impacts, followed by interior view showing violent motion, shattered glass, and occupant displacement with bright flash (likely airbag deployment).",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          15.0,
+          15.5,
+          16.0,
+          16.5,
+          17.0,
+          17.5,
+          18.0,
+          18.5
+        ],
+        "evidence_frame_ids": [
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9"
+        ],
+        "reason": "f2 shows sudden overexposure and loss of scene stability; f3 shows interior with debris and distortion consistent with impact; f4–f5 show chaotic motion and obscured view; f6–f9 show post-impact interior with occupant movement, wiring, and bright light typical of airbag inflation—collectively indicating a crash event.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 63.5,
+      "t_end": 64.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "A sudden bright flash and fireball erupts at the intersection center in f5 (63.5 s), intensifies in f6 (64.0 s), and persists as a burning object through f7 (64.5 s), with no visible vehicle impact or debris preceding it.",
+      "source_candidate_ids": [
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          63.5,
+          64.0,
+          64.5
+        ],
+        "evidence_frame_ids": [
+          "f5",
+          "f6",
+          "f7"
+        ],
+        "reason": "The event begins abruptly with intense light and rapid expansion (f5–f6), satisfying the 'Explosion' definition (a blast, not merely sustained fire); no collision is visible—vehicles pass normally before (f4) and after (f8), and the fire originates near the crosswalk, not from a vehicle. Candidate 2 (CarAccident) is rejected because no crash occurs; candidate 3 is accepted as a distinct explosion event.",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 4,
+      "output_count": 2,
+      "groups": 3,
+      "rejected": 2,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 14.0,
+              "f1": 14.5,
+              "f2": 15.0,
+              "f3": 15.5,
+              "f4": 16.0,
+              "f5": 16.5,
+              "f6": 17.0,
+              "f7": 17.5,
+              "f8": 18.0,
+              "f9": 18.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 16.0,
+                "t_end": 16.8,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"CarAccident\",\n      \"t_start\": 15.5,\n      \"t_end\": 18.5,\n      \"confidence\": 0.95,\n      \"description\": \"Vehicle rapidly rotates and impacts, followed by interior view showing violent motion, shattered glass, and occupant displacement with bright flash (likely airbag deployment).\",\n      \"reason\": \"f2 shows sudden overexposure and loss of scene stability; f3 shows interior with debris and distortion consistent with impact; f4–f5 show chaotic motion and obscured view; f6–f9 show post-impact interior with occupant movement, wiring, and bright light typical of airbag inflation—collectively indicating a crash event.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "CarAccident",
+              "t_start": 15.5,
+              "t_end": 18.5,
+              "confidence": 0.95,
+              "description": "Vehicle rapidly rotates and impacts, followed by interior view showing violent motion, shattered glass, and occupant displacement with bright flash (likely airbag deployment).",
+              "reason": "f2 shows sudden overexposure and loss of scene stability; f3 shows interior with debris and distortion consistent with impact; f4–f5 show chaotic motion and obscured view; f6–f9 show post-impact interior with occupant movement, wiring, and bright light typical of airbag inflation—collectively indicating a crash event.",
+              "evidence_frame_ids": [
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 17.0,
+              "f1": 17.5,
+              "f2": 18.0,
+              "f3": 18.5,
+              "f4": 19.0,
+              "f5": 19.5,
+              "f6": 20.0,
+              "f7": 20.5,
+              "f8": 21.0,
+              "f9": 21.5,
+              "f10": 22.0,
+              "f11": 22.5,
+              "f12": 23.0,
+              "f13": 23.5,
+              "f14": 24.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 18.7,
+                "t_end": 22.3,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"No visible aggression or helpless victim; the scene shows a person slumped forward in a vehicle interior with bright light and possible injury (e.g., blood on clothing), but no active abusive act is observed—consistent with post-impact stillness or medical response, not ongoing abuse.\",\n      \"evidence_frame_ids\": [\"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "No visible aggression or helpless victim; the scene shows a person slumped forward in a vehicle interior with bright light and possible injury (e.g., blood on clothing), but no active abusive act is observed—consistent with post-impact stillness or medical response, not ongoing abuse.",
+              "evidence_frame_ids": [
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          2,
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 61.0,
+              "f1": 61.5,
+              "f2": 62.0,
+              "f3": 62.5,
+              "f4": 63.0,
+              "f5": 63.5,
+              "f6": 64.0,
+              "f7": 64.5,
+              "f8": 65.0,
+              "f9": 65.5,
+              "f10": 66.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 63.0,
+                "t_end": 64.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 63.5,
+                "t_end": 64.0,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2, 3],\n      \"category\": \"Explosion\",\n      \"t_start\": 63.5,\n      \"t_end\": 64.5,\n      \"confidence\": 0.9,\n      \"description\": \"A bright, sudden flash and expanding fireball appear at the intersection center around 63.5–64.0 s, persisting as a burning object through 64.5 s, with no visible vehicle collision preceding it.\",\n      \"reason\": \"The event begins abruptly with intense light and fire (f5–f6), inconsistent with a typical car crash (no deformation, skid marks, or impact debris); the sustained fireball matches explosion criteria; candidate 2 (CarAccident) is subsumed because no crash is visible—vehicles are passing normally before and after, and the fire originates from ground level near the crosswalk, not from a vehicle.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"No vehicle collision, deformation, or post-impact motion is visible; the fire appears independently of any car contact, contradicting CarAccident definition.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"While a bright flash and fireball occur (f5–f6), the exact mechanism (e.g., fuel tank rupture vs. external device) is indiscernible; however, the visible blast-like onset and rapid expansion satisfy the 'Explosion' category per definition (blast, not sustained fire alone), so it is accepted—not uncertain. Thus no uncertain entries remain.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 61.0,
+              "f1": 61.5,
+              "f2": 62.0,
+              "f3": 62.5,
+              "f4": 63.0,
+              "f5": 63.5,
+              "f6": 64.0,
+              "f7": 64.5,
+              "f8": 65.0,
+              "f9": 65.5,
+              "f10": 66.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 63.0,
+                "t_end": 64.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 63.5,
+                "t_end": 64.0,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"Explosion\",\n      \"t_start\": 63.5,\n      \"t_end\": 64.5,\n      \"confidence\": 0.85,\n      \"description\": \"A sudden bright flash and fireball erupts at the intersection center in f5 (63.5 s), intensifies in f6 (64.0 s), and persists as a burning object through f7 (64.5 s), with no visible vehicle impact or debris preceding it.\",\n      \"reason\": \"The event begins abruptly with intense light and rapid expansion (f5–f6), satisfying the 'Explosion' definition (a blast, not merely sustained fire); no collision is visible—vehicles pass normally before (f4) and after (f8), and the fire originates near the crosswalk, not from a vehicle. Candidate 2 (CarAccident) is rejected because no crash occurs; candidate 3 is accepted as a distinct explosion event.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"No vehicle collision, deformation, skid marks, or post-impact motion is visible at any frame; the fire appears independently of vehicle contact, contradicting the CarAccident definition.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                3
+              ],
+              "category": "Explosion",
+              "t_start": 63.5,
+              "t_end": 64.5,
+              "confidence": 0.85,
+              "description": "A sudden bright flash and fireball erupts at the intersection center in f5 (63.5 s), intensifies in f6 (64.0 s), and persists as a burning object through f7 (64.5 s), with no visible vehicle impact or debris preceding it.",
+              "reason": "The event begins abruptly with intense light and rapid expansion (f5–f6), satisfying the 'Explosion' definition (a blast, not merely sustained fire); no collision is visible—vehicles pass normally before (f4) and after (f8), and the fire originates near the crosswalk, not from a vehicle. Candidate 2 (CarAccident) is rejected because no crash occurs; candidate 3 is accepted as a distinct explosion event.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "No vehicle collision, deformation, skid marks, or post-impact motion is visible at any frame; the fire appears independently of vehicle contact, contradicting the CarAccident definition.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

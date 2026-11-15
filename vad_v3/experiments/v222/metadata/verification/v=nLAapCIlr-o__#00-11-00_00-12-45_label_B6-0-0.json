@@ -1,0 +1,520 @@
+{
+  "events": [
+    {
+      "t_start": 12.0,
+      "t_end": 14.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A white sedan loses control on the snowy road, slides sideways across lanes, and comes to rest off the road with visible front-end damage by f9.",
+      "source_candidate_ids": [
+        0,
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          12.0,
+          12.5,
+          13.0,
+          13.5,
+          14.0,
+          14.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9"
+        ],
+        "reason": "From f4 onward, the white car begins drifting right; by f6–f7 it is fully sideways; at f8 it impacts the snowbank; at f9 it is stationary with crumpled front bumper and hood, confirming a crash. Both candidates describe the same event; merged.",
+        "source_categories": [
+          "CarAccident",
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 35.0,
+      "t_end": 36.0,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A dark sedan loses traction on snow, spins sideways across the road at 35.5 s (f5), and collides with the camera vehicle, causing abrupt loss of view by 36.0 s (f6).",
+      "source_candidate_ids": [
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          35.0,
+          35.5,
+          36.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "f4 shows the sedan approaching in the opposite lane; f5 shows it mid-spin with snow spray and angled impact trajectory; f6 is black/obscured consistent with immediate post-impact camera disruption. This satisfies CarAccident: a crash involving vehicle collision.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 64.0,
+      "t_end": 65.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A yellow taxi collides with the front-left side of a white ambulance at an intersection, causing visible deformation of the taxi’s hood and windshield wiper movement indicating impact.",
+      "source_candidate_ids": [
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 3,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          64.0,
+          64.5,
+          65.0,
+          65.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7"
+        ],
+        "reason": "Frames f4–f6 show the taxi entering the intersection, then in f5–f6 the taxi’s front is interlocked with the ambulance’s side; debris is visible in f6, and the taxi’s hood is crumpled in f7. This satisfies the definition of a crash (sudden unintended contact with vehicle damage).",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 73.0,
+      "t_end": 73.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A white vehicle ahead veers left and collides with a dark vehicle coming from the opposite direction, producing a spray of snow and debris.",
+      "source_candidate_ids": [
+        5
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 4,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          73.0,
+          73.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "In f4 (73.0 s), the white car is seen swerving sharply left into the oncoming lane; by f5 (73.5 s), both vehicles are in violent contact with visible displacement and snow plume—consistent with a head-on or near-head-on collision. No evidence of fighting, shooting, riot, abuse, or explosion.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 100.5,
+      "t_end": 101.0,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "An orange truck swerves left across lane markings and collides with a white sedan in the adjacent lane, while a purple-and-white semi-truck is simultaneously visible on the right edge of the frame.",
+      "source_candidate_ids": [
+        6
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 5,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          100.5,
+          101.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "In f4 (100.5 s), the orange truck is mid-lane-change, overlapping the white sedan’s path; in f5 (101.0 s), the two vehicles are in contact with visible deformation/overlap, satisfying crash criteria. The event is fully captured within the candidate interval and visible frames.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 7,
+      "output_count": 5,
+      "groups": 6,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 10.0,
+              "f1": 10.5,
+              "f2": 11.0,
+              "f3": 11.5,
+              "f4": 12.0,
+              "f5": 12.5,
+              "f6": 13.0,
+              "f7": 13.5,
+              "f8": 14.0,
+              "f9": 14.5,
+              "f10": 15.0,
+              "f11": 15.5,
+              "f12": 16.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 12.0,
+                "t_end": 14.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 13.5,
+                "t_end": 14.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"CarAccident\",\n      \"t_start\": 12.0,\n      \"t_end\": 14.5,\n      \"confidence\": 0.95,\n      \"description\": \"A white sedan loses control on the snowy road, slides sideways across lanes, and comes to rest off the road with visible front-end damage by f9.\",\n      \"reason\": \"From f4 onward, the white car begins drifting right; by f6–f7 it is fully sideways; at f8 it impacts the snowbank; at f9 it is stationary with crumpled front bumper and hood, confirming a crash. Both candidates describe the same event; merged.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1
+              ],
+              "category": "CarAccident",
+              "t_start": 12.0,
+              "t_end": 14.5,
+              "confidence": 0.95,
+              "description": "A white sedan loses control on the snowy road, slides sideways across lanes, and comes to rest off the road with visible front-end damage by f9.",
+              "reason": "From f4 onward, the white car begins drifting right; by f6–f7 it is fully sideways; at f8 it impacts the snowbank; at f9 it is stationary with crumpled front bumper and hood, confirming a crash. Both candidates describe the same event; merged.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 33.0,
+              "f1": 33.5,
+              "f2": 34.0,
+              "f3": 34.5,
+              "f4": 35.0,
+              "f5": 35.5,
+              "f6": 36.0,
+              "f7": 36.5,
+              "f8": 37.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 35.0,
+                "t_end": 35.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"CarAccident\",\n      \"t_start\": 35.0,\n      \"t_end\": 36.0,\n      \"confidence\": 0.95,\n      \"description\": \"A dark sedan loses traction on snow, spins sideways across the road at 35.5 s (f5), and collides with the camera vehicle, causing abrupt loss of view by 36.0 s (f6).\",\n      \"reason\": \"f4 shows the sedan approaching in the opposite lane; f5 shows it mid-spin with snow spray and angled impact trajectory; f6 is black/obscured consistent with immediate post-impact camera disruption. This satisfies CarAccident: a crash involving vehicle collision.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2
+              ],
+              "category": "CarAccident",
+              "t_start": 35.0,
+              "t_end": 36.0,
+              "confidence": 0.95,
+              "description": "A dark sedan loses traction on snow, spins sideways across the road at 35.5 s (f5), and collides with the camera vehicle, causing abrupt loss of view by 36.0 s (f6).",
+              "reason": "f4 shows the sedan approaching in the opposite lane; f5 shows it mid-spin with snow spray and angled impact trajectory; f6 is black/obscured consistent with immediate post-impact camera disruption. This satisfies CarAccident: a crash involving vehicle collision.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 41.0,
+              "f1": 41.5,
+              "f2": 42.0,
+              "f3": 42.5,
+              "f4": 43.0,
+              "f5": 43.5,
+              "f6": 44.0,
+              "f7": 44.5,
+              "f8": 45.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 43.0,
+                "t_end": 43.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"No collision or impact is visible between the green truck and the dark sedan passing on the left at 43.0–43.5s; the sedan overtakes normally without contact or deviation.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 3,
+              "reason": "No collision or impact is visible between the green truck and the dark sedan passing on the left at 43.0–43.5s; the sedan overtakes normally without contact or deviation.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 62.0,
+              "f1": 62.5,
+              "f2": 63.0,
+              "f3": 63.5,
+              "f4": 64.0,
+              "f5": 64.5,
+              "f6": 65.0,
+              "f7": 65.5,
+              "f8": 66.0,
+              "f9": 66.5,
+              "f10": 67.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 64.0,
+                "t_end": 65.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"CarAccident\",\n      \"t_start\": 64.0,\n      \"t_end\": 65.5,\n      \"confidence\": 0.95,\n      \"description\": \"A yellow taxi collides with the front-left side of a white ambulance at an intersection, causing visible deformation of the taxi’s hood and windshield wiper movement indicating impact.\",\n      \"reason\": \"Frames f4–f6 show the taxi entering the intersection, then in f5–f6 the taxi’s front is interlocked with the ambulance’s side; debris is visible in f6, and the taxi’s hood is crumpled in f7. This satisfies the definition of a crash (sudden unintended contact with vehicle damage).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                4
+              ],
+              "category": "CarAccident",
+              "t_start": 64.0,
+              "t_end": 65.5,
+              "confidence": 0.95,
+              "description": "A yellow taxi collides with the front-left side of a white ambulance at an intersection, causing visible deformation of the taxi’s hood and windshield wiper movement indicating impact.",
+              "reason": "Frames f4–f6 show the taxi entering the intersection, then in f5–f6 the taxi’s front is interlocked with the ambulance’s side; debris is visible in f6, and the taxi’s hood is crumpled in f7. This satisfies the definition of a crash (sudden unintended contact with vehicle damage).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 4,
+        "source_ids": [
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 71.0,
+              "f1": 71.5,
+              "f2": 72.0,
+              "f3": 72.5,
+              "f4": 73.0,
+              "f5": 73.5,
+              "f6": 74.0,
+              "f7": 74.5,
+              "f8": 75.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 5,
+                "t_start": 73.0,
+                "t_end": 73.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [5],\n      \"category\": \"CarAccident\",\n      \"t_start\": 73.0,\n      \"t_end\": 73.5,\n      \"confidence\": 0.95,\n      \"description\": \"A white vehicle ahead veers left and collides with a dark vehicle coming from the opposite direction, producing a spray of snow and debris.\",\n      \"reason\": \"In f4 (73.0 s), the white car is seen swerving sharply left into the oncoming lane; by f5 (73.5 s), both vehicles are in violent contact with visible displacement and snow plume—consistent with a head-on or near-head-on collision. No evidence of fighting, shooting, riot, abuse, or explosion.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                5
+              ],
+              "category": "CarAccident",
+              "t_start": 73.0,
+              "t_end": 73.5,
+              "confidence": 0.95,
+              "description": "A white vehicle ahead veers left and collides with a dark vehicle coming from the opposite direction, producing a spray of snow and debris.",
+              "reason": "In f4 (73.0 s), the white car is seen swerving sharply left into the oncoming lane; by f5 (73.5 s), both vehicles are in violent contact with visible displacement and snow plume—consistent with a head-on or near-head-on collision. No evidence of fighting, shooting, riot, abuse, or explosion.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 5,
+        "source_ids": [
+          6
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 98.5,
+              "f1": 99.0,
+              "f2": 99.5,
+              "f3": 100.0,
+              "f4": 100.5,
+              "f5": 101.0,
+              "f6": 101.5,
+              "f7": 102.0,
+              "f8": 102.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 6,
+                "t_start": 100.5,
+                "t_end": 101.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [6],\n      \"category\": \"CarAccident\",\n      \"t_start\": 100.5,\n      \"t_end\": 101.0,\n      \"confidence\": 0.95,\n      \"description\": \"An orange truck swerves left across lane markings and collides with a white sedan in the adjacent lane, while a purple-and-white semi-truck is simultaneously visible on the right edge of the frame.\",\n      \"reason\": \"In f4 (100.5 s), the orange truck is mid-lane-change, overlapping the white sedan’s path; in f5 (101.0 s), the two vehicles are in contact with visible deformation/overlap, satisfying crash criteria. The event is fully captured within the candidate interval and visible frames.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                6
+              ],
+              "category": "CarAccident",
+              "t_start": 100.5,
+              "t_end": 101.0,
+              "confidence": 0.95,
+              "description": "An orange truck swerves left across lane markings and collides with a white sedan in the adjacent lane, while a purple-and-white semi-truck is simultaneously visible on the right edge of the frame.",
+              "reason": "In f4 (100.5 s), the orange truck is mid-lane-change, overlapping the white sedan’s path; in f5 (101.0 s), the two vehicles are in contact with visible deformation/overlap, satisfying crash criteria. The event is fully captured within the candidate interval and visible frames.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

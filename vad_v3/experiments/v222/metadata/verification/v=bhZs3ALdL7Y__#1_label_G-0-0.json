@@ -1,0 +1,114 @@
+{
+  "events": [
+    {
+      "t_start": 0.5,
+      "t_end": 3.0,
+      "anomaly_type": "Explosion",
+      "confidence": 1.0,
+      "coarse_score": 1.0,
+      "description": "A rapidly expanding fireball with bright incandescence and turbulent expansion, followed by cooling, darkening, and smoke formation.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 1.0,
+        "evidence_times": [
+          0.5,
+          1.0,
+          1.5,
+          2.0,
+          2.5,
+          3.0
+        ],
+        "evidence_frame_ids": [
+          "f1",
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "Frames f1–f6 show a single rapid energy release: initial bright flash (f1), peak expansion and luminosity (f2–f4), then decay into embers and smoke (f5–f6), consistent with a blast-driven explosion, not sustained fire or combustion alone.",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 1,
+      "output_count": 1,
+      "groups": 1,
+      "rejected": 0,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 0.5,
+                "t_end": 3.0,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Explosion\",\n      \"t_start\": 0.5,\n      \"t_end\": 3.0,\n      \"confidence\": 1.0,\n      \"description\": \"A rapidly expanding fireball with bright incandescence and turbulent expansion, followed by cooling, darkening, and smoke formation.\",\n      \"reason\": \"Frames f1–f6 show a single rapid energy release: initial bright flash (f1), peak expansion and luminosity (f2–f4), then decay into embers and smoke (f5–f6), consistent with a blast-driven explosion, not sustained fire or combustion alone.\",\n      \"evidence_frame_ids\": [\"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Explosion",
+              "t_start": 0.5,
+              "t_end": 3.0,
+              "confidence": 1.0,
+              "description": "A rapidly expanding fireball with bright incandescence and turbulent expansion, followed by cooling, darkening, and smoke formation.",
+              "reason": "Frames f1–f6 show a single rapid energy release: initial bright flash (f1), peak expansion and luminosity (f2–f4), then decay into embers and smoke (f5–f6), consistent with a blast-driven explosion, not sustained fire or combustion alone.",
+              "evidence_frame_ids": [
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

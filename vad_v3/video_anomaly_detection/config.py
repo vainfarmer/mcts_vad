@@ -18,6 +18,10 @@ import json
 from dataclasses import dataclass, field, asdict
 from pathlib import Path
 from typing import Any, Dict, List, Optional
+try:
+    from .xd_config import XDConfig
+except ImportError:
+    from xd_config import XDConfig
 
 
 @dataclass
@@ -148,6 +152,8 @@ class VADConfig:
 
     device: str = "cpu"
     anomaly_categories: List[str] = field(default_factory=list)
+    dataset: str = 'ucf_crime'
+    xd: XDConfig = field(default_factory=XDConfig)
 
     # ---- 扁平化访问（便于 pipeline 内部直接取值）----
     @property
@@ -231,6 +237,8 @@ class VADConfig:
             ),
             device=getattr(args, "device", "cpu"),
             anomaly_categories=cats,
+            dataset=getattr(args, 'dataset', 'ucf_crime'),
+            xd=XDConfig(verify_candidates=getattr(args,'xd_verify_candidates',False)),
         )
 
     # ---- 序列化（实验复现）----
@@ -253,6 +261,8 @@ class VADConfig:
             discovery=DiscoveryConfig(**data.get("discovery", {})),
             device=data.get("device", "cpu"),
             anomaly_categories=data.get("anomaly_categories", []),
+            dataset=data.get('dataset', 'ucf_crime'),
+            xd=XDConfig(**data.get('xd', {})),
         )
 
 

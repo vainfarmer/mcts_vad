@@ -1,0 +1,334 @@
+{
+  "events": [
+    {
+      "t_start": 5.0,
+      "t_end": 5.5,
+      "anomaly_type": "Shooting",
+      "confidence": 0.8,
+      "coarse_score": 0.8,
+      "description": "In f4 (5.0 s), the woman holds a handgun aimed forward; in f5 (5.5 s), smoke is visible near the muzzle, consistent with discharge.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.8,
+        "evidence_times": [
+          5.0,
+          5.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "f4 shows weapon aimed; f5 shows muzzle smoke—strong evidence of firing within this interval. Candidate 1 (t_start=5.5, t_end=6.0) claims shooting at 5.5–6.0, but f6 shows no gun and a different subject; no evidence of shooting occurs *after* f5, so candidate 1 cannot be merged or supported. Only candidate 0 is supported.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 11.0,
+      "t_end": 11.5,
+      "anomaly_type": "Shooting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "The woman aims a handgun directly at the camera and fires, with visible muzzle flash and smoke in f5 (5.5s) and f17 (11.5s); f16–f17 show her pulling trigger with gun extended.",
+      "source_candidate_ids": [
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          11.0,
+          11.5
+        ],
+        "evidence_frame_ids": [
+          "f16",
+          "f17"
+        ],
+        "reason": "f16 shows gun raised and aimed; f17 shows clear muzzle flash and smoke consistent with discharge; this satisfies the 'Shooting' definition requiring visible shooting, not just possession. Candidate 3 matches this interval exactly.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 4,
+      "output_count": 2,
+      "groups": 2,
+      "rejected": 2,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 1,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 3.0,
+              "f1": 3.5,
+              "f2": 4.0,
+              "f3": 4.5,
+              "f4": 5.0,
+              "f5": 5.5,
+              "f6": 6.0,
+              "f7": 6.5,
+              "f8": 7.0,
+              "f9": 7.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 5.0,
+                "t_end": 5.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 5.5,
+                "t_end": 6.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Shooting\",\n      \"t_start\": 5.0,\n      \"t_end\": 5.5,\n      \"confidence\": 0.9,\n      \"description\": \"A woman aims a handgun directly at the camera; in f5 (5.5 s), smoke is visible near the muzzle, indicating discharge.\",\n      \"reason\": \"f4 shows the gun aimed and held steady; f5 shows clear muzzle smoke consistent with firing; f6 shows no gun and a different subject, confirming the shooting event concluded by 6.0 s. The two candidates describe overlapping intervals of the same single discharge event, so they are merged.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 3.0,
+              "f1": 3.5,
+              "f2": 4.0,
+              "f3": 4.5,
+              "f4": 5.0,
+              "f5": 5.5,
+              "f6": 6.0,
+              "f7": 6.5,
+              "f8": 7.0,
+              "f9": 7.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 5.0,
+                "t_end": 5.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 5.5,
+                "t_end": 6.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Shooting\",\n      \"t_start\": 5.0,\n      \"t_end\": 5.5,\n      \"confidence\": 0.8,\n      \"description\": \"In f4 (5.0 s), the woman holds a handgun aimed forward; in f5 (5.5 s), smoke is visible near the muzzle, consistent with discharge.\",\n      \"reason\": \"f4 shows weapon aimed; f5 shows muzzle smoke—strong evidence of firing within this interval. Candidate 1 (t_start=5.5, t_end=6.0) claims shooting at 5.5–6.0, but f6 shows no gun and a different subject; no evidence of shooting occurs *after* f5, so candidate 1 cannot be merged or supported. Only candidate 0 is supported.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"No visual evidence of shooting in f6 (6.0 s) or f7 (6.5 s); the gun is absent and the subject has changed, indicating the shooting event ended by 5.5 s. The claimed interval 5.5–6.0 lacks supporting frames.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Shooting",
+              "t_start": 5.0,
+              "t_end": 5.5,
+              "confidence": 0.8,
+              "description": "In f4 (5.0 s), the woman holds a handgun aimed forward; in f5 (5.5 s), smoke is visible near the muzzle, consistent with discharge.",
+              "reason": "f4 shows weapon aimed; f5 shows muzzle smoke—strong evidence of firing within this interval. Candidate 1 (t_start=5.5, t_end=6.0) claims shooting at 5.5–6.0, but f6 shows no gun and a different subject; no evidence of shooting occurs *after* f5, so candidate 1 cannot be merged or supported. Only candidate 0 is supported.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "No visual evidence of shooting in f6 (6.0 s) or f7 (6.5 s); the gun is absent and the subject has changed, indicating the shooting event ended by 5.5 s. The claimed interval 5.5–6.0 lacks supporting frames.",
+              "evidence_frame_ids": [
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          2,
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 7.0,
+              "f1": 7.5,
+              "f2": 8.0,
+              "f3": 8.5,
+              "f4": 9.0,
+              "f5": 9.5,
+              "f6": 10.0,
+              "f7": 10.5,
+              "f8": 11.0,
+              "f9": 11.5,
+              "f10": 12.0,
+              "f11": 12.5,
+              "f12": 13.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 8.8,
+                "t_end": 11.2,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 11.0,
+                "t_end": 11.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"Shooting\",\n      \"t_start\": 11.0,\n      \"t_end\": 11.5,\n      \"confidence\": 0.95,\n      \"description\": \"The woman aims a handgun directly at the camera with both hands, barrel visible and aligned with her eyes; muzzle flash or recoil not visible but posture and grip indicate active firing stance.\",\n      \"reason\": \"Frames f8 and f9 show clear two-handed aiming of a pistol toward viewer; in f9 (11.5 s), the gun is fully extended and aligned—consistent with shooting action. No other person is visible in frame to suggest mutual combat, so not Fighting. Visible weapon discharge is not required per definition; 'Shooting' requires visible shooting, but the prompt clarifies: 'Shooting requires visible shooting, not merely holding a gun'. However, f8–f9 show *aiming* but no visible muzzle flash, bullet, or recoil. Re-evaluating: since no actual discharge is visible (only aiming), this does **not** satisfy the strict definition of 'Shooting' per instructions. Therefore, this candidate must be rejected or marked uncertain. Wait—re-read instruction: 'Shooting requires visible shooting, not merely holding a gun'. Aiming alone is insufficient. So confidence drops. Given no visible shot, safest is *uncertain*.\",\n      \"evidence_frame_ids\": [\"f8\", \"f9\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"No mutual physical contact or combat is visible between individuals across frames f3–f5 (man crouching) and f6–f9 (woman alone); the man and woman never appear together in same frame, and their actions are temporally separated without interaction.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"The woman aims a handgun in f8–f9, but no visible muzzle flash, bullet, or recoil confirms actual discharge; per definition, 'Shooting requires visible shooting', and aiming alone is insufficient evidence.\",\n      \"evidence_frame_ids\": [\"f8\", \"f9\"]\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 7.0,
+              "f1": 7.5,
+              "f2": 8.0,
+              "f3": 8.5,
+              "f4": 9.0,
+              "f5": 9.5,
+              "f6": 10.0,
+              "f7": 10.5,
+              "f8": 11.0,
+              "f9": 11.5,
+              "f10": 12.0,
+              "f11": 12.5,
+              "f12": 13.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 8.8,
+                "t_end": 11.2,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 11.0,
+                "t_end": 11.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"No physical contact or combat is visible between any individuals; the man (f3–f5) and woman (f0–f2, f6–f9) never appear together, and their actions are isolated with no interaction.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"The woman aims a handgun in f8 and f9, but per definition 'Shooting requires visible shooting', and no muzzle flash, bullet, recoil, or other evidence of discharge is visible—only aiming, which is insufficient.\",\n      \"evidence_frame_ids\": [\"f8\", \"f9\"]\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 3.0,
+              "f1": 3.5,
+              "f2": 4.0,
+              "f3": 4.5,
+              "f4": 5.0,
+              "f5": 5.5,
+              "f6": 6.0,
+              "f7": 6.5,
+              "f8": 7.0,
+              "f9": 7.5,
+              "f10": 8.0,
+              "f11": 8.5,
+              "f12": 9.0,
+              "f13": 9.5,
+              "f14": 10.0,
+              "f15": 10.5,
+              "f16": 11.0,
+              "f17": 11.5,
+              "f18": 12.0,
+              "f19": 12.5,
+              "f20": 13.0,
+              "f21": 13.5,
+              "f22": 14.0,
+              "f23": 14.5,
+              "f24": 15.0,
+              "f25": 15.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 8.8,
+                "t_end": 11.2,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 11.0,
+                "t_end": 11.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"Shooting\",\n      \"t_start\": 11.0,\n      \"t_end\": 11.5,\n      \"confidence\": 0.95,\n      \"description\": \"The woman aims a handgun directly at the camera and fires, with visible muzzle flash and smoke in f5 (5.5s) and f17 (11.5s); f16–f17 show her pulling trigger with gun extended.\",\n      \"reason\": \"f16 shows gun raised and aimed; f17 shows clear muzzle flash and smoke consistent with discharge; this satisfies the 'Shooting' definition requiring visible shooting, not just possession. Candidate 3 matches this interval exactly.\",\n      \"evidence_frame_ids\": [\"f16\", \"f17\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"No mutual physical combat is visible between any individuals in frames f11–f13 (8.5–9.5s); the man appears alone, reacting or crouching, with no opponent or contact evident.\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\", \"f13\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                3
+              ],
+              "category": "Shooting",
+              "t_start": 11.0,
+              "t_end": 11.5,
+              "confidence": 0.95,
+              "description": "The woman aims a handgun directly at the camera and fires, with visible muzzle flash and smoke in f5 (5.5s) and f17 (11.5s); f16–f17 show her pulling trigger with gun extended.",
+              "reason": "f16 shows gun raised and aimed; f17 shows clear muzzle flash and smoke consistent with discharge; this satisfies the 'Shooting' definition requiring visible shooting, not just possession. Candidate 3 matches this interval exactly.",
+              "evidence_frame_ids": [
+                "f16",
+                "f17"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "No mutual physical combat is visible between any individuals in frames f11–f13 (8.5–9.5s); the man appears alone, reacting or crouching, with no opponent or contact evident.",
+              "evidence_frame_ids": [
+                "f11",
+                "f12",
+                "f13"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": true
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

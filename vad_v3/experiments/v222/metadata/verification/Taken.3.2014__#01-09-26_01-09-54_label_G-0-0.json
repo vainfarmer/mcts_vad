@@ -1,0 +1,492 @@
+{
+  "events": [
+    {
+      "t_start": 0.0,
+      "t_end": 1.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A heavily damaged silver car rests in dry brush; at f2, dust kicks up from its rear wheel, suggesting recent motion or impact; by f3 it is airborne and tumbling, indicating a crash sequence.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          0.0,
+          0.5,
+          1.0,
+          1.5
+        ],
+        "evidence_frame_ids": [
+          "f0",
+          "f1",
+          "f2",
+          "f3"
+        ],
+        "reason": "Frames f0–f2 show the car stationary but severely deformed; f3 shows it mid-tumble with dust, consistent with post-impact motion—no explosion yet. This satisfies CarAccident (crash event), not Explosion (which begins later).",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 1.5,
+      "t_end": 11.0,
+      "anomaly_type": "Explosion",
+      "confidence": 0.98,
+      "coarse_score": 0.98,
+      "description": "From f3 onward, the car erupts in fire and smoke, with rapid expansion of flame and debris, culminating in a large fireball and vehicle disintegration through f15, then sustained burning observed by onlookers through f20.",
+      "source_candidate_ids": [
+        1,
+        3,
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 1,
+        "vlm_confidence": 0.98,
+        "evidence_times": [
+          1.5,
+          2.0,
+          2.5,
+          3.0,
+          3.5,
+          4.0,
+          4.5,
+          5.0,
+          5.5,
+          6.5,
+          7.0,
+          7.5,
+          8.0,
+          8.5,
+          9.0,
+          9.5,
+          10.0,
+          10.5
+        ],
+        "evidence_frame_ids": [
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18",
+          "f19",
+          "f20"
+        ],
+        "reason": "f3 shows initial dust/blast; f4–f6 show fire erupting from rear and engulfing the car; f7–f11 show massive fireball and smoke plume; f12–f15 show continued violent combustion and fragmentation; f16–f20 show residual fire and observers. All indicate a single explosive event with aftermath—not multiple independent explosions. Candidates 1, 3, and 4 overlap and describe parts of this same continuous explosion sequence.",
+        "source_categories": [
+          "Explosion",
+          "Explosion",
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 6,
+      "output_count": 2,
+      "groups": 2,
+      "rejected": 2,
+      "uncertain": 0,
+      "merged_sources": 2,
+      "relabeled": 0,
+      "context_retries": 1,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0,
+              "f9": 4.5,
+              "f10": 5.0,
+              "f11": 5.5,
+              "f12": 6.5,
+              "f13": 7.0,
+              "f14": 7.5,
+              "f15": 8.0,
+              "f16": 8.5,
+              "f17": 9.0,
+              "f18": 9.5,
+              "f19": 10.0,
+              "f20": 10.5,
+              "f21": 11.0,
+              "f22": 11.5,
+              "f23": 12.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 0.0,
+                "t_end": 1.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 1.5,
+                "t_end": 7.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 4.8,
+                "t_end": 11.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 5.0,
+                "t_end": 9.2,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 7.5,
+                "t_end": 11.0,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"CarAccident\",\n      \"t_start\": 0.0,\n      \"t_end\": 1.5,\n      \"confidence\": 0.95,\n      \"description\": \"A heavily damaged silver car rests in dry brush; at f2, dust kicks up from its rear wheel, suggesting recent motion or impact; by f3 it is airborne and tumbling, indicating a crash sequence.\",\n      \"reason\": \"Frames f0–f2 show the car stationary but severely deformed; f3 shows it mid-tumble with dust, consistent with post-impact motion—no explosion yet. This satisfies CarAccident (crash event), not Explosion (which begins later).\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\"]\n    },\n    {\n      \"source_candidate_ids\": [1, 3, 4],\n      \"category\": \"Explosion\",\n      \"t_start\": 1.5,\n      \"t_end\": 11.0,\n      \"confidence\": 0.98,\n      \"description\": \"From f3 onward, the car erupts in fire and smoke, with rapid expansion of flame and debris, culminating in a large fireball and vehicle disintegration through f15, then sustained burning observed by onlookers through f20.\",\n      \"reason\": \"f3 shows initial dust/blast; f4–f6 show fire erupting from rear and engulfing the car; f7–f11 show massive fireball and smoke plume; f12–f15 show continued violent combustion and fragmentation; f16–f20 show residual fire and observers. All indicate a single explosive event with aftermath—not multiple independent explosions. Candidates 1, 3, and 4 overlap and describe parts of this same continuous explosion sequence.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"No evidence of a second car accident between 4.8–11.0; the car is already destroyed and exploding during this interval, and no new collision occurs.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "CarAccident",
+              "t_start": 0.0,
+              "t_end": 1.5,
+              "confidence": 0.95,
+              "description": "A heavily damaged silver car rests in dry brush; at f2, dust kicks up from its rear wheel, suggesting recent motion or impact; by f3 it is airborne and tumbling, indicating a crash sequence.",
+              "reason": "Frames f0–f2 show the car stationary but severely deformed; f3 shows it mid-tumble with dust, consistent with post-impact motion—no explosion yet. This satisfies CarAccident (crash event), not Explosion (which begins later).",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                1,
+                3,
+                4
+              ],
+              "category": "Explosion",
+              "t_start": 1.5,
+              "t_end": 11.0,
+              "confidence": 0.98,
+              "description": "From f3 onward, the car erupts in fire and smoke, with rapid expansion of flame and debris, culminating in a large fireball and vehicle disintegration through f15, then sustained burning observed by onlookers through f20.",
+              "reason": "f3 shows initial dust/blast; f4–f6 show fire erupting from rear and engulfing the car; f7–f11 show massive fireball and smoke plume; f12–f15 show continued violent combustion and fragmentation; f16–f20 show residual fire and observers. All indicate a single explosive event with aftermath—not multiple independent explosions. Candidates 1, 3, and 4 overlap and describe parts of this same continuous explosion sequence.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "No evidence of a second car accident between 4.8–11.0; the car is already destroyed and exploding during this interval, and no new collision occurs.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 10.5,
+              "f1": 11.0,
+              "f2": 11.5,
+              "f3": 12.0,
+              "f4": 12.5,
+              "f5": 13.0,
+              "f6": 13.5,
+              "f7": 14.0,
+              "f8": 14.5,
+              "f9": 15.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 5,
+                "t_start": 12.5,
+                "t_end": 13.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [5],\n      \"category\": \"Explosion\",\n      \"t_start\": 10.5,\n      \"t_end\": 12.0,\n      \"confidence\": 0.95,\n      \"description\": \"A large fireball and smoke plume erupt from a vehicle in a desert setting, with visible blast expansion and debris ejection.\",\n      \"reason\": \"f0 shows a clear explosive fireball with upward mushrooming and vehicle fragmentation; f1–f3 show the aftermath (smoke, silhouette against sun) consistent with a single explosion event ending by ~12.0s; candidate’s interval (12.5–13.5) is too late—by f4 the fire has subsided to smoldering, indicating explosion concluded earlier.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"The explosion is fully visible at 10.5s (f0) and largely subsiding by 12.0s (f3); the candidate’s proposed interval (12.5–13.5) corresponds to post-explosion smoke and observation, not the explosion itself.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 10.5,
+              "f1": 11.0,
+              "f2": 11.5,
+              "f3": 12.0,
+              "f4": 12.5,
+              "f5": 13.0,
+              "f6": 13.5,
+              "f7": 14.0,
+              "f8": 14.5,
+              "f9": 15.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 5,
+                "t_start": 12.5,
+                "t_end": 13.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [5],\n      \"category\": \"Explosion\",\n      \"t_start\": 10.5,\n      \"t_end\": 12.0,\n      \"confidence\": 0.95,\n      \"description\": \"A vehicle erupts in a large fireball with upward blast and debris at 10.5s, followed by rapid dissipation into smoke through 12.0s.\",\n      \"reason\": \"f0 shows a clear explosive blast (fireball, expanding gases, vehicle disruption); f1–f3 show diminishing fire and rising smoke against the sun, consistent with a single explosion event concluding by ~12.0s; candidate’s claimed interval (12.5–13.5) falls after the explosion has ended (f4 shows only smoldering smoke and observers), so the supported event must be shifted to align with visible evidence and fully cover the explosion phase.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 10.5,
+              "f1": 11.0,
+              "f2": 11.5,
+              "f3": 12.0,
+              "f4": 12.5,
+              "f5": 13.0,
+              "f6": 13.5,
+              "f7": 14.0,
+              "f8": 14.5,
+              "f9": 15.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 5,
+                "t_start": 12.5,
+                "t_end": 13.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [5],\n      \"category\": \"Explosion\",\n      \"t_start\": 10.5,\n      \"t_end\": 12.0,\n      \"confidence\": 0.95,\n      \"description\": \"A vehicle erupts in a large fireball with upward blast, debris ejection, and rapid expansion at 10.5s, followed by diminishing fire and rising smoke through 12.0s.\",\n      \"reason\": \"f0 shows a clear explosive blast (intense fireball, mushrooming plume, visible vehicle fragmentation); f1–f3 show the immediate aftermath—receding flame, thick smoke, and silhouette against sun—consistent with a single explosion event concluding by ~12.0s; candidate 5 claims t_start=12.5, but by f4 (12.5s) only smoldering smoke remains and no blast dynamics are present, so the supported interval must be shifted to 10.5–12.0 to overlap the actual explosion phase and satisfy the requirement that the event overlaps every claimed source candidate’s interval (i.e., the candidate’s interval must be contained within the accepted event’s interval; since the candidate’s interval [12.5,13.5] does not contain the explosion, the only valid resolution is to reject the candidate’s timing and instead accept the explosion as occurring earlier, but per instructions we must *overlap every claimed source candidate* — however, the candidate’s interval [12.5,13.5] is not overlapped by [10.5,12.0], so this violates the constraint. Therefore, the correct action is to mark uncertain, because the candidate asserts explosion at 12.5–13.5, but visible evidence shows explosion ended by 12.0, and no explosion occurs in [12.5,13.5]; thus the candidate cannot be supported nor fully rejected with certainty due to possible off-frame initiation—wait: per instructions, *reject only when adequately visible evidence contradicts*. f4–f6 (12.5–13.5) show only smoke and observers, no blast, fireball, or rapid expansion—this directly contradicts 'Explosion' in that interval. So candidate 5 is false for its claimed interval and must be rejected. The earlier explosion (f0–f3) is real but not covered by candidate 5, so it cannot be attributed to candidate 5. Since the task requires mapping *each candidate* and only accepts events that overlap the candidate’s claimed interval, and candidate 5’s interval [12.5,13.5] has no explosion evidence, it must be rejected. No event can be assigned to candidate 5. Thus: events = [], rejected = [5].\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"The candidate claims explosion during 12.5–13.5s, but frames f4–f6 (12.5, 13.0, 13.5s) show only residual smoke and observers with no fireball, blast wave, or rapid expansion—contradicting the definition of Explosion; the actual explosion occurs earlier (f0–f3) and is not covered by the candidate’s interval.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 6.5,
+              "f1": 7.0,
+              "f2": 7.5,
+              "f3": 8.0,
+              "f4": 8.5,
+              "f5": 9.0,
+              "f6": 9.5,
+              "f7": 10.0,
+              "f8": 10.5,
+              "f9": 11.0,
+              "f10": 11.5,
+              "f11": 12.0,
+              "f12": 12.5,
+              "f13": 13.0,
+              "f14": 13.5,
+              "f15": 14.0,
+              "f16": 14.5,
+              "f17": 15.0,
+              "f18": 15.5,
+              "f19": 16.0,
+              "f20": 16.5,
+              "f21": 17.0,
+              "f22": 17.5,
+              "f23": 18.0,
+              "f24": 18.5,
+              "f25": 19.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 5,
+                "t_start": 12.5,
+                "t_end": 13.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [5],\n      \"category\": \"Explosion\",\n      \"t_start\": 6.5,\n      \"t_end\": 10.5,\n      \"confidence\": 1.0,\n      \"description\": \"A vehicle erupts in a large fireball with smoke and debris, rapidly expanding and engulfing the car across multiple frames.\",\n      \"reason\": \"Frames f0–f8 show a sudden, violent blast with characteristic fireball expansion, dust displacement, and vehicle disintegration—meeting the definition of explosion (blast, not sustained fire). The candidate’s interval [12.5,13.5] is incorrect; the explosion occurs earlier and ends by ~10.5 s, as evidenced by diminishing fireball and transition to smoke-only in f9–f14.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"The candidate claims explosion at 12.5–13.5 s, but by f12 (12.5 s) only residual smoke and small flames remain; the explosive blast phase ended by ~10.5 s (f8). Thus the timing is false.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\", \"f14\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 6.5,
+              "f1": 7.0,
+              "f2": 7.5,
+              "f3": 8.0,
+              "f4": 8.5,
+              "f5": 9.0,
+              "f6": 9.5,
+              "f7": 10.0,
+              "f8": 10.5,
+              "f9": 11.0,
+              "f10": 11.5,
+              "f11": 12.0,
+              "f12": 12.5,
+              "f13": 13.0,
+              "f14": 13.5,
+              "f15": 14.0,
+              "f16": 14.5,
+              "f17": 15.0,
+              "f18": 15.5,
+              "f19": 16.0,
+              "f20": 16.5,
+              "f21": 17.0,
+              "f22": 17.5,
+              "f23": 18.0,
+              "f24": 18.5,
+              "f25": 19.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 5,
+                "t_start": 12.5,
+                "t_end": 13.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [5],\n      \"category\": \"Explosion\",\n      \"t_start\": 6.5,\n      \"t_end\": 10.5,\n      \"confidence\": 1.0,\n      \"description\": \"A vehicle undergoes a violent blast with rapid fireball expansion, debris ejection, and structural disintegration between 6.5 s and 10.5 s.\",\n      \"reason\": \"Frames f0–f8 show a sudden, high-energy release: initial fireball (f0), peak expansion with vehicle fragmentation (f1–f3), sustained blast phase with smoke/dust displacement (f4–f8); by f9 the fireball has collapsed into a smaller, less energetic plume, indicating the explosive event concluded by 10.5 s. The candidate’s claimed interval [12.5,13.5] does not contain the explosion; however, per instructions, the accepted event must overlap the candidate’s interval *and* be supported by evidence. Since the explosion is fully contained in [6.5,10.5] and the candidate’s interval [12.5,13.5] shows only residual smoke (f12–f14), the candidate’s timing is incorrect and cannot be merged. But the instruction says: 'Accepted intervals must overlap every claimed source candidate' — meaning if candidate claims [12.5,13.5], the accepted event must include that interval. Since no explosion occurs there, the candidate cannot be accepted as-is. Therefore, the only valid action is to reject the candidate, not reassign its timing arbitrarily. Correction: the prior response incorrectly accepted an event not overlapping the candidate’s interval. Per strict rule, since the explosion does *not* occur during [12.5,13.5], and no other evidence supports explosion in that window, the candidate must be rejected. There is no supported explosion event that overlaps [12.5,13.5]. Thus, no accepted event for candidate 5.\",\n      \"evidence_frame_ids\": []\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"The candidate asserts an explosion at 12.5–13.5 s, but frames f12–f14 show only lingering smoke and small residual flames with no blast, fireball, or rapid expansion—failing the definition of explosion (requires a blast). The actual explosion occurs earlier (f0–f8), but that does not satisfy the requirement that the accepted event overlap the candidate’s specified interval.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\", \"f14\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 6.5,
+              "f1": 7.0,
+              "f2": 7.5,
+              "f3": 8.0,
+              "f4": 8.5,
+              "f5": 9.0,
+              "f6": 9.5,
+              "f7": 10.0,
+              "f8": 10.5,
+              "f9": 11.0,
+              "f10": 11.5,
+              "f11": 12.0,
+              "f12": 12.5,
+              "f13": 13.0,
+              "f14": 13.5,
+              "f15": 14.0,
+              "f16": 14.5,
+              "f17": 15.0,
+              "f18": 15.5,
+              "f19": 16.0,
+              "f20": 16.5,
+              "f21": 17.0,
+              "f22": 17.5,
+              "f23": 18.0,
+              "f24": 18.5,
+              "f25": 19.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 5,
+                "t_start": 12.5,
+                "t_end": 13.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"The candidate claims an explosion during [12.5, 13.5] s, but frames f12–f14 show only residual smoke and small flames with no blast wave, fireball expansion, or structural disintegration—failing the definition of 'Explosion' (requires a blast, not sustained fire). The visible explosion occurs earlier (f0–f8), but per instructions, an accepted event must overlap the candidate’s claimed interval; since no explosion occurs in [12.5,13.5], the hypothesis is contradicted by evidence.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\", \"f14\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 5,
+              "reason": "The candidate claims an explosion during [12.5, 13.5] s, but frames f12–f14 show only residual smoke and small flames with no blast wave, fireball expansion, or structural disintegration—failing the definition of 'Explosion' (requires a blast, not sustained fire). The visible explosion occurs earlier (f0–f8), but per instructions, an accepted event must overlap the candidate’s claimed interval; since no explosion occurs in [12.5,13.5], the hypothesis is contradicted by evidence.",
+              "evidence_frame_ids": [
+                "f12",
+                "f13",
+                "f14"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": true
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

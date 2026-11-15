@@ -1,0 +1,208 @@
+{
+  "events": [
+    {
+      "t_start": 9.0,
+      "t_end": 24.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A sudden bright flash at f1 (9.0 s) is followed by a rapidly expanding brown dust cloud that rises and spreads over multiple frames, obscuring buildings and vehicles, consistent with a single large explosion.",
+      "source_candidate_ids": [
+        0,
+        1,
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          9.0,
+          10.0,
+          11.0,
+          12.0,
+          13.0,
+          13.5,
+          14.5,
+          15.0,
+          15.5,
+          16.5,
+          18.5,
+          19.0,
+          19.5,
+          20.0,
+          21.0,
+          22.0,
+          23.0,
+          24.0,
+          24.5
+        ],
+        "evidence_frame_ids": [
+          "f1",
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18",
+          "f19"
+        ],
+        "reason": "f1 shows an orange fireball erupting from behind a building; f2–f18 show continuous expansion and settling of a massive dust/debris plume without secondary blasts or human combat—matching explosion dynamics, not fire, riot, or accident. All three candidates describe overlapping phases of the same event; merged into one continuous explosion sequence.",
+        "source_categories": [
+          "Explosion",
+          "Explosion",
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 4,
+      "output_count": 1,
+      "groups": 1,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 2,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 8.5,
+              "f1": 9.0,
+              "f2": 10.0,
+              "f3": 11.0,
+              "f4": 12.0,
+              "f5": 13.0,
+              "f6": 13.5,
+              "f7": 14.5,
+              "f8": 15.0,
+              "f9": 15.5,
+              "f10": 16.5,
+              "f11": 18.5,
+              "f12": 19.0,
+              "f13": 19.5,
+              "f14": 20.0,
+              "f15": 21.0,
+              "f16": 22.0,
+              "f17": 23.0,
+              "f18": 24.0,
+              "f19": 24.5,
+              "f20": 25.5,
+              "f21": 26.5,
+              "f22": 27.5,
+              "f23": 29.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 10.5,
+                "t_end": 19.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 16.0,
+                "t_end": 23.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 20.0,
+                "t_end": 24.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 25.1,
+                "t_end": 28.0,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1, 2],\n      \"category\": \"Explosion\",\n      \"t_start\": 9.0,\n      \"t_end\": 24.5,\n      \"confidence\": 0.95,\n      \"description\": \"A sudden bright flash at f1 (9.0 s) is followed by a rapidly expanding brown dust cloud that rises and spreads over multiple frames, obscuring buildings and vehicles, consistent with a single large explosion.\",\n      \"reason\": \"f1 shows an orange fireball erupting from behind a building; f2–f18 show continuous expansion and settling of a massive dust/debris plume without secondary blasts or human combat—matching explosion dynamics, not fire, riot, or accident. All three candidates describe overlapping phases of the same event; merged into one continuous explosion sequence.\",\n      \"evidence_frame_ids\": [\"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"No visible crowd unrest, throwing, looting, or coordinated violent action; only indistinct figures near vehicles amid lingering smoke—consistent with post-explosion observation, not riot.\",\n      \"evidence_frame_ids\": [\"f20\", \"f21\", \"f22\", \"f23\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1,
+                2
+              ],
+              "category": "Explosion",
+              "t_start": 9.0,
+              "t_end": 24.5,
+              "confidence": 0.95,
+              "description": "A sudden bright flash at f1 (9.0 s) is followed by a rapidly expanding brown dust cloud that rises and spreads over multiple frames, obscuring buildings and vehicles, consistent with a single large explosion.",
+              "reason": "f1 shows an orange fireball erupting from behind a building; f2–f18 show continuous expansion and settling of a massive dust/debris plume without secondary blasts or human combat—matching explosion dynamics, not fire, riot, or accident. All three candidates describe overlapping phases of the same event; merged into one continuous explosion sequence.",
+              "evidence_frame_ids": [
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 3,
+              "reason": "No visible crowd unrest, throwing, looting, or coordinated violent action; only indistinct figures near vehicles amid lingering smoke—consistent with post-explosion observation, not riot.",
+              "evidence_frame_ids": [
+                "f20",
+                "f21",
+                "f22",
+                "f23"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

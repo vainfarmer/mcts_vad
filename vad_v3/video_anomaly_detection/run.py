@@ -62,7 +62,8 @@ async def main(args):
     )
 
     cfg = VADConfig.load(args.config_json) if getattr(args,'config_json',None) else VADConfig.from_args(args)
-    cfg.anomaly_categories = UCF_CRIME_CATEGORIES
+    from xd_config import XD_CLASSES
+    cfg.anomaly_categories = list(XD_CLASSES) if cfg.dataset=='xd_violence' else UCF_CRIME_CATEGORIES
     import research_recording
     recorder = research_recording.initialize(getattr(args,'research_dir',None))
     manifest = None
@@ -73,11 +74,12 @@ async def main(args):
             raise ValueError('Existing result has no v3 manifest; choose a new output file')
         manifest = prepare_manifest(manifest_path,cfg,[llm_client],[str(Path(args.video_path))])
     vad = build_vad(cfg, llm_client)
-    vad.discovery.strict_responses = getattr(args,'strict_discovery',False)
+    if hasattr(vad,'discovery'):
+        vad.discovery.strict_responses = getattr(args,'strict_discovery',False)
 
     print(f"Processing video: {args.video_path}")
     print(f"Model: {args.model}")
-    print(f"Anomaly categories: {', '.join(UCF_CRIME_CATEGORIES)}")
+    print(f"Anomaly categories: {', '.join(cfg.anomaly_categories)}")
     start_time = time.time()
 
     result = await vad.detect(
@@ -117,6 +119,8 @@ if __name__ == "__main__":
 
     parser.add_argument("--video_path", type=str, required=True,
                         help="Path to input video file")
+    parser.add_argument('--dataset',choices=['ucf_crime','xd_violence'],default='ucf_crime')
+    parser.add_argument('--xd_verify_candidates',action='store_true',help='Review XD event existence, labels and fragments before MCTS')
     parser.add_argument("--output_file", type=str, default=None,
                         help="Path to save results JSON")
     parser.add_argument("--context", type=str, default="surveillance camera",

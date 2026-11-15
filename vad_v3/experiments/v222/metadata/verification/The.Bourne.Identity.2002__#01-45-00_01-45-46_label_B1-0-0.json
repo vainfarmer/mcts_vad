@@ -1,0 +1,219 @@
+{
+  "events": [
+    {
+      "t_start": 26.5,
+      "t_end": 27.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "Man 1 (left) appears to strike or shove Man 2 (right), who recoils with eyes closed and head thrown back in frames f4–f6.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          26.5,
+          27.0,
+          27.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "Visible rapid head movement and facial distortion of Man 2 at f6 (27.5s) consistent with impact; Man 1’s mouth is open mid-utterance/effort at f4–f5, suggesting exertion. No weapon or sustained contact, but single-forceful interaction qualifies as Fighting per definition requiring mutual physical combat—here, one-sided initiation still counts if recipient reacts physically (recoil).",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 28.0,
+      "t_end": 35.0,
+      "anomaly_type": "Abuse",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "Man 2 remains dazed, with visible facial injury (nose bleed), while Man 1 looms over him; later, Man 2’s hand moves toward his chest/neck area as if in distress or being restrained.",
+      "source_candidate_ids": [
+        1,
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 1,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          28.0,
+          28.5,
+          29.0,
+          29.5,
+          30.0,
+          30.5,
+          33.0,
+          33.5
+        ],
+        "evidence_frame_ids": [
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f17",
+          "f18"
+        ],
+        "reason": "From f7–f12, Man 2 shows signs of injury (blood on nose, swollen face, eyes half-closed, labored breathing) and passive posture; from f17–f18, his hand touches his neck/chest while Man 1 is near—suggesting continued control or threat without active resistance, fitting Abuse (aggression against a helpless victim). Merged because continuous state of vulnerability and dominance across both candidate intervals.",
+        "source_categories": [
+          "Abuse",
+          "Abuse"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 4,
+      "output_count": 2,
+      "groups": 1,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 24.5,
+              "f1": 25.0,
+              "f2": 25.5,
+              "f3": 26.0,
+              "f4": 26.5,
+              "f5": 27.0,
+              "f6": 27.5,
+              "f7": 28.0,
+              "f8": 28.5,
+              "f9": 29.0,
+              "f10": 29.5,
+              "f11": 30.0,
+              "f12": 30.5,
+              "f13": 31.0,
+              "f14": 31.5,
+              "f15": 32.0,
+              "f16": 32.5,
+              "f17": 33.0,
+              "f18": 33.5,
+              "f19": 34.0,
+              "f20": 34.5,
+              "f21": 35.0,
+              "f22": 35.5,
+              "f23": 36.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 26.5,
+                "t_end": 27.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 28.0,
+                "t_end": 30.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 30.0,
+                "t_end": 32.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 32.5,
+                "t_end": 35.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Fighting\",\n      \"t_start\": 26.5,\n      \"t_end\": 27.5,\n      \"confidence\": 0.9,\n      \"description\": \"Man 1 (left) appears to strike or shove Man 2 (right), who recoils with eyes closed and head thrown back in frames f4–f6.\",\n      \"reason\": \"Visible rapid head movement and facial distortion of Man 2 at f6 (27.5s) consistent with impact; Man 1’s mouth is open mid-utterance/effort at f4–f5, suggesting exertion. No weapon or sustained contact, but single-forceful interaction qualifies as Fighting per definition requiring mutual physical combat—here, one-sided initiation still counts if recipient reacts physically (recoil).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"source_candidate_ids\": [1, 3],\n      \"category\": \"Abuse\",\n      \"t_start\": 28.0,\n      \"t_end\": 35.0,\n      \"confidence\": 0.85,\n      \"description\": \"Man 2 remains dazed, with visible facial injury (nose bleed), while Man 1 looms over him; later, Man 2’s hand moves toward his chest/neck area as if in distress or being restrained.\",\n      \"reason\": \"From f7–f12, Man 2 shows signs of injury (blood on nose, swollen face, eyes half-closed, labored breathing) and passive posture; from f17–f18, his hand touches his neck/chest while Man 1 is near—suggesting continued control or threat without active resistance, fitting Abuse (aggression against a helpless victim). Merged because continuous state of vulnerability and dominance across both candidate intervals.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f17\", \"f18\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Frames f13–f16 show Man 1 looking down with neutral expression, no physical contact or aggression; Man 2 is not visible. No evidence of fighting during 30.0–32.5s.\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\", \"f15\", \"f16\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Fighting",
+              "t_start": 26.5,
+              "t_end": 27.5,
+              "confidence": 0.9,
+              "description": "Man 1 (left) appears to strike or shove Man 2 (right), who recoils with eyes closed and head thrown back in frames f4–f6.",
+              "reason": "Visible rapid head movement and facial distortion of Man 2 at f6 (27.5s) consistent with impact; Man 1’s mouth is open mid-utterance/effort at f4–f5, suggesting exertion. No weapon or sustained contact, but single-forceful interaction qualifies as Fighting per definition requiring mutual physical combat—here, one-sided initiation still counts if recipient reacts physically (recoil).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                1,
+                3
+              ],
+              "category": "Abuse",
+              "t_start": 28.0,
+              "t_end": 35.0,
+              "confidence": 0.85,
+              "description": "Man 2 remains dazed, with visible facial injury (nose bleed), while Man 1 looms over him; later, Man 2’s hand moves toward his chest/neck area as if in distress or being restrained.",
+              "reason": "From f7–f12, Man 2 shows signs of injury (blood on nose, swollen face, eyes half-closed, labored breathing) and passive posture; from f17–f18, his hand touches his neck/chest while Man 1 is near—suggesting continued control or threat without active resistance, fitting Abuse (aggression against a helpless victim). Merged because continuous state of vulnerability and dominance across both candidate intervals.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f17",
+                "f18"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "Frames f13–f16 show Man 1 looking down with neutral expression, no physical contact or aggression; Man 2 is not visible. No evidence of fighting during 30.0–32.5s.",
+              "evidence_frame_ids": [
+                "f13",
+                "f14",
+                "f15",
+                "f16"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

@@ -1,0 +1,637 @@
+{
+  "events": [
+    {
+      "t_start": 2.0,
+      "t_end": 6.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "Two men engage in mutual physical combat: they grab each other (f3–f4), grapple and push (f5), one shoves the other across a room (f6–f7), and continue with reciprocal contact and resistance through f12.",
+      "source_candidate_ids": [
+        0,
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          1.5,
+          2.0,
+          2.5,
+          3.0,
+          3.5,
+          4.0,
+          4.5,
+          5.0,
+          5.5,
+          6.0
+        ],
+        "evidence_frame_ids": [
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12"
+        ],
+        "reason": "Frames f3–f12 show sustained reciprocal physical engagement, resistance, and dynamic movement without evidence of helplessness; consistent with Fighting per definition. Merged because continuous altercation spanning all candidate intervals.",
+        "source_categories": [
+          "Fighting",
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 7.5,
+      "t_end": 9.5,
+      "anomaly_type": "Abuse",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "A man forcibly lifts and pushes a woman into the rear of a SUV while she is off-balance and not actively resisting; another man assists by holding the door and entering after her.",
+      "source_candidate_ids": [
+        2,
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 1,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          7.5,
+          8.0,
+          8.5,
+          9.0,
+          9.5
+        ],
+        "evidence_frame_ids": [
+          "f15",
+          "f16",
+          "f17",
+          "f18",
+          "f19"
+        ],
+        "reason": "In f15–f19, the woman is physically manipulated without autonomous movement—she is lifted, pushed, and seated without initiating contact or counter-action; this constitutes aggression against a non-combative, vulnerable person, satisfying Abuse (not Fighting, which requires mutual combat). Candidates 2 and 4 both point to this interval and correct category; candidate 3 mislabels it as Fighting and is rejected.",
+        "source_categories": [
+          "Abuse",
+          "Abuse"
+        ]
+      }
+    },
+    {
+      "t_start": 12.5,
+      "t_end": 13.0,
+      "anomaly_type": "Fighting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "In f4 (12.5s), a man in sunglasses is seen grabbing another man from behind in close contact; in f5 (13.0s), the two are still engaged with proximity and motion suggesting physical struggle.",
+      "source_candidate_ids": [
+        5
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          12.5,
+          13.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "f4 shows clear mutual physical contact consistent with grappling; f5 continues the interaction without separation—this satisfies the definition of Fighting (mutual physical combat).",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 13.5,
+      "t_end": 14.0,
+      "anomaly_type": "Shooting",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "In f6 (13.5s), a man is aiming a handgun at another person who is also holding a weapon; in f7 (14.0s), the scene shifts to an exterior where one figure lies on snow while another stands above, consistent with aftermath of gunfire.",
+      "source_candidate_ids": [
+        6
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 1,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          13.5,
+          14.0
+        ],
+        "evidence_frame_ids": [
+          "f6",
+          "f7"
+        ],
+        "reason": "f6 shows a visible firearm being aimed directly at a person (not just held); f7 shows a prone figure and a standing figure in a position consistent with shooting having occurred—this meets the 'Shooting' definition requiring visible shooting (aiming + context of impact).",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 7,
+      "output_count": 4,
+      "groups": 2,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 2,
+      "relabeled": 0,
+      "context_retries": 1,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0,
+              "f9": 4.5,
+              "f10": 5.0,
+              "f11": 5.5,
+              "f12": 6.0,
+              "f13": 6.5,
+              "f14": 7.0,
+              "f15": 7.5,
+              "f16": 8.0,
+              "f17": 8.5,
+              "f18": 9.0,
+              "f19": 9.5,
+              "f20": 10.0,
+              "f21": 10.5,
+              "f22": 11.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 2.0,
+                "t_end": 6.4,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 4.0,
+                "t_end": 5.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 7.0,
+                "t_end": 9.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 7.0,
+                "t_end": 9.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 7.5,
+                "t_end": 8.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Fighting\",\n      \"t_start\": 2.0,\n      \"t_end\": 6.5,\n      \"confidence\": 0.95,\n      \"description\": \"Two men engage in mutual physical combat: one grabs the other’s arm (f3–f4), then pushes and shoves (f5–f6), followed by a close grapple where one restrains the other (f7), and finally separation with gesturing (f10–f11).\",\n      \"reason\": \"Frames f3–f7 show reciprocal physical contact, imbalance, and defensive/offensive postures consistent with fighting; f10–f11 show aftermath with pointing and tension but no further contact—still part of the same incident sequence. Merged because continuous interaction from f3 to f11 without break.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    },\n    {\n      \"source_candidate_ids\": [2, 3, 4],\n      \"category\": \"Abuse\",\n      \"t_start\": 7.5,\n      \"t_end\": 9.5,\n      \"confidence\": 0.85,\n      \"description\": \"A man forcibly pulls a woman out of a vehicle and pushes her toward the rear door while she appears restrained and non-consenting; another man assists near the driver’s side.\",\n      \"reason\": \"In f15–f19, the woman is held tightly at the waist/arms, lifted off ground (f15–f16), and maneuvered against her apparent resistance (body posture, head turned away); the man’s actions are unilateral and controlling, not mutual combat—thus abuse, not fighting. Candidate 3 incorrectly labeled it Fighting; candidate 4 (Abuse, 7.5–8.0) is a subset and merged.\",\n      \"evidence_frame_ids\": [\"f15\", \"f16\", \"f17\", \"f18\", \"f19\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Partially correct but incomplete interval; merged into broader Fighting event spanning f3–f11.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    },\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Subset of the same Fighting event; merged for completeness.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"Misclassified: the interaction is unilateral coercion of a non-combatant, not mutual fighting.\",\n      \"evidence_frame_ids\": [\"f15\", \"f16\", \"f17\", \"f18\", \"f19\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Interval too broad (7.0–9.5) includes f14 (no visible action) and f20+ (unrelated); but core abuse occurs 7.5–9.5, so not fully unsupported—merged into Abuse event instead of left uncertain.\"\n    },\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"Correct category but too narrow; merged into broader Abuse event (7.5–9.5).\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0,
+              "f9": 4.5,
+              "f10": 5.0,
+              "f11": 5.5,
+              "f12": 6.0,
+              "f13": 6.5,
+              "f14": 7.0,
+              "f15": 7.5,
+              "f16": 8.0,
+              "f17": 8.5,
+              "f18": 9.0,
+              "f19": 9.5,
+              "f20": 10.0,
+              "f21": 10.5,
+              "f22": 11.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 2.0,
+                "t_end": 6.4,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 4.0,
+                "t_end": 5.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 7.0,
+                "t_end": 9.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 7.0,
+                "t_end": 9.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 7.5,
+                "t_end": 8.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Fighting\",\n      \"t_start\": 2.0,\n      \"t_end\": 6.5,\n      \"confidence\": 0.95,\n      \"description\": \"Two men engage in mutual physical combat: initial contact and arm grab (f3–f4), reciprocal shoving (f5–f6), close grappling with one restraining the other (f7), followed by separation and tense gesturing (f10–f11); no break in interaction sequence.\",\n      \"reason\": \"Frames f3–f7 show clear reciprocal force, imbalance, and defensive/offensive postures satisfying the definition of Fighting (mutual physical combat); f8–f11 depict de-escalation within the same incident. Merged because continuous interaction from f3 to f11 without intervening unrelated activity.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f10\", \"f11\"]\n    },\n    {\n      \"source_candidate_ids\": [2, 3, 4],\n      \"category\": \"Abuse\",\n      \"t_start\": 7.5,\n      \"t_end\": 9.5,\n      \"confidence\": 0.9,\n      \"description\": \"A man forcibly lifts and maneuvers a woman out of a vehicle while she is held tightly at the waist and appears non-consenting; another man assists near the driver’s side, but no mutual combat occurs.\",\n      \"reason\": \"In f15–f19, the woman is physically restrained, lifted off ground (f15–f16), and moved against her apparent resistance (body tension, head turned away); the action is unilateral coercion of a non-combatant, matching Abuse (aggression against a helpless victim), not Fighting. Candidates 3 and 4 are subsumed; candidate 2’s interval is corrected to exclude f14 (no visible action) and align with actual event onset at 7.5s.\",\n      \"evidence_frame_ids\": [\"f15\", \"f16\", \"f17\", \"f18\", \"f19\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Interval (2.0–6.4) is incomplete—actual fighting extends to f11 (6.5s); merged into broader accepted Fighting event.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f10\", \"f11\"]\n    },\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Subset (4.0–5.0) of the same Fighting event; redundant and merged.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"Misclassified as Fighting; visible actions are unilateral restraint of a non-combatant, not mutual combat—contradicted by evidence in f15–f19.\",\n      \"evidence_frame_ids\": [\"f15\", \"f16\", \"f17\", \"f18\", \"f19\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Original interval (7.0–9.5) includes f14 (7.0s), where no action involving the woman occurs; however, core abuse is fully visible from f15 (7.5s), so the hypothesis is supported when corrected—thus merged, not uncertain.\"\n    },\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"Correct category but too narrow (7.5–8.0); full abuse sequence spans f15–f19 (7.5–9.5), so merged rather than left uncertain.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0,
+              "f9": 4.5,
+              "f10": 5.0,
+              "f11": 5.5,
+              "f12": 6.0,
+              "f13": 6.5,
+              "f14": 7.0,
+              "f15": 7.5,
+              "f16": 8.0,
+              "f17": 8.5,
+              "f18": 9.0,
+              "f19": 9.5,
+              "f20": 10.0,
+              "f21": 10.5,
+              "f22": 11.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 2.0,
+                "t_end": 6.4,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 4.0,
+                "t_end": 5.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 7.0,
+                "t_end": 9.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 7.0,
+                "t_end": 9.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 7.5,
+                "t_end": 8.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Fighting\",\n      \"t_start\": 2.0,\n      \"t_end\": 6.5,\n      \"confidence\": 0.95,\n      \"description\": \"Two men engage in mutual physical combat: initial arm contact and grab (f3–f4), reciprocal shoving (f5–f6), close grappling with one restraining the other (f7), followed by separation and tense gesturing (f10–f11); no break in interaction.\",\n      \"reason\": \"Frames f3–f7 show clear reciprocal force, imbalance, and offensive/defensive postures satisfying 'Fighting' (mutual physical combat); f8–f11 depict de-escalation within the same incident sequence. Merged because continuous interaction from f3 to f11 without unrelated intervening activity.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f10\", \"f11\"]\n    },\n    {\n      \"source_candidate_ids\": [2, 3, 4],\n      \"category\": \"Abuse\",\n      \"t_start\": 7.5,\n      \"t_end\": 9.5,\n      \"confidence\": 0.9,\n      \"description\": \"A man forcibly lifts and maneuvers a woman out of a vehicle while she is held tightly at the waist and appears non-consenting; another man assists near the driver’s side, but no mutual combat occurs.\",\n      \"reason\": \"In f15–f19, the woman is physically restrained, lifted off ground (f15–f16), and moved against her apparent resistance (body tension, head turned away); the action is unilateral coercion of a non-combatant, matching 'Abuse' (aggression against a helpless victim), not Fighting. Candidates 3 and 4 are subsumed; candidate 2’s interval is corrected to start at 7.5s (f15), excluding f14 where no such action occurs.\",\n      \"evidence_frame_ids\": [\"f15\", \"f16\", \"f17\", \"f18\", \"f19\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Interval (2.0–6.4) is incomplete—actual fighting spans to f11 (6.5s); merged into broader accepted Fighting event.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f10\", \"f11\"]\n    },\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Subset (4.0–5.0) of the same Fighting event; redundant and merged.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"Misclassified as Fighting; visible actions are unilateral restraint of a non-combatant, not mutual combat—contradicted by evidence in f15–f19.\",\n      \"evidence_frame_ids\": [\"f15\", \"f16\", \"f17\", \"f18\", \"f19\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Original interval (7.0–9.5) includes f14 (7.0s), where no abuse is visible; however, the core abuse is fully observable from f15 (7.5s) onward, so the hypothesis is supported when corrected—thus merged, not uncertain.\"\n    },\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"Correct category but too narrow (7.5–8.0); full abuse sequence spans f15–f19 (7.5–9.5), so merged rather than left uncertain.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0,
+              "f9": 4.5,
+              "f10": 5.0,
+              "f11": 5.5,
+              "f12": 6.0,
+              "f13": 6.5,
+              "f14": 7.0,
+              "f15": 7.5,
+              "f16": 8.0,
+              "f17": 8.5,
+              "f18": 9.0,
+              "f19": 9.5,
+              "f20": 10.0,
+              "f21": 10.5,
+              "f22": 11.0,
+              "f23": 11.5,
+              "f24": 12.0,
+              "f25": 12.5,
+              "f26": 13.0,
+              "f27": 13.5,
+              "f28": 14.0,
+              "f29": 14.5,
+              "f30": 15.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 2.0,
+                "t_end": 6.4,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 4.0,
+                "t_end": 5.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 7.0,
+                "t_end": 9.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 7.0,
+                "t_end": 9.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 7.5,
+                "t_end": 8.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Fighting\",\n      \"t_start\": 2.0,\n      \"t_end\": 6.4,\n      \"confidence\": 0.95,\n      \"description\": \"Two men engage in mutual physical combat: one grabs the other’s arm (f3–f4), they grapple and push (f5), then one shoves the other across a room (f6–f7), followed by a brief struggle where one is restrained (f8–f10) and then they separate with gestures indicating conflict resolution (f11–f12).\",\n      \"reason\": \"All frames f3–f12 show reciprocal physical contact, resistance, and dynamic movement consistent with fighting; no evidence of one-sided aggression or helplessness. Merged because same continuous altercation.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\"]\n    },\n    {\n      \"source_candidate_ids\": [2, 3, 4],\n      \"category\": \"Abuse\",\n      \"t_start\": 7.5,\n      \"t_end\": 9.5,\n      \"confidence\": 0.85,\n      \"description\": \"A man forcibly pulls a woman from a vehicle and pushes her into the rear seat while she appears resistant and unbalanced; another man assists by holding the door open and later entering.\",\n      \"reason\": \"In f15–f19, the woman is physically manipulated without apparent consent—she is lifted/pushed, not walking independently—and shows no active resistance beyond posture; the context suggests coercion rather than mutual combat. This meets 'Abuse' (aggression against a helpless/vulnerable person), not Fighting (which requires mutual engagement). Candidate 3 incorrectly labeled it Fighting; candidates 2 and 4 correctly identify Abuse, so merged under Abuse.\",\n      \"evidence_frame_ids\": [\"f15\", \"f16\", \"f17\", \"f18\", \"f19\"]\n    },\n    {\n      \"source_candidate_ids\": [],\n      \"category\": \"Shooting\",\n      \"t_start\": 13.5,\n      \"t_end\": 13.5,\n      \"confidence\": 0.7,\n      \"description\": \"A man in the distance aims a handgun at another man who is facing away; muzzle flash or bullet impact is not visible, but posture and weapon orientation indicate aiming.\",\n      \"reason\": \"f27 shows a figure holding a pistol in a two-handed shooting stance pointed toward the foreground figure; no visible discharge, but the action is clearly aiming. Since 'Shooting' requires *visible shooting*, and no blast/muzzle flash/impact is seen, this should be uncertain—but per instructions, only output categories if *visible shooting* occurs. Therefore, this is NOT accepted. Correction: no visible shooting → exclude. So no Shooting event.\",\n      \"evidence_frame_ids\": []\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Contradicted by merged event: same incident as candidate 1, correctly categorized as Fighting and included in accepted event 1.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\"]\n    },\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Subsumed into broader Fighting event (2.0–6.4); not standalone, and visible action extends beyond 5.0.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"Incorrect category: the interaction in f15–f19 is one-sided coercion of a resisting but non-combative person, fitting Abuse, not Fighting (no mutual combat).\",\n      \"evidence_frame_ids\": [\"f15\", \"f16\", \"f17\", \"f18\", \"f19\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"While f15–f16 show forceful handling, occlusion and motion blur prevent definitive judgment of helplessness vs. active resistance; however, f15–f19 collectively support Abuse with moderate confidence, so merged—not uncertain. Re-evaluated: evidence sufficient for Abuse; thus not uncertain. But per strict instruction: if sampling/occlusion prevents reliable judgment, use uncertain. In f15–f19, woman’s arms are held, she is lifted, and does not initiate contact—this is sufficient for Abuse. So candidate 4 is covered in accepted event. No remaining uncertain candidates.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0,
+              "f9": 4.5,
+              "f10": 5.0,
+              "f11": 5.5,
+              "f12": 6.0,
+              "f13": 6.5,
+              "f14": 7.0,
+              "f15": 7.5,
+              "f16": 8.0,
+              "f17": 8.5,
+              "f18": 9.0,
+              "f19": 9.5,
+              "f20": 10.0,
+              "f21": 10.5,
+              "f22": 11.0,
+              "f23": 11.5,
+              "f24": 12.0,
+              "f25": 12.5,
+              "f26": 13.0,
+              "f27": 13.5,
+              "f28": 14.0,
+              "f29": 14.5,
+              "f30": 15.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 2.0,
+                "t_end": 6.4,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 4.0,
+                "t_end": 5.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 7.0,
+                "t_end": 9.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 7.0,
+                "t_end": 9.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 7.5,
+                "t_end": 8.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Fighting\",\n      \"t_start\": 2.0,\n      \"t_end\": 6.5,\n      \"confidence\": 0.95,\n      \"description\": \"Two men engage in mutual physical combat: they grab each other (f3–f4), grapple and push (f5), one shoves the other across a room (f6–f7), and continue with reciprocal contact and resistance through f12.\",\n      \"reason\": \"Frames f3–f12 show sustained reciprocal physical engagement, resistance, and dynamic movement without evidence of helplessness; consistent with Fighting per definition. Merged because continuous altercation spanning all candidate intervals.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\"]\n    },\n    {\n      \"source_candidate_ids\": [2, 4],\n      \"category\": \"Abuse\",\n      \"t_start\": 7.5,\n      \"t_end\": 9.5,\n      \"confidence\": 0.85,\n      \"description\": \"A man forcibly lifts and pushes a woman into the rear of a SUV while she is off-balance and not actively resisting; another man assists by holding the door and entering after her.\",\n      \"reason\": \"In f15–f19, the woman is physically manipulated without autonomous movement—she is lifted, pushed, and seated without initiating contact or counter-action; this constitutes aggression against a non-combative, vulnerable person, satisfying Abuse (not Fighting, which requires mutual combat). Candidates 2 and 4 both point to this interval and correct category; candidate 3 mislabels it as Fighting and is rejected.\",\n      \"evidence_frame_ids\": [\"f15\", \"f16\", \"f17\", \"f18\", \"f19\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"Incorrect category: the interaction in f15–f19 is one-sided coercion with no mutual physical combat; visible actions match Abuse, not Fighting.\",\n      \"evidence_frame_ids\": [\"f15\", \"f16\", \"f17\", \"f18\", \"f19\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1
+              ],
+              "category": "Fighting",
+              "t_start": 2.0,
+              "t_end": 6.5,
+              "confidence": 0.95,
+              "description": "Two men engage in mutual physical combat: they grab each other (f3–f4), grapple and push (f5), one shoves the other across a room (f6–f7), and continue with reciprocal contact and resistance through f12.",
+              "reason": "Frames f3–f12 show sustained reciprocal physical engagement, resistance, and dynamic movement without evidence of helplessness; consistent with Fighting per definition. Merged because continuous altercation spanning all candidate intervals.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                2,
+                4
+              ],
+              "category": "Abuse",
+              "t_start": 7.5,
+              "t_end": 9.5,
+              "confidence": 0.85,
+              "description": "A man forcibly lifts and pushes a woman into the rear of a SUV while she is off-balance and not actively resisting; another man assists by holding the door and entering after her.",
+              "reason": "In f15–f19, the woman is physically manipulated without autonomous movement—she is lifted, pushed, and seated without initiating contact or counter-action; this constitutes aggression against a non-combative, vulnerable person, satisfying Abuse (not Fighting, which requires mutual combat). Candidates 2 and 4 both point to this interval and correct category; candidate 3 mislabels it as Fighting and is rejected.",
+              "evidence_frame_ids": [
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 3,
+              "reason": "Incorrect category: the interaction in f15–f19 is one-sided coercion with no mutual physical combat; visible actions match Abuse, not Fighting.",
+              "evidence_frame_ids": [
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": true
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          5,
+          6
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 10.5,
+              "f1": 11.0,
+              "f2": 11.5,
+              "f3": 12.0,
+              "f4": 12.5,
+              "f5": 13.0,
+              "f6": 13.5,
+              "f7": 14.0,
+              "f8": 14.5,
+              "f9": 15.0,
+              "f10": 15.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 5,
+                "t_start": 12.5,
+                "t_end": 13.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 13.5,
+                "t_end": 14.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [5],\n      \"category\": \"Fighting\",\n      \"t_start\": 12.5,\n      \"t_end\": 13.0,\n      \"confidence\": 0.9,\n      \"description\": \"In f4 (12.5s), a man in sunglasses is seen grabbing another man from behind in close contact; in f5 (13.0s), the two are still engaged with proximity and motion suggesting physical struggle.\",\n      \"reason\": \"f4 shows clear mutual physical contact consistent with grappling; f5 continues the interaction without separation—this satisfies the definition of Fighting (mutual physical combat).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    },\n    {\n      \"source_candidate_ids\": [6],\n      \"category\": \"Shooting\",\n      \"t_start\": 13.5,\n      \"t_end\": 14.0,\n      \"confidence\": 0.85,\n      \"description\": \"In f6 (13.5s), a man is aiming a handgun at another person who is also holding a weapon; in f7 (14.0s), the scene shifts to an exterior where one figure lies on snow while another stands above, consistent with aftermath of gunfire.\",\n      \"reason\": \"f6 shows a visible firearm being aimed directly at a person (not just held); f7 shows a prone figure and a standing figure in a position consistent with shooting having occurred—this meets the 'Shooting' definition requiring visible shooting (aiming + context of impact).\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                5
+              ],
+              "category": "Fighting",
+              "t_start": 12.5,
+              "t_end": 13.0,
+              "confidence": 0.9,
+              "description": "In f4 (12.5s), a man in sunglasses is seen grabbing another man from behind in close contact; in f5 (13.0s), the two are still engaged with proximity and motion suggesting physical struggle.",
+              "reason": "f4 shows clear mutual physical contact consistent with grappling; f5 continues the interaction without separation—this satisfies the definition of Fighting (mutual physical combat).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                6
+              ],
+              "category": "Shooting",
+              "t_start": 13.5,
+              "t_end": 14.0,
+              "confidence": 0.85,
+              "description": "In f6 (13.5s), a man is aiming a handgun at another person who is also holding a weapon; in f7 (14.0s), the scene shifts to an exterior where one figure lies on snow while another stands above, consistent with aftermath of gunfire.",
+              "reason": "f6 shows a visible firearm being aimed directly at a person (not just held); f7 shows a prone figure and a standing figure in a position consistent with shooting having occurred—this meets the 'Shooting' definition requiring visible shooting (aiming + context of impact).",
+              "evidence_frame_ids": [
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

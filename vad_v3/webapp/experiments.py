@@ -18,7 +18,7 @@ PROTOCOLS = {
         frame_auc_gt_end='exclusive',frame_interpolation='linear_edge_hold',
         frame_dtype='float64',aupr='trapezoidal_precision_recall',
         frame_count='source_metadata',fps_source='original_video_files',
-        macro_classes=list(CATEGORIES),scope='abnormal_and_all_separately'),
+        macro_classes=['Normal',*CATEGORIES],scope='all_videos_14class_primary_abnormal13_reference'),
     'report_historical_v1': dict(ap='rank_ap',thresholds=[.1,.2,.3,.4,.5],
         prediction_interval='[int(start*30),int(end*30))',gt_end='exclusive',
         frame_auc_gt_end='inclusive',frame_interpolation='linear_edge_hold',
@@ -206,6 +206,7 @@ def evaluate(store,rid):
             for predictions in bundle['groups'].values():
                 for v,result in predictions.items():
                     validate_result(result,metadata[v]['duration'])
+                    result['source_frame_count']=metadata[v]['frame_count']
         from evaluation_tools.temporal_ap import compute_vadclip_map
         from sklearn.metrics import roc_auc_score, average_precision_score, precision_recall_curve, auc, confusion_matrix, classification_report
         output=dict(schema_version=1,evaluation_id=rid,protocol=r['protocol'],
@@ -213,8 +214,9 @@ def evaluate(store,rid):
                     source_video_metadata=metadata)
         audits={}
         for group,pred in bundle['groups'].items():
-            abnormal,audit=compute_vadclip_map(gt,pred,fps)
-            all_videos,all_audit=compute_vadclip_map(gt,pred,fps,include_normal_videos=True)
+            abnormal,audit=compute_vadclip_map(gt,pred,fps,include_normal_videos=False)
+            all_videos,all_audit=compute_vadclip_map(gt,pred,fps,include_normal_videos=True,
+                classes=r['protocol']['macro_classes'])
             audits[group]=dict(abnormal=audit,all_videos=all_audit)
             labels=list(CATEGORIES)+['Normal','unknown']
             actual,predicted=[],[]

@@ -1,0 +1,396 @@
+{
+  "events": [
+    {
+      "t_start": 14.0,
+      "t_end": 19.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A large plume of smoke and dust rises rapidly from the ground beside a road, expanding vertically and horizontally over several seconds, consistent with a high-order explosion.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          13.5,
+          14.0,
+          14.5,
+          15.0,
+          15.5,
+          16.0,
+          16.5,
+          17.0,
+          17.5,
+          18.0,
+          18.5,
+          19.0,
+          19.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16"
+        ],
+        "reason": "Frames f4–f16 show a sudden, voluminous, turbulent column of dark smoke and dust erupting from the ground (starting at f4/f5), growing through f7–f9, then dispersing—classic visual signature of an explosion; no fire or sustained combustion is visible, ruling out fire-only event.",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    },
+    {
+      "t_start": 22.5,
+      "t_end": 26.0,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A large fireball and rapidly expanding smoke plume erupt from a vehicle on the road at f3, followed by dense smoke obscuring the scene through f8–f10.",
+      "source_candidate_ids": [
+        2,
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          22.5,
+          23.0,
+          23.5,
+          24.0,
+          24.5,
+          25.0,
+          25.5,
+          26.0
+        ],
+        "evidence_frame_ids": [
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10"
+        ],
+        "reason": "f3 shows a sudden bright explosion with fire and debris; f4–f8 show expanding smoke and particulate ejection consistent with a high-energy blast; the event originates from a single point (the vehicle) and propagates outward—meeting the definition of explosion. Candidates 2 and 3 describe overlapping intervals of the same event; merged accordingly.",
+        "source_categories": [
+          "Explosion",
+          "Explosion"
+        ]
+      }
+    },
+    {
+      "t_start": 28.5,
+      "t_end": 29.0,
+      "anomaly_type": "Explosion",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A large, rapidly expanding plume of dark smoke and debris erupts from the left side of the frame, consistent with a blast event.",
+      "source_candidate_ids": [
+        6
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          28.5,
+          29.0
+        ],
+        "evidence_frame_ids": [
+          "f5",
+          "f6"
+        ],
+        "reason": "Frames f5 (28.5 s) and f6 (29.0 s) show sudden emergence and growth of dense black smoke and particulate cloud without prior fire or vehicle motion; this matches explosion criteria (blast, not sustained fire). Candidate 6’s interval [28.5,29.5] is partially supported, but f7 (29.5 s) shows only dissipating smoke—no further blast evidence—so event ends at 29.0 s.",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 7,
+      "output_count": 3,
+      "groups": 3,
+      "rejected": 3,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 11.5,
+              "f1": 12.0,
+              "f2": 12.5,
+              "f3": 13.0,
+              "f4": 13.5,
+              "f5": 14.0,
+              "f6": 14.5,
+              "f7": 15.0,
+              "f8": 15.5,
+              "f9": 16.0,
+              "f10": 16.5,
+              "f11": 17.0,
+              "f12": 17.5,
+              "f13": 18.0,
+              "f14": 18.5,
+              "f15": 19.0,
+              "f16": 19.5,
+              "f17": 20.0,
+              "f18": 20.5,
+              "f19": 21.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 13.5,
+                "t_end": 14.3,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 14.0,
+                "t_end": 19.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Explosion\",\n      \"t_start\": 14.0,\n      \"t_end\": 19.5,\n      \"confidence\": 0.95,\n      \"description\": \"A large plume of smoke and dust rises rapidly from the ground beside a road, expanding vertically and horizontally over several seconds, consistent with a high-order explosion.\",\n      \"reason\": \"Frames f4–f16 show a sudden, voluminous, turbulent column of dark smoke and dust erupting from the ground (starting at f4/f5), growing through f7–f9, then dispersing—classic visual signature of an explosion; no fire or sustained combustion is visible, ruling out fire-only event.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"In frames f4–f5, one person is on the ground near others, but there is no visible aggression, restraint, or injury; individuals appear to be attending to or assessing the situation post-explosion, not actively abusing anyone.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "Explosion",
+              "t_start": 14.0,
+              "t_end": 19.5,
+              "confidence": 0.95,
+              "description": "A large plume of smoke and dust rises rapidly from the ground beside a road, expanding vertically and horizontally over several seconds, consistent with a high-order explosion.",
+              "reason": "Frames f4–f16 show a sudden, voluminous, turbulent column of dark smoke and dust erupting from the ground (starting at f4/f5), growing through f7–f9, then dispersing—classic visual signature of an explosion; no fire or sustained combustion is visible, ruling out fire-only event.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "In frames f4–f5, one person is on the ground near others, but there is no visible aggression, restraint, or injury; individuals appear to be attending to or assessing the situation post-explosion, not actively abusing anyone.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          2,
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 21.0,
+              "f1": 21.5,
+              "f2": 22.0,
+              "f3": 22.5,
+              "f4": 23.0,
+              "f5": 23.5,
+              "f6": 24.0,
+              "f7": 24.5,
+              "f8": 25.0,
+              "f9": 25.5,
+              "f10": 26.0,
+              "f11": 26.5,
+              "f12": 27.0,
+              "f13": 27.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 23.0,
+                "t_end": 23.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 23.1,
+                "t_end": 26.0,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2, 3],\n      \"category\": \"Explosion\",\n      \"t_start\": 22.5,\n      \"t_end\": 26.0,\n      \"confidence\": 0.95,\n      \"description\": \"A large fireball and rapidly expanding smoke plume erupt from a vehicle on the road at f3, followed by dense smoke obscuring the scene through f8–f10.\",\n      \"reason\": \"f3 shows a sudden bright explosion with fire and debris; f4–f8 show expanding smoke and particulate ejection consistent with a high-energy blast; the event originates from a single point (the vehicle) and propagates outward—meeting the definition of explosion. Candidates 2 and 3 describe overlapping intervals of the same event; merged accordingly.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2,
+                3
+              ],
+              "category": "Explosion",
+              "t_start": 22.5,
+              "t_end": 26.0,
+              "confidence": 0.95,
+              "description": "A large fireball and rapidly expanding smoke plume erupt from a vehicle on the road at f3, followed by dense smoke obscuring the scene through f8–f10.",
+              "reason": "f3 shows a sudden bright explosion with fire and debris; f4–f8 show expanding smoke and particulate ejection consistent with a high-energy blast; the event originates from a single point (the vehicle) and propagates outward—meeting the definition of explosion. Candidates 2 and 3 describe overlapping intervals of the same event; merged accordingly.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          4,
+          5,
+          6
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 26.0,
+              "f1": 26.5,
+              "f2": 27.0,
+              "f3": 27.5,
+              "f4": 28.0,
+              "f5": 28.5,
+              "f6": 29.0,
+              "f7": 29.5,
+              "f8": 30.0,
+              "f9": 30.5,
+              "f10": 31.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 28.0,
+                "t_end": 29.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 28.5,
+                "t_end": 29.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 28.5,
+                "t_end": 29.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [6],\n      \"category\": \"Explosion\",\n      \"t_start\": 28.5,\n      \"t_end\": 29.0,\n      \"confidence\": 0.9,\n      \"description\": \"A large, rapidly expanding plume of dark smoke and debris erupts from the left side of the frame, consistent with a blast event.\",\n      \"reason\": \"Frames f5 (28.5 s) and f6 (29.0 s) show sudden emergence and growth of dense black smoke and particulate cloud without prior fire or vehicle motion; this matches explosion criteria (blast, not sustained fire). Candidate 6’s interval [28.5,29.5] is partially supported, but f7 (29.5 s) shows only dissipating smoke—no further blast evidence—so event ends at 29.0 s.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"Frames f4–f6 show individuals in military gear near smoke, but no mutual physical combat is visible; actions appear to be movement or reaction to the explosion, not fighting.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"No aggression against a helpless victim is visible; in f5, one person appears to assist another on the ground, inconsistent with abuse.\",\n      \"evidence_frame_ids\": [\"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                6
+              ],
+              "category": "Explosion",
+              "t_start": 28.5,
+              "t_end": 29.0,
+              "confidence": 0.9,
+              "description": "A large, rapidly expanding plume of dark smoke and debris erupts from the left side of the frame, consistent with a blast event.",
+              "reason": "Frames f5 (28.5 s) and f6 (29.0 s) show sudden emergence and growth of dense black smoke and particulate cloud without prior fire or vehicle motion; this matches explosion criteria (blast, not sustained fire). Candidate 6’s interval [28.5,29.5] is partially supported, but f7 (29.5 s) shows only dissipating smoke—no further blast evidence—so event ends at 29.0 s.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 4,
+              "reason": "Frames f4–f6 show individuals in military gear near smoke, but no mutual physical combat is visible; actions appear to be movement or reaction to the explosion, not fighting.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            },
+            {
+              "candidate_id": 5,
+              "reason": "No aggression against a helpless victim is visible; in f5, one person appears to assist another on the ground, inconsistent with abuse.",
+              "evidence_frame_ids": [
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

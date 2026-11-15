@@ -1,0 +1,409 @@
+{
+  "events": [
+    {
+      "t_start": 6.5,
+      "t_end": 7.0,
+      "anomaly_type": "Explosion",
+      "confidence": 1.0,
+      "coarse_score": 1.0,
+      "description": "A large dust and debris cloud erupts violently from the left side of the frame, obscuring the building and soldier.",
+      "source_candidate_ids": [
+        1,
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 1.0,
+        "evidence_times": [
+          6.5,
+          7.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "Image f4 (6.5 s) shows a sudden, massive dust/debris plume expanding outward—classic visual signature of an explosion; f5 (7.0 s) shows the immediate aftermath with smoke and debris still in motion, confirming a single explosive event spanning those frames.",
+        "source_categories": [
+          "Explosion",
+          "Explosion"
+        ]
+      }
+    },
+    {
+      "t_start": 7.0,
+      "t_end": 10.0,
+      "anomaly_type": "Shooting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A soldier seated against a wall loads or handles a belt-fed machine gun while smoke and debris from the explosion persist behind him.",
+      "source_candidate_ids": [
+        3,
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 1,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          7.0,
+          7.5,
+          8.0,
+          8.5,
+          9.0,
+          9.5
+        ],
+        "evidence_frame_ids": [
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10"
+        ],
+        "reason": "From f5 onward, the soldier is actively manipulating ammunition belts and the weapon; his posture, facial strain, and repeated hand motions (f5–f10) indicate loading/firing preparation or sustained fire—not just possession. No muzzle flash visible, but the context (immediate post-explosion, continuous action, belt feed) supports shooting as the most plausible category under taxonomy constraints.",
+        "source_categories": [
+          "Shooting",
+          "Shooting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 7,
+      "output_count": 2,
+      "groups": 3,
+      "rejected": 3,
+      "uncertain": 0,
+      "merged_sources": 2,
+      "relabeled": 0,
+      "context_retries": 1,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0,
+              "f9": 4.5,
+              "f10": 5.0,
+              "f11": 5.5,
+              "f12": 6.0,
+              "f13": 6.5,
+              "f14": 7.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 0.0,
+                "t_end": 5.4,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Shooting\",\n      \"t_start\": 0.0,\n      \"t_end\": 3.0,\n      \"confidence\": 0.8,\n      \"description\": \"Soldier in foreground holds rifle in aiming posture across f0–f6; background soldiers also hold rifles, and smoke/dust suggests recent firing or nearby impacts.\",\n      \"reason\": \"Visible aiming stance and weapon handling in multiple frames (f0–f6) with concurrent smoke/dust consistent with gunfire; no muzzle flash visible but posture and context support shooting activity. The candidate interval extends to 5.4, but after f6 (3.0 s), the foreground soldier lowers rifle and scene shifts—no further clear shooting evidence until explosion at f13.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"source_candidate_ids\": [],\n      \"category\": \"Explosion\",\n      \"t_start\": 6.5,\n      \"t_end\": 7.0,\n      \"confidence\": 0.95,\n      \"description\": \"Large dust/debris cloud erupts from building wall at f13, followed by soldier reacting in cover at f14.\",\n      \"reason\": \"f13 shows a sudden outward blast of debris and dust consistent with an explosion; f14 shows immediate reaction (soldier flinching/bracing) confirming proximity and timing. This is distinct from earlier smoke (likely from vehicle/engine/fire).\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Candidate claims shooting from 0.0 to 5.4 s, but after f6 (3.0 s), no soldier is visibly aiming or firing; f7–f12 show movement and destruction without active shooting evidence.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0,
+              "f9": 4.5,
+              "f10": 5.0,
+              "f11": 5.5,
+              "f12": 6.0,
+              "f13": 6.5,
+              "f14": 7.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 0.0,
+                "t_end": 5.4,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Shooting\",\n      \"t_start\": 0.0,\n      \"t_end\": 3.0,\n      \"confidence\": 0.7,\n      \"description\": \"Soldier in foreground holds rifle in aiming posture across f0–f6; background soldiers also hold rifles, with smoke/dust present, but no muzzle flash or bullet impact is visible.\",\n      \"reason\": \"Aiming posture and weapon handling are visible in f0–f6, satisfying the 'Shooting' definition only if firing occurs; however, per strict taxonomy, 'Shooting' requires *visible shooting*, not merely holding/aiming. Since no muzzle flash, recoil, or projectile impact is observed in any frame, the activity does not meet the required evidence threshold for 'Shooting'. Thus, this event cannot be accepted.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"source_candidate_ids\": [],\n      \"category\": \"Explosion\",\n      \"t_start\": 6.5,\n      \"t_end\": 7.0,\n      \"confidence\": 0.95,\n      \"description\": \"At f13, a sudden outward burst of dust and debris erupts from a building wall; at f14, a soldier flinches while seated nearby, consistent with blast proximity.\",\n      \"reason\": \"f13 shows a rapid expansion of particulate matter and fragmentation from a fixed point (building wall), characteristic of an explosion; f14 shows immediate reactive behavior (bracing/flinching) confirming causality and timing. This satisfies the 'Explosion' definition (a blast, not sustained fire).\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"The candidate claims 'Shooting' from 0.0 to 5.4 s, but no frame shows visible shooting (e.g., muzzle flash, bullet trace, or impact); soldiers are holding or aiming rifles, which constitutes weapons possession, not shooting per the defined taxonomy.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0,
+              "f9": 4.5,
+              "f10": 5.0,
+              "f11": 5.5,
+              "f12": 6.0,
+              "f13": 6.5,
+              "f14": 7.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 0.0,
+                "t_end": 5.4,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [],\n      \"category\": \"Explosion\",\n      \"t_start\": 6.5,\n      \"t_end\": 7.0,\n      \"confidence\": 0.95,\n      \"description\": \"At f13, a sudden outward burst of dust, debris, and fragments erupts from a building wall; at f14, a soldier in cover reacts with flinch/bracing, confirming proximity to a blast event.\",\n      \"reason\": \"f13 shows a rapid, localized expansion of particulate matter and solid fragments from a fixed structure—consistent with a detonation (blast), not fire or vehicle exhaust; f14 shows immediate reactive behavior confirming causality. This satisfies the 'Explosion' definition (a blast, not sustained fire).\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"The candidate claims 'Shooting' from 0.0 to 5.4 s, but no frame shows visible shooting (e.g., muzzle flash, bullet impact, recoil, or projectile trace); soldiers are holding, aiming, or moving with rifles, which constitutes weapons possession—not 'Shooting' per the strict taxonomy requiring visible firing.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0,
+              "f9": 4.5,
+              "f10": 5.0,
+              "f11": 5.5,
+              "f12": 6.0,
+              "f13": 6.5,
+              "f14": 7.0,
+              "f15": 7.5,
+              "f16": 8.0,
+              "f17": 8.5,
+              "f18": 9.0,
+              "f19": 9.5,
+              "f20": 10.0,
+              "f21": 10.5,
+              "f22": 11.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 0.0,
+                "t_end": 5.4,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No visible shooting occurs: soldiers hold rifles but no muzzle flash, recoil, or bullet impact is seen; the tank emits smoke but no firing is observed; actions are positional/defensive, not active discharge.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "No visible shooting occurs: soldiers hold rifles but no muzzle flash, recoil, or bullet impact is seen; the tank emits smoke but no firing is observed; actions are positional/defensive, not active discharge.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": true
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 4.5,
+              "f1": 5.0,
+              "f2": 5.5,
+              "f3": 6.0,
+              "f4": 6.5,
+              "f5": 7.0,
+              "f6": 7.5,
+              "f7": 8.0,
+              "f8": 8.5,
+              "f9": 9.0,
+              "f10": 9.5,
+              "f11": 10.0,
+              "f12": 10.5,
+              "f13": 11.0,
+              "f14": 11.5,
+              "f15": 12.0,
+              "f16": 12.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 6.5,
+                "t_end": 7.0,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 6.5,
+                "t_end": 6.708333,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 7.0,
+                "t_end": 7.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 7.0,
+                "t_end": 10.6,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 7.5,
+                "t_end": 8.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1, 2],\n      \"category\": \"Explosion\",\n      \"t_start\": 6.5,\n      \"t_end\": 7.0,\n      \"confidence\": 1.0,\n      \"description\": \"A large dust and debris cloud erupts violently from the left side of the frame, obscuring the building and soldier.\",\n      \"reason\": \"Image f4 (6.5 s) shows a sudden, massive dust/debris plume expanding outward—classic visual signature of an explosion; f5 (7.0 s) shows the immediate aftermath with smoke and debris still in motion, confirming a single explosive event spanning those frames.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    },\n    {\n      \"source_candidate_ids\": [3, 4],\n      \"category\": \"Shooting\",\n      \"t_start\": 7.0,\n      \"t_end\": 10.0,\n      \"confidence\": 0.9,\n      \"description\": \"A soldier seated against a wall loads or handles a belt-fed machine gun while smoke and debris from the explosion persist behind him.\",\n      \"reason\": \"From f5 onward, the soldier is actively manipulating ammunition belts and the weapon; his posture, facial strain, and repeated hand motions (f5–f10) indicate loading/firing preparation or sustained fire—not just possession. No muzzle flash visible, but the context (immediate post-explosion, continuous action, belt feed) supports shooting as the most plausible category under taxonomy constraints.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"Images f6–f8 show lingering smoke and debris from the earlier explosion (f4–f5), but no new blast, fireball, or rapid expansion indicating a second explosion; the scene is consistent with aftermath, not a new explosive event.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1,
+                2
+              ],
+              "category": "Explosion",
+              "t_start": 6.5,
+              "t_end": 7.0,
+              "confidence": 1.0,
+              "description": "A large dust and debris cloud erupts violently from the left side of the frame, obscuring the building and soldier.",
+              "reason": "Image f4 (6.5 s) shows a sudden, massive dust/debris plume expanding outward—classic visual signature of an explosion; f5 (7.0 s) shows the immediate aftermath with smoke and debris still in motion, confirming a single explosive event spanning those frames.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                3,
+                4
+              ],
+              "category": "Shooting",
+              "t_start": 7.0,
+              "t_end": 10.0,
+              "confidence": 0.9,
+              "description": "A soldier seated against a wall loads or handles a belt-fed machine gun while smoke and debris from the explosion persist behind him.",
+              "reason": "From f5 onward, the soldier is actively manipulating ammunition belts and the weapon; his posture, facial strain, and repeated hand motions (f5–f10) indicate loading/firing preparation or sustained fire—not just possession. No muzzle flash visible, but the context (immediate post-explosion, continuous action, belt feed) supports shooting as the most plausible category under taxonomy constraints.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 5,
+              "reason": "Images f6–f8 show lingering smoke and debris from the earlier explosion (f4–f5), but no new blast, fireball, or rapid expansion indicating a second explosion; the scene is consistent with aftermath, not a new explosive event.",
+              "evidence_frame_ids": [
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          6
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 12.5,
+              "f1": 13.0,
+              "f2": 13.5,
+              "f3": 14.0,
+              "f4": 14.5,
+              "f5": 15.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 6,
+                "t_start": 14.5,
+                "t_end": 15.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"Frames f4 and f5 show a soldier moving with a rifle, but no muzzle flash, recoil, or visible discharge; the action is consistent with running or maneuvering, not shooting.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 6,
+              "reason": "Frames f4 and f5 show a soldier moving with a rifle, but no muzzle flash, recoil, or visible discharge; the action is consistent with running or maneuvering, not shooting.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

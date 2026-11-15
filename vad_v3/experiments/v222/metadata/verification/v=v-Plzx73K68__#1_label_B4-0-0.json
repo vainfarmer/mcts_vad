@@ -1,0 +1,673 @@
+{
+  "events": [
+    {
+      "t_start": 18.3,
+      "t_end": 30.2,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A dark sedan accelerates down a street lined with protesters, veers onto the sidewalk, and strikes multiple people before coming to rest; visible damage to front of car and people on ground at f29–f30.",
+      "source_candidate_ids": [
+        1,
+        2,
+        5
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          13.5,
+          14.0,
+          15.0,
+          16.0,
+          20.0,
+          20.5,
+          21.5,
+          22.0,
+          23.0,
+          23.5,
+          24.0,
+          24.5,
+          25.0,
+          25.5,
+          26.5,
+          27.0,
+          28.0,
+          29.5,
+          30.5,
+          31.0,
+          32.0,
+          32.5,
+          33.5,
+          34.5,
+          35.0
+        ],
+        "evidence_frame_ids": [
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18",
+          "f19",
+          "f20",
+          "f21",
+          "f22",
+          "f23",
+          "f24",
+          "f25",
+          "f26",
+          "f27",
+          "f28",
+          "f29",
+          "f30"
+        ],
+        "reason": "Frames f2–f5 show the car approaching; f10–f14 show debris and people falling; f23–f24 show chaotic aftermath; f29–f30 clearly show the damaged car stopped with people on the ground—consistent with a single vehicle striking a crowd, not multiple independent accidents. Merged because all candidate intervals fall within one continuous crash event.",
+        "source_categories": [
+          "CarAccident",
+          "CarAccident",
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 34.0,
+      "t_end": 35.2,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A gray Dodge Challenger accelerates onto a pedestrian plaza, strikes at least one person lying on the ground near the crosswalk (f5), and comes to rest with front-end damage (f6).",
+      "source_candidate_ids": [
+        9,
+        10
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          34.0,
+          34.5,
+          35.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "Frames f4–f6 show the car entering the plaza, making contact with a person on the ground (f5), and stopping with visible damage; this satisfies the definition of a crash (CarAccident) — not ordinary driving or intentional violence alone.",
+        "source_categories": [
+          "CarAccident",
+          "CarAccident"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 11,
+      "output_count": 2,
+      "groups": 2,
+      "rejected": 6,
+      "uncertain": 0,
+      "merged_sources": 3,
+      "relabeled": 0,
+      "context_retries": 1,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 16.0,
+              "f1": 16.5,
+              "f2": 17.0,
+              "f3": 18.5,
+              "f4": 19.5,
+              "f5": 20.0,
+              "f6": 20.5,
+              "f7": 21.0,
+              "f8": 21.5,
+              "f9": 23.0,
+              "f10": 23.5,
+              "f11": 24.0,
+              "f12": 24.5,
+              "f13": 25.0,
+              "f14": 25.5,
+              "f15": 26.0,
+              "f16": 27.5,
+              "f17": 28.0,
+              "f18": 28.5,
+              "f19": 29.0,
+              "f20": 29.5,
+              "f21": 30.5,
+              "f22": 31.5,
+              "f23": 33.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 18.0,
+                "t_end": 23.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 18.3,
+                "t_end": 19.2,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 20.0,
+                "t_end": 20.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 20.0,
+                "t_end": 27.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 22.7,
+                "t_end": 23.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 24.3,
+                "t_end": 25.8,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 24.5,
+                "t_end": 31.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 25.0,
+                "t_end": 25.8,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 29.3,
+                "t_end": 30.2,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1, 2, 5],\n      \"category\": \"CarAccident\",\n      \"t_start\": 18.5,\n      \"t_end\": 19.5,\n      \"confidence\": 0.95,\n      \"description\": \"A dark sedan is seen moving rapidly toward a crowd, then the camera tilts sharply downward as people scatter; frames f4–f5 show the ground and fallen objects immediately after impact.\",\n      \"reason\": \"Frames f3–f4 show the car approaching the crowd; f4 shows abrupt camera drop and motion blur consistent with sudden impact; f5 shows pavement with debris and a bicycle wheel—indicating a vehicle struck pedestrians/bicycles. This matches a single car-into-crowd collision, not multiple separate accidents.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\"]\n    },\n    {\n      \"source_candidate_ids\": [4, 8],\n      \"category\": \"Abuse\",\n      \"t_start\": 22.7,\n      \"t_end\": 23.5,\n      \"confidence\": 0.85,\n      \"description\": \"A person lies motionless on the sidewalk while another individual stands over them with a raised arm and apparent contact, in frame f9.\",\n      \"reason\": \"In f9, one person is prone on the ground, another looms above with arm extended downward toward the head/upper body—consistent with striking or pressing down on a helpless person. No mutual combat visible; context suggests post-impact vulnerability.\",\n      \"evidence_frame_ids\": [\"f9\"]\n    },\n    {\n      \"source_candidate_ids\": [7],\n      \"category\": \"Fighting\",\n      \"t_start\": 25.0,\n      \"t_end\": 25.8,\n      \"confidence\": 0.75,\n      \"description\": \"Two individuals are engaged in close physical struggle near parked motorcycles in frame f14–f15, with one grabbing the other’s upper body.\",\n      \"reason\": \"In f14 and f15, two people are locked together, arms interlocked, with dynamic posture indicating mutual physical engagement—not one-sided abuse. No weapons or crowd violence evident in those frames.\",\n      \"evidence_frame_ids\": [\"f14\", \"f15\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No sustained collective violent unrest; the crowd disperses after the car incident but does not engage in coordinated violence.\",\n      \"evidence_frame_ids\": [\"f10\", \"f11\", \"f12\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"The period 20.0–27.5 includes aftermath and individual reactions, not collective violent unrest; most frames show people running, helping, or standing—no riot behavior.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\", \"f10\", \"f11\", \"f12\", \"f13\", \"f15\", \"f16\"]\n    },\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"Frames 24.5–31.5 show scattered individuals, some assisting others, and no coordinated violent action; the event is localized to earlier car impact and isolated interpersonal incidents.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 9,\n      \"reason\": \"No candidate ID 9 provided; all listed candidates accounted for.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 16.0,
+              "f1": 16.5,
+              "f2": 17.0,
+              "f3": 18.5,
+              "f4": 19.5,
+              "f5": 20.0,
+              "f6": 20.5,
+              "f7": 21.0,
+              "f8": 21.5,
+              "f9": 23.0,
+              "f10": 23.5,
+              "f11": 24.0,
+              "f12": 24.5,
+              "f13": 25.0,
+              "f14": 25.5,
+              "f15": 26.0,
+              "f16": 27.5,
+              "f17": 28.0,
+              "f18": 28.5,
+              "f19": 29.0,
+              "f20": 29.5,
+              "f21": 30.5,
+              "f22": 31.5,
+              "f23": 33.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 18.0,
+                "t_end": 23.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 18.3,
+                "t_end": 19.2,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 20.0,
+                "t_end": 20.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 20.0,
+                "t_end": 27.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 22.7,
+                "t_end": 23.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 24.3,
+                "t_end": 25.8,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 24.5,
+                "t_end": 31.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 25.0,
+                "t_end": 25.8,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 29.3,
+                "t_end": 30.2,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1, 2, 5],\n      \"category\": \"CarAccident\",\n      \"t_start\": 18.5,\n      \"t_end\": 19.5,\n      \"confidence\": 0.95,\n      \"description\": \"A dark sedan approaches a crowd on the street; in f4 the camera abruptly tilts downward showing pavement and a fallen motorcycle, consistent with the car striking people or objects.\",\n      \"reason\": \"f3 shows the car moving toward pedestrians; f4 shows sudden camera drop and motion blur with a motorcycle on ground; f5 shows pavement with debris and a bicycle wheel—collectively indicating a single vehicle collision with crowd, not multiple accidents. Candidate 5 (24.3–25.8) is inconsistent with visible evidence: no car is present or impacting in f13–f15; thus only candidates 1 and 2 are supported, and the event is confined to f3–f5 (18.5–19.5).\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\"]\n    },\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"Abuse\",\n      \"t_start\": 23.0,\n      \"t_end\": 23.5,\n      \"confidence\": 0.8,\n      \"description\": \"In f9, a person lies prone on the sidewalk while another stands over them with an arm extended downward toward their head/upper body, with no indication of mutual combat.\",\n      \"reason\": \"f9 shows one individual motionless on ground, another looming above with apparent contact; context (post-impact chaos) suggests vulnerability, satisfying abuse definition (aggression against helpless victim); candidate 8 (29.3–30.2) lacks clear evidence of helplessness or aggression in f20—frame is too blurry/occluded—so only candidate 4 is accepted.\",\n      \"evidence_frame_ids\": [\"f9\"]\n    },\n    {\n      \"source_candidate_ids\": [7],\n      \"category\": \"Fighting\",\n      \"t_start\": 25.0,\n      \"t_end\": 25.5,\n      \"confidence\": 0.7,\n      \"description\": \"In f14, two individuals are locked in close physical struggle near parked motorcycles, with arms interlocked and dynamic postures indicating mutual engagement.\",\n      \"reason\": \"f14 shows two people grappling with reciprocal force; f15 shows continuation but with less clarity—still consistent with mutual combat; no weapon or one-sided dominance visible. Candidate 7’s interval (25.0–25.8) is trimmed to 25.0–25.5 because f15 (25.5) begins to show separation and crowd movement, not sustained fighting.\",\n      \"evidence_frame_ids\": [\"f14\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Frames f3–f5 show a single car impact, not sustained collective violent unrest; later frames (f10–f18) show dispersal, aid, and isolated incidents—not riot behavior.\",\n      \"evidence_frame_ids\": [\"f10\", \"f11\", \"f12\", \"f13\", \"f16\", \"f17\", \"f18\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"The interval 20.0–27.5 includes aftermath (people running, helping, standing) but no coordinated violent action by a group; thus not a riot.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\", \"f10\", \"f11\", \"f12\", \"f13\", \"f15\", \"f16\"]\n    },\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"No car is visible approaching or impacting in f13–f15 (24.0–26.0); the scene shows people reacting post-impact, not a second car accident.\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\", \"f15\"]\n    },\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"Frames f12–f22 show scattered individuals, some assisting others, and no collective violent unrest; the event remains localized to the initial car impact and isolated interpersonal acts.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    },\n    {\n      \"candidate_id\": 8,\n      \"reason\": \"Frame f20 is highly blurred and occluded; no clear victim/helplessness or aggressive act is visible—insufficient evidence for abuse.\",\n      \"evidence_frame_ids\": [\"f20\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 16.0,
+              "f1": 16.5,
+              "f2": 17.0,
+              "f3": 18.5,
+              "f4": 19.5,
+              "f5": 20.0,
+              "f6": 20.5,
+              "f7": 21.0,
+              "f8": 21.5,
+              "f9": 23.0,
+              "f10": 23.5,
+              "f11": 24.0,
+              "f12": 24.5,
+              "f13": 25.0,
+              "f14": 25.5,
+              "f15": 26.0,
+              "f16": 27.5,
+              "f17": 28.0,
+              "f18": 28.5,
+              "f19": 29.0,
+              "f20": 29.5,
+              "f21": 30.5,
+              "f22": 31.5,
+              "f23": 33.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 18.0,
+                "t_end": 23.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 18.3,
+                "t_end": 19.2,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 20.0,
+                "t_end": 20.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 20.0,
+                "t_end": 27.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 22.7,
+                "t_end": 23.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 24.3,
+                "t_end": 25.8,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 24.5,
+                "t_end": 31.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 25.0,
+                "t_end": 25.8,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 29.3,
+                "t_end": 30.2,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1, 2],\n      \"category\": \"CarAccident\",\n      \"t_start\": 18.5,\n      \"t_end\": 19.5,\n      \"confidence\": 0.95,\n      \"description\": \"A dark sedan is seen approaching a crowd in f3; in f4 the camera abruptly tilts downward showing pavement and a motorcycle on the ground; f5 shows debris and a bicycle wheel on the street, consistent with a vehicle striking pedestrians or objects.\",\n      \"reason\": \"Frames f3–f5 collectively show the car’s approach, sudden impact (evidenced by camera drop and motion blur), and immediate aftermath (fallen motorcycle, bicycle wheel). Candidate 1 (18.3–19.2) and candidate 2 (20.0–20.5) both partially overlap this event, but only f3–f5 (18.5–19.5) are visually supported; candidate 2’s claimed interval starts at 20.0, where no car is visible—so only frames f3–f5 support a single car-crowd collision, and candidate 2 is rejected due to mismatched timing. Thus only candidate 1 is fully supported; candidate 2 is not included because its t_start=20.0 has no evidence of a car impact (f5 is at 20.0 and shows only ground/debris, no vehicle). Revised: source_candidate_ids = [1] only, since candidate 2’s interval does not align with visible evidence.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\"]\n    },\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"Abuse\",\n      \"t_start\": 23.0,\n      \"t_end\": 23.5,\n      \"confidence\": 0.8,\n      \"description\": \"In f9, a person lies prone on the sidewalk while another individual stands over them with an arm extended downward toward their head/upper body, with no indication of resistance or mutual engagement.\",\n      \"reason\": \"f9 shows one person motionless on the ground and another positioned above with apparent contact; this satisfies the definition of abuse (aggression against a helpless victim). No evidence of mutual combat or self-defense is visible. Candidate 8 (29.3–30.2) lacks clear evidence in f20 (blurry, occluded), so only candidate 4 is accepted.\",\n      \"evidence_frame_ids\": [\"f9\"]\n    },\n    {\n      \"source_candidate_ids\": [7],\n      \"category\": \"Fighting\",\n      \"t_start\": 25.0,\n      \"t_end\": 25.5,\n      \"confidence\": 0.7,\n      \"description\": \"In f14, two individuals are engaged in close physical struggle near parked motorcycles, with arms interlocked and dynamic postures indicating reciprocal force.\",\n      \"reason\": \"f14 clearly shows mutual grappling; f15 (25.5) shows separation and crowd movement, so the fighting is confined to f14. Candidate 7’s interval (25.0–25.8) is trimmed to 25.0–25.5 to match visible evidence. No other frames support sustained fighting.\",\n      \"evidence_frame_ids\": [\"f14\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No sustained collective violent unrest; frames f10–f18 show dispersal, aid, and isolated reactions—not coordinated violence required for riot.\",\n      \"evidence_frame_ids\": [\"f10\", \"f11\", \"f12\", \"f13\", \"f16\", \"f17\", \"f18\"]\n    },\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Candidate claims CarAccident at 20.0–20.5, but f5 (20.0) shows only pavement and debris with no vehicle present; the car impact is fully captured in f3–f4 (18.5–19.5), and no second impact occurs.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"Interval 20.0–27.5 includes aftermath (running, helping, standing) but no collective violent action; thus not a riot.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\", \"f10\", \"f11\", \"f12\", \"f13\", \"f15\", \"f16\"]\n    },\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"No car visible or impacting in f13–f15 (24.0–26.0); scene shows people reacting post-impact, not a second car accident.\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\", \"f15\"]\n    },\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"Frames f12–f22 show scattered individuals and aid efforts, not coordinated violent unrest; riot requires collective violence, which is absent.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    },\n    {\n      \"candidate_id\": 8,\n      \"reason\": \"Frame f20 is highly blurred and occluded; no clear victim, helplessness, or aggressive act is visible—insufficient evidence for abuse.\",\n      \"evidence_frame_ids\": [\"f20\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 12.0,
+              "f1": 12.5,
+              "f2": 13.5,
+              "f3": 14.0,
+              "f4": 15.0,
+              "f5": 16.0,
+              "f6": 16.5,
+              "f7": 17.5,
+              "f8": 18.5,
+              "f9": 19.0,
+              "f10": 20.0,
+              "f11": 20.5,
+              "f12": 21.5,
+              "f13": 22.0,
+              "f14": 23.0,
+              "f15": 23.5,
+              "f16": 24.0,
+              "f17": 24.5,
+              "f18": 25.0,
+              "f19": 25.5,
+              "f20": 26.5,
+              "f21": 27.0,
+              "f22": 28.0,
+              "f23": 29.5,
+              "f24": 30.5,
+              "f25": 31.0,
+              "f26": 32.0,
+              "f27": 32.5,
+              "f28": 33.5,
+              "f29": 34.5,
+              "f30": 35.0,
+              "f31": 37.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 18.0,
+                "t_end": 23.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 18.3,
+                "t_end": 19.2,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 20.0,
+                "t_end": 20.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 20.0,
+                "t_end": 27.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 22.7,
+                "t_end": 23.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 24.3,
+                "t_end": 25.8,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 24.5,
+                "t_end": 31.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 25.0,
+                "t_end": 25.8,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 29.3,
+                "t_end": 30.2,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1, 2, 5],\n      \"category\": \"CarAccident\",\n      \"t_start\": 18.3,\n      \"t_end\": 30.2,\n      \"confidence\": 0.95,\n      \"description\": \"A dark sedan accelerates down a street lined with protesters, veers onto the sidewalk, and strikes multiple people before coming to rest; visible damage to front of car and people on ground at f29–f30.\",\n      \"reason\": \"Frames f2–f5 show the car approaching; f10–f14 show debris and people falling; f23–f24 show chaotic aftermath; f29–f30 clearly show the damaged car stopped with people on the ground—consistent with a single vehicle striking a crowd, not multiple independent accidents. Merged because all candidate intervals fall within one continuous crash event.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\", \"f5\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\", \"f23\", \"f24\", \"f25\", \"f26\", \"f27\", \"f28\", \"f29\", \"f30\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No collective violent unrest is visible; the crowd is largely stationary or fleeing, and no coordinated aggression or destruction occurs.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\", \"f7\", \"f8\", \"f9\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"The same incident as candidate 1/2/5 (the car crash) is mislabeled as riot; there is no sustained violent group behavior beyond the immediate reaction to the crash.\",\n      \"evidence_frame_ids\": [\"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    },\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"Frame f23 shows a person lying on ground after impact, but no ongoing aggression by another person; context indicates post-crash injury, not intentional abuse.\",\n      \"evidence_frame_ids\": [\"f23\"]\n    },\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"Same as candidate 3—mischaracterization of the car crash aftermath as riot; no evidence of organized violence or property destruction beyond the crash site.\",\n      \"evidence_frame_ids\": [\"f24\", \"f25\", \"f26\", \"f27\", \"f28\"]\n    },\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"Frames f18–f19 show people reacting to the car’s approach and impact; no mutual physical combat or grappling is visible—only evasive movement and assistance.\",\n      \"evidence_frame_ids\": [\"f18\", \"f19\"]\n    },\n    {\n      \"candidate_id\": 8,\n      \"reason\": \"Frame f24 shows a chaotic scene post-impact, but no clear act of intentional harm toward a helpless person; individuals appear to be aiding or moving away.\",\n      \"evidence_frame_ids\": [\"f24\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1,
+                2,
+                5
+              ],
+              "category": "CarAccident",
+              "t_start": 18.3,
+              "t_end": 30.2,
+              "confidence": 0.95,
+              "description": "A dark sedan accelerates down a street lined with protesters, veers onto the sidewalk, and strikes multiple people before coming to rest; visible damage to front of car and people on ground at f29–f30.",
+              "reason": "Frames f2–f5 show the car approaching; f10–f14 show debris and people falling; f23–f24 show chaotic aftermath; f29–f30 clearly show the damaged car stopped with people on the ground—consistent with a single vehicle striking a crowd, not multiple independent accidents. Merged because all candidate intervals fall within one continuous crash event.",
+              "evidence_frame_ids": [
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22",
+                "f23",
+                "f24",
+                "f25",
+                "f26",
+                "f27",
+                "f28",
+                "f29",
+                "f30"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "No collective violent unrest is visible; the crowd is largely stationary or fleeing, and no coordinated aggression or destruction occurs.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9"
+              ]
+            },
+            {
+              "candidate_id": 3,
+              "reason": "The same incident as candidate 1/2/5 (the car crash) is mislabeled as riot; there is no sustained violent group behavior beyond the immediate reaction to the crash.",
+              "evidence_frame_ids": [
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22"
+              ]
+            },
+            {
+              "candidate_id": 4,
+              "reason": "Frame f23 shows a person lying on ground after impact, but no ongoing aggression by another person; context indicates post-crash injury, not intentional abuse.",
+              "evidence_frame_ids": [
+                "f23"
+              ]
+            },
+            {
+              "candidate_id": 6,
+              "reason": "Same as candidate 3—mischaracterization of the car crash aftermath as riot; no evidence of organized violence or property destruction beyond the crash site.",
+              "evidence_frame_ids": [
+                "f24",
+                "f25",
+                "f26",
+                "f27",
+                "f28"
+              ]
+            },
+            {
+              "candidate_id": 7,
+              "reason": "Frames f18–f19 show people reacting to the car’s approach and impact; no mutual physical combat or grappling is visible—only evasive movement and assistance.",
+              "evidence_frame_ids": [
+                "f18",
+                "f19"
+              ]
+            },
+            {
+              "candidate_id": 8,
+              "reason": "Frame f24 shows a chaotic scene post-impact, but no clear act of intentional harm toward a helpless person; individuals appear to be aiding or moving away.",
+              "evidence_frame_ids": [
+                "f24"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": true
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          9,
+          10
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 32.0,
+              "f1": 32.5,
+              "f2": 33.0,
+              "f3": 33.5,
+              "f4": 34.0,
+              "f5": 34.5,
+              "f6": 35.0,
+              "f7": 35.5,
+              "f8": 36.0,
+              "f9": 36.5,
+              "f10": 37.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 9,
+                "t_start": 34.0,
+                "t_end": 35.2,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 10,
+                "t_start": 34.5,
+                "t_end": 35.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [9, 10],\n      \"category\": \"CarAccident\",\n      \"t_start\": 34.0,\n      \"t_end\": 35.2,\n      \"confidence\": 0.95,\n      \"description\": \"A gray Dodge Challenger accelerates onto a pedestrian plaza, strikes at least one person lying on the ground near the crosswalk (f5), and comes to rest with front-end damage (f6).\",\n      \"reason\": \"Frames f4–f6 show the car entering the plaza, making contact with a person on the ground (f5), and stopping with visible damage; this satisfies the definition of a crash (CarAccident) — not ordinary driving or intentional violence alone.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                9,
+                10
+              ],
+              "category": "CarAccident",
+              "t_start": 34.0,
+              "t_end": 35.2,
+              "confidence": 0.95,
+              "description": "A gray Dodge Challenger accelerates onto a pedestrian plaza, strikes at least one person lying on the ground near the crosswalk (f5), and comes to rest with front-end damage (f6).",
+              "reason": "Frames f4–f6 show the car entering the plaza, making contact with a person on the ground (f5), and stopping with visible damage; this satisfies the definition of a crash (CarAccident) — not ordinary driving or intentional violence alone.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

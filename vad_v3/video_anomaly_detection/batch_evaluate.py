@@ -95,6 +95,11 @@ async def process_one_video(vad, video_path, output_file, video_id, category,
             return dict(status='succeeded',elapsed=elapsed,retryable=False,error_type=None)
         except Exception as e:
             elapsed = time.time() - t0
+            if hasattr(e,'diagnostics'):
+                failure_dir=Path(output_file).parent/'metadata'/'failed_responses'
+                failure_dir.mkdir(parents=True,exist_ok=True)
+                (failure_dir/f'{video_id}_attempt{attempt}.json').write_text(
+                    json.dumps(e.diagnostics,ensure_ascii=False,indent=2),encoding='utf-8')
             logger.error(f"[{idx}/{total}] FAIL  {video_id}: {e} ({elapsed:.1f}s)", exc_info=True)
             return dict(status='failed',elapsed=elapsed,retryable=is_retryable(e),error_type=type(e).__name__)
 
@@ -114,7 +119,16 @@ async def run_batch(args):
 
     _cats = getattr(args, "categories", None)
     _cats = _cats.split(",") if _cats else None
-    videos = select_videos(str(dataset_dir), args.max_per_category, categories=_cats)
+    dataset = getattr(args, 'dataset', 'ucf_crime')
+    if dataset == 'xd_violence':
+        from xd_dataset import select_xd_videos, annotation_fingerprint
+        videos = select_xd_videos(dataset_dir,args.max_per_category,
+            getattr(args,'xd_annotations',None),getattr(args,'seed',42),_cats)
+        (output_dir/'metadata'/'selection.json').write_text(
+            json.dumps(videos.attrs['selection'],indent=2,ensure_ascii=False),encoding='utf-8')
+        logger.info('[XD-SAMPLE] %s',json.dumps(videos.attrs['selection'],ensure_ascii=False))
+    else:
+        videos = select_videos(str(dataset_dir), args.max_per_category, categories=_cats)
     total = len(videos)
 
     retry_rounds=getattr(args,'video_retry_rounds',1)
@@ -143,7 +157,16 @@ async def run_batch(args):
     )
 
     cfg = VADConfig.from_args(args)
-    cfg.anomaly_categories = UCF_CRIME_CATEGORIES
+    if dataset == 'xd_violence':
+        from xd_config import XD_CLASSES
+        cfg.anomaly_categories = list(XD_CLASSES)
+        # Record effective settings, not unused UCF defaults, in the manifest.
+        cfg.preprocess.motion_threshold = 0.
+        cfg.scoring.bue_enabled = cfg.scoring.cbt_enabled = cfg.scoring.cbt_recal = False
+        cfg.scoring.qscore_rerank = cfg.scoring.classify_skip_class_agnostic = False
+        cfg.scoring.videomae_weight = cfg.scoring.motion_weight = 0.
+    else:
+        cfg.anomaly_categories = UCF_CRIME_CATEGORIES
     manifest_path = output_dir / 'metadata' / 'manifest.json'
     if not manifest_path.exists() and list(output_dir.glob('*.json')):
         raise ValueError('Existing results have no v3 manifest; choose a fresh directory')
@@ -153,7 +176,9 @@ async def run_batch(args):
     manifest = prepare_manifest(manifest_path,cfg,[detect_client,classify_client],
                                 [str(dataset_dir / v) for v in videos['video_path']],
                                 runtime_settings={'video_concurrency':args.concurrency,'video_retry_rounds':retry_rounds,
-                                                  'video_retry_min_seconds':retry_low,'video_retry_max_seconds':retry_high})
+                                                  'video_retry_min_seconds':retry_low,'video_retry_max_seconds':retry_high,
+                                                  **({'annotation_sha256':annotation_fingerprint(dataset_dir,getattr(args,'xd_annotations',None)),
+                                                      'selection':videos.attrs['selection']} if dataset=='xd_violence' else {})})
     vad = build_vad(cfg, detect_client, classify_client)
 
     semaphore = asyncio.Semaphore(args.concurrency)
@@ -205,8 +230,12 @@ async def run_batch(args):
     if failed:
         raise RuntimeError(f'{failed} videos failed; incomplete results are not evaluated')
     logger.info("Running evaluation...")
-    label_path = str(parquet_directory(dataset_dir))
-    eval_results = evaluate(label_path, str(output_dir), split="test", video_root=dataset_dir)
+    if dataset == 'xd_violence':
+        from xd_evaluate import evaluate_xd
+        eval_results = evaluate_xd(dataset_dir,output_dir,ids,getattr(args,'xd_annotations',None))
+    else:
+        label_path = str(parquet_directory(dataset_dir))
+        eval_results = evaluate(label_path, str(output_dir), split="test", video_root=dataset_dir)
 
     report = {
         "timing": {
@@ -232,6 +261,10 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="UCF-Crime Batch Evaluation (v5)")
 
     parser.add_argument("--dataset_dir", type=str, required=True)
+    parser.add_argument('--dataset', choices=['ucf_crime','xd_violence'],default='ucf_crime')
+    parser.add_argument('--xd_verify_candidates',action='store_true',help='Review XD event existence, labels and fragments before MCTS')
+    parser.add_argument('--xd_annotations', help='XD per-event class annotations; separate from binary GT')
+    parser.add_argument('--seed',type=int,default=42)
     parser.add_argument("--output_dir", type=str, default="results/batch_eval")
     parser.add_argument("--max_per_category", type=int, default=5)
     parser.add_argument("--categories", type=str, default=None,

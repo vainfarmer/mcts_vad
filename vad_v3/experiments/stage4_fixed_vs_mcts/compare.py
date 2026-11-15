@@ -99,8 +99,8 @@ def main():
         print(json.dumps(summary,ensure_ascii=False,indent=2));return
     metrics={};audits={}
     for arm,preds in predictions.items():
-        metrics[arm]=compute_vadclip_temporal_map(gt,preds,fps)
-        checked,audits[arm]=compute_vadclip_map(gt,preds,fps)
+        metrics[arm]=compute_vadclip_temporal_map(gt,preds,fps,include_normal_videos=False)
+        checked,audits[arm]=compute_vadclip_map(gt,preds,fps,include_normal_videos=False)
         assert metrics[arm]['values']==checked['values']
     abnormal=[r for r in rows if r['category']!='Normal']
     summary.update(improved=sum(r['delta_tiou']>1e-9 for r in abnormal),

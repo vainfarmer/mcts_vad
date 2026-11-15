@@ -1,0 +1,721 @@
+{
+  "events": [
+    {
+      "t_start": 0.5,
+      "t_end": 1.0,
+      "anomaly_type": "Shooting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A man in a dark coat fires a handgun, producing a visible muzzle flash and smoke at f1; the gun is recoiling and his posture indicates discharge.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          0.5
+        ],
+        "evidence_frame_ids": [
+          "f1"
+        ],
+        "reason": "f1 shows clear muzzle flash and smoke consistent with firing; f0 shows him aiming, f2 shows aftermath (gun lowered, smoke dissipating), confirming a single shot event within [0.5,1.0].",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 4.0,
+      "t_end": 4.041667,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A bright flash with sparks erupts from a sign reading 'Safety First!', consistent with a small explosive event.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          4.0
+        ],
+        "evidence_frame_ids": [
+          "f4"
+        ],
+        "reason": "f4 shows a sudden, localized burst of light and sparks centered on the sign, with no visible projectile or gun muzzle; matches definition of explosion (blast), not shooting.",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    },
+    {
+      "t_start": 5.5,
+      "t_end": 6.5,
+      "anomaly_type": "Shooting",
+      "confidence": 0.98,
+      "coarse_score": 0.98,
+      "description": "A person fires a submachine gun twice in quick succession behind a metal cage, producing muzzle flashes.",
+      "source_candidate_ids": [
+        3,
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 1,
+        "vlm_confidence": 0.98,
+        "evidence_times": [
+          5.5,
+          6.0,
+          6.5
+        ],
+        "evidence_frame_ids": [
+          "f7",
+          "f8",
+          "f9"
+        ],
+        "reason": "f7 shows first muzzle flash; f8 shows weapon repositioned but still held ready; f9 shows second distinct muzzle flash—two separate shots within 1 second, satisfying 'Shooting' (visible shooting). Merged because same actor, continuous engagement, same location.",
+        "source_categories": [
+          "Shooting",
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 7.0,
+      "t_end": 8.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.96,
+      "coarse_score": 0.96,
+      "description": "Two men in green uniforms engage in close physical combat: one grabs the other, then is struck and blood-splattered.",
+      "source_candidate_ids": [
+        5,
+        6
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 3,
+        "vlm_confidence": 0.96,
+        "evidence_times": [
+          7.0,
+          7.5,
+          8.0
+        ],
+        "evidence_frame_ids": [
+          "f10",
+          "f11",
+          "f12"
+        ],
+        "reason": "f10 shows one man grabbing another’s neck/upper body; f11 shows them separated with motion blur suggesting impact; f12 shows blood spray and recoil consistent with a strike—mutual physical combat satisfies 'Fighting'. Merged as continuous sequence.",
+        "source_categories": [
+          "Fighting",
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 8.5,
+      "t_end": 9.5,
+      "anomaly_type": "Shooting",
+      "confidence": 0.97,
+      "coarse_score": 0.97,
+      "description": "A man fires a submachine gun twice, with clear muzzle flashes at 8.5s and 9.0s.",
+      "source_candidate_ids": [
+        7
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 2,
+        "vlm_confidence": 0.97,
+        "evidence_times": [
+          8.5,
+          9.0
+        ],
+        "evidence_frame_ids": [
+          "f13",
+          "f14"
+        ],
+        "reason": "f13 and f14 each show distinct muzzle flashes from the same weapon and shooter; visible discharge confirms shooting. Not merged with earlier shooting (different shooter, location, time gap >2s).",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 11.0,
+      "t_end": 11.5,
+      "confidence": 0.94,
+      "coarse_score": 0.94,
+      "anomaly_type": "Shooting",
+      "description": "A man spreads his arms wide while holding two firearms, one in each hand, pointing outward; muzzle flashes are visible from both weapons, confirming simultaneous firing.",
+      "proposal_id": "p0001",
+      "evidence_frame_ids": [
+        "f14",
+        "f15"
+      ],
+      "source_categories": [
+        "Shooting",
+        "CarAccident",
+        "Explosion"
+      ],
+      "reported_interval": [
+        11.0,
+        11.5
+      ],
+      "clipped_to_inspection": false,
+      "source_candidate_ids": [
+        8
+      ],
+      "verification": {
+        "status": "uncertain",
+        "group_id": 2,
+        "vlm_confidence": 0.94,
+        "reason": "schema_repair_exhausted: Unknown, duplicate or empty source_candidate_ids"
+      }
+    },
+    {
+      "t_start": 14.5,
+      "t_end": 15.5,
+      "anomaly_type": "Shooting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A man aims a handgun directly at the camera and fires, producing visible muzzle flash and sparks on a chain-link fence in the next frame.",
+      "source_candidate_ids": [
+        9,
+        10
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 3,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          14.5,
+          15.0,
+          15.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "f4–f5 show the man aiming and pulling trigger; f6 shows bright sparks and distortion on the fence consistent with a bullet impact or near-miss (e.g., ricochet/spark from metal), confirming discharge occurred within this interval. The candidate intervals overlap and are fully covered by f4–f6 evidence.",
+        "source_categories": [
+          "Shooting",
+          "Shooting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 11,
+      "output_count": 7,
+      "groups": 4,
+      "rejected": 1,
+      "uncertain": 1,
+      "merged_sources": 3,
+      "relabeled": 0,
+      "context_retries": 1,
+      "schema_fallback_groups": 1
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 0.5,
+                "t_end": 1.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Shooting\",\n      \"t_start\": 0.5,\n      \"t_end\": 1.0,\n      \"confidence\": 0.95,\n      \"description\": \"A man in a dark coat fires a handgun, producing a visible muzzle flash and smoke at f1; the gun is recoiling and his posture indicates discharge.\",\n      \"reason\": \"f1 shows clear muzzle flash and smoke consistent with firing; f0 shows him aiming, f2 shows aftermath (gun lowered, smoke dissipating), confirming a single shot event within [0.5,1.0].\",\n      \"evidence_frame_ids\": [\"f1\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Shooting",
+              "t_start": 0.5,
+              "t_end": 1.0,
+              "confidence": 0.95,
+              "description": "A man in a dark coat fires a handgun, producing a visible muzzle flash and smoke at f1; the gun is recoiling and his posture indicates discharge.",
+              "reason": "f1 shows clear muzzle flash and smoke consistent with firing; f0 shows him aiming, f2 shows aftermath (gun lowered, smoke dissipating), confirming a single shot event within [0.5,1.0].",
+              "evidence_frame_ids": [
+                "f1"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 2.0,
+              "f1": 2.5,
+              "f2": 3.0,
+              "f3": 3.5,
+              "f4": 4.0,
+              "f5": 4.5,
+              "f6": 5.0,
+              "f7": 5.5,
+              "f8": 6.0,
+              "f9": 6.5,
+              "f10": 7.0,
+              "f11": 7.5,
+              "f12": 8.0,
+              "f13": 8.5,
+              "f14": 9.0,
+              "f15": 9.5,
+              "f16": 10.0,
+              "f17": 10.5,
+              "f18": 11.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 4.0,
+                "t_end": 4.041667,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 4.0,
+                "t_end": 4.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 5.5,
+                "t_end": 6.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 6.0,
+                "t_end": 6.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 7.0,
+                "t_end": 8.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 7.0,
+                "t_end": 7.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 8.5,
+                "t_end": 9.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Explosion\",\n      \"t_start\": 4.0,\n      \"t_end\": 4.041667,\n      \"confidence\": 0.95,\n      \"description\": \"A bright flash with sparks erupts from a sign reading 'Safety First!', consistent with a small explosive event.\",\n      \"reason\": \"f4 shows a sudden, localized burst of light and sparks centered on the sign, with no visible projectile or gun muzzle; matches definition of explosion (blast), not shooting.\",\n      \"evidence_frame_ids\": [\"f4\"]\n    },\n    {\n      \"source_candidate_ids\": [3, 4],\n      \"category\": \"Shooting\",\n      \"t_start\": 5.5,\n      \"t_end\": 6.5,\n      \"confidence\": 0.98,\n      \"description\": \"A person fires a submachine gun twice in quick succession behind a metal cage, producing muzzle flashes.\",\n      \"reason\": \"f7 shows first muzzle flash; f8 shows weapon repositioned but still held ready; f9 shows second distinct muzzle flash—two separate shots within 1 second, satisfying 'Shooting' (visible shooting). Merged because same actor, continuous engagement, same location.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\"]\n    },\n    {\n      \"source_candidate_ids\": [7],\n      \"category\": \"Shooting\",\n      \"t_start\": 8.5,\n      \"t_end\": 9.5,\n      \"confidence\": 0.97,\n      \"description\": \"A man fires a submachine gun twice, with clear muzzle flashes at 8.5s and 9.0s.\",\n      \"reason\": \"f13 and f14 each show distinct muzzle flashes from the same weapon and shooter; visible discharge confirms shooting. Not merged with earlier shooting (different shooter, location, time gap >2s).\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\"]\n    },\n    {\n      \"source_candidate_ids\": [5, 6],\n      \"category\": \"Fighting\",\n      \"t_start\": 7.0,\n      \"t_end\": 8.5,\n      \"confidence\": 0.96,\n      \"description\": \"Two men in green uniforms engage in close physical combat: one grabs the other, then is struck and blood-splattered.\",\n      \"reason\": \"f10 shows one man grabbing another’s neck/upper body; f11 shows them separated with motion blur suggesting impact; f12 shows blood spray and recoil consistent with a strike—mutual physical combat satisfies 'Fighting'. Merged as continuous sequence.\",\n      \"evidence_frame_ids\": [\"f10\", \"f11\", \"f12\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"No visible shooting occurs between 4.0–4.5s; f4 shows an explosion, f3 and f5 show people holding guns but no discharge; muzzle flash or bullet impact absent.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "Explosion",
+              "t_start": 4.0,
+              "t_end": 4.041667,
+              "confidence": 0.95,
+              "description": "A bright flash with sparks erupts from a sign reading 'Safety First!', consistent with a small explosive event.",
+              "reason": "f4 shows a sudden, localized burst of light and sparks centered on the sign, with no visible projectile or gun muzzle; matches definition of explosion (blast), not shooting.",
+              "evidence_frame_ids": [
+                "f4"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                3,
+                4
+              ],
+              "category": "Shooting",
+              "t_start": 5.5,
+              "t_end": 6.5,
+              "confidence": 0.98,
+              "description": "A person fires a submachine gun twice in quick succession behind a metal cage, producing muzzle flashes.",
+              "reason": "f7 shows first muzzle flash; f8 shows weapon repositioned but still held ready; f9 shows second distinct muzzle flash—two separate shots within 1 second, satisfying 'Shooting' (visible shooting). Merged because same actor, continuous engagement, same location.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8",
+                "f9"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                7
+              ],
+              "category": "Shooting",
+              "t_start": 8.5,
+              "t_end": 9.5,
+              "confidence": 0.97,
+              "description": "A man fires a submachine gun twice, with clear muzzle flashes at 8.5s and 9.0s.",
+              "reason": "f13 and f14 each show distinct muzzle flashes from the same weapon and shooter; visible discharge confirms shooting. Not merged with earlier shooting (different shooter, location, time gap >2s).",
+              "evidence_frame_ids": [
+                "f13",
+                "f14"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                5,
+                6
+              ],
+              "category": "Fighting",
+              "t_start": 7.0,
+              "t_end": 8.5,
+              "confidence": 0.96,
+              "description": "Two men in green uniforms engage in close physical combat: one grabs the other, then is struck and blood-splattered.",
+              "reason": "f10 shows one man grabbing another’s neck/upper body; f11 shows them separated with motion blur suggesting impact; f12 shows blood spray and recoil consistent with a strike—mutual physical combat satisfies 'Fighting'. Merged as continuous sequence.",
+              "evidence_frame_ids": [
+                "f10",
+                "f11",
+                "f12"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "No visible shooting occurs between 4.0–4.5s; f4 shows an explosion, f3 and f5 show people holding guns but no discharge; muzzle flash or bullet impact absent.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          8
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 9.0,
+              "f1": 9.5,
+              "f2": 10.0,
+              "f3": 10.5,
+              "f4": 11.0,
+              "f5": 11.5,
+              "f6": 12.0,
+              "f7": 12.5,
+              "f8": 13.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 8,
+                "t_start": 11.0,
+                "t_end": 11.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [8],\n      \"category\": \"Shooting\",\n      \"t_start\": 9.0,\n      \"t_end\": 9.5,\n      \"confidence\": 1.0,\n      \"description\": \"A man fires a handgun, producing a large muzzle flash visible at f0 (9.0 s); by f1 (9.5 s), the flash has dissipated and the shooter is no longer in frame.\",\n      \"reason\": \"f0 shows a clear muzzle flash from a handgun held by a man; this constitutes visible shooting. The candidate’s interval (11.0–11.5) is incorrect—shooting occurs earlier. The event is bounded by f0 (flash onset) and f1 (flash gone, shooter absent), so t_start=9.0, t_end=9.5.\",\n      \"evidence_frame_ids\": [\"f0\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 8,\n      \"reason\": \"The candidate claims shooting at 11.0–11.5 s, but no muzzle flash or bullet impact is visible in f4–f5; instead, f0 (9.0 s) shows unambiguous muzzle flash, indicating shooting occurred earlier.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 9.0,
+              "f1": 9.5,
+              "f2": 10.0,
+              "f3": 10.5,
+              "f4": 11.0,
+              "f5": 11.5,
+              "f6": 12.0,
+              "f7": 12.5,
+              "f8": 13.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 8,
+                "t_start": 11.0,
+                "t_end": 11.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [8],\n      \"category\": \"Shooting\",\n      \"t_start\": 9.0,\n      \"t_end\": 9.5,\n      \"confidence\": 1.0,\n      \"description\": \"At f0 (9.0 s), a man fires a handgun, producing a bright muzzle flash; by f1 (9.5 s), the flash is gone and the shooter has moved out of frame.\",\n      \"reason\": \"f0 shows unambiguous muzzle flash from a handheld firearm—this satisfies the definition of 'Shooting' (visible shooting). The candidate’s claimed interval (11.0–11.5) does not contain shooting evidence; instead, the only visible shooting occurs at 9.0 s. Since the event must overlap the candidate’s interval to be accepted *as that candidate*, but it does not, the candidate cannot be validated for its stated interval. However, per instructions, we may correct the interval *within visible bounds* if the same physical event is evidenced elsewhere. Here, the only shooting evidence is in f0, and no other frames show continuation (e.g., recoil, follow-through, or secondary impacts). Thus, the supported event is bounded by f0 (onset) and f1 (flash dissipated, shooter absent), i.e., 9.0–9.5 s. The candidate ID 8 is mapped to this corrected event because it refers to the same underlying incident (shooting), even though its original timing is wrong.\",\n      \"evidence_frame_ids\": [\"f0\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 8,\n      \"reason\": \"The candidate explicitly specifies t_start=11.0 and t_end=11.5, but f4 and f5 (11.0–11.5 s) show no muzzle flash, bullet impact, or firing motion—only a man with arms outstretched and another figure in background; thus the candidate’s stated interval lacks evidence for shooting. Since the only shooting occurs at 9.0 s, the candidate’s temporal claim is unsupported, and while a corrected event exists, the candidate as stated (11.0–11.5) is not verified.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 9.0,
+              "f1": 9.5,
+              "f2": 10.0,
+              "f3": 10.5,
+              "f4": 11.0,
+              "f5": 11.5,
+              "f6": 12.0,
+              "f7": 12.5,
+              "f8": 13.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 8,
+                "t_start": 11.0,
+                "t_end": 11.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [8],\n      \"category\": \"Shooting\",\n      \"t_start\": 9.0,\n      \"t_end\": 9.5,\n      \"confidence\": 1.0,\n      \"description\": \"At f0 (9.0 s), a man fires a handgun, producing a large, bright muzzle flash; by f1 (9.5 s), the flash has dissipated and the shooter is no longer visible in frame.\",\n      \"reason\": \"f0 shows unambiguous muzzle flash from a handheld firearm—this satisfies the definition of 'Shooting' (visible shooting). The candidate’s stated interval (11.0–11.5) contains no evidence of shooting (f4–f5 show arms outstretched, no flash or impact), but per instructions, we may correct the interval *within visible bounds* if the same physical event is evidenced elsewhere. Since only f0 shows shooting, and f1 confirms its conclusion (flash gone, shooter absent), the event is bounded 9.0–9.5 s and overlaps the candidate’s *event identity* (a shooting incident), though not its claimed timing. The candidate refers to a shooting; the only visible shooting occurs here, so it is mapped to this corrected interval.\",\n      \"evidence_frame_ids\": [\"f0\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 8,\n      \"reason\": \"The candidate explicitly claims shooting at 11.0–11.5 s (f4–f5), but those frames show no muzzle flash, bullet impact, or firing motion—only a man with arms extended and another figure in background—so the candidate’s stated interval lacks evidence. However, since the same underlying incident (a single handgun discharge) is clearly visible at 9.0 s and the instructions allow correcting the interval within visible bounds for the same event, the candidate is accepted under a corrected interval rather than marked uncertain.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 5.0,
+              "f1": 5.5,
+              "f2": 6.0,
+              "f3": 6.5,
+              "f4": 7.0,
+              "f5": 7.5,
+              "f6": 8.0,
+              "f7": 8.5,
+              "f8": 9.0,
+              "f9": 9.5,
+              "f10": 10.0,
+              "f11": 10.5,
+              "f12": 11.0,
+              "f13": 11.5,
+              "f14": 12.0,
+              "f15": 12.5,
+              "f16": 13.0,
+              "f17": 13.5,
+              "f18": 14.0,
+              "f19": 14.5,
+              "f20": 15.0,
+              "f21": 15.5,
+              "f22": 16.0,
+              "f23": 16.5,
+              "f24": 17.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 8,
+                "t_start": 11.0,
+                "t_end": 11.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [8],\n      \"category\": \"Shooting\",\n      \"t_start\": 11.0,\n      \"t_end\": 11.5,\n      \"confidence\": 0.9,\n      \"description\": \"A man in a dark jacket extends both arms outward holding firearms, with muzzle flash visible from the right-hand weapon in f12 and continued aiming posture in f13.\",\n      \"reason\": \"f12 shows clear muzzle flash from a firearm held in the right hand while the left arm is extended; f13 shows the same man still aiming both weapons—this confirms active shooting during [11.0, 11.5].\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\"]\n    },\n    {\n      \"source_candidate_ids\": [],\n      \"category\": \"Shooting\",\n      \"t_start\": 5.5,\n      \"t_end\": 6.0,\n      \"confidence\": 1.0,\n      \"description\": \"A figure fires a submachine gun behind a chain-link cage, producing bright muzzle flash in f1.\",\n      \"reason\": \"f1 shows unambiguous muzzle flash from a firearm being discharged; f2 shows the same figure still holding the weapon post-discharge—confirms shooting event at 5.5–6.0.\",\n      \"evidence_frame_ids\": [\"f1\", \"f2\"]\n    },\n    {\n      \"source_candidate_ids\": [],\n      \"category\": \"Shooting\",\n      \"t_start\": 8.5,\n      \"t_end\": 9.0,\n      \"confidence\": 1.0,\n      \"description\": \"A man in a black coat fires a compact automatic weapon, with visible muzzle flash in f7 and sustained recoil/fire in f8.\",\n      \"reason\": \"f7 shows muzzle flash and weapon orientation consistent with firing; f8 shows continued bright muzzle flash—confirms shooting during [8.5, 9.0].\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\"]\n    },\n    {\n      \"source_candidate_ids\": [],\n      \"category\": \"Shooting\",\n      \"t_start\": 14.5,\n      \"t_end\": 15.0,\n      \"confidence\": 1.0,\n      \"description\": \"A man aims a handgun directly at the camera; f19 and f20 show progressive tightening of aim and trigger finger position, with no muzzle flash but consistent with imminent or ongoing discharge.\",\n      \"reason\": \"While no muzzle flash is visible in f19/f20, the posture, grip, and forward extension are identical to prior confirmed shooting frames (e.g., f12, f7); however, per strict definition requiring *visible* shooting, this lacks direct evidence—so NOT included. Wait: re-evaluate. The instruction says 'Shooting requires visible shooting, not merely holding a gun'. Since no flash or bullet impact is visible in f19/f20, this cannot be classified as Shooting. Exclude.\",\n      \"evidence_frame_ids\": []\n    },\n    {\n      \"source_candidate_ids\": [],\n      \"category\": \"Shooting\",\n      \"t_start\": 15.5,\n      \"t_end\": 16.0,\n      \"confidence\": 1.0,\n      \"description\": \"Sparks fly from a chain-link gate as a projectile impacts it in f21; f22 shows a man behind the gate reacting, confirming a shot struck the gate.\",\n      \"reason\": \"f21 shows bright sparks at two latch points on the gate, consistent with high-velocity impact (bullet strike); f22 shows the man flinching behind the gate—supports that a shot was fired and hit the gate during [15.5, 16.0].\",\n      \"evidence_frame_ids\": [\"f21\", \"f22\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 8,\n      \"reason\": \"Candidate 8 is actually supported (see first accepted event); thus not rejected. Correction: the candidate is valid and merged into accepted event 1. No rejection for candidate 8.\",\n      \"evidence_frame_ids\": []\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 8,\n      \"reason\": \"Not applicable—candidate 8 is verified via f12–f13 muzzle flash and aiming posture; confidence high.\"\n    }\n  ]\n}\n\nWait—error: I duplicated handling of candidate 8 and misclassified the f19/f20 case. Per instructions, I must account for *every* candidate exactly once, and only output events if evidence supports. Let me reconstruct strictly:\n\nVisible shooting evidence:\n- f1 (5.5 s): clear muzzle flash from SMG → shooting\n- f2 (6.0 s): same shooter, weapon still raised — part of same burst\n- f7 (8.5 s): muzzle flash from pistol/SMG\n- f8 (9.0 s): continued muzzle flash — same burst\n- f12 (11.0 s): muzzle flash from right-hand gun\n- f13 (11.5 s): same man still aiming both guns — confirms shooting in [11.0,11.5]\n- f21 (15.5 s): sparks on gate consistent with bullet impact; f22 (16.0 s): man reacts — supports shooting at gate\n\nCandidate 8 is t_start=11.0, t_end=11.5 — matches f12–f13. So it is **supported**.\n\nNo other candidates given, so only candidate 8 to process.\n\nThus:\n\n- Accepted: candidate 8 → Shooting, [11.0,11.5], evidence f12,f13\n- Also, there are additional shooting events not in candidates, but the task says: “Merge fragments or competing labels ONLY when images show the same physical event; keep independent/simultaneous activities separate.” And “Account for EVERY candidate exactly once”. It does *not* forbid adding extra events beyond candidates, but the instruction says “Return JSON with status='ok', events, rejected and uncertain lists” and “Each accepted events item: source_candidate_ids (integer list)…” — implying we may include unsolicited events if justified. However, the problem states: “The supplied candidates are UNVERIFIED hypotheses… Correct an incorrect category.” and “Account for EVERY candidate exactly once across all lists.” It does *not* require listing only candidate-derived events. But to be safe and minimal, and since the prompt emphasizes evaluating the *supplied* candidates, and only candidate 8 is given, we should only output based on that—unless other shooting is undeniable and must be reported? Re-read: “Independently review possible anomalies using these chronological images. The supplied candidates are UNVERIFIED hypotheses…” — we are to review anomalies, and output categories *only* from the allowed list. So if other shooting is visible, we must report it, because the task is to classify what’s visible, not just evaluate candidates.\n\nBut the output structure expects events with source_candidate_ids — which can be empty list. So we *can* add extra events.\n\nHowever, the instruction: “Merge fragments or competing labels ONLY when images show the same physical event; keep independent/simultaneous activities separate.” So multiple shooting events are fine.\n\nLet me finalize with only well-supported ones:\n\n1. f1–f2: shooting (5.5–6.0)\n2. f7–f8: shooting (8.5–9.0)\n3. f12–f13: shooting (11.0–11.5) → matches candidate 8\n4. f21–f22: shooting (15.5–16.0)\n\nAll have visible evidence (muzzle flash or impact sparks + reaction).\n\nNow format correctly:\n\n{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [],\n      \"category\": \"Shooting\",\n      \"t_start\": 5.5,\n      \"t_end\": 6.0,\n      \"confidence\": 1.0,\n      \"description\": \"Muzzle flash visible as a figure fires a submachine gun behind a chain-link cage in f1, with weapon still aimed in f2.\",\n      \"reason\": \"f1 shows unambiguous muzzle flash; f2 continues the action without interruption—same shooting event.\",\n      \"evidence_frame_ids\": [\"f1\", \"f2\"]\n    },\n    {\n      \"source_candidate_ids\": [],\n      \"category\": \"Shooting\",\n      \"t_start\": 8.5,\n      \"t_end\": 9.0,\n      \"confidence\": 1.0,\n      \"description\": \"A man in a black coat fires a compact firearm, producing bright muzzle flash in f7 and sustained flash in f8.\",\n      \"reason\": \"Two consecutive frames show clear muzzle flash from the same weapon and shooter, confirming active discharge.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\"]\n    },\n    {\n      \"source_candidate_ids\": [8],\n      \"category\": \"Shooting\",\n      \"t_start\": 11.0,\n      \"t_end\": 11.5,\n      \"confidence\": 1.0,\n      \"description\": \"A man extends both arms holding firearms; muzzle flash emanates from the right-hand weapon in f12, and he maintains aim in f13.\",\n      \"reason\": \"Direct visual evidence of discharge (muzzle flash) in f12 within the candidate interval; f13 confirms continuity.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\"]\n    },\n    {\n      \"source_candidate_ids\": [],\n      \"category\": \"Shooting\",\n      \"t_start\": 15.5,\n      \"t_end\": 16.0,\n      \"confidence\": 0.95,\n      \"description\": \"Sparks erupt from a chain-link gate in f21 as a projectile strikes it; f22 shows a man behind the gate recoiling, confirming a shot hit the gate.\",\n      \"reason\": \"Impact sparks are diagnostic of high-velocity projectile strike; reaction in next frame supports causality.\",\n      \"evidence_frame_ids\": [\"f21\", \"f22\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 5.0,
+              "f1": 5.5,
+              "f2": 6.0,
+              "f3": 6.5,
+              "f4": 7.0,
+              "f5": 7.5,
+              "f6": 8.0,
+              "f7": 8.5,
+              "f8": 9.0,
+              "f9": 9.5,
+              "f10": 10.0,
+              "f11": 10.5,
+              "f12": 11.0,
+              "f13": 11.5,
+              "f14": 12.0,
+              "f15": 12.5,
+              "f16": 13.0,
+              "f17": 13.5,
+              "f18": 14.0,
+              "f19": 14.5,
+              "f20": 15.0,
+              "f21": 15.5,
+              "f22": 16.0,
+              "f23": 16.5,
+              "f24": 17.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 8,
+                "t_start": 11.0,
+                "t_end": 11.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [8],\n      \"category\": \"Shooting\",\n      \"t_start\": 11.0,\n      \"t_end\": 11.5,\n      \"confidence\": 1.0,\n      \"description\": \"In f12, a man extends both arms holding firearms with visible muzzle flash from the right-hand weapon; in f13 he maintains the aiming posture, confirming active discharge during [11.0, 11.5].\",\n      \"reason\": \"f12 shows unambiguous muzzle flash from a firearm being discharged while held in the right hand; f13 shows continuity of the same action—this satisfies the 'visible shooting' requirement and matches candidate 8’s interval exactly.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\"]\n    },\n    {\n      \"source_candidate_ids\": [],\n      \"category\": \"Shooting\",\n      \"t_start\": 5.5,\n      \"t_end\": 6.0,\n      \"confidence\": 1.0,\n      \"description\": \"In f1, a figure fires a submachine gun behind a chain-link cage, producing bright muzzle flash; in f2, the same figure remains in firing stance with weapon raised.\",\n      \"reason\": \"Muzzle flash in f1 is direct visual evidence of discharge; f2 shows no break in action—same shooting event within [5.5, 6.0].\",\n      \"evidence_frame_ids\": [\"f1\", \"f2\"]\n    },\n    {\n      \"source_candidate_ids\": [],\n      \"category\": \"Shooting\",\n      \"t_start\": 8.5,\n      \"t_end\": 9.0,\n      \"confidence\": 1.0,\n      \"description\": \"In f7, a man in a black coat fires a compact automatic weapon with visible muzzle flash; in f8, sustained bright muzzle flash confirms continued discharge.\",\n      \"reason\": \"Consecutive frames show clear, bright muzzle flash from the same weapon and shooter—unequivocal visible shooting during [8.5, 9.0].\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\"]\n    },\n    {\n      \"source_candidate_ids\": [],\n      \"category\": \"Shooting\",\n      \"t_start\": 15.5,\n      \"t_end\": 16.0,\n      \"confidence\": 0.95,\n      \"description\": \"In f21, sparks erupt from two latch points on a chain-link gate, consistent with bullet impact; in f22, a man behind the gate recoils, confirming a shot struck the gate.\",\n      \"reason\": \"Impact sparks are diagnostic of high-velocity projectile strike; the immediate flinch in f22 supports causality—sufficient for 'visible shooting' per definition (impact + reaction counts as visible evidence of discharge).\",\n      \"evidence_frame_ids\": [\"f21\", \"f22\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 5.0,
+              "f1": 5.5,
+              "f2": 6.0,
+              "f3": 6.5,
+              "f4": 7.0,
+              "f5": 7.5,
+              "f6": 8.0,
+              "f7": 8.5,
+              "f8": 9.0,
+              "f9": 9.5,
+              "f10": 10.0,
+              "f11": 10.5,
+              "f12": 11.0,
+              "f13": 11.5,
+              "f14": 12.0,
+              "f15": 12.5,
+              "f16": 13.0,
+              "f17": 13.5,
+              "f18": 14.0,
+              "f19": 14.5,
+              "f20": 15.0,
+              "f21": 15.5,
+              "f22": 16.0,
+              "f23": 16.5,
+              "f24": 17.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 8,
+                "t_start": 11.0,
+                "t_end": 11.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [8],\n      \"category\": \"Shooting\",\n      \"t_start\": 11.0,\n      \"t_end\": 11.5,\n      \"confidence\": 1.0,\n      \"description\": \"In f12, a man extends both arms holding two firearms; bright muzzle flash is visible from the right-hand weapon, confirming discharge; in f13 he maintains aim, showing continuity of the shooting event.\",\n      \"reason\": \"f12 provides direct visual evidence of muzzle flash (required for 'Shooting'), and f13 confirms the same posture without interruption—this matches candidate 8’s interval exactly and satisfies the definition.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\"]\n    },\n    {\n      \"source_candidate_ids\": [],\n      \"category\": \"Shooting\",\n      \"t_start\": 5.5,\n      \"t_end\": 6.0,\n      \"confidence\": 1.0,\n      \"description\": \"In f1, a figure fires a submachine gun behind a chain-link cage, producing unambiguous muzzle flash; in f2, the same figure remains in firing stance with weapon raised, indicating the same burst.\",\n      \"reason\": \"Muzzle flash in f1 is definitive visual evidence of discharge; f2 shows no break in action—this is a single shooting event within [5.5, 6.0].\",\n      \"evidence_frame_ids\": [\"f1\", \"f2\"]\n    },\n    {\n      \"source_candidate_ids\": [],\n      \"category\": \"Shooting\",\n      \"t_start\": 8.5,\n      \"t_end\": 9.0,\n      \"confidence\": 1.0,\n      \"description\": \"In f7, a man in a black coat fires a compact firearm with clear muzzle flash; in f8, sustained bright muzzle flash confirms continued discharge during the same burst.\",\n      \"reason\": \"Consecutive frames show unmistakable muzzle flash from the same shooter and weapon—unequivocal visible shooting per definition.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\"]\n    },\n    {\n      \"source_candidate_ids\": [],\n      \"category\": \"Shooting\",\n      \"t_start\": 15.5,\n      \"t_end\": 16.0,\n      \"confidence\": 0.95,\n      \"description\": \"In f21, bright sparks erupt from two latch points on a chain-link gate, consistent with high-velocity projectile impact; in f22, a man behind the gate recoils immediately after, confirming a shot struck the gate.\",\n      \"reason\": \"Impact sparks are diagnostic of bullet strike (visible consequence of discharge), and the flinch in f22 supports causality; this meets the 'visible shooting' requirement as it shows direct evidence of a projectile being fired and hitting a target.\",\n      \"evidence_frame_ids\": [\"f21\", \"f22\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "unresolved_schema",
+          "events": [],
+          "rejected": [],
+          "uncertain": [
+            {
+              "candidate_id": 8,
+              "reason": "schema_repair_exhausted: Unknown, duplicate or empty source_candidate_ids"
+            }
+          ],
+          "schema_error": "Unknown, duplicate or empty source_candidate_ids"
+        },
+        "context_retry": true
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          9,
+          10
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 12.5,
+              "f1": 13.0,
+              "f2": 13.5,
+              "f3": 14.0,
+              "f4": 14.5,
+              "f5": 15.0,
+              "f6": 15.5,
+              "f7": 16.0,
+              "f8": 16.5,
+              "f9": 17.0,
+              "f10": 17.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 9,
+                "t_start": 14.458333,
+                "t_end": 15.041667,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 10,
+                "t_start": 14.5,
+                "t_end": 16.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [9, 10],\n      \"category\": \"Shooting\",\n      \"t_start\": 14.5,\n      \"t_end\": 15.5,\n      \"confidence\": 0.95,\n      \"description\": \"A man aims a handgun directly at the camera and fires, producing visible muzzle flash and sparks on a chain-link fence in the next frame.\",\n      \"reason\": \"f4–f5 show the man aiming and pulling trigger; f6 shows bright sparks and distortion on the fence consistent with a bullet impact or near-miss (e.g., ricochet/spark from metal), confirming discharge occurred within this interval. The candidate intervals overlap and are fully covered by f4–f6 evidence.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                9,
+                10
+              ],
+              "category": "Shooting",
+              "t_start": 14.5,
+              "t_end": 15.5,
+              "confidence": 0.95,
+              "description": "A man aims a handgun directly at the camera and fires, producing visible muzzle flash and sparks on a chain-link fence in the next frame.",
+              "reason": "f4–f5 show the man aiming and pulling trigger; f6 shows bright sparks and distortion on the fence consistent with a bullet impact or near-miss (e.g., ricochet/spark from metal), confirming discharge occurred within this interval. The candidate intervals overlap and are fully covered by f4–f6 evidence.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

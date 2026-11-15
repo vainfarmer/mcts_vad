@@ -1,0 +1,339 @@
+{
+  "events": [
+    {
+      "t_start": 0.0,
+      "t_end": 10.4,
+      "anomaly_type": "Riot",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "A large crowd scatters and runs down a street while smoke (consistent with tear gas) is deployed; police/ambulance vehicles are present and individuals flee or move erratically.",
+      "source_candidate_ids": [
+        0,
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          0.0,
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          5.0,
+          6.5,
+          7.5,
+          8.5,
+          9.5
+        ],
+        "evidence_frame_ids": [
+          "f0",
+          "f1",
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9"
+        ],
+        "reason": "Frames f0–f9 show collective panic, rapid dispersal, visible smoke plumes (f6–f9), and emergency/police vehicles—meeting the definition of collective violent unrest (Riot), not isolated Fighting or normal activity. The event is continuous from initial chaos through gas deployment.",
+        "source_categories": [
+          "Riot",
+          "Riot"
+        ]
+      }
+    },
+    {
+      "t_start": 12.0,
+      "t_end": 22.5,
+      "anomaly_type": "Riot",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A line of riot police in white helmets and transparent shields faces a dense civilian crowd on a street; there is physical pressure at the line (e.g., pushing), but no sustained mutual combat.",
+      "source_candidate_ids": [
+        4,
+        5
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 1,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          14.0,
+          15.0,
+          15.5,
+          16.0,
+          17.0,
+          18.0,
+          19.5,
+          20.5,
+          21.5,
+          22.5
+        ],
+        "evidence_frame_ids": [
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18",
+          "f19",
+          "f20",
+          "f21",
+          "f22"
+        ],
+        "reason": "Frames f13–f22 depict a sustained standoff with organized police formation and crowd confrontation—classic riot dynamics (collective unrest). Candidate 4 (12.0–19.5) and 5 (16.0–23.5) overlap and describe the same phase; merged into one event bounded by visible evidence (f13 to f22). No Fighting or Abuse is evident—no helpless victim or mutual combat.",
+        "source_categories": [
+          "Riot",
+          "Riot"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 6,
+      "output_count": 2,
+      "groups": 1,
+      "rejected": 2,
+      "uncertain": 0,
+      "merged_sources": 2,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 1.0,
+              "f2": 2.0,
+              "f3": 3.0,
+              "f4": 4.0,
+              "f5": 5.0,
+              "f6": 6.5,
+              "f7": 7.5,
+              "f8": 8.5,
+              "f9": 9.5,
+              "f10": 10.5,
+              "f11": 11.0,
+              "f12": 11.5,
+              "f13": 14.0,
+              "f14": 15.0,
+              "f15": 15.5,
+              "f16": 16.0,
+              "f17": 17.0,
+              "f18": 18.0,
+              "f19": 19.5,
+              "f20": 20.5,
+              "f21": 21.5,
+              "f22": 22.5,
+              "f23": 25.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 0.0,
+                "t_end": 6.4,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 0.5,
+                "t_end": 2.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 2.5,
+                "t_end": 10.4,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 10.7,
+                "t_end": 11.7,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 12.0,
+                "t_end": 19.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 16.0,
+                "t_end": 23.5,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 2],\n      \"category\": \"Riot\",\n      \"t_start\": 0.0,\n      \"t_end\": 10.4,\n      \"confidence\": 0.85,\n      \"description\": \"Crowd running and scattering as smoke (likely tear gas) is deployed; vehicles including ambulances and police vans present; individuals flee while others appear to confront or evade authorities.\",\n      \"reason\": \"Images f0–f9 show large group movement, panic, smoke deployment, and presence of emergency/police vehicles—consistent with collective violent unrest (riot), not just a crowd or isolated fighting. Merged because same continuous event from start of chaos through gas deployment.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\"]\n    },\n    {\n      \"source_candidate_ids\": [4, 5],\n      \"category\": \"Riot\",\n      \"t_start\": 12.0,\n      \"t_end\": 22.5,\n      \"confidence\": 0.9,\n      \"description\": \"Line of riot police in helmets and shields facing a dense crowd on a street; tension evident but no overt combat; some pushing at the line observed.\",\n      \"reason\": \"Images f13–f22 show sustained standoff between uniformed riot police and civilians, with shield formations and crowd pressure—classic riot dynamics (collective unrest), not isolated fighting or abuse. Candidate 5’s interval overlaps and extends candidate 4; merged into one coherent riot phase.\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"No mutual physical combat visible in f0–f2; people are running or moving quickly, but no clear punching, grappling, or weapon use—consistent with panic during riot, not Fighting.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"In f10–f12, police are advancing and restraining individuals, but no reciprocal aggression or sustained physical struggle is visible; actions appear procedural (detention/containment), not Fighting.\",\n      \"evidence_frame_ids\": [\"f10\", \"f11\", \"f12\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"No candidate ID 6 provided in input list; all candidates accounted for in events/rejected.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 1.0,
+              "f2": 2.0,
+              "f3": 3.0,
+              "f4": 4.0,
+              "f5": 5.0,
+              "f6": 6.5,
+              "f7": 7.5,
+              "f8": 8.5,
+              "f9": 9.5,
+              "f10": 10.5,
+              "f11": 11.0,
+              "f12": 11.5,
+              "f13": 14.0,
+              "f14": 15.0,
+              "f15": 15.5,
+              "f16": 16.0,
+              "f17": 17.0,
+              "f18": 18.0,
+              "f19": 19.5,
+              "f20": 20.5,
+              "f21": 21.5,
+              "f22": 22.5,
+              "f23": 25.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 0.0,
+                "t_end": 6.4,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 0.5,
+                "t_end": 2.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 2.5,
+                "t_end": 10.4,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 10.7,
+                "t_end": 11.7,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 12.0,
+                "t_end": 19.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 16.0,
+                "t_end": 23.5,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 2],\n      \"category\": \"Riot\",\n      \"t_start\": 0.0,\n      \"t_end\": 10.4,\n      \"confidence\": 0.85,\n      \"description\": \"A large crowd scatters and runs down a street while smoke (consistent with tear gas) is deployed; police/ambulance vehicles are present and individuals flee or move erratically.\",\n      \"reason\": \"Frames f0–f9 show collective panic, rapid dispersal, visible smoke plumes (f6–f9), and emergency/police vehicles—meeting the definition of collective violent unrest (Riot), not isolated Fighting or normal activity. The event is continuous from initial chaos through gas deployment.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\"]\n    },\n    {\n      \"source_candidate_ids\": [4, 5],\n      \"category\": \"Riot\",\n      \"t_start\": 12.0,\n      \"t_end\": 22.5,\n      \"confidence\": 0.9,\n      \"description\": \"A line of riot police in white helmets and transparent shields faces a dense civilian crowd on a street; there is physical pressure at the line (e.g., pushing), but no sustained mutual combat.\",\n      \"reason\": \"Frames f13–f22 depict a sustained standoff with organized police formation and crowd confrontation—classic riot dynamics (collective unrest). Candidate 4 (12.0–19.5) and 5 (16.0–23.5) overlap and describe the same phase; merged into one event bounded by visible evidence (f13 to f22). No Fighting or Abuse is evident—no helpless victim or mutual combat.\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Frames f0–f2 show people running and moving quickly, but no mutual physical combat (e.g., grappling, striking) is visible; behavior is consistent with panic during a riot, not Fighting.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"In f10–f12, police are advancing and appear to be detaining or controlling individuals, but no reciprocal aggression or sustained physical struggle occurs; actions align with procedural crowd control, not Fighting.\",\n      \"evidence_frame_ids\": [\"f10\", \"f11\", \"f12\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                2
+              ],
+              "category": "Riot",
+              "t_start": 0.0,
+              "t_end": 10.4,
+              "confidence": 0.85,
+              "description": "A large crowd scatters and runs down a street while smoke (consistent with tear gas) is deployed; police/ambulance vehicles are present and individuals flee or move erratically.",
+              "reason": "Frames f0–f9 show collective panic, rapid dispersal, visible smoke plumes (f6–f9), and emergency/police vehicles—meeting the definition of collective violent unrest (Riot), not isolated Fighting or normal activity. The event is continuous from initial chaos through gas deployment.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                4,
+                5
+              ],
+              "category": "Riot",
+              "t_start": 12.0,
+              "t_end": 22.5,
+              "confidence": 0.9,
+              "description": "A line of riot police in white helmets and transparent shields faces a dense civilian crowd on a street; there is physical pressure at the line (e.g., pushing), but no sustained mutual combat.",
+              "reason": "Frames f13–f22 depict a sustained standoff with organized police formation and crowd confrontation—classic riot dynamics (collective unrest). Candidate 4 (12.0–19.5) and 5 (16.0–23.5) overlap and describe the same phase; merged into one event bounded by visible evidence (f13 to f22). No Fighting or Abuse is evident—no helpless victim or mutual combat.",
+              "evidence_frame_ids": [
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "Frames f0–f2 show people running and moving quickly, but no mutual physical combat (e.g., grappling, striking) is visible; behavior is consistent with panic during a riot, not Fighting.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2"
+              ]
+            },
+            {
+              "candidate_id": 3,
+              "reason": "In f10–f12, police are advancing and appear to be detaining or controlling individuals, but no reciprocal aggression or sustained physical struggle occurs; actions align with procedural crowd control, not Fighting.",
+              "evidence_frame_ids": [
+                "f10",
+                "f11",
+                "f12"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

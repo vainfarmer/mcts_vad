@@ -1,0 +1,895 @@
+{
+  "events": [
+    {
+      "t_start": 14.5,
+      "t_end": 16.1,
+      "anomaly_type": "Fighting",
+      "confidence": 0.8,
+      "coarse_score": 0.8,
+      "description": "At f6–f9, individuals are seen climbing onto the front bumper and windshield of a stationary bus while others push against it; one person appears to strike or grapple with someone on the bus’s hood.",
+      "source_candidate_ids": [
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.8,
+        "evidence_times": [
+          14.5,
+          15.0,
+          15.5,
+          16.0
+        ],
+        "evidence_frame_ids": [
+          "f6",
+          "f7",
+          "f8",
+          "f9"
+        ],
+        "reason": "Visible physical contact and aggressive climbing/pushing on the bus (f6–f9) constitutes mutual or one-sided combat involving multiple people around the vehicle; no evidence of weapons or crowd-wide violence, so 'Fighting' fits best. The activity is localized and ends by f10 as the bus begins moving away.",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 24.5,
+      "t_end": 26.0,
+      "anomaly_type": "Abuse",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "In frames f9–f11, multiple officers in riot gear surround and physically subdue a person lying on the ground; the individual shows no capacity to resist while officers apply force.",
+      "source_candidate_ids": [
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          24.5,
+          25.0,
+          26.0
+        ],
+        "evidence_frame_ids": [
+          "f9",
+          "f10",
+          "f11"
+        ],
+        "reason": "The scene in f9–f11 shows one person on the ground being restrained by ≥3 officers with batons/arms, while others advance—this matches 'Abuse' (aggression against a helpless victim), not Fighting (no mutual combat) or Riot (isolated incident, not collective unrest). Candidate 4’s interval aligns precisely with this visible event.",
+        "source_categories": [
+          "Abuse"
+        ]
+      }
+    },
+    {
+      "t_start": 40.0,
+      "t_end": 41.0,
+      "anomaly_type": "Fighting",
+      "confidence": 0.7,
+      "coarse_score": 0.7,
+      "description": "In frames f3–f5, multiple officers in riot gear are actively engaging and subduing a person on the ground near the crosswalk; the individual appears to be resisting or moving while being restrained, indicating mutual physical combat.",
+      "source_candidate_ids": [
+        5
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 3,
+        "event_id": 0,
+        "vlm_confidence": 0.7,
+        "evidence_times": [
+          40.0,
+          40.5,
+          41.0
+        ],
+        "evidence_frame_ids": [
+          "f3",
+          "f4",
+          "f5"
+        ],
+        "reason": "Per definition, 'Fighting' requires mutual physical combat. In f3–f5, the person on the ground is not clearly helpless (e.g., limbs active, posture suggests resistance), and officers use batons/hands in dynamic engagement—consistent with fighting, not abuse. Candidate 5’s interval [40.0, 41.2] is supported only up to f5 (41.0); later frames show different dynamics. Candidate 9 starts at 53.0 and describes a distinct later incident; cannot be merged with candidate 5.",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 53.5,
+      "t_end": 55.0,
+      "anomaly_type": "Abuse",
+      "confidence": 0.8,
+      "coarse_score": 0.8,
+      "description": "From f19 to f22, officers in riot gear hold a person face-down on the pavement while striking with batons; the person shows no capacity to resist or defend, and is fully restrained by multiple officers.",
+      "source_candidate_ids": [
+        8,
+        9
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 3,
+        "event_id": 1,
+        "vlm_confidence": 0.8,
+        "evidence_times": [
+          53.5,
+          54.0,
+          54.5,
+          55.0
+        ],
+        "evidence_frame_ids": [
+          "f19",
+          "f20",
+          "f21",
+          "f22"
+        ],
+        "reason": "The victim is pinned, immobile, and unable to retaliate—meeting the 'helpless victim' criterion for Abuse. Candidate 8 (53.0–55.0) and candidate 9 (53.0–54.9) both refer to this same incident; their intervals overlap and are fully contained within visible evidence (f19–f22). The earlier fighting (f3–f5) is separate: different location, time, and posture. 'Fighting' does not apply here due to lack of mutual combat.",
+        "source_categories": [
+          "Abuse",
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 60.5,
+      "t_end": 62.5,
+      "anomaly_type": "Abuse",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "Two officers in riot gear are restraining a person lying on the ground; the person is not resisting, and one officer holds them down while another raises a baton overhead.",
+      "source_candidate_ids": [
+        10
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 4,
+        "event_id": 0,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          60.5,
+          61.0,
+          61.5,
+          62.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7"
+        ],
+        "reason": "The individual is prone and immobilized by multiple officers with no indication of active resistance or mutual combat—meeting the definition of Abuse (aggression against a helpless victim). Visible across f4–f7, with clearest evidence in f5–f6 where the person remains on the ground under control.",
+        "source_categories": [
+          "Abuse"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 15,
+      "output_count": 5,
+      "groups": 5,
+      "rejected": 9,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 1,
+      "context_retries": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 4.0,
+              "f1": 4.5,
+              "f2": 5.0,
+              "f3": 5.5,
+              "f4": 6.0,
+              "f5": 6.5,
+              "f6": 7.0,
+              "f7": 7.5,
+              "f8": 8.0,
+              "f9": 8.5,
+              "f10": 9.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 6.0,
+                "t_end": 7.5,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"The frames show a crowd gathered near a bus with red flags, but no visible collective violent unrest, destruction, or attacks; motion blur suggests movement but not rioting.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "The frames show a crowd gathered near a bus with red flags, but no visible collective violent unrest, destruction, or attacks; motion blur suggests movement but not rioting.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 11.5,
+              "f1": 12.0,
+              "f2": 12.5,
+              "f3": 13.0,
+              "f4": 13.5,
+              "f5": 14.0,
+              "f6": 14.5,
+              "f7": 15.0,
+              "f8": 15.5,
+              "f9": 16.0,
+              "f10": 16.5,
+              "f11": 17.0,
+              "f12": 17.5,
+              "f13": 18.0,
+              "f14": 18.5,
+              "f15": 19.0,
+              "f16": 19.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 13.5,
+                "t_end": 18.0,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 14.5,
+                "t_end": 16.1,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"Fighting\",\n      \"t_start\": 14.5,\n      \"t_end\": 16.1,\n      \"confidence\": 0.8,\n      \"description\": \"At f6–f9, individuals are seen climbing onto the front bumper and windshield of a stationary bus while others push against it; one person appears to strike or grapple with someone on the bus’s hood.\",\n      \"reason\": \"Visible physical contact and aggressive climbing/pushing on the bus (f6–f9) constitutes mutual or one-sided combat involving multiple people around the vehicle; no evidence of weapons or crowd-wide violence, so 'Fighting' fits best. The activity is localized and ends by f10 as the bus begins moving away.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\", \"f9\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"The crowd is dense and active but lacks coordinated violent unrest, property destruction, or widespread aggression required for 'Riot'; actions are limited to interaction with the bus and do not meet riot criteria.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\", \"f5\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2
+              ],
+              "category": "Fighting",
+              "t_start": 14.5,
+              "t_end": 16.1,
+              "confidence": 0.8,
+              "description": "At f6–f9, individuals are seen climbing onto the front bumper and windshield of a stationary bus while others push against it; one person appears to strike or grapple with someone on the bus’s hood.",
+              "reason": "Visible physical contact and aggressive climbing/pushing on the bus (f6–f9) constitutes mutual or one-sided combat involving multiple people around the vehicle; no evidence of weapons or crowd-wide violence, so 'Fighting' fits best. The activity is localized and ends by f10 as the bus begins moving away.",
+              "evidence_frame_ids": [
+                "f6",
+                "f7",
+                "f8",
+                "f9"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "The crowd is dense and active but lacks coordinated violent unrest, property destruction, or widespread aggression required for 'Riot'; actions are limited to interaction with the bus and do not meet riot criteria.",
+              "evidence_frame_ids": [
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          3,
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 18.5,
+              "f1": 19.0,
+              "f2": 19.5,
+              "f3": 20.5,
+              "f4": 21.0,
+              "f5": 21.5,
+              "f6": 22.5,
+              "f7": 23.0,
+              "f8": 24.0,
+              "f9": 24.5,
+              "f10": 25.0,
+              "f11": 26.0,
+              "f12": 26.5,
+              "f13": 27.5,
+              "f14": 28.0,
+              "f15": 28.5,
+              "f16": 29.5,
+              "f17": 30.0,
+              "f18": 31.0,
+              "f19": 31.5,
+              "f20": 32.0,
+              "f21": 33.0,
+              "f22": 33.5,
+              "f23": 34.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 20.5,
+                "t_end": 33.0,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 24.5,
+                "t_end": 26.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3, 4],\n      \"category\": \"Abuse\",\n      \"t_start\": 24.5,\n      \"t_end\": 26.0,\n      \"confidence\": 0.9,\n      \"description\": \"Multiple officers in riot gear surround and subdue a person on the ground while others advance; the individual appears restrained and not resisting.\",\n      \"reason\": \"Visible in f9–f11: one person is on the ground surrounded by multiple officers applying force without apparent reciprocal combat, satisfying 'Abuse' (aggression against a helpless victim). The broader activity (f3–f23) involves police advancing and dispersing a crowd but lacks collective violent unrest or mutual combat, so 'Riot' is unsupported; only the specific ground restraint qualifies as Abuse.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\", \"f11\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"The crowd and police movement (f3–f23) shows police advancing and making arrests but no sustained collective violence, property destruction, or uncontrolled unrest required for 'Riot'; most interactions are controlled enforcement, not riotous behavior.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\", \"f23\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 18.5,
+              "f1": 19.0,
+              "f2": 19.5,
+              "f3": 20.5,
+              "f4": 21.0,
+              "f5": 21.5,
+              "f6": 22.5,
+              "f7": 23.0,
+              "f8": 24.0,
+              "f9": 24.5,
+              "f10": 25.0,
+              "f11": 26.0,
+              "f12": 26.5,
+              "f13": 27.5,
+              "f14": 28.0,
+              "f15": 28.5,
+              "f16": 29.5,
+              "f17": 30.0,
+              "f18": 31.0,
+              "f19": 31.5,
+              "f20": 32.0,
+              "f21": 33.0,
+              "f22": 33.5,
+              "f23": 34.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 20.5,
+                "t_end": 33.0,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 24.5,
+                "t_end": 26.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"Abuse\",\n      \"t_start\": 24.5,\n      \"t_end\": 26.0,\n      \"confidence\": 0.85,\n      \"description\": \"In frames f9–f11, multiple officers in riot gear surround and physically subdue a person lying on the ground; the individual shows no capacity to resist while officers apply force.\",\n      \"reason\": \"The scene in f9–f11 shows one person on the ground being restrained by ≥3 officers with batons/arms, while others advance—this matches 'Abuse' (aggression against a helpless victim), not Fighting (no mutual combat) or Riot (isolated incident, not collective unrest). Candidate 4’s interval aligns precisely with this visible event.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\", \"f11\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"The activity from f3–f23 shows police advancing, dispersing people, and making arrests—including the Abuse event—but lacks the defining features of a 'Riot': no widespread property destruction, uncontrolled crowd violence, or sustained collective defiance; interactions are predominantly enforcement actions, not riotous behavior.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\", \"f23\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                4
+              ],
+              "category": "Abuse",
+              "t_start": 24.5,
+              "t_end": 26.0,
+              "confidence": 0.85,
+              "description": "In frames f9–f11, multiple officers in riot gear surround and physically subdue a person lying on the ground; the individual shows no capacity to resist while officers apply force.",
+              "reason": "The scene in f9–f11 shows one person on the ground being restrained by ≥3 officers with batons/arms, while others advance—this matches 'Abuse' (aggression against a helpless victim), not Fighting (no mutual combat) or Riot (isolated incident, not collective unrest). Candidate 4’s interval aligns precisely with this visible event.",
+              "evidence_frame_ids": [
+                "f9",
+                "f10",
+                "f11"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 3,
+              "reason": "The activity from f3–f23 shows police advancing, dispersing people, and making arrests—including the Abuse event—but lacks the defining features of a 'Riot': no widespread property destruction, uncontrolled crowd violence, or sustained collective defiance; interactions are predominantly enforcement actions, not riotous behavior.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22",
+                "f23"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 38.0,
+              "f1": 38.5,
+              "f2": 39.5,
+              "f3": 40.0,
+              "f4": 40.5,
+              "f5": 41.0,
+              "f6": 42.0,
+              "f7": 42.5,
+              "f8": 43.0,
+              "f9": 44.5,
+              "f10": 45.0,
+              "f11": 46.0,
+              "f12": 47.0,
+              "f13": 47.5,
+              "f14": 48.5,
+              "f15": 49.5,
+              "f16": 51.0,
+              "f17": 52.0,
+              "f18": 52.5,
+              "f19": 53.5,
+              "f20": 54.0,
+              "f21": 54.5,
+              "f22": 55.0,
+              "f23": 57.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 5,
+                "t_start": 40.0,
+                "t_end": 41.2,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 42.0,
+                "t_end": 44.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 42.0,
+                "t_end": 55.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 53.0,
+                "t_end": 55.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 9,
+                "t_start": 53.0,
+                "t_end": 54.9,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [5, 9],\n      \"category\": \"Fighting\",\n      \"t_start\": 40.0,\n      \"t_end\": 41.2,\n      \"confidence\": 0.8,\n      \"description\": \"Multiple officers in riot gear are seen physically engaging and subduing a person on the ground near the crosswalk; others surround them while a bus is stopped nearby.\",\n      \"reason\": \"Frames f3–f5 show officers actively restraining an individual on the pavement with hands and batons; this constitutes mutual physical combat between officers and at least one person (not passive arrest), satisfying 'Fighting' per definition. Candidate 9 overlaps but starts later; merged because same incident.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\"]\n    },\n    {\n      \"source_candidate_ids\": [8],\n      \"category\": \"Abuse\",\n      \"t_start\": 53.0,\n      \"t_end\": 55.0,\n      \"confidence\": 0.7,\n      \"description\": \"Officers in riot gear are seen repeatedly striking a person who is on the ground and appears unable to resist, while others hold the person down.\",\n      \"reason\": \"In f19–f21, a person is pinned face-down while multiple officers strike with batons; the victim shows no capacity to defend or retaliate, meeting the 'helpless victim' criterion for Abuse. Distinct from earlier fighting due to posture and lack of resistance.\",\n      \"evidence_frame_ids\": [\"f19\", \"f20\", \"f21\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"Candidate 6 (42.0–44.0) claims Abuse, but frames f6–f8 show officers moving toward or surrounding a group without clear evidence of aggression against a helpless individual; activity appears preparatory or crowd-control, not abuse.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\"]\n    },\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"Candidate 7 labels the entire 42.0–55.5 interval as 'Riot', but no collective violent unrest (e.g., property destruction, large-scale clashes) is visible; only localized officer–individual confrontations occur, which are better classified as Fighting/Abuse when supported.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\", \"f23\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 38.0,
+              "f1": 38.5,
+              "f2": 39.5,
+              "f3": 40.0,
+              "f4": 40.5,
+              "f5": 41.0,
+              "f6": 42.0,
+              "f7": 42.5,
+              "f8": 43.0,
+              "f9": 44.5,
+              "f10": 45.0,
+              "f11": 46.0,
+              "f12": 47.0,
+              "f13": 47.5,
+              "f14": 48.5,
+              "f15": 49.5,
+              "f16": 51.0,
+              "f17": 52.0,
+              "f18": 52.5,
+              "f19": 53.5,
+              "f20": 54.0,
+              "f21": 54.5,
+              "f22": 55.0,
+              "f23": 57.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 5,
+                "t_start": 40.0,
+                "t_end": 41.2,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 42.0,
+                "t_end": 44.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 42.0,
+                "t_end": 55.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 53.0,
+                "t_end": 55.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 9,
+                "t_start": 53.0,
+                "t_end": 54.9,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [5],\n      \"category\": \"Fighting\",\n      \"t_start\": 40.0,\n      \"t_end\": 41.0,\n      \"confidence\": 0.7,\n      \"description\": \"In frames f3–f5, multiple officers in riot gear are actively engaging and subduing a person on the ground near the crosswalk; the individual appears to be resisting or moving while being restrained, indicating mutual physical combat.\",\n      \"reason\": \"Per definition, 'Fighting' requires mutual physical combat. In f3–f5, the person on the ground is not clearly helpless (e.g., limbs active, posture suggests resistance), and officers use batons/hands in dynamic engagement—consistent with fighting, not abuse. Candidate 5’s interval [40.0, 41.2] is supported only up to f5 (41.0); later frames show different dynamics. Candidate 9 starts at 53.0 and describes a distinct later incident; cannot be merged with candidate 5.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\"]\n    },\n    {\n      \"source_candidate_ids\": [8, 9],\n      \"category\": \"Abuse\",\n      \"t_start\": 53.5,\n      \"t_end\": 55.0,\n      \"confidence\": 0.8,\n      \"description\": \"From f19 to f22, officers in riot gear hold a person face-down on the pavement while striking with batons; the person shows no capacity to resist or defend, and is fully restrained by multiple officers.\",\n      \"reason\": \"The victim is pinned, immobile, and unable to retaliate—meeting the 'helpless victim' criterion for Abuse. Candidate 8 (53.0–55.0) and candidate 9 (53.0–54.9) both refer to this same incident; their intervals overlap and are fully contained within visible evidence (f19–f22). The earlier fighting (f3–f5) is separate: different location, time, and posture. 'Fighting' does not apply here due to lack of mutual combat.\",\n      \"evidence_frame_ids\": [\"f19\", \"f20\", \"f21\", \"f22\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"Candidate 6 (42.0–44.0) claims Abuse, but frames f6–f8 show officers advancing and forming lines amid a crowd, with no visible aggression against a helpless individual; activity is consistent with crowd control or preparation for arrest, not abuse.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\"]\n    },\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"Candidate 7 labels 42.0–55.5 as 'Riot', but no collective violent unrest (e.g., widespread property damage, large-group clashes, arson) is visible; only localized officer–individual interactions occur, which are classified separately when supported.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\", \"f23\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                5
+              ],
+              "category": "Fighting",
+              "t_start": 40.0,
+              "t_end": 41.0,
+              "confidence": 0.7,
+              "description": "In frames f3–f5, multiple officers in riot gear are actively engaging and subduing a person on the ground near the crosswalk; the individual appears to be resisting or moving while being restrained, indicating mutual physical combat.",
+              "reason": "Per definition, 'Fighting' requires mutual physical combat. In f3–f5, the person on the ground is not clearly helpless (e.g., limbs active, posture suggests resistance), and officers use batons/hands in dynamic engagement—consistent with fighting, not abuse. Candidate 5’s interval [40.0, 41.2] is supported only up to f5 (41.0); later frames show different dynamics. Candidate 9 starts at 53.0 and describes a distinct later incident; cannot be merged with candidate 5.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                8,
+                9
+              ],
+              "category": "Abuse",
+              "t_start": 53.5,
+              "t_end": 55.0,
+              "confidence": 0.8,
+              "description": "From f19 to f22, officers in riot gear hold a person face-down on the pavement while striking with batons; the person shows no capacity to resist or defend, and is fully restrained by multiple officers.",
+              "reason": "The victim is pinned, immobile, and unable to retaliate—meeting the 'helpless victim' criterion for Abuse. Candidate 8 (53.0–55.0) and candidate 9 (53.0–54.9) both refer to this same incident; their intervals overlap and are fully contained within visible evidence (f19–f22). The earlier fighting (f3–f5) is separate: different location, time, and posture. 'Fighting' does not apply here due to lack of mutual combat.",
+              "evidence_frame_ids": [
+                "f19",
+                "f20",
+                "f21",
+                "f22"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 6,
+              "reason": "Candidate 6 (42.0–44.0) claims Abuse, but frames f6–f8 show officers advancing and forming lines amid a crowd, with no visible aggression against a helpless individual; activity is consistent with crowd control or preparation for arrest, not abuse.",
+              "evidence_frame_ids": [
+                "f6",
+                "f7",
+                "f8"
+              ]
+            },
+            {
+              "candidate_id": 7,
+              "reason": "Candidate 7 labels 42.0–55.5 as 'Riot', but no collective violent unrest (e.g., widespread property damage, large-group clashes, arson) is visible; only localized officer–individual interactions occur, which are classified separately when supported.",
+              "evidence_frame_ids": [
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22",
+                "f23"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 4,
+        "source_ids": [
+          10,
+          11,
+          12,
+          13,
+          14
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 58.5,
+              "f1": 59.0,
+              "f2": 59.5,
+              "f3": 60.0,
+              "f4": 60.5,
+              "f5": 61.0,
+              "f6": 61.5,
+              "f7": 62.0,
+              "f8": 62.5,
+              "f9": 63.0,
+              "f10": 63.5,
+              "f11": 64.0,
+              "f12": 64.5,
+              "f13": 65.0,
+              "f14": 65.5,
+              "f15": 66.0,
+              "f16": 66.5,
+              "f17": 67.0,
+              "f18": 67.5,
+              "f19": 68.0,
+              "f20": 68.5,
+              "f21": 69.0,
+              "f22": 69.5,
+              "f23": 70.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 10,
+                "t_start": 60.5,
+                "t_end": 62.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 11,
+                "t_start": 61.5,
+                "t_end": 66.0,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 12,
+                "t_start": 64.5,
+                "t_end": 68.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 13,
+                "t_start": 65.0,
+                "t_end": 66.2,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 14,
+                "t_start": 67.5,
+                "t_end": 68.3,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [10],\n      \"category\": \"Abuse\",\n      \"t_start\": 60.5,\n      \"t_end\": 62.5,\n      \"confidence\": 0.9,\n      \"description\": \"Two officers in riot gear are seen subduing a person on the ground while others stand nearby; the person appears restrained and not resisting, with one officer holding them down and another raising a baton.\",\n      \"reason\": \"The individual is on the ground, surrounded by officers, with no indication of mutual combat or active resistance—consistent with abuse (aggression against a helpless victim) rather than fighting or riot. Visible in f4–f7.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    },\n    {\n      \"source_candidate_ids\": [11, 12, 13, 14],\n      \"category\": \"Riot\",\n      \"t_start\": 61.5,\n      \"t_end\": 68.0,\n      \"confidence\": 0.7,\n      \"description\": \"Multiple officers in riot gear engage with a crowd across the street; people scatter, some raise hands, and officers advance and form lines amid visible tension and movement, but no sustained violent clashes or property destruction are shown.\",\n      \"reason\": \"While there is collective unrest (crowd confrontation, police deployment, dispersal), the visible actions lack clear evidence of *violent* unrest (e.g., throwing objects, arson, widespread assault); however, the scale, coordination, and context (officers in full riot gear, crowd reaction, repeated advances) meet the threshold for 'Riot' per definition requiring *collective violent unrest*—and given the continuity from f6 through f19 showing escalating tension and group dynamics, this is best merged as one event. Note: confidence reduced due to absence of overt violence, but the pattern aligns with riot behavior per standard operational definitions in public order contexts.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 13,\n      \"reason\": \"Fighting requires mutual physical combat; the frames show only police subduing or confronting individuals, with no evidence of two parties exchanging blows or grappling reciprocally.\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\", \"f15\"]\n    },\n    {\n      \"candidate_id\": 14,\n      \"reason\": \"No visible mutual combat or exchange of force between individuals; officers are present and moving, but no fighting occurs in f18–f19.\",\n      \"evidence_frame_ids\": [\"f18\", \"f19\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 58.5,
+              "f1": 59.0,
+              "f2": 59.5,
+              "f3": 60.0,
+              "f4": 60.5,
+              "f5": 61.0,
+              "f6": 61.5,
+              "f7": 62.0,
+              "f8": 62.5,
+              "f9": 63.0,
+              "f10": 63.5,
+              "f11": 64.0,
+              "f12": 64.5,
+              "f13": 65.0,
+              "f14": 65.5,
+              "f15": 66.0,
+              "f16": 66.5,
+              "f17": 67.0,
+              "f18": 67.5,
+              "f19": 68.0,
+              "f20": 68.5,
+              "f21": 69.0,
+              "f22": 69.5,
+              "f23": 70.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 10,
+                "t_start": 60.5,
+                "t_end": 62.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 11,
+                "t_start": 61.5,
+                "t_end": 66.0,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 12,
+                "t_start": 64.5,
+                "t_end": 68.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 13,
+                "t_start": 65.0,
+                "t_end": 66.2,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 14,
+                "t_start": 67.5,
+                "t_end": 68.3,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [10],\n      \"category\": \"Abuse\",\n      \"t_start\": 60.5,\n      \"t_end\": 62.5,\n      \"confidence\": 0.85,\n      \"description\": \"Two officers in riot gear are restraining a person lying on the ground; the person is not resisting, and one officer holds them down while another raises a baton overhead.\",\n      \"reason\": \"The individual is prone and immobilized by multiple officers with no indication of active resistance or mutual combat—meeting the definition of Abuse (aggression against a helpless victim). Visible across f4–f7, with clearest evidence in f5–f6 where the person remains on the ground under control.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 11,\n      \"reason\": \"Riot requires collective violent unrest (e.g., widespread assault, property destruction, or coordinated violence); frames f6–f16 show police crowd control, dispersal, and individuals raising hands, but no sustained violent actions by the crowd or between groups.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    },\n    {\n      \"candidate_id\": 12,\n      \"reason\": \"Same as candidate 11: no evidence of collective violent unrest in f12–f19; officers advance and form lines, but crowd behavior is largely passive or evasive, not violent.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\"]\n    },\n    {\n      \"candidate_id\": 13,\n      \"reason\": \"Fighting requires mutual physical combat; frames f13–f15 show officers moving and crowd members standing or retreating, but no two individuals are engaged in reciprocal striking, grappling, or combat.\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\", \"f15\"]\n    },\n    {\n      \"candidate_id\": 14,\n      \"reason\": \"No visible fighting in f18–f19: officers are positioned and holding batons, but no exchange of force or mutual combat occurs; the scene shows post-subduing positioning and crowd observation.\",\n      \"evidence_frame_ids\": [\"f18\", \"f19\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                10
+              ],
+              "category": "Abuse",
+              "t_start": 60.5,
+              "t_end": 62.5,
+              "confidence": 0.85,
+              "description": "Two officers in riot gear are restraining a person lying on the ground; the person is not resisting, and one officer holds them down while another raises a baton overhead.",
+              "reason": "The individual is prone and immobilized by multiple officers with no indication of active resistance or mutual combat—meeting the definition of Abuse (aggression against a helpless victim). Visible across f4–f7, with clearest evidence in f5–f6 where the person remains on the ground under control.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 11,
+              "reason": "Riot requires collective violent unrest (e.g., widespread assault, property destruction, or coordinated violence); frames f6–f16 show police crowd control, dispersal, and individuals raising hands, but no sustained violent actions by the crowd or between groups.",
+              "evidence_frame_ids": [
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16"
+              ]
+            },
+            {
+              "candidate_id": 12,
+              "reason": "Same as candidate 11: no evidence of collective violent unrest in f12–f19; officers advance and form lines, but crowd behavior is largely passive or evasive, not violent.",
+              "evidence_frame_ids": [
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19"
+              ]
+            },
+            {
+              "candidate_id": 13,
+              "reason": "Fighting requires mutual physical combat; frames f13–f15 show officers moving and crowd members standing or retreating, but no two individuals are engaged in reciprocal striking, grappling, or combat.",
+              "evidence_frame_ids": [
+                "f13",
+                "f14",
+                "f15"
+              ]
+            },
+            {
+              "candidate_id": 14,
+              "reason": "No visible fighting in f18–f19: officers are positioned and holding batons, but no exchange of force or mutual combat occurs; the scene shows post-subduing positioning and crowd observation.",
+              "evidence_frame_ids": [
+                "f18",
+                "f19"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "5a82d0dd6e711938ee6c8e0ecf1c6f7fdb68cac4e5e95683ad672320f7156da9"
+}

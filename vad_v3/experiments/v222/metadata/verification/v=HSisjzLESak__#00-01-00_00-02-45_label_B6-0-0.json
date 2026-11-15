@@ -1,0 +1,217 @@
+{
+  "events": [
+    {
+      "t_start": 32.0,
+      "t_end": 39.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A red van enters from the right and collides with an orange dump truck turning left; debris is visible on the road afterward and both vehicles come to a stop.",
+      "source_candidate_ids": [
+        1,
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          32.0,
+          32.5,
+          33.0,
+          33.5,
+          34.0,
+          34.5,
+          35.0,
+          35.5,
+          36.0,
+          36.5,
+          37.0,
+          37.5,
+          38.0,
+          38.5,
+          39.0,
+          39.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18",
+          "f19"
+        ],
+        "reason": "From f4 onward, the red van appears and moves toward the dump truck; at f5–f6, contact occurs (visible spray/debris), and by f7–f10, both vehicles are stationary with damage evident (e.g., dump truck’s rear swing gate open, van angled abnormally). The two candidate intervals overlap and describe the same collision event; merged accordingly.",
+        "source_categories": [
+          "CarAccident",
+          "CarAccident"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 3,
+      "output_count": 1,
+      "groups": 2,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 26.0,
+              "f1": 26.5,
+              "f2": 27.0,
+              "f3": 27.5,
+              "f4": 28.0,
+              "f5": 28.5,
+              "f6": 29.0,
+              "f7": 29.5,
+              "f8": 30.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 28.0,
+                "t_end": 28.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No visible crash or vehicle collision occurs between f4 (28.0 s) and f5 (28.5 s); the orange truck continues moving forward normally, and no deformation, debris, or sudden deceleration is observed.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "No visible crash or vehicle collision occurs between f4 (28.0 s) and f5 (28.5 s); the orange truck continues moving forward normally, and no deformation, debris, or sudden deceleration is observed.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 30.0,
+              "f1": 30.5,
+              "f2": 31.0,
+              "f3": 31.5,
+              "f4": 32.0,
+              "f5": 32.5,
+              "f6": 33.0,
+              "f7": 33.5,
+              "f8": 34.0,
+              "f9": 34.5,
+              "f10": 35.0,
+              "f11": 35.5,
+              "f12": 36.0,
+              "f13": 36.5,
+              "f14": 37.0,
+              "f15": 37.5,
+              "f16": 38.0,
+              "f17": 38.5,
+              "f18": 39.0,
+              "f19": 39.5,
+              "f20": 40.0,
+              "f21": 40.5,
+              "f22": 41.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 32.0,
+                "t_end": 39.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 34.5,
+                "t_end": 35.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1, 2],\n      \"category\": \"CarAccident\",\n      \"t_start\": 32.0,\n      \"t_end\": 39.5,\n      \"confidence\": 0.95,\n      \"description\": \"A red van enters from the right and collides with an orange dump truck turning left; debris is visible on the road afterward and both vehicles come to a stop.\",\n      \"reason\": \"From f4 onward, the red van appears and moves toward the dump truck; at f5–f6, contact occurs (visible spray/debris), and by f7–f10, both vehicles are stationary with damage evident (e.g., dump truck’s rear swing gate open, van angled abnormally). The two candidate intervals overlap and describe the same collision event; merged accordingly.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1,
+                2
+              ],
+              "category": "CarAccident",
+              "t_start": 32.0,
+              "t_end": 39.5,
+              "confidence": 0.95,
+              "description": "A red van enters from the right and collides with an orange dump truck turning left; debris is visible on the road afterward and both vehicles come to a stop.",
+              "reason": "From f4 onward, the red van appears and moves toward the dump truck; at f5–f6, contact occurs (visible spray/debris), and by f7–f10, both vehicles are stationary with damage evident (e.g., dump truck’s rear swing gate open, van angled abnormally). The two candidate intervals overlap and describe the same collision event; merged accordingly.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

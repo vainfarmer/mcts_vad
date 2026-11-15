@@ -1,0 +1,280 @@
+{
+  "events": [
+    {
+      "t_start": 5.0,
+      "t_end": 10.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A sudden impact between vehicles at 5.0s produces sparks, smoke, and debris; the white car’s side window is shattered and blood-splattered by 8.5s, with interior view showing driver slumped and rear window also damaged.",
+      "source_candidate_ids": [
+        0,
+        1,
+        3,
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          5.0,
+          5.5,
+          6.0,
+          6.5,
+          8.5,
+          9.0,
+          9.5,
+          10.0,
+          10.5,
+          11.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16"
+        ],
+        "reason": "Frames f4–f7 show bright sparks and smoke consistent with metal-on-metal collision; f11–f15 show blood and shattered glass on the white car’s passenger-side window; f16–f20 show rear view with heavily damaged rear windshield and driver motionless—collectively indicating a single high-impact crash event, not explosion or shooting. Candidate 1 (Explosion) is subsumed: no blast wave or fireball, only localized sparks from impact. Candidates 0, 3, 4 all describe parts of the same crash sequence and are merged.",
+        "source_categories": [
+          "CarAccident",
+          "Explosion",
+          "CarAccident",
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 29.5,
+      "t_end": 31.5,
+      "anomaly_type": "Shooting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "Multiple bullet holes appear on a dark car surface in rapid succession, with visible spalling and deformation consistent with high-velocity impacts.",
+      "source_candidate_ids": [
+        5
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          30.0,
+          30.5,
+          31.0,
+          31.5
+        ],
+        "evidence_frame_ids": [
+          "f5",
+          "f6",
+          "f7",
+          "f8"
+        ],
+        "reason": "Frames f5–f8 show progressive appearance of distinct, irregular perforations with surrounding material ejection and blue-white flash artifacts typical of ballistic impact; no gun is visible but the pattern and timing strongly indicate repeated gunfire at the vehicle. The event begins at f5 (30.0 s) and stabilizes by f8 (31.5 s); f4 (29.5 s) shows the pre-impact state, so t_start = 29.5 is acceptable as onset.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 6,
+      "output_count": 2,
+      "groups": 2,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 3,
+      "relabeled": 1,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 3.0,
+              "f1": 3.5,
+              "f2": 4.0,
+              "f3": 4.5,
+              "f4": 5.0,
+              "f5": 5.5,
+              "f6": 6.0,
+              "f7": 6.5,
+              "f8": 7.0,
+              "f9": 7.5,
+              "f10": 8.0,
+              "f11": 8.5,
+              "f12": 9.0,
+              "f13": 9.5,
+              "f14": 10.0,
+              "f15": 10.5,
+              "f16": 11.0,
+              "f17": 11.5,
+              "f18": 12.0,
+              "f19": 12.5,
+              "f20": 13.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 5.0,
+                "t_end": 6.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 5.0,
+                "t_end": 5.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 7.5,
+                "t_end": 8.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 8.0,
+                "t_end": 10.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 10.0,
+                "t_end": 11.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1, 3, 4],\n      \"category\": \"CarAccident\",\n      \"t_start\": 5.0,\n      \"t_end\": 10.5,\n      \"confidence\": 0.95,\n      \"description\": \"A sudden impact between vehicles at 5.0s produces sparks, smoke, and debris; the white car’s side window is shattered and blood-splattered by 8.5s, with interior view showing driver slumped and rear window also damaged.\",\n      \"reason\": \"Frames f4–f7 show bright sparks and smoke consistent with metal-on-metal collision; f11–f15 show blood and shattered glass on the white car’s passenger-side window; f16–f20 show rear view with heavily damaged rear windshield and driver motionless—collectively indicating a single high-impact crash event, not explosion or shooting. Candidate 1 (Explosion) is subsumed: no blast wave or fireball, only localized sparks from impact. Candidates 0, 3, 4 all describe parts of the same crash sequence and are merged.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"No visible firearm, muzzle flash, or bullet impacts; the bright light in f9–f10 originates from outside the vehicle (likely the crash flash/sparks), not from inside; driver’s posture is consistent with reaction to impact, not firing.\",\n      \"evidence_frame_ids\": [\"f8\", \"f9\", \"f10\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1,
+                3,
+                4
+              ],
+              "category": "CarAccident",
+              "t_start": 5.0,
+              "t_end": 10.5,
+              "confidence": 0.95,
+              "description": "A sudden impact between vehicles at 5.0s produces sparks, smoke, and debris; the white car’s side window is shattered and blood-splattered by 8.5s, with interior view showing driver slumped and rear window also damaged.",
+              "reason": "Frames f4–f7 show bright sparks and smoke consistent with metal-on-metal collision; f11–f15 show blood and shattered glass on the white car’s passenger-side window; f16–f20 show rear view with heavily damaged rear windshield and driver motionless—collectively indicating a single high-impact crash event, not explosion or shooting. Candidate 1 (Explosion) is subsumed: no blast wave or fireball, only localized sparks from impact. Candidates 0, 3, 4 all describe parts of the same crash sequence and are merged.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "No visible firearm, muzzle flash, or bullet impacts; the bright light in f9–f10 originates from outside the vehicle (likely the crash flash/sparks), not from inside; driver’s posture is consistent with reaction to impact, not firing.",
+              "evidence_frame_ids": [
+                "f8",
+                "f9",
+                "f10"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 27.5,
+              "f1": 28.0,
+              "f2": 28.5,
+              "f3": 29.0,
+              "f4": 29.5,
+              "f5": 30.0,
+              "f6": 30.5,
+              "f7": 31.0,
+              "f8": 31.5,
+              "f9": 32.0,
+              "f10": 32.5,
+              "f11": 33.0,
+              "f12": 33.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 5,
+                "t_start": 29.5,
+                "t_end": 32.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [5],\n      \"category\": \"Shooting\",\n      \"t_start\": 29.5,\n      \"t_end\": 31.5,\n      \"confidence\": 0.95,\n      \"description\": \"Multiple bullet holes appear on a dark car surface in rapid succession, with visible spalling and deformation consistent with high-velocity impacts.\",\n      \"reason\": \"Frames f5–f8 show progressive appearance of distinct, irregular perforations with surrounding material ejection and blue-white flash artifacts typical of ballistic impact; no gun is visible but the pattern and timing strongly indicate repeated gunfire at the vehicle. The event begins at f5 (30.0 s) and stabilizes by f8 (31.5 s); f4 (29.5 s) shows the pre-impact state, so t_start = 29.5 is acceptable as onset.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                5
+              ],
+              "category": "Shooting",
+              "t_start": 29.5,
+              "t_end": 31.5,
+              "confidence": 0.95,
+              "description": "Multiple bullet holes appear on a dark car surface in rapid succession, with visible spalling and deformation consistent with high-velocity impacts.",
+              "reason": "Frames f5–f8 show progressive appearance of distinct, irregular perforations with surrounding material ejection and blue-white flash artifacts typical of ballistic impact; no gun is visible but the pattern and timing strongly indicate repeated gunfire at the vehicle. The event begins at f5 (30.0 s) and stabilizes by f8 (31.5 s); f4 (29.5 s) shows the pre-impact state, so t_start = 29.5 is acceptable as onset.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

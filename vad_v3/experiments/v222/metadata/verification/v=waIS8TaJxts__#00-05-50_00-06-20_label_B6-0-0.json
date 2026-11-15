@@ -1,0 +1,216 @@
+{
+  "events": [
+    {
+      "t_start": 18.0,
+      "t_end": 22.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "Vehicle veers off paved road onto dirt shoulder at f4, kicking up massive dust cloud that obscures view through f13; consistent with loss of control and collision with roadside terrain.",
+      "source_candidate_ids": [
+        1,
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          18.0,
+          18.5,
+          19.0,
+          19.5,
+          20.0,
+          20.5,
+          21.0,
+          21.5,
+          22.0,
+          22.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13"
+        ],
+        "reason": "f4 shows sudden dust eruption at left edge of road coinciding with vehicle’s trajectory shift; f5–f13 show progressive dust cloud engulfing windshield, indicating sustained impact/roll on unpaved surface—no other vehicle visible, no explosion signature (no fire, blast wave, or debris pattern), and motion is consistent with single-vehicle crash.",
+        "source_categories": [
+          "CarAccident",
+          "CarAccident"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 4,
+      "output_count": 1,
+      "groups": 2,
+      "rejected": 2,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 0.0,
+                "t_end": 1.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No crash or collision is visible in frames f0–f2; vehicles are moving normally, with a black SUV in left lane and a dark hatchback pulled over on the shoulder—no impact, deformation, or skid marks indicating an accident.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "No crash or collision is visible in frames f0–f2; vehicles are moving normally, with a black SUV in left lane and a dark hatchback pulled over on the shoulder—no impact, deformation, or skid marks indicating an accident.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1,
+          2,
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 16.0,
+              "f1": 16.5,
+              "f2": 17.0,
+              "f3": 17.5,
+              "f4": 18.0,
+              "f5": 18.5,
+              "f6": 19.0,
+              "f7": 19.5,
+              "f8": 20.0,
+              "f9": 20.5,
+              "f10": 21.0,
+              "f11": 21.5,
+              "f12": 22.0,
+              "f13": 22.5,
+              "f14": 23.0,
+              "f15": 23.5,
+              "f16": 24.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 18.0,
+                "t_end": 19.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 18.0,
+                "t_end": 22.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 20.0,
+                "t_end": 21.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1, 2],\n      \"category\": \"CarAccident\",\n      \"t_start\": 18.0,\n      \"t_end\": 22.5,\n      \"confidence\": 0.95,\n      \"description\": \"Vehicle veers off paved road onto dirt shoulder at f4, kicking up massive dust cloud that obscures view through f13; consistent with loss of control and collision with roadside terrain.\",\n      \"reason\": \"f4 shows sudden dust eruption at left edge of road coinciding with vehicle’s trajectory shift; f5–f13 show progressive dust cloud engulfing windshield, indicating sustained impact/roll on unpaved surface—no other vehicle visible, no explosion signature (no fire, blast wave, or debris pattern), and motion is consistent with single-vehicle crash.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"No blast, fire, or rapid expansion characteristic of explosion; the dust cloud is gradual, ground-sourced, and consistent with a vehicle skidding/rolling on dry soil—not an explosive event.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1,
+                2
+              ],
+              "category": "CarAccident",
+              "t_start": 18.0,
+              "t_end": 22.5,
+              "confidence": 0.95,
+              "description": "Vehicle veers off paved road onto dirt shoulder at f4, kicking up massive dust cloud that obscures view through f13; consistent with loss of control and collision with roadside terrain.",
+              "reason": "f4 shows sudden dust eruption at left edge of road coinciding with vehicle’s trajectory shift; f5–f13 show progressive dust cloud engulfing windshield, indicating sustained impact/roll on unpaved surface—no other vehicle visible, no explosion signature (no fire, blast wave, or debris pattern), and motion is consistent with single-vehicle crash.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 3,
+              "reason": "No blast, fire, or rapid expansion characteristic of explosion; the dust cloud is gradual, ground-sourced, and consistent with a vehicle skidding/rolling on dry soil—not an explosive event.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

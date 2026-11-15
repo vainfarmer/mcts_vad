@@ -1,0 +1,133 @@
+{
+  "events": [
+    {
+      "t_start": 17.0,
+      "t_end": 18.0,
+      "anomaly_type": "Explosion",
+      "confidence": 1.0,
+      "coarse_score": 1.0,
+      "description": "A bright flash at 17.0s rapidly expands into a large fireball with debris and smoke by 18.0s, originating near a structure and vehicle.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 1.0,
+        "evidence_times": [
+          17.0,
+          17.5,
+          18.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "Frames f4–f6 show a sudden intense light (f4), then expanding blast with sparks and fragmentation (f5), culminating in a large fireball and displaced debris (f6), satisfying the definition of an explosion (blast event).",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 2,
+      "output_count": 1,
+      "groups": 1,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 15.0,
+              "f1": 15.5,
+              "f2": 16.0,
+              "f3": 16.5,
+              "f4": 17.0,
+              "f5": 17.5,
+              "f6": 18.0,
+              "f7": 18.5,
+              "f8": 19.0,
+              "f9": 19.5,
+              "f10": 20.0,
+              "f11": 20.5,
+              "f12": 21.0,
+              "f13": 21.5,
+              "f14": 22.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 16.8,
+                "t_end": 18.3,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 19.0,
+                "t_end": 20.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Explosion\",\n      \"t_start\": 17.0,\n      \"t_end\": 18.0,\n      \"confidence\": 1.0,\n      \"description\": \"A bright flash at 17.0s rapidly expands into a large fireball with debris and smoke by 18.0s, originating near a structure and vehicle.\",\n      \"reason\": \"Frames f4–f6 show a sudden intense light (f4), then expanding blast with sparks and fragmentation (f5), culminating in a large fireball and displaced debris (f6), satisfying the definition of an explosion (blast event).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"No visible shooting occurs: soldiers are seen running away from the explosion (f7–f12), carrying weapons but not discharging them; no muzzle flashes, projectiles, or impacts are visible.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Explosion",
+              "t_start": 17.0,
+              "t_end": 18.0,
+              "confidence": 1.0,
+              "description": "A bright flash at 17.0s rapidly expands into a large fireball with debris and smoke by 18.0s, originating near a structure and vehicle.",
+              "reason": "Frames f4–f6 show a sudden intense light (f4), then expanding blast with sparks and fragmentation (f5), culminating in a large fireball and displaced debris (f6), satisfying the definition of an explosion (blast event).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "No visible shooting occurs: soldiers are seen running away from the explosion (f7–f12), carrying weapons but not discharging them; no muzzle flashes, projectiles, or impacts are visible.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

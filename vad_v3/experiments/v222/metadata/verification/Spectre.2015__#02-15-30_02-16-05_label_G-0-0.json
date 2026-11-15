@@ -1,0 +1,633 @@
+{
+  "events": [
+    {
+      "t_start": 3.3,
+      "t_end": 4.2,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A vehicle is seen airborne and descending toward the river after launching off a bridge, with visible motion blur and trajectory consistent with a crash event.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          3.0,
+          3.5,
+          4.0,
+          4.5
+        ],
+        "evidence_frame_ids": [
+          "f3",
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "Frames f3–f6 show a dark object (vehicle) leaving the bridge deck, arcing over the water, and impacting or near-impacting the surface; this matches the definition of CarAccident (crash), not ordinary driving.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 12.3,
+      "t_end": 13.8,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A vehicle (appearing as a large, dark, armored car or transport) loses control on a bridge at night, skids, and impacts the barrier, producing sparks and debris (f4–f7).",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          12.5,
+          13.0,
+          13.5,
+          14.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7"
+        ],
+        "reason": "Frames f4–f7 show a fast-moving vehicle veering, scraping against a railing (sparks in f5, f7), then lifting and rotating mid-air (f6), consistent with a high-speed crash—not controlled maneuvering. The candidate’s interval (12.3–13.8) aligns with f4 (12.5) through f7 (14.0), and the visible physics match a crash event.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 15.0,
+      "t_end": 15.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.8,
+      "coarse_score": 0.8,
+      "description": "A large vehicle (possibly a bus or armored vehicle) is seen low to the ground, tilted and emitting sparks at impact, consistent with a crash or hard landing.",
+      "source_candidate_ids": [
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.8,
+        "evidence_times": [
+          15.0,
+          15.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "f4 shows the vehicle descending near ground level with sparks; f5 shows it settled on the road with visible deformation and debris, indicating a collision event—not controlled landing—within the candidate interval.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 18.0,
+      "t_end": 20.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A vehicle (helicopter or heavily modified car) strikes a bridge railing, becomes airborne, and crashes onto the road below, with visible deformation, debris, and post-impact fire.",
+      "source_candidate_ids": [
+        3,
+        5
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 3,
+        "event_id": 1,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          18.0,
+          18.5,
+          19.0,
+          19.5,
+          20.0,
+          20.5
+        ],
+        "evidence_frame_ids": [
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8"
+        ],
+        "reason": "f3 shows the vehicle approaching and contacting the railing; f4–f5 capture the explosion triggered by impact; f6–f8 show the vehicle mid-air, flipping, and wrecked on the road—this is a single continuous crash sequence. Candidates 3 and 5 describe overlapping phases of the same event; merged accordingly. The explosion (f4–f5) is a *consequence* of the accident, not a separate event per taxonomy rules (only one category per physical event; CarAccident encompasses impact-induced explosion if part of crash dynamics).",
+        "source_categories": [
+          "CarAccident",
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 18.5,
+      "t_end": 19.0,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A sudden, intense flash with flying debris and rapid fire expansion occurs at the vehicle on the bridge, consistent with a high-energy blast.",
+      "source_candidate_ids": [
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 3,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          18.5,
+          19.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "Frames f4–f5 show instantaneous overexposure, fragmentation, and shockwave-like expansion—definitive hallmarks of an explosion; f6 shows the immediate aftermath (vehicle airborne), confirming the blast occurred within 18.5–19.0 s. Candidate 6’s claimed explosion at 21.0–22.0 is not supported: f9–f11 show only sustained fire/smoke from wreckage, no secondary blast.",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 10,
+      "output_count": 5,
+      "groups": 5,
+      "rejected": 4,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 1.5,
+              "f1": 2.0,
+              "f2": 2.5,
+              "f3": 3.0,
+              "f4": 3.5,
+              "f5": 4.0,
+              "f6": 4.5,
+              "f7": 5.0,
+              "f8": 5.5,
+              "f9": 6.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 3.3,
+                "t_end": 4.2,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"CarAccident\",\n      \"t_start\": 3.3,\n      \"t_end\": 4.2,\n      \"confidence\": 0.9,\n      \"description\": \"A vehicle is seen airborne and descending toward the river after launching off a bridge, with visible motion blur and trajectory consistent with a crash event.\",\n      \"reason\": \"Frames f3–f6 show a dark object (vehicle) leaving the bridge deck, arcing over the water, and impacting or near-impacting the surface; this matches the definition of CarAccident (crash), not ordinary driving.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "CarAccident",
+              "t_start": 3.3,
+              "t_end": 4.2,
+              "confidence": 0.9,
+              "description": "A vehicle is seen airborne and descending toward the river after launching off a bridge, with visible motion blur and trajectory consistent with a crash event.",
+              "reason": "Frames f3–f6 show a dark object (vehicle) leaving the bridge deck, arcing over the water, and impacting or near-impacting the surface; this matches the definition of CarAccident (crash), not ordinary driving.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 10.5,
+              "f1": 11.0,
+              "f2": 11.5,
+              "f3": 12.0,
+              "f4": 12.5,
+              "f5": 13.0,
+              "f6": 13.5,
+              "f7": 14.0,
+              "f8": 14.5,
+              "f9": 15.0,
+              "f10": 15.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 12.3,
+                "t_end": 13.8,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"CarAccident\",\n      \"t_start\": 12.3,\n      \"t_end\": 13.8,\n      \"confidence\": 0.9,\n      \"description\": \"A vehicle (appearing as a large, dark, armored car or transport) loses control on a bridge at night, skids, and impacts the barrier, producing sparks and debris (f4–f7).\",\n      \"reason\": \"Frames f4–f7 show a fast-moving vehicle veering, scraping against a railing (sparks in f5, f7), then lifting and rotating mid-air (f6), consistent with a high-speed crash—not controlled maneuvering. The candidate’s interval (12.3–13.8) aligns with f4 (12.5) through f7 (14.0), and the visible physics match a crash event.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "CarAccident",
+              "t_start": 12.3,
+              "t_end": 13.8,
+              "confidence": 0.9,
+              "description": "A vehicle (appearing as a large, dark, armored car or transport) loses control on a bridge at night, skids, and impacts the barrier, producing sparks and debris (f4–f7).",
+              "reason": "Frames f4–f7 show a fast-moving vehicle veering, scraping against a railing (sparks in f5, f7), then lifting and rotating mid-air (f6), consistent with a high-speed crash—not controlled maneuvering. The candidate’s interval (12.3–13.8) aligns with f4 (12.5) through f7 (14.0), and the visible physics match a crash event.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 13.0,
+              "f1": 13.5,
+              "f2": 14.0,
+              "f3": 14.5,
+              "f4": 15.0,
+              "f5": 15.5,
+              "f6": 16.0,
+              "f7": 16.5,
+              "f8": 17.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 15.0,
+                "t_end": 15.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"CarAccident\",\n      \"t_start\": 15.0,\n      \"t_end\": 15.5,\n      \"confidence\": 0.8,\n      \"description\": \"A large vehicle (possibly a bus or armored vehicle) is seen low to the ground, tilted and emitting sparks at impact, consistent with a crash or hard landing.\",\n      \"reason\": \"f4 shows the vehicle descending near ground level with sparks; f5 shows it settled on the road with visible deformation and debris, indicating a collision event—not controlled landing—within the candidate interval.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2
+              ],
+              "category": "CarAccident",
+              "t_start": 15.0,
+              "t_end": 15.5,
+              "confidence": 0.8,
+              "description": "A large vehicle (possibly a bus or armored vehicle) is seen low to the ground, tilted and emitting sparks at impact, consistent with a crash or hard landing.",
+              "reason": "f4 shows the vehicle descending near ground level with sparks; f5 shows it settled on the road with visible deformation and debris, indicating a collision event—not controlled landing—within the candidate interval.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 16.5,
+              "f1": 17.0,
+              "f2": 17.5,
+              "f3": 18.0,
+              "f4": 18.5,
+              "f5": 19.0,
+              "f6": 19.5,
+              "f7": 20.0,
+              "f8": 20.5,
+              "f9": 21.0,
+              "f10": 21.5,
+              "f11": 22.5,
+              "f12": 23.0,
+              "f13": 23.5,
+              "f14": 24.0,
+              "f15": 25.0,
+              "f16": 25.5,
+              "f17": 26.0,
+              "f18": 26.5,
+              "f19": 27.0,
+              "f20": 28.0,
+              "f21": 28.5,
+              "f22": 29.0,
+              "f23": 30.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 18.5,
+                "t_end": 21.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 18.5,
+                "t_end": 19.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 20.0,
+                "t_end": 23.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 21.0,
+                "t_end": 22.0,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 24.0,
+                "t_end": 27.6,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 27.5,
+                "t_end": 28.7,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4, 6],\n      \"category\": \"Explosion\",\n      \"t_start\": 18.5,\n      \"t_end\": 19.5,\n      \"confidence\": 0.95,\n      \"description\": \"A sudden bright flash with debris and shockwave propagating outward from a vehicle on a bridge, consistent with a high-energy blast.\",\n      \"reason\": \"Frames f4–f5 show instantaneous overexposure, flying fragments, and rapid expansion of fire/gas—hallmarks of an explosion; f6 shows aftermath (vehicle airborne), confirming the blast occurred at ~18.5–19.0 s. Candidate 6’s claimed explosion at 21.0–22.0 is actually sustained fire/smoke from post-blast wreckage (f9–f11), not a second blast.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"source_candidate_ids\": [3, 5],\n      \"category\": \"CarAccident\",\n      \"t_start\": 18.0,\n      \"t_end\": 20.5,\n      \"confidence\": 0.9,\n      \"description\": \"A vehicle (appearing to be a helicopter or heavily modified car) impacts a bridge railing, flips, and crashes onto the road below, with visible deformation and debris.\",\n      \"reason\": \"f3 shows the vehicle approaching the railing; f4–f5 are the explosion triggered by impact; f6–f8 show the vehicle mid-air and then wrecked on the road—this is a single crash sequence. Candidates 3 and 5 describe overlapping parts of the same accident; merged accordingly.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    },\n    {\n      \"source_candidate_ids\": [7],\n      \"category\": \"Abuse\",\n      \"t_start\": 24.0,\n      \"t_end\": 27.6,\n      \"confidence\": 0.7,\n      \"description\": \"A man lies on his back in a confined space, initially motionless with eyes closed (f14–f16); he then opens his eyes, moves his head, and raises an arm (f17–f19), suggesting he was incapacitated and is now regaining awareness—no visible aggressor or ongoing contact.\",\n      \"reason\": \"No evidence of active aggression, restraint, or perpetrator; the man’s movements indicate recovery, not abuse. However, the prior context (explosion/crash) and his injuries (blood in f20–f21) suggest he was rendered helpless *by* the accident, and the interval may reflect post-impact vulnerability. Since no aggressor is visible and no force is applied during f14–f19, strict definition of 'Abuse' (aggression against a helpless victim) is unmet—but the hypothesis is plausible given injury and immobility. Confidence lowered due to lack of visible perpetrator/contact.\",\n      \"evidence_frame_ids\": [\"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\"]\n    },\n    {\n      \"source_candidate_ids\": [8],\n      \"category\": \"Fighting\",\n      \"t_start\": 27.5,\n      \"t_end\": 28.7,\n      \"confidence\": 0.2,\n      \"description\": \"A man with facial blood appears alert and looks around (f20–f21); no opponent, physical contact, or mutual combat is visible.\",\n      \"reason\": \"Fighting requires mutual physical combat; only one person is visible, with no signs of active struggle. Blood may result from prior accident (f3–f8), not current fighting. Category unsupported; retained as low-confidence event only because candidate insists on it—but evidence contradicts.\"\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"Frames f9–f11 show burning wreckage and smoke, not a new explosion; the only blast occurs at f4–f5.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\", \"f11\"]\n    },\n    {\n      \"candidate_id\": 8,\n      \"reason\": \"No second person, no physical engagement, no defensive/offensive posture—only a wounded man looking around; insufficient for Fighting.\",\n      \"evidence_frame_ids\": [\"f20\", \"f21\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"Man is injured and initially immobile (f14–f16), then recovers (f17–f19); however, no aggressor or active mistreatment is visible, so Abuse cannot be confirmed—may be post-accident unconsciousness rather than intentional harm.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 16.5,
+              "f1": 17.0,
+              "f2": 17.5,
+              "f3": 18.0,
+              "f4": 18.5,
+              "f5": 19.0,
+              "f6": 19.5,
+              "f7": 20.0,
+              "f8": 20.5,
+              "f9": 21.0,
+              "f10": 21.5,
+              "f11": 22.5,
+              "f12": 23.0,
+              "f13": 23.5,
+              "f14": 24.0,
+              "f15": 25.0,
+              "f16": 25.5,
+              "f17": 26.0,
+              "f18": 26.5,
+              "f19": 27.0,
+              "f20": 28.0,
+              "f21": 28.5,
+              "f22": 29.0,
+              "f23": 30.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 18.5,
+                "t_end": 21.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 18.5,
+                "t_end": 19.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 20.0,
+                "t_end": 23.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 21.0,
+                "t_end": 22.0,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 24.0,
+                "t_end": 27.6,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 27.5,
+                "t_end": 28.7,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"Explosion\",\n      \"t_start\": 18.5,\n      \"t_end\": 19.0,\n      \"confidence\": 0.95,\n      \"description\": \"A sudden, intense flash with flying debris and rapid fire expansion occurs at the vehicle on the bridge, consistent with a high-energy blast.\",\n      \"reason\": \"Frames f4–f5 show instantaneous overexposure, fragmentation, and shockwave-like expansion—definitive hallmarks of an explosion; f6 shows the immediate aftermath (vehicle airborne), confirming the blast occurred within 18.5–19.0 s. Candidate 6’s claimed explosion at 21.0–22.0 is not supported: f9–f11 show only sustained fire/smoke from wreckage, no secondary blast.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    },\n    {\n      \"source_candidate_ids\": [3, 5],\n      \"category\": \"CarAccident\",\n      \"t_start\": 18.0,\n      \"t_end\": 20.5,\n      \"confidence\": 0.95,\n      \"description\": \"A vehicle (helicopter or heavily modified car) strikes a bridge railing, becomes airborne, and crashes onto the road below, with visible deformation, debris, and post-impact fire.\",\n      \"reason\": \"f3 shows the vehicle approaching and contacting the railing; f4–f5 capture the explosion triggered by impact; f6–f8 show the vehicle mid-air, flipping, and wrecked on the road—this is a single continuous crash sequence. Candidates 3 and 5 describe overlapping phases of the same event; merged accordingly. The explosion (f4–f5) is a *consequence* of the accident, not a separate event per taxonomy rules (only one category per physical event; CarAccident encompasses impact-induced explosion if part of crash dynamics).\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"Frames f9–f13 show burning wreckage and smoke without any new blast wave, fragmentation, or sudden energy release; this is post-impact fire, not an explosion.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\", \"f11\", \"f12\", \"f13\"]\n    },\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"Frames f14–f19 show a man lying still then regaining awareness with no visible aggressor, restraint, or active mistreatment; Abuse requires observable aggression against a helpless victim, which is absent.\",\n      \"evidence_frame_ids\": [\"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\"]\n    },\n    {\n      \"candidate_id\": 8,\n      \"reason\": \"Frames f20–f21 show a single injured man looking around; no second person, physical contact, or mutual combat is visible, so Fighting is unsupported.\",\n      \"evidence_frame_ids\": [\"f20\", \"f21\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                4
+              ],
+              "category": "Explosion",
+              "t_start": 18.5,
+              "t_end": 19.0,
+              "confidence": 0.95,
+              "description": "A sudden, intense flash with flying debris and rapid fire expansion occurs at the vehicle on the bridge, consistent with a high-energy blast.",
+              "reason": "Frames f4–f5 show instantaneous overexposure, fragmentation, and shockwave-like expansion—definitive hallmarks of an explosion; f6 shows the immediate aftermath (vehicle airborne), confirming the blast occurred within 18.5–19.0 s. Candidate 6’s claimed explosion at 21.0–22.0 is not supported: f9–f11 show only sustained fire/smoke from wreckage, no secondary blast.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                3,
+                5
+              ],
+              "category": "CarAccident",
+              "t_start": 18.0,
+              "t_end": 20.5,
+              "confidence": 0.95,
+              "description": "A vehicle (helicopter or heavily modified car) strikes a bridge railing, becomes airborne, and crashes onto the road below, with visible deformation, debris, and post-impact fire.",
+              "reason": "f3 shows the vehicle approaching and contacting the railing; f4–f5 capture the explosion triggered by impact; f6–f8 show the vehicle mid-air, flipping, and wrecked on the road—this is a single continuous crash sequence. Candidates 3 and 5 describe overlapping phases of the same event; merged accordingly. The explosion (f4–f5) is a *consequence* of the accident, not a separate event per taxonomy rules (only one category per physical event; CarAccident encompasses impact-induced explosion if part of crash dynamics).",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 6,
+              "reason": "Frames f9–f13 show burning wreckage and smoke without any new blast wave, fragmentation, or sudden energy release; this is post-impact fire, not an explosion.",
+              "evidence_frame_ids": [
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13"
+              ]
+            },
+            {
+              "candidate_id": 7,
+              "reason": "Frames f14–f19 show a man lying still then regaining awareness with no visible aggressor, restraint, or active mistreatment; Abuse requires observable aggression against a helpless victim, which is absent.",
+              "evidence_frame_ids": [
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19"
+              ]
+            },
+            {
+              "candidate_id": 8,
+              "reason": "Frames f20–f21 show a single injured man looking around; no second person, physical contact, or mutual combat is visible, so Fighting is unsupported.",
+              "evidence_frame_ids": [
+                "f20",
+                "f21"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 4,
+        "source_ids": [
+          9
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 29.0,
+              "f1": 29.5,
+              "f2": 30.0,
+              "f3": 30.5,
+              "f4": 31.0,
+              "f5": 31.5,
+              "f6": 32.0,
+              "f7": 32.5,
+              "f8": 33.0,
+              "f9": 33.5,
+              "f10": 34.0,
+              "f11": 34.5,
+              "f12": 35.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 9,
+                "t_start": 31.0,
+                "t_end": 33.9,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 9,\n      \"reason\": \"No explosion (blast wave, rapid expansion, debris ejection) is visible; instead, sustained fire appears inside a vehicle window from f5 onward, consistent with burning, not an explosion.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 9,
+              "reason": "No explosion (blast wave, rapid expansion, debris ejection) is visible; instead, sustained fire appears inside a vehicle window from f5 onward, consistent with burning, not an explosion.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

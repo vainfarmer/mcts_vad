@@ -1,0 +1,481 @@
+{
+  "events": [
+    {
+      "t_start": 33.0,
+      "t_end": 35.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "A car’s windshield is shattered from impact, interior shows debris and distortion consistent with a crash or violent collision.",
+      "source_candidate_ids": [
+        4,
+        5
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 1,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          33.0,
+          33.5,
+          34.0,
+          34.5
+        ],
+        "evidence_frame_ids": [
+          "f6",
+          "f7",
+          "f8",
+          "f9"
+        ],
+        "reason": "f6–f9 show progressive windshield shattering, interior disarray, and external view of damaged car (f9); no visible driver control or intentional act—consistent with accident rather than deliberate destruction; candidate 4 and 5 both cover this interval and are merged.",
+        "source_categories": [
+          "CarAccident",
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 41.0,
+      "t_end": 43.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "Multiple individuals in white shirts swing bat-like objects at a car while others engage in close physical struggle near the vehicle.",
+      "source_candidate_ids": [
+        10
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          41.5,
+          42.0,
+          42.5,
+          43.0,
+          43.5
+        ],
+        "evidence_frame_ids": [
+          "f17",
+          "f18",
+          "f19",
+          "f20",
+          "f21"
+        ],
+        "reason": "Visible mutual physical combat among several people (e.g., f17–f21): swinging weapons, grappling, and coordinated assault on the car and occupants; meets 'Fighting' definition (mutual physical combat), not Riot (no collective unrest beyond this localized fight).",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 46.0,
+      "t_end": 47.2,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A car windshield is severely cracked (f4), and a person is seen inside the driver’s seat with the door open (f5–f6), consistent with a recent collision.",
+      "source_candidate_ids": [
+        11
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          46.0,
+          46.5,
+          47.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "The shattered windshield in f4 and the open driver’s door with occupant visible in f5–f6 indicate a crash event; no evidence of intentional damage or non-accidental cause is present. The candidate interval [46.0, 47.2] aligns with f4 (46.0) through f6 (47.0), where the aftermath is observed.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 12,
+      "output_count": 3,
+      "groups": 3,
+      "rejected": 8,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 24.5,
+              "f1": 25.0,
+              "f2": 25.5,
+              "f3": 26.0,
+              "f4": 26.5,
+              "f5": 27.0,
+              "f6": 27.5,
+              "f7": 28.0,
+              "f8": 28.5,
+              "f9": 29.0,
+              "f10": 29.5,
+              "f11": 30.0,
+              "f12": 30.5,
+              "f13": 31.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 26.3,
+                "t_end": 27.8,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 28.2,
+                "t_end": 29.2,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Fighting\",\n      \"t_start\": 26.0,\n      \"t_end\": 27.5,\n      \"confidence\": 0.9,\n      \"description\": \"A man in a dark suit swings a bat-like object toward a car while another man observes; motion blur and posture indicate aggressive striking motion.\",\n      \"reason\": \"Frames f3–f6 show a man actively swinging a weapon at a vehicle in a confined space, with dynamic motion consistent with assaultive action; no mutual combat is visible, but the act qualifies as Fighting per definition requiring mutual physical combat only if both parties engage—here only one aggressor is visible, yet the category 'Fighting' in this taxonomy appears to be used broadly for violent physical confrontation (including unilateral attack on a person or vehicle in context of conflict). However, re-evaluating: the definition explicitly states 'Fighting requires mutual physical combat'; since only one person is acting and the target is a car (not a person), this is not Fighting. Correction: this is not Fighting. Reassessing categories: none of the allowed categories fit a solo attack on a car unless it causes a CarAccident. The car is stationary (f3 shows white sedan parked in garage), and the impact is on its window (f7 shows shattered windshield). No crash occurs. Thus, this is not CarAccident (requires crash), not Shooting, etc. Therefore, candidate 0 must be rejected. Wait—re-read instruction: 'Fighting requires mutual physical combat'; here no second combatant is visible, so cannot be Fighting. So candidate 0 is invalid. Let’s instead check if any event fits allowed categories. f7–f9 show shattered windshield and interior view post-impact; no vehicle motion or collision with another object—so not CarAccident. f10–f13 show occupant shouting commands; no violence visible. Thus, no event matches allowed categories. So all candidates rejected or uncertain? Candidate 1: t_start 28.2–29.2, unverified 'CarAccident'. Evidence: f7 (shattered windshield from inside), f8 (blurry interior, possibly sudden movement), f9 (cracked windshield with rearview mirror askew). But no evidence of collision with another object, vehicle motion, or crash dynamics—just damage to windshield likely from internal impact (bat strike in f3–f6). Since CarAccident requires a crash (collision between vehicles or with fixed object causing loss of control/collision), and the damage appears inflicted deliberately from outside/inside without vehicle movement, this is not a CarAccident. Therefore candidate 1 is also invalid. No supported events. So events = [], rejected = [0,1].\",\n      \"evidence_frame_ids\": []\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Fighting requires mutual physical combat; only one person is seen swinging a weapon at a stationary car, with no opponent engaging—thus does not satisfy definition.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"CarAccident requires a crash (collision causing vehicle impact/movement); the shattered windshield (f7, f9) results from deliberate strike (f3–f6), not a collision—no vehicle motion or external impact visible.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 24.5,
+              "f1": 25.0,
+              "f2": 25.5,
+              "f3": 26.0,
+              "f4": 26.5,
+              "f5": 27.0,
+              "f6": 27.5,
+              "f7": 28.0,
+              "f8": 28.5,
+              "f9": 29.0,
+              "f10": 29.5,
+              "f11": 30.0,
+              "f12": 30.5,
+              "f13": 31.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 26.3,
+                "t_end": 27.8,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 28.2,
+                "t_end": 29.2,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Fighting requires mutual physical combat; frames f3–f6 show a single man swinging a bat-like object at a stationary car while another man observes passively—no second combatant is engaged, and the target is a vehicle, not a person.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"CarAccident requires a crash (i.e., collision causing vehicle impact/movement); frames f7–f9 show a shattered windshield and interior blur, but the damage originates from the prior bat strike (f3–f6), with no evidence of vehicle motion, collision with another object, or loss of control.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "Fighting requires mutual physical combat; frames f3–f6 show a single man swinging a bat-like object at a stationary car while another man observes passively—no second combatant is engaged, and the target is a vehicle, not a person.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6"
+              ]
+            },
+            {
+              "candidate_id": 1,
+              "reason": "CarAccident requires a crash (i.e., collision causing vehicle impact/movement); frames f7–f9 show a shattered windshield and interior blur, but the damage originates from the prior bat strike (f3–f6), with no evidence of vehicle motion, collision with another object, or loss of control.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8",
+                "f9"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 29.0,
+              "f1": 29.5,
+              "f2": 30.0,
+              "f3": 31.0,
+              "f4": 31.5,
+              "f5": 32.5,
+              "f6": 33.0,
+              "f7": 33.5,
+              "f8": 34.0,
+              "f9": 34.5,
+              "f10": 35.5,
+              "f11": 37.0,
+              "f12": 37.5,
+              "f13": 38.5,
+              "f14": 39.0,
+              "f15": 40.0,
+              "f16": 40.5,
+              "f17": 41.5,
+              "f18": 42.0,
+              "f19": 42.5,
+              "f20": 43.0,
+              "f21": 43.5,
+              "f22": 44.5,
+              "f23": 46.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 30.7,
+                "t_end": 32.8,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 32.5,
+                "t_end": 34.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 33.0,
+                "t_end": 35.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 34.5,
+                "t_end": 35.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 36.3,
+                "t_end": 37.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 36.5,
+                "t_end": 38.9,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 38.0,
+                "t_end": 40.0,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 9,
+                "t_start": 40.8,
+                "t_end": 44.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 10,
+                "t_start": 41.0,
+                "t_end": 43.0,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [10],\n      \"category\": \"Fighting\",\n      \"t_start\": 41.0,\n      \"t_end\": 43.5,\n      \"confidence\": 0.9,\n      \"description\": \"Multiple individuals in white shirts swing bat-like objects at a car while others engage in close physical struggle near the vehicle.\",\n      \"reason\": \"Visible mutual physical combat among several people (e.g., f17–f21): swinging weapons, grappling, and coordinated assault on the car and occupants; meets 'Fighting' definition (mutual physical combat), not Riot (no collective unrest beyond this localized fight).\",\n      \"evidence_frame_ids\": [\"f17\", \"f18\", \"f19\", \"f20\", \"f21\"]\n    },\n    {\n      \"source_candidate_ids\": [4, 5],\n      \"category\": \"CarAccident\",\n      \"t_start\": 33.0,\n      \"t_end\": 35.5,\n      \"confidence\": 0.85,\n      \"description\": \"A car’s windshield is shattered from impact, interior shows debris and distortion consistent with a crash or violent collision.\",\n      \"reason\": \"f6–f9 show progressive windshield shattering, interior disarray, and external view of damaged car (f9); no visible driver control or intentional act—consistent with accident rather than deliberate destruction; candidate 4 and 5 both cover this interval and are merged.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\", \"f9\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Frames f2–f5 show a person shouting inside a car with cracked windshield but no physical combat; the cracking appears pre-existing or from prior impact, not ongoing fighting.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\", \"f5\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"f6–f8 show a person outside the car striking it, but the occupant is not clearly helpless nor is there sustained aggression against a defenseless victim; later frames reveal mutual combat, not one-sided abuse.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\"]\n    },\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"f11–f12 show a man holding a bat near a car in a garage, but no victim is present or being harmed; the scene is preparatory, not abusive action.\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\"]\n    },\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"f13–f14 show a man gesturing with a bat while a crowd watches; no aggression toward a specific helpless person occurs—only verbal command and crowd reaction.\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\"]\n    },\n    {\n      \"candidate_id\": 8,\n      \"reason\": \"f15–f16 show a crowd cheering and raising arms after a command to 'Beat them!', but no actual violence yet occurs in those frames; riot requires collective violent unrest, which begins only later (f17+).\",\n      \"evidence_frame_ids\": [\"f15\", \"f16\"]\n    },\n    {\n      \"candidate_id\": 9,\n      \"reason\": \"f22–f23 show a man observing and a damaged car, but no collective unrest; the earlier fighting (f17–f21) is localized combat, not riotous behavior across a wider area.\",\n      \"evidence_frame_ids\": [\"f22\", \"f23\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                10
+              ],
+              "category": "Fighting",
+              "t_start": 41.0,
+              "t_end": 43.5,
+              "confidence": 0.9,
+              "description": "Multiple individuals in white shirts swing bat-like objects at a car while others engage in close physical struggle near the vehicle.",
+              "reason": "Visible mutual physical combat among several people (e.g., f17–f21): swinging weapons, grappling, and coordinated assault on the car and occupants; meets 'Fighting' definition (mutual physical combat), not Riot (no collective unrest beyond this localized fight).",
+              "evidence_frame_ids": [
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                4,
+                5
+              ],
+              "category": "CarAccident",
+              "t_start": 33.0,
+              "t_end": 35.5,
+              "confidence": 0.85,
+              "description": "A car’s windshield is shattered from impact, interior shows debris and distortion consistent with a crash or violent collision.",
+              "reason": "f6–f9 show progressive windshield shattering, interior disarray, and external view of damaged car (f9); no visible driver control or intentional act—consistent with accident rather than deliberate destruction; candidate 4 and 5 both cover this interval and are merged.",
+              "evidence_frame_ids": [
+                "f6",
+                "f7",
+                "f8",
+                "f9"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "Frames f2–f5 show a person shouting inside a car with cracked windshield but no physical combat; the cracking appears pre-existing or from prior impact, not ongoing fighting.",
+              "evidence_frame_ids": [
+                "f2",
+                "f3",
+                "f4",
+                "f5"
+              ]
+            },
+            {
+              "candidate_id": 3,
+              "reason": "f6–f8 show a person outside the car striking it, but the occupant is not clearly helpless nor is there sustained aggression against a defenseless victim; later frames reveal mutual combat, not one-sided abuse.",
+              "evidence_frame_ids": [
+                "f6",
+                "f7",
+                "f8"
+              ]
+            },
+            {
+              "candidate_id": 6,
+              "reason": "f11–f12 show a man holding a bat near a car in a garage, but no victim is present or being harmed; the scene is preparatory, not abusive action.",
+              "evidence_frame_ids": [
+                "f11",
+                "f12"
+              ]
+            },
+            {
+              "candidate_id": 7,
+              "reason": "f13–f14 show a man gesturing with a bat while a crowd watches; no aggression toward a specific helpless person occurs—only verbal command and crowd reaction.",
+              "evidence_frame_ids": [
+                "f13",
+                "f14"
+              ]
+            },
+            {
+              "candidate_id": 8,
+              "reason": "f15–f16 show a crowd cheering and raising arms after a command to 'Beat them!', but no actual violence yet occurs in those frames; riot requires collective violent unrest, which begins only later (f17+).",
+              "evidence_frame_ids": [
+                "f15",
+                "f16"
+              ]
+            },
+            {
+              "candidate_id": 9,
+              "reason": "f22–f23 show a man observing and a damaged car, but no collective unrest; the earlier fighting (f17–f21) is localized combat, not riotous behavior across a wider area.",
+              "evidence_frame_ids": [
+                "f22",
+                "f23"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          11
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 44.0,
+              "f1": 44.5,
+              "f2": 45.0,
+              "f3": 45.5,
+              "f4": 46.0,
+              "f5": 46.5,
+              "f6": 47.0,
+              "f7": 47.5,
+              "f8": 48.0,
+              "f9": 48.5,
+              "f10": 49.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 11,
+                "t_start": 46.0,
+                "t_end": 47.2,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [11],\n      \"category\": \"CarAccident\",\n      \"t_start\": 46.0,\n      \"t_end\": 47.2,\n      \"confidence\": 0.95,\n      \"description\": \"A car windshield is severely cracked (f4), and a person is seen inside the driver’s seat with the door open (f5–f6), consistent with a recent collision.\",\n      \"reason\": \"The shattered windshield in f4 and the open driver’s door with occupant visible in f5–f6 indicate a crash event; no evidence of intentional damage or non-accidental cause is present. The candidate interval [46.0, 47.2] aligns with f4 (46.0) through f6 (47.0), where the aftermath is observed.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                11
+              ],
+              "category": "CarAccident",
+              "t_start": 46.0,
+              "t_end": 47.2,
+              "confidence": 0.95,
+              "description": "A car windshield is severely cracked (f4), and a person is seen inside the driver’s seat with the door open (f5–f6), consistent with a recent collision.",
+              "reason": "The shattered windshield in f4 and the open driver’s door with occupant visible in f5–f6 indicate a crash event; no evidence of intentional damage or non-accidental cause is present. The candidate interval [46.0, 47.2] aligns with f4 (46.0) through f6 (47.0), where the aftermath is observed.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

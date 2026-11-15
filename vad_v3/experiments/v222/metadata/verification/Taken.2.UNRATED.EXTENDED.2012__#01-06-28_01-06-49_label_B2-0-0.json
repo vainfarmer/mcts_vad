@@ -1,0 +1,266 @@
+{
+  "events": [
+    {
+      "t_start": 1.5,
+      "t_end": 2.0,
+      "anomaly_type": "Shooting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A man leans out the driver’s window holding a handgun pointed forward, with visible muzzle flash and recoil in f4 (2.0s), consistent with firing.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          1.5,
+          2.0
+        ],
+        "evidence_frame_ids": [
+          "f3",
+          "f4"
+        ],
+        "reason": "f3 (1.5s) shows the gun aimed; f4 (2.0s) shows the same pose with facial tension, weapon slightly displaced, and subtle muzzle glow—indicating discharge within the interval. No other activity contradicts this.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 5,
+      "output_count": 1,
+      "groups": 4,
+      "rejected": 4,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 1.5,
+                "t_end": 2.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Shooting\",\n      \"t_start\": 1.5,\n      \"t_end\": 2.0,\n      \"confidence\": 0.9,\n      \"description\": \"A man leans out the driver’s window holding a handgun pointed forward, with visible muzzle flash and recoil in f4 (2.0s), consistent with firing.\",\n      \"reason\": \"f3 (1.5s) shows the gun aimed; f4 (2.0s) shows the same pose with facial tension, weapon slightly displaced, and subtle muzzle glow—indicating discharge within the interval. No other activity contradicts this.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Shooting",
+              "t_start": 1.5,
+              "t_end": 2.0,
+              "confidence": 0.9,
+              "description": "A man leans out the driver’s window holding a handgun pointed forward, with visible muzzle flash and recoil in f4 (2.0s), consistent with firing.",
+              "reason": "f3 (1.5s) shows the gun aimed; f4 (2.0s) shows the same pose with facial tension, weapon slightly displaced, and subtle muzzle glow—indicating discharge within the interval. No other activity contradicts this.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 4.0,
+              "f1": 4.5,
+              "f2": 5.0,
+              "f3": 5.5,
+              "f4": 6.0,
+              "f5": 6.5,
+              "f6": 7.0,
+              "f7": 7.5,
+              "f8": 8.0,
+              "f9": 8.5,
+              "f10": 9.0,
+              "f11": 9.5,
+              "f12": 10.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 6.0,
+                "t_end": 6.8,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 7.5,
+                "t_end": 8.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Images f4–f6 show a man holding a handgun pointed out the window, but no muzzle flash, recoil, or bullet impact is visible; thus no shooting is confirmed.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Images f7–f8 show a Mercedes SUV driving through a dusty narrow street with no collision, deformation, or skid marks; the scene depicts normal driving, not a car accident.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "Images f4–f6 show a man holding a handgun pointed out the window, but no muzzle flash, recoil, or bullet impact is visible; thus no shooting is confirmed.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            },
+            {
+              "candidate_id": 2,
+              "reason": "Images f7–f8 show a Mercedes SUV driving through a dusty narrow street with no collision, deformation, or skid marks; the scene depicts normal driving, not a car accident.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 12.0,
+              "f1": 12.5,
+              "f2": 13.0,
+              "f3": 13.5,
+              "f4": 14.0,
+              "f5": 14.5,
+              "f6": 15.0,
+              "f7": 15.5,
+              "f8": 16.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 14.0,
+                "t_end": 14.5,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"In f4 and f5, one person walks toward the taxi while another stands near it; no mutual physical contact or combat is visible—only movement and positioning, consistent with nonviolent interaction.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 3,
+              "reason": "In f4 and f5, one person walks toward the taxi while another stands near it; no mutual physical contact or combat is visible—only movement and positioning, consistent with nonviolent interaction.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 17.0,
+              "f1": 17.5,
+              "f2": 18.0,
+              "f3": 18.5,
+              "f4": 19.0,
+              "f5": 19.5,
+              "f6": 20.0,
+              "f7": 20.5,
+              "f8": 21.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 19.0,
+                "t_end": 20.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"No crash or collision is visible; the taxi is shown driving rapidly through a narrow street (f5–f6), kicking up dust but maintaining control and trajectory, with no deformation, skid marks, or impact evidence.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f8\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 4,
+              "reason": "No crash or collision is visible; the taxi is shown driving rapidly through a narrow street (f5–f6), kicking up dust but maintaining control and trajectory, with no deformation, skid marks, or impact evidence.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f8"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

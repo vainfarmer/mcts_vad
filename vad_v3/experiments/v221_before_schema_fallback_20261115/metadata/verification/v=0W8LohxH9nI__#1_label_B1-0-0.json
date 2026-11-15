@@ -1,0 +1,185 @@
+{
+  "events": [
+    {
+      "t_start": 44.0,
+      "t_end": 51.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "Two players (one in white #5, one in white #1) engage in a physical confrontation at ~44.0s; others rush in, with one player falling at f6 (45.0s), and the scuffle continues with multiple individuals restraining or separating participants through f19 (51.5s).",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          44.0,
+          44.5,
+          45.0,
+          45.5,
+          46.0,
+          46.5,
+          47.0,
+          47.5,
+          48.0,
+          48.5,
+          49.0,
+          49.5,
+          50.0,
+          50.5,
+          51.0,
+          51.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18",
+          "f19"
+        ],
+        "reason": "Visible mutual grappling, shoving, and falling (f4–f6), followed by crowd intervention and containment (f7–f19); consistent with interpersonal fighting, not riot or abuse.",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 2,
+      "output_count": 1,
+      "groups": 1,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 42.0,
+              "f1": 42.5,
+              "f2": 43.0,
+              "f3": 43.5,
+              "f4": 44.0,
+              "f5": 44.5,
+              "f6": 45.0,
+              "f7": 45.5,
+              "f8": 46.0,
+              "f9": 46.5,
+              "f10": 47.0,
+              "f11": 47.5,
+              "f12": 48.0,
+              "f13": 48.5,
+              "f14": 49.0,
+              "f15": 49.5,
+              "f16": 50.0,
+              "f17": 50.5,
+              "f18": 51.0,
+              "f19": 51.5,
+              "f20": 52.0,
+              "f21": 52.5,
+              "f22": 53.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 44.0,
+                "t_end": 51.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 47.5,
+                "t_end": 51.5,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Fighting\",\n      \"t_start\": 44.0,\n      \"t_end\": 51.5,\n      \"confidence\": 0.95,\n      \"description\": \"Two players (one in white #5, one in white #1) engage in a physical confrontation at ~44.0s; others rush in, with one player falling at f6 (45.0s), and the scuffle continues with multiple individuals restraining or separating participants through f19 (51.5s).\",\n      \"reason\": \"Visible mutual grappling, shoving, and falling (f4–f6), followed by crowd intervention and containment (f7–f19); consistent with interpersonal fighting, not riot or abuse.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"No collective violent unrest: the crowd remains largely seated or observing; only a localized fight occurs with attempts to de-escalate, not coordinated aggression or property destruction.\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Fighting",
+              "t_start": 44.0,
+              "t_end": 51.5,
+              "confidence": 0.95,
+              "description": "Two players (one in white #5, one in white #1) engage in a physical confrontation at ~44.0s; others rush in, with one player falling at f6 (45.0s), and the scuffle continues with multiple individuals restraining or separating participants through f19 (51.5s).",
+              "reason": "Visible mutual grappling, shoving, and falling (f4–f6), followed by crowd intervention and containment (f7–f19); consistent with interpersonal fighting, not riot or abuse.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "No collective violent unrest: the crowd remains largely seated or observing; only a localized fight occurs with attempts to de-escalate, not coordinated aggression or property destruction.",
+              "evidence_frame_ids": [
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "5a82d0dd6e711938ee6c8e0ecf1c6f7fdb68cac4e5e95683ad672320f7156da9"
+}

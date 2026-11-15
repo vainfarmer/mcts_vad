@@ -1,0 +1,396 @@
+{
+  "events": [
+    {
+      "t_start": 3.0,
+      "t_end": 6.5,
+      "anomaly_type": "Abuse",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A person lies on the floor while multiple individuals—including police and red-vested emergency personnel—surround and physically interact with them; the prone individual shows no resistance.",
+      "source_candidate_ids": [
+        1,
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          3.0,
+          4.0,
+          4.5,
+          5.0
+        ],
+        "evidence_frame_ids": [
+          "f3",
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "Frames f3–f6 show a passive, non-combative individual on the ground being restrained/assisted by uniformed officers and paramedics; this satisfies 'Abuse' (aggression against a helpless victim), not 'Fighting' (which requires mutual combat). Candidate 1 is contradicted by lack of reciprocity; candidate 2 aligns and is merged.",
+        "source_categories": [
+          "Fighting",
+          "Abuse"
+        ]
+      }
+    },
+    {
+      "t_start": 8.5,
+      "t_end": 22.5,
+      "anomaly_type": "Riot",
+      "confidence": 0.8,
+      "coarse_score": 0.8,
+      "description": "Sustained close-quarters confrontation between riot police in green helmets and a dense crowd of civilians inside a station, involving repeated shoving, physical contact, and aggressive posturing without resolution.",
+      "source_candidate_ids": [
+        4,
+        5,
+        8
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 1,
+        "vlm_confidence": 0.8,
+        "evidence_times": [
+          8.5,
+          9.0,
+          9.5,
+          10.5,
+          11.5,
+          13.0,
+          14.0,
+          15.0,
+          15.5,
+          17.0,
+          18.0,
+          19.5,
+          20.5,
+          21.5,
+          22.5
+        ],
+        "evidence_frame_ids": [
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18",
+          "f19",
+          "f20",
+          "f21",
+          "f22"
+        ],
+        "reason": "From f8 onward, frames show escalating collective tension: civilians gesture (e.g., peace sign in f8–f10), push (f14–f16), and are pushed back by officers (f17–f22); this constitutes collective violent unrest per definition. Intervals of candidates 4, 5, and 8 overlap and form one continuous event; candidate 3 (6.5–11.5) starts earlier but lacks violence until ~8.5 (f8), so the riot begins at f8, not f7.",
+        "source_categories": [
+          "Riot",
+          "Riot",
+          "Riot"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 9,
+      "output_count": 2,
+      "groups": 1,
+      "rejected": 4,
+      "uncertain": 0,
+      "merged_sources": 3,
+      "relabeled": 1,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 1.0,
+              "f2": 2.0,
+              "f3": 3.0,
+              "f4": 4.0,
+              "f5": 4.5,
+              "f6": 5.0,
+              "f7": 6.5,
+              "f8": 8.5,
+              "f9": 9.0,
+              "f10": 9.5,
+              "f11": 10.5,
+              "f12": 11.5,
+              "f13": 13.0,
+              "f14": 14.0,
+              "f15": 15.0,
+              "f16": 15.5,
+              "f17": 17.0,
+              "f18": 18.0,
+              "f19": 19.5,
+              "f20": 20.5,
+              "f21": 21.5,
+              "f22": 22.5,
+              "f23": 25.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 0.0,
+                "t_end": 8.0,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 2.5,
+                "t_end": 6.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 4.0,
+                "t_end": 5.6,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 6.5,
+                "t_end": 11.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 8.0,
+                "t_end": 15.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 12.0,
+                "t_end": 19.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 14.3,
+                "t_end": 15.8,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 16.7,
+                "t_end": 19.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 18.0,
+                "t_end": 23.5,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1, 2],\n      \"category\": \"Abuse\",\n      \"t_start\": 3.0,\n      \"t_end\": 6.5,\n      \"confidence\": 0.9,\n      \"description\": \"A person is on the ground surrounded by multiple individuals including police and paramedics; one officer appears to restrain or assist the prone individual while others stand over them.\",\n      \"reason\": \"Frames f3–f6 show a person lying on the floor with several people—including uniformed officers and red-vested emergency personnel—bending over or holding them; no mutual combat is visible, and the person on the ground appears passive/unresisting, satisfying the definition of Abuse (aggression against a helpless victim). Candidate 1 (Fighting) is inconsistent because there is no reciprocal physical engagement.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"source_candidate_ids\": [4, 5, 8],\n      \"category\": \"Riot\",\n      \"t_start\": 8.0,\n      \"t_end\": 22.5,\n      \"confidence\": 0.85,\n      \"description\": \"Crowded indoor confrontation between uniformed riot police in green helmets and a dense group of civilians, involving shoving, raised hands, gestures (e.g., peace sign), and repeated physical contact without clear resolution.\",\n      \"reason\": \"From f8 onward, sustained close-quarters tension with multiple officers and civilians pushing, gesturing, and engaging physically (e.g., f14–f16 bald man confronting officers, f17–f22 repeated shoving); this constitutes collective violent unrest per definition (not just crowd presence). Merged candidates 4,5,8 cover overlapping intervals of this same ongoing event. Candidate 3 (6.5–11.5) is subsumed within this longer interval and thus not separate.\",\n      \"evidence_frame_ids\": [\"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Frames f0–f2 show only tightly packed riot police moving forward; no civilians or unrest visible yet—insufficient for Riot, which requires collective violent unrest.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"The interval 6.5–11.5 (f7–f11) is part of the larger continuous confrontation from 8.0–22.5 and does not constitute a distinct riot event; it shows initial crowd-police proximity but no violence yet (e.g., f7–f8 are relatively calm, with gestures but no force).\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    },\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"Frames f14–f15 show a bald man gesturing and being held back by officers, but no mutual striking or grappling—this is part of the broader riot context, not discrete Fighting (which requires mutual physical combat).\",\n      \"evidence_frame_ids\": [\"f14\", \"f15\"]\n    },\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"Frames f17–f18 show officers extending arms and civilians raising phones/cameras; no visible striking or grappling—no Fighting occurs, only posturing within the ongoing riot.\",\n      \"evidence_frame_ids\": [\"f17\", \"f18\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Although candidate 2 overlaps with accepted Abuse event, its narrow window (4.0–5.6) is fully covered by the stronger Abuse evidence in f3–f6; however, since it’s merged into the accepted event, it’s not uncertain—wait: correction—candidate 2 is already included in source_candidate_ids of first event, so not uncertain. Rechecking: all candidates accounted. No remaining uncertain.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 1.0,
+              "f2": 2.0,
+              "f3": 3.0,
+              "f4": 4.0,
+              "f5": 4.5,
+              "f6": 5.0,
+              "f7": 6.5,
+              "f8": 8.5,
+              "f9": 9.0,
+              "f10": 9.5,
+              "f11": 10.5,
+              "f12": 11.5,
+              "f13": 13.0,
+              "f14": 14.0,
+              "f15": 15.0,
+              "f16": 15.5,
+              "f17": 17.0,
+              "f18": 18.0,
+              "f19": 19.5,
+              "f20": 20.5,
+              "f21": 21.5,
+              "f22": 22.5,
+              "f23": 25.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 0.0,
+                "t_end": 8.0,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 2.5,
+                "t_end": 6.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 4.0,
+                "t_end": 5.6,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 6.5,
+                "t_end": 11.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 8.0,
+                "t_end": 15.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 12.0,
+                "t_end": 19.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 14.3,
+                "t_end": 15.8,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 16.7,
+                "t_end": 19.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 18.0,
+                "t_end": 23.5,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1, 2],\n      \"category\": \"Abuse\",\n      \"t_start\": 3.0,\n      \"t_end\": 6.5,\n      \"confidence\": 0.9,\n      \"description\": \"A person lies on the floor while multiple individuals—including police and red-vested emergency personnel—surround and physically interact with them; the prone individual shows no resistance.\",\n      \"reason\": \"Frames f3–f6 show a passive, non-combative individual on the ground being restrained/assisted by uniformed officers and paramedics; this satisfies 'Abuse' (aggression against a helpless victim), not 'Fighting' (which requires mutual combat). Candidate 1 is contradicted by lack of reciprocity; candidate 2 aligns and is merged.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"source_candidate_ids\": [4, 5, 8],\n      \"category\": \"Riot\",\n      \"t_start\": 8.5,\n      \"t_end\": 22.5,\n      \"confidence\": 0.8,\n      \"description\": \"Sustained close-quarters confrontation between riot police in green helmets and a dense crowd of civilians inside a station, involving repeated shoving, physical contact, and aggressive posturing without resolution.\",\n      \"reason\": \"From f8 onward, frames show escalating collective tension: civilians gesture (e.g., peace sign in f8–f10), push (f14–f16), and are pushed back by officers (f17–f22); this constitutes collective violent unrest per definition. Intervals of candidates 4, 5, and 8 overlap and form one continuous event; candidate 3 (6.5–11.5) starts earlier but lacks violence until ~8.5 (f8), so the riot begins at f8, not f7.\",\n      \"evidence_frame_ids\": [\"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Frames f0–f2 show only tightly packed riot police advancing with no civilians or unrest visible; insufficient for 'Riot', which requires collective violent unrest.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"Frames f7–f11 (6.5–11.5) include calm proximity (f7–f8) and gestures without force; the first clear violent engagement begins at f8, so this interval does not define a distinct riot event and is subsumed in the accepted event starting at 8.5.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    },\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"Frames f14–f15 show a bald man confronting officers and being held back, but no mutual striking or grappling—this is part of the broader riot, not discrete 'Fighting' (requires mutual physical combat).\",\n      \"evidence_frame_ids\": [\"f14\", \"f15\"]\n    },\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"Frames f17–f18 show officers extending arms and civilians recording; no visible striking, grappling, or reciprocal force—thus not 'Fighting'.\",\n      \"evidence_frame_ids\": [\"f17\", \"f18\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1,
+                2
+              ],
+              "category": "Abuse",
+              "t_start": 3.0,
+              "t_end": 6.5,
+              "confidence": 0.9,
+              "description": "A person lies on the floor while multiple individuals—including police and red-vested emergency personnel—surround and physically interact with them; the prone individual shows no resistance.",
+              "reason": "Frames f3–f6 show a passive, non-combative individual on the ground being restrained/assisted by uniformed officers and paramedics; this satisfies 'Abuse' (aggression against a helpless victim), not 'Fighting' (which requires mutual combat). Candidate 1 is contradicted by lack of reciprocity; candidate 2 aligns and is merged.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                4,
+                5,
+                8
+              ],
+              "category": "Riot",
+              "t_start": 8.5,
+              "t_end": 22.5,
+              "confidence": 0.8,
+              "description": "Sustained close-quarters confrontation between riot police in green helmets and a dense crowd of civilians inside a station, involving repeated shoving, physical contact, and aggressive posturing without resolution.",
+              "reason": "From f8 onward, frames show escalating collective tension: civilians gesture (e.g., peace sign in f8–f10), push (f14–f16), and are pushed back by officers (f17–f22); this constitutes collective violent unrest per definition. Intervals of candidates 4, 5, and 8 overlap and form one continuous event; candidate 3 (6.5–11.5) starts earlier but lacks violence until ~8.5 (f8), so the riot begins at f8, not f7.",
+              "evidence_frame_ids": [
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "Frames f0–f2 show only tightly packed riot police advancing with no civilians or unrest visible; insufficient for 'Riot', which requires collective violent unrest.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2"
+              ]
+            },
+            {
+              "candidate_id": 3,
+              "reason": "Frames f7–f11 (6.5–11.5) include calm proximity (f7–f8) and gestures without force; the first clear violent engagement begins at f8, so this interval does not define a distinct riot event and is subsumed in the accepted event starting at 8.5.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11"
+              ]
+            },
+            {
+              "candidate_id": 6,
+              "reason": "Frames f14–f15 show a bald man confronting officers and being held back, but no mutual striking or grappling—this is part of the broader riot, not discrete 'Fighting' (requires mutual physical combat).",
+              "evidence_frame_ids": [
+                "f14",
+                "f15"
+              ]
+            },
+            {
+              "candidate_id": 7,
+              "reason": "Frames f17–f18 show officers extending arms and civilians recording; no visible striking, grappling, or reciprocal force—thus not 'Fighting'.",
+              "evidence_frame_ids": [
+                "f17",
+                "f18"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

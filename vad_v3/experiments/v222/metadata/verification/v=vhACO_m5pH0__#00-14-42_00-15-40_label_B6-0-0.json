@@ -1,0 +1,229 @@
+{
+  "events": [
+    {
+      "t_start": 1.0,
+      "t_end": 3.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A red car in the left lane swerves sharply right at ~1.0 s, collides with the guardrail, kicks up dust/debris, and slides sideways across the road before coming to rest near the right shoulder by ~3.5 s.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          1.0,
+          1.5,
+          2.0,
+          2.5,
+          3.0
+        ],
+        "evidence_frame_ids": [
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "Frames f2–f6 show clear loss of control, impact with guardrail (visible deformation/dust), and post-impact sliding; this satisfies the definition of a crash (CarAccident). The event is fully captured within the visible interval and matches the candidate’s timing.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 30.5,
+      "t_end": 34.0,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.98,
+      "coarse_score": 0.98,
+      "description": "A white SUV enters the intersection from the left and collides with the front-left side of a stationary white tow truck carrying a vehicle; visible impact, deformation, and dust at f5–f11.",
+      "source_candidate_ids": [
+        1,
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.98,
+        "evidence_times": [
+          31.0,
+          31.5,
+          32.0,
+          32.5,
+          33.0,
+          33.5,
+          34.0
+        ],
+        "evidence_frame_ids": [
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11"
+        ],
+        "reason": "Frames f5–f11 show the SUV striking the tow truck, with immediate crumpling of the SUV’s front end, dust/debris, and sustained contact—meeting the definition of a crash. The event spans from first contact (f5, 31.0 s) through post-impact engagement (f11, 34.0 s), fully covering both candidate intervals.",
+        "source_categories": [
+          "CarAccident",
+          "CarAccident"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 3,
+      "output_count": 2,
+      "groups": 2,
+      "rejected": 0,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0,
+              "f9": 4.5,
+              "f10": 5.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 1.0,
+                "t_end": 3.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"CarAccident\",\n      \"t_start\": 1.0,\n      \"t_end\": 3.5,\n      \"confidence\": 0.95,\n      \"description\": \"A red car in the left lane swerves sharply right at ~1.0 s, collides with the guardrail, kicks up dust/debris, and slides sideways across the road before coming to rest near the right shoulder by ~3.5 s.\",\n      \"reason\": \"Frames f2–f6 show clear loss of control, impact with guardrail (visible deformation/dust), and post-impact sliding; this satisfies the definition of a crash (CarAccident). The event is fully captured within the visible interval and matches the candidate’s timing.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "CarAccident",
+              "t_start": 1.0,
+              "t_end": 3.5,
+              "confidence": 0.95,
+              "description": "A red car in the left lane swerves sharply right at ~1.0 s, collides with the guardrail, kicks up dust/debris, and slides sideways across the road before coming to rest near the right shoulder by ~3.5 s.",
+              "reason": "Frames f2–f6 show clear loss of control, impact with guardrail (visible deformation/dust), and post-impact sliding; this satisfies the definition of a crash (CarAccident). The event is fully captured within the visible interval and matches the candidate’s timing.",
+              "evidence_frame_ids": [
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 28.5,
+              "f1": 29.0,
+              "f2": 29.5,
+              "f3": 30.0,
+              "f4": 30.5,
+              "f5": 31.0,
+              "f6": 31.5,
+              "f7": 32.0,
+              "f8": 32.5,
+              "f9": 33.0,
+              "f10": 33.5,
+              "f11": 34.0,
+              "f12": 34.5,
+              "f13": 35.0,
+              "f14": 35.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 30.5,
+                "t_end": 31.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 30.5,
+                "t_end": 34.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1, 2],\n      \"category\": \"CarAccident\",\n      \"t_start\": 30.5,\n      \"t_end\": 34.0,\n      \"confidence\": 0.98,\n      \"description\": \"A white SUV enters the intersection from the left and collides with the front-left side of a stationary white tow truck carrying a vehicle; visible impact, deformation, and dust at f5–f11.\",\n      \"reason\": \"Frames f5–f11 show the SUV striking the tow truck, with immediate crumpling of the SUV’s front end, dust/debris, and sustained contact—meeting the definition of a crash. The event spans from first contact (f5, 31.0 s) through post-impact engagement (f11, 34.0 s), fully covering both candidate intervals.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1,
+                2
+              ],
+              "category": "CarAccident",
+              "t_start": 30.5,
+              "t_end": 34.0,
+              "confidence": 0.98,
+              "description": "A white SUV enters the intersection from the left and collides with the front-left side of a stationary white tow truck carrying a vehicle; visible impact, deformation, and dust at f5–f11.",
+              "reason": "Frames f5–f11 show the SUV striking the tow truck, with immediate crumpling of the SUV’s front end, dust/debris, and sustained contact—meeting the definition of a crash. The event spans from first contact (f5, 31.0 s) through post-impact engagement (f11, 34.0 s), fully covering both candidate intervals.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

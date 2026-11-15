@@ -1,0 +1,559 @@
+{
+  "events": [
+    {
+      "t_start": 18.5,
+      "t_end": 19.5,
+      "anomaly_type": "Shooting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A soldier in prone position fires a rifle, producing a visible muzzle blast and dust cloud at f5 (19.0s), with recoil and dust propagation continuing through f6 (19.5s).",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          18.5,
+          19.0,
+          19.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "f4 shows the soldier aiming; f5 shows a distinct muzzle flash/dust plume and rearward displacement consistent with firing; f6–f7 show expanding dust obscuring the scene—this sequence confirms discharge of a firearm, satisfying the 'Shooting' definition requiring visible shooting.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 61.0,
+      "t_end": 62.0,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A sudden dust cloud erupts from the base of a cinderblock wall near a window, expanding rapidly over frames f4–f6 without fire or projectile visible.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          61.0,
+          61.5,
+          62.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "Frames f4 (61.0 s), f5 (61.5 s), and f6 (62.0 s) show a localized, rapidly expanding dust plume originating at the wall base—consistent with a blast event (explosion definition requires a blast; this satisfies it). No sustained fire or impact-only motion is evident.",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    },
+    {
+      "t_start": 84.0,
+      "t_end": 85.0,
+      "anomaly_type": "Shooting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A metallic cylindrical object (spent cartridge casing) falls and impacts the ground between f4 (84.0s) and f6 (85.0s), consistent with firearm ejection.",
+      "source_candidate_ids": [
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          84.0,
+          84.5,
+          85.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "Frames f4–f6 show a casing descending with motion blur, then lying still at f6; this matches ejection during shooting. Candidate 5 (85.9–87.9) does not overlap this interval and is unsupported by visible ejection; it cannot be merged with candidate 3.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 85.5,
+      "t_end": 87.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.8,
+      "coarse_score": 0.8,
+      "description": "A dust cloud erupts radially from the ground starting at f7 (85.5s), peaks around f9–f10, and dissipates by f11 (87.5s), indicating a localized blast.",
+      "source_candidate_ids": [
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 1,
+        "vlm_confidence": 0.8,
+        "evidence_times": [
+          85.5,
+          86.0,
+          86.5,
+          87.0,
+          87.5
+        ],
+        "evidence_frame_ids": [
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11"
+        ],
+        "reason": "The sudden, symmetric displacement of soil/dust without a visible projectile in flight after f6 confirms a blast event (per definition: requires a blast, not sustained fire). This is temporally distinct from the earlier casing ejection and aligns with candidate 4’s interval.",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 8,
+      "output_count": 4,
+      "groups": 4,
+      "rejected": 4,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 16.5,
+              "f1": 17.0,
+              "f2": 17.5,
+              "f3": 18.0,
+              "f4": 18.5,
+              "f5": 19.0,
+              "f6": 19.5,
+              "f7": 20.0,
+              "f8": 20.5,
+              "f9": 21.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 18.5,
+                "t_end": 19.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Shooting\",\n      \"t_start\": 18.5,\n      \"t_end\": 19.5,\n      \"confidence\": 0.95,\n      \"description\": \"A soldier in prone position fires a rifle, producing a visible muzzle blast and dust cloud at f5 (19.0s), with recoil and dust propagation continuing through f6 (19.5s).\",\n      \"reason\": \"f4 shows the soldier aiming; f5 shows a distinct muzzle flash/dust plume and rearward displacement consistent with firing; f6–f7 show expanding dust obscuring the scene—this sequence confirms discharge of a firearm, satisfying the 'Shooting' definition requiring visible shooting.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Shooting",
+              "t_start": 18.5,
+              "t_end": 19.5,
+              "confidence": 0.95,
+              "description": "A soldier in prone position fires a rifle, producing a visible muzzle blast and dust cloud at f5 (19.0s), with recoil and dust propagation continuing through f6 (19.5s).",
+              "reason": "f4 shows the soldier aiming; f5 shows a distinct muzzle flash/dust plume and rearward displacement consistent with firing; f6–f7 show expanding dust obscuring the scene—this sequence confirms discharge of a firearm, satisfying the 'Shooting' definition requiring visible shooting.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 59.0,
+              "f1": 59.5,
+              "f2": 60.0,
+              "f3": 60.5,
+              "f4": 61.0,
+              "f5": 61.5,
+              "f6": 62.0,
+              "f7": 62.5,
+              "f8": 63.0,
+              "f9": 63.5,
+              "f10": 64.0,
+              "f11": 64.5,
+              "f12": 65.0,
+              "f13": 65.5,
+              "f14": 66.0,
+              "f15": 66.5,
+              "f16": 67.0,
+              "f17": 67.5,
+              "f18": 68.0,
+              "f19": 68.5,
+              "f20": 69.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 61.0,
+                "t_end": 62.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 62.5,
+                "t_end": 67.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Explosion\",\n      \"t_start\": 61.0,\n      \"t_end\": 62.0,\n      \"confidence\": 0.95,\n      \"description\": \"A dust cloud erupts from the base of a cinderblock wall near a window, consistent with a small explosive blast or impact.\",\n      \"reason\": \"Frames f4–f6 show rapid dust expansion originating at the wall base without visible projectile or fire; this matches explosion criteria (blast), not sustained fire or impact-only.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"Shooting\",\n      \"t_start\": 62.5,\n      \"t_end\": 67.0,\n      \"confidence\": 0.85,\n      \"description\": \"A soldier lies prone with a scoped rifle mounted on a bipod, aiming steadily; muzzle flash or recoil is not visible, but the posture and context (dust settling after explosion) indicate active engagement.\",\n      \"reason\": \"Frames f7–f16 show sustained aiming with a sniper rifle in a combat setting immediately after an explosion; while no muzzle flash is seen, the posture, weapon setup, and temporal proximity to the explosion support shooting as the most plausible ongoing action (shooting includes preparation and execution; visible aiming + context suffices per definition requiring *visible shooting* only if explicit—however, per instruction, 'Shooting requires visible shooting, not merely holding a gun'. Since no visible discharge (muzzle flash, recoil, bullet trace) is present, this must be rejected or marked uncertain. Re-evaluating: no frame shows firing event (no flash, no recoil motion, no ejection). Therefore, cannot confirm 'Shooting'. Revised: this candidate is NOT supported.\",\n      \"evidence_frame_ids\": []\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"No visible shooting occurs: frames f7–f16 show only aiming/posture with no muzzle flash, recoil, or bullet impact; per definition, 'Shooting requires visible shooting', which is absent.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Although the soldier is aiming a rifle in a combat context following an explosion, no frame shows actual discharge (e.g., muzzle flash, recoil, or bullet effect); thus, visible shooting is not confirmed, and the hypothesis remains unverified.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 59.0,
+              "f1": 59.5,
+              "f2": 60.0,
+              "f3": 60.5,
+              "f4": 61.0,
+              "f5": 61.5,
+              "f6": 62.0,
+              "f7": 62.5,
+              "f8": 63.0,
+              "f9": 63.5,
+              "f10": 64.0,
+              "f11": 64.5,
+              "f12": 65.0,
+              "f13": 65.5,
+              "f14": 66.0,
+              "f15": 66.5,
+              "f16": 67.0,
+              "f17": 67.5,
+              "f18": 68.0,
+              "f19": 68.5,
+              "f20": 69.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 61.0,
+                "t_end": 62.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 62.5,
+                "t_end": 67.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Explosion\",\n      \"t_start\": 61.0,\n      \"t_end\": 62.0,\n      \"confidence\": 0.95,\n      \"description\": \"A sudden dust cloud erupts from the base of a cinderblock wall near a window, expanding rapidly over frames f4–f6 without fire or projectile visible.\",\n      \"reason\": \"Frames f4 (61.0 s), f5 (61.5 s), and f6 (62.0 s) show a localized, rapidly expanding dust plume originating at the wall base—consistent with a blast event (explosion definition requires a blast; this satisfies it). No sustained fire or impact-only motion is evident.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"No visible shooting occurs: frames f7–f16 show a soldier prone with a scoped rifle in aiming posture, but no muzzle flash, recoil, bullet trace, or impact is visible; per definition, 'Shooting requires visible shooting', which is absent.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "Explosion",
+              "t_start": 61.0,
+              "t_end": 62.0,
+              "confidence": 0.95,
+              "description": "A sudden dust cloud erupts from the base of a cinderblock wall near a window, expanding rapidly over frames f4–f6 without fire or projectile visible.",
+              "reason": "Frames f4 (61.0 s), f5 (61.5 s), and f6 (62.0 s) show a localized, rapidly expanding dust plume originating at the wall base—consistent with a blast event (explosion definition requires a blast; this satisfies it). No sustained fire or impact-only motion is evident.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "No visible shooting occurs: frames f7–f16 show a soldier prone with a scoped rifle in aiming posture, but no muzzle flash, recoil, bullet trace, or impact is visible; per definition, 'Shooting requires visible shooting', which is absent.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          3,
+          4,
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 82.0,
+              "f1": 82.5,
+              "f2": 83.0,
+              "f3": 83.5,
+              "f4": 84.0,
+              "f5": 84.5,
+              "f6": 85.0,
+              "f7": 85.5,
+              "f8": 86.0,
+              "f9": 86.5,
+              "f10": 87.0,
+              "f11": 87.5,
+              "f12": 88.0,
+              "f13": 88.5,
+              "f14": 89.0,
+              "f15": 89.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 84.0,
+                "t_end": 85.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 85.5,
+                "t_end": 87.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 85.9,
+                "t_end": 87.9,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3, 5],\n      \"category\": \"Shooting\",\n      \"t_start\": 84.0,\n      \"t_end\": 85.0,\n      \"confidence\": 0.95,\n      \"description\": \"A spent bullet casing is ejected and falls onto dusty ground, visible from f4 (84.0s) to f6 (85.0s), with motion blur indicating rapid ejection.\",\n      \"reason\": \"Frames f4–f6 show a metallic cylindrical object (consistent with a cartridge case) descending and impacting the ground; this matches the mechanics of firearm ejection, not explosion or other events. Candidate 5 overlaps but extends too far; only the initial ejection phase (84.0–85.0) is directly visible and consistent with shooting.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"Explosion\",\n      \"t_start\": 85.5,\n      \"t_end\": 87.5,\n      \"confidence\": 0.85,\n      \"description\": \"A small dust cloud erupts from the ground at f7 (85.5s) and expands through f11 (87.5s), consistent with a low-yield detonation or impact explosion.\",\n      \"reason\": \"The sudden radial displacement of soil/dust without a projectile in flight (after casing has settled by f6) indicates a localized blast event; this is distinct from the earlier ejection and fits 'Explosion' per definition (blast, not sustained fire).\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 82.0,
+              "f1": 82.5,
+              "f2": 83.0,
+              "f3": 83.5,
+              "f4": 84.0,
+              "f5": 84.5,
+              "f6": 85.0,
+              "f7": 85.5,
+              "f8": 86.0,
+              "f9": 86.5,
+              "f10": 87.0,
+              "f11": 87.5,
+              "f12": 88.0,
+              "f13": 88.5,
+              "f14": 89.0,
+              "f15": 89.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 84.0,
+                "t_end": 85.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 85.5,
+                "t_end": 87.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 85.9,
+                "t_end": 87.9,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"Shooting\",\n      \"t_start\": 84.0,\n      \"t_end\": 85.0,\n      \"confidence\": 0.95,\n      \"description\": \"A metallic cylindrical object (spent cartridge casing) falls and impacts the ground between f4 (84.0s) and f6 (85.0s), consistent with firearm ejection.\",\n      \"reason\": \"Frames f4–f6 show a casing descending with motion blur, then lying still at f6; this matches ejection during shooting. Candidate 5 (85.9–87.9) does not overlap this interval and is unsupported by visible ejection; it cannot be merged with candidate 3.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"Explosion\",\n      \"t_start\": 85.5,\n      \"t_end\": 87.5,\n      \"confidence\": 0.8,\n      \"description\": \"A dust cloud erupts radially from the ground starting at f7 (85.5s), peaks around f9–f10, and dissipates by f11 (87.5s), indicating a localized blast.\",\n      \"reason\": \"The sudden, symmetric displacement of soil/dust without a visible projectile in flight after f6 confirms a blast event (per definition: requires a blast, not sustained fire). This is temporally distinct from the earlier casing ejection and aligns with candidate 4’s interval.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"Candidate 5 claims 'Shooting' from 85.9–87.9, but no firearm discharge or projectile motion is visible in f8–f11; instead, a dust explosion occurs (assigned to Explosion). No evidence supports shooting during this interval.\",\n      \"evidence_frame_ids\": [\"f8\", \"f9\", \"f10\", \"f11\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                3
+              ],
+              "category": "Shooting",
+              "t_start": 84.0,
+              "t_end": 85.0,
+              "confidence": 0.95,
+              "description": "A metallic cylindrical object (spent cartridge casing) falls and impacts the ground between f4 (84.0s) and f6 (85.0s), consistent with firearm ejection.",
+              "reason": "Frames f4–f6 show a casing descending with motion blur, then lying still at f6; this matches ejection during shooting. Candidate 5 (85.9–87.9) does not overlap this interval and is unsupported by visible ejection; it cannot be merged with candidate 3.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                4
+              ],
+              "category": "Explosion",
+              "t_start": 85.5,
+              "t_end": 87.5,
+              "confidence": 0.8,
+              "description": "A dust cloud erupts radially from the ground starting at f7 (85.5s), peaks around f9–f10, and dissipates by f11 (87.5s), indicating a localized blast.",
+              "reason": "The sudden, symmetric displacement of soil/dust without a visible projectile in flight after f6 confirms a blast event (per definition: requires a blast, not sustained fire). This is temporally distinct from the earlier casing ejection and aligns with candidate 4’s interval.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 5,
+              "reason": "Candidate 5 claims 'Shooting' from 85.9–87.9, but no firearm discharge or projectile motion is visible in f8–f11; instead, a dust explosion occurs (assigned to Explosion). No evidence supports shooting during this interval.",
+              "evidence_frame_ids": [
+                "f8",
+                "f9",
+                "f10",
+                "f11"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          6,
+          7
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 96.0,
+              "f1": 96.5,
+              "f2": 97.0,
+              "f3": 97.5,
+              "f4": 98.0,
+              "f5": 98.5,
+              "f6": 99.0,
+              "f7": 99.5,
+              "f8": 100.0,
+              "f9": 100.5,
+              "f10": 101.0,
+              "f11": 101.5,
+              "f12": 102.0,
+              "f13": 102.5,
+              "f14": 103.0,
+              "f15": 103.5,
+              "f16": 104.0,
+              "f17": 104.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 6,
+                "t_start": 98.0,
+                "t_end": 99.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 100.0,
+                "t_end": 103.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"Frames f3–f6 show a person looking through optics in dusty conditions, with no visible muzzle flash, recoil, or projectile; the motion blur in f5–f6 is consistent with camera shake or rapid head movement, not firing.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"Frames f10–f14 show a distant figure in a window holding an object (possibly a weapon), but no discharge, recoil, or impact is visible; the posture is static and could be observation or aiming without firing.\",\n      \"evidence_frame_ids\": [\"f10\", \"f11\", \"f12\", \"f13\", \"f14\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 6,
+              "reason": "Frames f3–f6 show a person looking through optics in dusty conditions, with no visible muzzle flash, recoil, or projectile; the motion blur in f5–f6 is consistent with camera shake or rapid head movement, not firing.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6"
+              ]
+            },
+            {
+              "candidate_id": 7,
+              "reason": "Frames f10–f14 show a distant figure in a window holding an object (possibly a weapon), but no discharge, recoil, or impact is visible; the posture is static and could be observation or aiming without firing.",
+              "evidence_frame_ids": [
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "5a82d0dd6e711938ee6c8e0ecf1c6f7fdb68cac4e5e95683ad672320f7156da9"
+}

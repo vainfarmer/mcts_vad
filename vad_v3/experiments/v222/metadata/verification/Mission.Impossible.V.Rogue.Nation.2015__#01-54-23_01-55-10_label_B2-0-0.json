@@ -1,0 +1,271 @@
+{
+  "events": [
+    {
+      "t_start": 35.5,
+      "t_end": 39.0,
+      "anomaly_type": "Shooting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A man aims and fires a handgun; visible muzzle flash at f5 (shattered glass), and repeated aiming/firing posture in f4, f11.",
+      "source_candidate_ids": [
+        1,
+        3,
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          35.5,
+          36.0,
+          36.5,
+          37.0,
+          39.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f11"
+        ],
+        "reason": "f4 shows gun aimed; f5 shows shattered glass with spray consistent with bullet impact; f6–f7 show aftermath (glass debris); f11 shows same man aiming again. Candidate 1 (35.5–36.0) aligns with f4–f5; candidate 3 (38.0–38.8) and 4 (38.5–39.0) both map to f9–f11 where gun is again aimed and fired (f11 clearly shows muzzle flash/gun recoil). Merged as single continuous shooting sequence with possible multiple shots.",
+        "source_categories": [
+          "Shooting",
+          "Shooting",
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 41.5,
+      "t_end": 42.0,
+      "anomaly_type": "Shooting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "Man aims and fires a handgun; muzzle flash visible in f5 and recoil/position change in f6.",
+      "source_candidate_ids": [
+        6
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          41.5,
+          42.0
+        ],
+        "evidence_frame_ids": [
+          "f5",
+          "f6"
+        ],
+        "reason": "f5 shows the man holding the gun pointed forward with focused aim; f6 shows slight backward motion consistent with recoil, and the gun is still aimed—this constitutes visible shooting (not just possession). The candidate interval [41.0,42.0] includes the firing moment at ~41.5–42.0; f4 shows preparation but no discharge, so event starts at f5.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 7,
+      "output_count": 2,
+      "groups": 2,
+      "rejected": 3,
+      "uncertain": 0,
+      "merged_sources": 2,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 33.5,
+              "f1": 34.0,
+              "f2": 34.5,
+              "f3": 35.0,
+              "f4": 35.5,
+              "f5": 36.0,
+              "f6": 36.5,
+              "f7": 37.0,
+              "f8": 37.5,
+              "f9": 38.0,
+              "f10": 38.5,
+              "f11": 39.0,
+              "f12": 39.5,
+              "f13": 40.0,
+              "f14": 40.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 35.5,
+                "t_end": 38.7,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 35.5,
+                "t_end": 36.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 37.5,
+                "t_end": 38.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 38.0,
+                "t_end": 38.8,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 38.5,
+                "t_end": 39.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1, 3, 4],\n      \"category\": \"Shooting\",\n      \"t_start\": 35.5,\n      \"t_end\": 39.0,\n      \"confidence\": 0.9,\n      \"description\": \"A man aims and fires a handgun; visible muzzle flash at f5 (shattered glass), and repeated aiming/firing posture in f4, f11.\",\n      \"reason\": \"f4 shows gun aimed; f5 shows shattered glass with spray consistent with bullet impact; f6–f7 show aftermath (glass debris); f11 shows same man aiming again. Candidate 1 (35.5–36.0) aligns with f4–f5; candidate 3 (38.0–38.8) and 4 (38.5–39.0) both map to f9–f11 where gun is again aimed and fired (f11 clearly shows muzzle flash/gun recoil). Merged as single continuous shooting sequence with possible multiple shots.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f11\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No collective violent unrest: crowd is present but passive; only localized gun use and broken glass, not riot behavior.\",\n      \"evidence_frame_ids\": [\"f2\", \"f5\", \"f6\", \"f8\"]\n    },\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"No mutual physical combat: f9 shows woman placing hands on man’s shoulders in what appears to be guiding or shielding, not fighting; no strikes, grappling, or defensive postures.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1,
+                3,
+                4
+              ],
+              "category": "Shooting",
+              "t_start": 35.5,
+              "t_end": 39.0,
+              "confidence": 0.9,
+              "description": "A man aims and fires a handgun; visible muzzle flash at f5 (shattered glass), and repeated aiming/firing posture in f4, f11.",
+              "reason": "f4 shows gun aimed; f5 shows shattered glass with spray consistent with bullet impact; f6–f7 show aftermath (glass debris); f11 shows same man aiming again. Candidate 1 (35.5–36.0) aligns with f4–f5; candidate 3 (38.0–38.8) and 4 (38.5–39.0) both map to f9–f11 where gun is again aimed and fired (f11 clearly shows muzzle flash/gun recoil). Merged as single continuous shooting sequence with possible multiple shots.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f11"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "No collective violent unrest: crowd is present but passive; only localized gun use and broken glass, not riot behavior.",
+              "evidence_frame_ids": [
+                "f2",
+                "f5",
+                "f6",
+                "f8"
+              ]
+            },
+            {
+              "candidate_id": 2,
+              "reason": "No mutual physical combat: f9 shows woman placing hands on man’s shoulders in what appears to be guiding or shielding, not fighting; no strikes, grappling, or defensive postures.",
+              "evidence_frame_ids": [
+                "f9",
+                "f10"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          5,
+          6
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 39.0,
+              "f1": 39.5,
+              "f2": 40.0,
+              "f3": 40.5,
+              "f4": 41.0,
+              "f5": 41.5,
+              "f6": 42.0,
+              "f7": 42.5,
+              "f8": 43.0,
+              "f9": 43.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 5,
+                "t_start": 41.0,
+                "t_end": 41.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 41.0,
+                "t_end": 42.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [6],\n      \"category\": \"Shooting\",\n      \"t_start\": 41.5,\n      \"t_end\": 42.0,\n      \"confidence\": 0.9,\n      \"description\": \"Man aims and fires a handgun; muzzle flash visible in f5 and recoil/position change in f6.\",\n      \"reason\": \"f5 shows the man holding the gun pointed forward with focused aim; f6 shows slight backward motion consistent with recoil, and the gun is still aimed—this constitutes visible shooting (not just possession). The candidate interval [41.0,42.0] includes the firing moment at ~41.5–42.0; f4 shows preparation but no discharge, so event starts at f5.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"f4 shows a woman grabbing the man’s shoulder/back while he holds a gun, but there is no mutual physical combat or struggle; it appears to be assistance or restraint without reciprocal force, thus not Fighting.\",\n      \"evidence_frame_ids\": [\"f4\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                6
+              ],
+              "category": "Shooting",
+              "t_start": 41.5,
+              "t_end": 42.0,
+              "confidence": 0.9,
+              "description": "Man aims and fires a handgun; muzzle flash visible in f5 and recoil/position change in f6.",
+              "reason": "f5 shows the man holding the gun pointed forward with focused aim; f6 shows slight backward motion consistent with recoil, and the gun is still aimed—this constitutes visible shooting (not just possession). The candidate interval [41.0,42.0] includes the firing moment at ~41.5–42.0; f4 shows preparation but no discharge, so event starts at f5.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 5,
+              "reason": "f4 shows a woman grabbing the man’s shoulder/back while he holds a gun, but there is no mutual physical combat or struggle; it appears to be assistance or restraint without reciprocal force, thus not Fighting.",
+              "evidence_frame_ids": [
+                "f4"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

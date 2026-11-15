@@ -80,7 +80,9 @@ def prepare_manifest(path, config, clients, videos, runtime_settings=None):
     from huggingface_hub import scan_cache_dir
     payload['cached_model_revisions']={r.repo_id:sorted(x.commit_hash for x in r.revisions)
         for r in scan_cache_dir().repos if r.repo_type=='model' and
-        (r.repo_id.startswith('timm/vit_') or r.repo_id=='OPear/videomae-large-finetuned-UCF-Crime')}
+        (r.repo_id.startswith('timm/vit_') or r.repo_id=='OPear/videomae-large-finetuned-UCF-Crime'
+         or (getattr(config,'dataset','ucf_crime')=='xd_violence' and r.repo_id in
+             (config.xd.model_id,config.xd.processor_id)))}
     fingerprint=hashlib.sha256(json.dumps(payload,sort_keys=True).encode()).hexdigest()
     payload['fingerprint']=fingerprint
     if path.exists():

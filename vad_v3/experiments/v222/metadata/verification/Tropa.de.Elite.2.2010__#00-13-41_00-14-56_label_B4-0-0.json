@@ -1,0 +1,549 @@
+{
+  "events": [
+    {
+      "t_start": 0.0,
+      "t_end": 6.0,
+      "anomaly_type": "Fighting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "Multiple individuals engage in mutual physical combat with sticks and fists in a narrow corridor; positions shift dynamically across frames, with reciprocal offensive and defensive postures.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          0.0,
+          0.5,
+          1.0,
+          1.5,
+          2.0,
+          2.5,
+          3.0,
+          3.5,
+          4.0,
+          4.5,
+          5.0,
+          5.5,
+          6.0
+        ],
+        "evidence_frame_ids": [
+          "f0",
+          "f1",
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12"
+        ],
+        "reason": "Visible reciprocal engagement (e.g., f0–f12): two pairs of men actively strike and block each other using sticks and hands; no one is clearly helpless or passive; movements are coordinated as combat, satisfying the definition of Fighting. The event ends around f12 (6.0 s) as participants separate and motion slows.",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 9.5,
+      "t_end": 14.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "In a narrow hallway, multiple individuals engage in reciprocal physical combat: a shirtless man swings a stick-like object while others block, grapple, and strike back (e.g., f3–f10).",
+      "source_candidate_ids": [
+        1,
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          9.5,
+          10.0,
+          11.0,
+          11.5,
+          12.0,
+          12.5,
+          13.0,
+          13.5
+        ],
+        "evidence_frame_ids": [
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10"
+        ],
+        "reason": "Visible mutual engagement—defensive postures, counter-movements, and balanced participation confirm fighting; not one-sided abuse. Candidates 1 and 3 describe the same continuous event and are merged.",
+        "source_categories": [
+          "Fighting",
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 16.0,
+      "t_end": 16.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.75,
+      "coarse_score": 0.75,
+      "description": "A shirtless man is seen from behind near a door while another person’s arm extends toward him holding an object (f12–f13); motion suggests imminent or ongoing contact.",
+      "source_candidate_ids": [
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 1,
+        "vlm_confidence": 0.75,
+        "evidence_times": [
+          16.0,
+          16.5
+        ],
+        "evidence_frame_ids": [
+          "f12",
+          "f13"
+        ],
+        "reason": "Frames f12–f13 show apparent active confrontation with reciprocal posture (the man in white tank turns toward the threat), but visibility degrades sharply after f13 (f14–f15 are occluded/dark), so the reliable interval ends at 16.5 (f13). Not merged with earlier fight due to spatial/temporal gap and different participants.",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 19.5,
+      "t_end": 21.5,
+      "anomaly_type": "Abuse",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "In a dim room with barred windows, one individual is pinned on the ground or low posture by multiple others who appear to strike or restrain him (f19–f21); the victim shows no effective resistance.",
+      "source_candidate_ids": [
+        6
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 2,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          20.5,
+          21.0,
+          21.5
+        ],
+        "evidence_frame_ids": [
+          "f19",
+          "f20",
+          "f21"
+        ],
+        "reason": "Asymmetrical power dynamic: multiple aggressors surround and subdue a single person in a constrained position; no visible reciprocal combat—consistent with abuse, not fighting. Candidate 5 (Riot) rejected as no collective unrest or large-scale disorder is present.",
+        "source_categories": [
+          "Abuse"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 9,
+      "output_count": 4,
+      "groups": 3,
+      "rejected": 4,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0,
+              "f9": 4.5,
+              "f10": 5.0,
+              "f11": 5.5,
+              "f12": 6.0,
+              "f13": 6.5,
+              "f14": 7.0,
+              "f15": 7.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 0.0,
+                "t_end": 6.0,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Fighting\",\n      \"t_start\": 0.0,\n      \"t_end\": 6.0,\n      \"confidence\": 0.95,\n      \"description\": \"Multiple individuals engage in mutual physical combat with sticks and fists in a narrow corridor; positions shift dynamically across frames, with reciprocal offensive and defensive postures.\",\n      \"reason\": \"Visible reciprocal engagement (e.g., f0–f12): two pairs of men actively strike and block each other using sticks and hands; no one is clearly helpless or passive; movements are coordinated as combat, satisfying the definition of Fighting. The event ends around f12 (6.0 s) as participants separate and motion slows.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Fighting",
+              "t_start": 0.0,
+              "t_end": 6.0,
+              "confidence": 0.95,
+              "description": "Multiple individuals engage in mutual physical combat with sticks and fists in a narrow corridor; positions shift dynamically across frames, with reciprocal offensive and defensive postures.",
+              "reason": "Visible reciprocal engagement (e.g., f0–f12): two pairs of men actively strike and block each other using sticks and hands; no one is clearly helpless or passive; movements are coordinated as combat, satisfying the definition of Fighting. The event ends around f12 (6.0 s) as participants separate and motion slows.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 7.5,
+              "f1": 8.0,
+              "f2": 8.5,
+              "f3": 9.5,
+              "f4": 10.0,
+              "f5": 11.0,
+              "f6": 11.5,
+              "f7": 12.0,
+              "f8": 12.5,
+              "f9": 13.0,
+              "f10": 13.5,
+              "f11": 14.5,
+              "f12": 16.0,
+              "f13": 16.5,
+              "f14": 17.5,
+              "f15": 18.0,
+              "f16": 18.5,
+              "f17": 19.5,
+              "f18": 20.0,
+              "f19": 20.5,
+              "f20": 21.0,
+              "f21": 21.5,
+              "f22": 22.5,
+              "f23": 24.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 9.5,
+                "t_end": 14.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 12.0,
+                "t_end": 17.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 12.5,
+                "t_end": 14.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 16.0,
+                "t_end": 20.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 19.0,
+                "t_end": 22.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 19.5,
+                "t_end": 21.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1, 3],\n      \"category\": \"Fighting\",\n      \"t_start\": 9.5,\n      \"t_end\": 14.5,\n      \"confidence\": 0.95,\n      \"description\": \"Multiple individuals engage in mutual physical combat in a hallway: one shirtless man swings a stick-like object while others grapple and strike back (e.g., f3–f10).\",\n      \"reason\": \"Visible reciprocal engagement—defensive postures, blocking, and counter-movements confirm mutual combat; not one-sided abuse. Merged candidates 1 and 3 as they describe the same continuous event.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    },\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"Fighting\",\n      \"t_start\": 16.0,\n      \"t_end\": 17.5,\n      \"confidence\": 0.85,\n      \"description\": \"A shirtless man is seen from behind near a door while another person’s arm extends toward him with an object (f12–f13); motion blur and occlusion limit detail, but posture suggests active confrontation.\",\n      \"reason\": \"Frame f12–f13 show apparent contact or imminent strike; however, visibility degrades after f13 (f14–f15 are dark/occluded), so end time capped at 17.5 (f14) to stay within reliable evidence. Not merged with earlier fight due to spatial/temporal gap and different participants.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\"]\n    },\n    {\n      \"source_candidate_ids\": [6],\n      \"category\": \"Abuse\",\n      \"t_start\": 19.5,\n      \"t_end\": 21.5,\n      \"confidence\": 0.8,\n      \"description\": \"In a dim room with barred windows, one individual is pinned or held down by multiple others while being struck (f19–f21); victim appears unable to effectively resist.\",\n      \"reason\": \"Asymmetrical power dynamic: multiple aggressors surround and subdue one person who is on the ground or low posture; no visible reciprocal combat—consistent with abuse rather than fighting. Candidate 5 (Riot) rejected because no collective unrest or large-scale disorder; only localized aggression.\",\n      \"evidence_frame_ids\": [\"f19\", \"f20\", \"f21\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Frames f12–f13 show possible confrontation, but not clearly one-sided abuse; later frames (f14–f15) are too dark/occluded to confirm helplessness or sustained aggression. The event is better classified as Fighting (candidate 4) for the visible portion.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\"]\n    },\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"No evidence of collective violent unrest: only a small group engaged in localized aggression (f17–f21); crowd size and behavior do not meet riot criteria (e.g., no property destruction, no mass mobilization).\",\n      \"evidence_frame_ids\": [\"f17\", \"f18\", \"f19\", \"f20\", \"f21\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No candidate ID 0 provided; all candidates accounted for above.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 7.5,
+              "f1": 8.0,
+              "f2": 8.5,
+              "f3": 9.5,
+              "f4": 10.0,
+              "f5": 11.0,
+              "f6": 11.5,
+              "f7": 12.0,
+              "f8": 12.5,
+              "f9": 13.0,
+              "f10": 13.5,
+              "f11": 14.5,
+              "f12": 16.0,
+              "f13": 16.5,
+              "f14": 17.5,
+              "f15": 18.0,
+              "f16": 18.5,
+              "f17": 19.5,
+              "f18": 20.0,
+              "f19": 20.5,
+              "f20": 21.0,
+              "f21": 21.5,
+              "f22": 22.5,
+              "f23": 24.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 9.5,
+                "t_end": 14.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 12.0,
+                "t_end": 17.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 12.5,
+                "t_end": 14.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 16.0,
+                "t_end": 20.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 19.0,
+                "t_end": 22.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 19.5,
+                "t_end": 21.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1, 3],\n      \"category\": \"Fighting\",\n      \"t_start\": 9.5,\n      \"t_end\": 14.5,\n      \"confidence\": 0.95,\n      \"description\": \"In a narrow hallway, multiple individuals engage in reciprocal physical combat: a shirtless man swings a stick-like object while others block, grapple, and strike back (e.g., f3–f10).\",\n      \"reason\": \"Visible mutual engagement—defensive postures, counter-movements, and balanced participation confirm fighting; not one-sided abuse. Candidates 1 and 3 describe the same continuous event and are merged.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    },\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"Fighting\",\n      \"t_start\": 16.0,\n      \"t_end\": 16.5,\n      \"confidence\": 0.75,\n      \"description\": \"A shirtless man is seen from behind near a door while another person’s arm extends toward him holding an object (f12–f13); motion suggests imminent or ongoing contact.\",\n      \"reason\": \"Frames f12–f13 show apparent active confrontation with reciprocal posture (the man in white tank turns toward the threat), but visibility degrades sharply after f13 (f14–f15 are occluded/dark), so the reliable interval ends at 16.5 (f13). Not merged with earlier fight due to spatial/temporal gap and different participants.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\"]\n    },\n    {\n      \"source_candidate_ids\": [6],\n      \"category\": \"Abuse\",\n      \"t_start\": 19.5,\n      \"t_end\": 21.5,\n      \"confidence\": 0.85,\n      \"description\": \"In a dim room with barred windows, one individual is pinned on the ground or low posture by multiple others who appear to strike or restrain him (f19–f21); the victim shows no effective resistance.\",\n      \"reason\": \"Asymmetrical power dynamic: multiple aggressors surround and subdue a single person in a constrained position; no visible reciprocal combat—consistent with abuse, not fighting. Candidate 5 (Riot) rejected as no collective unrest or large-scale disorder is present.\",\n      \"evidence_frame_ids\": [\"f19\", \"f20\", \"f21\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Frames f12–f13 show possible confrontation, but not clearly one-sided abuse; the man in white tank is actively turning and engaging, indicating mutual combat rather than helplessness. The visible portion aligns better with Fighting (candidate 4).\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\"]\n    },\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"No evidence of collective violent unrest: only a small group (≤6 people) engaged in localized aggression (f17–f21); no mass mobilization, property destruction, or public disorder required for Riot.\",\n      \"evidence_frame_ids\": [\"f17\", \"f18\", \"f19\", \"f20\", \"f21\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1,
+                3
+              ],
+              "category": "Fighting",
+              "t_start": 9.5,
+              "t_end": 14.5,
+              "confidence": 0.95,
+              "description": "In a narrow hallway, multiple individuals engage in reciprocal physical combat: a shirtless man swings a stick-like object while others block, grapple, and strike back (e.g., f3–f10).",
+              "reason": "Visible mutual engagement—defensive postures, counter-movements, and balanced participation confirm fighting; not one-sided abuse. Candidates 1 and 3 describe the same continuous event and are merged.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                4
+              ],
+              "category": "Fighting",
+              "t_start": 16.0,
+              "t_end": 16.5,
+              "confidence": 0.75,
+              "description": "A shirtless man is seen from behind near a door while another person’s arm extends toward him holding an object (f12–f13); motion suggests imminent or ongoing contact.",
+              "reason": "Frames f12–f13 show apparent active confrontation with reciprocal posture (the man in white tank turns toward the threat), but visibility degrades sharply after f13 (f14–f15 are occluded/dark), so the reliable interval ends at 16.5 (f13). Not merged with earlier fight due to spatial/temporal gap and different participants.",
+              "evidence_frame_ids": [
+                "f12",
+                "f13"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                6
+              ],
+              "category": "Abuse",
+              "t_start": 19.5,
+              "t_end": 21.5,
+              "confidence": 0.85,
+              "description": "In a dim room with barred windows, one individual is pinned on the ground or low posture by multiple others who appear to strike or restrain him (f19–f21); the victim shows no effective resistance.",
+              "reason": "Asymmetrical power dynamic: multiple aggressors surround and subdue a single person in a constrained position; no visible reciprocal combat—consistent with abuse, not fighting. Candidate 5 (Riot) rejected as no collective unrest or large-scale disorder is present.",
+              "evidence_frame_ids": [
+                "f19",
+                "f20",
+                "f21"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "Frames f12–f13 show possible confrontation, but not clearly one-sided abuse; the man in white tank is actively turning and engaging, indicating mutual combat rather than helplessness. The visible portion aligns better with Fighting (candidate 4).",
+              "evidence_frame_ids": [
+                "f12",
+                "f13"
+              ]
+            },
+            {
+              "candidate_id": 5,
+              "reason": "No evidence of collective violent unrest: only a small group (≤6 people) engaged in localized aggression (f17–f21); no mass mobilization, property destruction, or public disorder required for Riot.",
+              "evidence_frame_ids": [
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          7,
+          8
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 67.0,
+              "f1": 67.5,
+              "f2": 68.0,
+              "f3": 68.5,
+              "f4": 69.0,
+              "f5": 69.5,
+              "f6": 70.0,
+              "f7": 70.5,
+              "f8": 71.0,
+              "f9": 71.5,
+              "f10": 72.0,
+              "f11": 72.5,
+              "f12": 73.0,
+              "f13": 73.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 7,
+                "t_start": 68.6,
+                "t_end": 71.6,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 70.5,
+                "t_end": 71.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"Frames f2–f8 show individuals in a confined space with one person seated and others standing; no visible aggression, restraint, or harm toward a helpless victim—only possible weapon handling without contact or threat execution.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    },\n    {\n      \"candidate_id\": 8,\n      \"reason\": \"Frame f7 shows a long object (possibly a firearm) being held horizontally by two individuals, but no muzzle flash, recoil, projectile, or impact is visible; thus no shooting is confirmed.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 7,
+              "reason": "Frames f2–f8 show individuals in a confined space with one person seated and others standing; no visible aggression, restraint, or harm toward a helpless victim—only possible weapon handling without contact or threat execution.",
+              "evidence_frame_ids": [
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            },
+            {
+              "candidate_id": 8,
+              "reason": "Frame f7 shows a long object (possibly a firearm) being held horizontally by two individuals, but no muzzle flash, recoil, projectile, or impact is visible; thus no shooting is confirmed.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

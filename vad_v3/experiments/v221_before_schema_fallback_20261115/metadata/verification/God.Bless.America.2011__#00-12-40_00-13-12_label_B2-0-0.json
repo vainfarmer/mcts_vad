@@ -1,0 +1,289 @@
+{
+  "events": [
+    {
+      "t_start": 5.5,
+      "t_end": 7.5,
+      "anomaly_type": "Shooting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A man in a light blue shirt is shown with a fresh bloodstain on his chest and mouth open in shock (f8–f9); simultaneously, a woman in a patterned blouse recoils and is later seen covered in blood and collapsing (f12–f13), while the gunman remains aimed (f10–f11, f14–f16).",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          5.5,
+          6.0,
+          6.5,
+          7.0,
+          7.5,
+          8.0
+        ],
+        "evidence_frame_ids": [
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13"
+        ],
+        "reason": "Visible blood spatter on victims’ clothing and cubicle walls (f8, f12), immediate physiological reactions (open mouth, recoil), and temporal alignment with the gunman’s sustained aim confirm at least two gunshots occurred between f8 and f12; this satisfies the 'Shooting' definition requiring visible shooting (implied by impact evidence and weapon position).",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 10.5,
+      "t_end": 11.0,
+      "anomaly_type": "Shooting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A blood spatter appears on a cubicle wall in f4 (10.5s), and the gun is now out of frame, held by an unseen hand; the spatter is absent in earlier frames (f0–f3) and persists thereafter (f5–f8), indicating a single impact event between f3 and f4.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          10.0,
+          10.5
+        ],
+        "evidence_frame_ids": [
+          "f3",
+          "f4"
+        ],
+        "reason": "The sudden appearance of fresh blood on the wall at f4, with no prior injury or spill visible, combined with the gun’s position shifting from being aimed (f0–f3) to being held low/out-of-frame (f4 onward), strongly indicates a discharge occurred just before f4. This satisfies the 'Shooting' definition: visible evidence of a projectile impact (blood spatter) coinciding with weapon use.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 15.0,
+      "t_end": 15.5,
+      "anomaly_type": "Shooting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A man fires a handgun; a muzzle flash is visible at f5 (15.5s) as he holds the gun pointed forward, with prior frame f4 (15.0s) showing him aiming.",
+      "source_candidate_ids": [
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          15.0,
+          15.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "Muzzle flash in f5 confirms discharge; the sequence from f4 to f5 shows aim then ignition, satisfying 'Shooting' definition (visible shooting).",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 3,
+      "output_count": 3,
+      "groups": 3,
+      "rejected": 0,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 1.5,
+              "f1": 2.0,
+              "f2": 2.5,
+              "f3": 3.0,
+              "f4": 3.5,
+              "f5": 4.0,
+              "f6": 4.5,
+              "f7": 5.0,
+              "f8": 5.5,
+              "f9": 6.0,
+              "f10": 6.5,
+              "f11": 7.0,
+              "f12": 7.5,
+              "f13": 8.0,
+              "f14": 8.5,
+              "f15": 9.0,
+              "f16": 9.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 3.5,
+                "t_end": 8.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Shooting\",\n      \"t_start\": 5.5,\n      \"t_end\": 7.5,\n      \"confidence\": 0.95,\n      \"description\": \"A man in a light blue shirt is shown with a fresh bloodstain on his chest and mouth open in shock (f8–f9); simultaneously, a woman in a patterned blouse recoils and is later seen covered in blood and collapsing (f12–f13), while the gunman remains aimed (f10–f11, f14–f16).\",\n      \"reason\": \"Visible blood spatter on victims’ clothing and cubicle walls (f8, f12), immediate physiological reactions (open mouth, recoil), and temporal alignment with the gunman’s sustained aim confirm at least two gunshots occurred between f8 and f12; this satisfies the 'Shooting' definition requiring visible shooting (implied by impact evidence and weapon position).\",\n      \"evidence_frame_ids\": [\"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Shooting",
+              "t_start": 5.5,
+              "t_end": 7.5,
+              "confidence": 0.95,
+              "description": "A man in a light blue shirt is shown with a fresh bloodstain on his chest and mouth open in shock (f8–f9); simultaneously, a woman in a patterned blouse recoils and is later seen covered in blood and collapsing (f12–f13), while the gunman remains aimed (f10–f11, f14–f16).",
+              "reason": "Visible blood spatter on victims’ clothing and cubicle walls (f8, f12), immediate physiological reactions (open mouth, recoil), and temporal alignment with the gunman’s sustained aim confirm at least two gunshots occurred between f8 and f12; this satisfies the 'Shooting' definition requiring visible shooting (implied by impact evidence and weapon position).",
+              "evidence_frame_ids": [
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 8.5,
+              "f1": 9.0,
+              "f2": 9.5,
+              "f3": 10.0,
+              "f4": 10.5,
+              "f5": 11.0,
+              "f6": 11.5,
+              "f7": 12.0,
+              "f8": 12.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 10.5,
+                "t_end": 11.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Shooting\",\n      \"t_start\": 10.5,\n      \"t_end\": 11.0,\n      \"confidence\": 0.95,\n      \"description\": \"A blood spatter appears on a cubicle wall in f4 (10.5s), and the gun is now out of frame, held by an unseen hand; the spatter is absent in earlier frames (f0–f3) and persists thereafter (f5–f8), indicating a single impact event between f3 and f4.\",\n      \"reason\": \"The sudden appearance of fresh blood on the wall at f4, with no prior injury or spill visible, combined with the gun’s position shifting from being aimed (f0–f3) to being held low/out-of-frame (f4 onward), strongly indicates a discharge occurred just before f4. This satisfies the 'Shooting' definition: visible evidence of a projectile impact (blood spatter) coinciding with weapon use.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "Shooting",
+              "t_start": 10.5,
+              "t_end": 11.0,
+              "confidence": 0.95,
+              "description": "A blood spatter appears on a cubicle wall in f4 (10.5s), and the gun is now out of frame, held by an unseen hand; the spatter is absent in earlier frames (f0–f3) and persists thereafter (f5–f8), indicating a single impact event between f3 and f4.",
+              "reason": "The sudden appearance of fresh blood on the wall at f4, with no prior injury or spill visible, combined with the gun’s position shifting from being aimed (f0–f3) to being held low/out-of-frame (f4 onward), strongly indicates a discharge occurred just before f4. This satisfies the 'Shooting' definition: visible evidence of a projectile impact (blood spatter) coinciding with weapon use.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 13.0,
+              "f1": 13.5,
+              "f2": 14.0,
+              "f3": 14.5,
+              "f4": 15.0,
+              "f5": 15.5,
+              "f6": 16.0,
+              "f7": 16.5,
+              "f8": 17.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 15.0,
+                "t_end": 15.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"Shooting\",\n      \"t_start\": 15.0,\n      \"t_end\": 15.5,\n      \"confidence\": 0.95,\n      \"description\": \"A man fires a handgun; a muzzle flash is visible at f5 (15.5s) as he holds the gun pointed forward, with prior frame f4 (15.0s) showing him aiming.\",\n      \"reason\": \"Muzzle flash in f5 confirms discharge; the sequence from f4 to f5 shows aim then ignition, satisfying 'Shooting' definition (visible shooting).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2
+              ],
+              "category": "Shooting",
+              "t_start": 15.0,
+              "t_end": 15.5,
+              "confidence": 0.95,
+              "description": "A man fires a handgun; a muzzle flash is visible at f5 (15.5s) as he holds the gun pointed forward, with prior frame f4 (15.0s) showing him aiming.",
+              "reason": "Muzzle flash in f5 confirms discharge; the sequence from f4 to f5 shows aim then ignition, satisfying 'Shooting' definition (visible shooting).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "5a82d0dd6e711938ee6c8e0ecf1c6f7fdb68cac4e5e95683ad672320f7156da9"
+}

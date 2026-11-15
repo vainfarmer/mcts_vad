@@ -1,0 +1,105 @@
+{
+  "events": [
+    {
+      "t_start": 10.5,
+      "t_end": 11.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A blue bus collides with a black truck at an intersection, resulting in visible contact and abnormal vehicle orientation (bus angled into truck’s side) in f4–f5.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          10.5,
+          11.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "In f4 (10.5 s), the bus and truck are in direct contact at the intersection; by f5 (11.0 s), they remain interlocked with the bus rotated sharply left, indicating a crash—not a controlled maneuver. This satisfies the definition of CarAccident (a crash).",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 1,
+      "output_count": 1,
+      "groups": 1,
+      "rejected": 0,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 8.5,
+              "f1": 9.0,
+              "f2": 9.5,
+              "f3": 10.0,
+              "f4": 10.5,
+              "f5": 11.0,
+              "f6": 11.5,
+              "f7": 12.0,
+              "f8": 12.5,
+              "f9": 13.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 10.5,
+                "t_end": 11.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"CarAccident\",\n      \"t_start\": 10.5,\n      \"t_end\": 11.5,\n      \"confidence\": 0.95,\n      \"description\": \"A blue bus collides with a black truck at an intersection, resulting in visible contact and abnormal vehicle orientation (bus angled into truck’s side) in f4–f5.\",\n      \"reason\": \"In f4 (10.5 s), the bus and truck are in direct contact at the intersection; by f5 (11.0 s), they remain interlocked with the bus rotated sharply left, indicating a crash—not a controlled maneuver. This satisfies the definition of CarAccident (a crash).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "CarAccident",
+              "t_start": 10.5,
+              "t_end": 11.5,
+              "confidence": 0.95,
+              "description": "A blue bus collides with a black truck at an intersection, resulting in visible contact and abnormal vehicle orientation (bus angled into truck’s side) in f4–f5.",
+              "reason": "In f4 (10.5 s), the bus and truck are in direct contact at the intersection; by f5 (11.0 s), they remain interlocked with the bus rotated sharply left, indicating a crash—not a controlled maneuver. This satisfies the definition of CarAccident (a crash).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

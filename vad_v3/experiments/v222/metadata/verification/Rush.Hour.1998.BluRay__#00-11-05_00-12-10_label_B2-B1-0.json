@@ -1,0 +1,692 @@
+{
+  "events": [
+    {
+      "t_start": 12.5,
+      "t_end": 15.5,
+      "anomaly_type": "Abuse",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A uniformed officer leans into a car and physically restrains or strikes a seated woman who appears distressed and helpless; her arms are pinned, face contorted in pain, and motion blur suggests forceful contact.",
+      "source_candidate_ids": [
+        2,
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          12.0,
+          12.5,
+          13.0,
+          13.5,
+          14.0,
+          14.5,
+          15.0,
+          15.5
+        ],
+        "evidence_frame_ids": [
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9"
+        ],
+        "reason": "Frames f2–f9 show sustained one-sided physical coercion: the officer’s hands on the woman’s torso/arms (f2, f6), her recoiling and grimacing (f3, f7–f9), and no reciprocal action—consistent with abuse, not mutual fighting. The event spans from initial contact (f2) through visible distress (f9).",
+        "source_categories": [
+          "Abuse",
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 20.0,
+      "t_end": 21.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.8,
+      "coarse_score": 0.8,
+      "description": "A uniformed officer leans into a car and engages in reciprocal physical struggle with a seated girl holding a stuffed animal; both show motion blur, facial strain, and active resistance (e.g., girl grimacing and moving arms in f7, f9; officer’s hand contact visible in f6–f8).",
+      "source_candidate_ids": [
+        5
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 3,
+        "event_id": 0,
+        "vlm_confidence": 0.8,
+        "evidence_times": [
+          20.0,
+          20.5,
+          21.0,
+          21.5
+        ],
+        "evidence_frame_ids": [
+          "f6",
+          "f7",
+          "f8",
+          "f9"
+        ],
+        "reason": "Frames f6–f9 depict mutual physical engagement: officer reaches in (f6), girl actively resists with visible grimace and arm movement (f7, f9), and motion blur indicates dynamic interaction (f8). This satisfies 'Fighting' (mutual physical combat); the girl is not passive or helpless, ruling out 'Abuse'. Candidate 4’s abuse claim is unsupported; candidate 5’s interval [20.7,21.7] is fully contained within the observable event (20.0–21.5), so only candidate 5 is accepted as source.",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 38.8,
+      "t_end": 43.5,
+      "anomaly_type": "Abuse",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A motorcyclist grabs a girl in school uniform from the street and forcibly lifts her onto the moving motorcycle; she is visibly distressed, with blood on her lip, and is held against her will during acceleration.",
+      "source_candidate_ids": [
+        6,
+        7
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 4,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          39.0,
+          39.5,
+          40.0,
+          40.5,
+          41.0,
+          41.5,
+          42.0,
+          42.5,
+          43.0,
+          43.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13"
+        ],
+        "reason": "Frames f4–f5 show the motorcyclist reaching out and seizing the girl; f6–f10 show her being carried on the back, legs dangling, resisting; f11–f13 show close-up of her grimacing in pain while being held tightly—this constitutes non-consensual physical control of a vulnerable person, satisfying 'Abuse' (aggression against a helpless victim). The two candidates describe overlapping segments of the same continuous event and are merged.",
+        "source_categories": [
+          "Abuse",
+          "Abuse"
+        ]
+      }
+    },
+    {
+      "t_start": 48.5,
+      "t_end": 54.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A man exits a van and physically engages with a motorcyclist; they grapple, and two additional individuals (a woman and a child) are pulled into the van amid struggle.",
+      "source_candidate_ids": [
+        9,
+        10,
+        11
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 5,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          49.0,
+          49.5,
+          50.0,
+          50.5,
+          51.0,
+          51.5,
+          52.0,
+          52.5
+        ],
+        "evidence_frame_ids": [
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15"
+        ],
+        "reason": "Frames f8–f15 show mutual physical contact: the van occupant reaches out, the motorcyclist resists, and both parties exert force (e.g., f10–f12 show arms locked, bodies straining). The involvement of multiple people in close combat qualifies as Fighting per definition (mutual physical combat); Abuse is ruled out because victims are not clearly helpless (the motorcyclist actively resists), and the event is not collective unrest (Riot). Candidate 10’s ‘Abuse’ label is incorrect due to mutual engagement; candidates 9 and 11 both describe the same continuous struggle and are merged.",
+        "source_categories": [
+          "Fighting",
+          "Abuse",
+          "Fighting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 12,
+      "output_count": 4,
+      "groups": 6,
+      "rejected": 4,
+      "uncertain": 0,
+      "merged_sources": 4,
+      "relabeled": 2,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 4.0,
+              "f1": 4.5,
+              "f2": 5.0,
+              "f3": 5.5,
+              "f4": 6.0,
+              "f5": 6.5,
+              "f6": 7.0,
+              "f7": 7.5,
+              "f8": 8.0,
+              "f9": 8.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 6.0,
+                "t_end": 7.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No visible discharge, muzzle flash, or bullet impact; the officer points a handgun but no shooting occurs in frames f4–f5 (6.0–6.5s), and subsequent frames show unrelated scenes (child in car, interior view, dark silhouette).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "No visible discharge, muzzle flash, or bullet impact; the officer points a handgun but no shooting occurs in frames f4–f5 (6.0–6.5s), and subsequent frames show unrelated scenes (child in car, interior view, dark silhouette).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 9.0,
+              "f1": 9.5,
+              "f2": 10.0,
+              "f3": 10.5,
+              "f4": 11.0,
+              "f5": 11.5,
+              "f6": 12.0,
+              "f7": 12.5,
+              "f8": 13.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 11.0,
+                "t_end": 11.5,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"At f5 (11.5s), the officer is leaning into the car and appears to be interacting with a passenger holding a teddy bear; at f6 (12.0s), motion blur suggests rapid movement but no clear aggression or helplessness; f7–f8 show a person slumped with possible injury, but no visible assault or sustained aggression by the officer—context could be medical emergency, arrest, or accident aftermath, not abuse per definition.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "At f5 (11.5s), the officer is leaning into the car and appears to be interacting with a passenger holding a teddy bear; at f6 (12.0s), motion blur suggests rapid movement but no clear aggression or helplessness; f7–f8 show a person slumped with possible injury, but no visible assault or sustained aggression by the officer—context could be medical emergency, arrest, or accident aftermath, not abuse per definition.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          2,
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 11.0,
+              "f1": 11.5,
+              "f2": 12.0,
+              "f3": 12.5,
+              "f4": 13.0,
+              "f5": 13.5,
+              "f6": 14.0,
+              "f7": 14.5,
+              "f8": 15.0,
+              "f9": 15.5,
+              "f10": 16.0,
+              "f11": 16.5,
+              "f12": 17.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 12.7,
+                "t_end": 15.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 14.0,
+                "t_end": 15.2,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2, 3],\n      \"category\": \"Abuse\",\n      \"t_start\": 12.5,\n      \"t_end\": 15.5,\n      \"confidence\": 0.9,\n      \"description\": \"A uniformed officer leans into a car and physically restrains or strikes a seated woman who appears distressed and helpless; her arms are pinned, face contorted in pain, and motion blur suggests forceful contact.\",\n      \"reason\": \"Frames f2–f9 show sustained one-sided physical coercion: the officer’s hands on the woman’s torso/arms (f2, f6), her recoiling and grimacing (f3, f7–f9), and no reciprocal action—consistent with abuse, not mutual fighting. The event spans from initial contact (f2) through visible distress (f9).\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2,
+                3
+              ],
+              "category": "Abuse",
+              "t_start": 12.5,
+              "t_end": 15.5,
+              "confidence": 0.9,
+              "description": "A uniformed officer leans into a car and physically restrains or strikes a seated woman who appears distressed and helpless; her arms are pinned, face contorted in pain, and motion blur suggests forceful contact.",
+              "reason": "Frames f2–f9 show sustained one-sided physical coercion: the officer’s hands on the woman’s torso/arms (f2, f6), her recoiling and grimacing (f3, f7–f9), and no reciprocal action—consistent with abuse, not mutual fighting. The event spans from initial contact (f2) through visible distress (f9).",
+              "evidence_frame_ids": [
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          4,
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 17.0,
+              "f1": 17.5,
+              "f2": 18.0,
+              "f3": 18.5,
+              "f4": 19.0,
+              "f5": 19.5,
+              "f6": 20.0,
+              "f7": 20.5,
+              "f8": 21.0,
+              "f9": 21.5,
+              "f10": 22.0,
+              "f11": 22.5,
+              "f12": 23.0,
+              "f13": 23.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 18.7,
+                "t_end": 21.2,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 20.7,
+                "t_end": 21.7,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4, 5],\n      \"category\": \"Fighting\",\n      \"t_start\": 20.0,\n      \"t_end\": 21.5,\n      \"confidence\": 0.8,\n      \"description\": \"A uniformed officer leans into a car and engages in physical struggle with a seated girl holding a stuffed animal; both show facial strain and motion blur consistent with mutual resistance.\",\n      \"reason\": \"Frames f6–f9 show reciprocal physical contact: officer reaches in (f6), girl resists with visible grimace and arm movement (f7, f9), and both are blurred from motion (f8). This meets the definition of Fighting (mutual physical combat), not Abuse (which requires one-sided aggression against a helpless victim—here the girl actively resists). The candidate intervals [18.7,21.2] and [20.7,21.7] are subsumed by the observable event from f6 (20.0) to f9 (21.5).\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\", \"f9\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"The hypothesized 'Abuse' is contradicted by visible mutual resistance from the girl (f7, f9); abuse requires one-sided aggression against a helpless victim, which is not supported.\",\n      \"evidence_frame_ids\": [\"f7\", \"f9\"]\n    },\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"While labeled 'Fighting', this candidate’s interval is too narrow and late; the full fighting event starts earlier (f6) and includes more frames, so it is merged into the broader accepted event rather than kept separate.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 17.0,
+              "f1": 17.5,
+              "f2": 18.0,
+              "f3": 18.5,
+              "f4": 19.0,
+              "f5": 19.5,
+              "f6": 20.0,
+              "f7": 20.5,
+              "f8": 21.0,
+              "f9": 21.5,
+              "f10": 22.0,
+              "f11": 22.5,
+              "f12": 23.0,
+              "f13": 23.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 18.7,
+                "t_end": 21.2,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 20.7,
+                "t_end": 21.7,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [5],\n      \"category\": \"Fighting\",\n      \"t_start\": 20.0,\n      \"t_end\": 21.5,\n      \"confidence\": 0.75,\n      \"description\": \"A uniformed officer leans into a car and engages in reciprocal physical struggle with a seated girl holding a stuffed animal; both exhibit motion blur, facial strain, and active resistance (e.g., girl’s grimace and arm movement in f7/f9).\",\n      \"reason\": \"Frames f6–f9 show mutual physical engagement: officer reaches in (f6), girl resists actively (f7, f9), and motion blur indicates dynamic interaction (f8). This satisfies 'Fighting' (mutual physical combat); the girl is not passive or helpless, ruling out 'Abuse'. Candidate 4’s abuse claim is unsupported; candidate 5’s interval [20.7,21.7] is partially covered by observable event f6–f9 (20.0–21.5), so only candidate 5 is accepted as source for this event.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\", \"f9\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"The hypothesized 'Abuse' is contradicted: the girl actively resists (grimacing, moving arms in f7, f9), violating the requirement that abuse involves aggression against a helpless victim; no evidence of one-sided violence.\",\n      \"evidence_frame_ids\": [\"f7\", \"f9\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"Although frames f6–f9 support Fighting, the exact onset of mutual combat is ambiguous—f6 shows officer entering but girl’s reaction is unclear; f7 confirms resistance, so confidence is reduced to 0.75. However, since the event is still best classified as Fighting and within visible bounds, it is accepted; this uncertain note reflects borderline evidence at t=20.0.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 17.0,
+              "f1": 17.5,
+              "f2": 18.0,
+              "f3": 18.5,
+              "f4": 19.0,
+              "f5": 19.5,
+              "f6": 20.0,
+              "f7": 20.5,
+              "f8": 21.0,
+              "f9": 21.5,
+              "f10": 22.0,
+              "f11": 22.5,
+              "f12": 23.0,
+              "f13": 23.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 18.7,
+                "t_end": 21.2,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 20.7,
+                "t_end": 21.7,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [5],\n      \"category\": \"Fighting\",\n      \"t_start\": 20.0,\n      \"t_end\": 21.5,\n      \"confidence\": 0.8,\n      \"description\": \"A uniformed officer leans into a car and engages in reciprocal physical struggle with a seated girl holding a stuffed animal; both show motion blur, facial strain, and active resistance (e.g., girl grimacing and moving arms in f7, f9; officer’s hand contact visible in f6–f8).\",\n      \"reason\": \"Frames f6–f9 depict mutual physical engagement: officer reaches in (f6), girl actively resists with visible grimace and arm movement (f7, f9), and motion blur indicates dynamic interaction (f8). This satisfies 'Fighting' (mutual physical combat); the girl is not passive or helpless, ruling out 'Abuse'. Candidate 4’s abuse claim is unsupported; candidate 5’s interval [20.7,21.7] is fully contained within the observable event (20.0–21.5), so only candidate 5 is accepted as source.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\", \"f9\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"The hypothesized 'Abuse' is contradicted: the girl actively resists (grimacing, moving arms in f7, f9), violating the requirement that abuse involves aggression against a helpless victim; no evidence of one-sided violence.\",\n      \"evidence_frame_ids\": [\"f7\", \"f9\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                5
+              ],
+              "category": "Fighting",
+              "t_start": 20.0,
+              "t_end": 21.5,
+              "confidence": 0.8,
+              "description": "A uniformed officer leans into a car and engages in reciprocal physical struggle with a seated girl holding a stuffed animal; both show motion blur, facial strain, and active resistance (e.g., girl grimacing and moving arms in f7, f9; officer’s hand contact visible in f6–f8).",
+              "reason": "Frames f6–f9 depict mutual physical engagement: officer reaches in (f6), girl actively resists with visible grimace and arm movement (f7, f9), and motion blur indicates dynamic interaction (f8). This satisfies 'Fighting' (mutual physical combat); the girl is not passive or helpless, ruling out 'Abuse'. Candidate 4’s abuse claim is unsupported; candidate 5’s interval [20.7,21.7] is fully contained within the observable event (20.0–21.5), so only candidate 5 is accepted as source.",
+              "evidence_frame_ids": [
+                "f6",
+                "f7",
+                "f8",
+                "f9"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 4,
+              "reason": "The hypothesized 'Abuse' is contradicted: the girl actively resists (grimacing, moving arms in f7, f9), violating the requirement that abuse involves aggression against a helpless victim; no evidence of one-sided violence.",
+              "evidence_frame_ids": [
+                "f7",
+                "f9"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 4,
+        "source_ids": [
+          6,
+          7
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 37.0,
+              "f1": 37.5,
+              "f2": 38.0,
+              "f3": 38.5,
+              "f4": 39.0,
+              "f5": 39.5,
+              "f6": 40.0,
+              "f7": 40.5,
+              "f8": 41.0,
+              "f9": 41.5,
+              "f10": 42.0,
+              "f11": 42.5,
+              "f12": 43.0,
+              "f13": 43.5,
+              "f14": 44.0,
+              "f15": 44.5,
+              "f16": 45.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 6,
+                "t_start": 38.8,
+                "t_end": 42.4,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 40.7,
+                "t_end": 43.5,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [6, 7],\n      \"category\": \"Abuse\",\n      \"t_start\": 38.8,\n      \"t_end\": 43.5,\n      \"confidence\": 0.95,\n      \"description\": \"A motorcyclist grabs a girl in school uniform from the street and forcibly lifts her onto the moving motorcycle; she is visibly distressed, with blood on her lip, and is held against her will during acceleration.\",\n      \"reason\": \"Frames f4–f5 show the motorcyclist reaching out and seizing the girl; f6–f10 show her being carried on the back, legs dangling, resisting; f11–f13 show close-up of her grimacing in pain while being held tightly—this constitutes non-consensual physical control of a vulnerable person, satisfying 'Abuse' (aggression against a helpless victim). The two candidates describe overlapping segments of the same continuous event and are merged.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                6,
+                7
+              ],
+              "category": "Abuse",
+              "t_start": 38.8,
+              "t_end": 43.5,
+              "confidence": 0.95,
+              "description": "A motorcyclist grabs a girl in school uniform from the street and forcibly lifts her onto the moving motorcycle; she is visibly distressed, with blood on her lip, and is held against her will during acceleration.",
+              "reason": "Frames f4–f5 show the motorcyclist reaching out and seizing the girl; f6–f10 show her being carried on the back, legs dangling, resisting; f11–f13 show close-up of her grimacing in pain while being held tightly—this constitutes non-consensual physical control of a vulnerable person, satisfying 'Abuse' (aggression against a helpless victim). The two candidates describe overlapping segments of the same continuous event and are merged.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 5,
+        "source_ids": [
+          8,
+          9,
+          10,
+          11
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 44.5,
+              "f1": 45.0,
+              "f2": 45.5,
+              "f3": 46.0,
+              "f4": 46.5,
+              "f5": 47.0,
+              "f6": 47.5,
+              "f7": 48.0,
+              "f8": 49.0,
+              "f9": 49.5,
+              "f10": 50.0,
+              "f11": 50.5,
+              "f12": 51.0,
+              "f13": 51.5,
+              "f14": 52.0,
+              "f15": 52.5,
+              "f16": 53.5,
+              "f17": 54.0,
+              "f18": 54.5,
+              "f19": 55.0,
+              "f20": 55.5,
+              "f21": 56.0,
+              "f22": 56.5,
+              "f23": 57.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 8,
+                "t_start": 46.3,
+                "t_end": 47.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 9,
+                "t_start": 48.5,
+                "t_end": 54.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 10,
+                "t_start": 51.5,
+                "t_end": 55.6,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 11,
+                "t_start": 51.5,
+                "t_end": 55.6,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [9, 10, 11],\n      \"category\": \"Fighting\",\n      \"t_start\": 48.5,\n      \"t_end\": 54.5,\n      \"confidence\": 0.9,\n      \"description\": \"A man exits a van and physically engages with a motorcyclist; they grapple, and two additional individuals (a woman and a child) are pulled into the van amid struggle.\",\n      \"reason\": \"Frames f8–f15 show mutual physical contact: the van occupant reaches out, the motorcyclist resists, and both parties exert force (e.g., f10–f12 show arms locked, bodies straining). The involvement of multiple people in close combat qualifies as Fighting per definition (mutual physical combat); Abuse is ruled out because victims are not clearly helpless (the motorcyclist actively resists), and the event is not collective unrest (Riot). Candidate 10’s ‘Abuse’ label is incorrect due to mutual engagement; candidates 9 and 11 both describe the same continuous struggle and are merged.\",\n      \"evidence_frame_ids\": [\"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 8,\n      \"reason\": \"No crash or impact is visible: the van turns normally at an intersection (f0–f2, f5), and later stops with side door open (f6–f7); no deformation, skid marks, or sudden motion indicating a CarAccident.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                9,
+                10,
+                11
+              ],
+              "category": "Fighting",
+              "t_start": 48.5,
+              "t_end": 54.5,
+              "confidence": 0.9,
+              "description": "A man exits a van and physically engages with a motorcyclist; they grapple, and two additional individuals (a woman and a child) are pulled into the van amid struggle.",
+              "reason": "Frames f8–f15 show mutual physical contact: the van occupant reaches out, the motorcyclist resists, and both parties exert force (e.g., f10–f12 show arms locked, bodies straining). The involvement of multiple people in close combat qualifies as Fighting per definition (mutual physical combat); Abuse is ruled out because victims are not clearly helpless (the motorcyclist actively resists), and the event is not collective unrest (Riot). Candidate 10’s ‘Abuse’ label is incorrect due to mutual engagement; candidates 9 and 11 both describe the same continuous struggle and are merged.",
+              "evidence_frame_ids": [
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 8,
+              "reason": "No crash or impact is visible: the van turns normally at an intersection (f0–f2, f5), and later stops with side door open (f6–f7); no deformation, skid marks, or sudden motion indicating a CarAccident.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

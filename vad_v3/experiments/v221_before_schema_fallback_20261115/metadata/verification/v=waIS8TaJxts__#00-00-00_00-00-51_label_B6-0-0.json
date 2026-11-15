@@ -1,0 +1,278 @@
+{
+  "events": [
+    {
+      "t_start": 20.5,
+      "t_end": 22.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A vehicle ahead (likely a van or SUV) is struck from the left at f5 (21.0 s), producing a cloud of debris and immediate windshield impact; by f6 (21.5 s), the windshield is shattered and covered in droplets/debris, indicating a high-energy collision.",
+      "source_candidate_ids": [
+        0,
+        1,
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          21.0,
+          21.5,
+          22.0,
+          22.5
+        ],
+        "evidence_frame_ids": [
+          "f5",
+          "f6",
+          "f7",
+          "f8"
+        ],
+        "reason": "f5 shows sudden lateral impact with debris cloud and vehicle displacement; f6–f8 show progressive windshield damage and obscuration consistent with a crash-induced airbag deployment or direct impact—no evidence of fire, explosion, or human combat. All three candidates describe overlapping phases of the same crash event; merged into one event bounded by first visible impact (f5) and last clear post-impact frame before stabilization (f8).",
+        "source_categories": [
+          "CarAccident",
+          "CarAccident",
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 39.5,
+      "t_end": 40.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A white sedan enters the intersection from the right at f5 (39.5s), collides with a white van, and by f6–f7 is visibly displaced and rotated ~90°, coming to rest on the road.",
+      "source_candidate_ids": [
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          39.5,
+          40.0,
+          40.5
+        ],
+        "evidence_frame_ids": [
+          "f5",
+          "f6",
+          "f7"
+        ],
+        "reason": "In f5, the sedan is mid-intersection and contacting the van; in f6, it is sideways and separated from its prior path; in f7, it is stationary at an abnormal angle—consistent with a crash, not normal turning or parking. The candidate’s claimed interval (38.7–40.5) starts before visible contact; the supported event is trimmed to the first frame showing impact (f5, 39.5s) through final rest (f7, 40.5s).",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 5,
+      "output_count": 2,
+      "groups": 2,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 2,
+      "relabeled": 0,
+      "context_retries": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 18.5,
+              "f1": 19.0,
+              "f2": 19.5,
+              "f3": 20.0,
+              "f4": 20.5,
+              "f5": 21.0,
+              "f6": 21.5,
+              "f7": 22.0,
+              "f8": 22.5,
+              "f9": 23.0,
+              "f10": 23.5,
+              "f11": 24.0,
+              "f12": 24.5,
+              "f13": 25.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 20.5,
+                "t_end": 21.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 21.0,
+                "t_end": 22.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 21.5,
+                "t_end": 23.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1, 2],\n      \"category\": \"CarAccident\",\n      \"t_start\": 20.5,\n      \"t_end\": 22.5,\n      \"confidence\": 0.95,\n      \"description\": \"A vehicle ahead (likely a van or SUV) is struck from the left at f5 (21.0 s), producing a cloud of debris and immediate windshield impact; by f6 (21.5 s), the windshield is shattered and covered in droplets/debris, indicating a high-energy collision.\",\n      \"reason\": \"f5 shows sudden lateral impact with debris cloud and vehicle displacement; f6–f8 show progressive windshield damage and obscuration consistent with a crash-induced airbag deployment or direct impact—no evidence of fire, explosion, or human combat. All three candidates describe overlapping phases of the same crash event; merged into one event bounded by first visible impact (f5) and last clear post-impact frame before stabilization (f8).\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1,
+                2
+              ],
+              "category": "CarAccident",
+              "t_start": 20.5,
+              "t_end": 22.5,
+              "confidence": 0.95,
+              "description": "A vehicle ahead (likely a van or SUV) is struck from the left at f5 (21.0 s), producing a cloud of debris and immediate windshield impact; by f6 (21.5 s), the windshield is shattered and covered in droplets/debris, indicating a high-energy collision.",
+              "reason": "f5 shows sudden lateral impact with debris cloud and vehicle displacement; f6–f8 show progressive windshield damage and obscuration consistent with a crash-induced airbag deployment or direct impact—no evidence of fire, explosion, or human combat. All three candidates describe overlapping phases of the same crash event; merged into one event bounded by first visible impact (f5) and last clear post-impact frame before stabilization (f8).",
+              "evidence_frame_ids": [
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          3,
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 37.0,
+              "f1": 37.5,
+              "f2": 38.0,
+              "f3": 38.5,
+              "f4": 39.0,
+              "f5": 39.5,
+              "f6": 40.0,
+              "f7": 40.5,
+              "f8": 41.0,
+              "f9": 41.5,
+              "f10": 42.0,
+              "f11": 42.5,
+              "f12": 43.0,
+              "f13": 43.5,
+              "f14": 44.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 38.7,
+                "t_end": 40.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 41.5,
+                "t_end": 42.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"CarAccident\",\n      \"t_start\": 38.7,\n      \"t_end\": 40.5,\n      \"confidence\": 0.95,\n      \"description\": \"A white sedan emerges from the right, collides with a white van at the intersection around f5–f6, then spins and comes to rest on the road by f7.\",\n      \"reason\": \"In f5 (39.5s), the sedan is seen entering the intersection and making contact with the van; in f6 (40.0s), the sedan is visibly displaced sideways mid-collision; in f7 (40.5s), it has rotated ~90° and stopped—consistent with a crash, not normal maneuvering.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\", \"f7\"]\n    },\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"CarAccident\",\n      \"t_start\": 41.5,\n      \"t_end\": 42.5,\n      \"confidence\": 0.9,\n      \"description\": \"A dark object (likely the same sedan) lies stationary on the road surface after the earlier collision, visible from f9 onward; no second impact occurs, but the object’s position and orientation indicate it resulted from the prior crash.\",\n      \"reason\": \"The candidate claims a second accident at 41.5–42.5s, but only a single vehicle is seen lying on the road (f9–f11); no new collision or motion occurs in that interval—this is the aftermath of the first event, not a separate accident. However, since the object’s presence confirms the prior crash and the candidate’s time window overlaps the visible aftermath of the same incident, we treat it as part of the same CarAccident event for completeness, but per instructions, each candidate must be mapped uniquely. Since candidate 4 describes a *second* accident and no second crash is visible, it must be rejected (see below). Correction: per strict instruction, if candidate asserts a separate accident and evidence shows only one, candidate 4 is rejected—not merged—because the hypothesis is that a *second* CarAccident occurred. Thus, only candidate 3 is accepted; candidate 4 is rejected.\"\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"No second collision or vehicle movement occurs between f9 (41.5s) and f11 (42.5s); the dark object on the road is the already-stopped sedan from the earlier crash (f5–f7), and no new impact is visible.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\", \"f11\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 37.0,
+              "f1": 37.5,
+              "f2": 38.0,
+              "f3": 38.5,
+              "f4": 39.0,
+              "f5": 39.5,
+              "f6": 40.0,
+              "f7": 40.5,
+              "f8": 41.0,
+              "f9": 41.5,
+              "f10": 42.0,
+              "f11": 42.5,
+              "f12": 43.0,
+              "f13": 43.5,
+              "f14": 44.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 38.7,
+                "t_end": 40.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 41.5,
+                "t_end": 42.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"CarAccident\",\n      \"t_start\": 39.5,\n      \"t_end\": 40.5,\n      \"confidence\": 0.95,\n      \"description\": \"A white sedan enters the intersection from the right at f5 (39.5s), collides with a white van, and by f6–f7 is visibly displaced and rotated ~90°, coming to rest on the road.\",\n      \"reason\": \"In f5, the sedan is mid-intersection and contacting the van; in f6, it is sideways and separated from its prior path; in f7, it is stationary at an abnormal angle—consistent with a crash, not normal turning or parking. The candidate’s claimed interval (38.7–40.5) starts before visible contact; the supported event is trimmed to the first frame showing impact (f5, 39.5s) through final rest (f7, 40.5s).\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"Between f9 (41.5s) and f11 (42.5s), only a stationary dark object (the already-crashed sedan) is visible on the road; no new vehicle motion, contact, or collision occurs—thus no second CarAccident is evidenced.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\", \"f11\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                3
+              ],
+              "category": "CarAccident",
+              "t_start": 39.5,
+              "t_end": 40.5,
+              "confidence": 0.95,
+              "description": "A white sedan enters the intersection from the right at f5 (39.5s), collides with a white van, and by f6–f7 is visibly displaced and rotated ~90°, coming to rest on the road.",
+              "reason": "In f5, the sedan is mid-intersection and contacting the van; in f6, it is sideways and separated from its prior path; in f7, it is stationary at an abnormal angle—consistent with a crash, not normal turning or parking. The candidate’s claimed interval (38.7–40.5) starts before visible contact; the supported event is trimmed to the first frame showing impact (f5, 39.5s) through final rest (f7, 40.5s).",
+              "evidence_frame_ids": [
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 4,
+              "reason": "Between f9 (41.5s) and f11 (42.5s), only a stationary dark object (the already-crashed sedan) is visible on the road; no new vehicle motion, contact, or collision occurs—thus no second CarAccident is evidenced.",
+              "evidence_frame_ids": [
+                "f9",
+                "f10",
+                "f11"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "5a82d0dd6e711938ee6c8e0ecf1c6f7fdb68cac4e5e95683ad672320f7156da9"
+}

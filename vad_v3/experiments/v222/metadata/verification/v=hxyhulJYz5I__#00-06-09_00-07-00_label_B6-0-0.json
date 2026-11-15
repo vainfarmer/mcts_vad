@@ -1,0 +1,396 @@
+{
+  "events": [
+    {
+      "t_start": 1.5,
+      "t_end": 2.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A white truck enters the intersection from the left, collides with a dark sedan that is turning or stopped, causing visible impact and debris/sparks at f3–f4.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          1.5,
+          2.0,
+          2.5
+        ],
+        "evidence_frame_ids": [
+          "f3",
+          "f4",
+          "f5"
+        ],
+        "reason": "At f3 (1.5s), the truck’s front right side contacts the dark sedan’s driver-side door; at f4 (2.0s), the truck is fully across the sedan with red sparks/scraps visible on road surface, indicating metal-on-metal contact; f5 shows the truck moving away with rear brake lights on and the sedan displaced—consistent with a collision, not normal maneuvering.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 30.5,
+      "t_end": 34.0,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.98,
+      "coarse_score": 0.98,
+      "description": "A white car ahead veers right off the road, kicks up dust, rolls onto its side in the field, and disintegrates in a cloud of debris.",
+      "source_candidate_ids": [
+        2,
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.98,
+        "evidence_times": [
+          30.5,
+          31.0,
+          31.5,
+          32.0,
+          32.5,
+          33.0,
+          33.5,
+          34.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11"
+        ],
+        "reason": "Frames f4–f11 show progressive loss of control, departure from road, rollover, and violent disintegration—consistent with a single high-speed crash; candidate 2 and 3 describe overlapping parts of this same event, so merged.",
+        "source_categories": [
+          "CarAccident",
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 48.0,
+      "t_end": 49.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A yellow truck swerves left, collides with a white bus ahead, causing debris and dust to erupt; the camera vehicle is struck or nearly struck by flying concrete blocks and dust.",
+      "source_candidate_ids": [
+        5
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 3,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          48.0,
+          48.5,
+          49.0,
+          49.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7"
+        ],
+        "reason": "Frames f4–f6 show the yellow truck veering into the lane of the white bus, impact at f5 (visible deformation, spray), followed by airborne debris and obscuring dust in f6–f7—consistent with a multi-vehicle collision involving heavy vehicles and roadside objects (e.g., concrete barriers). The event ends when visibility is lost (f8), within the candidate interval.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 6,
+      "output_count": 3,
+      "groups": 4,
+      "rejected": 2,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 1.5,
+                "t_end": 2.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"CarAccident\",\n      \"t_start\": 1.5,\n      \"t_end\": 2.5,\n      \"confidence\": 0.95,\n      \"description\": \"A white truck enters the intersection from the left, collides with a dark sedan that is turning or stopped, causing visible impact and debris/sparks at f3–f4.\",\n      \"reason\": \"At f3 (1.5s), the truck’s front right side contacts the dark sedan’s driver-side door; at f4 (2.0s), the truck is fully across the sedan with red sparks/scraps visible on road surface, indicating metal-on-metal contact; f5 shows the truck moving away with rear brake lights on and the sedan displaced—consistent with a collision, not normal maneuvering.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "CarAccident",
+              "t_start": 1.5,
+              "t_end": 2.5,
+              "confidence": 0.95,
+              "description": "A white truck enters the intersection from the left, collides with a dark sedan that is turning or stopped, causing visible impact and debris/sparks at f3–f4.",
+              "reason": "At f3 (1.5s), the truck’s front right side contacts the dark sedan’s driver-side door; at f4 (2.0s), the truck is fully across the sedan with red sparks/scraps visible on road surface, indicating metal-on-metal contact; f5 shows the truck moving away with rear brake lights on and the sedan displaced—consistent with a collision, not normal maneuvering.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 20.0,
+              "f1": 20.5,
+              "f2": 21.0,
+              "f3": 21.5,
+              "f4": 22.0,
+              "f5": 22.5,
+              "f6": 23.0,
+              "f7": 23.5,
+              "f8": 24.0,
+              "f9": 24.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 22.0,
+                "t_end": 23.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"No collision or vehicle damage is visible; the blue car maneuvers left across lanes normally while traffic is stopped at a red light, with no impact evident in any frame.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "No collision or vehicle damage is visible; the blue car maneuvers left across lanes normally while traffic is stopped at a red light, with no impact evident in any frame.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          2,
+          3,
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 28.5,
+              "f1": 29.0,
+              "f2": 29.5,
+              "f3": 30.0,
+              "f4": 30.5,
+              "f5": 31.0,
+              "f6": 31.5,
+              "f7": 32.0,
+              "f8": 32.5,
+              "f9": 33.0,
+              "f10": 33.5,
+              "f11": 34.0,
+              "f12": 34.5,
+              "f13": 35.0,
+              "f14": 35.5,
+              "f15": 36.0,
+              "f16": 36.5,
+              "f17": 37.0,
+              "f18": 37.5,
+              "f19": 38.0,
+              "f20": 38.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 30.5,
+                "t_end": 31.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 30.5,
+                "t_end": 34.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 32.0,
+                "t_end": 37.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2, 3],\n      \"category\": \"CarAccident\",\n      \"t_start\": 30.5,\n      \"t_end\": 34.0,\n      \"confidence\": 0.98,\n      \"description\": \"A white car ahead veers right off the road, kicks up dust, rolls onto its side in the field, and disintegrates in a cloud of debris.\",\n      \"reason\": \"Frames f4–f11 show progressive loss of control, departure from road, rollover, and violent disintegration—consistent with a single high-speed crash; candidate 2 and 3 describe overlapping parts of this same event, so merged.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"The interval 32.0–37.0 spans both the rural crash (ending ~34.0) and the unrelated highway scene (starting at f15=36.0); no crash occurs in frames f12–f14 or f15–f20, so the hypothesis incorrectly extends the accident into normal driving.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2,
+                3
+              ],
+              "category": "CarAccident",
+              "t_start": 30.5,
+              "t_end": 34.0,
+              "confidence": 0.98,
+              "description": "A white car ahead veers right off the road, kicks up dust, rolls onto its side in the field, and disintegrates in a cloud of debris.",
+              "reason": "Frames f4–f11 show progressive loss of control, departure from road, rollover, and violent disintegration—consistent with a single high-speed crash; candidate 2 and 3 describe overlapping parts of this same event, so merged.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 4,
+              "reason": "The interval 32.0–37.0 spans both the rural crash (ending ~34.0) and the unrelated highway scene (starting at f15=36.0); no crash occurs in frames f12–f14 or f15–f20, so the hypothesis incorrectly extends the accident into normal driving.",
+              "evidence_frame_ids": [
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 46.0,
+              "f1": 46.5,
+              "f2": 47.0,
+              "f3": 47.5,
+              "f4": 48.0,
+              "f5": 48.5,
+              "f6": 49.0,
+              "f7": 49.5,
+              "f8": 50.0,
+              "f9": 50.5,
+              "f10": 51.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 5,
+                "t_start": 48.0,
+                "t_end": 49.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [5],\n      \"category\": \"CarAccident\",\n      \"t_start\": 48.0,\n      \"t_end\": 49.5,\n      \"confidence\": 0.95,\n      \"description\": \"A yellow truck swerves left, collides with a white bus ahead, causing debris and dust to erupt; the camera vehicle is struck or nearly struck by flying concrete blocks and dust.\",\n      \"reason\": \"Frames f4–f6 show the yellow truck veering into the lane of the white bus, impact at f5 (visible deformation, spray), followed by airborne debris and obscuring dust in f6–f7—consistent with a multi-vehicle collision involving heavy vehicles and roadside objects (e.g., concrete barriers). The event ends when visibility is lost (f8), within the candidate interval.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                5
+              ],
+              "category": "CarAccident",
+              "t_start": 48.0,
+              "t_end": 49.5,
+              "confidence": 0.95,
+              "description": "A yellow truck swerves left, collides with a white bus ahead, causing debris and dust to erupt; the camera vehicle is struck or nearly struck by flying concrete blocks and dust.",
+              "reason": "Frames f4–f6 show the yellow truck veering into the lane of the white bus, impact at f5 (visible deformation, spray), followed by airborne debris and obscuring dust in f6–f7—consistent with a multi-vehicle collision involving heavy vehicles and roadside objects (e.g., concrete barriers). The event ends when visibility is lost (f8), within the candidate interval.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

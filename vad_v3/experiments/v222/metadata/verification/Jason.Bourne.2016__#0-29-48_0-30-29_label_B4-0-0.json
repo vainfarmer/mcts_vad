@@ -1,0 +1,488 @@
+{
+  "events": [
+    {
+      "t_start": 21.5,
+      "t_end": 26.0,
+      "anomaly_type": "Riot",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "Uniformed personnel in helmets and protective gear advance in formation across a street with burning objects and debris, while civilians and motorcycle riders are present amid chaotic movement.",
+      "source_candidate_ids": [
+        4,
+        5
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          21.5,
+          22.0,
+          22.5,
+          23.0,
+          23.5,
+          24.0,
+          24.5,
+          25.0,
+          25.5,
+          26.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13"
+        ],
+        "reason": "Frames f4–f8 show coordinated movement of multiple individuals in riot gear near a large ground fire (f5), satisfying the definition of collective violent unrest; frames f9–f13 extend this with continued presence of fire, scattered objects, and motorized movement in the same location—supporting a single sustained riot event. Candidate 7 (24.5–26.8) overlaps but includes heavily blurred frames f14–f16 where actions are unverifiable; since t_end=26.0 is the last clear frame (f13), candidate 7 cannot be fully merged without overextending into uncertain territory, so only candidates 4 and 5 are included in the accepted event.",
+        "source_categories": [
+          "Riot",
+          "Riot"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 10,
+      "output_count": 1,
+      "groups": 4,
+      "rejected": 8,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 3.0,
+              "f1": 3.5,
+              "f2": 4.0,
+              "f3": 4.5,
+              "f4": 5.0,
+              "f5": 5.5,
+              "f6": 6.0,
+              "f7": 6.5,
+              "f8": 7.0,
+              "f9": 7.5,
+              "f10": 8.0,
+              "f11": 8.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 5.0,
+                "t_end": 7.0,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 5.5,
+                "t_end": 6.0,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Images f4–f6 show a burning vehicle and individuals near it, but no collective violent unrest or crowd behavior indicative of a riot; the scene is consistent with an isolated fire incident or emergency response.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"No blast wave, rapid expansion, or debris ejection is visible in f5–f6; the fire appears sustained and localized (e.g., vehicle engulfed), not an explosion event.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "Images f4–f6 show a burning vehicle and individuals near it, but no collective violent unrest or crowd behavior indicative of a riot; the scene is consistent with an isolated fire incident or emergency response.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            },
+            {
+              "candidate_id": 1,
+              "reason": "No blast wave, rapid expansion, or debris ejection is visible in f5–f6; the fire appears sustained and localized (e.g., vehicle engulfed), not an explosion event.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 7.0,
+              "f1": 7.5,
+              "f2": 8.0,
+              "f3": 8.5,
+              "f4": 9.0,
+              "f5": 9.5,
+              "f6": 10.0,
+              "f7": 10.5,
+              "f8": 11.0,
+              "f9": 11.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 8.7,
+                "t_end": 9.7,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"No mutual physical combat is visible; frames f4–f5 show a figure moving near a car and another figure in background, but no contact or struggle is evident—motion blur and low light prevent confirmation of fighting.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "No mutual physical combat is visible; frames f4–f5 show a figure moving near a car and another figure in background, but no contact or struggle is evident—motion blur and low light prevent confirmation of fighting.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 19.5,
+              "f1": 20.0,
+              "f2": 20.5,
+              "f3": 21.0,
+              "f4": 21.5,
+              "f5": 22.0,
+              "f6": 22.5,
+              "f7": 23.0,
+              "f8": 23.5,
+              "f9": 24.0,
+              "f10": 24.5,
+              "f11": 25.0,
+              "f12": 25.5,
+              "f13": 26.0,
+              "f14": 26.5,
+              "f15": 27.0,
+              "f16": 27.5,
+              "f17": 28.0,
+              "f18": 28.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 21.5,
+                "t_end": 22.0,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 21.5,
+                "t_end": 26.0,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 22.5,
+                "t_end": 23.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 24.0,
+                "t_end": 24.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 24.5,
+                "t_end": 26.8,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4, 5, 7],\n      \"category\": \"Riot\",\n      \"t_start\": 21.5,\n      \"t_end\": 26.0,\n      \"confidence\": 0.85,\n      \"description\": \"Multiple individuals in riot gear advance through a street with fire and debris; civilians flee or are present amid chaotic movement and burning objects.\",\n      \"reason\": \"Frames f4–f8 show uniformed personnel moving aggressively in formation amid fire and smoke; f9–f13 show continued unrest with motorcycle riders, burning barricades, and scattered debris—consistent with collective violent unrest (riot), not isolated incidents. Candidate 7’s interval (24.5–26.8) overlaps and extends this same event; merged. Candidate 5 (22.5–23.5) is fully contained within this broader sequence.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"Frame f5 shows a sudden large flame on the ground, but no blast wave, debris ejection, or structural damage typical of an explosion; it appears to be ignition of flammable material (e.g., Molotov or fuel), not an explosion.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    },\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"Frame f9 shows a motorcycle rider moving away from a fire source, but no detonation, shockwave, or fragmentation; the fire is sustained and localized, not an explosion.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"Although merged into the accepted Riot event, the interval 24.5–26.8 includes heavily blurred frames (f14–f16) where identities and actions are indistinct; however, since the broader context supports riot and the interval is subsumed, it is not listed separately—no standalone uncertainty remains after merging. (No remaining unassigned candidates.)\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 19.5,
+              "f1": 20.0,
+              "f2": 20.5,
+              "f3": 21.0,
+              "f4": 21.5,
+              "f5": 22.0,
+              "f6": 22.5,
+              "f7": 23.0,
+              "f8": 23.5,
+              "f9": 24.0,
+              "f10": 24.5,
+              "f11": 25.0,
+              "f12": 25.5,
+              "f13": 26.0,
+              "f14": 26.5,
+              "f15": 27.0,
+              "f16": 27.5,
+              "f17": 28.0,
+              "f18": 28.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 21.5,
+                "t_end": 22.0,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 21.5,
+                "t_end": 26.0,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 22.5,
+                "t_end": 23.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 24.0,
+                "t_end": 24.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 24.5,
+                "t_end": 26.8,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4, 5, 7],\n      \"category\": \"Riot\",\n      \"t_start\": 21.5,\n      \"t_end\": 26.0,\n      \"confidence\": 0.8,\n      \"description\": \"Uniformed personnel in helmets and protective gear advance in formation through a street with burning objects, debris, and civilians present; movement is coordinated and aggressive amid fire and smoke.\",\n      \"reason\": \"Frames f4–f8 show multiple individuals in riot gear moving together across a crosswalk near a large ground fire (f5), consistent with collective violent unrest; f9–f13 continue showing chaotic street activity with motorcycle riders, burning barricades, and scattered objects—supporting sustained riot conditions. Candidate 4 (21.5–26.0), 5 (22.5–23.5), and 7 (24.5–26.8) all describe overlapping phases of the same event; merged into one interval bounded by earliest start (f4, 21.5) and latest clear evidence (f13, 26.0). Frames f14–f16 are too blurred to confirm actions, so t_end stops at 26.0.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"Frame f5 shows a sudden bright flame on the ground but no blast wave, rapid expansion, or ejection of debris—indicating ignition of flammable material (e.g., Molotov), not an explosion per definition.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    },\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"Frame f9 shows a motorcycle rider moving away from a fire source; the fire is sustained and localized with no detonation signature (shockwave, fragmentation), so it is not an explosion.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"Although its interval (24.5–26.8) overlaps the accepted Riot event, frames f14–f16 (26.5–27.5) are severely motion-blurred, preventing confirmation of actions or participants; however, since the core evidence up to f13 supports the merged Riot event and the candidate is fully subsumed, no independent uncertainty remains—thus no standalone uncertain entry is needed. All candidates accounted for.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 19.5,
+              "f1": 20.0,
+              "f2": 20.5,
+              "f3": 21.0,
+              "f4": 21.5,
+              "f5": 22.0,
+              "f6": 22.5,
+              "f7": 23.0,
+              "f8": 23.5,
+              "f9": 24.0,
+              "f10": 24.5,
+              "f11": 25.0,
+              "f12": 25.5,
+              "f13": 26.0,
+              "f14": 26.5,
+              "f15": 27.0,
+              "f16": 27.5,
+              "f17": 28.0,
+              "f18": 28.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 21.5,
+                "t_end": 22.0,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 21.5,
+                "t_end": 26.0,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 22.5,
+                "t_end": 23.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 24.0,
+                "t_end": 24.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 24.5,
+                "t_end": 26.8,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4, 5],\n      \"category\": \"Riot\",\n      \"t_start\": 21.5,\n      \"t_end\": 26.0,\n      \"confidence\": 0.85,\n      \"description\": \"Uniformed personnel in helmets and protective gear advance in formation across a street with burning objects and debris, while civilians and motorcycle riders are present amid chaotic movement.\",\n      \"reason\": \"Frames f4–f8 show coordinated movement of multiple individuals in riot gear near a large ground fire (f5), satisfying the definition of collective violent unrest; frames f9–f13 extend this with continued presence of fire, scattered objects, and motorized movement in the same location—supporting a single sustained riot event. Candidate 7 (24.5–26.8) overlaps but includes heavily blurred frames f14–f16 where actions are unverifiable; since t_end=26.0 is the last clear frame (f13), candidate 7 cannot be fully merged without overextending into uncertain territory, so only candidates 4 and 5 are included in the accepted event.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"Frame f5 shows a sudden bright flame on the ground but no blast wave, rapid expansion, or structural disruption—consistent with ignition of flammable material, not an explosion per definition.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    },\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"Frame f9 shows a motorcycle rider moving away from a fire source; the fire is sustained and localized with no detonation signature (e.g., shockwave, fragmentation), so it does not meet the explosion definition.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\"]\n    },\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"The interval 24.5–26.8 includes frames f14–f16 (26.5–27.5) that are severely motion-blurred, preventing verification of participants or actions; the visible evidence up to f13 is already covered by the accepted Riot event, and the extension beyond 26.0 lacks sufficient support to include in the event or treat as independent.\",\n      \"evidence_frame_ids\": [\"f14\", \"f15\", \"f16\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                4,
+                5
+              ],
+              "category": "Riot",
+              "t_start": 21.5,
+              "t_end": 26.0,
+              "confidence": 0.85,
+              "description": "Uniformed personnel in helmets and protective gear advance in formation across a street with burning objects and debris, while civilians and motorcycle riders are present amid chaotic movement.",
+              "reason": "Frames f4–f8 show coordinated movement of multiple individuals in riot gear near a large ground fire (f5), satisfying the definition of collective violent unrest; frames f9–f13 extend this with continued presence of fire, scattered objects, and motorized movement in the same location—supporting a single sustained riot event. Candidate 7 (24.5–26.8) overlaps but includes heavily blurred frames f14–f16 where actions are unverifiable; since t_end=26.0 is the last clear frame (f13), candidate 7 cannot be fully merged without overextending into uncertain territory, so only candidates 4 and 5 are included in the accepted event.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 3,
+              "reason": "Frame f5 shows a sudden bright flame on the ground but no blast wave, rapid expansion, or structural disruption—consistent with ignition of flammable material, not an explosion per definition.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            },
+            {
+              "candidate_id": 6,
+              "reason": "Frame f9 shows a motorcycle rider moving away from a fire source; the fire is sustained and localized with no detonation signature (e.g., shockwave, fragmentation), so it does not meet the explosion definition.",
+              "evidence_frame_ids": [
+                "f9",
+                "f10"
+              ]
+            },
+            {
+              "candidate_id": 7,
+              "reason": "The interval 24.5–26.8 includes frames f14–f16 (26.5–27.5) that are severely motion-blurred, preventing verification of participants or actions; the visible evidence up to f13 is already covered by the accepted Riot event, and the extension beyond 26.0 lacks sufficient support to include in the event or treat as independent.",
+              "evidence_frame_ids": [
+                "f14",
+                "f15",
+                "f16"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          8,
+          9
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 26.0,
+              "f1": 26.5,
+              "f2": 27.0,
+              "f3": 27.5,
+              "f4": 28.0,
+              "f5": 28.5,
+              "f6": 29.0,
+              "f7": 29.5,
+              "f8": 30.0,
+              "f9": 30.5,
+              "f10": 31.0,
+              "f11": 31.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 8,
+                "t_start": 28.0,
+                "t_end": 28.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 9,
+                "t_start": 29.5,
+                "t_end": 30.0,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 8,\n      \"reason\": \"f4 and f5 show a white car driving normally down a narrow street from above; no impact, deformation, or skid marks visible—no evidence of a crash.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    },\n    {\n      \"candidate_id\": 9,\n      \"reason\": \"f7–f8 show smoke/dust and blurred motion in a narrow alley, possibly from a vehicle passing through debris or a fire’s glow, but no blast wave, rapid expansion, or fragmentation—no explosion observed.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 8,
+              "reason": "f4 and f5 show a white car driving normally down a narrow street from above; no impact, deformation, or skid marks visible—no evidence of a crash.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            },
+            {
+              "candidate_id": 9,
+              "reason": "f7–f8 show smoke/dust and blurred motion in a narrow alley, possibly from a vehicle passing through debris or a fire’s glow, but no blast wave, rapid expansion, or fragmentation—no explosion observed.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

@@ -1,0 +1,259 @@
+{
+  "events": [
+    {
+      "t_start": 2.7,
+      "t_end": 8.5,
+      "anomaly_type": "Abuse",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A man in a suit is forcibly blindfolded with cloth by another man while a woman observes; the blindfolded man appears restrained and distressed, and the action is non-consensual and one-sided.",
+      "source_candidate_ids": [
+        0,
+        1,
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          2.0,
+          2.5,
+          7.0,
+          7.5,
+          8.0
+        ],
+        "evidence_frame_ids": [
+          "f2",
+          "f3",
+          "f12",
+          "f13",
+          "f14"
+        ],
+        "reason": "Frames f2–f3 show the blindfold being applied; f12–f14 show the blindfolded man struggling while the other man holds his neck and head—consistent with coercive restraint, not mutual combat or voluntary activity. The woman’s detached observation (f0–f1, f8–f10) and lack of intervention support asymmetrical power dynamics. No evidence of fighting (no reciprocal force), shooting, riot, car accident, or explosion.",
+        "source_categories": [
+          "Abuse",
+          "Fighting",
+          "Abuse"
+        ]
+      }
+    },
+    {
+      "t_start": 11.0,
+      "t_end": 15.0,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A large fireball erupts from a vehicle and expands violently, engulfing the street and throwing debris; visible across f4–f12.",
+      "source_candidate_ids": [
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          11.0,
+          11.5,
+          12.0,
+          14.0,
+          14.5,
+          15.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f10",
+          "f11",
+          "f12"
+        ],
+        "reason": "f4 shows an orange sports car with engine bay ablaze and smoke; f5–f6 show rapid fireball expansion; f10–f12 show peak fireball with a human figure airborne inside it—consistent with a high-energy explosion, not sustained fire or crash alone. The event spans from ignition (f4) through full detonation (f12), satisfying the definition of explosion (blast wave and rapid expansion).",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 5,
+      "output_count": 2,
+      "groups": 2,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 2,
+      "relabeled": 1,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 1.0,
+              "f1": 1.5,
+              "f2": 2.0,
+              "f3": 2.5,
+              "f4": 3.0,
+              "f5": 3.5,
+              "f6": 4.0,
+              "f7": 4.5,
+              "f8": 5.0,
+              "f9": 5.5,
+              "f10": 6.0,
+              "f11": 6.5,
+              "f12": 7.0,
+              "f13": 7.5,
+              "f14": 8.0,
+              "f15": 8.5,
+              "f16": 9.0,
+              "f17": 9.5,
+              "f18": 10.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 2.7,
+                "t_end": 8.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 3.1,
+                "t_end": 7.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 6.9,
+                "t_end": 8.1,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1, 2],\n      \"category\": \"Abuse\",\n      \"t_start\": 2.7,\n      \"t_end\": 8.5,\n      \"confidence\": 0.9,\n      \"description\": \"A man in a suit is forcibly blindfolded with cloth by another man while a woman observes; the blindfolded man appears restrained and distressed, and the action is non-consensual and one-sided.\",\n      \"reason\": \"Frames f2–f3 show the blindfold being applied; f12–f14 show the blindfolded man struggling while the other man holds his neck and head—consistent with coercive restraint, not mutual combat or voluntary activity. The woman’s detached observation (f0–f1, f8–f10) and lack of intervention support asymmetrical power dynamics. No evidence of fighting (no reciprocal force), shooting, riot, car accident, or explosion.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f12\", \"f13\", \"f14\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1,
+                2
+              ],
+              "category": "Abuse",
+              "t_start": 2.7,
+              "t_end": 8.5,
+              "confidence": 0.9,
+              "description": "A man in a suit is forcibly blindfolded with cloth by another man while a woman observes; the blindfolded man appears restrained and distressed, and the action is non-consensual and one-sided.",
+              "reason": "Frames f2–f3 show the blindfold being applied; f12–f14 show the blindfolded man struggling while the other man holds his neck and head—consistent with coercive restraint, not mutual combat or voluntary activity. The woman’s detached observation (f0–f1, f8–f10) and lack of intervention support asymmetrical power dynamics. No evidence of fighting (no reciprocal force), shooting, riot, car accident, or explosion.",
+              "evidence_frame_ids": [
+                "f2",
+                "f3",
+                "f12",
+                "f13",
+                "f14"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          3,
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 9.0,
+              "f1": 9.5,
+              "f2": 10.0,
+              "f3": 10.5,
+              "f4": 11.0,
+              "f5": 11.5,
+              "f6": 12.0,
+              "f7": 12.5,
+              "f8": 13.0,
+              "f9": 13.5,
+              "f10": 14.0,
+              "f11": 14.5,
+              "f12": 15.0,
+              "f13": 15.5,
+              "f14": 16.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 11.0,
+                "t_end": 11.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 11.0,
+                "t_end": 14.2,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"Explosion\",\n      \"t_start\": 11.0,\n      \"t_end\": 15.0,\n      \"confidence\": 0.95,\n      \"description\": \"A large fireball erupts from a vehicle and expands violently, engulfing the street and throwing debris; visible across f4–f12.\",\n      \"reason\": \"f4 shows an orange sports car with engine bay ablaze and smoke; f5–f6 show rapid fireball expansion; f10–f12 show peak fireball with a human figure airborne inside it—consistent with a high-energy explosion, not sustained fire or crash alone. The event spans from ignition (f4) through full detonation (f12), satisfying the definition of explosion (blast wave and rapid expansion).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f10\", \"f11\", \"f12\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"f4 shows a car already on fire with smoke and flames erupting from the engine bay, but no impact deformation or collision evidence; the fire appears to be the result of an explosion (as in candidate 4), not a crash. No visual indication of a collision preceding the fire.\",\n      \"evidence_frame_ids\": [\"f4\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                4
+              ],
+              "category": "Explosion",
+              "t_start": 11.0,
+              "t_end": 15.0,
+              "confidence": 0.95,
+              "description": "A large fireball erupts from a vehicle and expands violently, engulfing the street and throwing debris; visible across f4–f12.",
+              "reason": "f4 shows an orange sports car with engine bay ablaze and smoke; f5–f6 show rapid fireball expansion; f10–f12 show peak fireball with a human figure airborne inside it—consistent with a high-energy explosion, not sustained fire or crash alone. The event spans from ignition (f4) through full detonation (f12), satisfying the definition of explosion (blast wave and rapid expansion).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f10",
+                "f11",
+                "f12"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 3,
+              "reason": "f4 shows a car already on fire with smoke and flames erupting from the engine bay, but no impact deformation or collision evidence; the fire appears to be the result of an explosion (as in candidate 4), not a crash. No visual indication of a collision preceding the fire.",
+              "evidence_frame_ids": [
+                "f4"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

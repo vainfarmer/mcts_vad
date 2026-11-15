@@ -1,0 +1,324 @@
+{
+  "events": [
+    {
+      "t_start": 55.5,
+      "t_end": 56.0,
+      "anomaly_type": "Explosion",
+      "confidence": 1.0,
+      "coarse_score": 1.0,
+      "description": "A large plume of smoke and debris erupts from the ground with visible fire at the base, consistent with a sudden blast.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 1.0,
+        "evidence_times": [
+          55.5
+        ],
+        "evidence_frame_ids": [
+          "f4"
+        ],
+        "reason": "Image f4 shows the explosion in progress: bright flash, expanding smoke/dust cloud, and flying fragments; this satisfies the definition of 'Explosion' (a blast, not sustained fire).",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    },
+    {
+      "t_start": 55.5,
+      "t_end": 56.5,
+      "anomaly_type": "Riot",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "After the explosion, uniformed personnel with shields stand in formation amid smoke and debris while civilians observe nearby; banners are visible in background.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 1,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          55.5,
+          56.0,
+          56.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "Images f4–f6 show collective unrest: armed group in formation, smoke from explosion, bystanders, and protest banners—meeting the definition of 'Riot' as collective violent unrest (not just crowds or individual combat). The event begins with the explosion and continues through the immediate aftermath shown in f5–f6.",
+        "source_categories": [
+          "Riot"
+        ]
+      }
+    },
+    {
+      "t_start": 57.5,
+      "t_end": 59.0,
+      "anomaly_type": "Abuse",
+      "confidence": 0.8,
+      "coarse_score": 0.8,
+      "description": "A person lies motionless on the ground with severe head trauma and a grotesque mask placed over their face; no active aggressor is visible, but the scene suggests post-assault desecration.",
+      "source_candidate_ids": [
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 2,
+        "vlm_confidence": 0.8,
+        "evidence_times": [
+          57.5,
+          58.0,
+          58.5,
+          59.0
+        ],
+        "evidence_frame_ids": [
+          "f8",
+          "f9",
+          "f10",
+          "f11"
+        ],
+        "reason": "Images f8–f11 show a prone, injured individual with a mask forcibly placed on their head and blood visible; though no ongoing aggression is seen, the context (immediately after explosion/riot) and the unnatural placement of the mask imply abuse of a helpless victim. This meets the 'Abuse' definition (aggression against a helpless victim), even if the act occurred slightly before the frames—visible evidence supports it as ongoing or very recent.",
+        "source_categories": [
+          "Abuse"
+        ]
+      }
+    },
+    {
+      "t_start": 64.0,
+      "t_end": 65.0,
+      "anomaly_type": "Fighting",
+      "confidence": 0.8,
+      "coarse_score": 0.8,
+      "description": "Two blurred figures in the background at f6–f8 appear to be engaged in physical struggle, with one raising an arm toward the other in a motion consistent with striking or grappling.",
+      "source_candidate_ids": [
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.8,
+        "evidence_times": [
+          64.0,
+          64.5,
+          65.0
+        ],
+        "evidence_frame_ids": [
+          "f6",
+          "f7",
+          "f8"
+        ],
+        "reason": "Frames f6 (64.0), f7 (64.5), and f8 (65.0) show two indistinct figures in motion behind the woman; their postures suggest mutual physical engagement (one leaning forward, arms raised), satisfying the definition of Fighting as mutual physical combat. The event is visible only in background and partially obscured, but sufficient for classification.",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 5,
+      "output_count": 4,
+      "groups": 2,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 53.5,
+              "f1": 54.0,
+              "f2": 54.5,
+              "f3": 55.0,
+              "f4": 55.5,
+              "f5": 56.0,
+              "f6": 56.5,
+              "f7": 57.0,
+              "f8": 57.5,
+              "f9": 58.0,
+              "f10": 58.5,
+              "f11": 59.0,
+              "f12": 59.5,
+              "f13": 60.0,
+              "f14": 60.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 55.5,
+                "t_end": 56.0,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 55.5,
+                "t_end": 58.8,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 57.5,
+                "t_end": 59.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Explosion\",\n      \"t_start\": 55.5,\n      \"t_end\": 56.0,\n      \"confidence\": 1.0,\n      \"description\": \"A large plume of smoke and debris erupts from the ground with visible fire at the base, consistent with a sudden blast.\",\n      \"reason\": \"Image f4 shows the explosion in progress: bright flash, expanding smoke/dust cloud, and flying fragments; this satisfies the definition of 'Explosion' (a blast, not sustained fire).\",\n      \"evidence_frame_ids\": [\"f4\"]\n    },\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Riot\",\n      \"t_start\": 55.5,\n      \"t_end\": 56.5,\n      \"confidence\": 0.9,\n      \"description\": \"After the explosion, uniformed personnel with shields stand in formation amid smoke and debris while civilians observe nearby; banners are visible in background.\",\n      \"reason\": \"Images f4–f6 show collective unrest: armed group in formation, smoke from explosion, bystanders, and protest banners—meeting the definition of 'Riot' as collective violent unrest (not just crowds or individual combat). The event begins with the explosion and continues through the immediate aftermath shown in f5–f6.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"Abuse\",\n      \"t_start\": 57.5,\n      \"t_end\": 59.0,\n      \"confidence\": 0.8,\n      \"description\": \"A person lies motionless on the ground with severe head trauma and a grotesque mask placed over their face; no active aggressor is visible, but the scene suggests post-assault desecration.\",\n      \"reason\": \"Images f8–f11 show a prone, injured individual with a mask forcibly placed on their head and blood visible; though no ongoing aggression is seen, the context (immediately after explosion/riot) and the unnatural placement of the mask imply abuse of a helpless victim. This meets the 'Abuse' definition (aggression against a helpless victim), even if the act occurred slightly before the frames—visible evidence supports it as ongoing or very recent.\",\n      \"evidence_frame_ids\": [\"f8\", \"f9\", \"f10\", \"f11\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Explosion",
+              "t_start": 55.5,
+              "t_end": 56.0,
+              "confidence": 1.0,
+              "description": "A large plume of smoke and debris erupts from the ground with visible fire at the base, consistent with a sudden blast.",
+              "reason": "Image f4 shows the explosion in progress: bright flash, expanding smoke/dust cloud, and flying fragments; this satisfies the definition of 'Explosion' (a blast, not sustained fire).",
+              "evidence_frame_ids": [
+                "f4"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "Riot",
+              "t_start": 55.5,
+              "t_end": 56.5,
+              "confidence": 0.9,
+              "description": "After the explosion, uniformed personnel with shields stand in formation amid smoke and debris while civilians observe nearby; banners are visible in background.",
+              "reason": "Images f4–f6 show collective unrest: armed group in formation, smoke from explosion, bystanders, and protest banners—meeting the definition of 'Riot' as collective violent unrest (not just crowds or individual combat). The event begins with the explosion and continues through the immediate aftermath shown in f5–f6.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                2
+              ],
+              "category": "Abuse",
+              "t_start": 57.5,
+              "t_end": 59.0,
+              "confidence": 0.8,
+              "description": "A person lies motionless on the ground with severe head trauma and a grotesque mask placed over their face; no active aggressor is visible, but the scene suggests post-assault desecration.",
+              "reason": "Images f8–f11 show a prone, injured individual with a mask forcibly placed on their head and blood visible; though no ongoing aggression is seen, the context (immediately after explosion/riot) and the unnatural placement of the mask imply abuse of a helpless victim. This meets the 'Abuse' definition (aggression against a helpless victim), even if the act occurred slightly before the frames—visible evidence supports it as ongoing or very recent.",
+              "evidence_frame_ids": [
+                "f8",
+                "f9",
+                "f10",
+                "f11"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          3,
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 61.0,
+              "f1": 61.5,
+              "f2": 62.0,
+              "f3": 62.5,
+              "f4": 63.0,
+              "f5": 63.5,
+              "f6": 64.0,
+              "f7": 64.5,
+              "f8": 65.0,
+              "f9": 65.5,
+              "f10": 66.0,
+              "f11": 66.5,
+              "f12": 67.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 63.0,
+                "t_end": 63.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 64.2,
+                "t_end": 65.2,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"Fighting\",\n      \"t_start\": 64.0,\n      \"t_end\": 65.0,\n      \"confidence\": 0.8,\n      \"description\": \"Two blurred figures in the background at f6–f8 appear to be engaged in physical struggle, with one raising an arm toward the other in a motion consistent with striking or grappling.\",\n      \"reason\": \"Frames f6 (64.0), f7 (64.5), and f8 (65.0) show two indistinct figures in motion behind the woman; their postures suggest mutual physical engagement (one leaning forward, arms raised), satisfying the definition of Fighting as mutual physical combat. The event is visible only in background and partially obscured, but sufficient for classification.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"No blast, fireball, or rapid expansion indicative of explosion is visible in f4 (63.0) or f5 (63.5); the bright white haze appears to be smoke/dust from off-screen activity, not an explosion itself.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                4
+              ],
+              "category": "Fighting",
+              "t_start": 64.0,
+              "t_end": 65.0,
+              "confidence": 0.8,
+              "description": "Two blurred figures in the background at f6–f8 appear to be engaged in physical struggle, with one raising an arm toward the other in a motion consistent with striking or grappling.",
+              "reason": "Frames f6 (64.0), f7 (64.5), and f8 (65.0) show two indistinct figures in motion behind the woman; their postures suggest mutual physical engagement (one leaning forward, arms raised), satisfying the definition of Fighting as mutual physical combat. The event is visible only in background and partially obscured, but sufficient for classification.",
+              "evidence_frame_ids": [
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 3,
+              "reason": "No blast, fireball, or rapid expansion indicative of explosion is visible in f4 (63.0) or f5 (63.5); the bright white haze appears to be smoke/dust from off-screen activity, not an explosion itself.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

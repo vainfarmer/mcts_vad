@@ -1,0 +1,247 @@
+{
+  "events": [
+    {
+      "t_start": 67.5,
+      "t_end": 69.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A black car is shown losing control on a dirt track, sliding sideways with significant dust kicked up, while a white car is visible ahead and to the right; the black car’s rear wheels are off the ground or heavily unweighted in frame f6 (68.0), indicating a loss of traction and likely impact or near-impact with terrain or another object. The motion sequence from f5 (68.0) through f8 (69.5) shows sustained skid and rotation consistent with a crash or severe loss of control.",
+      "source_candidate_ids": [
+        0,
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          68.0,
+          68.5,
+          69.0,
+          69.5
+        ],
+        "evidence_frame_ids": [
+          "f5",
+          "f6",
+          "f7",
+          "f8"
+        ],
+        "reason": "Frames f5–f8 show the black car in an abnormal, unstable orientation: airborne rear wheel(s), extreme yaw, and heavy dust plume—indicative of a collision or violent loss of control, not ordinary driving. The white car is ahead and appears unaffected, ruling out mutual racing maneuver. The event spans both candidate intervals continuously; thus they are merged into one CarAccident event. No visible explosion, fire, or human combat.",
+        "source_categories": [
+          "CarAccident",
+          "CarAccident"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 6,
+      "output_count": 1,
+      "groups": 2,
+      "rejected": 4,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 65.5,
+              "f1": 66.0,
+              "f2": 66.5,
+              "f3": 67.0,
+              "f4": 67.5,
+              "f5": 68.0,
+              "f6": 68.5,
+              "f7": 69.0,
+              "f8": 69.5,
+              "f9": 70.0,
+              "f10": 70.5,
+              "f11": 71.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 67.5,
+                "t_end": 68.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 68.0,
+                "t_end": 69.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"CarAccident\",\n      \"t_start\": 67.5,\n      \"t_end\": 69.5,\n      \"confidence\": 0.95,\n      \"description\": \"A black car is shown losing control on a dirt track, sliding sideways with significant dust kicked up, while a white car is visible ahead and to the right; the black car’s rear wheels are off the ground or heavily unweighted in frame f6 (68.0), indicating a loss of traction and likely impact or near-impact with terrain or another object. The motion sequence from f5 (68.0) through f8 (69.5) shows sustained skid and rotation consistent with a crash or severe loss of control.\",\n      \"reason\": \"Frames f5–f8 show the black car in an abnormal, unstable orientation: airborne rear wheel(s), extreme yaw, and heavy dust plume—indicative of a collision or violent loss of control, not ordinary driving. The white car is ahead and appears unaffected, ruling out mutual racing maneuver. The event spans both candidate intervals continuously; thus they are merged into one CarAccident event. No visible explosion, fire, or human combat.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1
+              ],
+              "category": "CarAccident",
+              "t_start": 67.5,
+              "t_end": 69.5,
+              "confidence": 0.95,
+              "description": "A black car is shown losing control on a dirt track, sliding sideways with significant dust kicked up, while a white car is visible ahead and to the right; the black car’s rear wheels are off the ground or heavily unweighted in frame f6 (68.0), indicating a loss of traction and likely impact or near-impact with terrain or another object. The motion sequence from f5 (68.0) through f8 (69.5) shows sustained skid and rotation consistent with a crash or severe loss of control.",
+              "reason": "Frames f5–f8 show the black car in an abnormal, unstable orientation: airborne rear wheel(s), extreme yaw, and heavy dust plume—indicative of a collision or violent loss of control, not ordinary driving. The white car is ahead and appears unaffected, ruling out mutual racing maneuver. The event spans both candidate intervals continuously; thus they are merged into one CarAccident event. No visible explosion, fire, or human combat.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 71.0,
+              "f1": 71.5,
+              "f2": 72.0,
+              "f3": 72.5,
+              "f4": 73.5,
+              "f5": 74.0,
+              "f6": 74.5,
+              "f7": 75.0,
+              "f8": 75.5,
+              "f9": 76.0,
+              "f10": 76.5,
+              "f11": 77.0,
+              "f12": 78.5,
+              "f13": 79.0,
+              "f14": 79.5,
+              "f15": 80.0,
+              "f16": 81.0,
+              "f17": 81.5,
+              "f18": 82.0,
+              "f19": 82.5,
+              "f20": 83.0,
+              "f21": 83.5,
+              "f22": 84.0,
+              "f23": 85.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 73.0,
+                "t_end": 78.1,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 73.1,
+                "t_end": 75.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 77.3,
+                "t_end": 82.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 82.7,
+                "t_end": 83.7,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"No mutual physical combat is visible. The woman approaches the car holding a bat-like object, then strikes the driver’s side window (f12). The man inside reacts with pain/distress (f7–f11, f13–f18), but there is no reciprocal physical engagement; he remains seated and does not strike back or attempt to grapple. This is a one-sided assault, not fighting.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"Same as candidate 2: frames f7–f12 show the woman striking the car window while the man inside recoils; no mutual combat occurs. The action is unilateral and brief, not sustained fighting.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\"]\n    },\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"Frames f13–f18 show the man inside the car grimacing, yelling, and gripping the wheel—consistent with reaction to being struck—but he does not engage physically with the woman outside. She is visible outside (e.g., f13, f15) but not in contact. No fighting occurs in this interval.\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\"]\n    },\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"Frames f19–f20 show the woman running away from the car across the field; the man is not visible. There is no victim present, no aggression occurring, and no indication of helplessness or ongoing abuse. The prior strike (f12) is over; this is post-event movement. Abuse requires active aggression against a helpless person, which is not depicted here.\",\n      \"evidence_frame_ids\": [\"f19\", \"f20\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "No mutual physical combat is visible. The woman approaches the car holding a bat-like object, then strikes the driver’s side window (f12). The man inside reacts with pain/distress (f7–f11, f13–f18), but there is no reciprocal physical engagement; he remains seated and does not strike back or attempt to grapple. This is a one-sided assault, not fighting.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18"
+              ]
+            },
+            {
+              "candidate_id": 3,
+              "reason": "Same as candidate 2: frames f7–f12 show the woman striking the car window while the man inside recoils; no mutual combat occurs. The action is unilateral and brief, not sustained fighting.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12"
+              ]
+            },
+            {
+              "candidate_id": 4,
+              "reason": "Frames f13–f18 show the man inside the car grimacing, yelling, and gripping the wheel—consistent with reaction to being struck—but he does not engage physically with the woman outside. She is visible outside (e.g., f13, f15) but not in contact. No fighting occurs in this interval.",
+              "evidence_frame_ids": [
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18"
+              ]
+            },
+            {
+              "candidate_id": 5,
+              "reason": "Frames f19–f20 show the woman running away from the car across the field; the man is not visible. There is no victim present, no aggression occurring, and no indication of helplessness or ongoing abuse. The prior strike (f12) is over; this is post-event movement. Abuse requires active aggression against a helpless person, which is not depicted here.",
+              "evidence_frame_ids": [
+                "f19",
+                "f20"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "f39c9b4b7fbc19153cc76f329d5c8e188a3b83d98d41666fc384b75fe6b4faab"
+}

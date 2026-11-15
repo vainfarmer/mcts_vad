@@ -1,0 +1,604 @@
+{
+  "events": [
+    {
+      "t_start": 34.0,
+      "t_end": 35.0,
+      "anomaly_type": "Fighting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A small robot crouches defensively as a larger robot's arm glows red and emits blue electrical arcs toward it, indicating active mutual engagement.",
+      "source_candidate_ids": [
+        6
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          34.0,
+          34.5,
+          35.0
+        ],
+        "evidence_frame_ids": [
+          "f25",
+          "f26",
+          "f27"
+        ],
+        "reason": "Frames f25–f27 (34.0–35.0) show direct energy discharge from the larger robot at the smaller one, which is in a reactive posture; this satisfies 'Fighting' (mutual physical combat). Candidate 6’s interval [33.9,35.5] fully overlaps this visible event (34.0–35.0), satisfying the overlap requirement.",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 8,
+      "output_count": 1,
+      "groups": 2,
+      "rejected": 7,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 1,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 17.5,
+              "f1": 18.0,
+              "f2": 19.0,
+              "f3": 20.0,
+              "f4": 20.5,
+              "f5": 21.0,
+              "f6": 22.5,
+              "f7": 23.0,
+              "f8": 23.5,
+              "f9": 24.0,
+              "f10": 24.5,
+              "f11": 25.5,
+              "f12": 26.5,
+              "f13": 27.0,
+              "f14": 27.5,
+              "f15": 29.0,
+              "f16": 30.0,
+              "f17": 31.0,
+              "f18": 31.5,
+              "f19": 33.5,
+              "f20": 34.0,
+              "f21": 34.5,
+              "f22": 35.0,
+              "f23": 37.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 19.5,
+                "t_end": 22.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 20.0,
+                "t_end": 21.6,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 22.5,
+                "t_end": 24.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 24.0,
+                "t_end": 25.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 24.9,
+                "t_end": 29.4,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 29.1,
+                "t_end": 34.4,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 33.9,
+                "t_end": 35.5,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1, 3],\n      \"category\": \"Explosion\",\n      \"t_start\": 19.0,\n      \"t_end\": 21.0,\n      \"confidence\": 0.9,\n      \"description\": \"A large fiery blast with debris and a small figure being thrown outward; frames f2–f5 show expanding orange-red fire and fragmentation consistent with an explosion.\",\n      \"reason\": \"Frames f2–f5 depict rapid expansion of fire and scattered fragments, with a figure propelled away—hallmarks of an explosion, not sustained fire or combat. Candidate 0 (Fighting) and candidate 1/3 (Explosion) all map to this single explosive event; merged accordingly.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\", \"f5\"]\n    },\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"Abuse\",\n      \"t_start\": 22.5,\n      \"t_end\": 24.5,\n      \"confidence\": 0.8,\n      \"description\": \"A character with glowing eyes screams while being violently flung backward through fire, limbs splayed, indicating forceful impact from a larger entity.\",\n      \"reason\": \"Frame f6 shows the character mid-scream with arms raised defensively; f7–f10 show them tumbling upside-down in a trajectory suggesting being struck or thrown by an unseen aggressor—consistent with abuse (aggression against a helpless victim), not mutual fighting.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    },\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"CarAccident\",\n      \"t_start\": 24.9,\n      \"t_end\": 29.4,\n      \"confidence\": 0.7,\n      \"description\": \"Debris including wheels, chassis parts, and broken machinery settles on the ground after impact, with no motion indicating ongoing collision.\",\n      \"reason\": \"Frames f11–f15 show static wreckage (wheels, panels, mechanical parts) accumulating on the floor—indicative of a prior crash (CarAccident), though the vehicle itself is not fully visible; the timing aligns with aftermath of the explosion and fall.\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\", \"f13\", \"f14\", \"f15\"]\n    },\n    {\n      \"source_candidate_ids\": [5],\n      \"category\": \"Abuse\",\n      \"t_start\": 29.1,\n      \"t_end\": 34.4,\n      \"confidence\": 0.85,\n      \"description\": \"The character lies prone and motionless on the ground (f15–f18), then slowly pushes up (f19) while a large robotic figure looms over them with a red-lit eye and crackling energy (f20–f22).\",\n      \"reason\": \"From f15–f18 the character is incapacitated; f19–f22 show them rising under threat from a dominant, powered-up machine—this asymmetry (helpless victim + aggressive superior force) satisfies Abuse, not Fighting (no reciprocal action). Merged with prior abuse interval? No—distinct phase: post-fall helplessness followed by intimidation; kept separate as continuous abuse sequence from fall to threat.\",\n      \"evidence_frame_ids\": [\"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    },\n    {\n      \"source_candidate_ids\": [6],\n      \"category\": \"Fighting\",\n      \"t_start\": 33.9,\n      \"t_end\": 35.5,\n      \"confidence\": 0.6,\n      \"description\": \"The character crouches facing a large robot whose arm glows red and emits blue arcs; both are poised but no contact occurs in visible frames.\",\n      \"reason\": \"Frames f20–f22 show confrontation with energy buildup but no physical exchange; however, f23 shows the robot’s head turning away and the character still crouched—no strike, grab, or mutual engagement. Given lack of contact, this is *not* Fighting; but since candidate 6 overlaps with confirmed Abuse (f19–f22), and the robot’s energy discharge (f22) appears threatening rather than combative, it's better subsumed under Abuse. However, per instruction: merge only if same physical event. The energy arc (f22) is part of the intimidation (Abuse), not a fight. Thus candidate 6 is redundant with Abuse event from candidate 5 and should be merged—not a separate Fighting event. But the instructions say: 'Merge fragments or competing labels ONLY when images show the same physical event'. Since f20–f22 are already included in Abuse (candidate 5), and no actual fighting occurs, candidate 6 is *rejected* as misclassified. Correction: do NOT include as separate Fighting. So re-evaluate: candidate 6 is rejected (see below). Wait—rechecking: the task says “Each accepted events item: source_candidate_ids (integer list)… never reuse a source in two events.” So if we accept candidate 5 covering f15–f22, candidate 6 (f20–f22) overlaps and must be either merged or rejected. Since the visible action is continued threat/intimidation (Abuse), not Fighting, candidate 6 is mislabeled and should be rejected. Therefore, no Fighting event is supported.\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Hypothesized Fighting is contradicted by unilateral propulsion and lack of reciprocal action; the event is an Explosion followed by victim displacement (Abuse).\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\", \"f5\"]\n    },\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Explosion is supported, but this candidate’s interval is subsumed into the broader explosion event (f2–f5); not rejected per se, but merged—however per instruction, rejected list is for *contradicted* hypotheses. Since it’s correct but overlapping, and we merged it, we should not list it in rejected. Re-read: 'Reject only when adequately visible evidence contradicts the hypothesis.' Candidate 1 is *not* contradicted—it’s correct—but the format requires each candidate to appear exactly once in one list. Since we merged it into an accepted event, it should not be in rejected. So only candidates that are *incorrect* go to rejected. Let’s fix: candidates 0, 1, 3 all describe the explosion; we accepted a merged event covering them, so they are not rejected. But the spec says: “Account for EVERY candidate exactly once across all lists.” So we must assign each candidate ID to exactly one of events/rejected/uncertain. Therefore: for candidates that are correct but merged, we include their IDs in source_candidate_ids of the accepted event, and they are *not* in rejected. So rejected should only contain candidates that are factually wrong.\n\nLet’s reassess each candidate against evidence:\n\n- c0 (Fighting, 19.5–22.0): No mutual combat; only explosion and victim ejection → contradicted → reject.\n- c1 (Explosion, 20.0–21.6): Supported by f3–f5 → should be merged, not rejected. But we can only put it in one place. Since we have an accepted event with source_candidate_ids [0,1,3], that satisfies c1.\n- c2 (Abuse, 22.5–24.5): Supported by f6–f10 (character thrown, helpless) → accepted.\n- c3 (Explosion, 24.0–25.5): f9–f10 show falling figure, f11 shows aftermath—no second explosion; the fire is residual, not a new blast. So c3 is *not* supported: no explosion at 24.0–25.5, only falling and landing. Thus c3 is contradicted → reject.\n- c4 (CarAccident, 24.9–29.4): Supported by debris accumulation f11–f15 → accepted.\n- c5 (Abuse, 29.1–34.4): Supported by prone character + looming robot with energy (f15–f22) → accepted.\n- c6 (Fighting, 33.9–35.5): f20–f23 show standoff with energy but no contact; robot turns away in f23; no fighting occurs → contradicted → reject.\n\nThus rejected: c0, c3, c6.\n\nUncertain: none.\n\nFinal events:\n- Explosion: c1 only? But c0 and c3 also claim explosion/fighting in that window. To satisfy “each candidate exactly once”, we create one accepted event with source_candidate_ids [1] (since c0 and c3 are false), or we can include c0 and c3 only if they are correct. But c0 is Fighting → false; c3 is Explosion at 24–25.5 → false (no blast there). So only c1 is valid for explosion.\n\nBut f2 (19.0) shows the blast onset—c1 starts at 20.0, missing f2. Still, c1 is partially correct. The instructions say: “Correct an incorrect category.” So if a candidate has right category but wrong timing, and the event exists, we can still accept it if within visible bounds and evidence supports the category. However, we must use the exact candidate intervals only if they match. The safer approach: accept explosion event with t_start=19.0 (f2) to 21.0 (f5), and assign source_candidate_ids = [1] only, because c0 is wrong category, c3 is wrong timing/event. Then reject c0 and c3.\n\nLet me finalize based on strict evidence:\n\n- f2: sudden fire/debris → explosion begins.\n- f3–f5: expansion → explosion ongoing.\n→ Explosion occurred ~19.0–21.0. Candidate 1 (20.0–21.6) overlaps the latter part and is correct category; we can accept it with adjusted t_start/t_end to match evidence (per instruction: “Accepted intervals must overlap all their source intervals and stay within visible bounds” — so t_start can be ≥20.0, t_end ≤21.6, but f5 is 21.0, so t_end=21.0 is fine). So accept c1 as Explosion, t_start=20.0, t_end=21.0, evidence f3–f5. f2 is before c1’s start, but candidate doesn’t claim f2, so okay.\n\nBut the instruction: “Accepted intervals must overlap all their source intervals” — meaning the accepted event’s [t_start, t_end] must cover the candidate’s [t_start, t_end]. So for c1 (20.0–21.6), our accepted event must have t_start ≤20.0 and t_end ≥21.6. But f6 is at 22.5, and no frame at 21.6; max frame is f5 at 21.0. So we cannot verify beyond 21.0. Thus we cannot confidently assert explosion until 21.6 — so c1 is *uncertain* beyond 21.0. Given sampling gap, better to mark c1 as uncertain? No, f5 is 21.0 and shows active fire; 21.6 is only 0.6s later — plausible continuation. But per strict rule: if no frame at 21.6, and we can’t infer, confidence drops.\n\nGiven the constraints, safest classification:\n\n- Explosion: supported in f2–f5 (19.0–21.0). Candidate 1 starts at 20.0, ends at 21.6 — we can accept with t_end=21.0 (overlaps source interval partially, but requirement is “overlap all their source intervals”, i.e., [20.0,21.6] ⊆ [t_start,t_end]). Since we cannot confirm to 21.6, we cannot fully overlap. Therefore, candidate 1 cannot be fully verified → uncertain.\n\nThis is getting overly tangled. Let me follow the principle: only label what is directly visible.\n\nVisible facts:\n- f2: explosion initiates.\n- f3–f5: explosion expands, figure ejected.\n- f6–f10: figure falling/screaming — abuse (being thrown).\n- f11–f15: wreckage settling - car accident (aftermath of crash).\n- f15–f22: figure down, then rising, robot threatens with energy — abuse (ongoing).\n- f23: robot turns away, no fight.\n\nThus:\n- Explosion: yes, f2–f5 → candidate 1 is closest; we accept it, extending t_end to 21.0 (last frame), and note confidence 0.9. The 0.6s gap to 21.6 is minor; we assume continuity.\n- Candidate 0 (Fighting) is wrong → reject.\n- Candidate 3 (Explosion at 24–25.5): no blast, only falling/landing → reject.\n- Candidate 6 (Fighting at 33.9–35.5): no contact → reject.\n- Candidates 2,4,5 are supported.\n\nSo final decision:\n\nevents:\n1. Explosion, c1, 20.0–21.0, confidence 0.9, evidence f3–f5 (and f2 supports onset but c1 starts at 20.0, so f3–f5 suffice).\nBut to overlap c1’s interval [20.0,21.6], we need t_end ≥21.6. Since no frame at 21.6, and f5 is 21.0, we cannot guarantee. Therefore, per strict reading, c1 is uncertain.\n\nGiven the problem’s intent, and that animation frames are sampled, it’s reasonable to accept c1 with t_end=21.0 and note the interval slightly shortens, but the instruction says “must overlap all their source intervals” — so if we can’t verify to 21.6, we must not accept c1 as-is.\n\nI will instead place c1 in **uncertain**, because the end time extends beyond last explosion frame.\n\nAfter careful review, the only fully verifiable categories are:\n- Abuse (c2): f6–f10 clearly show helpless victim being thrown.\n- CarAccident (c4): f11–f15 show crash debris settling.\n- Abuse (c5): f15–f22 show incapacitated victim + threatening robot.\n- Explosion is visible (f2–f5) but no candidate perfectly matches; c1 is close but ends at 21.6 > 21.0. So c1 → uncertain.\n- c0, c3, c6 → rejected.\n\nThus:\n\n{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"Abuse\",\n      \"t_start\": 22.5,\n      \"t_end\": 24.5,\n      \"confidence\": 0.8,\n      \"description\": \"Character screams and is violently propelled backward through fire, limbs flailing, with no ability to resist.\",\n      \"reason\": \"Frames f6–f10 show unilateral force application to a non-combatant; meets Abuse definition.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    },\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"CarAccident\",\n      \"t_start\": 24.9,\n      \"t_end\": 29.4,\n      \"confidence\": 0.7,\n      \"description\": \"Scattered vehicle components (wheels, chassis) lie stationary on the ground after impact.\",\n      \"reason\": \"Frames f11–f15 depict post-collision wreckage without motion, indicating a completed crash.\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\", \"f13\", \"f14\", \"f15\"]\n    },\n    {\n      \"source_candidate_ids\": [5],\n      \"category\": \"Abuse\",\n      \"t_start\": 29.1,\n      \"t_end\": 34.4,\n      \"confidence\": 0.85,\n      \"description\": \"Character lies prone, then rises while a larger robot looms with glowing red eye and electrical discharge, indicating intimidation of a helpless target.\",\n      \"reason\": \"Frames f15–f22 show prolonged helplessness and asymmetric threat, satisfying Abuse; no reciprocal action occurs.\",\n      \"evidence_frame_ids\": [\"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No mutual combat observed; the character is solely ejected by an explosion, not engaging in fighting.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"No second explosion at 24.0–25.5; frames f9–f11 show falling and landing, not a blast.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\", \"f11\"]\n    },\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"Confrontation lacks physical contact or reciprocal aggression; robot’s energy display is threatening but not fighting.\",\n      \"evidence_frame_ids\": [\"f20\", \"f21\", \"f22\", \"f23\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Explosion is visible (f2–f5), but candidate’s end time (21.6) extends beyond last frame (f5 at 21.0), making full interval unverifiable.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 17.5,
+              "f1": 18.0,
+              "f2": 19.0,
+              "f3": 20.0,
+              "f4": 20.5,
+              "f5": 21.0,
+              "f6": 22.5,
+              "f7": 23.0,
+              "f8": 23.5,
+              "f9": 24.0,
+              "f10": 24.5,
+              "f11": 25.5,
+              "f12": 26.5,
+              "f13": 27.0,
+              "f14": 27.5,
+              "f15": 29.0,
+              "f16": 30.0,
+              "f17": 31.0,
+              "f18": 31.5,
+              "f19": 33.5,
+              "f20": 34.0,
+              "f21": 34.5,
+              "f22": 35.0,
+              "f23": 37.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 19.5,
+                "t_end": 22.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 20.0,
+                "t_end": 21.6,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 22.5,
+                "t_end": 24.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 24.0,
+                "t_end": 25.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 24.9,
+                "t_end": 29.4,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 29.1,
+                "t_end": 34.4,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 33.9,
+                "t_end": 35.5,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"Abuse\",\n      \"t_start\": 22.5,\n      \"t_end\": 24.5,\n      \"confidence\": 0.85,\n      \"description\": \"A character with glowing eyes screams while being violently flung backward through fire, limbs splayed and uncontrolled, indicating forceful unilateral impact.\",\n      \"reason\": \"Frames f6–f10 show the character mid-scream (f6) then tumbling upside-down without resistance or counter-action, consistent with aggression against a helpless victim (Abuse), not mutual combat.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    },\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"CarAccident\",\n      \"t_start\": 24.9,\n      \"t_end\": 29.4,\n      \"confidence\": 0.75,\n      \"description\": \"Debris including wheels, chassis fragments, and mechanical parts settles motionlessly on the ground after impact.\",\n      \"reason\": \"Frames f11–f15 depict static wreckage accumulating post-impact with no motion indicating ongoing collision; this matches aftermath of a crash (CarAccident), not explosion or fighting.\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\", \"f13\", \"f14\", \"f15\"]\n    },\n    {\n      \"source_candidate_ids\": [5],\n      \"category\": \"Abuse\",\n      \"t_start\": 29.1,\n      \"t_end\": 34.4,\n      \"confidence\": 0.9,\n      \"description\": \"The character lies prone and incapacitated (f15–f18), then slowly rises (f19) while a larger robotic entity looms overhead with a red-lit eye and crackling energy (f20–f22), exerting intimidation without reciprocity.\",\n      \"reason\": \"The prolonged helplessness (f15–f18) followed by asymmetric threat (f19–f22) satisfies Abuse (aggression against a helpless victim); no physical engagement occurs, ruling out Fighting.\",\n      \"evidence_frame_ids\": [\"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No mutual physical combat is visible; the character is solely ejected by an explosive force, not engaging an opponent.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"No explosion occurs at 24.0–25.5; frames f9–f11 show only falling and landing of the character, with residual fire but no blast wave or fragmentation.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\", \"f11\"]\n    },\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"Frames f20–f23 show a standoff with energy buildup but no contact, strike, or reciprocal action; the robot turns away in f23, confirming absence of fighting.\",\n      \"evidence_frame_ids\": [\"f20\", \"f21\", \"f22\", \"f23\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"An explosion is visible in f2–f5 (19.0–21.0), but candidate’s interval (20.0–21.6) extends beyond the last frame at 21.0, making full verification impossible; no frame confirms continuation to 21.6.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 13.5,
+              "f1": 14.0,
+              "f2": 15.0,
+              "f3": 16.0,
+              "f4": 16.5,
+              "f5": 17.5,
+              "f6": 19.0,
+              "f7": 20.0,
+              "f8": 20.5,
+              "f9": 21.0,
+              "f10": 21.5,
+              "f11": 22.5,
+              "f12": 23.5,
+              "f13": 24.0,
+              "f14": 24.5,
+              "f15": 25.0,
+              "f16": 26.5,
+              "f17": 27.0,
+              "f18": 27.5,
+              "f19": 28.5,
+              "f20": 29.0,
+              "f21": 30.0,
+              "f22": 31.0,
+              "f23": 31.5,
+              "f24": 33.5,
+              "f25": 34.0,
+              "f26": 34.5,
+              "f27": 35.0,
+              "f28": 36.0,
+              "f29": 36.5,
+              "f30": 37.5,
+              "f31": 39.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 19.5,
+                "t_end": 22.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 20.0,
+                "t_end": 21.6,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 22.5,
+                "t_end": 24.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 24.0,
+                "t_end": 25.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 24.9,
+                "t_end": 29.4,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 29.1,
+                "t_end": 34.4,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 33.9,
+                "t_end": 35.5,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Explosion\",\n      \"t_start\": 15.0,\n      \"t_end\": 16.5,\n      \"confidence\": 1.0,\n      \"description\": \"A large orange-yellow fireball expands rapidly with debris flying outward, consistent with a blast event.\",\n      \"reason\": \"Frames f2–f4 show a classic expanding explosion with shockwave-like radial motion and fragmentation; this matches the definition of 'Explosion' (blast, not sustained fire). Candidate 1’s interval [20.0,21.6] is misaligned—actual explosion occurs earlier at 15.0–16.5.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\"]\n    },\n    {\n      \"source_candidate_ids\": [6],\n      \"category\": \"Fighting\",\n      \"t_start\": 34.0,\n      \"t_end\": 35.5,\n      \"confidence\": 0.9,\n      \"description\": \"A small robot confronts a larger robot whose arm glows red and emits blue electrical arcs toward the smaller one.\",\n      \"reason\": \"Frames f25–f27 show mutual engagement: the larger robot actively discharges energy at the smaller one, which is in a defensive posture; this constitutes mutual physical combat (Fighting), not Abuse (victim is not helpless).\",\n      \"evidence_frame_ids\": [\"f25\", \"f26\", \"f27\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No visible combat between characters in frames f7–f10; only debris and a distant figure amid fire, no mutual physical interaction.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\", \"f10\"]\n    },\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Frames f11–f15 show the character falling through fire, not being attacked by another agent; no aggressor present, so not Abuse.\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\", \"f13\", \"f14\", \"f15\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"No second explosion occurs at 24.0–25.5; frames f13–f15 depict falling motion against fiery background, not a blast.\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\", \"f15\"]\n    },\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"No vehicle crash shown; frames f16–f21 depict aftermath debris and a robot lying down, but no collision event or car-like object involved.\",\n      \"evidence_frame_ids\": [\"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\"]\n    },\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"Frames f21–f24 show the robot recovering from fall and rising, not being harmed by another; no aggressor or helpless state evident, so not Abuse.\",\n      \"evidence_frame_ids\": [\"f21\", \"f22\", \"f23\", \"f24\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Although an explosion is confirmed, candidate 1’s time window [20.0,21.6] does not align with the actual explosion (15.0–16.5); since the candidate specifies wrong timing, it is rejected—not uncertain—but for completeness, note that frames f6–f10 show post-explosion fire/debris, not a new explosion.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 13.5,
+              "f1": 14.0,
+              "f2": 15.0,
+              "f3": 16.0,
+              "f4": 16.5,
+              "f5": 17.5,
+              "f6": 19.0,
+              "f7": 20.0,
+              "f8": 20.5,
+              "f9": 21.0,
+              "f10": 21.5,
+              "f11": 22.5,
+              "f12": 23.5,
+              "f13": 24.0,
+              "f14": 24.5,
+              "f15": 25.0,
+              "f16": 26.5,
+              "f17": 27.0,
+              "f18": 27.5,
+              "f19": 28.5,
+              "f20": 29.0,
+              "f21": 30.0,
+              "f22": 31.0,
+              "f23": 31.5,
+              "f24": 33.5,
+              "f25": 34.0,
+              "f26": 34.5,
+              "f27": 35.0,
+              "f28": 36.0,
+              "f29": 36.5,
+              "f30": 37.5,
+              "f31": 39.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 19.5,
+                "t_end": 22.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 20.0,
+                "t_end": 21.6,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 22.5,
+                "t_end": 24.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 24.0,
+                "t_end": 25.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 24.9,
+                "t_end": 29.4,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 29.1,
+                "t_end": 34.4,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 33.9,
+                "t_end": 35.5,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Explosion\",\n      \"t_start\": 15.0,\n      \"t_end\": 16.5,\n      \"confidence\": 1.0,\n      \"description\": \"A rapidly expanding orange-yellow fireball with outward-flying debris and radial shockwave-like motion is visible.\",\n      \"reason\": \"Frames f2–f4 show a classic blast event: sudden expansion, fragmentation, and directional force; this satisfies the definition of 'Explosion' (requires a blast, not sustained fire). Candidate 1’s claimed interval [20.0,21.6] is misaligned with the actual explosion at 15.0–16.5, but since the candidate refers to an explosion and one *does* occur, we map it to the correct visible interval that overlaps its claim only in category—not timing—and per instructions, we accept the candidate if the event type is correct and visible, adjusting t_start/t_end to match evidence. However, the instruction says: 'Accepted intervals must overlap every claimed source candidate'. Candidate 1 claims [20.0,21.6], but the explosion occurs at [15.0,16.5], which does *not* overlap [20.0,21.6]. Therefore, candidate 1 cannot be accepted as-is. Re-evaluation: per strict rule, if the claimed interval does not overlap the actual event, and no other candidate covers the real explosion, then the real explosion is *not* supported by any candidate, and candidate 1 must be rejected. But the task says: 'Merge fragments or competing labels ONLY when images show the same physical event; keep independent/simultaneous activities separate.' And: 'Correct an incorrect category. Use the visible context to recover complete event boundaries; do not invent unseen time.' Crucially: 'Accepted intervals must overlap every claimed source candidate'. Since candidate 1’s t_start=20.0, t_end=21.6, and the only explosion is at 15.0–16.5, there is *no overlap* → candidate 1 cannot be accepted. The real explosion has no supporting candidate, so it is *not* included in 'events'. Only candidates with overlapping visible evidence may be accepted. Thus, no 'Explosion' event is accepted because no candidate correctly locates it. We must reject candidate 1. Revised: only candidate 6 has plausible support with overlapping interval.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\"]\n    },\n    {\n      \"source_candidate_ids\": [6],\n      \"category\": \"Fighting\",\n      \"t_start\": 34.0,\n      \"t_end\": 35.5,\n      \"confidence\": 0.9,\n      \"description\": \"A small robot faces a larger robot whose arm glows red and emits blue electrical arcs toward the smaller robot, which is in a defensive crouch.\",\n      \"reason\": \"Frames f25–f27 show mutual engagement: the larger robot actively discharges energy while the smaller one reacts defensively; this constitutes mutual physical combat (Fighting), not Abuse (the smaller robot is not helpless and is actively postured for confrontation). Candidate 6’s interval [33.9,35.5] overlaps frames f25–f27 (34.0–35.0), satisfying the overlap requirement.\",\n      \"evidence_frame_ids\": [\"f25\", \"f26\", \"f27\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Frames f7–f10 (19.0–21.0) show only debris and a distant figure amid fire; no mutual physical combat or contact between agents is visible, contradicting 'Fighting'.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\", \"f10\"]\n    },\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Candidate claims explosion at [20.0,21.6], but frames f6–f10 show only post-blast fire/debris, not a blast; the actual explosion occurs earlier (f2–f4, 15.0–16.5) and does not overlap candidate’s interval, so the candidate is invalid per overlap requirement.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    },\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Frames f11–f15 (22.5–25.0) depict the character falling through fire with no aggressor present; absence of another agent rules out 'Abuse'.\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\", \"f13\", \"f14\", \"f15\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"Frames f13–f15 (24.0–25.0) show falling motion against fire, not a blast; no explosion occurs in this interval, contradicting 'Explosion'.\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\", \"f15\"]\n    },\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"Frames f16–f21 (26.5–30.0) show scattered wreckage and a robot lying down, but no vehicle crash event or car-like object is depicted; thus not 'CarAccident'.\",\n      \"evidence_frame_ids\": [\"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\"]\n    },\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"Frames f21–f24 (30.0–33.5) show the robot recovering and rising unaided; no aggressor or harmful action is visible, so not 'Abuse'.\",\n      \"evidence_frame_ids\": [\"f21\", \"f22\", \"f23\", \"f24\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 13.5,
+              "f1": 14.0,
+              "f2": 15.0,
+              "f3": 16.0,
+              "f4": 16.5,
+              "f5": 17.5,
+              "f6": 19.0,
+              "f7": 20.0,
+              "f8": 20.5,
+              "f9": 21.0,
+              "f10": 21.5,
+              "f11": 22.5,
+              "f12": 23.5,
+              "f13": 24.0,
+              "f14": 24.5,
+              "f15": 25.0,
+              "f16": 26.5,
+              "f17": 27.0,
+              "f18": 27.5,
+              "f19": 28.5,
+              "f20": 29.0,
+              "f21": 30.0,
+              "f22": 31.0,
+              "f23": 31.5,
+              "f24": 33.5,
+              "f25": 34.0,
+              "f26": 34.5,
+              "f27": 35.0,
+              "f28": 36.0,
+              "f29": 36.5,
+              "f30": 37.5,
+              "f31": 39.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 19.5,
+                "t_end": 22.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 20.0,
+                "t_end": 21.6,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 22.5,
+                "t_end": 24.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 24.0,
+                "t_end": 25.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 24.9,
+                "t_end": 29.4,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 29.1,
+                "t_end": 34.4,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 33.9,
+                "t_end": 35.5,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [6],\n      \"category\": \"Fighting\",\n      \"t_start\": 34.0,\n      \"t_end\": 35.0,\n      \"confidence\": 0.9,\n      \"description\": \"A small robot crouches defensively as a larger robot's arm glows red and emits blue electrical arcs toward it, indicating active mutual engagement.\",\n      \"reason\": \"Frames f25–f27 (34.0–35.0) show direct energy discharge from the larger robot at the smaller one, which is in a reactive posture; this satisfies 'Fighting' (mutual physical combat). Candidate 6’s interval [33.9,35.5] fully overlaps this visible event (34.0–35.0), satisfying the overlap requirement.\",\n      \"evidence_frame_ids\": [\"f25\", \"f26\", \"f27\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Frames f7–f10 (20.0–21.5) show only debris and a distant figure amid fire; no contact or mutual physical interaction between agents is visible, contradicting 'Fighting'.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\", \"f10\"]\n    },\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Candidate claims explosion at [20.0,21.6], but frames f6–f10 show only post-blast fire/debris with no blast; the actual explosion (f2–f4, 15.0–16.5) does not overlap candidate’s interval, violating the required overlap condition.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    },\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Frames f11–f15 (22.5–25.0) depict the character falling through fire with no other agent present; absence of an aggressor rules out 'Abuse'.\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\", \"f13\", \"f14\", \"f15\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"Frames f13–f15 (24.0–25.0) show falling motion against fiery background, not a blast; no explosion occurs here, contradicting 'Explosion'.\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\", \"f15\"]\n    },\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"Frames f16–f21 (26.5–30.0) show scattered wreckage and a robot lying down, but no vehicle crash or car-like object is depicted; thus not 'CarAccident'.\",\n      \"evidence_frame_ids\": [\"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\"]\n    },\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"Frames f21–f24 (30.0–33.5) show the robot recovering and rising unaided; no aggressor or harmful action is visible, so not 'Abuse'.\",\n      \"evidence_frame_ids\": [\"f21\", \"f22\", \"f23\", \"f24\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                6
+              ],
+              "category": "Fighting",
+              "t_start": 34.0,
+              "t_end": 35.0,
+              "confidence": 0.9,
+              "description": "A small robot crouches defensively as a larger robot's arm glows red and emits blue electrical arcs toward it, indicating active mutual engagement.",
+              "reason": "Frames f25–f27 (34.0–35.0) show direct energy discharge from the larger robot at the smaller one, which is in a reactive posture; this satisfies 'Fighting' (mutual physical combat). Candidate 6’s interval [33.9,35.5] fully overlaps this visible event (34.0–35.0), satisfying the overlap requirement.",
+              "evidence_frame_ids": [
+                "f25",
+                "f26",
+                "f27"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "Frames f7–f10 (20.0–21.5) show only debris and a distant figure amid fire; no contact or mutual physical interaction between agents is visible, contradicting 'Fighting'.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8",
+                "f9",
+                "f10"
+              ]
+            },
+            {
+              "candidate_id": 1,
+              "reason": "Candidate claims explosion at [20.0,21.6], but frames f6–f10 show only post-blast fire/debris with no blast; the actual explosion (f2–f4, 15.0–16.5) does not overlap candidate’s interval, violating the required overlap condition.",
+              "evidence_frame_ids": [
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10"
+              ]
+            },
+            {
+              "candidate_id": 2,
+              "reason": "Frames f11–f15 (22.5–25.0) depict the character falling through fire with no other agent present; absence of an aggressor rules out 'Abuse'.",
+              "evidence_frame_ids": [
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15"
+              ]
+            },
+            {
+              "candidate_id": 3,
+              "reason": "Frames f13–f15 (24.0–25.0) show falling motion against fiery background, not a blast; no explosion occurs here, contradicting 'Explosion'.",
+              "evidence_frame_ids": [
+                "f13",
+                "f14",
+                "f15"
+              ]
+            },
+            {
+              "candidate_id": 4,
+              "reason": "Frames f16–f21 (26.5–30.0) show scattered wreckage and a robot lying down, but no vehicle crash or car-like object is depicted; thus not 'CarAccident'.",
+              "evidence_frame_ids": [
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21"
+              ]
+            },
+            {
+              "candidate_id": 5,
+              "reason": "Frames f21–f24 (30.0–33.5) show the robot recovering and rising unaided; no aggressor or harmful action is visible, so not 'Abuse'.",
+              "evidence_frame_ids": [
+                "f21",
+                "f22",
+                "f23",
+                "f24"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": true
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          7
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 35.0,
+              "f1": 35.5,
+              "f2": 36.0,
+              "f3": 36.5,
+              "f4": 37.0,
+              "f5": 37.5,
+              "f6": 38.0,
+              "f7": 38.5,
+              "f8": 39.0,
+              "f9": 39.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 7,
+                "t_start": 36.7,
+                "t_end": 38.8,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"No visible aggression against a helpless victim; the smaller figure remains upright and alert throughout, and the larger figure’s actions (sparking, then powering down) suggest system activation/failure, not abuse.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 7,
+              "reason": "No visible aggression against a helpless victim; the smaller figure remains upright and alert throughout, and the larger figure’s actions (sparking, then powering down) suggest system activation/failure, not abuse.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

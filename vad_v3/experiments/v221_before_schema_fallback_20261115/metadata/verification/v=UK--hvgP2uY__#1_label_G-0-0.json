@@ -1,0 +1,240 @@
+{
+  "events": [
+    {
+      "t_start": 97.9,
+      "t_end": 108.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A growing plume of dark ash and steam erupts from the summit of a volcano, with visible lateral blast and pyroclastic flow descending the flank starting around f9 and expanding through f22.",
+      "source_candidate_ids": [
+        1,
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          96.5,
+          97.0,
+          97.5,
+          98.0,
+          98.5,
+          99.0,
+          99.5,
+          100.0,
+          100.5,
+          101.0,
+          101.5,
+          102.5,
+          103.0,
+          103.5,
+          104.0,
+          104.5,
+          105.0,
+          105.5,
+          106.0,
+          106.5,
+          107.0,
+          107.5
+        ],
+        "evidence_frame_ids": [
+          "f1",
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18",
+          "f19",
+          "f20",
+          "f21",
+          "f22"
+        ],
+        "reason": "The sequence shows rapid expansion of an eruption column and associated ground-hugging density current (pyroclastic flow), consistent with a volcanic explosion; frames f9–f22 capture the progressive development of this single explosive event, merging both candidates.",
+        "source_categories": [
+          "Explosion",
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 3,
+      "output_count": 1,
+      "groups": 2,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 74.0,
+              "f1": 74.5,
+              "f2": 75.0,
+              "f3": 75.5,
+              "f4": 76.0,
+              "f5": 76.5,
+              "f6": 77.0,
+              "f7": 77.5,
+              "f8": 78.0,
+              "f9": 78.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 76.0,
+                "t_end": 77.0,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No blast wave, rapid expansion, or sudden debris ejection is visible; the plume in f0–f5 appears as slow, diffuse steam or dust emission from a slope, consistent with geothermal activity or rockfall, not an explosion.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "No blast wave, rapid expansion, or sudden debris ejection is visible; the plume in f0–f5 appears as slow, diffuse steam or dust emission from a slope, consistent with geothermal activity or rockfall, not an explosion.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 96.0,
+              "f1": 96.5,
+              "f2": 97.0,
+              "f3": 97.5,
+              "f4": 98.0,
+              "f5": 98.5,
+              "f6": 99.0,
+              "f7": 99.5,
+              "f8": 100.0,
+              "f9": 100.5,
+              "f10": 101.0,
+              "f11": 101.5,
+              "f12": 102.5,
+              "f13": 103.0,
+              "f14": 103.5,
+              "f15": 104.0,
+              "f16": 104.5,
+              "f17": 105.0,
+              "f18": 105.5,
+              "f19": 106.0,
+              "f20": 106.5,
+              "f21": 107.0,
+              "f22": 107.5,
+              "f23": 108.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 97.9,
+                "t_end": 104.9,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 101.5,
+                "t_end": 108.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1, 2],\n      \"category\": \"Explosion\",\n      \"t_start\": 97.9,\n      \"t_end\": 108.5,\n      \"confidence\": 0.95,\n      \"description\": \"A growing plume of dark ash and steam erupts from the summit of a volcano, with visible lateral blast and pyroclastic flow descending the flank starting around f9 and expanding through f22.\",\n      \"reason\": \"The sequence shows rapid expansion of an eruption column and associated ground-hugging density current (pyroclastic flow), consistent with a volcanic explosion; frames f9–f22 capture the progressive development of this single explosive event, merging both candidates.\",\n      \"evidence_frame_ids\": [\"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1,
+                2
+              ],
+              "category": "Explosion",
+              "t_start": 97.9,
+              "t_end": 108.5,
+              "confidence": 0.95,
+              "description": "A growing plume of dark ash and steam erupts from the summit of a volcano, with visible lateral blast and pyroclastic flow descending the flank starting around f9 and expanding through f22.",
+              "reason": "The sequence shows rapid expansion of an eruption column and associated ground-hugging density current (pyroclastic flow), consistent with a volcanic explosion; frames f9–f22 capture the progressive development of this single explosive event, merging both candidates.",
+              "evidence_frame_ids": [
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "5a82d0dd6e711938ee6c8e0ecf1c6f7fdb68cac4e5e95683ad672320f7156da9"
+}

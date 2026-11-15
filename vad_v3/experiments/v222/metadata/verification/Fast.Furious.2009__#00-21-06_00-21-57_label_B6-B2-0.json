@@ -1,0 +1,557 @@
+{
+  "events": [
+    {
+      "t_start": 7.458333,
+      "t_end": 12.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A car is seen airborne (f4–f5), then flipping and crashing onto its side/roof (f7–f12), coming to rest damaged (f13–f14), with smoke/dust visible (f9–f10).",
+      "source_candidate_ids": [
+        0,
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          7.5,
+          8.0,
+          9.0,
+          9.5,
+          10.0,
+          10.5,
+          11.0,
+          11.5,
+          12.0,
+          12.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14"
+        ],
+        "reason": "Frames f4–f14 collectively show a single continuous crash sequence: vehicle lifts off ground, rotates mid-air, impacts, and settles—meeting the definition of CarAccident (crash, not ordinary driving). Candidates 0 and 1 describe overlapping parts of this same event; merged.",
+        "source_categories": [
+          "CarAccident",
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 17.5,
+      "t_end": 25.0,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A vehicle is seen overturned on its roof in a dark outdoor setting, with smoke/dust lingering; the man observes it from behind and then faces forward.",
+      "source_candidate_ids": [
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          17.5,
+          18.0,
+          18.5,
+          19.0,
+          19.5,
+          20.0,
+          20.5,
+          22.0,
+          22.5,
+          23.0,
+          23.5,
+          24.0,
+          24.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18"
+        ],
+        "reason": "Frames f4–f18 show progressive reveal of an overturned car (e.g., f8–f18 clearly show chassis up, wheels exposed, no motion indicating ongoing crash), consistent with aftermath of a crash, not active collision; candidate interval aligns with visible evidence.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 28.0,
+      "t_end": 30.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A car is shown overturned on its roof, with a person emerging from underneath it between frames f3–f8.",
+      "source_candidate_ids": [
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          28.0,
+          28.5,
+          29.0,
+          29.5,
+          30.0,
+          30.5
+        ],
+        "evidence_frame_ids": [
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8"
+        ],
+        "reason": "Frames f3–f8 show the underside of an overturned vehicle and a person moving out from beneath it, consistent with a crash aftermath; no motion of impact is visible, but the static state strongly indicates a prior accident.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 48.5,
+      "t_end": 49.0,
+      "anomaly_type": "Shooting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A handgun is held in close-up, muzzle pointed forward, with visible flash/smoke at the barrel in f10 (48.5s), indicating discharge.",
+      "source_candidate_ids": [
+        7
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 4,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          48.5
+        ],
+        "evidence_frame_ids": [
+          "f10"
+        ],
+        "reason": "Frame f10 shows a gun with bright muzzle flash and smoke consistent with firing; this satisfies the 'Shooting' definition requiring visible shooting, not just possession.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 8,
+      "output_count": 4,
+      "groups": 5,
+      "rejected": 3,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 5.5,
+              "f1": 6.0,
+              "f2": 6.5,
+              "f3": 7.0,
+              "f4": 7.5,
+              "f5": 8.0,
+              "f6": 8.5,
+              "f7": 9.0,
+              "f8": 9.5,
+              "f9": 10.0,
+              "f10": 10.5,
+              "f11": 11.0,
+              "f12": 11.5,
+              "f13": 12.0,
+              "f14": 12.5,
+              "f15": 13.0,
+              "f16": 13.5,
+              "f17": 14.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 7.458333,
+                "t_end": 10.7,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 8.9,
+                "t_end": 12.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"CarAccident\",\n      \"t_start\": 7.458333,\n      \"t_end\": 12.5,\n      \"confidence\": 0.95,\n      \"description\": \"A car is seen airborne (f4–f5), then flipping and crashing onto its side/roof (f7–f12), coming to rest damaged (f13–f14), with smoke/dust visible (f9–f10).\",\n      \"reason\": \"Frames f4–f14 collectively show a single continuous crash sequence: vehicle lifts off ground, rotates mid-air, impacts, and settles—meeting the definition of CarAccident (crash, not ordinary driving). Candidates 0 and 1 describe overlapping parts of this same event; merged.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1
+              ],
+              "category": "CarAccident",
+              "t_start": 7.458333,
+              "t_end": 12.5,
+              "confidence": 0.95,
+              "description": "A car is seen airborne (f4–f5), then flipping and crashing onto its side/roof (f7–f12), coming to rest damaged (f13–f14), with smoke/dust visible (f9–f10).",
+              "reason": "Frames f4–f14 collectively show a single continuous crash sequence: vehicle lifts off ground, rotates mid-air, impacts, and settles—meeting the definition of CarAccident (crash, not ordinary driving). Candidates 0 and 1 describe overlapping parts of this same event; merged.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 15.5,
+              "f1": 16.0,
+              "f2": 16.5,
+              "f3": 17.0,
+              "f4": 17.5,
+              "f5": 18.0,
+              "f6": 18.5,
+              "f7": 19.0,
+              "f8": 19.5,
+              "f9": 20.0,
+              "f10": 20.5,
+              "f11": 21.0,
+              "f12": 21.5,
+              "f13": 22.0,
+              "f14": 22.5,
+              "f15": 23.0,
+              "f16": 23.5,
+              "f17": 24.0,
+              "f18": 24.5,
+              "f19": 25.0,
+              "f20": 25.5,
+              "f21": 26.0,
+              "f22": 26.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 17.5,
+                "t_end": 25.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"CarAccident\",\n      \"t_start\": 17.5,\n      \"t_end\": 25.0,\n      \"confidence\": 0.95,\n      \"description\": \"A vehicle is seen overturned on its roof in a dark outdoor setting, with smoke/dust lingering; the man observes it from behind and then faces forward.\",\n      \"reason\": \"Frames f4–f18 show progressive reveal of an overturned car (e.g., f8–f18 clearly show chassis up, wheels exposed, no motion indicating ongoing crash), consistent with aftermath of a crash, not active collision; candidate interval aligns with visible evidence.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2
+              ],
+              "category": "CarAccident",
+              "t_start": 17.5,
+              "t_end": 25.0,
+              "confidence": 0.95,
+              "description": "A vehicle is seen overturned on its roof in a dark outdoor setting, with smoke/dust lingering; the man observes it from behind and then faces forward.",
+              "reason": "Frames f4–f18 show progressive reveal of an overturned car (e.g., f8–f18 clearly show chassis up, wheels exposed, no motion indicating ongoing crash), consistent with aftermath of a crash, not active collision; candidate interval aligns with visible evidence.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          3,
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 26.5,
+              "f1": 27.0,
+              "f2": 27.5,
+              "f3": 28.0,
+              "f4": 28.5,
+              "f5": 29.0,
+              "f6": 29.5,
+              "f7": 30.0,
+              "f8": 30.5,
+              "f9": 31.0,
+              "f10": 31.5,
+              "f11": 32.0,
+              "f12": 32.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 28.5,
+                "t_end": 31.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 29.3,
+                "t_end": 30.8,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"CarAccident\",\n      \"t_start\": 28.0,\n      \"t_end\": 30.5,\n      \"confidence\": 0.95,\n      \"description\": \"A car is shown overturned on its roof, with a person emerging from underneath it between frames f3–f8.\",\n      \"reason\": \"Frames f3–f8 show the underside of an overturned vehicle and a person moving out from beneath it, consistent with a crash aftermath; no motion of impact is visible, but the static state strongly indicates a prior accident.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"No evidence of aggression toward a helpless victim: the person under the car appears to be exiting voluntarily (f5–f8), and the standing man (f0–f2, f9–f12) shows no contact or threatening posture; the scene is consistent with post-accident recovery, not abuse.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                3
+              ],
+              "category": "CarAccident",
+              "t_start": 28.0,
+              "t_end": 30.5,
+              "confidence": 0.95,
+              "description": "A car is shown overturned on its roof, with a person emerging from underneath it between frames f3–f8.",
+              "reason": "Frames f3–f8 show the underside of an overturned vehicle and a person moving out from beneath it, consistent with a crash aftermath; no motion of impact is visible, but the static state strongly indicates a prior accident.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 4,
+              "reason": "No evidence of aggression toward a helpless victim: the person under the car appears to be exiting voluntarily (f5–f8), and the standing man (f0–f2, f9–f12) shows no contact or threatening posture; the scene is consistent with post-accident recovery, not abuse.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 32.0,
+              "f1": 32.5,
+              "f2": 33.0,
+              "f3": 33.5,
+              "f4": 34.0,
+              "f5": 34.5,
+              "f6": 35.0,
+              "f7": 35.5,
+              "f8": 36.0,
+              "f9": 36.5,
+              "f10": 37.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 5,
+                "t_start": 33.9,
+                "t_end": 35.1,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"The frames f3–f8 show a person lying under a vehicle, appearing to work on it (e.g., reaching upward with arm, head positioned near chassis), consistent with mechanical repair or inspection—not abuse. No aggressor, coercion, or harmful contact is visible.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 5,
+              "reason": "The frames f3–f8 show a person lying under a vehicle, appearing to work on it (e.g., reaching upward with arm, head positioned near chassis), consistent with mechanical repair or inspection—not abuse. No aggressor, coercion, or harmful contact is visible.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 4,
+        "source_ids": [
+          6,
+          7
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 43.5,
+              "f1": 44.0,
+              "f2": 44.5,
+              "f3": 45.0,
+              "f4": 45.5,
+              "f5": 46.0,
+              "f6": 46.5,
+              "f7": 47.0,
+              "f8": 47.5,
+              "f9": 48.0,
+              "f10": 48.5,
+              "f11": 49.0,
+              "f12": 49.5,
+              "f13": 50.0,
+              "f14": 50.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 6,
+                "t_start": 45.5,
+                "t_end": 47.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 48.5,
+                "t_end": 49.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [7],\n      \"category\": \"Shooting\",\n      \"t_start\": 48.5,\n      \"t_end\": 49.0,\n      \"confidence\": 0.9,\n      \"description\": \"A handgun is held in close-up, muzzle pointed forward, with visible flash/smoke at the barrel in f10 (48.5s), indicating discharge.\",\n      \"reason\": \"Frame f10 shows a gun with bright muzzle flash and smoke consistent with firing; this satisfies the 'Shooting' definition requiring visible shooting, not just possession.\",\n      \"evidence_frame_ids\": [\"f10\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"Frames f4–f9 show a woman lying injured with blood and sweat, but no visible aggressor or ongoing harmful action; absence of mutual combat rules out Fighting, and no active aggression against her is depicted, so Abuse is unsupported.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                7
+              ],
+              "category": "Shooting",
+              "t_start": 48.5,
+              "t_end": 49.0,
+              "confidence": 0.9,
+              "description": "A handgun is held in close-up, muzzle pointed forward, with visible flash/smoke at the barrel in f10 (48.5s), indicating discharge.",
+              "reason": "Frame f10 shows a gun with bright muzzle flash and smoke consistent with firing; this satisfies the 'Shooting' definition requiring visible shooting, not just possession.",
+              "evidence_frame_ids": [
+                "f10"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 6,
+              "reason": "Frames f4–f9 show a woman lying injured with blood and sweat, but no visible aggressor or ongoing harmful action; absence of mutual combat rules out Fighting, and no active aggression against her is depicted, so Abuse is unsupported.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

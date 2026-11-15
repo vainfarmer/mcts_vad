@@ -1,0 +1,391 @@
+{
+  "events": [
+    {
+      "t_start": 67.5,
+      "t_end": 68.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A white car passes closely beside a black car on a dirt track; the black car abruptly rotates laterally and kicks up dust, indicating loss of control consistent with a collision or forceful contact.",
+      "source_candidate_ids": [
+        0,
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          67.5,
+          68.0,
+          68.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "Frames f4–f6 show the white car alongside the black car (f4), then the black car initiating a sharp sideways skid while still near the white car (f5), and continuing the skid with visible dust (f6); this sequence constitutes a crash event (sudden loss of control due to interaction), satisfying the CarAccident definition; the event onset and peak are fully captured within 67.5–68.5 s.",
+        "source_categories": [
+          "CarAccident",
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 73.5,
+      "t_end": 77.0,
+      "anomaly_type": "Fighting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A woman in pink runs toward a damaged car, grabs the driver’s side door/window area while the driver (man with long hair) reacts violently inside; visible struggle through the open window at f4–f11.",
+      "source_candidate_ids": [
+        2,
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          73.5,
+          74.0,
+          75.0,
+          75.5,
+          76.0,
+          76.5,
+          77.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11"
+        ],
+        "reason": "Frames f4–f5 show the woman reaching into the car; f7–f10 show the driver recoiling, shouting, and flailing arms while she remains engaged at the window—consistent with mutual physical struggle, not one-sided abuse or nonviolent interaction. Merged because both candidates cover overlapping frames of the same continuous struggle.",
+        "source_categories": [
+          "Fighting",
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 78.5,
+      "t_end": 82.0,
+      "anomaly_type": "Fighting",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "The man inside the car continues aggressive gestures (shouting, arm挥动) while the woman remains outside near the driver’s window, maintaining proximity and tension.",
+      "source_candidate_ids": [
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 1,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          78.5,
+          79.0,
+          79.5,
+          80.0,
+          81.0,
+          81.5,
+          82.0
+        ],
+        "evidence_frame_ids": [
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18"
+        ],
+        "reason": "Frames f12–f18 show sustained agitation by the driver with the woman still present outside (visible in f12, f13, f14, f15), indicating continuation of the physical confrontation—not resolved after f11. Not abuse because the woman is not passive; she remains engaged and positioned to interact.",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 6,
+      "output_count": 3,
+      "groups": 2,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 2,
+      "relabeled": 0,
+      "context_retries": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 65.5,
+              "f1": 66.0,
+              "f2": 66.5,
+              "f3": 67.0,
+              "f4": 67.5,
+              "f5": 68.0,
+              "f6": 68.5,
+              "f7": 69.0,
+              "f8": 69.5,
+              "f9": 70.0,
+              "f10": 70.5,
+              "f11": 71.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 67.5,
+                "t_end": 68.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 68.0,
+                "t_end": 69.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"CarAccident\",\n      \"t_start\": 67.5,\n      \"t_end\": 68.5,\n      \"confidence\": 0.95,\n      \"description\": \"A white car overtakes and collides with a black car on a dirt track, causing the black car to skid sideways and kick up dust.\",\n      \"reason\": \"Frames f4–f6 show the white car passing closely, then the black car losing control and sliding laterally (f5–f6), consistent with a collision-induced skid; the event is continuous and fully captured across frames.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Candidate 1 overlaps with candidate 0 and describes the same physical event (black car skidding post-collision); it is subsumed into the merged event rather than being uncertain.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 65.5,
+              "f1": 66.0,
+              "f2": 66.5,
+              "f3": 67.0,
+              "f4": 67.5,
+              "f5": 68.0,
+              "f6": 68.5,
+              "f7": 69.0,
+              "f8": 69.5,
+              "f9": 70.0,
+              "f10": 70.5,
+              "f11": 71.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 67.5,
+                "t_end": 68.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 68.0,
+                "t_end": 69.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"CarAccident\",\n      \"t_start\": 67.5,\n      \"t_end\": 68.5,\n      \"confidence\": 0.9,\n      \"description\": \"A white car passes closely beside a black car on a dirt track; the black car then skids sideways with dust plume, indicating loss of control likely from contact or near-miss.\",\n      \"reason\": \"Frames f4–f6 show white car alongside black car (f4), then black car rotating laterally while still in contact or immediate proximity (f5), and continuing to skid (f6); no visible structural damage or full collision is confirmed, but the abrupt lateral motion and dust imply an impact or forceful interaction meeting the definition of CarAccident (crash or collision event).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Candidate 1 (68.0–69.5) extends beyond the clear accident phase into the black car’s continued skid (f6–f9); however, the skid after initial loss of control (f6 onward) is a consequence of the accident, not a separate crash. Since the core collision/skidding onset is fully captured in f4–f6 and candidate 1 overlaps the same event, it is merged—not uncertain—but the extended tail (f7–f9) lacks evidence of a second impact, so the merged event is bounded at t_end=68.5 per visible onset of skid.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 65.5,
+              "f1": 66.0,
+              "f2": 66.5,
+              "f3": 67.0,
+              "f4": 67.5,
+              "f5": 68.0,
+              "f6": 68.5,
+              "f7": 69.0,
+              "f8": 69.5,
+              "f9": 70.0,
+              "f10": 70.5,
+              "f11": 71.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 67.5,
+                "t_end": 68.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 68.0,
+                "t_end": 69.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"CarAccident\",\n      \"t_start\": 67.5,\n      \"t_end\": 68.5,\n      \"confidence\": 0.9,\n      \"description\": \"A white car passes closely beside a black car on a dirt track; the black car abruptly rotates laterally and kicks up dust, indicating loss of control consistent with a collision or forceful contact.\",\n      \"reason\": \"Frames f4–f6 show the white car alongside the black car (f4), then the black car initiating a sharp sideways skid while still near the white car (f5), and continuing the skid with visible dust (f6); this sequence constitutes a crash event (sudden loss of control due to interaction), satisfying the CarAccident definition; the event onset and peak are fully captured within 67.5–68.5 s.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1
+              ],
+              "category": "CarAccident",
+              "t_start": 67.5,
+              "t_end": 68.5,
+              "confidence": 0.9,
+              "description": "A white car passes closely beside a black car on a dirt track; the black car abruptly rotates laterally and kicks up dust, indicating loss of control consistent with a collision or forceful contact.",
+              "reason": "Frames f4–f6 show the white car alongside the black car (f4), then the black car initiating a sharp sideways skid while still near the white car (f5), and continuing the skid with visible dust (f6); this sequence constitutes a crash event (sudden loss of control due to interaction), satisfying the CarAccident definition; the event onset and peak are fully captured within 67.5–68.5 s.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 71.0,
+              "f1": 71.5,
+              "f2": 72.0,
+              "f3": 72.5,
+              "f4": 73.5,
+              "f5": 74.0,
+              "f6": 74.5,
+              "f7": 75.0,
+              "f8": 75.5,
+              "f9": 76.0,
+              "f10": 76.5,
+              "f11": 77.0,
+              "f12": 78.5,
+              "f13": 79.0,
+              "f14": 79.5,
+              "f15": 80.0,
+              "f16": 81.0,
+              "f17": 81.5,
+              "f18": 82.0,
+              "f19": 82.5,
+              "f20": 83.0,
+              "f21": 83.5,
+              "f22": 84.0,
+              "f23": 85.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 73.0,
+                "t_end": 78.1,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 73.1,
+                "t_end": 75.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 77.3,
+                "t_end": 82.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 82.7,
+                "t_end": 83.7,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2, 3],\n      \"category\": \"Fighting\",\n      \"t_start\": 73.5,\n      \"t_end\": 77.0,\n      \"confidence\": 0.9,\n      \"description\": \"A woman in pink runs toward a damaged car, grabs the driver’s side door/window area while the driver (man with long hair) reacts violently inside; visible struggle through the open window at f4–f11.\",\n      \"reason\": \"Frames f4–f5 show the woman reaching into the car; f7–f10 show the driver recoiling, shouting, and flailing arms while she remains engaged at the window—consistent with mutual physical struggle, not one-sided abuse or nonviolent interaction. Merged because both candidates cover overlapping frames of the same continuous struggle.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    },\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"Fighting\",\n      \"t_start\": 78.5,\n      \"t_end\": 82.0,\n      \"confidence\": 0.85,\n      \"description\": \"The man inside the car continues aggressive gestures (shouting, arm挥动) while the woman remains outside near the driver’s window, maintaining proximity and tension.\",\n      \"reason\": \"Frames f12–f18 show sustained agitation by the driver with the woman still present outside (visible in f12, f13, f14, f15), indicating continuation of the physical confrontation—not resolved after f11. Not abuse because the woman is not passive; she remains engaged and positioned to interact.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"Frames f19–f23 show the woman running away from the car across the field, with no contact or aggression toward anyone; the man is not visible, and there is no victim or helpless person present—contradicts 'Abuse'.\",\n      \"evidence_frame_ids\": [\"f19\", \"f20\", \"f21\", \"f22\", \"f23\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2,
+                3
+              ],
+              "category": "Fighting",
+              "t_start": 73.5,
+              "t_end": 77.0,
+              "confidence": 0.9,
+              "description": "A woman in pink runs toward a damaged car, grabs the driver’s side door/window area while the driver (man with long hair) reacts violently inside; visible struggle through the open window at f4–f11.",
+              "reason": "Frames f4–f5 show the woman reaching into the car; f7–f10 show the driver recoiling, shouting, and flailing arms while she remains engaged at the window—consistent with mutual physical struggle, not one-sided abuse or nonviolent interaction. Merged because both candidates cover overlapping frames of the same continuous struggle.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                4
+              ],
+              "category": "Fighting",
+              "t_start": 78.5,
+              "t_end": 82.0,
+              "confidence": 0.85,
+              "description": "The man inside the car continues aggressive gestures (shouting, arm挥动) while the woman remains outside near the driver’s window, maintaining proximity and tension.",
+              "reason": "Frames f12–f18 show sustained agitation by the driver with the woman still present outside (visible in f12, f13, f14, f15), indicating continuation of the physical confrontation—not resolved after f11. Not abuse because the woman is not passive; she remains engaged and positioned to interact.",
+              "evidence_frame_ids": [
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 5,
+              "reason": "Frames f19–f23 show the woman running away from the car across the field, with no contact or aggression toward anyone; the man is not visible, and there is no victim or helpless person present—contradicts 'Abuse'.",
+              "evidence_frame_ids": [
+                "f19",
+                "f20",
+                "f21",
+                "f22",
+                "f23"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "5a82d0dd6e711938ee6c8e0ecf1c6f7fdb68cac4e5e95683ad672320f7156da9"
+}

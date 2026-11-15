@@ -1,0 +1,232 @@
+{
+  "events": [
+    {
+      "t_start": 3.5,
+      "t_end": 12.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.98,
+      "coarse_score": 0.98,
+      "description": "A bus collides with a car, flips onto its side and roof, skids across the road, and disintegrates while rolling and sliding in dust and debris.",
+      "source_candidate_ids": [
+        0,
+        1,
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.98,
+        "evidence_times": [
+          3.5,
+          4.0,
+          4.5,
+          5.0,
+          5.5,
+          6.0,
+          6.5,
+          7.0,
+          7.5,
+          8.5,
+          9.5,
+          10.0,
+          10.5,
+          11.0,
+          11.5,
+          12.0,
+          12.5
+        ],
+        "evidence_frame_ids": [
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18",
+          "f19",
+          "f20"
+        ],
+        "reason": "Frames f3–f20 show a continuous sequence: initial impact (f3), bus airborne and overturning (f4–f7), sustained rolling/skidding (f8–f12, f14–f18), and structural failure (f15, f19–f20). All candidate intervals fall within this single crash event; merged accordingly.",
+        "source_categories": [
+          "CarAccident",
+          "CarAccident",
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 10.0,
+      "t_end": 10.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "The bus’s side ruptures violently at 10.0 s, ejecting fragments and smoke in a rapid blast-like event.",
+      "source_candidate_ids": [
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 1,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          10.0
+        ],
+        "evidence_frame_ids": [
+          "f15"
+        ],
+        "reason": "Frame f15 shows sudden ejection of multiple small objects and yellowish debris from the bus body, consistent with an explosive rupture (not just mechanical breakup); occurs during ongoing crash but is distinct in timing and dynamics from rolling motion alone.",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 4,
+      "output_count": 2,
+      "groups": 1,
+      "rejected": 0,
+      "uncertain": 0,
+      "merged_sources": 2,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 2.0,
+              "f1": 2.5,
+              "f2": 3.0,
+              "f3": 3.5,
+              "f4": 4.0,
+              "f5": 4.5,
+              "f6": 5.0,
+              "f7": 5.5,
+              "f8": 6.0,
+              "f9": 6.5,
+              "f10": 7.0,
+              "f11": 7.5,
+              "f12": 8.5,
+              "f13": 9.0,
+              "f14": 9.5,
+              "f15": 10.0,
+              "f16": 10.5,
+              "f17": 11.0,
+              "f18": 11.5,
+              "f19": 12.0,
+              "f20": 12.5,
+              "f21": 13.0,
+              "f22": 13.5,
+              "f23": 14.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 3.9,
+                "t_end": 8.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 5.5,
+                "t_end": 13.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 9.3,
+                "t_end": 13.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 10.0,
+                "t_end": 10.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1, 2],\n      \"category\": \"CarAccident\",\n      \"t_start\": 3.5,\n      \"t_end\": 12.5,\n      \"confidence\": 0.98,\n      \"description\": \"A bus collides with a car, flips onto its side and roof, skids across the road, and disintegrates while rolling and sliding in dust and debris.\",\n      \"reason\": \"Frames f3–f20 show a continuous sequence: initial impact (f3), bus airborne and overturning (f4–f7), sustained rolling/skidding (f8–f12, f14–f18), and structural failure (f15, f19–f20). All candidate intervals fall within this single crash event; merged accordingly.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\"]\n    },\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"Explosion\",\n      \"t_start\": 10.0,\n      \"t_end\": 10.5,\n      \"confidence\": 0.95,\n      \"description\": \"The bus’s side ruptures violently at 10.0 s, ejecting fragments and smoke in a rapid blast-like event.\",\n      \"reason\": \"Frame f15 shows sudden ejection of multiple small objects and yellowish debris from the bus body, consistent with an explosive rupture (not just mechanical breakup); occurs during ongoing crash but is distinct in timing and dynamics from rolling motion alone.\",\n      \"evidence_frame_ids\": [\"f15\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1,
+                2
+              ],
+              "category": "CarAccident",
+              "t_start": 3.5,
+              "t_end": 12.5,
+              "confidence": 0.98,
+              "description": "A bus collides with a car, flips onto its side and roof, skids across the road, and disintegrates while rolling and sliding in dust and debris.",
+              "reason": "Frames f3–f20 show a continuous sequence: initial impact (f3), bus airborne and overturning (f4–f7), sustained rolling/skidding (f8–f12, f14–f18), and structural failure (f15, f19–f20). All candidate intervals fall within this single crash event; merged accordingly.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                3
+              ],
+              "category": "Explosion",
+              "t_start": 10.0,
+              "t_end": 10.5,
+              "confidence": 0.95,
+              "description": "The bus’s side ruptures violently at 10.0 s, ejecting fragments and smoke in a rapid blast-like event.",
+              "reason": "Frame f15 shows sudden ejection of multiple small objects and yellowish debris from the bus body, consistent with an explosive rupture (not just mechanical breakup); occurs during ongoing crash but is distinct in timing and dynamics from rolling motion alone.",
+              "evidence_frame_ids": [
+                "f15"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

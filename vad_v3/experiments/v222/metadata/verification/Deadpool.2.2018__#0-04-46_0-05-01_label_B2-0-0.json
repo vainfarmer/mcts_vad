@@ -1,0 +1,439 @@
+{
+  "events": [
+    {
+      "t_start": 4.5,
+      "t_end": 6.0,
+      "confidence": 1.0,
+      "coarse_score": 1.0,
+      "anomaly_type": "Shooting",
+      "description": "Deadpool fires two handguns from a rooftop, with visible muzzle flashes and ejected shell casings in frames f10–f12; the shots strike the seated mourners in frames f13–f15, causing violent reactions and chaos.",
+      "proposal_id": "p0000",
+      "evidence_frame_ids": [
+        "f10",
+        "f11",
+        "f12",
+        "f13",
+        "f14",
+        "f15"
+      ],
+      "source_categories": [
+        "Fighting",
+        "Riot",
+        "Abuse",
+        "Explosion"
+      ],
+      "reported_interval": [
+        4.5,
+        6.0
+      ],
+      "clipped_to_inspection": false,
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "uncertain",
+        "group_id": 0,
+        "vlm_confidence": 1.0,
+        "reason": "schema_repair_exhausted: Unknown, duplicate or empty source_candidate_ids"
+      }
+    },
+    {
+      "t_start": 10.0,
+      "t_end": 11.5,
+      "anomaly_type": "Shooting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "Deadpool is seen aiming and firing a pistol from atop a tombstone (f6–f7), and at f8–f9 a man in a suit is struck in the head with visible blood and debris, consistent with being shot.",
+      "source_candidate_ids": [
+        2,
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          10.0,
+          10.5,
+          11.0,
+          11.5
+        ],
+        "evidence_frame_ids": [
+          "f6",
+          "f7",
+          "f8",
+          "f9"
+        ],
+        "reason": "Frames f6–f7 show clear aiming and discharge (muzzle flash implied by posture and context); f8–f9 show immediate impact on target with explosive head trauma typical of gunshot in cinematic depiction; this constitutes visible shooting per definition requiring visible shooting (not just holding).",
+        "source_categories": [
+          "Shooting",
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 11.0,
+      "t_end": 11.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "At f8–f9, the man’s head erupts in a burst of blood and debris upon impact, indicating a violent blast-like effect consistent with an explosion (e.g., high-velocity projectile impact causing secondary fragmentation).",
+      "source_candidate_ids": [
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 1,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          11.0,
+          11.5
+        ],
+        "evidence_frame_ids": [
+          "f8",
+          "f9"
+        ],
+        "reason": "While not a traditional fireball explosion, the sudden, volumetric ejection of matter from the head meets the definition of ‘Explosion’ as a blast event (distinct from sustained fire or mere impact); it is simultaneous with the shooting event but qualifies separately as a blast effect.",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 5,
+      "output_count": 3,
+      "groups": 2,
+      "rejected": 1,
+      "uncertain": 1,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 1,
+      "schema_fallback_groups": 1
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 2.5,
+              "f1": 3.0,
+              "f2": 3.5,
+              "f3": 4.0,
+              "f4": 4.5,
+              "f5": 5.0,
+              "f6": 5.5,
+              "f7": 6.0,
+              "f8": 6.5,
+              "f9": 7.0,
+              "f10": 7.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 4.5,
+                "t_end": 6.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Shooting\",\n      \"t_start\": 4.5,\n      \"t_end\": 6.0,\n      \"confidence\": 1.0,\n      \"description\": \"Deadpool is shown holding two pistols, with muzzle flash and a visible bullet in flight at f5 (5.0 s) and f6 (5.5 s), indicating active discharge.\",\n      \"reason\": \"Frames f5 and f6 show clear muzzle flash from the right-hand pistol and a projectile mid-air, satisfying the definition of 'Shooting' (visible shooting, not merely holding). The event spans from first visible discharge (f5) through continued firing (f6); f4 shows aiming but no discharge, f7 shows post-firing pose. The candidate interval [4.5,6.0] fully contains the visible discharge evidence (f5–f6).\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\"]\n    },\n    {\n      \"source_candidate_ids\": [],\n      \"category\": \"Shooting\",\n      \"t_start\": 6.5,\n      \"t_end\": 7.0,\n      \"confidence\": 1.0,\n      \"description\": \"Deadpool fires again from behind the casket, producing bright muzzle flash and causing seated mourners to recoil violently.\",\n      \"reason\": \"In f8 (6.5 s) and f9 (7.0 s), a bright flash erupts near Deadpool’s hands, chairs are overturned, and people are thrown backward—consistent with close-range gunfire. This is a second distinct shooting event, not merged with the earlier one due to temporal gap and different location/orientation (now from behind casket vs. rooftop).\",\n      \"evidence_frame_ids\": [\"f8\", \"f9\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 2.5,
+              "f1": 3.0,
+              "f2": 3.5,
+              "f3": 4.0,
+              "f4": 4.5,
+              "f5": 5.0,
+              "f6": 5.5,
+              "f7": 6.0,
+              "f8": 6.5,
+              "f9": 7.0,
+              "f10": 7.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 4.5,
+                "t_end": 6.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Shooting\",\n      \"t_start\": 5.0,\n      \"t_end\": 5.5,\n      \"confidence\": 1.0,\n      \"description\": \"At f5 (5.0 s), Deadpool’s right pistol emits a clear muzzle flash and a bullet is visible in flight; at f6 (5.5 s), a spent casing is ejected, confirming active discharge.\",\n      \"reason\": \"The definition requires *visible shooting*; f5 shows unambiguous muzzle flash and projectile, f6 shows ejection—both confirm firing. The candidate interval [4.5,6.0] includes non-firing frames (f4, f7); the actual visible shooting occurs only in f5–f6, so t_start/t_end are corrected to 5.0–5.5 to match evidence. Evidence is confined to these two frames.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\"]\n    },\n    {\n      \"source_candidate_ids\": [],\n      \"category\": \"Shooting\",\n      \"t_start\": 6.5,\n      \"t_end\": 7.0,\n      \"confidence\": 1.0,\n      \"description\": \"At f8 (6.5 s) and f9 (7.0 s), a bright muzzle flash erupts from Deadpool’s position behind the casket, coinciding with violent recoil of seated individuals and overturned chairs.\",\n      \"reason\": \"This is a second distinct shooting event: flash is visible at f8, and f9 shows immediate physical reaction (people thrown back, chairs airborne), satisfying 'visible shooting' with direct causal effect. It is temporally separate from the first (gap between f7 and f8), so not merged. Evidence frames are f8 and f9.\",\n      \"evidence_frame_ids\": [\"f8\", \"f9\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 2.5,
+              "f1": 3.0,
+              "f2": 3.5,
+              "f3": 4.0,
+              "f4": 4.5,
+              "f5": 5.0,
+              "f6": 5.5,
+              "f7": 6.0,
+              "f8": 6.5,
+              "f9": 7.0,
+              "f10": 7.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 4.5,
+                "t_end": 6.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Shooting\",\n      \"t_start\": 5.0,\n      \"t_end\": 5.5,\n      \"confidence\": 1.0,\n      \"description\": \"At f5 (5.0 s), Deadpool’s right pistol shows clear muzzle flash and a bullet in flight; at f6 (5.5 s), a spent casing is visible mid-ejection, confirming active discharge.\",\n      \"reason\": \"The definition requires *visible shooting* (not just holding). f5 provides unambiguous muzzle flash and projectile; f6 shows ejection—both constitute direct evidence of firing. The candidate interval [4.5,6.0] includes non-firing frames (f4, f7); only f5–f6 show visible discharge, so t_start/t_end are corrected to match evidence. Evidence confined to these frames.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\"]\n    },\n    {\n      \"source_candidate_ids\": [],\n      \"category\": \"Shooting\",\n      \"t_start\": 6.5,\n      \"t_end\": 7.0,\n      \"confidence\": 1.0,\n      \"description\": \"At f8 (6.5 s), a bright muzzle flash erupts from Deadpool’s hands behind the casket; at f9 (7.0 s), smoke, recoil, and overturned chairs confirm immediate impact of gunfire.\",\n      \"reason\": \"This is a second distinct shooting event: f8 shows visible muzzle flash; f9 shows physical consequences (smoke, violent displacement of people/chairs) consistent with close-range discharge. Temporally separated from first event (no overlap with f5–f6), so not merged. Both frames provide visible shooting evidence per definition.\",\n      \"evidence_frame_ids\": [\"f8\", \"f9\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0,
+              "f9": 4.5,
+              "f10": 5.0,
+              "f11": 5.5,
+              "f12": 6.0,
+              "f13": 6.5,
+              "f14": 7.0,
+              "f15": 7.5,
+              "f16": 8.0,
+              "f17": 8.5,
+              "f18": 9.0,
+              "f19": 9.5,
+              "f20": 10.0,
+              "f21": 10.5,
+              "f22": 11.0,
+              "f23": 11.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 4.5,
+                "t_end": 6.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Shooting\",\n      \"t_start\": 4.5,\n      \"t_end\": 6.0,\n      \"confidence\": 1.0,\n      \"description\": \"A figure in a red suit fires two handguns simultaneously from a rooftop, with visible muzzle flash and ejected shell casing at f10–f11.\",\n      \"reason\": \"Frame f10 shows a bright muzzle flash from the right-hand gun; f11 shows an ejected shell casing mid-air, confirming discharge. Both guns are aimed and actively fired during this interval, satisfying the 'Shooting' definition (visible shooting, not merely holding).\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\", \"f11\", \"f12\"]\n    },\n    {\n      \"source_candidate_ids\": [],\n      \"category\": \"Shooting\",\n      \"t_start\": 6.5,\n      \"t_end\": 7.5,\n      \"confidence\": 1.0,\n      \"description\": \"The same figure fires multiple shots toward seated mourners, causing visible recoil, smoke, and people reacting/being struck.\",\n      \"reason\": \"Frames f13–f15 show muzzle flashes, smoke, and individuals recoiling or falling; one person is thrown backward at f14–f15, consistent with being shot. This is a separate shooting event from the rooftop sequence, occurring at ground level behind the coffin.\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\", \"f15\"]\n    },\n    {\n      \"source_candidate_ids\": [],\n      \"category\": \"Shooting\",\n      \"t_start\": 10.0,\n      \"t_end\": 11.5,\n      \"confidence\": 1.0,\n      \"description\": \"The figure fires again from atop a gravestone, with visible muzzle flash and a man in a suit reacting to being hit (blood/splatter, head trauma).\",\n      \"reason\": \"f20 shows the figure aiming; f21 shows arm extended; f22 shows a man’s head exploding with blood/splatter while the figure is airborne nearby—consistent with a direct gunshot impact. The timing and visual evidence confirm shooting.\",\n      \"evidence_frame_ids\": [\"f20\", \"f21\", \"f22\", \"f23\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0,
+              "f9": 4.5,
+              "f10": 5.0,
+              "f11": 5.5,
+              "f12": 6.0,
+              "f13": 6.5,
+              "f14": 7.0,
+              "f15": 7.5,
+              "f16": 8.0,
+              "f17": 8.5,
+              "f18": 9.0,
+              "f19": 9.5,
+              "f20": 10.0,
+              "f21": 10.5,
+              "f22": 11.0,
+              "f23": 11.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 4.5,
+                "t_end": 6.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Shooting\",\n      \"t_start\": 4.5,\n      \"t_end\": 6.0,\n      \"confidence\": 1.0,\n      \"description\": \"A figure in a red suit fires two handguns from a rooftop; f10 shows a bright muzzle flash from the right-hand gun, and f11 shows an ejected shell casing mid-air.\",\n      \"reason\": \"Visible muzzle flash (f10) and ejected casing (f11) confirm discharge; definition of 'Shooting' requires visible shooting, which is satisfied. Frames f9–f12 collectively show the act across the interval.\",\n      \"evidence_frame_ids\": [\"f10\", \"f11\"]\n    },\n    {\n      \"source_candidate_ids\": [],\n      \"category\": \"Shooting\",\n      \"t_start\": 6.5,\n      \"t_end\": 7.5,\n      \"confidence\": 1.0,\n      \"description\": \"The same figure fires multiple shots toward seated mourners behind a coffin, with visible muzzle flashes, smoke, and individuals recoiling or being thrown backward.\",\n      \"reason\": \"f13 shows muzzle flash and smoke; f14–f15 show violent recoil and a person airborne/struck—consistent with direct gunfire impact. This is a distinct ground-level shooting event, separate from the rooftop one.\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\", \"f15\"]\n    },\n    {\n      \"source_candidate_ids\": [],\n      \"category\": \"Shooting\",\n      \"t_start\": 10.0,\n      \"t_end\": 11.5,\n      \"confidence\": 0.95,\n      \"description\": \"The figure fires from atop a gravestone; f22 shows a man in a suit with head trauma and blood/splatter while the figure is airborne nearby, indicating a gunshot impact.\",\n      \"reason\": \"f20–f21 show aiming and extension; f22 shows immediate violent head injury with debris ejection and the shooter in proximity—strongly indicative of a gunshot. Though no muzzle flash is visible in f22, the causal sequence and physical reaction satisfy 'Shooting' per definition (visible shooting includes observable impact consequences when firing is contextually confirmed).\",\n      \"evidence_frame_ids\": [\"f20\", \"f21\", \"f22\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0,
+              "f9": 4.5,
+              "f10": 5.0,
+              "f11": 5.5,
+              "f12": 6.0,
+              "f13": 6.5,
+              "f14": 7.0,
+              "f15": 7.5,
+              "f16": 8.0,
+              "f17": 8.5,
+              "f18": 9.0,
+              "f19": 9.5,
+              "f20": 10.0,
+              "f21": 10.5,
+              "f22": 11.0,
+              "f23": 11.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 4.5,
+                "t_end": 6.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Shooting\",\n      \"t_start\": 4.5,\n      \"t_end\": 6.0,\n      \"confidence\": 1.0,\n      \"description\": \"A figure in a red suit fires two handguns from a rooftop; f10 shows a bright muzzle flash from the right-hand gun, and f11 shows an ejected shell casing mid-air.\",\n      \"reason\": \"Muzzle flash (f10) and visible ejected casing (f11) constitute direct visual evidence of discharge, satisfying the 'Shooting' definition (requires visible shooting, not just holding). The interval [4.5,6.0] is fully supported by frames f9–f12 showing the act in progress.\",\n      \"evidence_frame_ids\": [\"f10\", \"f11\"]\n    },\n    {\n      \"source_candidate_ids\": [],\n      \"category\": \"Shooting\",\n      \"t_start\": 6.5,\n      \"t_end\": 7.5,\n      \"confidence\": 1.0,\n      \"description\": \"The same figure fires multiple shots toward seated mourners behind a coffin, with visible muzzle flashes, smoke, and individuals recoiling or being thrown backward.\",\n      \"reason\": \"Frames f13–f15 show simultaneous muzzle flashes, smoke puffs, and violent reactions (e.g., person airborne at f14–f15), confirming active discharge and impact; this is a distinct ground-level shooting event separate from the rooftop one.\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\", \"f15\"]\n    },\n    {\n      \"source_candidate_ids\": [],\n      \"category\": \"Shooting\",\n      \"t_start\": 10.0,\n      \"t_end\": 11.5,\n      \"confidence\": 0.95,\n      \"description\": \"The figure fires from atop a gravestone; f22 shows a man in a suit with head trauma and blood/splatter while the figure is airborne nearby, indicating a gunshot impact.\",\n      \"reason\": \"Although no muzzle flash is visible in f22, f20–f21 show aiming and extension, and f22 shows immediate violent head disintegration with debris ejection—consistent with high-velocity projectile impact. Given the prior confirmed shootings and continuity of action, this satisfies 'Shooting' as visible consequence of discharge is evident and causally linked.\",\n      \"evidence_frame_ids\": [\"f20\", \"f21\", \"f22\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "unresolved_schema",
+          "events": [],
+          "rejected": [],
+          "uncertain": [
+            {
+              "candidate_id": 0,
+              "reason": "schema_repair_exhausted: Unknown, duplicate or empty source_candidate_ids"
+            }
+          ],
+          "schema_error": "Unknown, duplicate or empty source_candidate_ids"
+        },
+        "context_retry": true
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 7.0,
+              "f1": 7.5,
+              "f2": 8.0,
+              "f3": 8.5,
+              "f4": 9.0,
+              "f5": 9.5,
+              "f6": 10.0,
+              "f7": 10.5,
+              "f8": 11.0,
+              "f9": 11.5,
+              "f10": 12.0,
+              "f11": 12.5,
+              "f12": 13.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 8.7,
+                "t_end": 10.8,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 10.0,
+                "t_end": 11.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 10.5,
+                "t_end": 11.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 11.0,
+                "t_end": 11.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2, 3],\n      \"category\": \"Shooting\",\n      \"t_start\": 10.0,\n      \"t_end\": 11.5,\n      \"confidence\": 0.95,\n      \"description\": \"Deadpool is seen aiming and firing a pistol from atop a tombstone (f6–f7), and at f8–f9 a man in a suit is struck in the head with visible blood and debris, consistent with being shot.\",\n      \"reason\": \"Frames f6–f7 show clear aiming and discharge (muzzle flash implied by posture and context); f8–f9 show immediate impact on target with explosive head trauma typical of gunshot in cinematic depiction; this constitutes visible shooting per definition requiring visible shooting (not just holding).\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\", \"f9\"]\n    },\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"Explosion\",\n      \"t_start\": 11.0,\n      \"t_end\": 11.5,\n      \"confidence\": 0.85,\n      \"description\": \"At f8–f9, the man’s head erupts in a burst of blood and debris upon impact, indicating a violent blast-like effect consistent with an explosion (e.g., high-velocity projectile impact causing secondary fragmentation).\",\n      \"reason\": \"While not a traditional fireball explosion, the sudden, volumetric ejection of matter from the head meets the definition of ‘Explosion’ as a blast event (distinct from sustained fire or mere impact); it is simultaneous with the shooting event but qualifies separately as a blast effect.\",\n      \"evidence_frame_ids\": [\"f8\", \"f9\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"No mutual physical combat is visible between individuals; Deadpool engages in ranged attack while others are incapacitated or fleeing—this is not Fighting per definition requiring mutual combat.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2,
+                3
+              ],
+              "category": "Shooting",
+              "t_start": 10.0,
+              "t_end": 11.5,
+              "confidence": 0.95,
+              "description": "Deadpool is seen aiming and firing a pistol from atop a tombstone (f6–f7), and at f8–f9 a man in a suit is struck in the head with visible blood and debris, consistent with being shot.",
+              "reason": "Frames f6–f7 show clear aiming and discharge (muzzle flash implied by posture and context); f8–f9 show immediate impact on target with explosive head trauma typical of gunshot in cinematic depiction; this constitutes visible shooting per definition requiring visible shooting (not just holding).",
+              "evidence_frame_ids": [
+                "f6",
+                "f7",
+                "f8",
+                "f9"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                4
+              ],
+              "category": "Explosion",
+              "t_start": 11.0,
+              "t_end": 11.5,
+              "confidence": 0.85,
+              "description": "At f8–f9, the man’s head erupts in a burst of blood and debris upon impact, indicating a violent blast-like effect consistent with an explosion (e.g., high-velocity projectile impact causing secondary fragmentation).",
+              "reason": "While not a traditional fireball explosion, the sudden, volumetric ejection of matter from the head meets the definition of ‘Explosion’ as a blast event (distinct from sustained fire or mere impact); it is simultaneous with the shooting event but qualifies separately as a blast effect.",
+              "evidence_frame_ids": [
+                "f8",
+                "f9"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "No mutual physical combat is visible between individuals; Deadpool engages in ranged attack while others are incapacitated or fleeing—this is not Fighting per definition requiring mutual combat.",
+              "evidence_frame_ids": [
+                "f2",
+                "f3",
+                "f4"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

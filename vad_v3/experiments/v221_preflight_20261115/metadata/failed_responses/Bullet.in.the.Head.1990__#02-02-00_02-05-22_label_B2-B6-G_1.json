@@ -1,0 +1,116 @@
+{
+  "group_id": 3,
+  "calls": [
+    {
+      "pass_id": 0,
+      "frame_times": {
+        "f0": 84.5,
+        "f1": 85.0,
+        "f2": 85.5,
+        "f3": 86.0,
+        "f4": 86.5,
+        "f5": 87.0,
+        "f6": 87.5,
+        "f7": 88.0,
+        "f8": 88.5,
+        "f9": 89.0,
+        "f10": 89.5,
+        "f11": 90.0,
+        "f12": 90.5,
+        "f13": 91.0,
+        "f14": 91.5,
+        "f15": 92.0,
+        "f16": 92.5
+      },
+      "hypotheses": [
+        {
+          "candidate_id": 5,
+          "t_start": 86.5,
+          "t_end": 89.0,
+          "unverified_category": "CarAccident"
+        },
+        {
+          "candidate_id": 6,
+          "t_start": 90.0,
+          "t_end": 91.0,
+          "unverified_category": "Shooting"
+        }
+      ],
+      "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [5],\n      \"category\": \"CarAccident\",\n      \"t_start\": 86.5,\n      \"t_end\": 89.0,\n      \"confidence\": 0.95,\n      \"description\": \"Two heavily damaged cars are shown in close proximity, with visible deformation, sparks, and debris; the white car (license AM16) is angled into the rear of the brown car (license 3792), indicating a recent collision. Frame f10 shows the cars locked together with impact damage evident on both; frame f11 shows them still in contact with a bright flash suggesting secondary impact or electrical arcing. The sequence from f10 to f11 captures the immediate aftermath of a crash.\",\n      \"reason\": \"Frames f10–f11 show clear structural deformation, contact between vehicles, and dynamic effects (sparks, debris) consistent with a collision. This satisfies the definition of CarAccident (a crash), not ordinary driving. The candidate interval [86.5, 89.0] aligns with frames f10–f11 (89.0 is the end of f11), and the event is fully contained within visible evidence.\",\n      \"evidence_frame_ids\": [\"f10\", \"f11\"]\n    },\n    {\n      \"source_candidate_ids\": [6],\n      \"category\": \"Shooting\",\n      \"t_start\": 90.0,\n      \"t_end\": 91.0,\n      \"confidence\": 0.85,\n      \"description\": \"In frame f12, a person inside the white car (AM16) is holding a handgun pointed outward through the driver’s side window; a bright muzzle flash and smoke are visible at the barrel, coinciding with a burst of sparks/debris near the brown car’s rear. In frame f13, the gun remains aimed, and the flash persists. This indicates discharge of a firearm.\",\n      \"reason\": \"Visible muzzle flash (bright blue-white light at barrel tip) and associated smoke/sparks in f12–f13 constitute direct evidence of shooting. The candidate interval [90.0, 91.0] corresponds to frames f12–f13, where the action occurs. Though the target is not clearly struck, the act of discharging a firearm is observable. This meets the definition: 'Shooting requires visible shooting, not merely holding a gun'.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+    },
+    {
+      "pass_id": 0,
+      "frame_times": {
+        "f0": 84.5,
+        "f1": 85.0,
+        "f2": 85.5,
+        "f3": 86.0,
+        "f4": 86.5,
+        "f5": 87.0,
+        "f6": 87.5,
+        "f7": 88.0,
+        "f8": 88.5,
+        "f9": 89.0,
+        "f10": 89.5,
+        "f11": 90.0,
+        "f12": 90.5,
+        "f13": 91.0,
+        "f14": 91.5,
+        "f15": 92.0,
+        "f16": 92.5
+      },
+      "hypotheses": [
+        {
+          "candidate_id": 5,
+          "t_start": 86.5,
+          "t_end": 89.0,
+          "unverified_category": "CarAccident"
+        },
+        {
+          "candidate_id": 6,
+          "t_start": 90.0,
+          "t_end": 91.0,
+          "unverified_category": "Shooting"
+        }
+      ],
+      "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [5],\n      \"category\": \"CarAccident\",\n      \"t_start\": 86.5,\n      \"t_end\": 89.0,\n      \"confidence\": 0.95,\n      \"description\": \"Two severely damaged cars are in direct contact: a white sedan (license AM16) is wedged into the rear driver’s side of a brown sedan (license 3792). Frame f10 shows the point of impact with visible deformation, scuffing, and sparks flying from the collision zone. Frame f11 shows the vehicles still interlocked, with a bright blue-white flash erupting between them—consistent with electrical arcing or metal-on-metal ignition upon impact. The sequence captures the immediate aftermath of a high-energy crash.\",\n      \"reason\": \"The definition requires a *crash*, not ordinary driving. Frames f10 and f11 (t=89.0 corresponds to end of f11) show unequivocal structural damage, mutual vehicle contact, and dynamic impact effects (sparks, debris, flash), satisfying CarAccident. The candidate interval [86.5, 89.0] aligns with these frames; no earlier frames in the supplied set (f8–f9) show the collision in progress, but f10–f11 confirm it has occurred and is ongoing in its immediate aftermath. Merging is unnecessary—only one candidate maps to this event.\",\n      \"evidence_frame_ids\": [\"f10\", \"f11\"]\n    },\n    {\n      \"source_candidate_ids\": [6],\n      \"category\": \"Shooting\",\n      \"t_start\": 90.0,\n      \"t_end\": 91.0,\n      \"confidence\": 0.8,\n      \"description\": \"In frame f12, a person inside the white car (AM16) holds a handgun extended out the driver’s window, barrel pointed toward the brown car. A bright, localized blue-white flash emanates from the muzzle, coinciding with a burst of sparks/debris near the rear of the brown car (license 3792). In frame f13, the flash persists and the gun remains aimed, though the image is overexposed. This indicates discharge of a firearm at t≈90.5.\",\n      \"reason\": \"Per instructions: 'Shooting requires visible shooting, not merely holding a gun'. The muzzle flash (distinctive intense light at barrel tip, not ambient lighting) and associated transient sparks constitute direct visual evidence of discharge. Frames f12–f13 fall within candidate interval [90.0, 91.0]. While the target impact is not clearly resolved due to overexposure, the act of firing is observable. Confidence reduced slightly due to overexposure in f13 limiting full verification, but f12 alone suffices for classification under the given definition.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+    },
+    {
+      "pass_id": 0,
+      "frame_times": {
+        "f0": 84.5,
+        "f1": 85.0,
+        "f2": 85.5,
+        "f3": 86.0,
+        "f4": 86.5,
+        "f5": 87.0,
+        "f6": 87.5,
+        "f7": 88.0,
+        "f8": 88.5,
+        "f9": 89.0,
+        "f10": 89.5,
+        "f11": 90.0,
+        "f12": 90.5,
+        "f13": 91.0,
+        "f14": 91.5,
+        "f15": 92.0,
+        "f16": 92.5
+      },
+      "hypotheses": [
+        {
+          "candidate_id": 5,
+          "t_start": 86.5,
+          "t_end": 89.0,
+          "unverified_category": "CarAccident"
+        },
+        {
+          "candidate_id": 6,
+          "t_start": 90.0,
+          "t_end": 91.0,
+          "unverified_category": "Shooting"
+        }
+      ],
+      "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [5],\n      \"category\": \"CarAccident\",\n      \"t_start\": 86.5,\n      \"t_end\": 89.0,\n      \"confidence\": 0.95,\n      \"description\": \"Two heavily damaged cars are in direct, sustained contact: a white sedan (license AM16) is wedged into the rear driver’s side of a brown sedan (license 3792). Frame f10 shows visible deformation at the point of impact, scuffing, and sparks flying from the collision zone. Frame f11 shows the vehicles still interlocked, with a bright blue-white flash erupting between them—consistent with electrical arcing or metal-on-metal ignition upon impact. This sequence captures the immediate aftermath of a crash.\",\n      \"reason\": \"The definition requires a *crash*, not ordinary driving. Frames f10 and f11 (within candidate interval [86.5, 89.0]) show unequivocal structural damage, mutual vehicle contact, and dynamic impact effects (sparks, debris, flash), satisfying CarAccident. The event is fully supported by visible evidence; no earlier frames in the supplied set show the collision in progress, but f10–f11 confirm it has occurred and is ongoing in its immediate aftermath. Candidate 5 maps uniquely to this event.\",\n      \"evidence_frame_ids\": [\"f10\", \"f11\"]\n    },\n    {\n      \"source_candidate_ids\": [6],\n      \"category\": \"Shooting\",\n      \"t_start\": 90.0,\n      \"t_end\": 91.0,\n      \"confidence\": 0.75,\n      \"description\": \"In frame f12, a person inside the white car (AM16) holds a handgun extended out the driver’s window, barrel pointed toward the brown car. A bright, localized blue-white flash emanates from the muzzle, coinciding with a burst of sparks/debris near the rear of the brown car (license 3792). In frame f13, the flash persists and the gun remains aimed, though the image is overexposed and details are obscured. The flash is distinct from ambient lighting and appears transient and localized at the barrel tip.\",\n      \"reason\": \"Per instructions: 'Shooting requires visible shooting, not merely holding a gun'. The muzzle flash in f12 is visually consistent with firearm discharge (intense, brief, origin at barrel). However, due to severe overexposure in f13 and lack of corroborating smoke trail or clear bullet impact, certainty is reduced. Still, f12 alone provides sufficient visual evidence of discharge under the given definition. The candidate interval [90.0, 91.0] aligns with f12–f13, and the action occurs within that window.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+    }
+  ]
+}

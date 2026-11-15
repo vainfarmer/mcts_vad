@@ -4,6 +4,7 @@ from collections import Counter
 from datetime import datetime, timezone
 import html
 import json
+import shutil
 from pathlib import Path
 import sys
 import numpy as np
@@ -17,6 +18,8 @@ from dataset_index import parquet_directory
 from evaluate import (load_ground_truth,compute_frame_auc,compute_vadclip_temporal_map,
                       compute_video_level,compute_category_accuracy)
 from evaluation_tools.video_fps import source_video_metadata
+from evaluation_tools.temporal_ap import ANOMALY_CLASSES, UCF_CLASSES, compute_vadclip_map
+from evaluation_tools.normal_detection import NORMAL_POLICY
 
 GROUPS=('off_fixed','strict_fixed','relaxed_node_fixed','force_best_fixed',
         'force_best_no_tail','stage4_only')
@@ -27,6 +30,12 @@ LABELS=dict(off_fixed='G1 · off → BUE→CBT',strict_fixed='G2 · strict → B
 
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--partial',action='store_true');args=parser.parse_args()
+    previous=read(HERE/'six_group_comparison.json') if (HERE/'six_group_comparison.json').exists() else None
+    if previous and previous['metrics']['off_fixed']['level2']['class_count']==13:
+        archive=HERE/'historical_13class';archive.mkdir(exist_ok=True)
+        for filename in ('six_group_comparison.json','six_group_comparison.html','protocol.json'):
+            target=archive/filename
+            if not target.exists():shutil.copy2(HERE/filename,target)
     manifest=read(HERE/'manifest.json');selected_normal=read(HERE/'selected_normal_videos.json')
     normal_dir=HERE/('normal_resume_results' if (HERE/'resume_provenance.json').exists() else 'normal_results')
     missing=[x['video_id'] for x in selected_normal if not (normal_dir/(x['video_id']+'.json')).exists()]
@@ -85,8 +94,16 @@ def main():
     for g,pred in predictions.items():
         frame=compute_frame_auc(gt,pred,fps)
         temporal=compute_vadclip_temporal_map(gt,pred,fps,include_normal_videos=True)
+        anomaly_reference=compute_vadclip_temporal_map(gt,pred,fps,include_normal_videos=True,classes=ANOMALY_CLASSES)
+        # Keep the anomaly scores unchanged; only add a fourteenth class.
+        for c in ANOMALY_CLASSES:
+            assert temporal['per_class'][c]==anomaly_reference['per_class'][c],(g,c)
+        normal_ap=float(np.mean([temporal['per_class']['Normal'][f'AP@{t:.1f}'] for t in (.1,.2,.3,.4,.5)]))
+        assert abs(temporal['mAP']-(13*anomaly_reference['mAP']+normal_ap)/14)<1e-12
+        _,normal_audit=compute_vadclip_map(gt,pred,fps)
+        write(HERE/'normal14'/f'{g}_normal_matching.json',{'Normal':normal_audit['Normal']})
         agt={n:gt[n] for n in sorted(abnormal_ids)};apred={n:pred[n] for n in sorted(abnormal_ids)}
-        abnormal_temporal=compute_vadclip_temporal_map(agt,apred,fps)
+        abnormal_temporal=compute_vadclip_temporal_map(agt,apred,fps,include_normal_videos=False)
         video=compute_video_level(gt,pred);category=compute_category_accuracy(gt,pred)
         for row in category['per_category'].values():row['accuracy']=row['correct']/row['total']
         tp=sum(bool(pred[n]['anomalies']) for n in abnormal_ids);fn=140-tp
@@ -98,24 +115,36 @@ def main():
             false_positive_video_ids=sorted(n for n in normal_ids if pred[n]['anomalies']),
             false_positive_detections_by_category=dict(Counter(a['anomaly_type'] for n in normal_ids for a in pred[n]['anomalies'])))
         metrics[g]=dict(level1=frame,level2=temporal,level2_abnormal_only=abnormal_temporal,
+                        level2_anomaly13_reference=anomaly_reference,
                         level3=video,level4=category,normal=normal)
         summary[g]=dict(label=LABELS[g],global_auc_roc=frame['auc'],aupr=frame['aupr'],
             map_avg=temporal['mAP'],**temporal['values'],
             abnormal_only_map_avg=abnormal_temporal['mAP'],
             old_140_secondary_tie_sort_map_avg=old['summary'][g]['map_avg'],
-            added_normal_delta_pp=100*(temporal['mAP']-abnormal_temporal['mAP']),
+            all_video_13class_map_avg=anomaly_reference['mAP'],normal_ap_avg=normal_ap,
+            added_normal_video_delta_pp=100*(anomaly_reference['mAP']-abnormal_temporal['mAP']),
+            added_normal_class_delta_pp=100*(temporal['mAP']-anomaly_reference['mAP']),
             video_accuracy=video['accuracy'],video_precision=video['precision'],video_recall=video['recall'],
             video_f1=video['f1'],video_auc=video['auc'],category_accuracy=category['accuracy'],
             normal_false_positive_rate=fp/150,normal_false_positive_videos=fp,
             normal_false_positive_detections=false_detections,
-            total_predictions=sum(len(row['anomalies']) for row in pred.values()))
+            total_predictions=sum(len(row['anomalies']) for row in pred.values()),
+            total_detections_including_normal=temporal['prediction_count'])
         # 只有排序变化；140 个异常视频的曲线和 frame-level 指标应完全保持不变。
         aframe=compute_frame_auc(agt,apred,fps)
         assert all(abs(aframe[k]-old['metrics'][g]['level1'][k])<1e-12 for k in ('auc','aupr'))
     assert all(metrics[g]['level3']==metrics[GROUPS[0]]['level3'] for g in GROUPS)
     assert all(metrics[g]['level4']==metrics[GROUPS[0]]['level4'] for g in GROUPS)
+    protocol=read(HERE/'protocol.json')
+    protocol.update(primary_map='All 290 videos; macro average over Normal and 13 anomaly classes.',
+        additional_map='Explicit references: abnormal-only 140/13 and full 290/13; neither is the primary mAP.',
+        classes=list(UCF_CLASSES),normal_prediction=NORMAL_POLICY,
+        normal_gt='Whole source video for GT-Normal only; no Normal GT in anomalous-video gaps.',
+        decoder_limitation='Project whole-video Normal decoder; not VadCLIP per-class curve proposal extraction.',
+        reevaluation='Offline on immutable saved predictions; zero new API calls.')
+    write(HERE/'protocol.json',protocol)
     report=dict(created_at=datetime.now(timezone.utc).isoformat(),completed=290,abnormal_videos=140,normal_videos=150,
-        groups=list(GROUPS),summary=summary,metrics=metrics,protocol=read(HERE/'protocol.json'),
+        groups=list(GROUPS),summary=summary,metrics=metrics,protocol=protocol,
         source_video_metadata=metadata,numpy_version=np.__version__,
         validation=dict(abnormal_results_reused_unchanged=140,normal_videos_new=150,
             normal_early_exit_videos=early,normal_six_branch_videos=150-early,failed=0,
@@ -123,7 +152,7 @@ def main():
             abnormal_frame_metrics_unchanged=True,normal_result_sha256=normal_source_hashes),
         normal_inference_fingerprint=inference_manifest['fingerprint'],manifest_fingerprint=manifest['fingerprint'],
         evaluation_source_sha256={str(p.relative_to(ROOT)):sha(p) for p in (
-            ROOT/'evaluation_tools/temporal_ap.py',ROOT/'evaluation_tools/video_fps.py',
+            ROOT/'evaluation_tools/temporal_ap.py',ROOT/'evaluation_tools/normal_detection.py',ROOT/'evaluation_tools/video_fps.py',
             ROOT/'vad_v3/video_anomaly_detection/evaluate.py',Path(__file__))},
         gt_sha256={p.name:sha(p) for p in label_dir.glob('test-*.parquet')})
     if (HERE/'resume_provenance.json').exists():
@@ -134,11 +163,10 @@ def main():
     def table(headers,rows):
         return '<table><thead><tr>'+''.join('<th>'+html.escape(x)+'</th>' for x in headers)+'</tr></thead><tbody>'+''.join(
             '<tr>'+''.join('<td>'+html.escape(str(x))+'</td>' for x in row)+'</tr>' for row in rows)+'</tbody></table>'
-    main_table=table(['组别','Global AUC-ROC','AUPR','AVG mAP（290 视频）'],[
+    main_table=table(['组别','Global AUC-ROC','AUPR','AVG mAP（290 视频 / 14 类）'],[
         [LABELS[g],*[pct(summary[g][k]) for k in ('global_auc_roc','aupr','map_avg')]] for g in GROUPS])
-    scope_table=table(['组别','原 140 · 旧并列规则','140 · NumPy 排序','290 · NumPy 排序','加入正常视频的变化 / pp'],[
-        [LABELS[g],*[pct(summary[g][k]) for k in ('old_140_secondary_tie_sort_map_avg','abnormal_only_map_avg','map_avg')],
-         f"{summary[g]['added_normal_delta_pp']:+.3f}"] for g in GROUPS])
+    scope_table=table(['组别','140 视频 / 13 类','290 视频 / 13 类参考','Normal AP','290 视频 / 14 类主指标'],[
+        [LABELS[g],*[pct(summary[g][k]) for k in ('abnormal_only_map_avg','all_video_13class_map_avg','normal_ap_avg','map_avg')]] for g in GROUPS])
     map_table=table(['组别','mAP@0.1','mAP@0.2','mAP@0.3','mAP@0.4','mAP@0.5','AVG'],[
         [LABELS[g],*[pct(summary[g][k]) for k in ('mAP@0.1','mAP@0.2','mAP@0.3','mAP@0.4','mAP@0.5','AVG')]] for g in GROUPS])
     video_table=table(['组别','Accuracy','Precision','Recall','F1','视频 AUC','正常视频误报率','FP 视频数 / 区间数'],[
@@ -150,13 +178,13 @@ def main():
     page=f'''<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>290 视频 · 六组对照</title>
 <style>body{{font:15px system-ui;max-width:1500px;margin:36px auto;padding:0 24px;color:#25382f;line-height:1.65}}table{{border-collapse:collapse;width:100%;margin:20px 0}}td,th{{border:1px solid #d4ddd6;padding:9px;text-align:left}}th{{background:#edf3ef}}.note{{background:#f3f6f4;padding:16px}}a{{color:#216749}}</style>
 <h1>140 异常 + 150 正常视频 · 六组 Level 1—4 对照</h1>
-<p class="note">正常视频重新推理，视频并发度 2、API 并发度 2；140 个异常视频复用已核验的六组原始结果。AP 统一使用 np.argsort(-confidence)，没有视频 ID 或边界的额外并列排序键。原 140 视频正式报告保持不变。</p>
+<p class="note">本次仅离线重算：主指标改为包含 Normal 的 14 类 mAP。使用已保存的 140 异常 + 150 正常视频预测，无新增 API 调用。原始 13 类报告存入 historical_13class。</p>
 <h2>汇总</h2>{main_table}
 <p>共同前序为 Stage 1—4（含 VideoMAE、CLIP 引导和 VLM 筛选）。G1—G4 保留固定 BUE→CBT；G5/G6 无后续边界处理，均跳过 Stage 5。Level 1 使用 290 个视频的所有帧；AUPR 是 PR 曲线积分。</p>
-<h2>排序变化与新增正常视频分别带来的影响</h2>{scope_table}
-<p>三个列使用相同的 140 个异常视频预测。第二到第三列仅新增正常视频预测作为误报；并列分数在数组长度变化后也可能被 NumPy 重新排列。</p>
+<h2>评估范围与 Normal 类贡献</h2>{scope_table}
+<p>AVG14 = (13 × AVG13全视频 + Normal AP均值) / 14。异常类别的预测和 AP 保持不变。Normal 预测由保存的 is_normal 与异常分数生成，不读取 GT。</p>
 <h2>Level 2 · 全 290 视频的定位 mAP</h2>{map_table}
-<p>按 13 个异常类别分别进行同视频 GT 匹配；正常视频不生成异常 GT，其预测异常区间全部作为对应类别 FP 参与全局排序。AP 为非插值 rank AP，使用原视频实测 FPS、整数半开帧区间。AVG 为五个 IoU 阈值的均值；没有添加 Normal AP，因此本表不是官方默认 14 类平均。</p>
+<p>按 Normal + 13 个异常类别做同视频、一对一 IoU 匹配与非插值 rank AP，再平均 IoU 0.1—0.5。Normal GT 为真实正常视频全长；预测正常时生成全长区间，置信度为 1 减全视频平均异常分数。类别范围与官方默认一致；项目没有复现 VadCLIP 的逐类曲线提案生成器。</p>
 <h2>Level 3 · 视频级检测及正常视频误报</h2>{video_table}
 <p>各分支只改变边界、不增删候选或修改类别/置信度，因此视频级指标一致。此处视频 AUC 有异常/正常两类样本支持。</p>
 <h2>Level 4 · 异常类别准确率</h2>

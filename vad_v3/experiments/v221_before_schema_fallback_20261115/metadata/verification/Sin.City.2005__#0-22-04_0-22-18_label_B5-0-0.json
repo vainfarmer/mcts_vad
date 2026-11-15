@@ -1,0 +1,337 @@
+{
+  "events": [
+    {
+      "t_start": 0.5,
+      "t_end": 4.0,
+      "anomaly_type": "Fighting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "Two individuals engage in mutual physical combat: one lifts and swings the other across the room toward a toilet, with both participants actively involved (e.g., lifted person’s legs extended, torso engaged) through f1–f7.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          0.5,
+          1.0,
+          1.5,
+          2.0,
+          2.5,
+          3.0,
+          3.5
+        ],
+        "evidence_frame_ids": [
+          "f1",
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7"
+        ],
+        "reason": "Frames f1–f7 show reciprocal force application, airborne motion with resistance (e.g., f2, f3), and continuous contact—consistent with Fighting (mutual physical combat); the sequence ends at f7 before occlusion at f8, and does not extend to f8 or beyond where only one person is visible.",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 8.0,
+      "t_end": 11.5,
+      "anomaly_type": "Abuse",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A clothed person forcefully submerges a shirtless person’s head into a toilet bowl, holding them down while they struggle and water splashes; the victim is unable to resist effectively.",
+      "source_candidate_ids": [
+        2,
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          8.0,
+          8.5,
+          9.0,
+          9.5,
+          10.0,
+          10.5,
+          11.0,
+          11.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11"
+        ],
+        "reason": "Frames f4–f11 show sustained non-consensual physical control: the aggressor grips the victim’s head (f4–f9), lifts and forces the victim into the toilet (f10–f11), while the victim’s limbs flail helplessly—consistent with abuse of a helpless individual, not mutual combat.",
+        "source_categories": [
+          "Abuse",
+          "Fighting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 4,
+      "output_count": 2,
+      "groups": 2,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 1,
+      "context_retries": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0,
+              "f9": 4.5,
+              "f10": 5.0,
+              "f11": 5.5,
+              "f12": 6.0,
+              "f13": 6.5,
+              "f14": 7.0,
+              "f15": 7.5,
+              "f16": 8.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 0.7000000000000001,
+                "t_end": 4.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 1.5,
+                "t_end": 6.5,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Fighting\",\n      \"t_start\": 0.5,\n      \"t_end\": 4.0,\n      \"confidence\": 0.95,\n      \"description\": \"Two individuals engage in dynamic physical combat: one lifts and swings the other toward a toilet, culminating in impact at f5–f6; motion blur indicates rapid movement and mutual engagement.\",\n      \"reason\": \"Frames f1–f7 show reciprocal force application, airborne positioning, and coordinated motion consistent with mutual combat—not one-sided abuse—ending when the lifted person contacts the toilet (f5–f6). The sequence from f1 to f7 is continuous and depicts a single fight event; candidate 1’s ‘Abuse’ label is contradicted by the active resistance and participation of both parties (e.g., f2–f3 legs extended, torso engaged).\",\n      \"evidence_frame_ids\": [\"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\"]\n    },\n    {\n      \"source_candidate_ids\": [],\n      \"category\": \"Normal\",\n      \"t_start\": 4.5,\n      \"t_end\": 8.0,\n      \"confidence\": 1.0,\n      \"description\": \"A man in dark clothing leans over, showing exertion or reaction; no second person visible, no ongoing combat or aggression.\",\n      \"reason\": \"From f8 onward, only one person is clearly visible; motion blur (f8–f10) resolves into a close-up of a man reacting (f11–f15), then f16 shows a different scene (man with water splashing on head, possibly post-impact). No evidence of fighting, abuse, or other listed categories in this interval; thus not classified under allowed categories.\",\n      \"evidence_frame_ids\": [\"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"The actions from t=1.5 to 6.5 involve mutual physical engagement (e.g., f2–f4 show both participants actively involved, limbs extended, weight-bearing), inconsistent with Abuse (which requires one-sided aggression against a helpless victim). The event is better classified as Fighting.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0,
+              "f9": 4.5,
+              "f10": 5.0,
+              "f11": 5.5,
+              "f12": 6.0,
+              "f13": 6.5,
+              "f14": 7.0,
+              "f15": 7.5,
+              "f16": 8.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 0.7000000000000001,
+                "t_end": 4.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 1.5,
+                "t_end": 6.5,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Fighting\",\n      \"t_start\": 0.5,\n      \"t_end\": 4.0,\n      \"confidence\": 0.9,\n      \"description\": \"Two individuals engage in dynamic physical combat: one lifts and swings the other across the space toward the toilet, with mutual engagement evident in airborne posture and limb positioning through f1–f7.\",\n      \"reason\": \"Frames f1–f7 show reciprocal force (e.g., f2: lifted person’s legs extended and torso resisting; f3–f4: both bodies in contact, motion blur indicating rapid mutual interaction), satisfying the definition of Fighting (mutual physical combat); the action culminates near the toilet at f5–f6 but remains continuous through f7 before occlusion at f8.\",\n      \"evidence_frame_ids\": [\"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"The interval t=1.5–6.5 includes frames where both parties are actively engaged (e.g., f2–f4 show the lifted person resisting with extended limbs and torso tension), contradicting Abuse (which requires aggression against a helpless victim); the sequence is part of the same mutual combat event already classified as Fighting, not a separate one-sided act.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"From f8 onward, only one person is visible; f16 shows a different scene (water splashing on a man’s head) with no clear continuity to prior actions—insufficient evidence to confirm or deny Abuse during t=4.5–6.5 due to occlusion and lack of second person visibility in f8–f15.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0,
+              "f9": 4.5,
+              "f10": 5.0,
+              "f11": 5.5,
+              "f12": 6.0,
+              "f13": 6.5,
+              "f14": 7.0,
+              "f15": 7.5,
+              "f16": 8.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 0.7000000000000001,
+                "t_end": 4.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 1.5,
+                "t_end": 6.5,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Fighting\",\n      \"t_start\": 0.5,\n      \"t_end\": 4.0,\n      \"confidence\": 0.95,\n      \"description\": \"Two individuals engage in mutual physical combat: one lifts and swings the other across the room toward a toilet, with both participants actively involved (e.g., lifted person’s legs extended, torso engaged) through f1–f7.\",\n      \"reason\": \"Frames f1–f7 show reciprocal force application, airborne motion with resistance (e.g., f2, f3), and continuous contact—consistent with Fighting (mutual physical combat); the sequence ends at f7 before occlusion at f8, and does not extend to f8 or beyond where only one person is visible.\",\n      \"evidence_frame_ids\": [\"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"The interval t=1.5–6.5 includes frames f2–f7 where both individuals are actively engaged (e.g., lifted person resists with limbs extended and body tension), contradicting Abuse (which requires one-sided aggression against a helpless victim); the same actions are already fully accounted for in the Fighting event, and no evidence of helplessness or one-sided control exists in any frame.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Fighting",
+              "t_start": 0.5,
+              "t_end": 4.0,
+              "confidence": 0.95,
+              "description": "Two individuals engage in mutual physical combat: one lifts and swings the other across the room toward a toilet, with both participants actively involved (e.g., lifted person’s legs extended, torso engaged) through f1–f7.",
+              "reason": "Frames f1–f7 show reciprocal force application, airborne motion with resistance (e.g., f2, f3), and continuous contact—consistent with Fighting (mutual physical combat); the sequence ends at f7 before occlusion at f8, and does not extend to f8 or beyond where only one person is visible.",
+              "evidence_frame_ids": [
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "The interval t=1.5–6.5 includes frames f2–f7 where both individuals are actively engaged (e.g., lifted person resists with limbs extended and body tension), contradicting Abuse (which requires one-sided aggression against a helpless victim); the same actions are already fully accounted for in the Fighting event, and no evidence of helplessness or one-sided control exists in any frame.",
+              "evidence_frame_ids": [
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          2,
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 6.0,
+              "f1": 6.5,
+              "f2": 7.0,
+              "f3": 7.5,
+              "f4": 8.0,
+              "f5": 8.5,
+              "f6": 9.0,
+              "f7": 9.5,
+              "f8": 10.0,
+              "f9": 10.5,
+              "f10": 11.0,
+              "f11": 11.5,
+              "f12": 12.0,
+              "f13": 12.5,
+              "f14": 13.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 8.0,
+                "t_end": 11.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 10.0,
+                "t_end": 11.5,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2, 3],\n      \"category\": \"Abuse\",\n      \"t_start\": 8.0,\n      \"t_end\": 11.5,\n      \"confidence\": 0.95,\n      \"description\": \"A clothed person forcefully submerges a shirtless person’s head into a toilet bowl, holding them down while they struggle and water splashes; the victim is unable to resist effectively.\",\n      \"reason\": \"Frames f4–f11 show sustained non-consensual physical control: the aggressor grips the victim’s head (f4–f9), lifts and forces the victim into the toilet (f10–f11), while the victim’s limbs flail helplessly—consistent with abuse of a helpless individual, not mutual combat.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2,
+                3
+              ],
+              "category": "Abuse",
+              "t_start": 8.0,
+              "t_end": 11.5,
+              "confidence": 0.95,
+              "description": "A clothed person forcefully submerges a shirtless person’s head into a toilet bowl, holding them down while they struggle and water splashes; the victim is unable to resist effectively.",
+              "reason": "Frames f4–f11 show sustained non-consensual physical control: the aggressor grips the victim’s head (f4–f9), lifts and forces the victim into the toilet (f10–f11), while the victim’s limbs flail helplessly—consistent with abuse of a helpless individual, not mutual combat.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "5a82d0dd6e711938ee6c8e0ecf1c6f7fdb68cac4e5e95683ad672320f7156da9"
+}

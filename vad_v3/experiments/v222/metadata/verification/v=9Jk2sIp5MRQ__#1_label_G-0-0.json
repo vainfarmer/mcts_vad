@@ -1,0 +1,313 @@
+{
+  "events": [
+    {
+      "t_start": 7.5,
+      "t_end": 8.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A vehicle ahead veers left off the paved road and collides with a raised earthen embankment, producing a large dust cloud and visible displacement of soil/structure at impact.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          7.5,
+          8.0,
+          8.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "Frames f4–f6 show the vehicle approaching normally (f4), then abruptly deviating left and striking a mound (f5), followed by heavy dust obscuring the scene (f6); no fireball, blast wave, or fragmentation indicates explosion; the motion and debris are consistent with a crash into terrain, not combat or riot.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 16.0,
+      "t_end": 20.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A large concrete structure progressively collapses and disintegrates from left to right, generating a massive dust cloud and debris ejection without visible fireball or shockwave; the motion is consistent with a controlled demolition or structural failure initiated by explosive charges.",
+      "source_candidate_ids": [
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          16.0,
+          16.5,
+          17.0,
+          17.5,
+          18.0,
+          18.5,
+          19.0,
+          19.5,
+          20.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12"
+        ],
+        "reason": "The rapid, sequential fragmentation and outward ejection of large concrete sections (e.g., f5–f10) with sustained dust plume and no vehicle impact or natural erosion indicate an explosive event; though no detonation flash is visible, the pattern matches explosive demolition rather than collapse from fire or accident.",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 4,
+      "output_count": 2,
+      "groups": 3,
+      "rejected": 2,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 5.5,
+              "f1": 6.0,
+              "f2": 6.5,
+              "f3": 7.0,
+              "f4": 7.5,
+              "f5": 8.0,
+              "f6": 8.5,
+              "f7": 9.0,
+              "f8": 9.5,
+              "f9": 10.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 7.5,
+                "t_end": 8.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 8.0,
+                "t_end": 8.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"CarAccident\",\n      \"t_start\": 7.5,\n      \"t_end\": 8.5,\n      \"confidence\": 0.9,\n      \"description\": \"A vehicle ahead veers left off the road and impacts a raised earthen embankment, causing a large dust plume and visible deformation of the terrain/vehicle at impact.\",\n      \"reason\": \"Frames f4–f6 show the vehicle approaching, then abruptly deviating left and colliding with a mound (f5), followed by dust obscuring the scene (f6); no blast wave or fire indicates explosion; the event matches a crash into terrain, not mutual combat or shooting.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"No detonation signature (e.g., fireball, rapid symmetric expansion, shockwave distortion) is visible; the dust cloud results from impact with terrain, not an explosion.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 5.5,
+              "f1": 6.0,
+              "f2": 6.5,
+              "f3": 7.0,
+              "f4": 7.5,
+              "f5": 8.0,
+              "f6": 8.5,
+              "f7": 9.0,
+              "f8": 9.5,
+              "f9": 10.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 7.5,
+                "t_end": 8.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 8.0,
+                "t_end": 8.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"CarAccident\",\n      \"t_start\": 7.5,\n      \"t_end\": 8.5,\n      \"confidence\": 0.9,\n      \"description\": \"A vehicle ahead veers left off the paved road and collides with a raised earthen embankment, producing a large dust cloud and visible displacement of soil/structure at impact.\",\n      \"reason\": \"Frames f4–f6 show the vehicle approaching normally (f4), then abruptly deviating left and striking a mound (f5), followed by heavy dust obscuring the scene (f6); no fireball, blast wave, or fragmentation indicates explosion; the motion and debris are consistent with a crash into terrain, not combat or riot.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"No explosion signature is visible: no rapid symmetric expansion, fireball, or shockwave distortion; the dust plume arises from impact with terrain (f5–f6), not a detonation.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "CarAccident",
+              "t_start": 7.5,
+              "t_end": 8.5,
+              "confidence": 0.9,
+              "description": "A vehicle ahead veers left off the paved road and collides with a raised earthen embankment, producing a large dust cloud and visible displacement of soil/structure at impact.",
+              "reason": "Frames f4–f6 show the vehicle approaching normally (f4), then abruptly deviating left and striking a mound (f5), followed by heavy dust obscuring the scene (f6); no fireball, blast wave, or fragmentation indicates explosion; the motion and debris are consistent with a crash into terrain, not combat or riot.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "No explosion signature is visible: no rapid symmetric expansion, fireball, or shockwave distortion; the dust plume arises from impact with terrain (f5–f6), not a detonation.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 10.5,
+              "f1": 11.0,
+              "f2": 11.5,
+              "f3": 12.0,
+              "f4": 12.5,
+              "f5": 13.0,
+              "f6": 13.5,
+              "f7": 14.0,
+              "f8": 14.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 12.5,
+                "t_end": 13.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"No crash or vehicle deformation is visible; the vehicle appears to be driving normally on a dirt road, possibly ascending a berm or embankment, with no impact evidence.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "No crash or vehicle deformation is visible; the vehicle appears to be driving normally on a dirt road, possibly ascending a berm or embankment, with no impact evidence.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 14.0,
+              "f1": 14.5,
+              "f2": 15.0,
+              "f3": 15.5,
+              "f4": 16.0,
+              "f5": 16.5,
+              "f6": 17.0,
+              "f7": 17.5,
+              "f8": 18.0,
+              "f9": 18.5,
+              "f10": 19.0,
+              "f11": 19.5,
+              "f12": 20.0,
+              "f13": 20.5,
+              "f14": 21.0,
+              "f15": 21.5,
+              "f16": 22.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 16.0,
+                "t_end": 20.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"Explosion\",\n      \"t_start\": 16.0,\n      \"t_end\": 20.5,\n      \"confidence\": 0.9,\n      \"description\": \"A large concrete structure progressively collapses and disintegrates from left to right, generating a massive dust cloud and debris ejection without visible fireball or shockwave; the motion is consistent with a controlled demolition or structural failure initiated by explosive charges.\",\n      \"reason\": \"The rapid, sequential fragmentation and outward ejection of large concrete sections (e.g., f5–f10) with sustained dust plume and no vehicle impact or natural erosion indicate an explosive event; though no detonation flash is visible, the pattern matches explosive demolition rather than collapse from fire or accident.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                3
+              ],
+              "category": "Explosion",
+              "t_start": 16.0,
+              "t_end": 20.5,
+              "confidence": 0.9,
+              "description": "A large concrete structure progressively collapses and disintegrates from left to right, generating a massive dust cloud and debris ejection without visible fireball or shockwave; the motion is consistent with a controlled demolition or structural failure initiated by explosive charges.",
+              "reason": "The rapid, sequential fragmentation and outward ejection of large concrete sections (e.g., f5–f10) with sustained dust plume and no vehicle impact or natural erosion indicate an explosive event; though no detonation flash is visible, the pattern matches explosive demolition rather than collapse from fire or accident.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

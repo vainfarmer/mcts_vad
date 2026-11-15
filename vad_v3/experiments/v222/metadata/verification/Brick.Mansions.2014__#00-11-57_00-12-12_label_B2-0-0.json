@@ -1,0 +1,179 @@
+{
+  "events": [
+    {
+      "t_start": 13.5,
+      "t_end": 14.0,
+      "anomaly_type": "Shooting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A hand holding a firearm is visible in f0–f3; at f4 (13.5 s), the scene cuts to near-total darkness with only a faint arm/hand motion, and at f5 (14.0 s) a person lies prone on the floor, suggesting a shot was fired between f3 and f4.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          11.5,
+          12.0,
+          12.5,
+          13.0,
+          13.5,
+          14.0
+        ],
+        "evidence_frame_ids": [
+          "f0",
+          "f1",
+          "f2",
+          "f3",
+          "f4",
+          "f5"
+        ],
+        "reason": "The sequence shows a gun pointed at a man (f0–f3), then abrupt darkness (f4), followed immediately by a person lying motionless on the floor (f5), consistent with a gunshot event; no other cause for sudden collapse is visible.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 3,
+      "output_count": 1,
+      "groups": 2,
+      "rejected": 2,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 4.5,
+              "f1": 5.0,
+              "f2": 5.5,
+              "f3": 6.0,
+              "f4": 6.5,
+              "f5": 7.0,
+              "f6": 7.5,
+              "f7": 8.0,
+              "f8": 8.5,
+              "f9": 9.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 6.5,
+                "t_end": 7.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No visible discharge, muzzle flash, recoil, or impact; the gun is held pointed but no shooting occurs in any frame.\",\n      \"evidence_frame_ids\": [\"f0\", \"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "No visible discharge, muzzle flash, recoil, or impact; the gun is held pointed but no shooting occurs in any frame.",
+              "evidence_frame_ids": [
+                "f0",
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 11.5,
+              "f1": 12.0,
+              "f2": 12.5,
+              "f3": 13.0,
+              "f4": 13.5,
+              "f5": 14.0,
+              "f6": 14.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 13.5,
+                "t_end": 14.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 14.0,
+                "t_end": 14.5,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Shooting\",\n      \"t_start\": 13.5,\n      \"t_end\": 14.0,\n      \"confidence\": 0.9,\n      \"description\": \"A hand holding a firearm is visible in f0–f3; at f4 (13.5 s), the scene cuts to near-total darkness with only a faint arm/hand motion, and at f5 (14.0 s) a person lies prone on the floor, suggesting a shot was fired between f3 and f4.\",\n      \"reason\": \"The sequence shows a gun pointed at a man (f0–f3), then abrupt darkness (f4), followed immediately by a person lying motionless on the floor (f5), consistent with a gunshot event; no other cause for sudden collapse is visible.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"At f5 (14.0 s) the person is already on the floor; f6 (14.5 s) shows another man looking down, but no visible contact, aggression, or interaction with the prone person—insufficient evidence of abuse.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "Shooting",
+              "t_start": 13.5,
+              "t_end": 14.0,
+              "confidence": 0.9,
+              "description": "A hand holding a firearm is visible in f0–f3; at f4 (13.5 s), the scene cuts to near-total darkness with only a faint arm/hand motion, and at f5 (14.0 s) a person lies prone on the floor, suggesting a shot was fired between f3 and f4.",
+              "reason": "The sequence shows a gun pointed at a man (f0–f3), then abrupt darkness (f4), followed immediately by a person lying motionless on the floor (f5), consistent with a gunshot event; no other cause for sudden collapse is visible.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "At f5 (14.0 s) the person is already on the floor; f6 (14.5 s) shows another man looking down, but no visible contact, aggression, or interaction with the prone person—insufficient evidence of abuse.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

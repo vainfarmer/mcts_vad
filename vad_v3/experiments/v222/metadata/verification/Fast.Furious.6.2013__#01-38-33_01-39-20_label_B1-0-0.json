@@ -1,0 +1,309 @@
+{
+  "events": [
+    {
+      "t_start": 6.0,
+      "t_end": 7.5,
+      "anomaly_type": "Abuse",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A man in a maroon shirt grabs and restrains a woman while she appears distressed and struggles; a third person points a gun at them.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          6.0,
+          6.5,
+          7.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "Frames f4–f6 show the man physically restraining the woman (f4: contact begins; f5: he holds her tightly, gun pointed at them; f6: she grimaces in distress while held), satisfying Abuse (aggression against a helpless victim under duress). The gun is visible but not fired, so not Shooting.",
+        "source_categories": [
+          "Abuse"
+        ]
+      }
+    },
+    {
+      "t_start": 15.0,
+      "t_end": 18.0,
+      "anomaly_type": "Fighting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "Multiple individuals engage in mutual physical combat: one man is struck and falls (f5), others grapple and restrain (f6–f10), with visible reciprocal engagement.",
+      "source_candidate_ids": [
+        3,
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          15.5,
+          16.0,
+          16.5,
+          17.0,
+          17.5,
+          18.0
+        ],
+        "evidence_frame_ids": [
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10"
+        ],
+        "reason": "Frames f5–f10 show dynamic, reciprocal physical contact among several people—pushing, grabbing, and restraining—consistent with fighting; candidate 4 overlaps and extends into same event but f17–f18 lack clear combat evidence, so t_end capped at 18.0 where active grappling ends (f10).",
+        "source_categories": [
+          "Fighting",
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 18.0,
+      "t_end": 19.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.8,
+      "coarse_score": 0.8,
+      "description": "A man in a dark shirt is actively restrained and pushed by multiple others while resisting, indicating mutual physical struggle.",
+      "source_candidate_ids": [
+        5
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 1,
+        "vlm_confidence": 0.8,
+        "evidence_times": [
+          18.5,
+          19.0,
+          19.5
+        ],
+        "evidence_frame_ids": [
+          "f11",
+          "f12",
+          "f13"
+        ],
+        "reason": "In f11–f12, the central man is being held and shoved by at least two others while his posture suggests resistance—not passive victimhood—so this is fighting, not abuse; f13 is too blurry to confirm but fits continuity.",
+        "source_categories": [
+          "Abuse"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 6,
+      "output_count": 3,
+      "groups": 2,
+      "rejected": 2,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 1,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 4.0,
+              "f1": 4.5,
+              "f2": 5.0,
+              "f3": 5.5,
+              "f4": 6.0,
+              "f5": 6.5,
+              "f6": 7.0,
+              "f7": 7.5,
+              "f8": 8.0,
+              "f9": 8.5,
+              "f10": 9.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 6.0,
+                "t_end": 7.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 6.5,
+                "t_end": 7.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 6.5,
+                "t_end": 6.541667,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Abuse\",\n      \"t_start\": 6.0,\n      \"t_end\": 7.5,\n      \"confidence\": 0.9,\n      \"description\": \"A man in a maroon shirt grabs and restrains a woman while she appears distressed and struggles; a third person points a gun at them.\",\n      \"reason\": \"Frames f4–f6 show the man physically restraining the woman (f4: contact begins; f5: he holds her tightly, gun pointed at them; f6: she grimaces in distress while held), satisfying Abuse (aggression against a helpless victim under duress). The gun is visible but not fired, so not Shooting.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"No visible discharge or muzzle flash; the gun is pointed but not shown firing in f5 or f6.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\"]\n    },\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Same as candidate 1: no evidence of shooting—only a gun being aimed, not discharged.\",\n      \"evidence_frame_ids\": [\"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Abuse",
+              "t_start": 6.0,
+              "t_end": 7.5,
+              "confidence": 0.9,
+              "description": "A man in a maroon shirt grabs and restrains a woman while she appears distressed and struggles; a third person points a gun at them.",
+              "reason": "Frames f4–f6 show the man physically restraining the woman (f4: contact begins; f5: he holds her tightly, gun pointed at them; f6: she grimaces in distress while held), satisfying Abuse (aggression against a helpless victim under duress). The gun is visible but not fired, so not Shooting.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "No visible discharge or muzzle flash; the gun is pointed but not shown firing in f5 or f6.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6"
+              ]
+            },
+            {
+              "candidate_id": 2,
+              "reason": "Same as candidate 1: no evidence of shooting—only a gun being aimed, not discharged.",
+              "evidence_frame_ids": [
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          3,
+          4,
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 13.0,
+              "f1": 13.5,
+              "f2": 14.0,
+              "f3": 14.5,
+              "f4": 15.0,
+              "f5": 15.5,
+              "f6": 16.0,
+              "f7": 16.5,
+              "f8": 17.0,
+              "f9": 17.5,
+              "f10": 18.0,
+              "f11": 18.5,
+              "f12": 19.0,
+              "f13": 19.5,
+              "f14": 20.0,
+              "f15": 20.5,
+              "f16": 21.0,
+              "f17": 21.5,
+              "f18": 22.0,
+              "f19": 22.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 15.0,
+                "t_end": 18.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 17.0,
+                "t_end": 21.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 18.0,
+                "t_end": 19.5,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3, 4],\n      \"category\": \"Fighting\",\n      \"t_start\": 15.0,\n      \"t_end\": 18.0,\n      \"confidence\": 0.9,\n      \"description\": \"Multiple individuals engage in mutual physical combat: one man is struck and falls (f5), others grapple and restrain (f6–f10), with visible reciprocal engagement.\",\n      \"reason\": \"Frames f5–f10 show dynamic, reciprocal physical contact among several people—pushing, grabbing, and restraining—consistent with fighting; candidate 4 overlaps and extends into same event but f17–f18 lack clear combat evidence, so t_end capped at 18.0 where active grappling ends (f10).\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    },\n    {\n      \"source_candidate_ids\": [5],\n      \"category\": \"Fighting\",\n      \"t_start\": 18.0,\n      \"t_end\": 19.5,\n      \"confidence\": 0.8,\n      \"description\": \"A man in a dark shirt is actively restrained and pushed by multiple others while resisting, indicating mutual physical struggle.\",\n      \"reason\": \"In f11–f12, the central man is being held and shoved by at least two others while his posture suggests resistance—not passive victimhood—so this is fighting, not abuse; f13 is too blurry to confirm but fits continuity.\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\", \"f13\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                3,
+                4
+              ],
+              "category": "Fighting",
+              "t_start": 15.0,
+              "t_end": 18.0,
+              "confidence": 0.9,
+              "description": "Multiple individuals engage in mutual physical combat: one man is struck and falls (f5), others grapple and restrain (f6–f10), with visible reciprocal engagement.",
+              "reason": "Frames f5–f10 show dynamic, reciprocal physical contact among several people—pushing, grabbing, and restraining—consistent with fighting; candidate 4 overlaps and extends into same event but f17–f18 lack clear combat evidence, so t_end capped at 18.0 where active grappling ends (f10).",
+              "evidence_frame_ids": [
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                5
+              ],
+              "category": "Fighting",
+              "t_start": 18.0,
+              "t_end": 19.5,
+              "confidence": 0.8,
+              "description": "A man in a dark shirt is actively restrained and pushed by multiple others while resisting, indicating mutual physical struggle.",
+              "reason": "In f11–f12, the central man is being held and shoved by at least two others while his posture suggests resistance—not passive victimhood—so this is fighting, not abuse; f13 is too blurry to confirm but fits continuity.",
+              "evidence_frame_ids": [
+                "f11",
+                "f12",
+                "f13"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

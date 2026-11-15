@@ -1,0 +1,506 @@
+{
+  "events": [
+    {
+      "t_start": 2.5,
+      "t_end": 3.0,
+      "anomaly_type": "Shooting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "At f4 (2.5 s), a burst of dust and debris erupts from the ground in the field; at f5 (3.0 s), the dust cloud is dense and obscures the lower body of a figure, consistent with a near-ground impact or discharge.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          2.5,
+          3.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "The sudden localized dust plume at f4–f5 without visible projectile or fire suggests a ground-level discharge (e.g., small arms fire into dry soil), satisfying 'Shooting' as defined (visible shooting = visible discharge/impact effect). No weapon firing is directly seen, but the rapid onset and pattern match ballistic ground impact better than wind or natural disturbance.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 4.0,
+      "t_end": 4.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "At f7 (4.0 s), a rising dust/smoke plume appears mid-field; at f8 (4.5 s), the plume expands and a soldier with RPG is visible on right, suggesting a detonation occurred just before or at f7.",
+      "source_candidate_ids": [
+        1,
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 1,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          4.0,
+          4.5
+        ],
+        "evidence_frame_ids": [
+          "f7",
+          "f8"
+        ],
+        "reason": "The plume’s rapid vertical rise and expansion between f7 and f8, combined with the presence of an RPG-carrying soldier, indicates a blast event (explosion), not sustained fire or mere dust kicked up by movement. The candidate intervals overlap this single event; merged accordingly.",
+        "source_categories": [
+          "Explosion",
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 12.0,
+      "t_end": 13.0,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A large fireball and smoke plume erupts in the field at f4, expands through f5, and begins dissipating by f6.",
+      "source_candidate_ids": [
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          12.0,
+          12.5,
+          13.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "Frames f4–f6 show a sudden, violent blast with rapid expansion of fire and smoke—consistent with an explosion—not sustained fire or crash; the event is fully contained within 12.0–13.0 s and matches the candidate interval.",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    },
+    {
+      "t_start": 15.5,
+      "t_end": 25.0,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A large plume of dark smoke rises rapidly from a field after a vehicle passes, indicating a single explosive event with sustained smoke dispersion.",
+      "source_candidate_ids": [
+        5,
+        7,
+        8
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 3,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          15.5,
+          16.0,
+          16.5,
+          17.0,
+          17.5,
+          18.0,
+          18.5,
+          19.0,
+          19.5,
+          20.0,
+          20.5,
+          21.0,
+          21.5,
+          22.5,
+          23.0,
+          23.5,
+          24.0,
+          24.5,
+          25.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18",
+          "f19",
+          "f20",
+          "f21",
+          "f22"
+        ],
+        "reason": "Frames f4–f6 show an abrupt, voluminous smoke column erupting near a vehicle; f7–f22 show the same smoke plume expanding and drifting without new ignition points, consistent with one explosion’s aftermath—not repeated blasts. Candidate 7 (16.0–16.5) is fully contained within this single event; candidates 5 and 8 are overlapping fragments of the same continuous smoke evolution.",
+        "source_categories": [
+          "Explosion",
+          "Explosion",
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 9,
+      "output_count": 4,
+      "groups": 4,
+      "rejected": 2,
+      "uncertain": 0,
+      "merged_sources": 3,
+      "relabeled": 1,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.5,
+              "f1": 1.0,
+              "f2": 1.5,
+              "f3": 2.0,
+              "f4": 2.5,
+              "f5": 3.0,
+              "f6": 3.5,
+              "f7": 4.0,
+              "f8": 4.5,
+              "f9": 5.0,
+              "f10": 5.5,
+              "f11": 6.0,
+              "f12": 6.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 2.5,
+                "t_end": 3.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 4.0,
+                "t_end": 4.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 4.0,
+                "t_end": 5.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Shooting\",\n      \"t_start\": 2.5,\n      \"t_end\": 3.0,\n      \"confidence\": 0.9,\n      \"description\": \"At f4 (2.5 s), a burst of dust and debris erupts from the ground in the field; at f5 (3.0 s), the dust cloud is dense and obscures the lower body of a figure, consistent with a near-ground impact or discharge.\",\n      \"reason\": \"The sudden localized dust plume at f4–f5 without visible projectile or fire suggests a ground-level discharge (e.g., small arms fire into dry soil), satisfying 'Shooting' as defined (visible shooting = visible discharge/impact effect). No weapon firing is directly seen, but the rapid onset and pattern match ballistic ground impact better than wind or natural disturbance.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    },\n    {\n      \"source_candidate_ids\": [1, 2],\n      \"category\": \"Explosion\",\n      \"t_start\": 4.0,\n      \"t_end\": 4.5,\n      \"confidence\": 0.85,\n      \"description\": \"At f7 (4.0 s), a rising dust/smoke plume appears mid-field; at f8 (4.5 s), the plume expands and a soldier with RPG is visible on right, suggesting a detonation occurred just before or at f7.\",\n      \"reason\": \"The plume’s rapid vertical rise and expansion between f7 and f8, combined with the presence of an RPG-carrying soldier, indicates a blast event (explosion), not sustained fire or mere dust kicked up by movement. The candidate intervals overlap this single event; merged accordingly.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Shooting",
+              "t_start": 2.5,
+              "t_end": 3.0,
+              "confidence": 0.9,
+              "description": "At f4 (2.5 s), a burst of dust and debris erupts from the ground in the field; at f5 (3.0 s), the dust cloud is dense and obscures the lower body of a figure, consistent with a near-ground impact or discharge.",
+              "reason": "The sudden localized dust plume at f4–f5 without visible projectile or fire suggests a ground-level discharge (e.g., small arms fire into dry soil), satisfying 'Shooting' as defined (visible shooting = visible discharge/impact effect). No weapon firing is directly seen, but the rapid onset and pattern match ballistic ground impact better than wind or natural disturbance.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                1,
+                2
+              ],
+              "category": "Explosion",
+              "t_start": 4.0,
+              "t_end": 4.5,
+              "confidence": 0.85,
+              "description": "At f7 (4.0 s), a rising dust/smoke plume appears mid-field; at f8 (4.5 s), the plume expands and a soldier with RPG is visible on right, suggesting a detonation occurred just before or at f7.",
+              "reason": "The plume’s rapid vertical rise and expansion between f7 and f8, combined with the presence of an RPG-carrying soldier, indicates a blast event (explosion), not sustained fire or mere dust kicked up by movement. The candidate intervals overlap this single event; merged accordingly.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 5.0,
+              "f1": 5.5,
+              "f2": 6.0,
+              "f3": 6.5,
+              "f4": 7.0,
+              "f5": 7.5,
+              "f6": 8.0,
+              "f7": 8.5,
+              "f8": 9.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 7.0,
+                "t_end": 7.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"No blast, fireball, smoke plume, or debris cloud indicative of an explosion is visible in f4–f5; only distant dust disturbance consistent with vehicle movement or wind.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 3,
+              "reason": "No blast, fireball, smoke plume, or debris cloud indicative of an explosion is visible in f4–f5; only distant dust disturbance consistent with vehicle movement or wind.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 10.0,
+              "f1": 10.5,
+              "f2": 11.0,
+              "f3": 11.5,
+              "f4": 12.0,
+              "f5": 12.5,
+              "f6": 13.0,
+              "f7": 13.5,
+              "f8": 14.0,
+              "f9": 14.5,
+              "f10": 15.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 12.0,
+                "t_end": 13.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"Explosion\",\n      \"t_start\": 12.0,\n      \"t_end\": 13.0,\n      \"confidence\": 0.95,\n      \"description\": \"A large fireball and smoke plume erupts in the field at f4, expands through f5, and begins dissipating by f6.\",\n      \"reason\": \"Frames f4–f6 show a sudden, violent blast with rapid expansion of fire and smoke—consistent with an explosion—not sustained fire or crash; the event is fully contained within 12.0–13.0 s and matches the candidate interval.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                4
+              ],
+              "category": "Explosion",
+              "t_start": 12.0,
+              "t_end": 13.0,
+              "confidence": 0.95,
+              "description": "A large fireball and smoke plume erupts in the field at f4, expands through f5, and begins dissipating by f6.",
+              "reason": "Frames f4–f6 show a sudden, violent blast with rapid expansion of fire and smoke—consistent with an explosion—not sustained fire or crash; the event is fully contained within 12.0–13.0 s and matches the candidate interval.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          5,
+          6,
+          7,
+          8
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 13.5,
+              "f1": 14.0,
+              "f2": 14.5,
+              "f3": 15.0,
+              "f4": 15.5,
+              "f5": 16.0,
+              "f6": 16.5,
+              "f7": 17.0,
+              "f8": 17.5,
+              "f9": 18.0,
+              "f10": 18.5,
+              "f11": 19.0,
+              "f12": 19.5,
+              "f13": 20.0,
+              "f14": 20.5,
+              "f15": 21.0,
+              "f16": 21.5,
+              "f17": 22.5,
+              "f18": 23.0,
+              "f19": 23.5,
+              "f20": 24.0,
+              "f21": 24.5,
+              "f22": 25.0,
+              "f23": 26.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 5,
+                "t_start": 15.5,
+                "t_end": 19.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 15.5,
+                "t_end": 22.1,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 16.0,
+                "t_end": 16.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 19.0,
+                "t_end": 26.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [5, 7, 8],\n      \"category\": \"Explosion\",\n      \"t_start\": 15.5,\n      \"t_end\": 25.0,\n      \"confidence\": 0.95,\n      \"description\": \"A large plume of dark smoke rises rapidly from a field after a vehicle passes, indicating a single explosive event with sustained smoke dispersion.\",\n      \"reason\": \"Frames f4–f6 show an abrupt, voluminous smoke column erupting near a vehicle; f7–f22 show the same smoke plume expanding and drifting without new ignition points, consistent with one explosion’s aftermath—not repeated blasts. Candidate 7 (16.0–16.5) is fully contained within this single event; candidates 5 and 8 are overlapping fragments of the same continuous smoke evolution.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"No visible mutual combat, weapons discharge, or engagement between opposing forces; only a vehicle moving through a field with smoke from a single explosion—insufficient for 'Fighting'.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                5,
+                7,
+                8
+              ],
+              "category": "Explosion",
+              "t_start": 15.5,
+              "t_end": 25.0,
+              "confidence": 0.95,
+              "description": "A large plume of dark smoke rises rapidly from a field after a vehicle passes, indicating a single explosive event with sustained smoke dispersion.",
+              "reason": "Frames f4–f6 show an abrupt, voluminous smoke column erupting near a vehicle; f7–f22 show the same smoke plume expanding and drifting without new ignition points, consistent with one explosion’s aftermath—not repeated blasts. Candidate 7 (16.0–16.5) is fully contained within this single event; candidates 5 and 8 are overlapping fragments of the same continuous smoke evolution.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 6,
+              "reason": "No visible mutual combat, weapons discharge, or engagement between opposing forces; only a vehicle moving through a field with smoke from a single explosion—insufficient for 'Fighting'.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

@@ -1,0 +1,314 @@
+{
+  "events": [
+    {
+      "t_start": 67.5,
+      "t_end": 68.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A dark sedan collides with a white van at an intersection, causing the sedan to rotate and emit smoke/dust; the van’s brake lights illuminate immediately after impact.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          67.5,
+          68.0,
+          68.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "In f4 (67.5s), the sedan is approaching the van; in f5 (68.0s), contact occurs with visible deformation and dust; in f6 (68.5s), the sedan is sideways and displaced, confirming a crash. This matches CarAccident definition (a crash, not ordinary driving).",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 78.5,
+      "t_end": 80.0,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A dark sedan collides with another vehicle at an intersection, producing a visible spray of debris and smoke at impact (f4–f6), followed by both vehicles coming to rest in the intersection (f7–f8).",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          78.5,
+          79.0,
+          79.5,
+          80.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7"
+        ],
+        "reason": "Frames f4–f8 show sudden lateral displacement, dust/debris cloud, and post-impact vehicle positions inconsistent with normal traffic flow; this satisfies the definition of a crash (CarAccident). The candidate interval [78.5, 80.0] aligns with the visible impact and immediate aftermath (f4–f7).",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 92.0,
+      "t_end": 97.0,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A dark sedan collides with another vehicle at an intersection, producing a large spray of smoke/debris and causing the impacted car to rotate sharply.",
+      "source_candidate_ids": [
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          92.0,
+          92.5,
+          93.0,
+          93.5,
+          94.0,
+          94.5,
+          95.0,
+          95.5,
+          96.0,
+          96.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13"
+        ],
+        "reason": "Frames f4–f13 show sustained smoke/debris cloud at the intersection center, with visible vehicle deformation and rotation consistent with a collision; speed drops from 01 km/h (f4) to 00 km/h (f12), indicating abrupt stop due to impact.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 3,
+      "output_count": 3,
+      "groups": 3,
+      "rejected": 0,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 65.5,
+              "f1": 66.0,
+              "f2": 66.5,
+              "f3": 67.0,
+              "f4": 67.5,
+              "f5": 68.0,
+              "f6": 68.5,
+              "f7": 69.0,
+              "f8": 69.5,
+              "f9": 70.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 67.5,
+                "t_end": 68.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"CarAccident\",\n      \"t_start\": 67.5,\n      \"t_end\": 68.5,\n      \"confidence\": 0.95,\n      \"description\": \"A dark sedan collides with a white van at an intersection, causing the sedan to rotate and emit smoke/dust; the van’s brake lights illuminate immediately after impact.\",\n      \"reason\": \"In f4 (67.5s), the sedan is approaching the van; in f5 (68.0s), contact occurs with visible deformation and dust; in f6 (68.5s), the sedan is sideways and displaced, confirming a crash. This matches CarAccident definition (a crash, not ordinary driving).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "CarAccident",
+              "t_start": 67.5,
+              "t_end": 68.5,
+              "confidence": 0.95,
+              "description": "A dark sedan collides with a white van at an intersection, causing the sedan to rotate and emit smoke/dust; the van’s brake lights illuminate immediately after impact.",
+              "reason": "In f4 (67.5s), the sedan is approaching the van; in f5 (68.0s), contact occurs with visible deformation and dust; in f6 (68.5s), the sedan is sideways and displaced, confirming a crash. This matches CarAccident definition (a crash, not ordinary driving).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 76.5,
+              "f1": 77.0,
+              "f2": 77.5,
+              "f3": 78.0,
+              "f4": 78.5,
+              "f5": 79.0,
+              "f6": 79.5,
+              "f7": 80.0,
+              "f8": 80.5,
+              "f9": 81.0,
+              "f10": 81.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 78.5,
+                "t_end": 80.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"CarAccident\",\n      \"t_start\": 78.5,\n      \"t_end\": 80.0,\n      \"confidence\": 0.95,\n      \"description\": \"A dark sedan collides with another vehicle at an intersection, producing a visible spray of debris and smoke at impact (f4–f6), followed by both vehicles coming to rest in the intersection (f7–f8).\",\n      \"reason\": \"Frames f4–f8 show sudden lateral displacement, dust/debris cloud, and post-impact vehicle positions inconsistent with normal traffic flow; this satisfies the definition of a crash (CarAccident). The candidate interval [78.5, 80.0] aligns with the visible impact and immediate aftermath (f4–f7).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "CarAccident",
+              "t_start": 78.5,
+              "t_end": 80.0,
+              "confidence": 0.95,
+              "description": "A dark sedan collides with another vehicle at an intersection, producing a visible spray of debris and smoke at impact (f4–f6), followed by both vehicles coming to rest in the intersection (f7–f8).",
+              "reason": "Frames f4–f8 show sudden lateral displacement, dust/debris cloud, and post-impact vehicle positions inconsistent with normal traffic flow; this satisfies the definition of a crash (CarAccident). The candidate interval [78.5, 80.0] aligns with the visible impact and immediate aftermath (f4–f7).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 90.0,
+              "f1": 90.5,
+              "f2": 91.0,
+              "f3": 91.5,
+              "f4": 92.0,
+              "f5": 92.5,
+              "f6": 93.0,
+              "f7": 93.5,
+              "f8": 94.0,
+              "f9": 94.5,
+              "f10": 95.0,
+              "f11": 95.5,
+              "f12": 96.0,
+              "f13": 96.5,
+              "f14": 97.0,
+              "f15": 97.5,
+              "f16": 98.0,
+              "f17": 98.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 92.0,
+                "t_end": 97.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"CarAccident\",\n      \"t_start\": 92.0,\n      \"t_end\": 97.0,\n      \"confidence\": 0.95,\n      \"description\": \"A dark sedan collides with another vehicle at an intersection, producing a large spray of smoke/debris and causing the impacted car to rotate sharply.\",\n      \"reason\": \"Frames f4–f13 show sustained smoke/debris cloud at the intersection center, with visible vehicle deformation and rotation consistent with a collision; speed drops from 01 km/h (f4) to 00 km/h (f12), indicating abrupt stop due to impact.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2
+              ],
+              "category": "CarAccident",
+              "t_start": 92.0,
+              "t_end": 97.0,
+              "confidence": 0.95,
+              "description": "A dark sedan collides with another vehicle at an intersection, producing a large spray of smoke/debris and causing the impacted car to rotate sharply.",
+              "reason": "Frames f4–f13 show sustained smoke/debris cloud at the intersection center, with visible vehicle deformation and rotation consistent with a collision; speed drops from 01 km/h (f4) to 00 km/h (f12), indicating abrupt stop due to impact.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "5a82d0dd6e711938ee6c8e0ecf1c6f7fdb68cac4e5e95683ad672320f7156da9"
+}

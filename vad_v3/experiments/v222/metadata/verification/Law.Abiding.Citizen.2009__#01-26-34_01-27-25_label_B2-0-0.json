@@ -1,0 +1,684 @@
+{
+  "events": [
+    {
+      "t_start": 31.5,
+      "t_end": 40.0,
+      "anomaly_type": "Shooting",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "A mounted heavy weapon repeatedly fires in a cemetery, producing muzzle blast, smoke, recoil, and visible bullet impacts on the SUV and tombstones.",
+      "source_candidate_ids": [
+        3,
+        6
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 1,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          31.5,
+          32.5,
+          33.0,
+          33.5,
+          35.0,
+          38.5,
+          39.5,
+          40.0,
+          42.0,
+          43.0,
+          43.5,
+          44.5
+        ],
+        "evidence_frame_ids": [
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f17",
+          "f22",
+          "f23",
+          "f24",
+          "f27",
+          "f28",
+          "f29",
+          "f30"
+        ],
+        "reason": "f12, f17, f22, f27–f29 show weapon discharge (muzzle flash/smoke/recoil); f13–f15 and f30 show bullet holes appearing on SUV; f23–f24 show cycling/ejection—collectively constitute visible shooting (not mere possession). Candidate 5 is subsumed as no distinct separate firing event occurs in its narrow window.",
+        "source_categories": [
+          "Shooting",
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 36.0,
+      "t_end": 37.0,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "The rear right side of a black SUV violently impacts the ground, ejecting debris and dust; subsequent frames show visible damage, smoke, and body deformation.",
+      "source_candidate_ids": [
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          36.0,
+          36.5,
+          37.0
+        ],
+        "evidence_frame_ids": [
+          "f18",
+          "f19",
+          "f20"
+        ],
+        "reason": "f18 shows high-impact contact with debris spray; f19–f20 confirm sustained damage (shattered rear, smoking, license plate visible) inconsistent with controlled motion—meets CarAccident definition (crash, not ordinary driving).",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 38.3,
+      "t_end": 39.2,
+      "confidence": 0.92,
+      "coarse_score": 0.92,
+      "anomaly_type": "Shooting",
+      "description": "The same heavy machine gun is shown again in close-up (f15), with visible spent casing ejection and barrel heat distortion, indicating continued or recent firing during this interval.",
+      "proposal_id": "p0008",
+      "evidence_frame_ids": [
+        "f15"
+      ],
+      "source_categories": [
+        "Shooting",
+        "Riot",
+        "Abuse"
+      ],
+      "reported_interval": [
+        38.0,
+        39.5
+      ],
+      "clipped_to_inspection": false,
+      "_boundary_method": "xd_clip_local",
+      "source_candidate_ids": [
+        5
+      ],
+      "verification": {
+        "status": "uncertain",
+        "group_id": 1,
+        "vlm_confidence": 0.92,
+        "reason": "Candidate 5’s interval (38.3–39.2) falls entirely within the continuous shooting event (31.5–40.0); no independent visual evidence isolates a distinct shooting episode solely in that subinterval."
+      }
+    },
+    {
+      "t_start": 42.0,
+      "t_end": 45.5,
+      "anomaly_type": "Shooting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A heavy machine gun fires repeatedly in a cemetery, with muzzle flash and smoke visible at f4–f8, followed by bullet impacts on a vehicle seen through a scope at f9–f11.",
+      "source_candidate_ids": [
+        7,
+        8,
+        9
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          42.0,
+          42.5,
+          43.0,
+          43.5,
+          44.0,
+          44.5,
+          45.0,
+          45.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11"
+        ],
+        "reason": "Frames f4–f8 show sustained muzzle flash and smoke from the weapon’s barrel consistent with automatic fire; f9–f11 show a vehicle riddled with fresh bullet holes viewed through an optical sight, confirming projectile impact. All candidate intervals are subsumed within this continuous shooting event.",
+        "source_categories": [
+          "Shooting",
+          "Shooting",
+          "Shooting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 10,
+      "output_count": 4,
+      "groups": 3,
+      "rejected": 3,
+      "uncertain": 1,
+      "merged_sources": 3,
+      "relabeled": 0,
+      "context_retries": 1,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 5.0,
+              "f1": 5.5,
+              "f2": 6.0,
+              "f3": 6.5,
+              "f4": 7.0,
+              "f5": 7.5,
+              "f6": 8.0,
+              "f7": 8.5,
+              "f8": 9.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 7.0,
+                "t_end": 7.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No visible muzzle flash, bullet impact, recoil, or discharge in frames f4–f5; the weapon is static and no shooting action occurs.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "No visible muzzle flash, bullet impact, recoil, or discharge in frames f4–f5; the weapon is static and no shooting action occurs.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 28.0,
+              "f1": 28.5,
+              "f2": 29.0,
+              "f3": 29.5,
+              "f4": 30.0,
+              "f5": 30.5,
+              "f6": 31.0,
+              "f7": 31.5,
+              "f8": 32.0,
+              "f9": 32.5,
+              "f10": 33.0,
+              "f11": 34.0,
+              "f12": 34.5,
+              "f13": 35.0,
+              "f14": 35.5,
+              "f15": 36.5,
+              "f16": 37.0,
+              "f17": 37.5,
+              "f18": 38.0,
+              "f19": 38.5,
+              "f20": 39.5,
+              "f21": 40.0,
+              "f22": 40.5,
+              "f23": 42.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 30.0,
+                "t_end": 31.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 31.0,
+                "t_end": 31.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 31.5,
+                "t_end": 35.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 36.0,
+                "t_end": 37.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 38.3,
+                "t_end": 39.2,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 38.5,
+                "t_end": 40.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"CarAccident\",\n      \"t_start\": 36.5,\n      \"t_end\": 37.5,\n      \"confidence\": 0.95,\n      \"description\": \"A black SUV is struck from behind or sides, causing visible deformation, debris ejection, and smoke/dust plume; rear license plate visible (OH3-5502) in f16–f17.\",\n      \"reason\": \"Frames f15–f17 show sudden vehicle damage, structural failure, and explosive dust/debris consistent with a high-impact collision—not controlled movement or explosion. f16 and f17 confirm rear-end damage and disintegration of parts.\",\n      \"evidence_frame_ids\": [\"f15\", \"f16\", \"f17\"]\n    },\n    {\n      \"source_candidate_ids\": [3, 5, 6],\n      \"category\": \"Shooting\",\n      \"t_start\": 31.5,\n      \"t_end\": 40.5,\n      \"confidence\": 0.85,\n      \"description\": \"A mounted heavy weapon (likely machine gun) fires repeatedly in the cemetery, evidenced by muzzle flash, smoke, recoil, and visible bullet impacts on the SUV (e.g., f15 shows impact sparks).\",\n      \"reason\": \"f7–f8, f11–f12, f19, f20–f21 show the weapon firing (muzzle blast, recoil, spent casings), and f15 shows the SUV being hit with visible sparks/impact—consistent with sustained gunfire, not explosion or accident. The timeline spans continuous firing across multiple frames.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f11\", \"f12\", \"f15\", \"f19\", \"f20\", \"f21\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Frames f4–f6 show the SUV moving slowly through the cemetery with smoke but no structural damage, debris, or impact evidence; motion appears controlled, not a crash.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Frame f7 shows a weapon firing (muzzle flash/smoke), not a detonation or blast wave; no fireball, shockwave, or fragmentation typical of explosion; context matches gunfire.\",\n      \"evidence_frame_ids\": [\"f7\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"No direct visual of muzzle flash or impact in f18–f19 alone; merged into broader shooting event based on continuity with f7–f8 and f20–f21, but isolated interval lacks sufficient evidence.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 28.0,
+              "f1": 28.5,
+              "f2": 29.0,
+              "f3": 29.5,
+              "f4": 30.0,
+              "f5": 30.5,
+              "f6": 31.0,
+              "f7": 31.5,
+              "f8": 32.0,
+              "f9": 32.5,
+              "f10": 33.0,
+              "f11": 34.0,
+              "f12": 34.5,
+              "f13": 35.0,
+              "f14": 35.5,
+              "f15": 36.5,
+              "f16": 37.0,
+              "f17": 37.5,
+              "f18": 38.0,
+              "f19": 38.5,
+              "f20": 39.5,
+              "f21": 40.0,
+              "f22": 40.5,
+              "f23": 42.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 30.0,
+                "t_end": 31.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 31.0,
+                "t_end": 31.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 31.5,
+                "t_end": 35.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 36.0,
+                "t_end": 37.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 38.3,
+                "t_end": 39.2,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 38.5,
+                "t_end": 40.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"CarAccident\",\n      \"t_start\": 36.5,\n      \"t_end\": 37.5,\n      \"confidence\": 0.95,\n      \"description\": \"A black SUV sustains rear-side impact causing visible deformation, ejection of debris, and a large dust/smoke plume; license plate OH3-5502 is visible in f16–f17.\",\n      \"reason\": \"Frames f15–f17 show sudden structural failure (crumpled rear quarter panel, detached parts), explosive dust/debris cloud, and loss of vehicle control—consistent with a high-energy collision, not explosion or controlled motion.\",\n      \"evidence_frame_ids\": [\"f15\", \"f16\", \"f17\"]\n    },\n    {\n      \"source_candidate_ids\": [3, 6],\n      \"category\": \"Shooting\",\n      \"t_start\": 31.5,\n      \"t_end\": 40.5,\n      \"confidence\": 0.8,\n      \"description\": \"A mounted heavy machine gun fires repeatedly in the cemetery, evidenced by muzzle blast (f7, f8, f11, f12, f19), recoil, spent casing ejection (f20–f21), and visible bullet impacts on the SUV (sparks at f15).\",\n      \"reason\": \"f7, f8, f11, f12, f19 show weapon discharge (muzzle flash/smoke, barrel movement); f20–f21 confirm active firing (casing ejection, open bolt); f15 shows impact sparks on SUV consistent with gunfire—not explosion or accident. Candidate 5 (38.3–39.2) is subsumed within this continuous firing sequence and lacks independent evidence, so merged.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f11\", \"f12\", \"f15\", \"f19\", \"f20\", \"f21\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Frames f4–f6 show the SUV moving slowly through tombstones with smoke but no deformation, debris, or impact; motion appears deliberate and controlled—no crash evidence.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Frame f7 shows a weapon muzzle blast, not a detonation: no fireball, shockwave, or fragmentation; context aligns with gunfire, not explosion.\",\n      \"evidence_frame_ids\": [\"f7\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"Interval 38.3–39.2 has no frame at exact timestamps; f18 (38.0) shows SUV from inside car, f19 (38.5) is blurry weapon view—insufficient evidence to isolate a distinct shooting event; merged into broader shooting event.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 24.0,
+              "f1": 24.5,
+              "f2": 25.0,
+              "f3": 26.0,
+              "f4": 26.5,
+              "f5": 27.5,
+              "f6": 28.0,
+              "f7": 28.5,
+              "f8": 29.5,
+              "f9": 30.0,
+              "f10": 30.5,
+              "f11": 31.0,
+              "f12": 31.5,
+              "f13": 32.5,
+              "f14": 33.0,
+              "f15": 33.5,
+              "f16": 34.5,
+              "f17": 35.0,
+              "f18": 36.0,
+              "f19": 36.5,
+              "f20": 37.0,
+              "f21": 38.0,
+              "f22": 38.5,
+              "f23": 39.5,
+              "f24": 40.0,
+              "f25": 41.0,
+              "f26": 41.5,
+              "f27": 42.0,
+              "f28": 43.0,
+              "f29": 43.5,
+              "f30": 44.5,
+              "f31": 46.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 30.0,
+                "t_end": 31.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 31.0,
+                "t_end": 31.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 31.5,
+                "t_end": 35.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 36.0,
+                "t_end": 37.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 38.3,
+                "t_end": 39.2,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 38.5,
+                "t_end": 40.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"CarAccident\",\n      \"t_start\": 36.0,\n      \"t_end\": 37.0,\n      \"confidence\": 0.95,\n      \"description\": \"A black SUV’s rear right wheel and undercarriage violently impact the ground, ejecting debris and dust; the vehicle is visibly damaged and smoking afterward.\",\n      \"reason\": \"Frame f18 shows a high-impact tire/undercarriage strike with debris spray; f19–f20 show the damaged, smoking SUV with visible body deformation and shattered parts—consistent with a crash, not controlled movement or explosion.\",\n      \"evidence_frame_ids\": [\"f18\", \"f19\", \"f20\"]\n    },\n    {\n      \"source_candidate_ids\": [3, 5, 6],\n      \"category\": \"Shooting\",\n      \"t_start\": 31.5,\n      \"t_end\": 40.0,\n      \"confidence\": 0.85,\n      \"description\": \"A mounted heavy weapon fires repeatedly in a cemetery, producing muzzle flash, smoke, and visible recoil; bullet impacts are seen on the SUV (shattered windows, pitting) and surrounding tombstones.\",\n      \"reason\": \"f12, f17, f22, f27–f29 show the weapon firing (muzzle blast/smoke/recoil); f13–f15 (monitor view) and f30 show bullet holes appearing on the SUV; f23–f24 show the weapon’s action cycling with ejection; this constitutes visible shooting, not just possession.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\", \"f14\", \"f15\", \"f17\", \"f22\", \"f23\", \"f24\", \"f27\", \"f28\", \"f29\", \"f30\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Frames f9–f11 show the SUV moving slowly with smoke but no impact, deformation, or debris—consistent with engine/exhaust smoke or minor mechanical issue, not a crash.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\", \"f11\"]\n    },\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"No blast wave, fireball, or rapid expansion is visible at t=31.0–31.5; smoke and motion are consistent with weapon discharge or vehicle exhaust, not an explosion.\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"While shooting occurs in the interval, candidate 5’s narrow window (38.3–39.2) cannot be isolated from the broader continuous firing sequence (31.5–40.0); no distinct separate event is visible solely in that subinterval.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 24.0,
+              "f1": 24.5,
+              "f2": 25.0,
+              "f3": 26.0,
+              "f4": 26.5,
+              "f5": 27.5,
+              "f6": 28.0,
+              "f7": 28.5,
+              "f8": 29.5,
+              "f9": 30.0,
+              "f10": 30.5,
+              "f11": 31.0,
+              "f12": 31.5,
+              "f13": 32.5,
+              "f14": 33.0,
+              "f15": 33.5,
+              "f16": 34.5,
+              "f17": 35.0,
+              "f18": 36.0,
+              "f19": 36.5,
+              "f20": 37.0,
+              "f21": 38.0,
+              "f22": 38.5,
+              "f23": 39.5,
+              "f24": 40.0,
+              "f25": 41.0,
+              "f26": 41.5,
+              "f27": 42.0,
+              "f28": 43.0,
+              "f29": 43.5,
+              "f30": 44.5,
+              "f31": 46.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 30.0,
+                "t_end": 31.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 31.0,
+                "t_end": 31.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 31.5,
+                "t_end": 35.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 36.0,
+                "t_end": 37.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 38.3,
+                "t_end": 39.2,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 38.5,
+                "t_end": 40.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"CarAccident\",\n      \"t_start\": 36.0,\n      \"t_end\": 37.0,\n      \"confidence\": 0.95,\n      \"description\": \"The rear right side of a black SUV violently impacts the ground, ejecting debris and dust; subsequent frames show visible damage, smoke, and body deformation.\",\n      \"reason\": \"f18 shows high-impact contact with debris spray; f19–f20 confirm sustained damage (shattered rear, smoking, license plate visible) inconsistent with controlled motion—meets CarAccident definition (crash, not ordinary driving).\",\n      \"evidence_frame_ids\": [\"f18\", \"f19\", \"f20\"]\n    },\n    {\n      \"source_candidate_ids\": [3, 6],\n      \"category\": \"Shooting\",\n      \"t_start\": 31.5,\n      \"t_end\": 40.0,\n      \"confidence\": 0.85,\n      \"description\": \"A mounted heavy weapon repeatedly fires in a cemetery, producing muzzle blast, smoke, recoil, and visible bullet impacts on the SUV and tombstones.\",\n      \"reason\": \"f12, f17, f22, f27–f29 show weapon discharge (muzzle flash/smoke/recoil); f13–f15 and f30 show bullet holes appearing on SUV; f23–f24 show cycling/ejection—collectively constitute visible shooting (not mere possession). Candidate 5 is subsumed as no distinct separate firing event occurs in its narrow window.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\", \"f14\", \"f15\", \"f17\", \"f22\", \"f23\", \"f24\", \"f27\", \"f28\", \"f29\", \"f30\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Frames f9–f11 show the SUV moving slowly with smoke but no impact, deformation, or debris—consistent with exhaust or mechanical smoke, not a crash.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\", \"f11\"]\n    },\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"No blast wave, fireball, or rapid expansion at t=31.0–31.5; observed smoke/motion aligns with weapon discharge or vehicle emissions, not an explosion.\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"Candidate 5’s interval (38.3–39.2) falls entirely within the continuous shooting event (31.5–40.0); no independent visual evidence isolates a distinct shooting episode solely in that subinterval.\"\n    }\n  ]\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                4
+              ],
+              "category": "CarAccident",
+              "t_start": 36.0,
+              "t_end": 37.0,
+              "confidence": 0.95,
+              "description": "The rear right side of a black SUV violently impacts the ground, ejecting debris and dust; subsequent frames show visible damage, smoke, and body deformation.",
+              "reason": "f18 shows high-impact contact with debris spray; f19–f20 confirm sustained damage (shattered rear, smoking, license plate visible) inconsistent with controlled motion—meets CarAccident definition (crash, not ordinary driving).",
+              "evidence_frame_ids": [
+                "f18",
+                "f19",
+                "f20"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                3,
+                6
+              ],
+              "category": "Shooting",
+              "t_start": 31.5,
+              "t_end": 40.0,
+              "confidence": 0.85,
+              "description": "A mounted heavy weapon repeatedly fires in a cemetery, producing muzzle blast, smoke, recoil, and visible bullet impacts on the SUV and tombstones.",
+              "reason": "f12, f17, f22, f27–f29 show weapon discharge (muzzle flash/smoke/recoil); f13–f15 and f30 show bullet holes appearing on SUV; f23–f24 show cycling/ejection—collectively constitute visible shooting (not mere possession). Candidate 5 is subsumed as no distinct separate firing event occurs in its narrow window.",
+              "evidence_frame_ids": [
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f17",
+                "f22",
+                "f23",
+                "f24",
+                "f27",
+                "f28",
+                "f29",
+                "f30"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "Frames f9–f11 show the SUV moving slowly with smoke but no impact, deformation, or debris—consistent with exhaust or mechanical smoke, not a crash.",
+              "evidence_frame_ids": [
+                "f9",
+                "f10",
+                "f11"
+              ]
+            },
+            {
+              "candidate_id": 2,
+              "reason": "No blast wave, fireball, or rapid expansion at t=31.0–31.5; observed smoke/motion aligns with weapon discharge or vehicle emissions, not an explosion.",
+              "evidence_frame_ids": [
+                "f11",
+                "f12"
+              ]
+            }
+          ],
+          "uncertain": [
+            {
+              "candidate_id": 5,
+              "reason": "Candidate 5’s interval (38.3–39.2) falls entirely within the continuous shooting event (31.5–40.0); no independent visual evidence isolates a distinct shooting episode solely in that subinterval."
+            }
+          ]
+        },
+        "context_retry": true
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          7,
+          8,
+          9
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 40.0,
+              "f1": 40.5,
+              "f2": 41.0,
+              "f3": 41.5,
+              "f4": 42.0,
+              "f5": 42.5,
+              "f6": 43.0,
+              "f7": 43.5,
+              "f8": 44.0,
+              "f9": 44.5,
+              "f10": 45.0,
+              "f11": 45.5,
+              "f12": 46.0,
+              "f13": 46.5,
+              "f14": 47.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 7,
+                "t_start": 42.0,
+                "t_end": 45.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 42.0,
+                "t_end": 43.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 9,
+                "t_start": 44.5,
+                "t_end": 45.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [7, 8, 9],\n      \"category\": \"Shooting\",\n      \"t_start\": 42.0,\n      \"t_end\": 45.5,\n      \"confidence\": 0.9,\n      \"description\": \"A heavy machine gun fires repeatedly in a cemetery, with muzzle flash and smoke visible at f4–f8, followed by bullet impacts on a vehicle seen through a scope at f9–f11.\",\n      \"reason\": \"Frames f4–f8 show sustained muzzle flash and smoke from the weapon’s barrel consistent with automatic fire; f9–f11 show a vehicle riddled with fresh bullet holes viewed through an optical sight, confirming projectile impact. All candidate intervals are subsumed within this continuous shooting event.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                7,
+                8,
+                9
+              ],
+              "category": "Shooting",
+              "t_start": 42.0,
+              "t_end": 45.5,
+              "confidence": 0.9,
+              "description": "A heavy machine gun fires repeatedly in a cemetery, with muzzle flash and smoke visible at f4–f8, followed by bullet impacts on a vehicle seen through a scope at f9–f11.",
+              "reason": "Frames f4–f8 show sustained muzzle flash and smoke from the weapon’s barrel consistent with automatic fire; f9–f11 show a vehicle riddled with fresh bullet holes viewed through an optical sight, confirming projectile impact. All candidate intervals are subsumed within this continuous shooting event.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

@@ -1,0 +1,457 @@
+{
+  "events": [
+    {
+      "t_start": 20.0,
+      "t_end": 20.5,
+      "confidence": 1.0,
+      "coarse_score": 1.0,
+      "anomaly_type": "CarAccident",
+      "description": "A person is lying on the road in front of a building with colorful signage, suggesting they have been struck by a vehicle; no vehicle is visible at impact but the posture and context indicate a recent collision.",
+      "proposal_id": "p0005",
+      "evidence_frame_ids": [
+        "f0"
+      ],
+      "source_categories": [
+        "Fighting",
+        "Explosion"
+      ],
+      "reported_interval": [
+        20.0,
+        20.5
+      ],
+      "clipped_to_inspection": false,
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "uncertain",
+        "group_id": 0,
+        "vlm_confidence": 1.0,
+        "reason": "schema_repair_exhausted: Unknown, duplicate or empty source_candidate_ids"
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 5,
+      "output_count": 1,
+      "groups": 4,
+      "rejected": 4,
+      "uncertain": 1,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 1,
+      "schema_fallback_groups": 1
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 18.0,
+              "f1": 18.5,
+              "f2": 19.0,
+              "f3": 19.5,
+              "f4": 20.0,
+              "f5": 20.5,
+              "f6": 21.0,
+              "f7": 21.5,
+              "f8": 22.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 20.0,
+                "t_end": 20.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"CarAccident\",\n      \"t_start\": 19.0,\n      \"t_end\": 20.0,\n      \"confidence\": 0.95,\n      \"description\": \"A person on a motorcycle falls onto the road and slides, with the motorcycle lying beside them in subsequent frames.\",\n      \"reason\": \"Frames f2–f4 show a person losing control of a motorcycle, falling to the ground (f2), lying prone next to the bike (f3), and remaining on the road (f4); this constitutes a crash involving a vehicle (motorcycle) and matches CarAccident definition (a crash, not ordinary driving).\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 18.0,
+              "f1": 18.5,
+              "f2": 19.0,
+              "f3": 19.5,
+              "f4": 20.0,
+              "f5": 20.5,
+              "f6": 21.0,
+              "f7": 21.5,
+              "f8": 22.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 20.0,
+                "t_end": 20.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"CarAccident\",\n      \"t_start\": 19.0,\n      \"t_end\": 20.0,\n      \"confidence\": 0.95,\n      \"description\": \"A person on a motorcycle falls onto the road and slides, with the motorcycle lying beside them in subsequent frames.\",\n      \"reason\": \"Frames f2 (19.0 s) shows the rider mid-fall with motorcycle tipping; f3 (19.5 s) shows rider on ground next to downed motorcycle; f4 (20.0 s) shows rider still prone with motorcycle on its side — this is a crash involving a motor vehicle, satisfying the CarAccident definition (a crash, not ordinary driving). The candidate claims t_start=20.0–t_end=20.5, but the crash event clearly begins at 19.0 and concludes by 20.0; thus the supported interval is adjusted to fully cover the visible crash sequence within visible bounds.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 18.0,
+              "f1": 18.5,
+              "f2": 19.0,
+              "f3": 19.5,
+              "f4": 20.0,
+              "f5": 20.5,
+              "f6": 21.0,
+              "f7": 21.5,
+              "f8": 22.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 20.0,
+                "t_end": 20.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"CarAccident\",\n      \"t_start\": 20.0,\n      \"t_end\": 20.5,\n      \"confidence\": 0.6,\n      \"description\": \"A person lies on the road next to a fallen motorcycle at t=20.0 (f4); by t=20.5 (f5), the scene has cut to a different location, so no further development is visible.\",\n      \"reason\": \"The candidate specifies t_start=20.0–t_end=20.5. Frame f4 (20.0 s) shows the person and motorcycle already on the ground, indicating the crash occurred *before* 20.0 s; however, the candidate’s interval starts at 20.0, and the only frame within that interval is f4 (20.0 s) — f5 (20.5 s) is a completely different scene (rural dirt road), so no evidence of the accident exists in f5. Since the candidate’s claimed interval includes f5 but no accident is visible there, and the crash itself is not captured *within* [20.0, 20.5] (only its aftermath at the start), the event cannot be confirmed to occur *during* the candidate’s interval. Yet f4 alone shows a post-crash state involving a motor vehicle, and per definition CarAccident requires a crash—not just aftermath—but the crash timing is not observable in the candidate’s interval. Given the ambiguity and lack of visible crash *within* [20.0,20.5], confidence is reduced; however, since f4 is the only frame in the candidate’s interval and shows clear post-crash state with motorcycle down and rider on road, and no alternative explanation (e.g., staged fall) is evident, we retain CarAccident with low confidence, strictly bounded to t=20.0 (f4) as the only supporting frame in the candidate interval.\",\n      \"evidence_frame_ids\": [\"f4\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"The candidate claims the event occurs during [20.0, 20.5], but frame f5 (20.5 s) shows a different location with no accident; the actual crash appears to have occurred between 19.0–20.0 (f2–f4), outside the candidate’s stated interval. Thus, while a motorcycle crash is visible, it does not align temporally with the candidate’s specified window, making the candidate’s hypothesis poorly aligned with evidence.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 14.0,
+              "f1": 14.5,
+              "f2": 15.0,
+              "f3": 15.5,
+              "f4": 16.0,
+              "f5": 16.5,
+              "f6": 17.0,
+              "f7": 17.5,
+              "f8": 18.0,
+              "f9": 18.5,
+              "f10": 19.0,
+              "f11": 19.5,
+              "f12": 20.0,
+              "f13": 20.5,
+              "f14": 21.0,
+              "f15": 21.5,
+              "f16": 22.0,
+              "f17": 22.5,
+              "f18": 23.0,
+              "f19": 23.5,
+              "f20": 24.0,
+              "f21": 24.5,
+              "f22": 25.0,
+              "f23": 25.5,
+              "f24": 26.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 20.0,
+                "t_end": 20.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"CarAccident\",\n      \"t_start\": 19.0,\n      \"t_end\": 20.0,\n      \"confidence\": 0.95,\n      \"description\": \"A person on a motorcycle falls onto the road and slides, with the motorcycle lying beside them; no collision with another vehicle is visible, but the fall occurs abruptly in traffic.\",\n      \"reason\": \"Frames f10–f12 show a person entering the road (f10), then lying on the ground next to a fallen motorcycle (f11–f12), consistent with a crash or loss of control; though no other vehicle contact is seen, the sudden fall in traffic context qualifies as a car/motorcycle accident under standard dashcam classification (single-vehicle incident).\",\n      \"evidence_frame_ids\": [\"f10\", \"f11\", \"f12\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 14.0,
+              "f1": 14.5,
+              "f2": 15.0,
+              "f3": 15.5,
+              "f4": 16.0,
+              "f5": 16.5,
+              "f6": 17.0,
+              "f7": 17.5,
+              "f8": 18.0,
+              "f9": 18.5,
+              "f10": 19.0,
+              "f11": 19.5,
+              "f12": 20.0,
+              "f13": 20.5,
+              "f14": 21.0,
+              "f15": 21.5,
+              "f16": 22.0,
+              "f17": 22.5,
+              "f18": 23.0,
+              "f19": 23.5,
+              "f20": 24.0,
+              "f21": 24.5,
+              "f22": 25.0,
+              "f23": 25.5,
+              "f24": 26.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 20.0,
+                "t_end": 20.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"CarAccident\",\n      \"t_start\": 19.0,\n      \"t_end\": 20.0,\n      \"confidence\": 0.9,\n      \"description\": \"A person on a motorcycle enters the road (f10), then falls and slides on the pavement with the motorcycle beside them (f11–f12); no other vehicle contact is visible, but the abrupt loss of control and fall in traffic constitutes a single-vehicle motorcycle accident.\",\n      \"reason\": \"The candidate claims CarAccident at [20.0, 20.5], but the fall begins at f10 (19.0 s) and is fully evident by f11 (19.5 s) and f12 (20.0 s); the event is contained within [19.0, 20.0] and overlaps the candidate’s interval; per standard dashcam taxonomy, a sudden crash/fall of a motor vehicle in traffic—even without collision—is classified as CarAccident.\",\n      \"evidence_frame_ids\": [\"f10\", \"f11\", \"f12\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 14.0,
+              "f1": 14.5,
+              "f2": 15.0,
+              "f3": 15.5,
+              "f4": 16.0,
+              "f5": 16.5,
+              "f6": 17.0,
+              "f7": 17.5,
+              "f8": 18.0,
+              "f9": 18.5,
+              "f10": 19.0,
+              "f11": 19.5,
+              "f12": 20.0,
+              "f13": 20.5,
+              "f14": 21.0,
+              "f15": 21.5,
+              "f16": 22.0,
+              "f17": 22.5,
+              "f18": 23.0,
+              "f19": 23.5,
+              "f20": 24.0,
+              "f21": 24.5,
+              "f22": 25.0,
+              "f23": 25.5,
+              "f24": 26.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 20.0,
+                "t_end": 20.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"CarAccident\",\n      \"t_start\": 20.0,\n      \"t_end\": 20.5,\n      \"confidence\": 0.6,\n      \"description\": \"At f12 (20.0 s), a person lies on the road next to a fallen motorcycle; by f13 (20.5 s), the scene cuts to a different location, so no further development is visible.\",\n      \"reason\": \"The candidate specifies [20.0, 20.5]; f12 (20.0 s) shows the person and motorcycle on the ground, consistent with the aftermath of a crash; f13 (20.5 s) is a new scene, so the event is only observable at t=20.0 s within the candidate interval. No collision with another vehicle is visible, but a single-vehicle loss-of-control incident involving a motor vehicle on a public road qualifies as CarAccident per standard dashcam classification. However, because the fall onset occurs earlier (f10–f11) and the candidate’s interval starts at 20.0, only the static aftermath falls within the claimed window—making support partial and confidence reduced.\",\n      \"evidence_frame_ids\": [\"f12\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"The candidate claims CarAccident at [20.0, 20.5], but the fall begins at f10 (19.0 s) and is fully evident by f11 (19.5 s); only the post-fall state appears in f12 (20.0 s), and f13 (20.5 s) is an unrelated scene. Thus, the candidate interval contains only the aftermath, not the accident event itself; evidence is insufficient to confirm the accident occurred *within* [20.0, 20.5] rather than prior.\"\n    }\n  ]\n}"
+          }
+        ],
+        "decision": {
+          "status": "unresolved_schema",
+          "events": [],
+          "rejected": [],
+          "uncertain": [
+            {
+              "candidate_id": 0,
+              "reason": "schema_repair_exhausted: Unknown, duplicate or empty source_candidate_ids"
+            }
+          ],
+          "schema_error": "Unknown, duplicate or empty source_candidate_ids"
+        },
+        "context_retry": true
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 24.0,
+              "f1": 24.5,
+              "f2": 25.0,
+              "f3": 25.5,
+              "f4": 26.0,
+              "f5": 26.5,
+              "f6": 27.0,
+              "f7": 27.5,
+              "f8": 28.0,
+              "f9": 28.5,
+              "f10": 29.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 26.0,
+                "t_end": 27.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"The white van is seen parked on the left side of the road and then passed by the camera vehicle without any impact, deformation, or debris; no crash occurs.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "The white van is seen parked on the left side of the road and then passed by the camera vehicle without any impact, deformation, or debris; no crash occurs.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 32.5,
+              "f1": 33.0,
+              "f2": 33.5,
+              "f3": 34.0,
+              "f4": 34.5,
+              "f5": 35.0,
+              "f6": 35.5,
+              "f7": 36.0,
+              "f8": 36.5,
+              "f9": 37.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 34.5,
+                "t_end": 35.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"No collision or impact is visible; the truck passes closely but does not contact the silver car, and both vehicles remain in controlled motion with no deformation, skid marks, or abrupt change in trajectory.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "No collision or impact is visible; the truck passes closely but does not contact the silver car, and both vehicles remain in controlled motion with no deformation, skid marks, or abrupt change in trajectory.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          3,
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 49.5,
+              "f1": 50.0,
+              "f2": 50.5,
+              "f3": 51.0,
+              "f4": 51.5,
+              "f5": 52.0,
+              "f6": 52.5,
+              "f7": 53.0,
+              "f8": 53.5,
+              "f9": 54.0,
+              "f10": 54.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 51.5,
+                "t_end": 52.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 51.958333,
+                "t_end": 52.541667,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3, 4],\n      \"category\": \"Normal\",\n      \"t_start\": 51.5,\n      \"t_end\": 52.5,\n      \"confidence\": 0.0,\n      \"description\": \"A person in white appears suddenly in front of the vehicle at f5, then leans on the hood at f6 before disappearing; no collision or aggressive contact is visible.\",\n      \"reason\": \"No impact, deformation, or crash evidence (e.g., sudden deceleration, airbag deployment, vehicle damage) is present; the person’s motion suggests voluntary movement (e.g., stepping into view and bracing), not being struck. The candidate categories 'CarAccident' and 'Abuse' require physical impact or aggression, neither of which is observed. Since 'Normal' is not an allowed output category, and no allowed category applies, this event is not included in events list — see rejected/uncertain handling below.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"No vehicle collision occurs: the car’s trajectory remains smooth, windshield shows no impact distortion or debris, and the forklift has already cleared the road by f3; the person appearing at f5 does not result in a crash.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"No aggression toward a helpless victim is visible: the person at f5–f6 moves voluntarily, leans on the hood without resistance or injury signs, and there is no restraint, striking, or coercion evident.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 49.5,
+              "f1": 50.0,
+              "f2": 50.5,
+              "f3": 51.0,
+              "f4": 51.5,
+              "f5": 52.0,
+              "f6": 52.5,
+              "f7": 53.0,
+              "f8": 53.5,
+              "f9": 54.0,
+              "f10": 54.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 51.5,
+                "t_end": 52.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 51.958333,
+                "t_end": 52.541667,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"No car accident occurs: the vehicle’s motion is uninterrupted, no impact deformation, airbag deployment, or sudden deceleration is visible; the forklift exits the frame by f3 and the person appearing at f5 does not contact the vehicle with force.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"No abuse is evident: the person in white (f5–f6) voluntarily steps into view, leans on the hood without signs of coercion, injury, or restraint, and there is no aggressor-victim interaction meeting the definition of abuse.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 3,
+              "reason": "No car accident occurs: the vehicle’s motion is uninterrupted, no impact deformation, airbag deployment, or sudden deceleration is visible; the forklift exits the frame by f3 and the person appearing at f5 does not contact the vehicle with force.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6"
+              ]
+            },
+            {
+              "candidate_id": 4,
+              "reason": "No abuse is evident: the person in white (f5–f6) voluntarily steps into view, leans on the hood without signs of coercion, injury, or restraint, and there is no aggressor-victim interaction meeting the definition of abuse.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

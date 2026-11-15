@@ -1,0 +1,673 @@
+{
+  "events": [
+    {
+      "t_start": 0.0,
+      "t_end": 22.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "Players in yellow/black and white/red jerseys engage in repeated mutual physical combat near the boards and bench area—including shoving, grappling, stick-swinging, and wrestling—while officials attempt interventions; no crowd involvement or systemic breakdown is visible.",
+      "source_candidate_ids": [
+        0,
+        2,
+        5,
+        7
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          0.0,
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          5.0,
+          7.5,
+          8.5,
+          9.5,
+          10.5,
+          11.0,
+          15.0,
+          15.5,
+          16.0,
+          17.0,
+          18.5,
+          19.5,
+          20.5,
+          21.5,
+          22.5
+        ],
+        "evidence_frame_ids": [
+          "f0",
+          "f1",
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18",
+          "f19",
+          "f20",
+          "f21",
+          "f22"
+        ],
+        "reason": "Frames f0–f5 show clustered players pushing and grabbing; f8–f10 depict two players wrestling over the boards; f14–f17 and f19–f22 show reciprocal stick挥动 and scuffling; all involve mutual engagement, satisfying 'Fighting' (not Abuse, Riot, etc.). The activity is continuous across the interval, justifying merging of candidates 0, 2, 5, 7 into one event.",
+        "source_categories": [
+          "Fighting",
+          "Fighting",
+          "Fighting",
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 41.5,
+      "t_end": 48.0,
+      "anomaly_type": "Fighting",
+      "confidence": 0.7,
+      "coarse_score": 0.7,
+      "description": "Multiple individuals in yellow/green jerseys engage in close physical grappling and shoving near the boards, with others intervening or observing; motion blur suggests rapid movement but no weapons or crowd-wide unrest.",
+      "source_candidate_ids": [
+        10,
+        11
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.7,
+        "evidence_times": [
+          41.5,
+          42.5,
+          43.0,
+          43.5,
+          44.0,
+          44.5,
+          45.0,
+          46.0,
+          46.5,
+          47.0,
+          47.5,
+          48.0
+        ],
+        "evidence_frame_ids": [
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16"
+        ],
+        "reason": "Frames f5–f16 show sustained close-contact struggle among a small group (e.g., f5–f8: two players locked together, f12–f15: continued scuffle with officials approaching); this fits 'Fighting' (mutual physical combat) but not 'Riot' (no collective unrest) or other categories. Candidates 10 and 11 describe overlapping intervals of the same scuffle; merged.",
+        "source_categories": [
+          "Fighting",
+          "Fighting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 14,
+      "output_count": 2,
+      "groups": 3,
+      "rejected": 8,
+      "uncertain": 0,
+      "merged_sources": 4,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 1.0,
+              "f2": 2.0,
+              "f3": 3.0,
+              "f4": 4.0,
+              "f5": 5.0,
+              "f6": 7.5,
+              "f7": 8.5,
+              "f8": 9.5,
+              "f9": 10.5,
+              "f10": 11.0,
+              "f11": 12.5,
+              "f12": 13.0,
+              "f13": 14.0,
+              "f14": 15.0,
+              "f15": 15.5,
+              "f16": 16.0,
+              "f17": 17.0,
+              "f18": 18.5,
+              "f19": 19.5,
+              "f20": 20.5,
+              "f21": 21.5,
+              "f22": 22.5,
+              "f23": 25.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 0.0,
+                "t_end": 2.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 2.5,
+                "t_end": 7.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 8.0,
+                "t_end": 14.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 9.5,
+                "t_end": 16.0,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 12.0,
+                "t_end": 19.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 15.0,
+                "t_end": 16.9,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 16.0,
+                "t_end": 23.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 17.5,
+                "t_end": 22.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 17.9,
+                "t_end": 19.1,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 2, 5, 7],\n      \"category\": \"Fighting\",\n      \"t_start\": 0.0,\n      \"t_end\": 22.5,\n      \"confidence\": 0.8,\n      \"description\": \"Multiple players in yellow/black and white/red jerseys engage in repeated physical altercations near the boards and bench area, including grappling, shoving, and swinging sticks; officials intervene intermittently.\",\n      \"reason\": \"Visible mutual physical combat among multiple individuals (e.g., f0–f5: cluster of players pushing; f8–f10: two players wrestling over boards; f14–f17: players with sticks swinging at each other; f19–f22: continued scuffling), satisfying the definition of Fighting; no evidence of one-sided Abuse or collective unrest beyond localized brawls.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"No evidence of collective violent unrest beyond localized player fights; crowd remains seated and not engaged, and no property destruction or mass disorder is visible.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"The activity from 9.5–16.0 is continuous fighting among players, not a riot; no crowd involvement or systemic breakdown observed.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    },\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"Same as above: isolated player brawls, not collective violent unrest; spectators are passive.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\"]\n    },\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"The segment 16.0–23.5 shows ongoing fighting, not rioting; no escalation to crowd-level violence or institutional collapse.\",\n      \"evidence_frame_ids\": [\"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\", \"f23\"]\n    },\n    {\n      \"candidate_id\": 8,\n      \"reason\": \"No clear victim-helplessness or one-sided aggression; all interactions appear mutual combat (e.g., f17–f19 show reciprocal grappling), so Abuse does not apply.\",\n      \"evidence_frame_ids\": [\"f17\", \"f18\", \"f19\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Partially subsumed into broader accepted Fighting event; original t_start–t_end is too narrow but not contradicted—hence merged rather than rejected.\"\n    },\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Subsumed into main Fighting event; visible actions (e.g., f8–f10) are part of same continuous brawl sequence.\"\n    },\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"Subsumed; f14–f16 shows continuation of earlier fighting, not a distinct episode.\"\n    },\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"Subsumed; f17–f19 is part of the same multi-phase fight, not a separate incident.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 1.0,
+              "f2": 2.0,
+              "f3": 3.0,
+              "f4": 4.0,
+              "f5": 5.0,
+              "f6": 7.5,
+              "f7": 8.5,
+              "f8": 9.5,
+              "f9": 10.5,
+              "f10": 11.0,
+              "f11": 12.5,
+              "f12": 13.0,
+              "f13": 14.0,
+              "f14": 15.0,
+              "f15": 15.5,
+              "f16": 16.0,
+              "f17": 17.0,
+              "f18": 18.5,
+              "f19": 19.5,
+              "f20": 20.5,
+              "f21": 21.5,
+              "f22": 22.5,
+              "f23": 25.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 0.0,
+                "t_end": 2.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 2.5,
+                "t_end": 7.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 8.0,
+                "t_end": 14.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 9.5,
+                "t_end": 16.0,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 12.0,
+                "t_end": 19.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 15.0,
+                "t_end": 16.9,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 16.0,
+                "t_end": 23.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 17.5,
+                "t_end": 22.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 17.9,
+                "t_end": 19.1,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 2, 5, 7],\n      \"category\": \"Fighting\",\n      \"t_start\": 0.0,\n      \"t_end\": 22.5,\n      \"confidence\": 0.85,\n      \"description\": \"Players in yellow/black and white/red jerseys engage in repeated mutual physical combat near the boards and bench area—including shoving, grappling, stick-swinging, and wrestling—while officials attempt interventions; no crowd involvement or systemic breakdown is visible.\",\n      \"reason\": \"Frames f0–f5 show clustered players pushing and grabbing; f8–f10 depict two players wrestling over the boards; f14–f17 and f19–f22 show reciprocal stick挥动 and scuffling; all involve mutual engagement, satisfying 'Fighting' (not Abuse, Riot, etc.). The activity is continuous across the interval, justifying merging of candidates 0, 2, 5, 7 into one event.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"No evidence of collective violent unrest: spectators remain seated, no property destruction, and activity is confined to player-on-player brawls; thus 'Riot' is unsupported.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"The segment 9.5–16.0 shows ongoing player fighting (e.g., f9–f10 wrestling, f14–f16 stick swings), not rioting; no crowd participation or institutional collapse observed.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    },\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"Same as candidate 3: isolated brawls among players only; spectators passive, no mass disorder—fails definition of 'Riot'.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\"]\n    },\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"Frames f16–f23 show continued fighting (e.g., f17–f22 scuffles), not rioting; no escalation beyond on-ice player altercations.\",\n      \"evidence_frame_ids\": [\"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\", \"f23\"]\n    },\n    {\n      \"candidate_id\": 8,\n      \"reason\": \"No evidence of one-sided aggression against a helpless victim: interactions in f17–f19 are reciprocal (e.g., mutual grappling, stick use), so 'Abuse' does not apply.\",\n      \"evidence_frame_ids\": [\"f17\", \"f18\", \"f19\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                2,
+                5,
+                7
+              ],
+              "category": "Fighting",
+              "t_start": 0.0,
+              "t_end": 22.5,
+              "confidence": 0.85,
+              "description": "Players in yellow/black and white/red jerseys engage in repeated mutual physical combat near the boards and bench area—including shoving, grappling, stick-swinging, and wrestling—while officials attempt interventions; no crowd involvement or systemic breakdown is visible.",
+              "reason": "Frames f0–f5 show clustered players pushing and grabbing; f8–f10 depict two players wrestling over the boards; f14–f17 and f19–f22 show reciprocal stick挥动 and scuffling; all involve mutual engagement, satisfying 'Fighting' (not Abuse, Riot, etc.). The activity is continuous across the interval, justifying merging of candidates 0, 2, 5, 7 into one event.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "No evidence of collective violent unrest: spectators remain seated, no property destruction, and activity is confined to player-on-player brawls; thus 'Riot' is unsupported.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6"
+              ]
+            },
+            {
+              "candidate_id": 3,
+              "reason": "The segment 9.5–16.0 shows ongoing player fighting (e.g., f9–f10 wrestling, f14–f16 stick swings), not rioting; no crowd participation or institutional collapse observed.",
+              "evidence_frame_ids": [
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16"
+              ]
+            },
+            {
+              "candidate_id": 4,
+              "reason": "Same as candidate 3: isolated brawls among players only; spectators passive, no mass disorder—fails definition of 'Riot'.",
+              "evidence_frame_ids": [
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19"
+              ]
+            },
+            {
+              "candidate_id": 6,
+              "reason": "Frames f16–f23 show continued fighting (e.g., f17–f22 scuffles), not rioting; no escalation beyond on-ice player altercations.",
+              "evidence_frame_ids": [
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22",
+                "f23"
+              ]
+            },
+            {
+              "candidate_id": 8,
+              "reason": "No evidence of one-sided aggression against a helpless victim: interactions in f17–f19 are reciprocal (e.g., mutual grappling, stick use), so 'Abuse' does not apply.",
+              "evidence_frame_ids": [
+                "f17",
+                "f18",
+                "f19"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          9,
+          10,
+          11,
+          12
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 39.0,
+              "f1": 39.5,
+              "f2": 40.0,
+              "f3": 40.5,
+              "f4": 41.0,
+              "f5": 41.5,
+              "f6": 42.5,
+              "f7": 43.0,
+              "f8": 43.5,
+              "f9": 44.0,
+              "f10": 44.5,
+              "f11": 45.0,
+              "f12": 46.0,
+              "f13": 46.5,
+              "f14": 47.0,
+              "f15": 47.5,
+              "f16": 48.0,
+              "f17": 48.5,
+              "f18": 49.5,
+              "f19": 50.0,
+              "f20": 50.5,
+              "f21": 51.0,
+              "f22": 51.5,
+              "f23": 52.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 9,
+                "t_start": 41.0,
+                "t_end": 47.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 10,
+                "t_start": 41.5,
+                "t_end": 48.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 11,
+                "t_start": 45.5,
+                "t_end": 48.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 12,
+                "t_start": 48.5,
+                "t_end": 51.0,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [10, 11],\n      \"category\": \"Fighting\",\n      \"t_start\": 41.5,\n      \"t_end\": 48.0,\n      \"confidence\": 0.7,\n      \"description\": \"Multiple individuals in yellow/green jerseys engage in close physical grappling and shoving near the boards, with others intervening or observing; motion blur suggests rapid movement but no weapons or crowd-wide unrest.\",\n      \"reason\": \"Frames f4–f15 show sustained close-contact struggle among a small group (e.g., f5–f8: two players locked together, f12–f15: continued scuffle with officials approaching); this fits 'Fighting' (mutual physical combat) but not 'Riot' (no collective unrest) or other categories. Candidate 10 and 11 describe overlapping intervals of the same scuffle; merged.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\"]\n    },\n    {\n      \"source_candidate_ids\": [12],\n      \"category\": \"Normal\",\n      \"t_start\": 48.5,\n      \"t_end\": 51.0,\n      \"confidence\": 0.95,\n      \"description\": \"Players in white/red jerseys line up on the ice facing the bench area while officials and spectators are visible in background; no aggressive or chaotic behavior.\",\n      \"reason\": \"Frames f17–f20 show orderly lineup of players (back numbers visible: 12, 11, 35, 5, 14), consistent with post-scuffle regrouping or face-off setup; no evidence of riot or fighting. Candidate 12’s 'Riot' label is contradicted by visible order.\",\n      \"evidence_frame_ids\": [\"f17\", \"f18\", \"f19\", \"f20\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 9,\n      \"reason\": \"No evidence of collective violent unrest; the activity from 41.0–47.5 is limited to a small-group fight, not a riot.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 12,\n      \"reason\": \"Although frames f17–f20 show normal behavior, candidate 12 claims 'Riot' at 48.5–51.0; since visible evidence contradicts riot, it's rejected—not uncertain—but per instruction to list every candidate once, and since rejection already covers it, no separate uncertain entry needed. All candidates accounted for above.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 39.0,
+              "f1": 39.5,
+              "f2": 40.0,
+              "f3": 40.5,
+              "f4": 41.0,
+              "f5": 41.5,
+              "f6": 42.5,
+              "f7": 43.0,
+              "f8": 43.5,
+              "f9": 44.0,
+              "f10": 44.5,
+              "f11": 45.0,
+              "f12": 46.0,
+              "f13": 46.5,
+              "f14": 47.0,
+              "f15": 47.5,
+              "f16": 48.0,
+              "f17": 48.5,
+              "f18": 49.5,
+              "f19": 50.0,
+              "f20": 50.5,
+              "f21": 51.0,
+              "f22": 51.5,
+              "f23": 52.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 9,
+                "t_start": 41.0,
+                "t_end": 47.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 10,
+                "t_start": 41.5,
+                "t_end": 48.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 11,
+                "t_start": 45.5,
+                "t_end": 48.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 12,
+                "t_start": 48.5,
+                "t_end": 51.0,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [10, 11],\n      \"category\": \"Fighting\",\n      \"t_start\": 41.5,\n      \"t_end\": 48.0,\n      \"confidence\": 0.7,\n      \"description\": \"Multiple individuals in yellow/green jerseys engage in close physical grappling and shoving near the boards, with others intervening or observing; motion blur suggests rapid movement but no weapons or crowd-wide unrest.\",\n      \"reason\": \"Frames f5–f16 show sustained close-contact struggle among a small group (e.g., f5–f8: two players locked together, f12–f15: continued scuffle with officials approaching); this fits 'Fighting' (mutual physical combat) but not 'Riot' (no collective unrest) or other categories. Candidates 10 and 11 describe overlapping intervals of the same scuffle; merged.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 9,\n      \"reason\": \"No evidence of collective violent unrest; activity from 41.0–47.5 is limited to a small-group fight, not a riot.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    },\n    {\n      \"candidate_id\": 12,\n      \"reason\": \"'Riot' is contradicted by visible order: frames f17–f20 show players in white/red jerseys lined up calmly on ice (numbers 12, 11, 35, 5, 14 visible), with no chaotic or violent behavior; this is not a riot nor any allowed category.\",\n      \"evidence_frame_ids\": [\"f17\", \"f18\", \"f19\", \"f20\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                10,
+                11
+              ],
+              "category": "Fighting",
+              "t_start": 41.5,
+              "t_end": 48.0,
+              "confidence": 0.7,
+              "description": "Multiple individuals in yellow/green jerseys engage in close physical grappling and shoving near the boards, with others intervening or observing; motion blur suggests rapid movement but no weapons or crowd-wide unrest.",
+              "reason": "Frames f5–f16 show sustained close-contact struggle among a small group (e.g., f5–f8: two players locked together, f12–f15: continued scuffle with officials approaching); this fits 'Fighting' (mutual physical combat) but not 'Riot' (no collective unrest) or other categories. Candidates 10 and 11 describe overlapping intervals of the same scuffle; merged.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 9,
+              "reason": "No evidence of collective violent unrest; activity from 41.0–47.5 is limited to a small-group fight, not a riot.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16"
+              ]
+            },
+            {
+              "candidate_id": 12,
+              "reason": "'Riot' is contradicted by visible order: frames f17–f20 show players in white/red jerseys lined up calmly on ice (numbers 12, 11, 35, 5, 14 visible), with no chaotic or violent behavior; this is not a riot nor any allowed category.",
+              "evidence_frame_ids": [
+                "f17",
+                "f18",
+                "f19",
+                "f20"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          13
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 50.5,
+              "f1": 51.0,
+              "f2": 51.5,
+              "f3": 52.0,
+              "f4": 52.5,
+              "f5": 53.0,
+              "f6": 53.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 13,
+                "t_start": 52.5,
+                "t_end": 53.5,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 13,\n      \"reason\": \"No visible mutual physical combat; the scene shows players standing in line facing a figure (likely a coach or official), with minor crowd movement but no aggression or contact between individuals.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 13,
+              "reason": "No visible mutual physical combat; the scene shows players standing in line facing a figure (likely a coach or official), with minor crowd movement but no aggression or contact between individuals.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

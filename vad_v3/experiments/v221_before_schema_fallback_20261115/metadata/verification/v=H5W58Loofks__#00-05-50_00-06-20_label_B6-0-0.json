@@ -1,0 +1,162 @@
+{
+  "events": [
+    {
+      "t_start": 21.5,
+      "t_end": 23.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "The vehicle rapidly rotates and tilts upward, with the windshield view shifting from road to sky between f4 and f7, indicating a loss of control and likely rollover.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          21.5,
+          22.0,
+          22.5,
+          23.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7"
+        ],
+        "reason": "From f4 (21.5 s), the car is still on the road; by f5 (22.0 s), the camera points sharply upward, showing only sky and rearview mirror—consistent with a violent roll or flip. This abrupt orientation change without visible external impact suggests a crash event. The sequence continues through f7 (23.0 s) with sky view, confirming sustained post-impact motion.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 2,
+      "output_count": 1,
+      "groups": 2,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 0.5,
+                "t_end": 1.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No crash or collision is visible in any frame; vehicles maintain lane discipline and distance, with no sudden deceleration, deformation, or debris indicating an accident.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "No crash or collision is visible in any frame; vehicles maintain lane discipline and distance, with no sudden deceleration, deformation, or debris indicating an accident.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 19.5,
+              "f1": 20.0,
+              "f2": 20.5,
+              "f3": 21.0,
+              "f4": 21.5,
+              "f5": 22.0,
+              "f6": 22.5,
+              "f7": 23.0,
+              "f8": 23.5,
+              "f9": 24.0,
+              "f10": 24.5,
+              "f11": 25.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 21.5,
+                "t_end": 23.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"CarAccident\",\n      \"t_start\": 21.5,\n      \"t_end\": 23.5,\n      \"confidence\": 0.95,\n      \"description\": \"The vehicle rapidly rotates and tilts upward, with the windshield view shifting from road to sky between f4 and f7, indicating a loss of control and likely rollover.\",\n      \"reason\": \"From f4 (21.5 s), the car is still on the road; by f5 (22.0 s), the camera points sharply upward, showing only sky and rearview mirror—consistent with a violent roll or flip. This abrupt orientation change without visible external impact suggests a crash event. The sequence continues through f7 (23.0 s) with sky view, confirming sustained post-impact motion.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "CarAccident",
+              "t_start": 21.5,
+              "t_end": 23.5,
+              "confidence": 0.95,
+              "description": "The vehicle rapidly rotates and tilts upward, with the windshield view shifting from road to sky between f4 and f7, indicating a loss of control and likely rollover.",
+              "reason": "From f4 (21.5 s), the car is still on the road; by f5 (22.0 s), the camera points sharply upward, showing only sky and rearview mirror—consistent with a violent roll or flip. This abrupt orientation change without visible external impact suggests a crash event. The sequence continues through f7 (23.0 s) with sky view, confirming sustained post-impact motion.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "5a82d0dd6e711938ee6c8e0ecf1c6f7fdb68cac4e5e95683ad672320f7156da9"
+}

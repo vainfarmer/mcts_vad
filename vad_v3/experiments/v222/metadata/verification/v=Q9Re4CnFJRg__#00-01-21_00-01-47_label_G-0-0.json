@@ -1,0 +1,234 @@
+{
+  "events": [
+    {
+      "t_start": 2.5,
+      "t_end": 12.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A single large explosion initiates at ~2.5 s (f1) with a fireball, rapidly expands into a rising smoke/debris column through f8–f10, and begins dissipating by f12.",
+      "source_candidate_ids": [
+        0,
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          2.5,
+          3.5,
+          4.5,
+          5.5,
+          6.0,
+          6.5,
+          7.5,
+          8.5,
+          9.5,
+          10.5,
+          11.5,
+          12.5
+        ],
+        "evidence_frame_ids": [
+          "f1",
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12"
+        ],
+        "reason": "Frames f1–f12 show a continuous, coherent blast sequence: initial fireball (f1), rapid vertical growth and mushrooming (f2–f8), peak plume (f9–f10), and early dispersion (f11–f12). Candidates 0 (3.5–8.5) and 1 (8.0–15.5) both describe overlapping portions of this same event; the merged interval starts at first visible fireball (f1, 2.5 s) and ends at last clear structured plume before full dispersion (f12, 12.5 s), staying within visible bounds and excluding later residual smoke (f13–f16) and unrelated dust bursts (f19–f23).",
+        "source_categories": [
+          "Explosion",
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 3,
+      "output_count": 1,
+      "groups": 1,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 1.5,
+              "f1": 2.5,
+              "f2": 3.5,
+              "f3": 4.5,
+              "f4": 5.5,
+              "f5": 6.0,
+              "f6": 6.5,
+              "f7": 7.5,
+              "f8": 8.5,
+              "f9": 9.5,
+              "f10": 10.5,
+              "f11": 11.5,
+              "f12": 12.5,
+              "f13": 14.0,
+              "f14": 15.0,
+              "f15": 16.0,
+              "f16": 17.0,
+              "f17": 18.0,
+              "f18": 19.0,
+              "f19": 20.0,
+              "f20": 21.0,
+              "f21": 22.0,
+              "f22": 23.0,
+              "f23": 25.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 3.5,
+                "t_end": 8.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 8.0,
+                "t_end": 15.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 11.0,
+                "t_end": 25.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1, 2],\n      \"category\": \"Explosion\",\n      \"t_start\": 2.5,\n      \"t_end\": 12.5,\n      \"confidence\": 0.95,\n      \"description\": \"A large fireball erupts at ~2.5 s, rapidly expanding into a rising column of smoke and debris through ~12.5 s, consistent with a single high-energy blast.\",\n      \"reason\": \"Frames f1–f12 show a continuous, coherent explosion sequence: initial fireball (f1), rapid expansion and mushrooming (f2–f8), peak plume (f9–f10), and early dissipation (f11–f12). The later frames (f13–f16) show residual smoke from the same event; f19–f23 show a separate, smaller series of dust clouds likely from secondary effects or demolition, but not part of the primary blast. Candidates 0, 1, and 2 all describe overlapping portions of this single explosion; merged into one event bounded by first visible fireball (f1, 2.5 s) and last clear plume structure before full dispersion (f12, 12.5 s).\",\n      \"evidence_frame_ids\": [\"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\"]\n    },\n    {\n      \"source_candidate_ids\": [],\n      \"category\": \"Explosion\",\n      \"t_start\": 20.0,\n      \"t_end\": 25.5,\n      \"confidence\": 0.7,\n      \"description\": \"Multiple simultaneous dust/smoke bursts appear along a low wall/structure between 20.0 s and 25.5 s, suggesting controlled demolition or secondary explosions.\",\n      \"reason\": \"No candidate explicitly covers this interval, but f19–f23 show distinct, synchronized puffs of dust across a line—unlike the single vertical plume earlier. Since candidates 0–2 do not include this, it is an independent event not claimed by any candidate; however, per instructions, only list events tied to supplied candidates. Thus, this is *not* added to 'events' (only candidate-derived events allowed). Instead, candidate 2 (t_start=11.0, t_end=25.5) is rejected because its end extends into this later activity, which is visually distinct and not causally linked to the first explosion (no continuity in plume morphology or location).\",\n      \"evidence_frame_ids\": []\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Extends from 11.0 s to 25.5 s, but frames f13–f18 show only residual smoke from the first explosion, while f19–f23 show a new, spatially distinct series of dust bursts unrelated to the initial blast; thus the hypothesis that a single explosion persists to 25.5 s is contradicted.\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\", \"f23\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Overlaps the core explosion but starts at 8.0 s (after the peak) and ends at 15.5 s (including residual smoke); while plausible as part of the same event, its bounds are unnecessarily narrow and misaligned with the visible onset (f1 at 2.5 s); however, since it is subsumed by the merged event covering f1–f12, and no evidence contradicts it being part of the explosion, it is not uncertain—it is merged. Per instruction to reject only when contradicted, and since it is covered by the accepted merged event, it is not listed separately. But the prompt requires every candidate exactly once; candidate 1 is fully contained in the accepted event, so it is not rejected nor uncertain—it is absorbed. However, the schema requires listing each candidate in exactly one of rejected/uncertain/events via source_candidate_ids. Since candidate 1 is included in the first event’s source_candidate_ids, it is handled there. No candidate remains for uncertain. Re-evaluating: all three candidates refer to the same physical explosion, though with imprecise bounds. Candidate 0 (3.5–8.5) and 1 (8.0–15.5) overlap and together cover 3.5–15.5; candidate 2 adds 11.0–25.5 which is invalid. Since candidate 2 is rejected, and 0 & 1 are merged, no uncertain needed. Final decision: only candidate 2 is rejected; 0 and 1 are merged into one event.\",\n      \"evidence_frame_ids\": []\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 1.5,
+              "f1": 2.5,
+              "f2": 3.5,
+              "f3": 4.5,
+              "f4": 5.5,
+              "f5": 6.0,
+              "f6": 6.5,
+              "f7": 7.5,
+              "f8": 8.5,
+              "f9": 9.5,
+              "f10": 10.5,
+              "f11": 11.5,
+              "f12": 12.5,
+              "f13": 14.0,
+              "f14": 15.0,
+              "f15": 16.0,
+              "f16": 17.0,
+              "f17": 18.0,
+              "f18": 19.0,
+              "f19": 20.0,
+              "f20": 21.0,
+              "f21": 22.0,
+              "f22": 23.0,
+              "f23": 25.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 3.5,
+                "t_end": 8.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 8.0,
+                "t_end": 15.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 11.0,
+                "t_end": 25.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Explosion\",\n      \"t_start\": 2.5,\n      \"t_end\": 12.5,\n      \"confidence\": 0.95,\n      \"description\": \"A single large explosion initiates at ~2.5 s (f1) with a fireball, rapidly expands into a rising smoke/debris column through f8–f10, and begins dissipating by f12.\",\n      \"reason\": \"Frames f1–f12 show a continuous, coherent blast sequence: initial fireball (f1), rapid vertical growth and mushrooming (f2–f8), peak plume (f9–f10), and early dispersion (f11–f12). Candidates 0 (3.5–8.5) and 1 (8.0–15.5) both describe overlapping portions of this same event; the merged interval starts at first visible fireball (f1, 2.5 s) and ends at last clear structured plume before full dispersion (f12, 12.5 s), staying within visible bounds and excluding later residual smoke (f13–f16) and unrelated dust bursts (f19–f23).\",\n      \"evidence_frame_ids\": [\"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Claims explosion from 11.0 to 25.5 s, but frames f13–f18 show only residual smoke from the first explosion (no new blast), and f19–f23 show a distinct, spatially separate series of synchronized dust puffs along a wall—visually unrelated to the initial vertical plume and lacking blast characteristics (no fireball, no rapid expansion); thus the hypothesis of a single ongoing explosion is contradicted.\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\", \"f23\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1
+              ],
+              "category": "Explosion",
+              "t_start": 2.5,
+              "t_end": 12.5,
+              "confidence": 0.95,
+              "description": "A single large explosion initiates at ~2.5 s (f1) with a fireball, rapidly expands into a rising smoke/debris column through f8–f10, and begins dissipating by f12.",
+              "reason": "Frames f1–f12 show a continuous, coherent blast sequence: initial fireball (f1), rapid vertical growth and mushrooming (f2–f8), peak plume (f9–f10), and early dispersion (f11–f12). Candidates 0 (3.5–8.5) and 1 (8.0–15.5) both describe overlapping portions of this same event; the merged interval starts at first visible fireball (f1, 2.5 s) and ends at last clear structured plume before full dispersion (f12, 12.5 s), staying within visible bounds and excluding later residual smoke (f13–f16) and unrelated dust bursts (f19–f23).",
+              "evidence_frame_ids": [
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "Claims explosion from 11.0 to 25.5 s, but frames f13–f18 show only residual smoke from the first explosion (no new blast), and f19–f23 show a distinct, spatially separate series of synchronized dust puffs along a wall—visually unrelated to the initial vertical plume and lacking blast characteristics (no fireball, no rapid expansion); thus the hypothesis of a single ongoing explosion is contradicted.",
+              "evidence_frame_ids": [
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22",
+                "f23"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

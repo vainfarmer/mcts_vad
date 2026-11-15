@@ -1,0 +1,467 @@
+{
+  "events": [
+    {
+      "t_start": 13.5,
+      "t_end": 15.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 1.0,
+      "coarse_score": 1.0,
+      "description": "The dashcam vehicle collides with a large white bus at ~13.5s, causing immediate severe radial cracking of the windshield visible from f4 onward.",
+      "source_candidate_ids": [
+        0,
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 1.0,
+        "evidence_times": [
+          13.0,
+          13.5,
+          14.0,
+          14.5,
+          15.0,
+          15.5,
+          16.0,
+          16.5,
+          17.0,
+          17.5,
+          18.5
+        ],
+        "evidence_frame_ids": [
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13"
+        ],
+        "reason": "f3 shows the bus directly ahead and extremely close; f4 shows the instant of impact with full windshield fracture pattern; f5–f13 show sustained shattered windshield with bus still in proximity—consistent with a single frontal collision event. Candidates 0 and 1 both describe the same crash interval and are merged.",
+        "source_categories": [
+          "CarAccident",
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 31.0,
+      "t_end": 33.0,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A red truck veers left, collides with the left guardrail, and kicks up dust/debris while rotating slightly; a smaller vehicle ahead appears to swerve right in response.",
+      "source_candidate_ids": [
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          31.0,
+          31.5,
+          32.0,
+          32.5,
+          33.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8"
+        ],
+        "reason": "Frames f4–f8 show the red truck losing lane position, impacting the barrier (visible deformation/dust at f5–f8), consistent with a crash; no evidence of fighting, shooting, riot, abuse, or explosion.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 7,
+      "output_count": 2,
+      "groups": 5,
+      "rejected": 4,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 11.5,
+              "f1": 12.0,
+              "f2": 12.5,
+              "f3": 13.0,
+              "f4": 13.5,
+              "f5": 14.0,
+              "f6": 14.5,
+              "f7": 15.0,
+              "f8": 15.5,
+              "f9": 16.0,
+              "f10": 16.5,
+              "f11": 17.0,
+              "f12": 17.5,
+              "f13": 18.5,
+              "f14": 19.0,
+              "f15": 19.5,
+              "f16": 20.0,
+              "f17": 20.5,
+              "f18": 21.0,
+              "f19": 22.0,
+              "f20": 22.5,
+              "f21": 23.0,
+              "f22": 23.5,
+              "f23": 25.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 13.5,
+                "t_end": 15.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 13.5,
+                "t_end": 14.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 16.0,
+                "t_end": 23.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"CarAccident\",\n      \"t_start\": 13.5,\n      \"t_end\": 15.5,\n      \"confidence\": 1.0,\n      \"description\": \"The dashcam vehicle collides with a large white bus at 13.5s, resulting in immediate severe windshield cracking visible through f4–f13.\",\n      \"reason\": \"Frame f3 shows the bus directly ahead and very close; f4 shows the moment of impact with radial cracks spreading across the windshield; subsequent frames (f5–f13) show the shattered windshield with the bus still in contact or immediately adjacent—consistent with a frontal collision. The candidate intervals [13.5,15.5] and [13.5,14.0] both fall within this single crash event.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\"]\n    },\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"Normal\",\n      \"t_start\": 16.0,\n      \"t_end\": 25.0,\n      \"confidence\": 0.0,\n      \"description\": \"After the crash, the vehicle continues driving on a highway with other traffic; no further collision occurs.\",\n      \"reason\": \"From f14 onward, the view is of a clear road with normal traffic flow (cars, trucks), no damage to the road or vehicles visible, and no indication of a second crash; thus candidate 2’s claim of CarAccident in [16.0,23.5] is unsupported.\",\n      \"evidence_frame_ids\": [\"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\", \"f23\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"No crash or impact is visible between 16.0s and 23.5s; the footage shows normal highway driving after the initial collision.\",\n      \"evidence_frame_ids\": [\"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\", \"f23\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 11.5,
+              "f1": 12.0,
+              "f2": 12.5,
+              "f3": 13.0,
+              "f4": 13.5,
+              "f5": 14.0,
+              "f6": 14.5,
+              "f7": 15.0,
+              "f8": 15.5,
+              "f9": 16.0,
+              "f10": 16.5,
+              "f11": 17.0,
+              "f12": 17.5,
+              "f13": 18.5,
+              "f14": 19.0,
+              "f15": 19.5,
+              "f16": 20.0,
+              "f17": 20.5,
+              "f18": 21.0,
+              "f19": 22.0,
+              "f20": 22.5,
+              "f21": 23.0,
+              "f22": 23.5,
+              "f23": 25.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 13.5,
+                "t_end": 15.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 13.5,
+                "t_end": 14.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 16.0,
+                "t_end": 23.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"CarAccident\",\n      \"t_start\": 13.5,\n      \"t_end\": 15.5,\n      \"confidence\": 1.0,\n      \"description\": \"The dashcam vehicle collides with a large white bus at ~13.5s, causing immediate severe radial cracking of the windshield visible from f4 onward.\",\n      \"reason\": \"f3 shows the bus directly ahead and extremely close; f4 shows the instant of impact with full windshield fracture pattern; f5–f13 show sustained shattered windshield with bus still in proximity—consistent with a single frontal collision event. Candidates 0 and 1 both describe the same crash interval and are merged.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"No crash or impact is visible between 16.0s and 23.5s; frames f14–f23 show normal highway driving with intact road and traffic, and no secondary collision evidence. The category 'CarAccident' is unsupported for this interval.\",\n      \"evidence_frame_ids\": [\"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\", \"f23\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1
+              ],
+              "category": "CarAccident",
+              "t_start": 13.5,
+              "t_end": 15.5,
+              "confidence": 1.0,
+              "description": "The dashcam vehicle collides with a large white bus at ~13.5s, causing immediate severe radial cracking of the windshield visible from f4 onward.",
+              "reason": "f3 shows the bus directly ahead and extremely close; f4 shows the instant of impact with full windshield fracture pattern; f5–f13 show sustained shattered windshield with bus still in proximity—consistent with a single frontal collision event. Candidates 0 and 1 both describe the same crash interval and are merged.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "No crash or impact is visible between 16.0s and 23.5s; frames f14–f23 show normal highway driving with intact road and traffic, and no secondary collision evidence. The category 'CarAccident' is unsupported for this interval.",
+              "evidence_frame_ids": [
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22",
+                "f23"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 29.0,
+              "f1": 29.5,
+              "f2": 30.0,
+              "f3": 30.5,
+              "f4": 31.0,
+              "f5": 31.5,
+              "f6": 32.0,
+              "f7": 32.5,
+              "f8": 33.0,
+              "f9": 33.5,
+              "f10": 34.0,
+              "f11": 34.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 31.0,
+                "t_end": 33.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"CarAccident\",\n      \"t_start\": 31.0,\n      \"t_end\": 33.0,\n      \"confidence\": 0.95,\n      \"description\": \"A red truck veers left, collides with the left guardrail, and kicks up dust/debris while rotating slightly; a smaller vehicle ahead appears to swerve right in response.\",\n      \"reason\": \"Frames f4–f8 show the red truck losing lane position, impacting the barrier (visible deformation/dust at f5–f8), consistent with a crash; no evidence of fighting, shooting, riot, abuse, or explosion.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                3
+              ],
+              "category": "CarAccident",
+              "t_start": 31.0,
+              "t_end": 33.0,
+              "confidence": 0.95,
+              "description": "A red truck veers left, collides with the left guardrail, and kicks up dust/debris while rotating slightly; a smaller vehicle ahead appears to swerve right in response.",
+              "reason": "Frames f4–f8 show the red truck losing lane position, impacting the barrier (visible deformation/dust at f5–f8), consistent with a crash; no evidence of fighting, shooting, riot, abuse, or explosion.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 36.5,
+              "f1": 37.0,
+              "f2": 37.5,
+              "f3": 38.0,
+              "f4": 38.5,
+              "f5": 39.0,
+              "f6": 39.5,
+              "f7": 40.0,
+              "f8": 40.5,
+              "f9": 41.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 38.5,
+                "t_end": 39.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"No crash or collision is visible in frames f4–f6 (38.5–39.5 s); vehicles maintain separation and normal motion on snowy road, with no deformation, skid marks, or sudden deceleration.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 4,
+              "reason": "No crash or collision is visible in frames f4–f6 (38.5–39.5 s); vehicles maintain separation and normal motion on snowy road, with no deformation, skid marks, or sudden deceleration.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 62.5,
+              "f1": 63.0,
+              "f2": 63.5,
+              "f3": 64.0,
+              "f4": 64.5,
+              "f5": 65.0,
+              "f6": 65.5,
+              "f7": 66.0,
+              "f8": 66.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 5,
+                "t_start": 64.5,
+                "t_end": 65.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"No collision or impact is visible between frames f4 (64.5 s) and f5 (65.0 s); the white van’s driver-side door opens while it is still moving, but no crash occurs with the blue truck or any other vehicle.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 5,
+              "reason": "No collision or impact is visible between frames f4 (64.5 s) and f5 (65.0 s); the white van’s driver-side door opens while it is still moving, but no crash occurs with the blue truck or any other vehicle.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 4,
+        "source_ids": [
+          6
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 65.5,
+              "f1": 66.0,
+              "f2": 66.5,
+              "f3": 67.0,
+              "f4": 67.5,
+              "f5": 68.0,
+              "f6": 68.5,
+              "f7": 69.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 6,
+                "t_start": 67.5,
+                "t_end": 68.0,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"At f4 (67.5 s), a person exits the white van and stands beside it; at f5 (68.0 s), the person is still standing near the van with no visible physical contact or aggression toward anyone. No mutual combat, weapon use, or victimization is observed.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 6,
+              "reason": "At f4 (67.5 s), a person exits the white van and stands beside it; at f5 (68.0 s), the person is still standing near the van with no visible physical contact or aggression toward anyone. No mutual combat, weapon use, or victimization is observed.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

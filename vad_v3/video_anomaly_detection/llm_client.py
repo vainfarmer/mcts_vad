@@ -88,6 +88,7 @@ class DashScopeLLMClient:
         as_video: bool = False,
         video_fps: float = 2.0,
         temperature_override: Optional[float] = None,
+        image_labels: Optional[list[str]] = None,
     ) -> str:
         """调用 VLM 生成回复（pipeline 统一 LLM 接口）。
 
@@ -105,6 +106,9 @@ class DashScopeLLMClient:
         selected = None
 
         if images is not None and len(images) > 0:
+            if image_labels is not None and (as_video or len(image_labels) != len(images)
+                                            or len(images) > self.max_frames):
+                raise ValueError('Labeled images require a one-to-one, unsampled image sequence')
             selected = self._sample_frames(images, self.max_frames)
 
             if as_video and len(selected) > 1:
@@ -121,7 +125,9 @@ class DashScopeLLMClient:
                     "fps": video_fps,
                 })
             else:
-                for img_array in selected:
+                for image_index, img_array in enumerate(selected):
+                    if image_labels is not None:
+                        content.append({'type':'text','text':image_labels[image_index]})
                     img = Image.fromarray(img_array)
                     buffered = io.BytesIO()
                     img.save(buffered, format="JPEG", quality=80)

@@ -1,0 +1,551 @@
+{
+  "events": [
+    {
+      "t_start": 7.0,
+      "t_end": 7.5,
+      "anomaly_type": "Shooting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A figure in dark clothing aims and fires a handgun, producing a bright muzzle flash and sparks against a glass surface.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          7.0,
+          7.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "Frame f4 shows a person holding a firearm in an aiming posture; frame f5 shows a sudden bright flash with sparks erupting from the same location, consistent with a gunshot impact on a hard surface (e.g., glass or metal cabinet). This satisfies the definition of 'Shooting' as visible shooting (not just possession).",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 10.5,
+      "t_end": 11.0,
+      "anomaly_type": "Shooting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A man in profile aims a handgun forward; muzzle flash is visible at f5 (11.0s), indicating discharge.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          10.5,
+          11.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "f5 shows a clear muzzle flash and the gun pointed forward; f4 (10.5s) shows motion blur consistent with rapid aiming just before firing. This satisfies the 'Shooting' definition (visible shooting).",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 14.0,
+      "t_end": 14.5,
+      "anomaly_type": "Shooting",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "A man holds a handgun while shouting, and a fresh bullet hole appears on the wall beside him between f11 and f12.",
+      "source_candidate_ids": [
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 1,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          14.0,
+          14.5
+        ],
+        "evidence_frame_ids": [
+          "f11",
+          "f12"
+        ],
+        "reason": "f11 (14.0s) shows the man holding the gun and mouth open mid-shout; f12 (14.5s) shows the same frame but with a newly formed dark impact mark (bullet hole) on the wall to his left—indicating a shot was fired in that interval. No other cause for the hole is visible.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 102.0,
+      "t_end": 103.5,
+      "anomaly_type": "Shooting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A bald man crouches near a window, holding a handgun; a bright orange muzzle flash is visible at the barrel tip in frames f4 and f5, indicating discharge.",
+      "source_candidate_ids": [
+        8
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 4,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          102.0,
+          102.5,
+          103.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "Frames f4 (102.0) and f5 (102.5) show unambiguous muzzle flash coincident with gun orientation; f6 (103.0) still shows glow but no clear flash; f7 (103.5) shows no flash—thus confirmed shooting occurs within [102.0, 103.5]. Candidate 8’s interval matches this evidence exactly.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 10,
+      "output_count": 4,
+      "groups": 5,
+      "rejected": 6,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 5.0,
+              "f1": 5.5,
+              "f2": 6.0,
+              "f3": 6.5,
+              "f4": 7.0,
+              "f5": 7.5,
+              "f6": 8.0,
+              "f7": 8.5,
+              "f8": 9.0,
+              "f9": 9.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 7.0,
+                "t_end": 7.541667,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Shooting\",\n      \"t_start\": 7.0,\n      \"t_end\": 7.5,\n      \"confidence\": 0.95,\n      \"description\": \"A figure in dark clothing aims and fires a handgun, producing a bright muzzle flash and sparks against a glass surface.\",\n      \"reason\": \"Frame f4 shows a person holding a firearm in an aiming posture; frame f5 shows a sudden bright flash with sparks erupting from the same location, consistent with a gunshot impact on a hard surface (e.g., glass or metal cabinet). This satisfies the definition of 'Shooting' as visible shooting (not just possession).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Shooting",
+              "t_start": 7.0,
+              "t_end": 7.5,
+              "confidence": 0.95,
+              "description": "A figure in dark clothing aims and fires a handgun, producing a bright muzzle flash and sparks against a glass surface.",
+              "reason": "Frame f4 shows a person holding a firearm in an aiming posture; frame f5 shows a sudden bright flash with sparks erupting from the same location, consistent with a gunshot impact on a hard surface (e.g., glass or metal cabinet). This satisfies the definition of 'Shooting' as visible shooting (not just possession).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 8.5,
+              "f1": 9.0,
+              "f2": 9.5,
+              "f3": 10.0,
+              "f4": 10.5,
+              "f5": 11.0,
+              "f6": 11.5,
+              "f7": 12.0,
+              "f8": 12.5,
+              "f9": 13.0,
+              "f10": 13.5,
+              "f11": 14.0,
+              "f12": 14.5,
+              "f13": 15.0,
+              "f14": 15.5,
+              "f15": 16.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 10.5,
+                "t_end": 11.041667,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 11.5,
+                "t_end": 13.1,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 12.0,
+                "t_end": 14.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 14.0,
+                "t_end": 14.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Shooting\",\n      \"t_start\": 10.5,\n      \"t_end\": 11.0,\n      \"confidence\": 0.9,\n      \"description\": \"A man in profile aims a handgun forward; muzzle flash is visible at f5 (11.0s), indicating discharge.\",\n      \"reason\": \"f5 shows a clear muzzle flash and the gun pointed forward; f4 (10.5s) shows motion blur consistent with rapid aiming just before firing. This satisfies the 'Shooting' definition (visible shooting).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    },\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"Shooting\",\n      \"t_start\": 14.0,\n      \"t_end\": 14.5,\n      \"confidence\": 0.85,\n      \"description\": \"A man holds a handgun while shouting, and a fresh bullet hole appears on the wall beside him between f11 and f12.\",\n      \"reason\": \"f11 (14.0s) shows the man holding the gun and mouth open mid-shout; f12 (14.5s) shows the same frame but with a newly formed dark impact mark (bullet hole) on the wall to his left—indicating a shot was fired in that interval. No other cause for the hole is visible.\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Frames f6–f10 show scattered debris and smoke on a surface, but no blast wave, fireball, or structural rupture; this is consistent with shattering glass or falling debris after impact, not an explosion.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"No gun is visible in frames f7–f10 (12.0–13.5s); the debris and smoke are static/lingering, and no muzzle flash or shooter appears—thus no shooting occurs in this interval.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\", \"f10\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "Shooting",
+              "t_start": 10.5,
+              "t_end": 11.0,
+              "confidence": 0.9,
+              "description": "A man in profile aims a handgun forward; muzzle flash is visible at f5 (11.0s), indicating discharge.",
+              "reason": "f5 shows a clear muzzle flash and the gun pointed forward; f4 (10.5s) shows motion blur consistent with rapid aiming just before firing. This satisfies the 'Shooting' definition (visible shooting).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                4
+              ],
+              "category": "Shooting",
+              "t_start": 14.0,
+              "t_end": 14.5,
+              "confidence": 0.85,
+              "description": "A man holds a handgun while shouting, and a fresh bullet hole appears on the wall beside him between f11 and f12.",
+              "reason": "f11 (14.0s) shows the man holding the gun and mouth open mid-shout; f12 (14.5s) shows the same frame but with a newly formed dark impact mark (bullet hole) on the wall to his left—indicating a shot was fired in that interval. No other cause for the hole is visible.",
+              "evidence_frame_ids": [
+                "f11",
+                "f12"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "Frames f6–f10 show scattered debris and smoke on a surface, but no blast wave, fireball, or structural rupture; this is consistent with shattering glass or falling debris after impact, not an explosion.",
+              "evidence_frame_ids": [
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10"
+              ]
+            },
+            {
+              "candidate_id": 3,
+              "reason": "No gun is visible in frames f7–f10 (12.0–13.5s); the debris and smoke are static/lingering, and no muzzle flash or shooter appears—thus no shooting occurs in this interval.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8",
+                "f9",
+                "f10"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 14.0,
+              "f1": 14.5,
+              "f2": 15.0,
+              "f3": 15.5,
+              "f4": 16.0,
+              "f5": 16.5,
+              "f6": 17.0,
+              "f7": 17.5,
+              "f8": 18.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 5,
+                "t_start": 16.0,
+                "t_end": 16.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"No visible muzzle flash, recoil, or bullet impact occurs between f4 (16.0s) and f5 (16.5s); the man’s mouth is open as in shouting, not firing, and the gun remains stationary in hand.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 5,
+              "reason": "No visible muzzle flash, recoil, or bullet impact occurs between f4 (16.0s) and f5 (16.5s); the man’s mouth is open as in shouting, not firing, and the gun remains stationary in hand.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          6
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 77.0,
+              "f1": 77.5,
+              "f2": 78.0,
+              "f3": 78.5,
+              "f4": 79.0,
+              "f5": 79.5,
+              "f6": 80.0,
+              "f7": 80.5,
+              "f8": 81.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 6,
+                "t_start": 79.0,
+                "t_end": 79.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"No visible muzzle flash, recoil, or bullet impact; the gun is held steadily against the woman’s head across frames f4–f8 with no indication of discharge.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 6,
+              "reason": "No visible muzzle flash, recoil, or bullet impact; the gun is held steadily against the woman’s head across frames f4–f8 with no indication of discharge.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 4,
+        "source_ids": [
+          7,
+          8,
+          9
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 100.0,
+              "f1": 100.5,
+              "f2": 101.0,
+              "f3": 101.5,
+              "f4": 102.0,
+              "f5": 102.5,
+              "f6": 103.0,
+              "f7": 103.5,
+              "f8": 104.0,
+              "f9": 104.5,
+              "f10": 105.0,
+              "f11": 105.5,
+              "f12": 106.0,
+              "f13": 106.5,
+              "f14": 107.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 7,
+                "t_start": 102.0,
+                "t_end": 104.9,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 102.0,
+                "t_end": 103.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 9,
+                "t_start": 102.0,
+                "t_end": 105.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [8, 9],\n      \"category\": \"Shooting\",\n      \"t_start\": 102.0,\n      \"t_end\": 105.0,\n      \"confidence\": 0.8,\n      \"description\": \"A bald man crouches near a window, holding a handgun with both hands, aiming forward; muzzle flash is visible in f4 and f5, consistent with firing.\",\n      \"reason\": \"Frames f4–f6 show a clear muzzle flash (bright orange burst at barrel tip) coinciding with the gun’s orientation toward off-screen space; this satisfies the definition of 'Shooting' (visible shooting). Candidate 7 (Fighting) is unsupported—no second person or physical contact is visible.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"No second person or physical engagement is visible; the man is alone, crouching and aiming a weapon, not fighting.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 9,\n      \"reason\": \"While shooting is evident from f4–f6, frames f7–f10 show the man still holding the gun but no further muzzle flash; the candidate’s end time (105.5) extends beyond confirmed firing evidence, so full interval cannot be verified.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 100.0,
+              "f1": 100.5,
+              "f2": 101.0,
+              "f3": 101.5,
+              "f4": 102.0,
+              "f5": 102.5,
+              "f6": 103.0,
+              "f7": 103.5,
+              "f8": 104.0,
+              "f9": 104.5,
+              "f10": 105.0,
+              "f11": 105.5,
+              "f12": 106.0,
+              "f13": 106.5,
+              "f14": 107.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 7,
+                "t_start": 102.0,
+                "t_end": 104.9,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 102.0,
+                "t_end": 103.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 9,
+                "t_start": 102.0,
+                "t_end": 105.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [8],\n      \"category\": \"Shooting\",\n      \"t_start\": 102.0,\n      \"t_end\": 103.5,\n      \"confidence\": 0.9,\n      \"description\": \"A bald man crouches near a window, holding a handgun; a bright orange muzzle flash is visible at the barrel tip in frames f4 and f5, indicating discharge.\",\n      \"reason\": \"Frames f4 (102.0) and f5 (102.5) show unambiguous muzzle flash coincident with gun orientation; f6 (103.0) still shows glow but no clear flash; f7 (103.5) shows no flash—thus confirmed shooting occurs within [102.0, 103.5]. Candidate 8’s interval matches this evidence exactly.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"No second person, physical contact, or mutual combat is visible in any frame; the man is alone and weapon-focused, so 'Fighting' is contradicted.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    },\n    {\n      \"candidate_id\": 9,\n      \"reason\": \"Candidate 9 claims shooting from 102.0 to 105.5, but muzzle flash is only visible in f4–f5 (102.0–102.5); frames f6–f10 (103.0–105.0) show the man holding the gun without flash or recoil, so extended interval lacks evidence and violates 'Shooting' definition (requires visible shooting).\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                8
+              ],
+              "category": "Shooting",
+              "t_start": 102.0,
+              "t_end": 103.5,
+              "confidence": 0.9,
+              "description": "A bald man crouches near a window, holding a handgun; a bright orange muzzle flash is visible at the barrel tip in frames f4 and f5, indicating discharge.",
+              "reason": "Frames f4 (102.0) and f5 (102.5) show unambiguous muzzle flash coincident with gun orientation; f6 (103.0) still shows glow but no clear flash; f7 (103.5) shows no flash—thus confirmed shooting occurs within [102.0, 103.5]. Candidate 8’s interval matches this evidence exactly.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 7,
+              "reason": "No second person, physical contact, or mutual combat is visible in any frame; the man is alone and weapon-focused, so 'Fighting' is contradicted.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10"
+              ]
+            },
+            {
+              "candidate_id": 9,
+              "reason": "Candidate 9 claims shooting from 102.0 to 105.5, but muzzle flash is only visible in f4–f5 (102.0–102.5); frames f6–f10 (103.0–105.0) show the man holding the gun without flash or recoil, so extended interval lacks evidence and violates 'Shooting' definition (requires visible shooting).",
+              "evidence_frame_ids": [
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

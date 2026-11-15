@@ -1,0 +1,297 @@
+{
+  "events": [
+    {
+      "t_start": 137.5,
+      "t_end": 147.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "Multiple players from PIT and NYI engage in mutual physical combat near the net, including punching, grappling, and shoving, with referees intervening throughout.",
+      "source_candidate_ids": [
+        0,
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          137.5,
+          138.0,
+          139.0,
+          139.5,
+          140.0,
+          140.5,
+          141.0,
+          141.5,
+          142.5,
+          143.0,
+          143.5,
+          144.0,
+          144.5,
+          145.0,
+          146.0,
+          146.5,
+          147.0,
+          147.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18",
+          "f19",
+          "f20",
+          "f21"
+        ],
+        "reason": "Frames f4–f21 show sustained, reciprocal physical engagement: players exchange punches (e.g., f9–f11), grapple (f6–f8, f12–f14), and are separated by officials; this meets the definition of Fighting (mutual physical combat). Candidate 0 and 2 describe overlapping intervals of the same continuous scuffle; merged into one event.",
+        "source_categories": [
+          "Fighting",
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 208.5,
+      "t_end": 210.0,
+      "anomaly_type": "Fighting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "Player #71 (Pittsburgh, yellow/black) and a referee are in close contact; the player appears to be restrained or held back by the referee after an on-ice altercation, with other players converging and raising arms in reaction.",
+      "source_candidate_ids": [
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          208.5,
+          209.0,
+          209.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "Frames f4–f6 show escalating physical interaction near the net: at f4, players converge and raise sticks/arms; at f5, #71 is face-to-face with referee, hands engaged; at f6, referee holds #71’s arm while he holds his stick—consistent with post-fight restraint, not mutual combat at this exact moment, but the sequence from f3–f5 shows aggressive engagement preceding it. The candidate interval (208.5–210.0) aligns with visible physical confrontation and immediate aftermath, satisfying the definition of Fighting as mutual physical combat occurred just prior (evident in f3–f4), and the restraint in f5–f6 confirms the event boundary.",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 5,
+      "output_count": 2,
+      "groups": 2,
+      "rejected": 2,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 135.5,
+              "f1": 136.0,
+              "f2": 136.5,
+              "f3": 137.0,
+              "f4": 137.5,
+              "f5": 138.0,
+              "f6": 139.0,
+              "f7": 139.5,
+              "f8": 140.0,
+              "f9": 140.5,
+              "f10": 141.0,
+              "f11": 141.5,
+              "f12": 142.5,
+              "f13": 143.0,
+              "f14": 143.5,
+              "f15": 144.0,
+              "f16": 144.5,
+              "f17": 145.0,
+              "f18": 146.0,
+              "f19": 146.5,
+              "f20": 147.0,
+              "f21": 147.5,
+              "f22": 148.0,
+              "f23": 149.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 137.5,
+                "t_end": 142.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 138.5,
+                "t_end": 139.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 140.0,
+                "t_end": 147.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 142.0,
+                "t_end": 143.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 2],\n      \"category\": \"Fighting\",\n      \"t_start\": 137.5,\n      \"t_end\": 147.5,\n      \"confidence\": 0.95,\n      \"description\": \"Multiple players from PIT and NYI engage in mutual physical combat near the net, including punching, grappling, and shoving, with referees intervening throughout.\",\n      \"reason\": \"Frames f4–f21 show sustained, reciprocal physical engagement: players exchange punches (e.g., f9–f11), grapple (f6–f8, f12–f14), and are separated by officials; this meets the definition of Fighting (mutual physical combat). Candidate 0 and 2 describe overlapping intervals of the same continuous scuffle; merged into one event.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"No evidence of aggression against a helpless victim; all involved players are actively participating or being restrained by officials, not incapacitated or defenseless.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"The interaction at 142.0–143.0 is part of the ongoing mutual fight (e.g., f12–f13 show grappling and separation), not targeted abuse of a helpless individual.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                2
+              ],
+              "category": "Fighting",
+              "t_start": 137.5,
+              "t_end": 147.5,
+              "confidence": 0.95,
+              "description": "Multiple players from PIT and NYI engage in mutual physical combat near the net, including punching, grappling, and shoving, with referees intervening throughout.",
+              "reason": "Frames f4–f21 show sustained, reciprocal physical engagement: players exchange punches (e.g., f9–f11), grapple (f6–f8, f12–f14), and are separated by officials; this meets the definition of Fighting (mutual physical combat). Candidate 0 and 2 describe overlapping intervals of the same continuous scuffle; merged into one event.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "No evidence of aggression against a helpless victim; all involved players are actively participating or being restrained by officials, not incapacitated or defenseless.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8",
+                "f9"
+              ]
+            },
+            {
+              "candidate_id": 3,
+              "reason": "The interaction at 142.0–143.0 is part of the ongoing mutual fight (e.g., f12–f13 show grappling and separation), not targeted abuse of a helpless individual.",
+              "evidence_frame_ids": [
+                "f12",
+                "f13"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 206.5,
+              "f1": 207.0,
+              "f2": 207.5,
+              "f3": 208.0,
+              "f4": 208.5,
+              "f5": 209.0,
+              "f6": 209.5,
+              "f7": 210.0,
+              "f8": 210.5,
+              "f9": 211.0,
+              "f10": 211.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 208.5,
+                "t_end": 210.0,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"Fighting\",\n      \"t_start\": 208.5,\n      \"t_end\": 210.0,\n      \"confidence\": 0.95,\n      \"description\": \"Player #71 (Pittsburgh, yellow/black) and a referee are in close contact; the player appears to be restrained or held back by the referee after an on-ice altercation, with other players converging and raising arms in reaction.\",\n      \"reason\": \"Frames f4–f6 show escalating physical interaction near the net: at f4, players converge and raise sticks/arms; at f5, #71 is face-to-face with referee, hands engaged; at f6, referee holds #71’s arm while he holds his stick—consistent with post-fight restraint, not mutual combat at this exact moment, but the sequence from f3–f5 shows aggressive engagement preceding it. The candidate interval (208.5–210.0) aligns with visible physical confrontation and immediate aftermath, satisfying the definition of Fighting as mutual physical combat occurred just prior (evident in f3–f4), and the restraint in f5–f6 confirms the event boundary.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                4
+              ],
+              "category": "Fighting",
+              "t_start": 208.5,
+              "t_end": 210.0,
+              "confidence": 0.95,
+              "description": "Player #71 (Pittsburgh, yellow/black) and a referee are in close contact; the player appears to be restrained or held back by the referee after an on-ice altercation, with other players converging and raising arms in reaction.",
+              "reason": "Frames f4–f6 show escalating physical interaction near the net: at f4, players converge and raise sticks/arms; at f5, #71 is face-to-face with referee, hands engaged; at f6, referee holds #71’s arm while he holds his stick—consistent with post-fight restraint, not mutual combat at this exact moment, but the sequence from f3–f5 shows aggressive engagement preceding it. The candidate interval (208.5–210.0) aligns with visible physical confrontation and immediate aftermath, satisfying the definition of Fighting as mutual physical combat occurred just prior (evident in f3–f4), and the restraint in f5–f6 confirms the event boundary.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

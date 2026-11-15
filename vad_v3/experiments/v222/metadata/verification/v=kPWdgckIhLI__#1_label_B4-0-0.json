@@ -1,0 +1,398 @@
+{
+  "events": [
+    {
+      "t_start": 8.5,
+      "t_end": 18.0,
+      "anomaly_type": "Fighting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A group of individuals converges on and physically engages a person near a bicycle; the person is on the ground while others strike, hold, or grapple with them across multiple frames.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          8.5,
+          9.0,
+          10.5,
+          11.5,
+          12.5,
+          13.0,
+          13.5,
+          15.5,
+          16.0,
+          17.0,
+          18.0
+        ],
+        "evidence_frame_ids": [
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17"
+        ],
+        "reason": "Frames f7–f17 show sustained physical contact involving multiple participants actively engaging one individual who is on the ground—this satisfies 'Fighting' (physical combat, whether mutual or one-sided). The event is localized, not collective unrest, so not Riot; no evidence confirms the victim was helpless *before* or *throughout* the engagement (e.g., unconscious, restrained without resistance), so Abuse is unsupported.",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 7,
+      "output_count": 1,
+      "groups": 1,
+      "rejected": 6,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 1.0,
+              "f2": 2.0,
+              "f3": 3.0,
+              "f4": 5.0,
+              "f5": 6.0,
+              "f6": 7.0,
+              "f7": 8.5,
+              "f8": 9.0,
+              "f9": 10.5,
+              "f10": 11.5,
+              "f11": 12.5,
+              "f12": 13.0,
+              "f13": 13.5,
+              "f14": 15.5,
+              "f15": 16.0,
+              "f16": 17.0,
+              "f17": 18.0,
+              "f18": 19.0,
+              "f19": 20.0,
+              "f20": 21.0,
+              "f21": 22.0,
+              "f22": 22.5,
+              "f23": 24.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 1.5,
+                "t_end": 17.0,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 8.5,
+                "t_end": 18.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 13.9,
+                "t_end": 18.1,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 15.0,
+                "t_end": 21.2,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 16.5,
+                "t_end": 21.2,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 20.5,
+                "t_end": 22.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 22.0,
+                "t_end": 23.0,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1, 2, 4, 5],\n      \"category\": \"Fighting\",\n      \"t_start\": 8.5,\n      \"t_end\": 18.0,\n      \"confidence\": 0.9,\n      \"description\": \"Multiple individuals in dark clothing converge on and physically engage a person on the ground near a bicycle; others stand nearby observing or intervening.\",\n      \"reason\": \"Frames f7–f17 show a group surrounding and striking/holding down one individual who is on the ground—this meets the definition of Fighting (mutual or one-sided physical combat), not Abuse (no clear evidence the victim is helpless *before* engagement, and multiple participants are actively involved). The event is localized and not collective unrest, so not Riot.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No sustained collective violent unrest; initial movement (f1–f5) appears to be people running away from or toward an incident, not rioting behavior (e.g., property destruction, large-scale confrontation).\",\n      \"evidence_frame_ids\": [\"f1\", \"f2\", \"f3\", \"f4\", \"f5\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"The activity from 15.0–21.2 is the same localized fighting event already captured in the accepted Fighting event; no broader riotous behavior is visible (e.g., crowds attacking institutions, widespread violence).\",\n      \"evidence_frame_ids\": [\"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\"]\n    },\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"Frame f22 shows a single officer running past the camera; no crowd, violence, or unrest is visible—insufficient for Riot.\",\n      \"evidence_frame_ids\": [\"f22\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"While fighting occurs around t=20.5–22.0 (f20–f21), it is part of the ongoing Fighting event; no distinct evidence of Abuse (i.e., targeting a clearly helpless/unresisting person) beyond the general combat context.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 1.0,
+              "f2": 2.0,
+              "f3": 3.0,
+              "f4": 5.0,
+              "f5": 6.0,
+              "f6": 7.0,
+              "f7": 8.5,
+              "f8": 9.0,
+              "f9": 10.5,
+              "f10": 11.5,
+              "f11": 12.5,
+              "f12": 13.0,
+              "f13": 13.5,
+              "f14": 15.5,
+              "f15": 16.0,
+              "f16": 17.0,
+              "f17": 18.0,
+              "f18": 19.0,
+              "f19": 20.0,
+              "f20": 21.0,
+              "f21": 22.0,
+              "f22": 22.5,
+              "f23": 24.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 1.5,
+                "t_end": 17.0,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 8.5,
+                "t_end": 18.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 13.9,
+                "t_end": 18.1,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 15.0,
+                "t_end": 21.2,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 16.5,
+                "t_end": 21.2,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 20.5,
+                "t_end": 22.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 22.0,
+                "t_end": 23.0,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1, 2, 4],\n      \"category\": \"Fighting\",\n      \"t_start\": 8.5,\n      \"t_end\": 18.0,\n      \"confidence\": 0.9,\n      \"description\": \"A group of individuals in dark clothing surrounds and physically engages a person on the ground near a bicycle; some strike or hold the individual while others observe or intervene.\",\n      \"reason\": \"Frames f7–f17 show sustained physical contact: people converge, grapple, and one person is on the ground being acted upon by multiple others—this satisfies 'Fighting' (mutual or one-sided physical combat). It is localized, not collective unrest, so not Riot; no evidence the victim was helpless *before* engagement or unable to resist, so not Abuse.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Frames f1–f5 show people running across the street, but no property destruction, large-scale confrontation, or coordinated violent action; behavior is consistent with dispersal or pursuit, not Riot.\",\n      \"evidence_frame_ids\": [\"f1\", \"f2\", \"f3\", \"f4\", \"f5\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"The activity from t=15.0–21.2 (f14–f21) is a continuation of the same localized fighting event (f7–f17), not broader collective violence; no riot characteristics visible.\",\n      \"evidence_frame_ids\": [\"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\"]\n    },\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"Frames f20–f21 show the same ongoing fighting (group around grounded person); no distinct evidence of Abuse (e.g., victim clearly helpless/unresisting *prior* to assault or after cessation of resistance).\",\n      \"evidence_frame_ids\": [\"f20\", \"f21\"]\n    },\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"Frame f22 shows a single officer running past the camera with no crowd, violence, or unrest; insufficient for Riot.\",\n      \"evidence_frame_ids\": [\"f22\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Candidate claims Abuse at t=13.9–18.1, but frames f14–f17 show active physical engagement (multiple participants striking/holding), which aligns with Fighting; however, if the grounded person is unable to defend themselves during part of this interval, Abuse could apply—but visibility is insufficient to confirm helplessness vs. active struggle.\"\n    },\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"Candidate claims Abuse at t=16.5–21.2, overlapping with ongoing Fighting (f17–f21); without clear evidence the victim is defenseless (e.g., unconscious, restrained without resistance), Abuse cannot be confirmed—remains uncertain.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 1.0,
+              "f2": 2.0,
+              "f3": 3.0,
+              "f4": 5.0,
+              "f5": 6.0,
+              "f6": 7.0,
+              "f7": 8.5,
+              "f8": 9.0,
+              "f9": 10.5,
+              "f10": 11.5,
+              "f11": 12.5,
+              "f12": 13.0,
+              "f13": 13.5,
+              "f14": 15.5,
+              "f15": 16.0,
+              "f16": 17.0,
+              "f17": 18.0,
+              "f18": 19.0,
+              "f19": 20.0,
+              "f20": 21.0,
+              "f21": 22.0,
+              "f22": 22.5,
+              "f23": 24.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 1.5,
+                "t_end": 17.0,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 8.5,
+                "t_end": 18.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 13.9,
+                "t_end": 18.1,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 15.0,
+                "t_end": 21.2,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 16.5,
+                "t_end": 21.2,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 20.5,
+                "t_end": 22.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 22.0,
+                "t_end": 23.0,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Fighting\",\n      \"t_start\": 8.5,\n      \"t_end\": 18.0,\n      \"confidence\": 0.95,\n      \"description\": \"A group of individuals converges on and physically engages a person near a bicycle; the person is on the ground while others strike, hold, or grapple with them across multiple frames.\",\n      \"reason\": \"Frames f7–f17 show sustained physical contact involving multiple participants actively engaging one individual who is on the ground—this satisfies 'Fighting' (physical combat, whether mutual or one-sided). The event is localized, not collective unrest, so not Riot; no evidence confirms the victim was helpless *before* or *throughout* the engagement (e.g., unconscious, restrained without resistance), so Abuse is unsupported.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Frames f1–f5 show people running across the street, but no property destruction, coordinated violence, or large-scale confrontation—behavior consistent with dispersal or pursuit, not Riot.\",\n      \"evidence_frame_ids\": [\"f1\", \"f2\", \"f3\", \"f4\", \"f5\"]\n    },\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Candidate claims Abuse at t=13.9–18.1, but visible frames (f14–f17) show active physical engagement by multiple parties; no clear evidence the victim is helpless (e.g., unable to resist, restrained without struggle), so Abuse is contradicted by visible combat dynamics.\",\n      \"evidence_frame_ids\": [\"f14\", \"f15\", \"f16\", \"f17\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"Activity from t=15.0–21.2 (f14–f21) is a continuation of the same localized fighting event (f7–f17); no broader collective violent unrest (e.g., crowds attacking institutions, widespread destruction) is visible—thus not Riot.\",\n      \"evidence_frame_ids\": [\"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\"]\n    },\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"Candidate claims Abuse at t=16.5–21.2, but frames f17–f21 show ongoing physical engagement (group around grounded person), not a scenario where the victim is clearly helpless/unresisting; visible actions align with Fighting, not Abuse.\",\n      \"evidence_frame_ids\": [\"f17\", \"f18\", \"f19\", \"f20\", \"f21\"]\n    },\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"Frames f20–f21 depict the same fighting event (group surrounding grounded person); no distinct evidence of Abuse (e.g., victim immobile, unconscious, or being assaulted after cessation of resistance) is visible.\",\n      \"evidence_frame_ids\": [\"f20\", \"f21\"]\n    },\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"Frame f22 shows a single officer running past the camera with no crowd, violence, or unrest—insufficient for Riot.\",\n      \"evidence_frame_ids\": [\"f22\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "Fighting",
+              "t_start": 8.5,
+              "t_end": 18.0,
+              "confidence": 0.95,
+              "description": "A group of individuals converges on and physically engages a person near a bicycle; the person is on the ground while others strike, hold, or grapple with them across multiple frames.",
+              "reason": "Frames f7–f17 show sustained physical contact involving multiple participants actively engaging one individual who is on the ground—this satisfies 'Fighting' (physical combat, whether mutual or one-sided). The event is localized, not collective unrest, so not Riot; no evidence confirms the victim was helpless *before* or *throughout* the engagement (e.g., unconscious, restrained without resistance), so Abuse is unsupported.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "Frames f1–f5 show people running across the street, but no property destruction, coordinated violence, or large-scale confrontation—behavior consistent with dispersal or pursuit, not Riot.",
+              "evidence_frame_ids": [
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5"
+              ]
+            },
+            {
+              "candidate_id": 2,
+              "reason": "Candidate claims Abuse at t=13.9–18.1, but visible frames (f14–f17) show active physical engagement by multiple parties; no clear evidence the victim is helpless (e.g., unable to resist, restrained without struggle), so Abuse is contradicted by visible combat dynamics.",
+              "evidence_frame_ids": [
+                "f14",
+                "f15",
+                "f16",
+                "f17"
+              ]
+            },
+            {
+              "candidate_id": 3,
+              "reason": "Activity from t=15.0–21.2 (f14–f21) is a continuation of the same localized fighting event (f7–f17); no broader collective violent unrest (e.g., crowds attacking institutions, widespread destruction) is visible—thus not Riot.",
+              "evidence_frame_ids": [
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21"
+              ]
+            },
+            {
+              "candidate_id": 4,
+              "reason": "Candidate claims Abuse at t=16.5–21.2, but frames f17–f21 show ongoing physical engagement (group around grounded person), not a scenario where the victim is clearly helpless/unresisting; visible actions align with Fighting, not Abuse.",
+              "evidence_frame_ids": [
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21"
+              ]
+            },
+            {
+              "candidate_id": 5,
+              "reason": "Frames f20–f21 depict the same fighting event (group surrounding grounded person); no distinct evidence of Abuse (e.g., victim immobile, unconscious, or being assaulted after cessation of resistance) is visible.",
+              "evidence_frame_ids": [
+                "f20",
+                "f21"
+              ]
+            },
+            {
+              "candidate_id": 6,
+              "reason": "Frame f22 shows a single officer running past the camera with no crowd, violence, or unrest—insufficient for Riot.",
+              "evidence_frame_ids": [
+                "f22"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

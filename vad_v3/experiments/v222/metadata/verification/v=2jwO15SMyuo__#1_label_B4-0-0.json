@@ -1,0 +1,520 @@
+{
+  "events": [
+    {
+      "t_start": 3.0,
+      "t_end": 10.4,
+      "anomaly_type": "Fighting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "Multiple individuals engage in mutual physical combat around a fallen metal barrier; actions include grappling, pushing, and striking between 3.0–10.4 s.",
+      "source_candidate_ids": [
+        0,
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          3.0,
+          3.5,
+          4.0,
+          4.5,
+          5.0,
+          5.5,
+          6.0,
+          6.5,
+          7.5,
+          8.0,
+          8.5,
+          9.0,
+          9.5,
+          10.0,
+          10.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18"
+        ],
+        "reason": "Frames f4–f18 show at least two pairs of people actively exchanging blows and wrestling (e.g., f5–f7: two men grapple; f10–f12: group scuffle with visible strikes; f18: man kicks another near barrier). This meets the definition of Fighting (mutual physical combat), not Riot (no collective violent unrest or property destruction beyond incidental barrier displacement).",
+        "source_categories": [
+          "Fighting",
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 68.0,
+      "t_end": 75.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "Multiple individuals engage in physical combat near a black car and overturned metal cart; one person in orange hoodie is struck and pushed, others grapple and strike.",
+      "source_candidate_ids": [
+        5,
+        8
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          68.0,
+          68.5,
+          69.5,
+          70.0,
+          70.5,
+          71.0,
+          71.5,
+          72.0,
+          73.0,
+          73.5,
+          74.0,
+          74.5,
+          75.0,
+          75.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17"
+        ],
+        "reason": "Frames f4–f17 show repeated mutual physical contact (grappling, punching, shoving) between at least two pairs of individuals; no evidence of weapons or one-sided victimization; consistent with Fighting, not Abuse or Riot.",
+        "source_categories": [
+          "Fighting",
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 97.5,
+      "t_end": 98.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.7,
+      "coarse_score": 0.7,
+      "description": "Multiple individuals are engaged in close physical contact with rapid motion and apparent grappling; one person is pushed or thrown backward between f4 and f5, and a figure in white appears to be on top of another in f6.",
+      "source_candidate_ids": [
+        9,
+        10
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.7,
+        "evidence_times": [
+          97.5,
+          98.0,
+          98.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "The sequence from f4 to f6 shows dynamic, reciprocal physical engagement: arms interlocked, bodies colliding, and positional change consistent with mutual combat—not one-sided abuse. No clear victim/helplessness; the motion suggests active participation. Merged because both candidates describe overlapping frames of the same physical altercation.",
+        "source_categories": [
+          "Fighting",
+          "Abuse"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 11,
+      "output_count": 3,
+      "groups": 3,
+      "rejected": 5,
+      "uncertain": 0,
+      "merged_sources": 3,
+      "relabeled": 1,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 1.0,
+              "f1": 1.5,
+              "f2": 2.0,
+              "f3": 2.5,
+              "f4": 3.0,
+              "f5": 3.5,
+              "f6": 4.0,
+              "f7": 4.5,
+              "f8": 5.0,
+              "f9": 5.5,
+              "f10": 6.0,
+              "f11": 6.5,
+              "f12": 7.5,
+              "f13": 8.0,
+              "f14": 8.5,
+              "f15": 9.0,
+              "f16": 9.5,
+              "f17": 10.0,
+              "f18": 10.5,
+              "f19": 11.0,
+              "f20": 11.5,
+              "f21": 12.0,
+              "f22": 12.5,
+              "f23": 13.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 3.0,
+                "t_end": 10.4,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 3.0,
+                "t_end": 7.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 4.0,
+                "t_end": 12.0,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 5.0,
+                "t_end": 7.5,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 3],\n      \"category\": \"Fighting\",\n      \"t_start\": 3.0,\n      \"t_end\": 10.4,\n      \"confidence\": 0.9,\n      \"description\": \"Multiple individuals engage in mutual physical combat around a fallen metal barrier; actions include grappling, pushing, and striking between 3.0–10.4 s.\",\n      \"reason\": \"Frames f4–f18 show at least two pairs of people actively exchanging blows and wrestling (e.g., f5–f7: two men grapple; f10–f12: group scuffle with visible strikes; f18: man kicks another near barrier). This meets the definition of Fighting (mutual physical combat), not Riot (no collective violent unrest or property destruction beyond incidental barrier displacement).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"No evidence of collective violent unrest; only localized fighting among small groups, with most crowd passive or observing—does not satisfy Riot definition.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\"]\n    },\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Same as candidate 1; crowd remains largely non-participatory, no coordinated violence or widespread property destruction—Riot is unsupported.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                3
+              ],
+              "category": "Fighting",
+              "t_start": 3.0,
+              "t_end": 10.4,
+              "confidence": 0.9,
+              "description": "Multiple individuals engage in mutual physical combat around a fallen metal barrier; actions include grappling, pushing, and striking between 3.0–10.4 s.",
+              "reason": "Frames f4–f18 show at least two pairs of people actively exchanging blows and wrestling (e.g., f5–f7: two men grapple; f10–f12: group scuffle with visible strikes; f18: man kicks another near barrier). This meets the definition of Fighting (mutual physical combat), not Riot (no collective violent unrest or property destruction beyond incidental barrier displacement).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "No evidence of collective violent unrest; only localized fighting among small groups, with most crowd passive or observing—does not satisfy Riot definition.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12"
+              ]
+            },
+            {
+              "candidate_id": 2,
+              "reason": "Same as candidate 1; crowd remains largely non-participatory, no coordinated violence or widespread property destruction—Riot is unsupported.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 66.0,
+              "f1": 66.5,
+              "f2": 67.0,
+              "f3": 67.5,
+              "f4": 68.0,
+              "f5": 68.5,
+              "f6": 69.5,
+              "f7": 70.0,
+              "f8": 70.5,
+              "f9": 71.0,
+              "f10": 71.5,
+              "f11": 72.0,
+              "f12": 73.0,
+              "f13": 73.5,
+              "f14": 74.0,
+              "f15": 74.5,
+              "f16": 75.0,
+              "f17": 75.5,
+              "f18": 76.5,
+              "f19": 77.0,
+              "f20": 77.5,
+              "f21": 78.0,
+              "f22": 78.5,
+              "f23": 79.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 68.0,
+                "t_end": 75.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 68.7,
+                "t_end": 72.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 71.0,
+                "t_end": 78.0,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 74.0,
+                "t_end": 75.2,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 74.0,
+                "t_end": 75.5,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [5, 8],\n      \"category\": \"Fighting\",\n      \"t_start\": 68.0,\n      \"t_end\": 75.5,\n      \"confidence\": 0.9,\n      \"description\": \"Multiple individuals engage in physical combat near a black car and overturned metal cart; one person in orange hoodie is struck and pushed, others grapple and strike.\",\n      \"reason\": \"Frames f4–f17 show repeated mutual physical contact (grappling, punching, shoving) between at least two pairs of individuals; no evidence of weapons or one-sided victimization; consistent with Fighting, not Abuse or Riot.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"No collective violent unrest: the crowd remains largely passive observers; only localized physical altercations occur, insufficient for Riot.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f18\", \"f19\", \"f20\", \"f21\"]\n    },\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"Same as candidate 4: no widespread destruction, coordinated aggression, or mass disorder—only isolated fighting and bystanders.\",\n      \"evidence_frame_ids\": [\"f10\", \"f11\", \"f12\", \"f18\", \"f19\", \"f20\", \"f21\"]\n    },\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"The individual in orange is actively resisting and participating in the struggle (e.g., f13–f15), not helpless; thus not Abuse.\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\", \"f15\", \"f16\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                5,
+                8
+              ],
+              "category": "Fighting",
+              "t_start": 68.0,
+              "t_end": 75.5,
+              "confidence": 0.9,
+              "description": "Multiple individuals engage in physical combat near a black car and overturned metal cart; one person in orange hoodie is struck and pushed, others grapple and strike.",
+              "reason": "Frames f4–f17 show repeated mutual physical contact (grappling, punching, shoving) between at least two pairs of individuals; no evidence of weapons or one-sided victimization; consistent with Fighting, not Abuse or Riot.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 4,
+              "reason": "No collective violent unrest: the crowd remains largely passive observers; only localized physical altercations occur, insufficient for Riot.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f18",
+                "f19",
+                "f20",
+                "f21"
+              ]
+            },
+            {
+              "candidate_id": 6,
+              "reason": "Same as candidate 4: no widespread destruction, coordinated aggression, or mass disorder—only isolated fighting and bystanders.",
+              "evidence_frame_ids": [
+                "f10",
+                "f11",
+                "f12",
+                "f18",
+                "f19",
+                "f20",
+                "f21"
+              ]
+            },
+            {
+              "candidate_id": 7,
+              "reason": "The individual in orange is actively resisting and participating in the struggle (e.g., f13–f15), not helpless; thus not Abuse.",
+              "evidence_frame_ids": [
+                "f13",
+                "f14",
+                "f15",
+                "f16"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          9,
+          10
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 95.5,
+              "f1": 96.0,
+              "f2": 96.5,
+              "f3": 97.0,
+              "f4": 97.5,
+              "f5": 98.0,
+              "f6": 98.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 9,
+                "t_start": 97.5,
+                "t_end": 98.3,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 10,
+                "t_start": 98.0,
+                "t_end": 98.5,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [9, 10],\n      \"category\": \"Fighting\",\n      \"t_start\": 97.5,\n      \"t_end\": 98.5,\n      \"confidence\": 0.7,\n      \"description\": \"Multiple individuals are engaged in close physical contact with rapid motion and apparent grappling; one person is pushed or thrown backward between f4 and f5, and a figure in white appears to be on top of another in f6.\",\n      \"reason\": \"The sequence from f4 to f6 shows dynamic, reciprocal physical engagement: arms interlocked, bodies colliding, and positional change consistent with mutual combat—not one-sided abuse. No clear victim/helplessness; the motion suggests active participation. Merged because both candidates describe overlapping frames of the same physical altercation.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                9,
+                10
+              ],
+              "category": "Fighting",
+              "t_start": 97.5,
+              "t_end": 98.5,
+              "confidence": 0.7,
+              "description": "Multiple individuals are engaged in close physical contact with rapid motion and apparent grappling; one person is pushed or thrown backward between f4 and f5, and a figure in white appears to be on top of another in f6.",
+              "reason": "The sequence from f4 to f6 shows dynamic, reciprocal physical engagement: arms interlocked, bodies colliding, and positional change consistent with mutual combat—not one-sided abuse. No clear victim/helplessness; the motion suggests active participation. Merged because both candidates describe overlapping frames of the same physical altercation.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

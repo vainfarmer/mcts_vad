@@ -1,0 +1,262 @@
+{
+  "events": [
+    {
+      "t_start": 7.5,
+      "t_end": 12.0,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A sudden bright flash and fireball appear at ~7.5 s (f3), rapidly expanding into a large fire and dense black smoke plume by f4–f6, consistent with a single explosive event followed by burning debris.",
+      "source_candidate_ids": [
+        0,
+        1,
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          7.5,
+          8.0,
+          9.5,
+          10.5,
+          11.5,
+          12.0,
+          12.5,
+          13.5
+        ],
+        "evidence_frame_ids": [
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10"
+        ],
+        "reason": "Frames f3–f6 show the classic progression of an explosion: initial detonation (f3), fireball and fragmentation (f4), and rapid smoke column development (f5–f6); later frames (f7–f10) show only smoke dispersion, not new explosions. Candidates 0, 1, and 2 all describe overlapping intervals of this same event; merged accordingly.",
+        "source_categories": [
+          "Explosion",
+          "Explosion",
+          "Explosion"
+        ]
+      }
+    },
+    {
+      "t_start": 16.0,
+      "t_end": 26.0,
+      "anomaly_type": "Explosion",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "A second distinct explosion occurs around 16.0–17.0 s (f14–f15), producing a new fireball and rising smoke column separate from the first, visible through f23.",
+      "source_candidate_ids": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 1,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          17.0,
+          17.5,
+          18.0,
+          19.5,
+          20.5,
+          21.5,
+          22.0,
+          23.0,
+          24.0,
+          26.0
+        ],
+        "evidence_frame_ids": [
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18",
+          "f19",
+          "f20",
+          "f21",
+          "f22",
+          "f23"
+        ],
+        "reason": "At f14, a new bright flash and fireball appear in a different location (lower right) while the first smoke plume is still visible left/center; f15–f23 show sustained smoke from this second source, indicating a separate explosive event. Candidates 3–6 all refer to parts of this second event; merged into one interval covering its full visible duration.",
+        "source_categories": [
+          "Explosion",
+          "Explosion",
+          "Explosion",
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 7,
+      "output_count": 2,
+      "groups": 1,
+      "rejected": 0,
+      "uncertain": 0,
+      "merged_sources": 5,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 5.5,
+              "f1": 6.0,
+              "f2": 7.0,
+              "f3": 7.5,
+              "f4": 8.0,
+              "f5": 9.5,
+              "f6": 10.5,
+              "f7": 11.5,
+              "f8": 12.0,
+              "f9": 12.5,
+              "f10": 13.5,
+              "f11": 15.0,
+              "f12": 15.5,
+              "f13": 16.0,
+              "f14": 17.0,
+              "f15": 17.5,
+              "f16": 18.0,
+              "f17": 19.5,
+              "f18": 20.5,
+              "f19": 21.5,
+              "f20": 22.0,
+              "f21": 23.0,
+              "f22": 24.0,
+              "f23": 26.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 7.5,
+                "t_end": 7.541667,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 7.5,
+                "t_end": 12.0,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 8.0,
+                "t_end": 16.0,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 12.0,
+                "t_end": 19.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 16.0,
+                "t_end": 20.0,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 18.5,
+                "t_end": 26.0,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 20.0,
+                "t_end": 23.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1, 2],\n      \"category\": \"Explosion\",\n      \"t_start\": 7.5,\n      \"t_end\": 12.0,\n      \"confidence\": 0.95,\n      \"description\": \"A sudden bright flash and fireball appear at ~7.5 s (f3), rapidly expanding into a large fire and dense black smoke plume by f4–f6, consistent with a single explosive event followed by burning debris.\",\n      \"reason\": \"Frames f3–f6 show the classic progression of an explosion: initial detonation (f3), fireball and fragmentation (f4), and rapid smoke column development (f5–f6); later frames (f7–f10) show only smoke dispersion, not new explosions. Candidates 0, 1, and 2 all describe overlapping intervals of this same event; merged accordingly.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    },\n    {\n      \"source_candidate_ids\": [3, 4, 5, 6],\n      \"category\": \"Explosion\",\n      \"t_start\": 16.0,\n      \"t_end\": 26.0,\n      \"confidence\": 0.85,\n      \"description\": \"A second distinct explosion occurs around 16.0–17.0 s (f14–f15), producing a new fireball and rising smoke column separate from the first, visible through f23.\",\n      \"reason\": \"At f14, a new bright flash and fireball appear in a different location (lower right) while the first smoke plume is still visible left/center; f15–f23 show sustained smoke from this second source, indicating a separate explosive event. Candidates 3–6 all refer to parts of this second event; merged into one interval covering its full visible duration.\",\n      \"evidence_frame_ids\": [\"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\", \"f23\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1,
+                2
+              ],
+              "category": "Explosion",
+              "t_start": 7.5,
+              "t_end": 12.0,
+              "confidence": 0.95,
+              "description": "A sudden bright flash and fireball appear at ~7.5 s (f3), rapidly expanding into a large fire and dense black smoke plume by f4–f6, consistent with a single explosive event followed by burning debris.",
+              "reason": "Frames f3–f6 show the classic progression of an explosion: initial detonation (f3), fireball and fragmentation (f4), and rapid smoke column development (f5–f6); later frames (f7–f10) show only smoke dispersion, not new explosions. Candidates 0, 1, and 2 all describe overlapping intervals of this same event; merged accordingly.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                3,
+                4,
+                5,
+                6
+              ],
+              "category": "Explosion",
+              "t_start": 16.0,
+              "t_end": 26.0,
+              "confidence": 0.85,
+              "description": "A second distinct explosion occurs around 16.0–17.0 s (f14–f15), producing a new fireball and rising smoke column separate from the first, visible through f23.",
+              "reason": "At f14, a new bright flash and fireball appear in a different location (lower right) while the first smoke plume is still visible left/center; f15–f23 show sustained smoke from this second source, indicating a separate explosive event. Candidates 3–6 all refer to parts of this second event; merged into one interval covering its full visible duration.",
+              "evidence_frame_ids": [
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22",
+                "f23"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

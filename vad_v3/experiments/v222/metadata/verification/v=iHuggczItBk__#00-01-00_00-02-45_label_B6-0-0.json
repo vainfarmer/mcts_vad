@@ -1,0 +1,439 @@
+{
+  "events": [
+    {
+      "t_start": 4.5,
+      "t_end": 9.0,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A motorcycle lies on its side in the snowbank on the right shoulder, with a person beside it appearing to recover or assess the situation; no collision is visible in frame, but the stationary fallen motorcycle and rider’s posture indicate a prior crash.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          4.5,
+          5.0,
+          5.5,
+          6.0,
+          6.5,
+          7.0,
+          7.5,
+          8.0,
+          8.5,
+          9.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13"
+        ],
+        "reason": "From f4 onward, a motorcycle is clearly down on the roadside snow, remaining static through f13; the rider is present and upright by f10–f13, suggesting a recent fall/crash without ongoing violence or traffic impact. This satisfies CarAccident (a crash event) even if the moment of impact is not captured; the aftermath is unambiguous and consistent across frames.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 26.5,
+      "t_end": 27.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A bright blue-white flash and sudden plume of smoke/vapor erupt from the left side of the vehicle ahead (center frame) between f5 and f6, consistent with a collision or impact involving the left-front of the recording vehicle or adjacent car.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          27.0,
+          27.5
+        ],
+        "evidence_frame_ids": [
+          "f5",
+          "f6"
+        ],
+        "reason": "The abrupt onset of intense light and smoke at f5–f6, localized to the left front quadrant, is not explainable by normal driving (e.g., headlights alone don’t produce such vapor/plume). The spatial position and timing align with a side-impact or scrape event; no other cause (e.g., explosion, fire) is visible. Merged across f5–f6 as single event onset.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 86.5,
+      "t_end": 87.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A white SUV rapidly crosses the lane from left to right, appearing to lose control or swerve sharply, with visible motion blur and spray, consistent with a skid or collision onset.",
+      "source_candidate_ids": [
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          86.5,
+          87.0,
+          87.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "Frames f4–f6 show the white SUV entering the field of view at high lateral speed, with significant motion blur and road spray; by f5–f6 it is angled across lanes, suggesting loss of control or impact—this matches the definition of CarAccident (crash or collision event), not ordinary driving.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 93.5,
+      "t_end": 94.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A white SUV ahead veers sharply right and appears to collide with or be struck by another vehicle, causing a sudden spray of water/mist and loss of visibility; the following frames show the scene obscured by spray and the SUV no longer centered.",
+      "source_candidate_ids": [
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 3,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          93.5,
+          94.0,
+          94.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "In f4 (93.5s), the SUV begins rapid lateral movement; in f5 (94.0s), a large splash/spray erupts from the right side near the SUV, consistent with impact on wet road; f6 (94.5s) shows aftermath with obscured view and no SUV in prior position—indicating a crash event within this interval.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 5,
+      "output_count": 4,
+      "groups": 5,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 2.5,
+              "f1": 3.0,
+              "f2": 3.5,
+              "f3": 4.0,
+              "f4": 4.5,
+              "f5": 5.0,
+              "f6": 5.5,
+              "f7": 6.0,
+              "f8": 6.5,
+              "f9": 7.0,
+              "f10": 7.5,
+              "f11": 8.0,
+              "f12": 8.5,
+              "f13": 9.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 4.5,
+                "t_end": 7.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"CarAccident\",\n      \"t_start\": 4.5,\n      \"t_end\": 9.0,\n      \"confidence\": 0.95,\n      \"description\": \"A motorcycle lies on its side in the snowbank on the right shoulder, with a person beside it appearing to recover or assess the situation; no collision is visible in frame, but the stationary fallen motorcycle and rider’s posture indicate a prior crash.\",\n      \"reason\": \"From f4 onward, a motorcycle is clearly down on the roadside snow, remaining static through f13; the rider is present and upright by f10–f13, suggesting a recent fall/crash without ongoing violence or traffic impact. This satisfies CarAccident (a crash event) even if the moment of impact is not captured; the aftermath is unambiguous and consistent across frames.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "CarAccident",
+              "t_start": 4.5,
+              "t_end": 9.0,
+              "confidence": 0.95,
+              "description": "A motorcycle lies on its side in the snowbank on the right shoulder, with a person beside it appearing to recover or assess the situation; no collision is visible in frame, but the stationary fallen motorcycle and rider’s posture indicate a prior crash.",
+              "reason": "From f4 onward, a motorcycle is clearly down on the roadside snow, remaining static through f13; the rider is present and upright by f10–f13, suggesting a recent fall/crash without ongoing violence or traffic impact. This satisfies CarAccident (a crash event) even if the moment of impact is not captured; the aftermath is unambiguous and consistent across frames.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 24.5,
+              "f1": 25.0,
+              "f2": 25.5,
+              "f3": 26.0,
+              "f4": 26.5,
+              "f5": 27.0,
+              "f6": 27.5,
+              "f7": 28.0,
+              "f8": 28.5,
+              "f9": 29.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 26.5,
+                "t_end": 27.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"CarAccident\",\n      \"t_start\": 26.5,\n      \"t_end\": 27.5,\n      \"confidence\": 0.95,\n      \"description\": \"A bright blue-white flash and sudden plume of smoke/vapor erupt from the left side of the vehicle ahead (center frame) between f5 and f6, consistent with a collision or impact involving the left-front of the recording vehicle or adjacent car.\",\n      \"reason\": \"The abrupt onset of intense light and smoke at f5–f6, localized to the left front quadrant, is not explainable by normal driving (e.g., headlights alone don’t produce such vapor/plume). The spatial position and timing align with a side-impact or scrape event; no other cause (e.g., explosion, fire) is visible. Merged across f5–f6 as single event onset.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "CarAccident",
+              "t_start": 26.5,
+              "t_end": 27.5,
+              "confidence": 0.95,
+              "description": "A bright blue-white flash and sudden plume of smoke/vapor erupt from the left side of the vehicle ahead (center frame) between f5 and f6, consistent with a collision or impact involving the left-front of the recording vehicle or adjacent car.",
+              "reason": "The abrupt onset of intense light and smoke at f5–f6, localized to the left front quadrant, is not explainable by normal driving (e.g., headlights alone don’t produce such vapor/plume). The spatial position and timing align with a side-impact or scrape event; no other cause (e.g., explosion, fire) is visible. Merged across f5–f6 as single event onset.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 84.5,
+              "f1": 85.0,
+              "f2": 85.5,
+              "f3": 86.0,
+              "f4": 86.5,
+              "f5": 87.0,
+              "f6": 87.5,
+              "f7": 88.0,
+              "f8": 88.5,
+              "f9": 89.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 86.5,
+                "t_end": 87.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"CarAccident\",\n      \"t_start\": 86.5,\n      \"t_end\": 87.5,\n      \"confidence\": 0.9,\n      \"description\": \"A white SUV rapidly crosses the lane from left to right, appearing to lose control or swerve sharply, with visible motion blur and spray, consistent with a skid or collision onset.\",\n      \"reason\": \"Frames f4–f6 show the white SUV entering the field of view at high lateral speed, with significant motion blur and road spray; by f5–f6 it is angled across lanes, suggesting loss of control or impact—this matches the definition of CarAccident (crash or collision event), not ordinary driving.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2
+              ],
+              "category": "CarAccident",
+              "t_start": 86.5,
+              "t_end": 87.5,
+              "confidence": 0.9,
+              "description": "A white SUV rapidly crosses the lane from left to right, appearing to lose control or swerve sharply, with visible motion blur and spray, consistent with a skid or collision onset.",
+              "reason": "Frames f4–f6 show the white SUV entering the field of view at high lateral speed, with significant motion blur and road spray; by f5–f6 it is angled across lanes, suggesting loss of control or impact—this matches the definition of CarAccident (crash or collision event), not ordinary driving.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 91.5,
+              "f1": 92.0,
+              "f2": 92.5,
+              "f3": 93.0,
+              "f4": 93.5,
+              "f5": 94.0,
+              "f6": 94.5,
+              "f7": 95.0,
+              "f8": 95.5,
+              "f9": 96.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 93.5,
+                "t_end": 94.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"CarAccident\",\n      \"t_start\": 93.5,\n      \"t_end\": 94.5,\n      \"confidence\": 0.95,\n      \"description\": \"A white SUV ahead veers sharply right and appears to collide with or be struck by another vehicle, causing a sudden spray of water/mist and loss of visibility; the following frames show the scene obscured by spray and the SUV no longer centered.\",\n      \"reason\": \"In f4 (93.5s), the SUV begins rapid lateral movement; in f5 (94.0s), a large splash/spray erupts from the right side near the SUV, consistent with impact on wet road; f6 (94.5s) shows aftermath with obscured view and no SUV in prior position—indicating a crash event within this interval.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                3
+              ],
+              "category": "CarAccident",
+              "t_start": 93.5,
+              "t_end": 94.5,
+              "confidence": 0.95,
+              "description": "A white SUV ahead veers sharply right and appears to collide with or be struck by another vehicle, causing a sudden spray of water/mist and loss of visibility; the following frames show the scene obscured by spray and the SUV no longer centered.",
+              "reason": "In f4 (93.5s), the SUV begins rapid lateral movement; in f5 (94.0s), a large splash/spray erupts from the right side near the SUV, consistent with impact on wet road; f6 (94.5s) shows aftermath with obscured view and no SUV in prior position—indicating a crash event within this interval.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 4,
+        "source_ids": [
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 101.5,
+              "f1": 102.0,
+              "f2": 102.5,
+              "f3": 103.0,
+              "f4": 103.5,
+              "f5": 104.0,
+              "f6": 104.5,
+              "f7": 105.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 103.5,
+                "t_end": 104.7,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"No visible crash, vehicle deformation, or sudden stop; motion blur in f4–f7 is consistent with rapid turning or swerving without impact, not a collision.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 4,
+              "reason": "No visible crash, vehicle deformation, or sudden stop; motion blur in f4–f7 is consistent with rapid turning or swerving without impact, not a collision.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

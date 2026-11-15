@@ -85,7 +85,7 @@ def main():
     metadata=source_video_metadata({v['video_id']:v['path'] for v in selected},video_root=args.dataset_dir)
     fps={name:row['fps'] for name,row in metadata.items()}
     pred={p:{name:arms[p] for name,arms in outputs.items()} for p in POLICIES}
-    metrics={p:compute_vadclip_temporal_map(gt,pred[p],fps) for p in POLICIES}
+    metrics={p:compute_vadclip_temporal_map(gt,pred[p],fps,include_normal_videos=False) for p in POLICIES}
     frames={p:compute_frame_auc(gt,pred[p],fps) for p in POLICIES}
     rows=[];rawpred={p:{} for p in POLICIES}
     for video in selected:
@@ -103,7 +103,7 @@ def main():
             stages=trace.get('stages',{})
             rawpred[policy][name]=dict(anomalies=stages.get('post_mcts',stages.get('post_stage4',final)))
         rows.append(row)
-    pre_metrics={p:compute_vadclip_temporal_map(gt,rawpred[p],fps) for p in POLICIES}
+    pre_metrics={p:compute_vadclip_temporal_map(gt,rawpred[p],fps,include_normal_videos=False) for p in POLICIES}
     summary={p:dict(status[p],reasons=dict(reasons[p]),search_api_metrics=dict(api[p]),
         mean_best_tiou=statistics.mean(r['arms'][p]['mean_best_tiou'] for r in rows if r['category']!='Normal')) for p in POLICIES}
     differences=[r['video'] for r in rows if r['arms']['relaxed_node']['final_intervals']!=r['arms']['force_best']['final_intervals']]

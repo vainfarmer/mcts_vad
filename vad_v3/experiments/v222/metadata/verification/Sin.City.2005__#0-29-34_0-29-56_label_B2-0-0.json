@@ -1,0 +1,302 @@
+{
+  "events": [
+    {
+      "t_start": 12.0,
+      "t_end": 13.5,
+      "anomaly_type": "Shooting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A woman raises a handgun, aims it directly at another person’s head/upper torso across multiple frames (f7–f10), with muzzle visible near the target’s face in f9–f10; no recoil or flash is visible, but the sustained aiming posture and proximity strongly indicate an imminent or just-executed shot.",
+      "source_candidate_ids": [
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          12.0,
+          12.5,
+          13.0,
+          13.5
+        ],
+        "evidence_frame_ids": [
+          "f7",
+          "f8",
+          "f9",
+          "f10"
+        ],
+        "reason": "Holding a gun ≠ shooting, but the sequence from f7 (raising) to f9 (muzzle pressed against target) shows a clear intent and execution of a point-blank discharge; f10 shows the gun still in contact/post-discharge position. This satisfies 'Shooting' as defined: visible shooting action (including immediate pre- or post-firing contact), not merely possession. The event spans f7–f10, fully covering candidate 2’s interval.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 15.0,
+      "t_end": 15.5,
+      "anomaly_type": "Shooting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A hand holds a handgun pointed downward; smoke appears in the next frame (f5), consistent with a recent discharge.",
+      "source_candidate_ids": [
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          15.0,
+          15.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "Frame f4 shows a hand gripping a handgun near ground level; f5 shows the woman recoiling with smoke rising behind her, indicating a shot was fired at or near her position. This satisfies the 'Shooting' definition (visible shooting event).",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 15.5,
+      "t_end": 17.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.8,
+      "coarse_score": 0.8,
+      "description": "The woman is thrown backward with visible motion blur and smoke, suggesting impact from a physical force (e.g., being struck or shoved) after the shot.",
+      "source_candidate_ids": [
+        4,
+        5
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 1,
+        "vlm_confidence": 0.8,
+        "evidence_times": [
+          15.5,
+          16.0,
+          16.5,
+          17.0
+        ],
+        "evidence_frame_ids": [
+          "f5",
+          "f6",
+          "f7",
+          "f8"
+        ],
+        "reason": "Frames f5–f8 show progressive recoil and destabilization of the woman without a visible weapon in her hands; no evidence of helplessness required for Abuse, and the motion suggests mutual or reactive physical engagement (e.g., opponent’s counteraction), fitting Fighting as non-consensual physical combat. Abuse requires victim helplessness, which is not evident—she is actively moving and resisting. The sequence from f5 to f8 is continuous physical interaction.",
+        "source_categories": [
+          "Fighting",
+          "Abuse"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 6,
+      "output_count": 3,
+      "groups": 2,
+      "rejected": 2,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 1,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 8.5,
+              "f1": 9.0,
+              "f2": 9.5,
+              "f3": 10.0,
+              "f4": 10.5,
+              "f5": 11.0,
+              "f6": 11.5,
+              "f7": 12.0,
+              "f8": 12.5,
+              "f9": 13.0,
+              "f10": 13.5,
+              "f11": 14.0,
+              "f12": 14.5,
+              "f13": 15.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 10.5,
+                "t_end": 11.3,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 11.0,
+                "t_end": 11.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 12.0,
+                "t_end": 13.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"Shooting\",\n      \"t_start\": 12.0,\n      \"t_end\": 13.5,\n      \"confidence\": 0.9,\n      \"description\": \"A woman raises a handgun, aims it directly at another person’s head/upper torso across multiple frames (f7–f10), with muzzle visible near the target’s face in f9–f10; no recoil or flash is visible, but the sustained aiming posture and proximity strongly indicate an imminent or just-executed shot.\",\n      \"reason\": \"Holding a gun ≠ shooting, but the sequence from f7 (raising) to f9 (muzzle pressed against target) shows a clear intent and execution of a point-blank discharge; f10 shows the gun still in contact/post-discharge position. This satisfies 'Shooting' as defined: visible shooting action (including immediate pre- or post-firing contact), not merely possession. The event spans f7–f10, fully covering candidate 2’s interval.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\", \"f10\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Frames f4–f6 show a bloodied man lying on ground, but no gun, muzzle flash, or motion indicating a recent shot; the injury could result from blunt trauma or prior violence. No evidence of shooting occurs in the interval 10.5–11.3.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"The injured man in f4–f6 is motionless and unattended; no person is seen interacting with him, so no abuse (aggression against a helpless victim) is visible. Abuse requires active aggression, not passive injury.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2
+              ],
+              "category": "Shooting",
+              "t_start": 12.0,
+              "t_end": 13.5,
+              "confidence": 0.9,
+              "description": "A woman raises a handgun, aims it directly at another person’s head/upper torso across multiple frames (f7–f10), with muzzle visible near the target’s face in f9–f10; no recoil or flash is visible, but the sustained aiming posture and proximity strongly indicate an imminent or just-executed shot.",
+              "reason": "Holding a gun ≠ shooting, but the sequence from f7 (raising) to f9 (muzzle pressed against target) shows a clear intent and execution of a point-blank discharge; f10 shows the gun still in contact/post-discharge position. This satisfies 'Shooting' as defined: visible shooting action (including immediate pre- or post-firing contact), not merely possession. The event spans f7–f10, fully covering candidate 2’s interval.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8",
+                "f9",
+                "f10"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "Frames f4–f6 show a bloodied man lying on ground, but no gun, muzzle flash, or motion indicating a recent shot; the injury could result from blunt trauma or prior violence. No evidence of shooting occurs in the interval 10.5–11.3.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            },
+            {
+              "candidate_id": 1,
+              "reason": "The injured man in f4–f6 is motionless and unattended; no person is seen interacting with him, so no abuse (aggression against a helpless victim) is visible. Abuse requires active aggression, not passive injury.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          3,
+          4,
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 13.0,
+              "f1": 13.5,
+              "f2": 14.0,
+              "f3": 14.5,
+              "f4": 15.0,
+              "f5": 15.5,
+              "f6": 16.0,
+              "f7": 16.5,
+              "f8": 17.0,
+              "f9": 17.5,
+              "f10": 18.0,
+              "f11": 18.5,
+              "f12": 19.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 15.0,
+                "t_end": 15.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 15.5,
+                "t_end": 16.7,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 16.5,
+                "t_end": 17.5,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"Shooting\",\n      \"t_start\": 15.0,\n      \"t_end\": 15.5,\n      \"confidence\": 0.9,\n      \"description\": \"A hand holds a handgun pointed downward; smoke appears in the next frame (f5), consistent with a recent discharge.\",\n      \"reason\": \"Frame f4 shows a hand gripping a handgun near ground level; f5 shows the woman recoiling with smoke rising behind her, indicating a shot was fired at or near her position. This satisfies the 'Shooting' definition (visible shooting event).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    },\n    {\n      \"source_candidate_ids\": [4, 5],\n      \"category\": \"Fighting\",\n      \"t_start\": 15.5,\n      \"t_end\": 17.5,\n      \"confidence\": 0.8,\n      \"description\": \"The woman is thrown backward with visible motion blur and smoke, suggesting impact from a physical force (e.g., being struck or shoved) after the shot.\",\n      \"reason\": \"Frames f5–f8 show progressive recoil and destabilization of the woman without a visible weapon in her hands; no evidence of helplessness required for Abuse, and the motion suggests mutual or reactive physical engagement (e.g., opponent’s counteraction), fitting Fighting as non-consensual physical combat. Abuse requires victim helplessness, which is not evident—she is actively moving and resisting. The sequence from f5 to f8 is continuous physical interaction.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                3
+              ],
+              "category": "Shooting",
+              "t_start": 15.0,
+              "t_end": 15.5,
+              "confidence": 0.9,
+              "description": "A hand holds a handgun pointed downward; smoke appears in the next frame (f5), consistent with a recent discharge.",
+              "reason": "Frame f4 shows a hand gripping a handgun near ground level; f5 shows the woman recoiling with smoke rising behind her, indicating a shot was fired at or near her position. This satisfies the 'Shooting' definition (visible shooting event).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                4,
+                5
+              ],
+              "category": "Fighting",
+              "t_start": 15.5,
+              "t_end": 17.5,
+              "confidence": 0.8,
+              "description": "The woman is thrown backward with visible motion blur and smoke, suggesting impact from a physical force (e.g., being struck or shoved) after the shot.",
+              "reason": "Frames f5–f8 show progressive recoil and destabilization of the woman without a visible weapon in her hands; no evidence of helplessness required for Abuse, and the motion suggests mutual or reactive physical engagement (e.g., opponent’s counteraction), fitting Fighting as non-consensual physical combat. Abuse requires victim helplessness, which is not evident—she is actively moving and resisting. The sequence from f5 to f8 is continuous physical interaction.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

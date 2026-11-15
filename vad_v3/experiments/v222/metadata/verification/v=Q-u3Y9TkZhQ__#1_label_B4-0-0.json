@@ -1,0 +1,309 @@
+{
+  "events": [
+    {
+      "t_start": 26.5,
+      "t_end": 33.0,
+      "anomaly_type": "Riot",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "A large crowd of people, many in riot gear, densely fills and moves down escalators in a transit station; some raise arms or hold lights, and the movement appears coordinated and forceful.",
+      "source_candidate_ids": [
+        1,
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          26.5,
+          27.0,
+          27.5,
+          28.0,
+          28.5,
+          29.0,
+          29.5,
+          30.0,
+          30.5,
+          31.0,
+          31.5,
+          32.0,
+          32.5,
+          33.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17"
+        ],
+        "reason": "The sustained dense movement of a large group descending escalators (f4–f17), with many wearing helmets and protective gear, and visible tension (e.g., raised hands, tight formation), meets the definition of collective violent unrest (riot) rather than mere crowding; no individual fighting or shooting is visible, but the scale and behavior exceed normal transit flow.",
+        "source_categories": [
+          "Riot",
+          "Riot"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 4,
+      "output_count": 1,
+      "groups": 3,
+      "rejected": 2,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0,
+              "f9": 4.5,
+              "f10": 5.0,
+              "f11": 5.5,
+              "f12": 6.0,
+              "f13": 6.5,
+              "f14": 7.0,
+              "f15": 7.5,
+              "f16": 8.0,
+              "f17": 8.5,
+              "f18": 9.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 0.0,
+                "t_end": 7.5,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"The images show a dense crowd of people, many in riot gear, on and around escalators, but no visible violent unrest, destruction, or collective aggression; the scene is consistent with a controlled deployment or crowd management, not a riot.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "The images show a dense crowd of people, many in riot gear, on and around escalators, but no visible violent unrest, destruction, or collective aggression; the scene is consistent with a controlled deployment or crowd management, not a riot.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 24.5,
+              "f1": 25.0,
+              "f2": 25.5,
+              "f3": 26.0,
+              "f4": 26.5,
+              "f5": 27.0,
+              "f6": 27.5,
+              "f7": 28.0,
+              "f8": 28.5,
+              "f9": 29.0,
+              "f10": 29.5,
+              "f11": 30.0,
+              "f12": 30.5,
+              "f13": 31.0,
+              "f14": 31.5,
+              "f15": 32.0,
+              "f16": 32.5,
+              "f17": 33.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 26.5,
+                "t_end": 31.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 26.5,
+                "t_end": 27.5,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1, 2],\n      \"category\": \"Riot\",\n      \"t_start\": 26.5,\n      \"t_end\": 33.0,\n      \"confidence\": 0.85,\n      \"description\": \"A large crowd of people, many in riot gear, densely fills and moves down escalators in a transit station; some raise arms or hold lights, and the movement appears coordinated and forceful.\",\n      \"reason\": \"The sustained dense movement of a large group descending escalators (f4–f17), with many wearing helmets and protective gear, and visible tension (e.g., raised hands, tight formation), meets the definition of collective violent unrest (riot) rather than mere crowding; no individual fighting or shooting is visible, but the scale and behavior exceed normal transit flow.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1,
+                2
+              ],
+              "category": "Riot",
+              "t_start": 26.5,
+              "t_end": 33.0,
+              "confidence": 0.85,
+              "description": "A large crowd of people, many in riot gear, densely fills and moves down escalators in a transit station; some raise arms or hold lights, and the movement appears coordinated and forceful.",
+              "reason": "The sustained dense movement of a large group descending escalators (f4–f17), with many wearing helmets and protective gear, and visible tension (e.g., raised hands, tight formation), meets the definition of collective violent unrest (riot) rather than mere crowding; no individual fighting or shooting is visible, but the scale and behavior exceed normal transit flow.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 33.5,
+              "f1": 34.0,
+              "f2": 34.5,
+              "f3": 35.0,
+              "f4": 35.5,
+              "f5": 36.0,
+              "f6": 36.5,
+              "f7": 37.0,
+              "f8": 37.5,
+              "f9": 38.0,
+              "f10": 38.5,
+              "f11": 39.0,
+              "f12": 39.5,
+              "f13": 40.0,
+              "f14": 40.5,
+              "f15": 41.0,
+              "f16": 41.5,
+              "f17": 42.0,
+              "f18": 42.5,
+              "f19": 43.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 35.5,
+                "t_end": 43.0,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"The images show a dense crowd of people, many in riot gear, moving down escalators and occupying a public indoor space (likely a transit station or mall), but there is no visible collective violent unrest—no throwing, destruction, assault, or chaotic movement indicative of a riot; the scene appears controlled or static, possibly a protest or deployment without violence.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 3,
+              "reason": "The images show a dense crowd of people, many in riot gear, moving down escalators and occupying a public indoor space (likely a transit station or mall), but there is no visible collective violent unrest—no throwing, destruction, assault, or chaotic movement indicative of a riot; the scene appears controlled or static, possibly a protest or deployment without violence.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

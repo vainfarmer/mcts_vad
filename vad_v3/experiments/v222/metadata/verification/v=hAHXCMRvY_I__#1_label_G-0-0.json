@@ -1,0 +1,243 @@
+{
+  "events": [
+    {
+      "t_start": 7.5,
+      "t_end": 10.0,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A sudden, massive fireball and smoke plume erupts from the midsection of the ship at f5 (7.5 s), rapidly expanding through f6–f10, with visible blast effects and debris ejection consistent with a high-energy explosion.",
+      "source_candidate_ids": [
+        0,
+        1,
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          7.5,
+          8.0,
+          8.5,
+          9.0,
+          9.5,
+          10.0
+        ],
+        "evidence_frame_ids": [
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10"
+        ],
+        "reason": "Frames f5–f10 show a rapid onset of a large fireball and voluminous smoke not attributable to ordinary fire; the initial flash and outward expansion in f5–f6 indicate a detonation event, satisfying the definition of 'Explosion' (blast, not sustained fire). The three candidates overlap and describe the same continuous event; merged into one.",
+        "source_categories": [
+          "Explosion",
+          "Explosion",
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 4,
+      "output_count": 1,
+      "groups": 2,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 2,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 5.0,
+              "f1": 5.5,
+              "f2": 6.0,
+              "f3": 6.5,
+              "f4": 7.0,
+              "f5": 7.5,
+              "f6": 8.0,
+              "f7": 8.5,
+              "f8": 9.0,
+              "f9": 9.5,
+              "f10": 10.0,
+              "f11": 10.5,
+              "f12": 11.0,
+              "f13": 11.5,
+              "f14": 12.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 7.0,
+                "t_end": 8.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 8.0,
+                "t_end": 9.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 8.5,
+                "t_end": 10.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1, 2],\n      \"category\": \"Explosion\",\n      \"t_start\": 7.5,\n      \"t_end\": 10.0,\n      \"confidence\": 0.95,\n      \"description\": \"A sudden, massive fireball and smoke plume erupts from the midsection of the ship at f5 (7.5 s), rapidly expanding through f6–f10, with visible blast effects and debris ejection consistent with a high-energy explosion.\",\n      \"reason\": \"Frames f5–f10 show a rapid onset of a large fireball and voluminous smoke not attributable to ordinary fire; the initial flash and outward expansion in f5–f6 indicate a detonation event, satisfying the definition of 'Explosion' (blast, not sustained fire). The three candidates overlap and describe the same continuous event; merged into one.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1,
+                2
+              ],
+              "category": "Explosion",
+              "t_start": 7.5,
+              "t_end": 10.0,
+              "confidence": 0.95,
+              "description": "A sudden, massive fireball and smoke plume erupts from the midsection of the ship at f5 (7.5 s), rapidly expanding through f6–f10, with visible blast effects and debris ejection consistent with a high-energy explosion.",
+              "reason": "Frames f5–f10 show a rapid onset of a large fireball and voluminous smoke not attributable to ordinary fire; the initial flash and outward expansion in f5–f6 indicate a detonation event, satisfying the definition of 'Explosion' (blast, not sustained fire). The three candidates overlap and describe the same continuous event; merged into one.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 10.0,
+              "f1": 10.5,
+              "f2": 11.0,
+              "f3": 11.5,
+              "f4": 12.0,
+              "f5": 12.5,
+              "f6": 13.0,
+              "f7": 13.5,
+              "f8": 14.0,
+              "f9": 14.5,
+              "f10": 15.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 12.0,
+                "t_end": 13.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"Explosion\",\n      \"t_start\": 10.0,\n      \"t_end\": 10.5,\n      \"confidence\": 0.95,\n      \"description\": \"A large fireball and rapidly expanding smoke plume erupt from the midsection of the ship in f0, consistent with a detonation event.\",\n      \"reason\": \"The sudden appearance of a bright, voluminous fireball with upward momentum and shock-like smoke expansion at t=10.0 (f0), absent in prior frames (none provided before 10.0) and diminishing thereafter, satisfies the definition of an explosion; the candidate’s interval (12.0–13.5) is misaligned—the visible explosion occurs earlier and is largely spent by f1 (10.5). The event is confined to f0 and possibly early f1, but the peak blast is in f0.\",\n      \"evidence_frame_ids\": [\"f0\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"The candidate claims explosion between 12.0–13.5, but by f4 (12.0) the fireball has collapsed into sustained burning and smoke; no new blast or rapid expansion occurs in f4–f7. The only clear explosion is at ~10.0 (f0).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 10.0,
+              "f1": 10.5,
+              "f2": 11.0,
+              "f3": 11.5,
+              "f4": 12.0,
+              "f5": 12.5,
+              "f6": 13.0,
+              "f7": 13.5,
+              "f8": 14.0,
+              "f9": 14.5,
+              "f10": 15.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 12.0,
+                "t_end": 13.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"Explosion\",\n      \"t_start\": 10.0,\n      \"t_end\": 10.5,\n      \"confidence\": 0.95,\n      \"description\": \"A large, rapidly expanding fireball and smoke plume erupts from the ship’s midsection in f0 (10.0 s), with visible shock-like expansion and bright flash, then begins to collapse by f1 (10.5 s).\",\n      \"reason\": \"The definition of 'Explosion' requires a blast—i.e., sudden energy release causing rapid expansion; f0 shows this clearly (bright fireball, upward momentum, voluminous smoke onset), while f1 shows decay (smaller fireball, more diffuse smoke). The candidate’s claimed interval (12.0–13.5) does not contain a blast event; sustained fire and smoke in f4–f7 are post-blast effects, not explosions. The only explosion occurs at t=10.0 and is largely spent by t=10.5, so the accepted event must be [10.0, 10.5] to overlap the candidate’s *claimed* interval only if it were correct—but per instructions, we must reject or correct: since the candidate’s interval is wrong and the actual explosion is earlier, we accept the event based on evidence, not the candidate’s timing, and map source_candidate_ids=[3] to the correct interval that overlaps the *visible* explosion (which is within the overall visible range). The candidate is still associated because it refers to the same physical event (the ship’s detonation), even if mis-timed.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"The candidate specifies t_start=12.0 and t_end=13.5, but no explosion (blast) occurs in frames f4–f7 (12.0–13.5); only burning and smoke are visible. Since the candidate’s interval does not contain the explosion, and the hypothesis is tied to that interval, the candidate as stated is unsupported—yet the underlying event (explosion) is visible earlier. Per instructions, we must account for the candidate exactly once; because the candidate’s *stated interval* is incorrect and no explosion occurs there, and we cannot reassign the candidate to a different interval without violating ‘overlap every claimed source candidate’, the safest classification is uncertain for the candidate *as given*. However, the instructions say: ‘Merge fragments or competing labels ONLY when images show the same physical event; keep independent/simultaneous activities separate. Correct an incorrect category.’ And crucially: ‘Accepted intervals must overlap all their source intervals’. Since the candidate’s interval [12.0,13.5] is *not overlapped* by the accepted event [10.0,10.5], we cannot include it in ‘events’. Therefore, the candidate must be rejected or marked uncertain. Given that the explosion *did* occur (visible), but not in the candidate’s stated window, and the task says ‘Reject only when adequately visible evidence contradicts the hypothesis’, the hypothesis ‘there is an explosion between 12.0 and 13.5’ is contradicted by f4–f7 (no blast), so it should be rejected—not uncertain—because the evidence is adequate to falsify the *timing*. The prior response incorrectly placed it in events without overlapping the candidate’s interval. Correction: the candidate must be rejected, and the explosion (though real) is not supported by any candidate, so no event is sourced from candidate 3. But the instructions require accounting for every candidate exactly once, and only allowed output categories are those listed; we may have zero supported events. Thus: reject candidate 3 because its specified interval contains no explosion.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 10.0,
+              "f1": 10.5,
+              "f2": 11.0,
+              "f3": 11.5,
+              "f4": 12.0,
+              "f5": 12.5,
+              "f6": 13.0,
+              "f7": 13.5,
+              "f8": 14.0,
+              "f9": 14.5,
+              "f10": 15.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 12.0,
+                "t_end": 13.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"The candidate claims an explosion during [12.0, 13.5], but frames f4 (12.0) through f7 (13.5) show only sustained fire and smoke with no blast, rapid expansion, or fireball—contradicting the definition of 'Explosion'; the visible explosion occurs earlier (~10.0 in f0) and is not within the candidate’s specified interval.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 3,
+              "reason": "The candidate claims an explosion during [12.0, 13.5], but frames f4 (12.0) through f7 (13.5) show only sustained fire and smoke with no blast, rapid expansion, or fireball—contradicting the definition of 'Explosion'; the visible explosion occurs earlier (~10.0 in f0) and is not within the candidate’s specified interval.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

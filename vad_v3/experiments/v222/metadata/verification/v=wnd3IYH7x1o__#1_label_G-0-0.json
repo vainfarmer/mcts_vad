@@ -1,0 +1,177 @@
+{
+  "events": [
+    {
+      "t_start": 14.5,
+      "t_end": 23.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.8,
+      "coarse_score": 0.8,
+      "description": "Multiple plumes of white/grey smoke rise sequentially from different locations across the city skyline between 14.5s and 23.5s, consistent with detonations.",
+      "source_candidate_ids": [
+        0,
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.8,
+        "evidence_times": [
+          14.5,
+          15.0,
+          15.5,
+          16.0,
+          16.5,
+          17.0,
+          17.5,
+          18.0,
+          19.0,
+          19.5,
+          20.0,
+          20.5,
+          21.0,
+          21.5,
+          22.0,
+          22.5,
+          23.0,
+          23.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18",
+          "f19",
+          "f20",
+          "f21"
+        ],
+        "reason": "Smoke plumes appear suddenly and expand rapidly in frames f4–f21, with new plumes emerging at distinct times/locations (e.g., first visible ~f4, more prominent by f6–f7, additional ones by f10–f12), matching explosive blast signatures rather than fire or industrial emissions; no evidence of sustained fire or vehicle movement explains the discrete, rising plumes.",
+        "source_categories": [
+          "Explosion",
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 2,
+      "output_count": 1,
+      "groups": 1,
+      "rejected": 0,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 12.5,
+              "f1": 13.0,
+              "f2": 13.5,
+              "f3": 14.0,
+              "f4": 14.5,
+              "f5": 15.0,
+              "f6": 15.5,
+              "f7": 16.0,
+              "f8": 16.5,
+              "f9": 17.0,
+              "f10": 17.5,
+              "f11": 18.0,
+              "f12": 19.0,
+              "f13": 19.5,
+              "f14": 20.0,
+              "f15": 20.5,
+              "f16": 21.0,
+              "f17": 21.5,
+              "f18": 22.0,
+              "f19": 22.5,
+              "f20": 23.0,
+              "f21": 23.5,
+              "f22": 24.0,
+              "f23": 25.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 14.5,
+                "t_end": 19.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 16.0,
+                "t_end": 23.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Explosion\",\n      \"t_start\": 14.5,\n      \"t_end\": 23.5,\n      \"confidence\": 0.8,\n      \"description\": \"Multiple plumes of white/grey smoke rise sequentially from different locations across the city skyline between 14.5s and 23.5s, consistent with detonations.\",\n      \"reason\": \"Smoke plumes appear suddenly and expand rapidly in frames f4–f21, with new plumes emerging at distinct times/locations (e.g., first visible ~f4, more prominent by f6–f7, additional ones by f10–f12), matching explosive blast signatures rather than fire or industrial emissions; no evidence of sustained fire or vehicle movement explains the discrete, rising plumes.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1
+              ],
+              "category": "Explosion",
+              "t_start": 14.5,
+              "t_end": 23.5,
+              "confidence": 0.8,
+              "description": "Multiple plumes of white/grey smoke rise sequentially from different locations across the city skyline between 14.5s and 23.5s, consistent with detonations.",
+              "reason": "Smoke plumes appear suddenly and expand rapidly in frames f4–f21, with new plumes emerging at distinct times/locations (e.g., first visible ~f4, more prominent by f6–f7, additional ones by f10–f12), matching explosive blast signatures rather than fire or industrial emissions; no evidence of sustained fire or vehicle movement explains the discrete, rising plumes.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

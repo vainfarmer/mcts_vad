@@ -1,0 +1,157 @@
+{
+  "events": [
+    {
+      "t_start": 5.5,
+      "t_end": 6.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A sudden large fireball with dense smoke erupts ahead of the vehicle at f5, peaks at f6, and begins dissipating by f7.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          5.5,
+          6.0,
+          6.5
+        ],
+        "evidence_frame_ids": [
+          "f5",
+          "f6",
+          "f7"
+        ],
+        "reason": "f5 shows a bright orange fireball with rapid expansion and smoke; f6 shows sustained intense flame and black smoke; f7 shows residual smoke and no vehicle deformation—consistent with an explosion, not a crash. Candidate 0 (CarAccident) is rejected because no collision, vehicle damage, or post-impact motion is visible; the dust at f4 may indicate a precursor event but does not confirm a car accident. Only candidate 1 is supported.",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 2,
+      "output_count": 1,
+      "groups": 1,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 3.0,
+              "f1": 3.5,
+              "f2": 4.0,
+              "f3": 4.5,
+              "f4": 5.0,
+              "f5": 5.5,
+              "f6": 6.0,
+              "f7": 6.5,
+              "f8": 7.0,
+              "f9": 7.5,
+              "f10": 8.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 5.0,
+                "t_end": 6.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 5.5,
+                "t_end": 6.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Explosion\",\n      \"t_start\": 5.5,\n      \"t_end\": 6.5,\n      \"confidence\": 0.95,\n      \"description\": \"A large fireball and smoke plume erupt in front of the vehicle at f5, persisting through f6 and f7, with debris/dust visible at f4 just before onset.\",\n      \"reason\": \"f4 shows dust kicked up (suggesting impact), f5–f6 show a sudden bright fireball with expanding smoke—consistent with an explosion, not a car crash (no vehicle deformation or collision visible). The candidate 'CarAccident' is subsumed because no crash is observed; the explosion appears to be external to the observer’s vehicle and likely caused by an IED or similar device. Merged since both candidates describe the same visible event.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No vehicle collision or crash is visible; the preceding dust (f4) and subsequent fireball (f5–f6) indicate an explosion, not a car accident.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 3.0,
+              "f1": 3.5,
+              "f2": 4.0,
+              "f3": 4.5,
+              "f4": 5.0,
+              "f5": 5.5,
+              "f6": 6.0,
+              "f7": 6.5,
+              "f8": 7.0,
+              "f9": 7.5,
+              "f10": 8.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 5.0,
+                "t_end": 6.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 5.5,
+                "t_end": 6.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Explosion\",\n      \"t_start\": 5.5,\n      \"t_end\": 6.5,\n      \"confidence\": 0.95,\n      \"description\": \"A sudden large fireball with dense smoke erupts ahead of the vehicle at f5, peaks at f6, and begins dissipating by f7.\",\n      \"reason\": \"f5 shows a bright orange fireball with rapid expansion and smoke; f6 shows sustained intense flame and black smoke; f7 shows residual smoke and no vehicle deformation—consistent with an explosion, not a crash. Candidate 0 (CarAccident) is rejected because no collision, vehicle damage, or post-impact motion is visible; the dust at f4 may indicate a precursor event but does not confirm a car accident. Only candidate 1 is supported.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No evidence of vehicle collision, deformation, or crash dynamics; the dust at f4 and fireball at f5–f6 indicate an external explosion, not a car accident.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "Explosion",
+              "t_start": 5.5,
+              "t_end": 6.5,
+              "confidence": 0.95,
+              "description": "A sudden large fireball with dense smoke erupts ahead of the vehicle at f5, peaks at f6, and begins dissipating by f7.",
+              "reason": "f5 shows a bright orange fireball with rapid expansion and smoke; f6 shows sustained intense flame and black smoke; f7 shows residual smoke and no vehicle deformation—consistent with an explosion, not a crash. Candidate 0 (CarAccident) is rejected because no collision, vehicle damage, or post-impact motion is visible; the dust at f4 may indicate a precursor event but does not confirm a car accident. Only candidate 1 is supported.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "No evidence of vehicle collision, deformation, or crash dynamics; the dust at f4 and fireball at f5–f6 indicate an external explosion, not a car accident.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

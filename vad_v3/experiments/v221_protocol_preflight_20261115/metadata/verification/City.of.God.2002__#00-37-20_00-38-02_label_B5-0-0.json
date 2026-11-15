@@ -1,0 +1,279 @@
+{
+  "events": [
+    {
+      "t_start": 22.5,
+      "t_end": 26.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "A man and a woman engage in rapid, close physical contact: he reaches for and grasps her upper body (f4–f5), she actively resists and turns (f5–f6), and they move together across the room with forceful, dynamic motion (f6–f12), consistent with mutual physical struggle.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          22.5,
+          23.0,
+          23.5,
+          24.0,
+          24.5,
+          25.0,
+          25.5,
+          26.0,
+          26.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12"
+        ],
+        "reason": "Frames f4–f12 show continuous reciprocal movement, resistance, and repositioning without evidence of helplessness or one-sided dominance; this satisfies 'Fighting' (mutual physical combat) per definition. Candidate 0 ('Abuse') is invalid due to lack of helplessness; candidate 1 aligns with this interval and is retained as the sole supported event. Candidate 2’s proposed interval overlaps but extends beyond observable combat—after f12, motion becomes less forceful and no mutual combat is visible.",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 3,
+      "output_count": 1,
+      "groups": 1,
+      "rejected": 2,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 20.5,
+              "f1": 21.0,
+              "f2": 21.5,
+              "f3": 22.0,
+              "f4": 22.5,
+              "f5": 23.0,
+              "f6": 23.5,
+              "f7": 24.0,
+              "f8": 24.5,
+              "f9": 25.0,
+              "f10": 25.5,
+              "f11": 26.0,
+              "f12": 26.5,
+              "f13": 27.0,
+              "f14": 27.5,
+              "f15": 28.0,
+              "f16": 28.5,
+              "f17": 29.0,
+              "f18": 29.5,
+              "f19": 30.0,
+              "f20": 30.5,
+              "f21": 31.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 22.5,
+                "t_end": 26.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 22.5,
+                "t_end": 26.4,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 25.3,
+                "t_end": 29.2,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Fighting\",\n      \"t_start\": 22.5,\n      \"t_end\": 26.5,\n      \"confidence\": 0.85,\n      \"description\": \"A man and a woman engage in rapid, close physical contact: he grabs her upper body/arms (f4–f5), she resists and turns (f5–f6), and they move together across the room with forceful motion (f6–f10), consistent with mutual physical struggle.\",\n      \"reason\": \"The interaction shows reciprocal movement, resistance, and dynamic repositioning without clear victim helplessness; this fits 'Fighting' (mutual combat) better than 'Abuse' (asymmetrical aggression against helpless person). Frames f4–f10 show continuous physical engagement with no pause or clear dominance; candidate 0 (Abuse) is subsumed by candidate 1 (Fighting) as the same event.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    },\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"Fighting\",\n      \"t_start\": 25.3,\n      \"t_end\": 29.2,\n      \"confidence\": 0.6,\n      \"description\": \"The same man and woman continue moving together, now embracing or grappling while turning toward the back of the room (f10–f15), then separate slightly as he steps away (f16–f19); a third person watches from the foreground table.\",\n      \"reason\": \"This appears to be a continuation of the earlier physical struggle (f10–f15 overlap with prior event), but the motion becomes less aggressive and more entangled/embracing; still involves mutual physical contact without clear cessation, so retained as Fighting, though lower confidence due to ambiguity in intent (could be reconciliation or lingering struggle). Not merged with first event because motion changes character around f10–f11 and includes separation phase; however, visible continuity supports single extended conflict.\",\n      \"evidence_frame_ids\": [\"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"The interaction is mutual and dynamic, not one-sided aggression against a helpless victim; thus 'Abuse' is inappropriate—'Fighting' better describes the visible reciprocity.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 20.5,
+              "f1": 21.0,
+              "f2": 21.5,
+              "f3": 22.0,
+              "f4": 22.5,
+              "f5": 23.0,
+              "f6": 23.5,
+              "f7": 24.0,
+              "f8": 24.5,
+              "f9": 25.0,
+              "f10": 25.5,
+              "f11": 26.0,
+              "f12": 26.5,
+              "f13": 27.0,
+              "f14": 27.5,
+              "f15": 28.0,
+              "f16": 28.5,
+              "f17": 29.0,
+              "f18": 29.5,
+              "f19": 30.0,
+              "f20": 30.5,
+              "f21": 31.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 22.5,
+                "t_end": 26.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 22.5,
+                "t_end": 26.4,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 25.3,
+                "t_end": 29.2,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Fighting\",\n      \"t_start\": 22.5,\n      \"t_end\": 26.5,\n      \"confidence\": 0.8,\n      \"description\": \"A man and a woman engage in close, dynamic physical contact: he reaches for and grasps her (f4–f5), she resists and turns (f5–f6), and they move together across the room with forceful motion (f6–f10), ending with him lifting or carrying her toward the back (f10–f12).\",\n      \"reason\": \"The interaction shows reciprocal movement, resistance, and sustained mutual physical engagement without evidence of one party being helpless or passive; this satisfies the definition of 'Fighting' (mutual physical combat). Candidate 0 ('Abuse') is rejected because no helplessness is visible; candidate 1 aligns with the same continuous event, so they are merged.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"The woman actively resists, turns, and moves with the man throughout (f4–f12); she is not depicted as helpless or passive, contradicting the 'Abuse' definition requiring aggression against a helpless victim.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\"]\n    },\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"This candidate describes the same physical event as candidate 0 and is subsumed into the single accepted 'Fighting' event; it is not independently valid.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\"]\n    },\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"From f10 onward, the pair’s motion becomes less forceful and more entangled/embracing (f13–f15); by f16–f19, they separate and the man walks away while the woman remains standing—no continued mutual combat is visible. The third person at the table (f16–f21) is observing, not participating. Thus, no fighting occurs in [25.3, 29.2] as defined; the activity is either de-escalating or non-combative.\",\n      \"evidence_frame_ids\": [\"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 20.5,
+              "f1": 21.0,
+              "f2": 21.5,
+              "f3": 22.0,
+              "f4": 22.5,
+              "f5": 23.0,
+              "f6": 23.5,
+              "f7": 24.0,
+              "f8": 24.5,
+              "f9": 25.0,
+              "f10": 25.5,
+              "f11": 26.0,
+              "f12": 26.5,
+              "f13": 27.0,
+              "f14": 27.5,
+              "f15": 28.0,
+              "f16": 28.5,
+              "f17": 29.0,
+              "f18": 29.5,
+              "f19": 30.0,
+              "f20": 30.5,
+              "f21": 31.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 22.5,
+                "t_end": 26.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 22.5,
+                "t_end": 26.4,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 25.3,
+                "t_end": 29.2,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Fighting\",\n      \"t_start\": 22.5,\n      \"t_end\": 26.5,\n      \"confidence\": 0.85,\n      \"description\": \"A man and a woman engage in rapid, close physical contact: he reaches for and grasps her upper body (f4–f5), she actively resists and turns (f5–f6), and they move together across the room with forceful, dynamic motion (f6–f12), consistent with mutual physical struggle.\",\n      \"reason\": \"Frames f4–f12 show continuous reciprocal movement, resistance, and repositioning without evidence of helplessness or one-sided dominance; this satisfies 'Fighting' (mutual physical combat) per definition. Candidate 0 ('Abuse') is invalid due to lack of helplessness; candidate 1 aligns with this interval and is retained as the sole supported event. Candidate 2’s proposed interval overlaps but extends beyond observable combat—after f12, motion becomes less forceful and no mutual combat is visible.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"The woman actively resists, turns, and moves with the man throughout f4–f12; she is not passive or helpless, contradicting the 'Abuse' definition requiring aggression against a helpless victim.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\"]\n    },\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"From f10 onward, the pair’s interaction loses forceful combat characteristics: by f13–f15 they are entangled/embracing without struggle, and by f16–f19 the man steps away while the woman stands independently; no mutual physical combat occurs in [25.3, 29.2] as required for 'Fighting'.\",\n      \"evidence_frame_ids\": [\"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "Fighting",
+              "t_start": 22.5,
+              "t_end": 26.5,
+              "confidence": 0.85,
+              "description": "A man and a woman engage in rapid, close physical contact: he reaches for and grasps her upper body (f4–f5), she actively resists and turns (f5–f6), and they move together across the room with forceful, dynamic motion (f6–f12), consistent with mutual physical struggle.",
+              "reason": "Frames f4–f12 show continuous reciprocal movement, resistance, and repositioning without evidence of helplessness or one-sided dominance; this satisfies 'Fighting' (mutual physical combat) per definition. Candidate 0 ('Abuse') is invalid due to lack of helplessness; candidate 1 aligns with this interval and is retained as the sole supported event. Candidate 2’s proposed interval overlaps but extends beyond observable combat—after f12, motion becomes less forceful and no mutual combat is visible.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "The woman actively resists, turns, and moves with the man throughout f4–f12; she is not passive or helpless, contradicting the 'Abuse' definition requiring aggression against a helpless victim.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12"
+              ]
+            },
+            {
+              "candidate_id": 2,
+              "reason": "From f10 onward, the pair’s interaction loses forceful combat characteristics: by f13–f15 they are entangled/embracing without struggle, and by f16–f19 the man steps away while the woman stands independently; no mutual physical combat occurs in [25.3, 29.2] as required for 'Fighting'.",
+              "evidence_frame_ids": [
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "66ad9fcfade10cd82ecdac71d80faa31aba86d9d76287532cddfe4ebe1519c32"
+}

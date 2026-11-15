@@ -1,0 +1,424 @@
+{
+  "events": [
+    {
+      "t_start": 6.5,
+      "t_end": 8.0,
+      "anomaly_type": "Abuse",
+      "confidence": 0.92,
+      "coarse_score": 0.92,
+      "description": "A person in a red shirt lifts and swings a log downward toward a second person lying prone in tall grass; the log makes contact with or strikes near the prone person’s upper body/shoulder region (visible at f4–f6), followed by the log resting on or near the prone person (f7–f8). The prone person remains motionless throughout, showing no defensive posture or movement, indicating helplessness.",
+      "source_candidate_ids": [
+        0,
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.92,
+        "evidence_times": [
+          6.5,
+          7.0,
+          7.5,
+          8.0,
+          8.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8"
+        ],
+        "reason": "The sequence shows unilateral aggressive action: the standing person initiates forceful motion with a heavy object toward a non-resisting, supine individual. This satisfies the definition of 'Abuse' (aggression against a helpless victim). Candidate 0 (6.5–7.5) and Candidate 1 (7.0–8.0) describe overlapping intervals of the same continuous act—lifting, swinging, striking, and settling of the log—so they are merged into one event spanning from first visible swing (f4, t=6.5) through log impact and rest (f6–f8, up to t=8.0). Evidence confirms the victim is motionless and unable to evade, and the aggressor controls the weaponized object deliberately.",
+        "source_categories": [
+          "Abuse",
+          "Abuse"
+        ]
+      }
+    },
+    {
+      "t_start": 47.1,
+      "t_end": 52.5,
+      "anomaly_type": "Abuse",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A man in a red shirt stands over another person lying on the ground; the prone person has visible blood streaming down their face (frames f3–f6). The standing man then raises and swings a wooden log downward (frame f10), striking the prone person (frames f11–f12), after which he steps back and looks at the victim (frames f13–f17). The victim remains motionless and unresponsive throughout.",
+      "source_candidate_ids": [
+        2,
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          47.0,
+          47.5,
+          48.0,
+          48.5,
+          50.5,
+          51.0,
+          51.5,
+          52.0,
+          52.5,
+          53.0,
+          53.5,
+          54.0
+        ],
+        "evidence_frame_ids": [
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17"
+        ],
+        "reason": "The sequence shows a clear asymmetry: one individual is upright, active, and wielding a weapon (log), while the other is supine, injured (blood visible), and non-interactive—consistent with abuse (aggression against a helpless victim). The swing (f10) and impact (f11–f12) are visually unambiguous. Candidate 3 (50.5–51.0) falls entirely within this continuous abusive act and is merged. No mutual combat or crowd behavior is present; no explosion, shooting, or car accident occurs.",
+        "source_categories": [
+          "Abuse",
+          "Abuse"
+        ]
+      }
+    },
+    {
+      "t_start": 57.0,
+      "t_end": 62.5,
+      "anomaly_type": "Abuse",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "A person in a dark, mud-stained shirt is lying prone in tall dry grass, moving slowly and struggling to rise or reposition while another person (in red shirt, visible from frame f15 onward) stands over them and places a log across their back/shoulders (f15–f16). The prone individual’s posture (head down, arms under body, no voluntary upright movement) and the deliberate placement of the log by the standing person suggest coercion or restraint rather than accidental fall or voluntary action.",
+      "source_candidate_ids": [
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          57.5,
+          58.0,
+          58.5,
+          59.0,
+          59.5,
+          60.0,
+          60.5,
+          61.0,
+          61.5,
+          62.0,
+          62.5,
+          63.0
+        ],
+        "evidence_frame_ids": [
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16"
+        ],
+        "reason": "The sequence shows sustained non-consensual physical control: the prone person remains immobilized for >5 seconds (f5–f14), then the red-shirted person intervenes with an object (log) directly onto the prone person’s torso (f15–f16). This meets the definition of Abuse: aggression against a helpless victim (the prone person appears unable to resist or escape). No mutual combat (so not Fighting), no crowd (so not Riot), no firearm or explosion visible. The log placement is not incidental—it is deliberate and forceful, consistent with subduing or punishing.",
+        "source_categories": [
+          "Abuse"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 6,
+      "output_count": 3,
+      "groups": 4,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 2,
+      "relabeled": 0,
+      "context_retries": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 4.5,
+              "f1": 5.0,
+              "f2": 5.5,
+              "f3": 6.0,
+              "f4": 6.5,
+              "f5": 7.0,
+              "f6": 7.5,
+              "f7": 8.0,
+              "f8": 8.5,
+              "f9": 9.0,
+              "f10": 9.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 6.5,
+                "t_end": 7.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 7.0,
+                "t_end": 8.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Abuse\",\n      \"t_start\": 6.5,\n      \"t_end\": 8.0,\n      \"confidence\": 0.92,\n      \"description\": \"A person in a red shirt lifts and swings a log downward toward a second person lying prone in tall grass; the log makes contact with or strikes near the prone person’s upper body/shoulder region (visible at f4–f6), followed by the log resting on or near the prone person (f7–f8). The prone person remains motionless throughout, showing no defensive posture or movement, indicating helplessness.\",\n      \"reason\": \"The sequence shows unilateral aggressive action: the standing person initiates forceful motion with a heavy object toward a non-resisting, supine individual. This satisfies the definition of 'Abuse' (aggression against a helpless victim). Candidate 0 (6.5–7.5) and Candidate 1 (7.0–8.0) describe overlapping intervals of the same continuous act—lifting, swinging, striking, and settling of the log—so they are merged into one event spanning from first visible swing (f4, t=6.5) through log impact and rest (f6–f8, up to t=8.0). Evidence confirms the victim is motionless and unable to evade, and the aggressor controls the weaponized object deliberately.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1
+              ],
+              "category": "Abuse",
+              "t_start": 6.5,
+              "t_end": 8.0,
+              "confidence": 0.92,
+              "description": "A person in a red shirt lifts and swings a log downward toward a second person lying prone in tall grass; the log makes contact with or strikes near the prone person’s upper body/shoulder region (visible at f4–f6), followed by the log resting on or near the prone person (f7–f8). The prone person remains motionless throughout, showing no defensive posture or movement, indicating helplessness.",
+              "reason": "The sequence shows unilateral aggressive action: the standing person initiates forceful motion with a heavy object toward a non-resisting, supine individual. This satisfies the definition of 'Abuse' (aggression against a helpless victim). Candidate 0 (6.5–7.5) and Candidate 1 (7.0–8.0) describe overlapping intervals of the same continuous act—lifting, swinging, striking, and settling of the log—so they are merged into one event spanning from first visible swing (f4, t=6.5) through log impact and rest (f6–f8, up to t=8.0). Evidence confirms the victim is motionless and unable to evade, and the aggressor controls the weaponized object deliberately.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          2,
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 45.5,
+              "f1": 46.0,
+              "f2": 46.5,
+              "f3": 47.0,
+              "f4": 47.5,
+              "f5": 48.0,
+              "f6": 48.5,
+              "f7": 49.0,
+              "f8": 49.5,
+              "f9": 50.0,
+              "f10": 50.5,
+              "f11": 51.0,
+              "f12": 51.5,
+              "f13": 52.0,
+              "f14": 52.5,
+              "f15": 53.0,
+              "f16": 53.5,
+              "f17": 54.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 47.1,
+                "t_end": 52.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 50.5,
+                "t_end": 51.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2, 3],\n      \"category\": \"Abuse\",\n      \"t_start\": 47.1,\n      \"t_end\": 52.5,\n      \"confidence\": 0.95,\n      \"description\": \"A man in a red shirt stands over another person lying on the ground; the prone person has visible blood streaming down their face (frames f3–f6). The standing man then raises and swings a wooden log downward (frame f10), striking the prone person (frames f11–f12), after which he steps back and looks at the victim (frames f13–f17). The victim remains motionless and unresponsive throughout.\",\n      \"reason\": \"The sequence shows a clear asymmetry: one individual is upright, active, and wielding a weapon (log), while the other is supine, injured (blood visible), and non-interactive—consistent with abuse (aggression against a helpless victim). The swing (f10) and impact (f11–f12) are visually unambiguous. Candidate 3 (50.5–51.0) falls entirely within this continuous abusive act and is merged. No mutual combat or crowd behavior is present; no explosion, shooting, or car accident occurs.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2,
+                3
+              ],
+              "category": "Abuse",
+              "t_start": 47.1,
+              "t_end": 52.5,
+              "confidence": 0.95,
+              "description": "A man in a red shirt stands over another person lying on the ground; the prone person has visible blood streaming down their face (frames f3–f6). The standing man then raises and swings a wooden log downward (frame f10), striking the prone person (frames f11–f12), after which he steps back and looks at the victim (frames f13–f17). The victim remains motionless and unresponsive throughout.",
+              "reason": "The sequence shows a clear asymmetry: one individual is upright, active, and wielding a weapon (log), while the other is supine, injured (blood visible), and non-interactive—consistent with abuse (aggression against a helpless victim). The swing (f10) and impact (f11–f12) are visually unambiguous. Candidate 3 (50.5–51.0) falls entirely within this continuous abusive act and is merged. No mutual combat or crowd behavior is present; no explosion, shooting, or car accident occurs.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 55.0,
+              "f1": 55.5,
+              "f2": 56.0,
+              "f3": 56.5,
+              "f4": 57.0,
+              "f5": 57.5,
+              "f6": 58.0,
+              "f7": 58.5,
+              "f8": 59.0,
+              "f9": 59.5,
+              "f10": 60.0,
+              "f11": 60.5,
+              "f12": 61.0,
+              "f13": 61.5,
+              "f14": 62.0,
+              "f15": 62.5,
+              "f16": 63.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 57.0,
+                "t_end": 61.2,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"Abuse\",\n      \"t_start\": 57.0,\n      \"t_end\": 62.5,\n      \"confidence\": 0.85,\n      \"description\": \"A person in a dark, mud-stained shirt is lying prone in tall dry grass, moving slowly and struggling to rise or reposition while another person (in red shirt, visible from frame f15 onward) stands over them and places a log across their back/shoulders (f15–f16). The prone individual’s posture (head down, arms under body, no voluntary upright movement) and the deliberate placement of the log by the standing person suggest coercion or restraint rather than accidental fall or voluntary action.\",\n      \"reason\": \"The sequence shows sustained non-consensual physical control: the prone person remains immobilized for >5 seconds (f5–f14), then the red-shirted person intervenes with an object (log) directly onto the prone person’s torso (f15–f16). This meets the definition of Abuse: aggression against a helpless victim (the prone person appears unable to resist or escape). No mutual combat (so not Fighting), no crowd (so not Riot), no firearm or explosion visible. The log placement is not incidental—it is deliberate and forceful, consistent with subduing or punishing.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                4
+              ],
+              "category": "Abuse",
+              "t_start": 57.0,
+              "t_end": 62.5,
+              "confidence": 0.85,
+              "description": "A person in a dark, mud-stained shirt is lying prone in tall dry grass, moving slowly and struggling to rise or reposition while another person (in red shirt, visible from frame f15 onward) stands over them and places a log across their back/shoulders (f15–f16). The prone individual’s posture (head down, arms under body, no voluntary upright movement) and the deliberate placement of the log by the standing person suggest coercion or restraint rather than accidental fall or voluntary action.",
+              "reason": "The sequence shows sustained non-consensual physical control: the prone person remains immobilized for >5 seconds (f5–f14), then the red-shirted person intervenes with an object (log) directly onto the prone person’s torso (f15–f16). This meets the definition of Abuse: aggression against a helpless victim (the prone person appears unable to resist or escape). No mutual combat (so not Fighting), no crowd (so not Riot), no firearm or explosion visible. The log placement is not incidental—it is deliberate and forceful, consistent with subduing or punishing.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 153.5,
+              "f1": 154.0,
+              "f2": 154.5,
+              "f3": 155.0,
+              "f4": 155.5,
+              "f5": 156.0,
+              "f6": 156.5,
+              "f7": 157.0,
+              "f8": 157.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 5,
+                "t_start": 155.5,
+                "t_end": 156.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"No visible shooting occurs in frames f4–f5 (155.5–156.0). The man is holding a carved object (resembling a pistol with dragon motifs) and raising it, but there is no muzzle flash, recoil, projectile, or impact visible. The object remains stationary relative to his hand; no trigger pull or discharge is observable. The subsequent close-ups (f5–f8) show only the object held in a bloody hand, with no evidence of firing. Shooting requires visible evidence of discharge; mere aiming or holding does not satisfy the category definition.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 5,
+              "reason": "No visible shooting occurs in frames f4–f5 (155.5–156.0). The man is holding a carved object (resembling a pistol with dragon motifs) and raising it, but there is no muzzle flash, recoil, projectile, or impact visible. The object remains stationary relative to his hand; no trigger pull or discharge is observable. The subsequent close-ups (f5–f8) show only the object held in a bloody hand, with no evidence of firing. Shooting requires visible evidence of discharge; mere aiming or holding does not satisfy the category definition.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "f39c9b4b7fbc19153cc76f329d5c8e188a3b83d98d41666fc384b75fe6b4faab"
+}

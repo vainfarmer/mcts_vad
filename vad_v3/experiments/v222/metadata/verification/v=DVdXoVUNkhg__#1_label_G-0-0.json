@@ -1,0 +1,346 @@
+{
+  "events": [
+    {
+      "t_start": 36.0,
+      "t_end": 41.0,
+      "anomaly_type": "Shooting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "Multiple individuals aim and fire firearms at close range; muzzle flash and recoil visible in f5 (shooter yelling with gun raised), f6 (rifle aimed), f8 (pistol aimed), f10 (pistol extended, mouth open as if shouting), f11 (man holding pistol, tense expression).",
+      "source_candidate_ids": [
+        2,
+        3,
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          35.5,
+          36.0,
+          37.0,
+          37.5,
+          39.0,
+          40.0,
+          40.5
+        ],
+        "evidence_frame_ids": [
+          "f2",
+          "f3",
+          "f5",
+          "f6",
+          "f8",
+          "f10",
+          "f11"
+        ],
+        "reason": "Frames f2–f3 show armed men aiming rifles at two women; f5 shows a man shouting while pointing a handgun; f6 shows a rifle being aimed; f8 and f10 show clear pistol aiming; f11 shows a man holding a pistol. The sequence is consistent with active shooting, not just possession or threat. Merged because all candidates describe overlapping shooting activity across the same incident.",
+        "source_categories": [
+          "Shooting",
+          "Shooting",
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 41.5,
+      "t_end": 47.5,
+      "anomaly_type": "Explosion",
+      "confidence": 1.0,
+      "coarse_score": 1.0,
+      "description": "A large blast erupts near vehicles and buildings, producing a rapidly expanding fireball and dense smoke plume that rises and spreads over a military-style camp.",
+      "source_candidate_ids": [
+        5,
+        6
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 1,
+        "vlm_confidence": 1.0,
+        "evidence_times": [
+          41.5,
+          42.0,
+          42.5,
+          43.5,
+          44.0,
+          44.5,
+          45.0,
+          45.5,
+          46.0,
+          46.5,
+          47.5
+        ],
+        "evidence_frame_ids": [
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18",
+          "f19",
+          "f20",
+          "f21",
+          "f22",
+          "f23"
+        ],
+        "reason": "f13 shows the initial violent detonation with debris and black/white smoke; f14–f23 show the continuing smoke column expanding and drifting over the compound—classic explosion progression. Candidates 5 and 6 describe the same event; merged due to identical temporal and visual continuity.",
+        "source_categories": [
+          "Explosion",
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 7,
+      "output_count": 2,
+      "groups": 3,
+      "rejected": 2,
+      "uncertain": 0,
+      "merged_sources": 3,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 14.0,
+              "f1": 14.5,
+              "f2": 15.0,
+              "f3": 15.5,
+              "f4": 16.0,
+              "f5": 16.5,
+              "f6": 17.0,
+              "f7": 17.5,
+              "f8": 18.0,
+              "f9": 18.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 16.0,
+                "t_end": 16.8,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Frames f4–f6 show a man in a car holding an object near his face, but no muzzle flash, recoil, or visible discharge; the object is not conclusively a firearm in use, and no shooting action is observable.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "Frames f4–f6 show a man in a car holding an object near his face, but no muzzle flash, recoil, or visible discharge; the object is not conclusively a firearm in use, and no shooting action is observable.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 16.0,
+              "f1": 16.5,
+              "f2": 17.0,
+              "f3": 17.5,
+              "f4": 18.0,
+              "f5": 18.5,
+              "f6": 19.0,
+              "f7": 19.5,
+              "f8": 20.0,
+              "f9": 20.5,
+              "f10": 21.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 18.0,
+                "t_end": 19.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"No crash or impact is visible; the car remains stationary while a jack is deployed under the wheel (f6–f10), indicating a routine tire change, not a CarAccident.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "No crash or impact is visible; the car remains stationary while a jack is deployed under the wheel (f6–f10), indicating a routine tire change, not a CarAccident.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 34.5,
+              "f1": 35.0,
+              "f2": 35.5,
+              "f3": 36.0,
+              "f4": 36.5,
+              "f5": 37.0,
+              "f6": 37.5,
+              "f7": 38.0,
+              "f8": 39.0,
+              "f9": 39.5,
+              "f10": 40.0,
+              "f11": 40.5,
+              "f12": 41.0,
+              "f13": 41.5,
+              "f14": 42.0,
+              "f15": 42.5,
+              "f16": 43.5,
+              "f17": 44.0,
+              "f18": 44.5,
+              "f19": 45.0,
+              "f20": 45.5,
+              "f21": 46.0,
+              "f22": 46.5,
+              "f23": 47.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 36.3,
+                "t_end": 37.8,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 36.5,
+                "t_end": 39.2,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 38.5,
+                "t_end": 41.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 41.5,
+                "t_end": 43.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 41.5,
+                "t_end": 46.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2, 3, 4],\n      \"category\": \"Shooting\",\n      \"t_start\": 36.0,\n      \"t_end\": 41.0,\n      \"confidence\": 0.9,\n      \"description\": \"Multiple individuals aim and fire firearms at close range; muzzle flash and recoil visible in f5 (shooter yelling with gun raised), f6 (rifle aimed), f8 (pistol aimed), f10 (pistol extended, mouth open as if shouting), f11 (man holding pistol, tense expression).\",\n      \"reason\": \"Frames f2–f3 show armed men aiming rifles at two women; f5 shows a man shouting while pointing a handgun; f6 shows a rifle being aimed; f8 and f10 show clear pistol aiming; f11 shows a man holding a pistol. The sequence is consistent with active shooting, not just possession or threat. Merged because all candidates describe overlapping shooting activity across the same incident.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f5\", \"f6\", \"f8\", \"f10\", \"f11\"]\n    },\n    {\n      \"source_candidate_ids\": [5, 6],\n      \"category\": \"Explosion\",\n      \"t_start\": 41.5,\n      \"t_end\": 47.5,\n      \"confidence\": 1.0,\n      \"description\": \"A large blast erupts near vehicles and buildings, producing a rapidly expanding fireball and dense smoke plume that rises and spreads over a military-style camp.\",\n      \"reason\": \"f13 shows the initial violent detonation with debris and black/white smoke; f14–f23 show the continuing smoke column expanding and drifting over the compound—classic explosion progression. Candidates 5 and 6 describe the same event; merged due to identical temporal and visual continuity.\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\", \"f23\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2,
+                3,
+                4
+              ],
+              "category": "Shooting",
+              "t_start": 36.0,
+              "t_end": 41.0,
+              "confidence": 0.9,
+              "description": "Multiple individuals aim and fire firearms at close range; muzzle flash and recoil visible in f5 (shooter yelling with gun raised), f6 (rifle aimed), f8 (pistol aimed), f10 (pistol extended, mouth open as if shouting), f11 (man holding pistol, tense expression).",
+              "reason": "Frames f2–f3 show armed men aiming rifles at two women; f5 shows a man shouting while pointing a handgun; f6 shows a rifle being aimed; f8 and f10 show clear pistol aiming; f11 shows a man holding a pistol. The sequence is consistent with active shooting, not just possession or threat. Merged because all candidates describe overlapping shooting activity across the same incident.",
+              "evidence_frame_ids": [
+                "f2",
+                "f3",
+                "f5",
+                "f6",
+                "f8",
+                "f10",
+                "f11"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                5,
+                6
+              ],
+              "category": "Explosion",
+              "t_start": 41.5,
+              "t_end": 47.5,
+              "confidence": 1.0,
+              "description": "A large blast erupts near vehicles and buildings, producing a rapidly expanding fireball and dense smoke plume that rises and spreads over a military-style camp.",
+              "reason": "f13 shows the initial violent detonation with debris and black/white smoke; f14–f23 show the continuing smoke column expanding and drifting over the compound—classic explosion progression. Candidates 5 and 6 describe the same event; merged due to identical temporal and visual continuity.",
+              "evidence_frame_ids": [
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22",
+                "f23"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

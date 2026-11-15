@@ -1,0 +1,260 @@
+{
+  "events": [
+    {
+      "t_start": 36.5,
+      "t_end": 38.0,
+      "anomaly_type": "Shooting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A soldier in a helmet aims and fires a rifle while crouched behind cover, with visible recoil and facial strain consistent with discharge.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          36.5,
+          37.0,
+          37.5,
+          38.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7"
+        ],
+        "reason": "Frames f4–f7 show the soldier gripping the rifle firmly, shouldering it, and exhibiting facial grimace and head movement consistent with firing; rain streaks and motion blur suggest rapid action; no muzzle flash visible but context and posture strongly indicate active shooting, satisfying the 'Shooting' definition (visible shooting, not merely holding).",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 66.0,
+      "t_end": 68.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.7,
+      "coarse_score": 0.7,
+      "description": "Two soldiers engage in close physical struggle amid heavy rain, with mutual contact, grappling, and dynamic postures; a third soldier with a red cross helmet appears to assist or intervene.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.7,
+        "evidence_times": [
+          66.0,
+          66.5,
+          67.0,
+          67.5,
+          68.0,
+          68.5
+        ],
+        "evidence_frame_ids": [
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8"
+        ],
+        "reason": "Frames f3–f8 show motion blur (f3), hands on shoulders/back (f4–f5), contorted postures and helmet-to-helmet proximity (f6–f8), indicating mutual engagement—not one-sided aggression. The red-cross helmet (f7) suggests medical presence in a combat context, consistent with Fighting, not Abuse. Candidate 1’s interval (66.3–67.5) is fully covered by visible evidence from f3 (66.0) to f8 (68.5).",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 3,
+      "output_count": 2,
+      "groups": 2,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 34.5,
+              "f1": 35.0,
+              "f2": 35.5,
+              "f3": 36.0,
+              "f4": 36.5,
+              "f5": 37.0,
+              "f6": 37.5,
+              "f7": 38.0,
+              "f8": 38.5,
+              "f9": 39.0,
+              "f10": 39.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 36.5,
+                "t_end": 38.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Shooting\",\n      \"t_start\": 36.5,\n      \"t_end\": 38.0,\n      \"confidence\": 0.9,\n      \"description\": \"A soldier in a helmet aims and fires a rifle while crouched behind cover, with visible recoil and facial strain consistent with discharge.\",\n      \"reason\": \"Frames f4–f7 show the soldier gripping the rifle firmly, shouldering it, and exhibiting facial grimace and head movement consistent with firing; rain streaks and motion blur suggest rapid action; no muzzle flash visible but context and posture strongly indicate active shooting, satisfying the 'Shooting' definition (visible shooting, not merely holding).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Shooting",
+              "t_start": 36.5,
+              "t_end": 38.0,
+              "confidence": 0.9,
+              "description": "A soldier in a helmet aims and fires a rifle while crouched behind cover, with visible recoil and facial strain consistent with discharge.",
+              "reason": "Frames f4–f7 show the soldier gripping the rifle firmly, shouldering it, and exhibiting facial grimace and head movement consistent with firing; rain streaks and motion blur suggest rapid action; no muzzle flash visible but context and posture strongly indicate active shooting, satisfying the 'Shooting' definition (visible shooting, not merely holding).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 64.5,
+              "f1": 65.0,
+              "f2": 65.5,
+              "f3": 66.0,
+              "f4": 66.5,
+              "f5": 67.0,
+              "f6": 67.5,
+              "f7": 68.0,
+              "f8": 68.5,
+              "f9": 69.0,
+              "f10": 69.5,
+              "f11": 70.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 66.3,
+                "t_end": 67.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 66.5,
+                "t_end": 68.5,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1, 2],\n      \"category\": \"Fighting\",\n      \"t_start\": 66.3,\n      \"t_end\": 68.5,\n      \"confidence\": 0.8,\n      \"description\": \"Two soldiers grapple closely in rain-soaked conditions; one appears to be restraining or subduing the other while a third soldier with a red cross on helmet assists or intervenes.\",\n      \"reason\": \"Frames f3–f8 show rapid motion blur (f3), physical contact (f4–f5: hands on shoulders/back), and struggle (f6–f8: contorted postures, helmets pressed together). The presence of a medic (red cross, f7) suggests combat-related injury or control during conflict, not unilateral abuse. Mutual engagement and dynamic posture support Fighting over Abuse.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Abuse requires one-sided aggression against a helpless victim; here, both individuals are actively engaged, and a medic is present—indicating combat context, not exploitation.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 64.5,
+              "f1": 65.0,
+              "f2": 65.5,
+              "f3": 66.0,
+              "f4": 66.5,
+              "f5": 67.0,
+              "f6": 67.5,
+              "f7": 68.0,
+              "f8": 68.5,
+              "f9": 69.0,
+              "f10": 69.5,
+              "f11": 70.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 66.3,
+                "t_end": 67.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 66.5,
+                "t_end": 68.5,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Fighting\",\n      \"t_start\": 66.0,\n      \"t_end\": 68.5,\n      \"confidence\": 0.7,\n      \"description\": \"Two soldiers engage in close physical struggle amid heavy rain, with mutual contact, grappling, and dynamic postures; a third soldier with a red cross helmet appears to assist or intervene.\",\n      \"reason\": \"Frames f3–f8 show motion blur (f3), hands on shoulders/back (f4–f5), contorted postures and helmet-to-helmet proximity (f6–f8), indicating mutual engagement—not one-sided aggression. The red-cross helmet (f7) suggests medical presence in a combat context, consistent with Fighting, not Abuse. Candidate 1’s interval (66.3–67.5) is fully covered by visible evidence from f3 (66.0) to f8 (68.5).\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Abuse requires unilateral aggression against a helpless victim; here, both individuals are actively resisting/engaging (f4–f8), and the medic’s presence (f7) implies a combat-related incident, not exploitation. No frame shows a clearly incapacitated or passive victim.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "Fighting",
+              "t_start": 66.0,
+              "t_end": 68.5,
+              "confidence": 0.7,
+              "description": "Two soldiers engage in close physical struggle amid heavy rain, with mutual contact, grappling, and dynamic postures; a third soldier with a red cross helmet appears to assist or intervene.",
+              "reason": "Frames f3–f8 show motion blur (f3), hands on shoulders/back (f4–f5), contorted postures and helmet-to-helmet proximity (f6–f8), indicating mutual engagement—not one-sided aggression. The red-cross helmet (f7) suggests medical presence in a combat context, consistent with Fighting, not Abuse. Candidate 1’s interval (66.3–67.5) is fully covered by visible evidence from f3 (66.0) to f8 (68.5).",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "Abuse requires unilateral aggression against a helpless victim; here, both individuals are actively resisting/engaging (f4–f8), and the medic’s presence (f7) implies a combat-related incident, not exploitation. No frame shows a clearly incapacitated or passive victim.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "5a82d0dd6e711938ee6c8e0ecf1c6f7fdb68cac4e5e95683ad672320f7156da9"
+}

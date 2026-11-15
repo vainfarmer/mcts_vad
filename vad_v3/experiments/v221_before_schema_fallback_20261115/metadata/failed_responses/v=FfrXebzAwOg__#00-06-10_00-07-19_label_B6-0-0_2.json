@@ -1,0 +1,116 @@
+{
+  "group_id": 0,
+  "calls": [
+    {
+      "pass_id": 0,
+      "frame_times": {
+        "f0": 4.5,
+        "f1": 5.0,
+        "f2": 5.5,
+        "f3": 6.0,
+        "f4": 6.5,
+        "f5": 7.0,
+        "f6": 7.5,
+        "f7": 8.0,
+        "f8": 8.5,
+        "f9": 9.0,
+        "f10": 9.5,
+        "f11": 10.0,
+        "f12": 10.5,
+        "f13": 11.0,
+        "f14": 11.5,
+        "f15": 12.0,
+        "f16": 12.5
+      },
+      "hypotheses": [
+        {
+          "candidate_id": 0,
+          "t_start": 6.5,
+          "t_end": 10.6,
+          "unverified_category": "CarAccident"
+        },
+        {
+          "candidate_id": 1,
+          "t_start": 6.5,
+          "t_end": 7.5,
+          "unverified_category": "CarAccident"
+        }
+      ],
+      "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"CarAccident\",\n      \"t_start\": 6.5,\n      \"t_end\": 7.0,\n      \"confidence\": 0.95,\n      \"description\": \"A grey sedan swerves sharply right off the road while a red truck passes left, kicking up dust; the camera vehicle then impacts something, causing immediate windshield shattering.\",\n      \"reason\": \"f4 shows the sedan veering off-road with tire smoke/dust; f5 is a chaotic view of shattered glass filling the frame, indicating impact/collision with the recording vehicle; subsequent frames (f6–f14) show persistent broken windshield debris, confirming a crash occurred at ~6.5–7.0 s. The candidate intervals both cover this event; merged into one CarAccident event bounded by first visible crash evidence (f4/f5) and end of immediate post-impact visual disruption (f5).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Candidate 0 extends to t=10.6, but after f5 the images (f6–f14) only show broken windshield debris without further collision dynamics; the accident event itself concludes by f5. The extended interval lacks evidence of ongoing crash activity, so the later portion is unsupported.\"\n    },\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Candidate 1 ends at t=7.5, but f5 (t=7.0) is the only frame showing the impact; f6 (t=7.5) is already fully obscured by shattered glass with no new crash motion—so while the accident occurs by t=7.0, the endpoint at 7.5 is ambiguous; however, since f5 definitively confirms the crash and f6 onward is aftermath, the core event is captured in f4–f5, making candidate 1 partially correct but subsumed by the merged event. As per instructions, we reject only when contradicted; here it’s better merged, so not rejected—but the uncertainty note clarifies why its interval isn’t used alone.\"\n    }\n  ]\n}"
+    },
+    {
+      "pass_id": 0,
+      "frame_times": {
+        "f0": 4.5,
+        "f1": 5.0,
+        "f2": 5.5,
+        "f3": 6.0,
+        "f4": 6.5,
+        "f5": 7.0,
+        "f6": 7.5,
+        "f7": 8.0,
+        "f8": 8.5,
+        "f9": 9.0,
+        "f10": 9.5,
+        "f11": 10.0,
+        "f12": 10.5,
+        "f13": 11.0,
+        "f14": 11.5,
+        "f15": 12.0,
+        "f16": 12.5
+      },
+      "hypotheses": [
+        {
+          "candidate_id": 0,
+          "t_start": 6.5,
+          "t_end": 10.6,
+          "unverified_category": "CarAccident"
+        },
+        {
+          "candidate_id": 1,
+          "t_start": 6.5,
+          "t_end": 7.5,
+          "unverified_category": "CarAccident"
+        }
+      ],
+      "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"CarAccident\",\n      \"t_start\": 6.5,\n      \"t_end\": 7.0,\n      \"confidence\": 0.95,\n      \"description\": \"At f4 (6.5 s), a grey sedan swerves sharply right off the road with visible tire smoke/dust while a red truck passes left; at f5 (7.0 s), the camera view is instantly filled with shattered glass, indicating the recording vehicle collided with or was struck by the sedan or debris.\",\n      \"reason\": \"f4 shows the sedan losing control and departing the roadway; f5 shows immediate windshield fracture filling the frame—definitive visual evidence of impact/collision. Frames f6–f14 show only persistent broken-glass artifacts with no further dynamic crash motion, confirming the accident event concludes by t=7.0. Both candidates describe the same crash; merged into one event bounded by first observable loss of control (f4) and first impact evidence (f5).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Candidate 0 claims CarAccident from 6.5 to 10.6 s, but frames f6–f14 (7.5–11.5 s) show only static broken-glass distortion with no ongoing collision dynamics; the accident itself is fully captured in f4–f5, so the extended interval lacks supporting evidence.\"\n    },\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Candidate 1 ends at 7.5 s, but f6 (7.5 s) already shows only post-impact glass debris with no new crash action; the decisive impact occurs at f5 (7.0 s), making the endpoint ambiguous—however, since the core event is confirmed in f4–f5 and subsumed in the accepted event, this candidate is not rejected but its interval is not used independently.\"\n    }\n  ]\n}"
+    },
+    {
+      "pass_id": 0,
+      "frame_times": {
+        "f0": 4.5,
+        "f1": 5.0,
+        "f2": 5.5,
+        "f3": 6.0,
+        "f4": 6.5,
+        "f5": 7.0,
+        "f6": 7.5,
+        "f7": 8.0,
+        "f8": 8.5,
+        "f9": 9.0,
+        "f10": 9.5,
+        "f11": 10.0,
+        "f12": 10.5,
+        "f13": 11.0,
+        "f14": 11.5,
+        "f15": 12.0,
+        "f16": 12.5
+      },
+      "hypotheses": [
+        {
+          "candidate_id": 0,
+          "t_start": 6.5,
+          "t_end": 10.6,
+          "unverified_category": "CarAccident"
+        },
+        {
+          "candidate_id": 1,
+          "t_start": 6.5,
+          "t_end": 7.5,
+          "unverified_category": "CarAccident"
+        }
+      ],
+      "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"CarAccident\",\n      \"t_start\": 6.5,\n      \"t_end\": 7.0,\n      \"confidence\": 0.95,\n      \"description\": \"At f4 (6.5 s), a grey sedan swerves sharply right off the road with tire smoke/dust while a red truck passes left; at f5 (7.0 s), the camera view is instantly filled with shattered glass, indicating impact involving the recording vehicle.\",\n      \"reason\": \"f4 shows loss of control and departure from roadway; f5 shows immediate windshield fracture filling the frame—definitive visual evidence of collision. Subsequent frames (f6–f14) show only static broken-glass artifacts with no further dynamic crash motion, confirming the accident event is confined to f4–f5. Both candidates refer to the same incident; merged into one event bounded by first observable hazard (f4) and first impact evidence (f5).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Candidate 0 extends to t=10.6 s, but frames f6–f14 (7.5–11.5 s) show only persistent broken-glass distortion without any new collision dynamics or vehicle motion; the accident event itself concludes by t=7.0, so the extended interval lacks supporting evidence and is not part of the verified event.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\"]\n    },\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Candidate 1 ends at t=7.5 s, but f6 (7.5 s) already shows only post-impact glass debris with no new crash action; the decisive impact is fully captured in f5 (7.0 s), making the endpoint unsupported—however, since the core event is confirmed in f4–f5, and candidate 1’s interval overlaps the accepted event, it is subsumed rather than rejected; uncertainty noted due to imprecise endpoint relative to visible evidence.\",\n      \"evidence_frame_ids\": [\"f6\"]\n    }\n  ]\n}"
+    }
+  ]
+}

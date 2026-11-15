@@ -153,6 +153,10 @@ class DetectionResult:
     pre_cbt_boundaries: Optional[List[List[float]]] = None
     mcts_trace: Optional[Dict[str, Any]] = None
     paired_results: Optional[Dict[str, Any]] = None
+    # Populated by the XD branch only; existing UCF serialization is unchanged.
+    dataset: Optional[str] = None
+    category_prior: Optional[Dict[str, Any]] = None
+    diagnostics: Optional[Dict[str, Any]] = None
 
     def to_dict(self) -> Dict[str, Any]:
         """序列化为 dict，供 batch_evaluate.py 写 JSON。
@@ -177,6 +181,9 @@ class DetectionResult:
             d["paired_results"] = self.paired_results
         if self.token_usage is not None:
             d["token_usage"] = self.token_usage
+        for name in ('dataset', 'category_prior', 'diagnostics'):
+            if getattr(self, name) is not None:
+                d[name] = getattr(self, name)
         return d
 
 

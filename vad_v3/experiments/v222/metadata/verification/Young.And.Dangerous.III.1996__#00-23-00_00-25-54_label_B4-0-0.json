@@ -1,0 +1,457 @@
+{
+  "events": [
+    {
+      "t_start": 105.0,
+      "t_end": 114.0,
+      "anomaly_type": "Riot",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A large group surges, overturns a table (f2–f3), and engages in chaotic collective pushing, shoving, and crowding across the room with no clear pairwise combatants.",
+      "source_candidate_ids": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          105.0,
+          106.0,
+          108.0,
+          109.0,
+          109.5,
+          110.0,
+          112.0,
+          113.0,
+          113.5,
+          114.0
+        ],
+        "evidence_frame_ids": [
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11"
+        ],
+        "reason": "From f2 onward, the scene transitions from seated calm to widespread disorder: a table is flipped (f2–f3), people rush in (f3–f4), and by f6–f11 the space is densely packed with agitated individuals raising arms, grabbing, and pushing—consistent with collective violent unrest (Riot), not mutual Fighting; no sustained two-party combat is visible.",
+        "source_categories": [
+          "Fighting",
+          "Fighting",
+          "Riot",
+          "Riot"
+        ]
+      }
+    },
+    {
+      "t_start": 117.0,
+      "t_end": 122.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A man in a beige jacket (white undershirt) is physically restrained and grappled by multiple individuals including uniformed officers, with visible mutual struggle and pulling.",
+      "source_candidate_ids": [
+        6,
+        8
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 1,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          117.0,
+          117.5,
+          118.0,
+          122.0,
+          122.5,
+          123.0,
+          124.0
+        ],
+        "evidence_frame_ids": [
+          "f13",
+          "f14",
+          "f15",
+          "f19",
+          "f20",
+          "f21",
+          "f22"
+        ],
+        "reason": "In f13–f15 and f19–f22, the same man is actively grabbed, pulled, and held while resisting; this constitutes mutual physical combat involving at least two parties (including police), satisfying the 'Fighting' definition; it is localized and distinct from the earlier crowd riot.",
+        "source_categories": [
+          "Fighting",
+          "Fighting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 11,
+      "output_count": 2,
+      "groups": 2,
+      "rejected": 5,
+      "uncertain": 0,
+      "merged_sources": 4,
+      "relabeled": 1,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 103.0,
+              "f1": 104.0,
+              "f2": 105.0,
+              "f3": 106.0,
+              "f4": 108.0,
+              "f5": 109.0,
+              "f6": 109.5,
+              "f7": 110.0,
+              "f8": 112.0,
+              "f9": 113.0,
+              "f10": 113.5,
+              "f11": 114.0,
+              "f12": 116.0,
+              "f13": 117.0,
+              "f14": 117.5,
+              "f15": 118.0,
+              "f16": 119.5,
+              "f17": 120.0,
+              "f18": 121.0,
+              "f19": 122.0,
+              "f20": 122.5,
+              "f21": 123.0,
+              "f22": 124.0,
+              "f23": 126.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 105.0,
+                "t_end": 107.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 105.0,
+                "t_end": 114.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 105.5,
+                "t_end": 107.0,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 105.5,
+                "t_end": 114.0,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 112.7,
+                "t_end": 114.8,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 115.5,
+                "t_end": 119.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 117.0,
+                "t_end": 122.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 118.0,
+                "t_end": 122.3,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 120.5,
+                "t_end": 123.8,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 9,
+                "t_start": 121.0,
+                "t_end": 124.5,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1, 2, 3],\n      \"category\": \"Riot\",\n      \"t_start\": 105.0,\n      \"t_end\": 114.0,\n      \"confidence\": 0.9,\n      \"description\": \"A large crowd surges, overturns a table (f2–f3), and engages in chaotic pushing and shoving across the room; multiple people are involved in collective unrest without clear individual combatants.\",\n      \"reason\": \"From f2 onward, the scene shifts from a seated gathering to widespread disorder: a table is flipped (f2–f3), people rush in (f3–f4), and by f6–f11 the space is densely packed with agitated individuals pushing, grabbing, and raising arms—consistent with riotous behavior rather than pairwise fighting. No sustained mutual combat is visible; instead, collective agitation dominates.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    },\n    {\n      \"source_candidate_ids\": [6, 8],\n      \"category\": \"Fighting\",\n      \"t_start\": 117.0,\n      \"t_end\": 122.0,\n      \"confidence\": 0.85,\n      \"description\": \"A man in a beige jacket is actively restrained and physically engaged by multiple others, including uniformed officers, with visible grappling and pulling actions.\",\n      \"reason\": \"In f13–f15 and f19–f22, the same man (beige jacket, white undershirt) is seen being grabbed, pulled, and held by several individuals—including police—and appears to resist or struggle; this constitutes mutual physical combat involving at least two parties, satisfying the 'Fighting' definition. The event is distinct from the earlier riot and localized.\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\", \"f15\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    },\n    {\n      \"source_candidate_ids\": [7, 9],\n      \"category\": \"Riot\",\n      \"t_start\": 118.0,\n      \"t_end\": 124.0,\n      \"confidence\": 0.75,\n      \"description\": \"Crowd remains densely packed and agitated, with ongoing pushing, interlocking arms, and officers attempting crowd control amid sustained unrest.\",\n      \"reason\": \"Frames f15–f22 show continuous dense crowd movement, overlapping with the earlier riot but extending into officer intervention; while some individual fighting occurs (e.g., f19–f22), the broader context remains collective unrest—multiple simultaneous interactions, no single focal fight—supporting 'Riot' as the dominant category for this interval. Merged with prior riot due to continuity, but extended to cover post-118 activity where crowd dynamics persist beyond the initial surge.\",\n      \"evidence_frame_ids\": [\"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"No distinct fighting episode isolated to 112.7–114.8; frames f11–f12 show crowd density and movement but no clear mutual combat—this interval is subsumed within the broader riot (f6–f11) and later fighting (f13+).\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\"]\n    },\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"The interval 115.5–119.5 shows dispersal and officer entry (f16–f17), not collective violent unrest; the crowd is still agitated but the peak riot has passed, and the main physical engagement begins later (f13 onward).\",\n      \"evidence_frame_ids\": [\"f16\", \"f17\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 10,\n      \"reason\": \"No candidate ID 10 provided in input list; all 10 candidates accounted for above.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 103.0,
+              "f1": 104.0,
+              "f2": 105.0,
+              "f3": 106.0,
+              "f4": 108.0,
+              "f5": 109.0,
+              "f6": 109.5,
+              "f7": 110.0,
+              "f8": 112.0,
+              "f9": 113.0,
+              "f10": 113.5,
+              "f11": 114.0,
+              "f12": 116.0,
+              "f13": 117.0,
+              "f14": 117.5,
+              "f15": 118.0,
+              "f16": 119.5,
+              "f17": 120.0,
+              "f18": 121.0,
+              "f19": 122.0,
+              "f20": 122.5,
+              "f21": 123.0,
+              "f22": 124.0,
+              "f23": 126.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 105.0,
+                "t_end": 107.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 105.0,
+                "t_end": 114.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 105.5,
+                "t_end": 107.0,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 105.5,
+                "t_end": 114.0,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 112.7,
+                "t_end": 114.8,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 115.5,
+                "t_end": 119.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 117.0,
+                "t_end": 122.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 118.0,
+                "t_end": 122.3,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 120.5,
+                "t_end": 123.8,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 9,
+                "t_start": 121.0,
+                "t_end": 124.5,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1, 2, 3],\n      \"category\": \"Riot\",\n      \"t_start\": 105.0,\n      \"t_end\": 114.0,\n      \"confidence\": 0.95,\n      \"description\": \"A large group surges, overturns a table (f2–f3), and engages in chaotic collective pushing, shoving, and crowding across the room with no clear pairwise combatants.\",\n      \"reason\": \"From f2 onward, the scene transitions from seated calm to widespread disorder: a table is flipped (f2–f3), people rush in (f3–f4), and by f6–f11 the space is densely packed with agitated individuals raising arms, grabbing, and pushing—consistent with collective violent unrest (Riot), not mutual Fighting; no sustained two-party combat is visible.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    },\n    {\n      \"source_candidate_ids\": [6, 8],\n      \"category\": \"Fighting\",\n      \"t_start\": 117.0,\n      \"t_end\": 122.5,\n      \"confidence\": 0.9,\n      \"description\": \"A man in a beige jacket (white undershirt) is physically restrained and grappled by multiple individuals including uniformed officers, with visible mutual struggle and pulling.\",\n      \"reason\": \"In f13–f15 and f19–f22, the same man is actively grabbed, pulled, and held while resisting; this constitutes mutual physical combat involving at least two parties (including police), satisfying the 'Fighting' definition; it is localized and distinct from the earlier crowd riot.\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\", \"f15\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"No isolated fighting episode in 112.7–114.8; frames f11–f12 show dense crowd movement but no mutual physical combat—this interval is fully subsumed within the Riot (105.0–114.0).\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\"]\n    },\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"Interval 115.5–119.5 (f16–f17) shows officers entering and crowd dispersal, not collective violent unrest; the peak riot has ended and the next Fighting event begins later (f13 onward, though f13 is at 117.0, before f16); thus no riot here.\",\n      \"evidence_frame_ids\": [\"f16\", \"f17\"]\n    },\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"Frames f15–f17 show crowd reorganization and officer arrival, not sustained collective violence; the later Fighting (f13–f15, f19–f22) is distinct and does not extend into a riot; merging with Riot is unjustified.\",\n      \"evidence_frame_ids\": [\"f15\", \"f16\", \"f17\"]\n    },\n    {\n      \"candidate_id\": 9,\n      \"reason\": \"Interval 121.0–124.5 overlaps with the Fighting event (f19–f22), but the behavior remains localized grappling—not collective unrest; no evidence of riotous dynamics (e.g., mass surging, property destruction) in f18–f22 beyond the individual fight.\",\n      \"evidence_frame_ids\": [\"f18\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "category": "Riot",
+              "t_start": 105.0,
+              "t_end": 114.0,
+              "confidence": 0.95,
+              "description": "A large group surges, overturns a table (f2–f3), and engages in chaotic collective pushing, shoving, and crowding across the room with no clear pairwise combatants.",
+              "reason": "From f2 onward, the scene transitions from seated calm to widespread disorder: a table is flipped (f2–f3), people rush in (f3–f4), and by f6–f11 the space is densely packed with agitated individuals raising arms, grabbing, and pushing—consistent with collective violent unrest (Riot), not mutual Fighting; no sustained two-party combat is visible.",
+              "evidence_frame_ids": [
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                6,
+                8
+              ],
+              "category": "Fighting",
+              "t_start": 117.0,
+              "t_end": 122.5,
+              "confidence": 0.9,
+              "description": "A man in a beige jacket (white undershirt) is physically restrained and grappled by multiple individuals including uniformed officers, with visible mutual struggle and pulling.",
+              "reason": "In f13–f15 and f19–f22, the same man is actively grabbed, pulled, and held while resisting; this constitutes mutual physical combat involving at least two parties (including police), satisfying the 'Fighting' definition; it is localized and distinct from the earlier crowd riot.",
+              "evidence_frame_ids": [
+                "f13",
+                "f14",
+                "f15",
+                "f19",
+                "f20",
+                "f21",
+                "f22"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 4,
+              "reason": "No isolated fighting episode in 112.7–114.8; frames f11–f12 show dense crowd movement but no mutual physical combat—this interval is fully subsumed within the Riot (105.0–114.0).",
+              "evidence_frame_ids": [
+                "f11",
+                "f12"
+              ]
+            },
+            {
+              "candidate_id": 5,
+              "reason": "Interval 115.5–119.5 (f16–f17) shows officers entering and crowd dispersal, not collective violent unrest; the peak riot has ended and the next Fighting event begins later (f13 onward, though f13 is at 117.0, before f16); thus no riot here.",
+              "evidence_frame_ids": [
+                "f16",
+                "f17"
+              ]
+            },
+            {
+              "candidate_id": 7,
+              "reason": "Frames f15–f17 show crowd reorganization and officer arrival, not sustained collective violence; the later Fighting (f13–f15, f19–f22) is distinct and does not extend into a riot; merging with Riot is unjustified.",
+              "evidence_frame_ids": [
+                "f15",
+                "f16",
+                "f17"
+              ]
+            },
+            {
+              "candidate_id": 9,
+              "reason": "Interval 121.0–124.5 overlaps with the Fighting event (f19–f22), but the behavior remains localized grappling—not collective unrest; no evidence of riotous dynamics (e.g., mass surging, property destruction) in f18–f22 beyond the individual fight.",
+              "evidence_frame_ids": [
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          10
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 168.5,
+              "f1": 169.0,
+              "f2": 169.5,
+              "f3": 170.0,
+              "f4": 170.5,
+              "f5": 171.0,
+              "f6": 171.5,
+              "f7": 172.0,
+              "f8": 172.5,
+              "f9": 173.0,
+              "f10": 173.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 10,
+                "t_start": 170.3,
+                "t_end": 171.8,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 10,\n      \"reason\": \"The interaction shows the suited man placing a hand on the other man's shoulder/neck area (f3–f6), but the latter remains standing, does not appear restrained or helpless, and the gesture appears conversational or guiding—not aggressive; no signs of coercion, injury, or victim helplessness required for 'Abuse'.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 10,
+              "reason": "The interaction shows the suited man placing a hand on the other man's shoulder/neck area (f3–f6), but the latter remains standing, does not appear restrained or helpless, and the gesture appears conversational or guiding—not aggressive; no signs of coercion, injury, or victim helplessness required for 'Abuse'.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

@@ -1,0 +1,356 @@
+{
+  "events": [
+    {
+      "t_start": 10.5,
+      "t_end": 12.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A red SUV turns right at an intersection and collides with a person on the sidewalk, who is thrown to the ground; an ambulance arrives shortly after.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          10.5,
+          11.0,
+          11.5,
+          12.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7"
+        ],
+        "reason": "In f4 (10.5s), the SUV begins turning right while a person is visible near the curb; in f5–f6 (11.0–11.5s), the person is no longer upright and appears on the ground near the SUV’s rear wheel; by f7 (12.0s), the SUV has stopped and the person remains on the ground, with an ambulance arriving at the scene—consistent with a vehicle-pedestrian collision.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 26.5,
+      "t_end": 27.0,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A silver sedan enters the intersection from the left and collides with the front-left side of the dashcam vehicle, causing visible deformation and abrupt deceleration.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          26.5,
+          27.0
+        ],
+        "evidence_frame_ids": [
+          "f5",
+          "f6"
+        ],
+        "reason": "In f5 (26.5 s), the silver sedan’s rear is just entering the frame; in f6 (27.0 s), it is fully in view, angled sharply across the lane with its left rear corner contacting the dashcam vehicle’s front bumper—consistent with a low-speed side-impact collision. No rebound or skid marks suggest a minor but real crash. The event is bounded by f5–f6 as the contact occurs between those frames.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 45.0,
+      "t_end": 46.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A blue tractor entering from the right at f2 veers sharply left and collides with the rear-right side of the black sedan at f5–f6, causing the tractor to tip onto its side and slide across the road.",
+      "source_candidate_ids": [
+        2,
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          44.0,
+          44.5,
+          45.0,
+          45.5,
+          46.0,
+          46.5
+        ],
+        "evidence_frame_ids": [
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7"
+        ],
+        "reason": "Frames f5–f6 show the tractor in contact with the sedan and then overturned; dust/debris visible confirms impact; the event is continuous and matches both candidate intervals; no other explanation fits the sudden loss of control and rollover.",
+        "source_categories": [
+          "CarAccident",
+          "CarAccident"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 5,
+      "output_count": 3,
+      "groups": 4,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 8.5,
+              "f1": 9.0,
+              "f2": 9.5,
+              "f3": 10.0,
+              "f4": 10.5,
+              "f5": 11.0,
+              "f6": 11.5,
+              "f7": 12.0,
+              "f8": 12.5,
+              "f9": 13.0,
+              "f10": 13.5,
+              "f11": 14.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 10.5,
+                "t_end": 12.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"CarAccident\",\n      \"t_start\": 10.5,\n      \"t_end\": 12.5,\n      \"confidence\": 0.95,\n      \"description\": \"A red SUV turns right at an intersection and collides with a person on the sidewalk, who is thrown to the ground; an ambulance arrives shortly after.\",\n      \"reason\": \"In f4 (10.5s), the SUV begins turning right while a person is visible near the curb; in f5–f6 (11.0–11.5s), the person is no longer upright and appears on the ground near the SUV’s rear wheel; by f7 (12.0s), the SUV has stopped and the person remains on the ground, with an ambulance arriving at the scene—consistent with a vehicle-pedestrian collision.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "CarAccident",
+              "t_start": 10.5,
+              "t_end": 12.5,
+              "confidence": 0.95,
+              "description": "A red SUV turns right at an intersection and collides with a person on the sidewalk, who is thrown to the ground; an ambulance arrives shortly after.",
+              "reason": "In f4 (10.5s), the SUV begins turning right while a person is visible near the curb; in f5–f6 (11.0–11.5s), the person is no longer upright and appears on the ground near the SUV’s rear wheel; by f7 (12.0s), the SUV has stopped and the person remains on the ground, with an ambulance arriving at the scene—consistent with a vehicle-pedestrian collision.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 24.0,
+              "f1": 24.5,
+              "f2": 25.0,
+              "f3": 25.5,
+              "f4": 26.0,
+              "f5": 26.5,
+              "f6": 27.0,
+              "f7": 27.5,
+              "f8": 28.0,
+              "f9": 28.5,
+              "f10": 29.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 26.0,
+                "t_end": 27.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"CarAccident\",\n      \"t_start\": 26.5,\n      \"t_end\": 27.0,\n      \"confidence\": 0.95,\n      \"description\": \"A silver sedan enters the intersection from the left and collides with the front-left side of the dashcam vehicle, causing visible deformation and abrupt deceleration.\",\n      \"reason\": \"In f5 (26.5 s), the silver sedan’s rear is just entering the frame; in f6 (27.0 s), it is fully in view, angled sharply across the lane with its left rear corner contacting the dashcam vehicle’s front bumper—consistent with a low-speed side-impact collision. No rebound or skid marks suggest a minor but real crash. The event is bounded by f5–f6 as the contact occurs between those frames.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "CarAccident",
+              "t_start": 26.5,
+              "t_end": 27.0,
+              "confidence": 0.95,
+              "description": "A silver sedan enters the intersection from the left and collides with the front-left side of the dashcam vehicle, causing visible deformation and abrupt deceleration.",
+              "reason": "In f5 (26.5 s), the silver sedan’s rear is just entering the frame; in f6 (27.0 s), it is fully in view, angled sharply across the lane with its left rear corner contacting the dashcam vehicle’s front bumper—consistent with a low-speed side-impact collision. No rebound or skid marks suggest a minor but real crash. The event is bounded by f5–f6 as the contact occurs between those frames.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          2,
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 43.0,
+              "f1": 43.5,
+              "f2": 44.0,
+              "f3": 44.5,
+              "f4": 45.0,
+              "f5": 45.5,
+              "f6": 46.0,
+              "f7": 46.5,
+              "f8": 47.0,
+              "f9": 47.5,
+              "f10": 48.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 45.0,
+                "t_end": 46.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 45.5,
+                "t_end": 46.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2, 3],\n      \"category\": \"CarAccident\",\n      \"t_start\": 45.0,\n      \"t_end\": 46.5,\n      \"confidence\": 0.95,\n      \"description\": \"A blue tractor entering from the right at f2 veers sharply left and collides with the rear-right side of the black sedan at f5–f6, causing the tractor to tip onto its side and slide across the road.\",\n      \"reason\": \"Frames f5–f6 show the tractor in contact with the sedan and then overturned; dust/debris visible confirms impact; the event is continuous and matches both candidate intervals; no other explanation fits the sudden loss of control and rollover.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2,
+                3
+              ],
+              "category": "CarAccident",
+              "t_start": 45.0,
+              "t_end": 46.5,
+              "confidence": 0.95,
+              "description": "A blue tractor entering from the right at f2 veers sharply left and collides with the rear-right side of the black sedan at f5–f6, causing the tractor to tip onto its side and slide across the road.",
+              "reason": "Frames f5–f6 show the tractor in contact with the sedan and then overturned; dust/debris visible confirms impact; the event is continuous and matches both candidate intervals; no other explanation fits the sudden loss of control and rollover.",
+              "evidence_frame_ids": [
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 50.0,
+              "f1": 50.5,
+              "f2": 51.0,
+              "f3": 51.5,
+              "f4": 52.0,
+              "f5": 52.5,
+              "f6": 53.0,
+              "f7": 53.5,
+              "f8": 54.0,
+              "f9": 54.5,
+              "f10": 55.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 52.0,
+                "t_end": 53.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"No vehicle collision, deformation, skid marks, or sudden stop is visible; the black SUV on the right remains upright and moving forward normally across all frames (f4–f7), with no impact evidence.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 4,
+              "reason": "No vehicle collision, deformation, skid marks, or sudden stop is visible; the black SUV on the right remains upright and moving forward normally across all frames (f4–f7), with no impact evidence.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

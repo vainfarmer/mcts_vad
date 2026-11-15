@@ -1,0 +1,280 @@
+{
+  "events": [
+    {
+      "t_start": 1.5,
+      "t_end": 11.5,
+      "anomaly_type": "Abuse",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A group surrounds a prone, injured man; one man repeatedly thrusts a spear-like object into his chest/abdomen while others hold him down and observe.",
+      "source_candidate_ids": [
+        0,
+        1,
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          2.0,
+          2.5,
+          3.5,
+          4.0,
+          4.5,
+          5.0,
+          5.5,
+          6.0,
+          7.0,
+          7.5,
+          8.5,
+          9.0,
+          10.0,
+          10.5,
+          11.0
+        ],
+        "evidence_frame_ids": [
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17"
+        ],
+        "reason": "The victim is immobilized and unresisting (eyes open but passive, no defensive posture), while at least one aggressor actively inflicts injury with a weapon—meeting the definition of abuse (aggression against a helpless victim). Frames f3–f17 show continuous stabbing motion and restraint; f5–f6 and f10–f11 confirm the spear penetrates the torso. Merged because same victim, same perpetrators, uninterrupted action.",
+        "source_categories": [
+          "Abuse",
+          "Abuse",
+          "Abuse"
+        ]
+      }
+    },
+    {
+      "t_start": 11.4,
+      "t_end": 13.4,
+      "anomaly_type": "Fighting",
+      "confidence": 0.7,
+      "coarse_score": 0.7,
+      "description": "After the stabbing ceases, the prone man moves violently upward while others recoil or engage in brief physical struggle around him.",
+      "source_candidate_ids": [
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 1,
+        "vlm_confidence": 0.7,
+        "evidence_times": [
+          12.0,
+          12.5
+        ],
+        "evidence_frame_ids": [
+          "f18",
+          "f19"
+        ],
+        "reason": "At f18–f19, the previously inert man suddenly thrashes upward, and surrounding individuals react with active resistance (pushing, grabbing), indicating mutual physical combat—not passive victimization. This is distinct from prior abuse and fits 'Fighting' (mutual physical combat).",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 13.5,
+      "t_end": 15.0,
+      "anomaly_type": "Abuse",
+      "confidence": 0.6,
+      "coarse_score": 0.6,
+      "description": "A man in tattered clothing lifts and drags another limp, seemingly unconscious person across the ground.",
+      "source_candidate_ids": [
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 2,
+        "vlm_confidence": 0.6,
+        "evidence_times": [
+          13.5,
+          14.0
+        ],
+        "evidence_frame_ids": [
+          "f20",
+          "f21"
+        ],
+        "reason": "In f20–f21, one individual carries/draggs a non-resisting, limp body by the arms/shoulders; no resistance or mutual engagement is visible, consistent with abuse (aggression against a helpless victim). Confidence reduced due to occlusion and motion blur, but posture strongly suggests helplessness.",
+        "source_categories": [
+          "Abuse"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 5,
+      "output_count": 3,
+      "groups": 1,
+      "rejected": 0,
+      "uncertain": 0,
+      "merged_sources": 2,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 2.0,
+              "f4": 2.5,
+              "f5": 3.5,
+              "f6": 4.0,
+              "f7": 4.5,
+              "f8": 5.0,
+              "f9": 5.5,
+              "f10": 6.0,
+              "f11": 7.0,
+              "f12": 7.5,
+              "f13": 8.5,
+              "f14": 9.0,
+              "f15": 10.0,
+              "f16": 10.5,
+              "f17": 11.0,
+              "f18": 12.0,
+              "f19": 12.5,
+              "f20": 13.5,
+              "f21": 14.0,
+              "f22": 15.0,
+              "f23": 16.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 1.5,
+                "t_end": 7.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 5.5,
+                "t_end": 10.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 8.6,
+                "t_end": 11.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 11.4,
+                "t_end": 13.4,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 13.5,
+                "t_end": 15.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1, 2],\n      \"category\": \"Abuse\",\n      \"t_start\": 1.5,\n      \"t_end\": 11.5,\n      \"confidence\": 0.9,\n      \"description\": \"A group surrounds a prone, injured man; one man repeatedly thrusts a spear-like object into his chest/abdomen while others hold him down and observe.\",\n      \"reason\": \"The victim is immobilized and unresisting (eyes open but passive, no defensive posture), while at least one aggressor actively inflicts injury with a weapon—meeting the definition of abuse (aggression against a helpless victim). Frames f3–f17 show continuous stabbing motion and restraint; f5–f6 and f10–f11 confirm the spear penetrates the torso. Merged because same victim, same perpetrators, uninterrupted action.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\"]\n    },\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"Fighting\",\n      \"t_start\": 11.4,\n      \"t_end\": 13.4,\n      \"confidence\": 0.7,\n      \"description\": \"After the stabbing ceases, the prone man moves violently upward while others recoil or engage in brief physical struggle around him.\",\n      \"reason\": \"At f18–f19, the previously inert man suddenly thrashes upward, and surrounding individuals react with active resistance (pushing, grabbing), indicating mutual physical combat—not passive victimization. This is distinct from prior abuse and fits 'Fighting' (mutual physical combat).\",\n      \"evidence_frame_ids\": [\"f18\", \"f19\"]\n    },\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"Abuse\",\n      \"t_start\": 13.5,\n      \"t_end\": 15.0,\n      \"confidence\": 0.6,\n      \"description\": \"A man in tattered clothing lifts and drags another limp, seemingly unconscious person across the ground.\",\n      \"reason\": \"In f20–f21, one individual carries/draggs a non-resisting, limp body by the arms/shoulders; no resistance or mutual engagement is visible, consistent with abuse (aggression against a helpless victim). Confidence reduced due to occlusion and motion blur, but posture strongly suggests helplessness.\",\n      \"evidence_frame_ids\": [\"f20\", \"f21\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1,
+                2
+              ],
+              "category": "Abuse",
+              "t_start": 1.5,
+              "t_end": 11.5,
+              "confidence": 0.9,
+              "description": "A group surrounds a prone, injured man; one man repeatedly thrusts a spear-like object into his chest/abdomen while others hold him down and observe.",
+              "reason": "The victim is immobilized and unresisting (eyes open but passive, no defensive posture), while at least one aggressor actively inflicts injury with a weapon—meeting the definition of abuse (aggression against a helpless victim). Frames f3–f17 show continuous stabbing motion and restraint; f5–f6 and f10–f11 confirm the spear penetrates the torso. Merged because same victim, same perpetrators, uninterrupted action.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                3
+              ],
+              "category": "Fighting",
+              "t_start": 11.4,
+              "t_end": 13.4,
+              "confidence": 0.7,
+              "description": "After the stabbing ceases, the prone man moves violently upward while others recoil or engage in brief physical struggle around him.",
+              "reason": "At f18–f19, the previously inert man suddenly thrashes upward, and surrounding individuals react with active resistance (pushing, grabbing), indicating mutual physical combat—not passive victimization. This is distinct from prior abuse and fits 'Fighting' (mutual physical combat).",
+              "evidence_frame_ids": [
+                "f18",
+                "f19"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                4
+              ],
+              "category": "Abuse",
+              "t_start": 13.5,
+              "t_end": 15.0,
+              "confidence": 0.6,
+              "description": "A man in tattered clothing lifts and drags another limp, seemingly unconscious person across the ground.",
+              "reason": "In f20–f21, one individual carries/draggs a non-resisting, limp body by the arms/shoulders; no resistance or mutual engagement is visible, consistent with abuse (aggression against a helpless victim). Confidence reduced due to occlusion and motion blur, but posture strongly suggests helplessness.",
+              "evidence_frame_ids": [
+                "f20",
+                "f21"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

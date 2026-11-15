@@ -1,0 +1,567 @@
+{
+  "events": [
+    {
+      "t_start": 1.0,
+      "t_end": 1.5,
+      "anomaly_type": "Shooting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "At f2 (1.0 s), the man aims a rifle forward; at f3 (1.5 s), the frame is blurred with a bright flash on the right, consistent with muzzle flash and rapid motion during discharge.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          1.0,
+          1.5
+        ],
+        "evidence_frame_ids": [
+          "f2",
+          "f3"
+        ],
+        "reason": "The transition from aimed rifle (f2) to blur + bright flash (f3) strongly indicates firing; no other explanation fits the sudden luminance and motion blur in that interval.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 2.0,
+      "t_end": 2.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "At f4 (2.0 s), the man is physically restraining or grappling the woman; at f5 (2.5 s), they are entangled in close contact with motion blur, indicating mutual physical struggle.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 1,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          2.0,
+          2.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "The proximity, body positioning, and dynamic blur across f4–f5 show reciprocal force application—consistent with fighting—not one-sided abuse or accidental contact.",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 6.5,
+      "t_end": 7.0,
+      "anomaly_type": "Shooting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A person aims a handgun with both hands, muzzle flash and recoil visible in f4 and f5.",
+      "source_candidate_ids": [
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          6.5,
+          7.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "Frames f4 and f5 show the same individual holding a pistol in a two-handed shooting stance; f5 exhibits a bright muzzle flash and slight motion blur consistent with discharge, satisfying the 'visible shooting' requirement.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 16.0,
+      "t_end": 19.5,
+      "anomaly_type": "Shooting",
+      "confidence": 0.8,
+      "coarse_score": 0.8,
+      "description": "Man aims and fires a submachine gun; muzzle flash and recoil visible in f5, f7, f8, with smoke/flash at f12 suggesting discharge.",
+      "source_candidate_ids": [
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 3,
+        "event_id": 0,
+        "vlm_confidence": 0.8,
+        "evidence_times": [
+          16.5,
+          17.5,
+          18.0,
+          20.0
+        ],
+        "evidence_frame_ids": [
+          "f5",
+          "f7",
+          "f8",
+          "f12"
+        ],
+        "reason": "f5 shows weapon raised and aimed with visible muzzle; f7–f8 show clear recoil and facial tension consistent with firing; f12 shows smoke near weapon, supporting discharge. No bullet impact or target visible, but repeated aiming + recoil + smoke across frames supports shooting event.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 22.0,
+      "t_end": 22.5,
+      "anomaly_type": "Shooting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "Man aims and fires a rifle; muzzle flash visible at f5.",
+      "source_candidate_ids": [
+        5
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 4,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          22.0,
+          22.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "f4 shows aiming, f5 shows weapon discharge with bright muzzle flash and recoil posture—sufficient for 'Shooting' per definition requiring visible shooting, not just holding.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 23.8,
+      "t_end": 24.7,
+      "anomaly_type": "Fighting",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "A person is violently ejected through a window and collides mid-air with another figure in a dynamic physical struggle.",
+      "source_candidate_ids": [
+        6
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 4,
+        "event_id": 1,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          24.0,
+          24.5
+        ],
+        "evidence_frame_ids": [
+          "f8",
+          "f9"
+        ],
+        "reason": "f8 shows a figure breaking through a window with debris; f9 shows two bodies in contact mid-fall with limbs entangled, indicating mutual physical combat—not just falling or solo ejection.",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 8,
+      "output_count": 6,
+      "groups": 6,
+      "rejected": 2,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 1.0,
+                "t_end": 1.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 2.0,
+                "t_end": 2.5,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Shooting\",\n      \"t_start\": 1.0,\n      \"t_end\": 1.5,\n      \"confidence\": 0.9,\n      \"description\": \"At f2 (1.0 s), the man aims a rifle forward; at f3 (1.5 s), the frame is blurred with a bright flash on the right, consistent with muzzle flash and rapid motion during discharge.\",\n      \"reason\": \"The transition from aimed rifle (f2) to blur + bright flash (f3) strongly indicates firing; no other explanation fits the sudden luminance and motion blur in that interval.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\"]\n    },\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Fighting\",\n      \"t_start\": 2.0,\n      \"t_end\": 2.5,\n      \"confidence\": 0.85,\n      \"description\": \"At f4 (2.0 s), the man is physically restraining or grappling the woman; at f5 (2.5 s), they are entangled in close contact with motion blur, indicating mutual physical struggle.\",\n      \"reason\": \"The proximity, body positioning, and dynamic blur across f4–f5 show reciprocal force application—consistent with fighting—not one-sided abuse or accidental contact.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Shooting",
+              "t_start": 1.0,
+              "t_end": 1.5,
+              "confidence": 0.9,
+              "description": "At f2 (1.0 s), the man aims a rifle forward; at f3 (1.5 s), the frame is blurred with a bright flash on the right, consistent with muzzle flash and rapid motion during discharge.",
+              "reason": "The transition from aimed rifle (f2) to blur + bright flash (f3) strongly indicates firing; no other explanation fits the sudden luminance and motion blur in that interval.",
+              "evidence_frame_ids": [
+                "f2",
+                "f3"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "Fighting",
+              "t_start": 2.0,
+              "t_end": 2.5,
+              "confidence": 0.85,
+              "description": "At f4 (2.0 s), the man is physically restraining or grappling the woman; at f5 (2.5 s), they are entangled in close contact with motion blur, indicating mutual physical struggle.",
+              "reason": "The proximity, body positioning, and dynamic blur across f4–f5 show reciprocal force application—consistent with fighting—not one-sided abuse or accidental contact.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 4.5,
+              "f1": 5.0,
+              "f2": 5.5,
+              "f3": 6.0,
+              "f4": 6.5,
+              "f5": 7.0,
+              "f6": 7.5,
+              "f7": 8.0,
+              "f8": 8.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 6.5,
+                "t_end": 7.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"Shooting\",\n      \"t_start\": 6.5,\n      \"t_end\": 7.0,\n      \"confidence\": 0.9,\n      \"description\": \"A person aims a handgun with both hands, muzzle flash and recoil visible in f4 and f5.\",\n      \"reason\": \"Frames f4 and f5 show the same individual holding a pistol in a two-handed shooting stance; f5 exhibits a bright muzzle flash and slight motion blur consistent with discharge, satisfying the 'visible shooting' requirement.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2
+              ],
+              "category": "Shooting",
+              "t_start": 6.5,
+              "t_end": 7.0,
+              "confidence": 0.9,
+              "description": "A person aims a handgun with both hands, muzzle flash and recoil visible in f4 and f5.",
+              "reason": "Frames f4 and f5 show the same individual holding a pistol in a two-handed shooting stance; f5 exhibits a bright muzzle flash and slight motion blur consistent with discharge, satisfying the 'visible shooting' requirement.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 8.5,
+              "f1": 9.0,
+              "f2": 9.5,
+              "f3": 10.0,
+              "f4": 10.5,
+              "f5": 11.0,
+              "f6": 11.5,
+              "f7": 12.0,
+              "f8": 12.5,
+              "f9": 13.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 10.5,
+                "t_end": 11.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"No visible muzzle flash, recoil, or projectile; frames f4–f6 show only hands adjusting or holding a rifle in darkness, consistent with weapon handling or preparation, not active shooting.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 3,
+              "reason": "No visible muzzle flash, recoil, or projectile; frames f4–f6 show only hands adjusting or holding a rifle in darkness, consistent with weapon handling or preparation, not active shooting.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 14.0,
+              "f1": 14.5,
+              "f2": 15.0,
+              "f3": 15.5,
+              "f4": 16.0,
+              "f5": 16.5,
+              "f6": 17.0,
+              "f7": 17.5,
+              "f8": 18.0,
+              "f9": 18.5,
+              "f10": 19.0,
+              "f11": 19.5,
+              "f12": 20.0,
+              "f13": 20.5,
+              "f14": 21.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 16.0,
+                "t_end": 19.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"Shooting\",\n      \"t_start\": 16.0,\n      \"t_end\": 19.5,\n      \"confidence\": 0.8,\n      \"description\": \"Man aims and fires a submachine gun; muzzle flash and recoil visible in f5, f7, f8, with smoke/flash at f12 suggesting discharge.\",\n      \"reason\": \"f5 shows weapon raised and aimed with visible muzzle; f7–f8 show clear recoil and facial tension consistent with firing; f12 shows smoke near weapon, supporting discharge. No bullet impact or target visible, but repeated aiming + recoil + smoke across frames supports shooting event.\",\n      \"evidence_frame_ids\": [\"f5\", \"f7\", \"f8\", \"f12\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                4
+              ],
+              "category": "Shooting",
+              "t_start": 16.0,
+              "t_end": 19.5,
+              "confidence": 0.8,
+              "description": "Man aims and fires a submachine gun; muzzle flash and recoil visible in f5, f7, f8, with smoke/flash at f12 suggesting discharge.",
+              "reason": "f5 shows weapon raised and aimed with visible muzzle; f7–f8 show clear recoil and facial tension consistent with firing; f12 shows smoke near weapon, supporting discharge. No bullet impact or target visible, but repeated aiming + recoil + smoke across frames supports shooting event.",
+              "evidence_frame_ids": [
+                "f5",
+                "f7",
+                "f8",
+                "f12"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 4,
+        "source_ids": [
+          5,
+          6
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 20.0,
+              "f1": 20.5,
+              "f2": 21.0,
+              "f3": 21.5,
+              "f4": 22.0,
+              "f5": 22.5,
+              "f6": 23.0,
+              "f7": 23.5,
+              "f8": 24.0,
+              "f9": 24.5,
+              "f10": 25.0,
+              "f11": 25.5,
+              "f12": 26.0,
+              "f13": 26.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 5,
+                "t_start": 22.0,
+                "t_end": 23.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 23.8,
+                "t_end": 24.7,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [5],\n      \"category\": \"Shooting\",\n      \"t_start\": 22.0,\n      \"t_end\": 22.5,\n      \"confidence\": 0.9,\n      \"description\": \"Man aims and fires a rifle; muzzle flash visible at f5.\",\n      \"reason\": \"f4 shows aiming, f5 shows weapon discharge with bright muzzle flash and recoil posture—sufficient for 'Shooting' per definition requiring visible shooting, not just holding.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    },\n    {\n      \"source_candidate_ids\": [6],\n      \"category\": \"Fighting\",\n      \"t_start\": 23.8,\n      \"t_end\": 24.7,\n      \"confidence\": 0.85,\n      \"description\": \"A person is violently ejected through a window and collides mid-air with another figure in a dynamic physical struggle.\",\n      \"reason\": \"f8 shows a figure breaking through a window with debris; f9 shows two bodies in contact mid-fall with limbs entangled, indicating mutual physical combat—not just falling or solo ejection.\",\n      \"evidence_frame_ids\": [\"f8\", \"f9\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                5
+              ],
+              "category": "Shooting",
+              "t_start": 22.0,
+              "t_end": 22.5,
+              "confidence": 0.9,
+              "description": "Man aims and fires a rifle; muzzle flash visible at f5.",
+              "reason": "f4 shows aiming, f5 shows weapon discharge with bright muzzle flash and recoil posture—sufficient for 'Shooting' per definition requiring visible shooting, not just holding.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                6
+              ],
+              "category": "Fighting",
+              "t_start": 23.8,
+              "t_end": 24.7,
+              "confidence": 0.85,
+              "description": "A person is violently ejected through a window and collides mid-air with another figure in a dynamic physical struggle.",
+              "reason": "f8 shows a figure breaking through a window with debris; f9 shows two bodies in contact mid-fall with limbs entangled, indicating mutual physical combat—not just falling or solo ejection.",
+              "evidence_frame_ids": [
+                "f8",
+                "f9"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 5,
+        "source_ids": [
+          7
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 27.0,
+              "f1": 27.5,
+              "f2": 28.0,
+              "f3": 28.5,
+              "f4": 29.0,
+              "f5": 29.5,
+              "f6": 30.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 7,
+                "t_start": 29.0,
+                "t_end": 30.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"No collision, vehicle deformation, or sudden impact is visible; the van approaches normally with headlights on and no evidence of crash dynamics.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 7,
+              "reason": "No collision, vehicle deformation, or sudden impact is visible; the van approaches normally with headlights on and no evidence of crash dynamics.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

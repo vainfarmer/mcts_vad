@@ -1,0 +1,317 @@
+{
+  "events": [
+    {
+      "t_start": 5.0,
+      "t_end": 8.0,
+      "anomaly_type": "Explosion",
+      "confidence": 1.0,
+      "coarse_score": 1.0,
+      "description": "A large fireball erupts from the car at f4, followed by expanding smoke and debris; at f10–f13, the car is engulfed in smoke and fire with parts airborne, consistent with a single explosive event.",
+      "source_candidate_ids": [
+        0,
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 1.0,
+        "evidence_times": [
+          5.0,
+          5.5,
+          6.0,
+          6.5,
+          7.0,
+          7.5,
+          8.0,
+          8.5,
+          9.0,
+          9.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13"
+        ],
+        "reason": "f4 shows an instantaneous bright blast centered on the car; f5–f13 show continuous expansion of smoke/debris and the car’s destruction without evidence of a second distinct blast—thus candidates 0 and 2 describe the same explosion. f10–f13 show aftermath (debris, burning wreckage), not a new explosion.",
+        "source_categories": [
+          "Explosion",
+          "Explosion"
+        ]
+      }
+    },
+    {
+      "t_start": 16.5,
+      "t_end": 22.1,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "A damaged car is on fire and emitting thick smoke; the fire persists across multiple frames after initial ignition.",
+      "source_candidate_ids": [
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 1,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          16.5,
+          17.0,
+          17.5,
+          18.0,
+          18.5,
+          23.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f18"
+        ],
+        "reason": "Although the initial ignition (f4) suggests explosion, the prolonged burning (f4–f8, f18) and visible structural damage (crushed roof, detached parts) indicate a prior collision; per taxonomy, CarAccident applies to crashes—even if followed by fire—provided the crash is evident. The car is stationary and heavily deformed, supporting accident over spontaneous combustion.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 16.5,
+      "t_end": 17.0,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A vehicle is engulfed in intense fire and rapidly expanding smoke, consistent with a post-blast fireball and debris dispersion.",
+      "source_candidate_ids": [
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          16.5,
+          17.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "Frames f4–f5 show sudden, violent ignition and rapid fire expansion with dark smoke plume—characteristic of an explosion’s immediate aftermath—not sustained burning from a prior crash; no visible impact or collision preceding it in the sequence.",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 5,
+      "output_count": 3,
+      "groups": 2,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 3.0,
+              "f1": 3.5,
+              "f2": 4.0,
+              "f3": 4.5,
+              "f4": 5.0,
+              "f5": 5.5,
+              "f6": 6.0,
+              "f7": 6.5,
+              "f8": 7.0,
+              "f9": 7.5,
+              "f10": 8.0,
+              "f11": 8.5,
+              "f12": 9.0,
+              "f13": 9.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 5.0,
+                "t_end": 5.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 6.3,
+                "t_end": 7.8,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 7.5,
+                "t_end": 8.0,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 2],\n      \"category\": \"Explosion\",\n      \"t_start\": 5.0,\n      \"t_end\": 8.0,\n      \"confidence\": 1.0,\n      \"description\": \"A large fireball erupts from the car at f4, followed by expanding smoke and debris; at f10–f13, the car is engulfed in smoke and fire with parts airborne, consistent with a single explosive event.\",\n      \"reason\": \"f4 shows an instantaneous bright blast centered on the car; f5–f13 show continuous expansion of smoke/debris and the car’s destruction without evidence of a second distinct blast—thus candidates 0 and 2 describe the same explosion. f10–f13 show aftermath (debris, burning wreckage), not a new explosion.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"No new or separate explosion occurs between 6.3–7.8; the smoke and fire visible in f6–f8 are continuous from the initial blast at f4, with no secondary detonation evident.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                2
+              ],
+              "category": "Explosion",
+              "t_start": 5.0,
+              "t_end": 8.0,
+              "confidence": 1.0,
+              "description": "A large fireball erupts from the car at f4, followed by expanding smoke and debris; at f10–f13, the car is engulfed in smoke and fire with parts airborne, consistent with a single explosive event.",
+              "reason": "f4 shows an instantaneous bright blast centered on the car; f5–f13 show continuous expansion of smoke/debris and the car’s destruction without evidence of a second distinct blast—thus candidates 0 and 2 describe the same explosion. f10–f13 show aftermath (debris, burning wreckage), not a new explosion.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "No new or separate explosion occurs between 6.3–7.8; the smoke and fire visible in f6–f8 are continuous from the initial blast at f4, with no secondary detonation evident.",
+              "evidence_frame_ids": [
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          3,
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 14.5,
+              "f1": 15.0,
+              "f2": 15.5,
+              "f3": 16.0,
+              "f4": 16.5,
+              "f5": 17.0,
+              "f6": 17.5,
+              "f7": 18.0,
+              "f8": 18.5,
+              "f9": 19.0,
+              "f10": 19.5,
+              "f11": 20.0,
+              "f12": 20.5,
+              "f13": 21.0,
+              "f14": 21.5,
+              "f15": 22.0,
+              "f16": 22.5,
+              "f17": 23.0,
+              "f18": 23.5,
+              "f19": 24.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 16.5,
+                "t_end": 22.1,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 16.5,
+                "t_end": 17.0,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"Explosion\",\n      \"t_start\": 16.5,\n      \"t_end\": 17.0,\n      \"confidence\": 0.95,\n      \"description\": \"A vehicle is engulfed in intense fire and rapidly expanding smoke, consistent with a post-blast fireball and debris dispersion.\",\n      \"reason\": \"Frames f4–f5 show sudden, violent ignition and rapid fire expansion with dark smoke plume—characteristic of an explosion’s immediate aftermath—not sustained burning from a prior crash; no visible impact or collision preceding it in the sequence.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    },\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"CarAccident\",\n      \"t_start\": 16.5,\n      \"t_end\": 22.1,\n      \"confidence\": 0.85,\n      \"description\": \"A damaged car is on fire and emitting thick smoke; the fire persists across multiple frames after initial ignition.\",\n      \"reason\": \"Although the initial ignition (f4) suggests explosion, the prolonged burning (f4–f8, f18) and visible structural damage (crushed roof, detached parts) indicate a prior collision; per taxonomy, CarAccident applies to crashes—even if followed by fire—provided the crash is evident. The car is stationary and heavily deformed, supporting accident over spontaneous combustion.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f18\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                4
+              ],
+              "category": "Explosion",
+              "t_start": 16.5,
+              "t_end": 17.0,
+              "confidence": 0.95,
+              "description": "A vehicle is engulfed in intense fire and rapidly expanding smoke, consistent with a post-blast fireball and debris dispersion.",
+              "reason": "Frames f4–f5 show sudden, violent ignition and rapid fire expansion with dark smoke plume—characteristic of an explosion’s immediate aftermath—not sustained burning from a prior crash; no visible impact or collision preceding it in the sequence.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                3
+              ],
+              "category": "CarAccident",
+              "t_start": 16.5,
+              "t_end": 22.1,
+              "confidence": 0.85,
+              "description": "A damaged car is on fire and emitting thick smoke; the fire persists across multiple frames after initial ignition.",
+              "reason": "Although the initial ignition (f4) suggests explosion, the prolonged burning (f4–f8, f18) and visible structural damage (crushed roof, detached parts) indicate a prior collision; per taxonomy, CarAccident applies to crashes—even if followed by fire—provided the crash is evident. The car is stationary and heavily deformed, supporting accident over spontaneous combustion.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f18"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

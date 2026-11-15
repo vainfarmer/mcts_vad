@@ -1,0 +1,165 @@
+{
+  "events": [
+    {
+      "t_start": 85.5,
+      "t_end": 87.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "At f4, an object on the floor near the rear doors appears disturbed; at f5, a sudden cloud of dust and debris erupts from the rear cabin, rapidly filling the interior through f7, with visible structural distortion (e.g., warped door frame in f7) and no external impact evidence.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          85.5,
+          86.0,
+          86.5,
+          87.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7"
+        ],
+        "reason": "The event is instantaneous, internal, and generates a rapidly expanding dust/debris cloud with visible cabin deformation (e.g., bent metal in f7), satisfying the definition of explosion (blast); CarAccident is unsupported because there is no vehicle motion blur, no external collision痕迹, and the vehicle remains stationary per f0 context (desert setting, no other vehicles). Candidate 0 (CarAccident) is rejected; candidate 1 is accepted as Explosion.",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 2,
+      "output_count": 1,
+      "groups": 1,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 83.5,
+              "f1": 84.0,
+              "f2": 84.5,
+              "f3": 85.0,
+              "f4": 85.5,
+              "f5": 86.0,
+              "f6": 86.5,
+              "f7": 87.0,
+              "f8": 87.5,
+              "f9": 88.0,
+              "f10": 88.5,
+              "f11": 89.0,
+              "f12": 89.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 85.5,
+                "t_end": 88.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 85.5,
+                "t_end": 87.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Explosion\",\n      \"t_start\": 85.5,\n      \"t_end\": 87.5,\n      \"confidence\": 0.95,\n      \"description\": \"A sudden violent blast occurs inside the vehicle at f4–f5, ejecting debris and generating a dense dust cloud that obscures the interior through f7.\",\n      \"reason\": \"f4 shows an object (likely explosive device) on the floor just before detonation; f5 shows instantaneous dust/debris expansion filling the cabin, consistent with a blast—not a collision (no external impact visible, no vehicle deformation, no motion blur indicating crash). The event is instantaneous and internal, matching explosion criteria; CarAccident is rejected because there is no evidence of vehicle-to-vehicle or vehicle-to-object collision.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No evidence of vehicle collision: interior view shows no external impact, no crumpling, no change in vehicle orientation; the event originates from inside the cabin, inconsistent with CarAccident.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 83.5,
+              "f1": 84.0,
+              "f2": 84.5,
+              "f3": 85.0,
+              "f4": 85.5,
+              "f5": 86.0,
+              "f6": 86.5,
+              "f7": 87.0,
+              "f8": 87.5,
+              "f9": 88.0,
+              "f10": 88.5,
+              "f11": 89.0,
+              "f12": 89.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 85.5,
+                "t_end": 88.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 85.5,
+                "t_end": 87.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Explosion\",\n      \"t_start\": 85.5,\n      \"t_end\": 87.5,\n      \"confidence\": 0.9,\n      \"description\": \"At f4, an object on the floor near the rear doors appears disturbed; at f5, a sudden cloud of dust and debris erupts from the rear cabin, rapidly filling the interior through f7, with visible structural distortion (e.g., warped door frame in f7) and no external impact evidence.\",\n      \"reason\": \"The event is instantaneous, internal, and generates a rapidly expanding dust/debris cloud with visible cabin deformation (e.g., bent metal in f7), satisfying the definition of explosion (blast); CarAccident is unsupported because there is no vehicle motion blur, no external collision痕迹, and the vehicle remains stationary per f0 context (desert setting, no other vehicles). Candidate 0 (CarAccident) is rejected; candidate 1 is accepted as Explosion.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No evidence of vehicle crash: interior view shows no external impact, no chassis deformation, no motion blur, and the vehicle remains static (per f0 context); the event originates inside the cabin, inconsistent with CarAccident.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "Explosion",
+              "t_start": 85.5,
+              "t_end": 87.5,
+              "confidence": 0.9,
+              "description": "At f4, an object on the floor near the rear doors appears disturbed; at f5, a sudden cloud of dust and debris erupts from the rear cabin, rapidly filling the interior through f7, with visible structural distortion (e.g., warped door frame in f7) and no external impact evidence.",
+              "reason": "The event is instantaneous, internal, and generates a rapidly expanding dust/debris cloud with visible cabin deformation (e.g., bent metal in f7), satisfying the definition of explosion (blast); CarAccident is unsupported because there is no vehicle motion blur, no external collision痕迹, and the vehicle remains stationary per f0 context (desert setting, no other vehicles). Candidate 0 (CarAccident) is rejected; candidate 1 is accepted as Explosion.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "No evidence of vehicle crash: interior view shows no external impact, no chassis deformation, no motion blur, and the vehicle remains static (per f0 context); the event originates inside the cabin, inconsistent with CarAccident.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

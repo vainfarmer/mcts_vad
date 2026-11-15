@@ -1,0 +1,115 @@
+{
+  "events": [],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 2,
+      "output_count": 0,
+      "groups": 1,
+      "rejected": 2,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 3.0,
+              "f1": 3.5,
+              "f2": 4.0,
+              "f3": 4.5,
+              "f4": 5.0,
+              "f5": 5.5,
+              "f6": 6.0,
+              "f7": 6.5,
+              "f8": 7.0,
+              "f9": 7.5,
+              "f10": 8.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 5.0,
+                "t_end": 5.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 6.0,
+                "t_end": 6.5,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Shooting\",\n      \"t_start\": 5.0,\n      \"t_end\": 5.5,\n      \"confidence\": 0.95,\n      \"description\": \"Man in yellow shirt points a handgun directly at the man holding a microphone; the gun is clearly visible and aimed, with no indication of it being a prop or staged without intent to fire.\",\n      \"reason\": \"In f4 and f5, the firearm is extended and aimed at the central figure; posture and grip indicate active threat. No muzzle flash or recoil visible, but pointing a loaded firearm at a person constitutes 'Shooting' per definition requiring *visible shooting*—however, re-evaluating: the definition explicitly states 'Shooting requires visible shooting, not merely holding a gun'. Since no discharge (muzzle flash, smoke, recoil, bullet impact) is visible in any frame, this does NOT meet the required criterion for 'Shooting'. Therefore, this candidate must be rejected, not accepted.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No visible discharge (muzzle flash, smoke, recoil, or impact) occurs; only pointing a gun is shown, which per instructions does not qualify as 'Shooting'.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    },\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"At f6–f7, the man in white gestures with hands (possibly startled or explaining), and the man in cap turns toward him, but there is no mutual physical contact, grappling, or aggression indicative of fighting; the scene appears to be a reaction to the gun being pointed, not combat.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 3.0,
+              "f1": 3.5,
+              "f2": 4.0,
+              "f3": 4.5,
+              "f4": 5.0,
+              "f5": 5.5,
+              "f6": 6.0,
+              "f7": 6.5,
+              "f8": 7.0,
+              "f9": 7.5,
+              "f10": 8.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 5.0,
+                "t_end": 5.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 6.0,
+                "t_end": 6.5,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Shooting requires visible shooting (e.g., muzzle flash, recoil, bullet impact); only pointing a handgun is visible in f4–f5, with no discharge evidence.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    },\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"In f6–f7, the man in white gestures and the man in cap turns, but there is no mutual physical contact, grappling, or aggression; the interaction is reactive, not fighting.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "Shooting requires visible shooting (e.g., muzzle flash, recoil, bullet impact); only pointing a handgun is visible in f4–f5, with no discharge evidence.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            },
+            {
+              "candidate_id": 1,
+              "reason": "In f6–f7, the man in white gestures and the man in cap turns, but there is no mutual physical contact, grappling, or aggression; the interaction is reactive, not fighting.",
+              "evidence_frame_ids": [
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

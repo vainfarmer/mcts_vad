@@ -1,0 +1,442 @@
+{
+  "events": [
+    {
+      "t_start": 3.0,
+      "t_end": 3.5,
+      "anomaly_type": "Shooting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A man in dark clothing aims a handgun with both hands while running on a rooftop; a second person is behind him, also moving.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          3.0,
+          3.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "In f4 (3.0s) and f5 (3.5s), the man holds a handgun in a two-handed aiming posture, consistent with active shooting; no muzzle flash or impact visible, but posture and context (running, pursuit) support intentional discharge. The event spans both frames and matches candidate interval.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 7.0,
+      "t_end": 7.5,
+      "anomaly_type": "Shooting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A man in black crouches and aims a handgun directly at the camera; his posture and grip indicate active aiming, consistent with firing.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          7.0,
+          7.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "f4 shows clear aiming stance with gun pointed forward; f5 shows a figure on roof immediately after, suggesting recoil or follow-through; no muzzle flash visible but context supports shooting event within this interval.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 8.5,
+      "t_end": 9.0,
+      "anomaly_type": "Shooting",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "The same man is again shown aiming a handgun downward from a low angle, followed by a cut to an airbag deployment scene implying impact from a fall triggered by the shot or evasive action.",
+      "source_candidate_ids": [
+        2,
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 1,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          8.5,
+          9.0
+        ],
+        "evidence_frame_ids": [
+          "f7",
+          "f8"
+        ],
+        "reason": "f7 repeats the aiming pose (same hand/gun position as f4), and f8 shows a large inflatable airbag deployed—consistent with a fall from height, possibly prompted by being shot at or reacting to gunfire; timing aligns with candidate intervals overlapping 8.5–9.0.",
+        "source_categories": [
+          "Shooting",
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 15.5,
+      "t_end": 16.0,
+      "anomaly_type": "Shooting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A man in black sits on the ground aiming a handgun directly at an off-screen figure; muzzle flash is not visible but posture and grip indicate active firing or imminent discharge.",
+      "source_candidate_ids": [
+        5,
+        6
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          15.5,
+          16.0
+        ],
+        "evidence_frame_ids": [
+          "f6",
+          "f7"
+        ],
+        "reason": "In f6 and f7, the man is seated, holding a pistol with both hands, arms extended, and eyes focused downrange—standard shooting stance. No physical contact or struggle is present; this is not fighting. The candidate intervals (15.5–16.0 and 15.5–15.54) are fully covered by f6 (15.5) and f7 (16.0), supporting a single shooting event.",
+        "source_categories": [
+          "Shooting",
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 18.0,
+      "t_end": 19.5,
+      "anomaly_type": "Shooting",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "The same man remains seated, holding the handgun pointed forward, maintaining aim across multiple frames without discharge visible but consistent with sustained aiming/firing posture.",
+      "source_candidate_ids": [
+        8
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 1,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          18.0,
+          18.5,
+          19.0,
+          19.5
+        ],
+        "evidence_frame_ids": [
+          "f11",
+          "f12",
+          "f13",
+          "f14"
+        ],
+        "reason": "Frames f11–f14 show continuous aiming posture: gun held two-handed, arm extended, body braced, eyes fixed ahead. Though no muzzle flash appears, the sustained pose over 1.5 seconds (vs brief aiming) strongly suggests active engagement (shooting or repeated shots). This is distinct from the earlier shot (f6–f7) due to temporal gap and repositioning; thus treated as separate event.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 9,
+      "output_count": 5,
+      "groups": 3,
+      "rejected": 2,
+      "uncertain": 0,
+      "merged_sources": 2,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 1.0,
+              "f1": 1.5,
+              "f2": 2.0,
+              "f3": 2.5,
+              "f4": 3.0,
+              "f5": 3.5,
+              "f6": 4.0,
+              "f7": 4.5,
+              "f8": 5.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 3.0,
+                "t_end": 3.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Shooting\",\n      \"t_start\": 3.0,\n      \"t_end\": 3.5,\n      \"confidence\": 0.9,\n      \"description\": \"A man in dark clothing aims a handgun with both hands while running on a rooftop; a second person is behind him, also moving.\",\n      \"reason\": \"In f4 (3.0s) and f5 (3.5s), the man holds a handgun in a two-handed aiming posture, consistent with active shooting; no muzzle flash or impact visible, but posture and context (running, pursuit) support intentional discharge. The event spans both frames and matches candidate interval.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Shooting",
+              "t_start": 3.0,
+              "t_end": 3.5,
+              "confidence": 0.9,
+              "description": "A man in dark clothing aims a handgun with both hands while running on a rooftop; a second person is behind him, also moving.",
+              "reason": "In f4 (3.0s) and f5 (3.5s), the man holds a handgun in a two-handed aiming posture, consistent with active shooting; no muzzle flash or impact visible, but posture and context (running, pursuit) support intentional discharge. The event spans both frames and matches candidate interval.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1,
+          2,
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 5.0,
+              "f1": 5.5,
+              "f2": 6.0,
+              "f3": 6.5,
+              "f4": 7.0,
+              "f5": 7.5,
+              "f6": 8.0,
+              "f7": 8.5,
+              "f8": 9.0,
+              "f9": 9.5,
+              "f10": 10.0,
+              "f11": 10.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 7.0,
+                "t_end": 7.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 8.5,
+                "t_end": 8.541667,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 8.5,
+                "t_end": 9.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Shooting\",\n      \"t_start\": 7.0,\n      \"t_end\": 7.5,\n      \"confidence\": 0.9,\n      \"description\": \"A man in black crouches and aims a handgun directly at the camera; his posture and grip indicate active aiming, consistent with firing.\",\n      \"reason\": \"f4 shows clear aiming stance with gun pointed forward; f5 shows a figure on roof immediately after, suggesting recoil or follow-through; no muzzle flash visible but context supports shooting event within this interval.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    },\n    {\n      \"source_candidate_ids\": [2, 3],\n      \"category\": \"Shooting\",\n      \"t_start\": 8.5,\n      \"t_end\": 9.0,\n      \"confidence\": 0.85,\n      \"description\": \"The same man is again shown aiming a handgun downward from a low angle, followed by a cut to an airbag deployment scene implying impact from a fall triggered by the shot or evasive action.\",\n      \"reason\": \"f7 repeats the aiming pose (same hand/gun position as f4), and f8 shows a large inflatable airbag deployed—consistent with a fall from height, possibly prompted by being shot at or reacting to gunfire; timing aligns with candidate intervals overlapping 8.5–9.0.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "Shooting",
+              "t_start": 7.0,
+              "t_end": 7.5,
+              "confidence": 0.9,
+              "description": "A man in black crouches and aims a handgun directly at the camera; his posture and grip indicate active aiming, consistent with firing.",
+              "reason": "f4 shows clear aiming stance with gun pointed forward; f5 shows a figure on roof immediately after, suggesting recoil or follow-through; no muzzle flash visible but context supports shooting event within this interval.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                2,
+                3
+              ],
+              "category": "Shooting",
+              "t_start": 8.5,
+              "t_end": 9.0,
+              "confidence": 0.85,
+              "description": "The same man is again shown aiming a handgun downward from a low angle, followed by a cut to an airbag deployment scene implying impact from a fall triggered by the shot or evasive action.",
+              "reason": "f7 repeats the aiming pose (same hand/gun position as f4), and f8 shows a large inflatable airbag deployed—consistent with a fall from height, possibly prompted by being shot at or reacting to gunfire; timing aligns with candidate intervals overlapping 8.5–9.0.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 12.5,
+              "f1": 13.0,
+              "f2": 13.5,
+              "f3": 14.0,
+              "f4": 14.5,
+              "f5": 15.0,
+              "f6": 15.5,
+              "f7": 16.0,
+              "f8": 16.5,
+              "f9": 17.0,
+              "f10": 17.5,
+              "f11": 18.0,
+              "f12": 18.5,
+              "f13": 19.0,
+              "f14": 19.5,
+              "f15": 20.0,
+              "f16": 20.5,
+              "f17": 21.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 14.5,
+                "t_end": 15.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 15.5,
+                "t_end": 16.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 15.5,
+                "t_end": 15.541667,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 16.5,
+                "t_end": 17.3,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 18.0,
+                "t_end": 19.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [5, 6],\n      \"category\": \"Shooting\",\n      \"t_start\": 15.5,\n      \"t_end\": 16.0,\n      \"confidence\": 0.9,\n      \"description\": \"A man in black sits on the ground aiming a handgun directly at an off-screen figure; muzzle flash is not visible but posture and grip indicate active firing or imminent discharge.\",\n      \"reason\": \"In f6 and f7, the man is seated, holding a pistol with both hands, arms extended, and eyes focused downrange—standard shooting stance. No physical contact or struggle is present; this is not fighting. The candidate intervals (15.5–16.0 and 15.5–15.54) are fully covered by f6 (15.5) and f7 (16.0), supporting a single shooting event.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\"]\n    },\n    {\n      \"source_candidate_ids\": [8],\n      \"category\": \"Shooting\",\n      \"t_start\": 18.0,\n      \"t_end\": 19.5,\n      \"confidence\": 0.85,\n      \"description\": \"The same man remains seated, holding the handgun pointed forward, maintaining aim across multiple frames without discharge visible but consistent with sustained aiming/firing posture.\",\n      \"reason\": \"Frames f11–f14 show continuous aiming posture: gun held two-handed, arm extended, body braced, eyes fixed ahead. Though no muzzle flash appears, the sustained pose over 1.5 seconds (vs brief aiming) strongly suggests active engagement (shooting or repeated shots). This is distinct from the earlier shot (f6–f7) due to temporal gap and repositioning; thus treated as separate event.\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\", \"f13\", \"f14\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"At 14.5–15.0 (f4–f5), the man is falling backward onto the inflatable surface while raising hands; no opponent is in contact, and the motion appears reactive (e.g., being startled or pushed), not mutual combat. No evidence of fighting.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    },\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"At 16.5–17.3 (f8–f10), one man stands with arms raised/dancing-like while another sits facing him; there is no physical contact, aggression toward a helpless person, or mutual combat—posture resembles taunting or evasion, not fighting.\",\n      \"evidence_frame_ids\": [\"f8\", \"f9\", \"f10\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                5,
+                6
+              ],
+              "category": "Shooting",
+              "t_start": 15.5,
+              "t_end": 16.0,
+              "confidence": 0.9,
+              "description": "A man in black sits on the ground aiming a handgun directly at an off-screen figure; muzzle flash is not visible but posture and grip indicate active firing or imminent discharge.",
+              "reason": "In f6 and f7, the man is seated, holding a pistol with both hands, arms extended, and eyes focused downrange—standard shooting stance. No physical contact or struggle is present; this is not fighting. The candidate intervals (15.5–16.0 and 15.5–15.54) are fully covered by f6 (15.5) and f7 (16.0), supporting a single shooting event.",
+              "evidence_frame_ids": [
+                "f6",
+                "f7"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                8
+              ],
+              "category": "Shooting",
+              "t_start": 18.0,
+              "t_end": 19.5,
+              "confidence": 0.85,
+              "description": "The same man remains seated, holding the handgun pointed forward, maintaining aim across multiple frames without discharge visible but consistent with sustained aiming/firing posture.",
+              "reason": "Frames f11–f14 show continuous aiming posture: gun held two-handed, arm extended, body braced, eyes fixed ahead. Though no muzzle flash appears, the sustained pose over 1.5 seconds (vs brief aiming) strongly suggests active engagement (shooting or repeated shots). This is distinct from the earlier shot (f6–f7) due to temporal gap and repositioning; thus treated as separate event.",
+              "evidence_frame_ids": [
+                "f11",
+                "f12",
+                "f13",
+                "f14"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 4,
+              "reason": "At 14.5–15.0 (f4–f5), the man is falling backward onto the inflatable surface while raising hands; no opponent is in contact, and the motion appears reactive (e.g., being startled or pushed), not mutual combat. No evidence of fighting.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            },
+            {
+              "candidate_id": 7,
+              "reason": "At 16.5–17.3 (f8–f10), one man stands with arms raised/dancing-like while another sits facing him; there is no physical contact, aggression toward a helpless person, or mutual combat—posture resembles taunting or evasion, not fighting.",
+              "evidence_frame_ids": [
+                "f8",
+                "f9",
+                "f10"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

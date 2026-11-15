@@ -1,0 +1,193 @@
+{
+  "events": [
+    {
+      "t_start": 56.0,
+      "t_end": 59.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.98,
+      "coarse_score": 0.98,
+      "description": "A blue sedan swerves sharply left across the lane divider, collides with a black car entering from the right, and spins to a stop perpendicular to traffic.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.98,
+        "evidence_times": [
+          56.0,
+          56.5,
+          57.0,
+          57.5,
+          58.0,
+          58.5,
+          59.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10"
+        ],
+        "reason": "Frames f4–f10 show the blue car initiating an abrupt turn (f4–f5), making contact with the black car (f6–f7), producing dust/debris and visible deformation (f8–f10); this satisfies the definition of a crash (CarAccident).",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 2,
+      "output_count": 1,
+      "groups": 2,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 54.0,
+              "f1": 54.5,
+              "f2": 55.0,
+              "f3": 55.5,
+              "f4": 56.0,
+              "f5": 56.5,
+              "f6": 57.0,
+              "f7": 57.5,
+              "f8": 58.0,
+              "f9": 58.5,
+              "f10": 59.0,
+              "f11": 59.5,
+              "f12": 60.0,
+              "f13": 60.5,
+              "f14": 61.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 56.0,
+                "t_end": 59.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"CarAccident\",\n      \"t_start\": 56.0,\n      \"t_end\": 59.5,\n      \"confidence\": 0.98,\n      \"description\": \"A blue sedan swerves sharply left across the lane divider, collides with a black car entering from the right, and spins to a stop perpendicular to traffic.\",\n      \"reason\": \"Frames f4–f10 show the blue car initiating an abrupt turn (f4–f5), making contact with the black car (f6–f7), producing dust/debris and visible deformation (f8–f10); this satisfies the definition of a crash (CarAccident).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "CarAccident",
+              "t_start": 56.0,
+              "t_end": 59.5,
+              "confidence": 0.98,
+              "description": "A blue sedan swerves sharply left across the lane divider, collides with a black car entering from the right, and spins to a stop perpendicular to traffic.",
+              "reason": "Frames f4–f10 show the blue car initiating an abrupt turn (f4–f5), making contact with the black car (f6–f7), producing dust/debris and visible deformation (f8–f10); this satisfies the definition of a crash (CarAccident).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 73.5,
+              "f1": 74.0,
+              "f2": 74.5,
+              "f3": 75.0,
+              "f4": 75.5,
+              "f5": 76.0,
+              "f6": 76.5,
+              "f7": 77.0,
+              "f8": 77.5,
+              "f9": 78.0,
+              "f10": 78.5,
+              "f11": 79.0,
+              "f12": 79.5,
+              "f13": 80.0,
+              "f14": 80.5,
+              "f15": 81.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 75.5,
+                "t_end": 79.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"No visible crash or vehicle deformation; the white car on the left remains stationary but appears parked or stopped in a lane, and traffic flows normally around it without impact. The orange truck enters frame gradually and does not collide with any vehicle.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "No visible crash or vehicle deformation; the white car on the left remains stationary but appears parked or stopped in a lane, and traffic flows normally around it without impact. The orange truck enters frame gradually and does not collide with any vehicle.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

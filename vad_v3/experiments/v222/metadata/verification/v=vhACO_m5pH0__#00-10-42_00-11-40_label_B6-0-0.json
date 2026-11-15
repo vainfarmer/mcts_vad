@@ -1,0 +1,132 @@
+{
+  "events": [],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 3,
+      "output_count": 0,
+      "groups": 2,
+      "rejected": 3,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0,
+              "f9": 4.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 1.5,
+                "t_end": 2.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 2.0,
+                "t_end": 3.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Images f3–f4 show a sudden blur and loss of clarity, likely due to rapid camera motion or obstruction (e.g., swerving, braking, or spray), but no visible vehicle contact, deformation, or post-impact behavior confirming a crash; the scene transitions directly to urban traffic without evidence of collision aftermath.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\"]\n    },\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"The interval f2–f3 shows continued forward motion with no impact; f4 is blurry but not indicative of a crash; f5 abruptly shifts to a different location (urban street), suggesting a cut or new clip—not a continuation of the prior event—so no car accident is visually confirmed in this interval.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "Images f3–f4 show a sudden blur and loss of clarity, likely due to rapid camera motion or obstruction (e.g., swerving, braking, or spray), but no visible vehicle contact, deformation, or post-impact behavior confirming a crash; the scene transitions directly to urban traffic without evidence of collision aftermath.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4"
+              ]
+            },
+            {
+              "candidate_id": 1,
+              "reason": "The interval f2–f3 shows continued forward motion with no impact; f4 is blurry but not indicative of a crash; f5 abruptly shifts to a different location (urban street), suggesting a cut or new clip—not a continuation of the prior event—so no car accident is visually confirmed in this interval.",
+              "evidence_frame_ids": [
+                "f2",
+                "f3",
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 44.5,
+              "f1": 45.0,
+              "f2": 45.5,
+              "f3": 46.0,
+              "f4": 46.5,
+              "f5": 47.0,
+              "f6": 47.5,
+              "f7": 48.0,
+              "f8": 48.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 46.5,
+                "t_end": 47.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"No crash or collision is visible; the silver SUV in the left lane moves normally across lanes without impact, and all vehicles maintain separation and control throughout f4–f5.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "No crash or collision is visible; the silver SUV in the left lane moves normally across lanes without impact, and all vehicles maintain separation and control throughout f4–f5.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

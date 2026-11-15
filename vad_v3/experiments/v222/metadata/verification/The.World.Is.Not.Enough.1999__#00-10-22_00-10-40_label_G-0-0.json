@@ -1,0 +1,240 @@
+{
+  "events": [
+    {
+      "t_start": 1.0,
+      "t_end": 3.0,
+      "anomaly_type": "Explosion",
+      "confidence": 1.0,
+      "coarse_score": 1.0,
+      "description": "A large vessel is struck by a blast at f2, with debris, smoke, and fire erupting outward through f5; the explosion propagates visibly across frames.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 1.0,
+        "evidence_times": [
+          1.0,
+          1.5,
+          2.0,
+          2.5
+        ],
+        "evidence_frame_ids": [
+          "f2",
+          "f3",
+          "f4",
+          "f5"
+        ],
+        "reason": "Frames f2–f5 show a sudden, violent release of energy: rapid expansion of smoke/dust, ejection of fragments, and bright flash/fire consistent with an explosion; the event begins at f2 (first visible blast) and continues through f5 (ongoing debris and fire), fully covering the candidate interval [1.0, 3.0].",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 2,
+      "output_count": 1,
+      "groups": 2,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 1,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0,
+              "f9": 4.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 1.0,
+                "t_end": 3.0,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Explosion\",\n      \"t_start\": 1.0,\n      \"t_end\": 3.0,\n      \"confidence\": 1.0,\n      \"description\": \"A large vessel is struck by a blast at f2, with debris, smoke, and fire erupting outward through f5; the explosion propagates visibly across frames.\",\n      \"reason\": \"Frames f2–f5 show a sudden, violent release of energy: rapid expansion of smoke/dust, ejection of fragments, and bright flash/fire consistent with an explosion; the event begins at f2 (first visible blast) and continues through f5 (ongoing debris and fire), fully covering the candidate interval [1.0, 3.0].\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Explosion",
+              "t_start": 1.0,
+              "t_end": 3.0,
+              "confidence": 1.0,
+              "description": "A large vessel is struck by a blast at f2, with debris, smoke, and fire erupting outward through f5; the explosion propagates visibly across frames.",
+              "reason": "Frames f2–f5 show a sudden, violent release of energy: rapid expansion of smoke/dust, ejection of fragments, and bright flash/fire consistent with an explosion; the event begins at f2 (first visible blast) and continues through f5 (ongoing debris and fire), fully covering the candidate interval [1.0, 3.0].",
+              "evidence_frame_ids": [
+                "f2",
+                "f3",
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 2.5,
+              "f1": 3.0,
+              "f2": 3.5,
+              "f3": 4.0,
+              "f4": 4.5,
+              "f5": 5.0,
+              "f6": 5.5,
+              "f7": 6.0,
+              "f8": 6.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 4.5,
+                "t_end": 5.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Shooting\",\n      \"t_start\": 4.5,\n      \"t_end\": 5.0,\n      \"confidence\": 0.6,\n      \"description\": \"A woman in red holds a long firearm, aiming it forward; frame f5 shows motion blur consistent with recoil or rapid movement immediately after firing.\",\n      \"reason\": \"Frame f4 shows the woman holding a rifle-like object pointed forward; f5 is heavily blurred but consistent with immediate post-firing motion (e.g., recoil or weapon swing). No muzzle flash or bullet impact visible, but the posture and sequence support a shooting event. Not merely possession—action implies discharge.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    },\n    {\n      \"source_candidate_ids\": [],\n      \"category\": \"Explosion\",\n      \"t_start\": 2.5,\n      \"t_end\": 2.5,\n      \"confidence\": 0.95,\n      \"description\": \"A boat erupts in a large plume of smoke, debris, and sparks, with water displacement and shockwave effects visible.\",\n      \"reason\": \"Frame f0 shows a sudden, violent blast from the center of a boat: expanding smoke/dust cloud, flying fragments, bright sparks, and water spray—definitive visual markers of an explosion. No sustained fire or collision evidence alone.\",\n      \"evidence_frame_ids\": [\"f0\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 2.5,
+              "f1": 3.0,
+              "f2": 3.5,
+              "f3": 4.0,
+              "f4": 4.5,
+              "f5": 5.0,
+              "f6": 5.5,
+              "f7": 6.0,
+              "f8": 6.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 4.5,
+                "t_end": 5.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Explosion\",\n      \"t_start\": 2.5,\n      \"t_end\": 2.5,\n      \"confidence\": 0.95,\n      \"description\": \"A boat is violently disrupted by a sudden blast, producing a large smoke/dust cloud, flying debris, and bright sparks; water is displaced outward.\",\n      \"reason\": \"Frame f0 shows definitive explosion markers: rapid expansion of gas/smoke, fragmentation, and incandescent particles—consistent with a detonation, not fire or collision alone. The candidate’s 'Shooting' hypothesis (4.5–5.0) is unsupported: f4 shows a woman holding a long object, but f5 is too blurred to confirm discharge; no muzzle flash, bullet impact, or recoil evidence is visible. Thus, the only verifiable event in the sequence is the explosion at t=2.5.\",\n      \"evidence_frame_ids\": [\"f0\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Frames f4–f5 show a woman holding a long object and motion blur, but no visible muzzle flash, bullet trajectory, impact, or unambiguous recoil; holding or swinging a weapon does not satisfy the 'Shooting' definition requiring visible shooting.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 2.5,
+              "f1": 3.0,
+              "f2": 3.5,
+              "f3": 4.0,
+              "f4": 4.5,
+              "f5": 5.0,
+              "f6": 5.5,
+              "f7": 6.0,
+              "f8": 6.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 4.5,
+                "t_end": 5.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [],\n      \"category\": \"Explosion\",\n      \"t_start\": 2.5,\n      \"t_end\": 2.5,\n      \"confidence\": 0.95,\n      \"description\": \"A boat erupts in a sudden blast with expanding smoke/dust, flying debris, bright sparks, and water displacement, visible in frame f0.\",\n      \"reason\": \"Frame f0 shows definitive explosion markers: rapid volumetric expansion, fragmentation, incandescent particles, and shock-induced water spray—meeting the definition of 'Explosion'. No collision or fire alone explains the simultaneity of smoke, debris, and sparks.\",\n      \"evidence_frame_ids\": [\"f0\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Frames f4–f5 show a woman holding a long object and motion blur, but no visible muzzle flash, bullet impact, recoil, or discharge; holding or swinging a weapon does not satisfy 'Shooting', which requires visible shooting.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0,
+              "f9": 4.5,
+              "f10": 5.0,
+              "f11": 5.5,
+              "f12": 6.0,
+              "f13": 6.5,
+              "f14": 7.0,
+              "f15": 7.5,
+              "f16": 8.0,
+              "f17": 8.5,
+              "f18": 9.0,
+              "f19": 9.5,
+              "f20": 10.0,
+              "f21": 10.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 4.5,
+                "t_end": 5.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Image f9 shows a woman holding a long object (possibly a rifle) in a low-angle shot, but no muzzle flash, recoil, or projectile is visible; image f10 is blurred and shows no discharge. No evidence of actual shooting occurs in the frames.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "Image f9 shows a woman holding a long object (possibly a rifle) in a low-angle shot, but no muzzle flash, recoil, or projectile is visible; image f10 is blurred and shows no discharge. No evidence of actual shooting occurs in the frames.",
+              "evidence_frame_ids": [
+                "f9",
+                "f10"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": true
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

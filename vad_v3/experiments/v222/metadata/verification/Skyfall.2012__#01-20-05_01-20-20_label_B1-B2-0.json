@@ -1,0 +1,307 @@
+{
+  "events": [
+    {
+      "t_start": 2.0,
+      "t_end": 8.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A man in a dark suit is struck with a gun (f4), engages in reciprocal grappling and takedowns with multiple opponents (f5–f14), and ends on the ground amid a dust cloud from impact (f15–f16).",
+      "source_candidate_ids": [
+        0,
+        2,
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          2.0,
+          2.5,
+          3.5,
+          4.0,
+          4.5,
+          5.0,
+          5.5,
+          6.0,
+          6.5,
+          7.0,
+          7.5,
+          8.0,
+          8.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16"
+        ],
+        "reason": "Frames show mutual physical contact, strikes, wrestling, and takedowns—satisfying 'Fighting' as defined (mutual physical combat); candidates 0, 2, and 4 describe overlapping phases of this single continuous fight and are merged.",
+        "source_categories": [
+          "Fighting",
+          "Fighting",
+          "Fighting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 7,
+      "output_count": 1,
+      "groups": 1,
+      "rejected": 4,
+      "uncertain": 0,
+      "merged_sources": 2,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.5,
+              "f7": 4.0,
+              "f8": 4.5,
+              "f9": 5.0,
+              "f10": 5.5,
+              "f11": 6.0,
+              "f12": 6.5,
+              "f13": 7.0,
+              "f14": 7.5,
+              "f15": 8.0,
+              "f16": 8.5,
+              "f17": 9.0,
+              "f18": 9.5,
+              "f19": 10.5,
+              "f20": 11.0,
+              "f21": 11.5,
+              "f22": 12.0,
+              "f23": 13.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 2.0,
+                "t_end": 6.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 2.5,
+                "t_end": 2.541667,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 4.9,
+                "t_end": 8.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 7.0,
+                "t_end": 7.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 7.5,
+                "t_end": 10.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 10.5,
+                "t_end": 12.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 11.0,
+                "t_end": 11.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 2, 4],\n      \"category\": \"Fighting\",\n      \"t_start\": 2.0,\n      \"t_end\": 8.5,\n      \"confidence\": 0.95,\n      \"description\": \"A man in a dark suit is attacked by multiple opponents: struck with a gun (f4), engaged in hand-to-hand struggle (f5–f7), thrown to the ground (f11), and pinned/struck while down (f12–f14), culminating in a dust cloud from impact (f15–f16).\",\n      \"reason\": \"Multiple frames show reciprocal physical contact, grappling, striking, and takedowns—meeting the definition of Fighting (mutual physical combat). The sequence is continuous and overlapping across candidates 0, 2, and 4; merged into one event.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    },\n    {\n      \"source_candidate_ids\": [5, 6],\n      \"category\": \"Shooting\",\n      \"t_start\": 10.5,\n      \"t_end\": 12.0,\n      \"confidence\": 0.85,\n      \"description\": \"A man in a dark suit aims a handgun forward with both hands (f19–f22); muzzle flash or recoil not visible, but posture and grip indicate active aiming/shooting intent in a confrontational context.\",\n      \"reason\": \"While no bullet or flash is visible, the sustained two-handed aimed stance (f19–f22) in immediate response to prior violence, combined with the presence of a firearm pointed at an opponent, satisfies the 'Shooting' category per definition requiring *visible shooting*—but here, only aiming is visible. However, per instruction, 'Shooting requires visible shooting, not merely holding a gun'. Since no discharge is visible (no muzzle flash, no bullet trace, no recoil blur), this does NOT meet the strict definition. Re-evaluate: **Reject** — see rejected list below. Wait — correction: per instructions, we must reject if not visible shooting. So this should be rejected, not accepted. Let’s fix: actually, none of the frames show visible discharge. Therefore, no Shooting event is supported. Revised: only Fighting is supported. So remove this event and place candidates 5 & 6 in rejected.\",\n      \"evidence_frame_ids\": []\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Frame f5 shows motion blur and a figure mid-action, but no visible muzzle flash, bullet, or gun discharge; the hypothesized 'Shooting' at 2.5 s is not visually confirmed.\",\n      \"evidence_frame_ids\": [\"f5\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"Frame f13 shows a hand holding a gun, but no discharge (no flash, smoke, or recoil); 'Shooting' requires visible shooting, not just weapon possession.\",\n      \"evidence_frame_ids\": [\"f13\"]\n    },\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"Frames f19–f22 show aiming with a handgun, but no visible muzzle flash, bullet, or recoil; thus, no visible shooting occurs per definition.\",\n      \"evidence_frame_ids\": [\"f19\", \"f20\", \"f21\", \"f22\"]\n    },\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"Same as candidate 5; f20–f21 show aiming but no discharge evidence; insufficient for 'Shooting'.\",\n      \"evidence_frame_ids\": [\"f20\", \"f21\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Already merged into the main Fighting event (f0–f16); not uncertain—actually fully supported. But since we merged it, it's not uncertain. All candidates accounted. No true uncertain needed.\"\n    }\n  ]\n}\n\nWait—per instructions: *Account for EVERY candidate exactly once across all lists.* We have 6 candidates. In current draft:\n- candidate 0 → accepted (in merged Fighting)\n- candidate 1 → rejected\n- candidate 2 → accepted (merged)\n- candidate 3 → rejected\n- candidate 4 → accepted (merged)\n- candidate 5 → rejected\n- candidate 6 → rejected\n\nThat’s 6 candidates covered.\n\nBut earlier I incorrectly tried to accept 5/6; per strict rule, **Shooting requires visible shooting**, and no frame shows muzzle flash, bullet, or clear discharge (e.g., f13 shows gun held, f19–f22 show aiming only). So no Shooting event is valid.\n\nThus final events: only one Fighting event covering candidates 0, 2, 4.\n\nRevised JSON:\n\n```json\n{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 2, 4],\n      \"category\": \"Fighting\",\n      \"t_start\": 2.0,\n      \"t_end\": 8.5,\n      \"confidence\": 0.95,\n      \"description\": \"A man in a dark suit is attacked and engages in physical combat: struck with a gun (f4), struggles with multiple assailants (f5–f7), is thrown and pinned on the ground (f11–f14), and ends amid a dust cloud from impact (f15–f16).\",\n      \"reason\": \"Visible reciprocal physical contact, grappling, strikes, and takedowns across frames confirm mutual combat; candidates 0, 2, and 4 describe overlapping phases of the same fight and are merged.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"No visible muzzle flash, bullet, or discharge in f5; motion blur alone does not confirm shooting.\",\n      \"evidence_frame_ids\": [\"f5\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"f13 shows a gun held but no discharge; 'Shooting' requires visible shooting, not just possession.\",\n      \"evidence_frame_ids\": [\"f13\"]\n    },\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"f19–f22 show aiming but no visible firing (no flash/recoil); fails strict 'visible shooting' criterion.\",\n      \"evidence_frame_ids\": [\"f19\", \"f20\", \"f21\", \"f22\"]\n    },\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"Same as candidate 5; f20–f21 lack discharge evidence, so not Shooting.\",\n      \"evidence_frame_ids\": [\"f20\", \"f21\"]\n    }\n  ],\n  \"uncertain\": []\n}\n```"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.5,
+              "f7": 4.0,
+              "f8": 4.5,
+              "f9": 5.0,
+              "f10": 5.5,
+              "f11": 6.0,
+              "f12": 6.5,
+              "f13": 7.0,
+              "f14": 7.5,
+              "f15": 8.0,
+              "f16": 8.5,
+              "f17": 9.0,
+              "f18": 9.5,
+              "f19": 10.5,
+              "f20": 11.0,
+              "f21": 11.5,
+              "f22": 12.0,
+              "f23": 13.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 2.0,
+                "t_end": 6.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 2.5,
+                "t_end": 2.541667,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 4.9,
+                "t_end": 8.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 7.0,
+                "t_end": 7.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 7.5,
+                "t_end": 10.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 10.5,
+                "t_end": 12.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 11.0,
+                "t_end": 11.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "```json\n{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 2, 4],\n      \"category\": \"Fighting\",\n      \"t_start\": 2.0,\n      \"t_end\": 8.5,\n      \"confidence\": 0.95,\n      \"description\": \"A man in a dark suit is struck with a gun (f4), engages in reciprocal grappling and takedowns with multiple opponents (f5–f14), and ends on the ground amid a dust cloud from impact (f15–f16).\",\n      \"reason\": \"Frames show mutual physical contact, strikes, wrestling, and takedowns—satisfying 'Fighting' as defined (mutual physical combat); candidates 0, 2, and 4 describe overlapping phases of this single continuous fight and are merged.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Frame f5 shows motion blur and action but no visible muzzle flash, bullet, or discharge; 'Shooting' requires visible shooting, not inferred action.\",\n      \"evidence_frame_ids\": [\"f5\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"Frame f13 shows a hand holding a gun but no discharge evidence (no flash, smoke, or recoil); weapon possession alone does not satisfy 'Shooting'.\",\n      \"evidence_frame_ids\": [\"f13\"]\n    },\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"Frames f19–f22 show aiming with a handgun but no visible firing (no muzzle flash, bullet trace, or recoil blur); fails the strict 'visible shooting' requirement.\",\n      \"evidence_frame_ids\": [\"f19\", \"f20\", \"f21\", \"f22\"]\n    },\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"Frames f20–f21 are subsets of candidate 5 and likewise lack any visual evidence of discharge; not Shooting.\",\n      \"evidence_frame_ids\": [\"f20\", \"f21\"]\n    }\n  ],\n  \"uncertain\": []\n}\n```"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                2,
+                4
+              ],
+              "category": "Fighting",
+              "t_start": 2.0,
+              "t_end": 8.5,
+              "confidence": 0.95,
+              "description": "A man in a dark suit is struck with a gun (f4), engages in reciprocal grappling and takedowns with multiple opponents (f5–f14), and ends on the ground amid a dust cloud from impact (f15–f16).",
+              "reason": "Frames show mutual physical contact, strikes, wrestling, and takedowns—satisfying 'Fighting' as defined (mutual physical combat); candidates 0, 2, and 4 describe overlapping phases of this single continuous fight and are merged.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "Frame f5 shows motion blur and action but no visible muzzle flash, bullet, or discharge; 'Shooting' requires visible shooting, not inferred action.",
+              "evidence_frame_ids": [
+                "f5"
+              ]
+            },
+            {
+              "candidate_id": 3,
+              "reason": "Frame f13 shows a hand holding a gun but no discharge evidence (no flash, smoke, or recoil); weapon possession alone does not satisfy 'Shooting'.",
+              "evidence_frame_ids": [
+                "f13"
+              ]
+            },
+            {
+              "candidate_id": 5,
+              "reason": "Frames f19–f22 show aiming with a handgun but no visible firing (no muzzle flash, bullet trace, or recoil blur); fails the strict 'visible shooting' requirement.",
+              "evidence_frame_ids": [
+                "f19",
+                "f20",
+                "f21",
+                "f22"
+              ]
+            },
+            {
+              "candidate_id": 6,
+              "reason": "Frames f20–f21 are subsets of candidate 5 and likewise lack any visual evidence of discharge; not Shooting.",
+              "evidence_frame_ids": [
+                "f20",
+                "f21"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

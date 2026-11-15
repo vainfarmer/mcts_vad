@@ -1,0 +1,277 @@
+{
+  "events": [
+    {
+      "t_start": 12.0,
+      "t_end": 18.0,
+      "anomaly_type": "Abuse",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A bald man in a white shirt lifts, throws, and pins another man onto a car hood, then applies pressure to his neck/face while the victim grimaces in pain.",
+      "source_candidate_ids": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          12.0,
+          12.5,
+          13.0,
+          13.5,
+          17.0,
+          17.5,
+          18.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f14",
+          "f15",
+          "f16"
+        ],
+        "reason": "Frames f4–f7 show the bald man lifting and slamming the other man onto a car; f14–f16 show the victim pinned and visibly distressed with hands near his face/neck, consistent with coercive restraint rather than mutual combat; no reciprocal action by the victim is visible, ruling out Fighting. The sequence is continuous and coherent across all candidate intervals, justifying merging into one Abuse event.",
+        "source_categories": [
+          "Fighting",
+          "Abuse",
+          "Abuse",
+          "Abuse"
+        ]
+      }
+    },
+    {
+      "t_start": 22.0,
+      "t_end": 26.0,
+      "anomaly_type": "Abuse",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A person lies supine with face contorted in pain while another person's hands grip their neck/upper chest; facial expression and sustained pressure suggest non-consensual restraint causing distress.",
+      "source_candidate_ids": [
+        4,
+        5
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          22.0,
+          22.5,
+          23.0,
+          23.5,
+          24.0,
+          24.5,
+          25.0,
+          25.5,
+          26.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12"
+        ],
+        "reason": "Frames f4–f12 show a prone individual with strained facial features (eyes squeezed, mouth open, sweat), while hands are positioned firmly on the neck/chest region without visible consent or medical context; the continuity across frames supports a single abusive act rather than separate incidents.",
+        "source_categories": [
+          "Abuse",
+          "Abuse"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 6,
+      "output_count": 2,
+      "groups": 2,
+      "rejected": 0,
+      "uncertain": 0,
+      "merged_sources": 4,
+      "relabeled": 1,
+      "context_retries": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 10.0,
+              "f1": 10.5,
+              "f2": 11.0,
+              "f3": 11.5,
+              "f4": 12.0,
+              "f5": 12.5,
+              "f6": 13.0,
+              "f7": 13.5,
+              "f8": 14.0,
+              "f9": 14.5,
+              "f10": 15.0,
+              "f11": 15.5,
+              "f12": 16.0,
+              "f13": 16.5,
+              "f14": 17.0,
+              "f15": 17.5,
+              "f16": 18.0,
+              "f17": 18.5,
+              "f18": 19.0,
+              "f19": 19.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 12.0,
+                "t_end": 13.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 12.5,
+                "t_end": 17.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 13.5,
+                "t_end": 14.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 17.0,
+                "t_end": 18.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1, 2, 3],\n      \"category\": \"Abuse\",\n      \"t_start\": 12.0,\n      \"t_end\": 18.0,\n      \"confidence\": 0.95,\n      \"description\": \"A bald man in a white shirt lifts, throws, and pins another man onto a car hood, then applies pressure to his neck/face while the victim grimaces in pain.\",\n      \"reason\": \"Frames f4–f7 show the bald man lifting and slamming the other man onto a car; f14–f16 show the victim pinned and visibly distressed with hands near his face/neck, consistent with coercive restraint rather than mutual combat; no reciprocal action by the victim is visible, ruling out Fighting. The sequence is continuous and coherent across all candidate intervals, justifying merging into one Abuse event.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f14\", \"f15\", \"f16\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "category": "Abuse",
+              "t_start": 12.0,
+              "t_end": 18.0,
+              "confidence": 0.95,
+              "description": "A bald man in a white shirt lifts, throws, and pins another man onto a car hood, then applies pressure to his neck/face while the victim grimaces in pain.",
+              "reason": "Frames f4–f7 show the bald man lifting and slamming the other man onto a car; f14–f16 show the victim pinned and visibly distressed with hands near his face/neck, consistent with coercive restraint rather than mutual combat; no reciprocal action by the victim is visible, ruling out Fighting. The sequence is continuous and coherent across all candidate intervals, justifying merging into one Abuse event.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f14",
+                "f15",
+                "f16"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          4,
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 20.0,
+              "f1": 20.5,
+              "f2": 21.0,
+              "f3": 21.5,
+              "f4": 22.0,
+              "f5": 22.5,
+              "f6": 23.0,
+              "f7": 23.5,
+              "f8": 24.0,
+              "f9": 24.5,
+              "f10": 25.0,
+              "f11": 25.5,
+              "f12": 26.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 22.0,
+                "t_end": 23.2,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 22.8,
+                "t_end": 26.041666666666668,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4, 5],\n      \"category\": \"Abuse\",\n      \"t_start\": 22.0,\n      \"t_end\": 26.0,\n      \"confidence\": 0.95,\n      \"description\": \"A person lies supine with face contorted in pain while another person's hands grip their neck/upper chest; facial expression and sustained pressure suggest non-consensual restraint causing distress.\",\n      \"reason\": \"Frames f4–f12 show a prone individual with strained facial features (eyes squeezed, mouth open, sweat), while hands are positioned firmly on the neck/chest region without visible consent or medical context; the continuity across frames supports a single abusive act rather than separate incidents.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                4,
+                5
+              ],
+              "category": "Abuse",
+              "t_start": 22.0,
+              "t_end": 26.0,
+              "confidence": 0.95,
+              "description": "A person lies supine with face contorted in pain while another person's hands grip their neck/upper chest; facial expression and sustained pressure suggest non-consensual restraint causing distress.",
+              "reason": "Frames f4–f12 show a prone individual with strained facial features (eyes squeezed, mouth open, sweat), while hands are positioned firmly on the neck/chest region without visible consent or medical context; the continuity across frames supports a single abusive act rather than separate incidents.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "66ad9fcfade10cd82ecdac71d80faa31aba86d9d76287532cddfe4ebe1519c32"
+}

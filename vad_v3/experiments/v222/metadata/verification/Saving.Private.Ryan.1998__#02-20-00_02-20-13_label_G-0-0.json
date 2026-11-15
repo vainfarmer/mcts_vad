@@ -1,0 +1,470 @@
+{
+  "events": [
+    {
+      "t_start": 4.5,
+      "t_end": 5.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A bright flash at f10 followed immediately by a fireball/blast wave at f11, consistent with an explosion triggered by the sniper’s action.",
+      "source_candidate_ids": [
+        0,
+        1,
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          5.0,
+          5.5
+        ],
+        "evidence_frame_ids": [
+          "f10",
+          "f11"
+        ],
+        "reason": "f10 shows a sudden overexposed flash with motion blur suggesting detonation; f11 is a full-frame fire/explosion. The prior frames (f7–f9) show the sniper’s escalating reaction (shock → scream), implying he just fired and caused an explosion—thus 'Shooting' alone is insufficient; the visible event is the explosion itself. Merged because all three candidates describe overlapping moments of the same blast event.",
+        "source_categories": [
+          "Shooting",
+          "Shooting",
+          "Explosion"
+        ]
+      }
+    },
+    {
+      "t_start": 5.041667,
+      "t_end": 6.0,
+      "anomaly_type": "Explosion",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "Smoke and debris rising from a church steeple in f12–f13, indicating a secondary explosion or structural collapse after the initial blast.",
+      "source_candidate_ids": [
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 1,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          6.0,
+          6.5
+        ],
+        "evidence_frame_ids": [
+          "f12",
+          "f13"
+        ],
+        "reason": "f12–f13 show smoke pluming from a damaged church tower, with no visible fireball; this is consistent with a delayed structural failure or secondary explosion following the primary blast at f10–f11. Since it occurs after the first explosion and involves blast effects (smoke, debris, damage), it qualifies as a separate explosion event. Not merged with prior because it’s spatially and temporally distinct (different location, later onset).",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 7,
+      "output_count": 2,
+      "groups": 3,
+      "rejected": 3,
+      "uncertain": 0,
+      "merged_sources": 2,
+      "relabeled": 1,
+      "context_retries": 1,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 2.0,
+              "f1": 2.5,
+              "f2": 3.0,
+              "f3": 3.5,
+              "f4": 4.0,
+              "f5": 4.5,
+              "f6": 5.0,
+              "f7": 5.5,
+              "f8": 6.0,
+              "f9": 6.5,
+              "f10": 7.0,
+              "f11": 7.5,
+              "f12": 8.0,
+              "f13": 8.5,
+              "f14": 9.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 4.0,
+                "t_end": 5.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 4.5,
+                "t_end": 5.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 5.0,
+                "t_end": 5.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 5.041667,
+                "t_end": 6.0,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 6.0,
+                "t_end": 7.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2, 3],\n      \"category\": \"Explosion\",\n      \"t_start\": 5.0,\n      \"t_end\": 5.5,\n      \"confidence\": 1.0,\n      \"description\": \"A bright flash and subsequent fireball fill the frame, consistent with a sudden explosive blast.\",\n      \"reason\": \"f6 (5.0 s) shows a bright overexposed flash with motion blur suggesting detonation; f7 (5.5 s) shows a turbulent fireball with embers—classic visual signature of an explosion. Both frames support a single explosive event spanning 5.0–5.5 s.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\"]\n    },\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Shooting\",\n      \"t_start\": 4.0,\n      \"t_end\": 4.5,\n      \"confidence\": 0.9,\n      \"description\": \"The man aims a scoped rifle, his facial expression shifts from intense focus to vocalization, consistent with firing a weapon.\",\n      \"reason\": \"f0–f2 show aiming and tightening focus; f3–f5 show progressive mouth opening and facial strain peaking at f4/f5—typical recoil/vocal reaction during rifle discharge. No muzzle flash visible, but the sequence strongly implies shooting within this interval; f6 (5.0) is already the explosion, so shooting must precede it. The candidate intervals [4.0–5.5] and [4.5–5.0] are subsumed by the tighter 4.0–4.5 window where the action culminates in discharge.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"No visible shooting occurs between 6.0–7.5 s; the soldier in f8–f11 holds a weapon but does not fire, and the background shows smoke from prior destruction, not active discharge.\",\n      \"evidence_frame_ids\": [\"f8\", \"f9\", \"f10\", \"f11\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 2.0,
+              "f1": 2.5,
+              "f2": 3.0,
+              "f3": 3.5,
+              "f4": 4.0,
+              "f5": 4.5,
+              "f6": 5.0,
+              "f7": 5.5,
+              "f8": 6.0,
+              "f9": 6.5,
+              "f10": 7.0,
+              "f11": 7.5,
+              "f12": 8.0,
+              "f13": 8.5,
+              "f14": 9.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 4.0,
+                "t_end": 5.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 4.5,
+                "t_end": 5.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 5.0,
+                "t_end": 5.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 5.041667,
+                "t_end": 6.0,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 6.0,
+                "t_end": 7.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2, 3],\n      \"category\": \"Explosion\",\n      \"t_start\": 5.0,\n      \"t_end\": 5.5,\n      \"confidence\": 1.0,\n      \"description\": \"Frame f6 shows a bright overexposed flash with motion blur; f7 shows a turbulent fireball with embers—classic visual signature of an explosion.\",\n      \"reason\": \"f6 (5.0 s) and f7 (5.5 s) directly depict the onset and immediate aftermath of a blast; no other activity explains the abrupt transition from a clear human face (f5 at 4.5 s) to this luminous chaotic event. The candidate intervals [5.0–5.5] and [5.041667–6.0] both include f6–f7, but f8 (6.0 s) shows a post-blast scene with a soldier observing smoke, not ongoing explosion; thus the explosion is confined to 5.0–5.5 s.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No visible shooting occurs in f0–f5: the man holds a rifle and changes expression (f0–f5), but there is no muzzle flash, recoil displacement, or bullet impact evidence; vocalization (f3–f5) may indicate shouting, not firing. Shooting requires visible discharge, which is absent.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\"]\n    },\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Same as candidate 0: f4–f5 show facial strain and open mouth, but no evidence of weapon discharge (e.g., muzzle flash, shell ejection, or target reaction); thus 'Shooting' is unsupported.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    },\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"In f8–f11 (6.0–7.5 s), the soldier holds a weapon but does not fire; background smoke and damaged buildings indicate prior destruction, not active shooting. No muzzle flash, bullet trace, or recoil observed.\",\n      \"evidence_frame_ids\": [\"f8\", \"f9\", \"f10\", \"f11\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"Candidate claims explosion from 5.041667–6.0 s, but f8 (6.0 s) already shows a stable post-explosion scene (soldier observing distant smoke), so explosion cannot extend to 6.0 s; however, since f6–f7 fully support explosion at 5.0–5.5 s, the extra 5.5–6.0 portion lacks evidence and is not part of the same event—thus the candidate’s interval is too long and partially unsupported, making it uncertain *as stated*, though the core explosion is accepted via candidates 2 & 3 merged.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 2.0,
+              "f1": 2.5,
+              "f2": 3.0,
+              "f3": 3.5,
+              "f4": 4.0,
+              "f5": 4.5,
+              "f6": 5.0,
+              "f7": 5.5,
+              "f8": 6.0,
+              "f9": 6.5,
+              "f10": 7.0,
+              "f11": 7.5,
+              "f12": 8.0,
+              "f13": 8.5,
+              "f14": 9.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 4.0,
+                "t_end": 5.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 4.5,
+                "t_end": 5.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 5.0,
+                "t_end": 5.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 5.041667,
+                "t_end": 6.0,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 6.0,
+                "t_end": 7.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"Explosion\",\n      \"t_start\": 5.0,\n      \"t_end\": 5.5,\n      \"confidence\": 1.0,\n      \"description\": \"Frame f6 shows a bright overexposed flash with motion blur; f7 shows a turbulent fireball with embers—classic visual signature of an explosion.\",\n      \"reason\": \"f6 (5.0 s) and f7 (5.5 s) directly depict the onset and immediate aftermath of a blast; no other activity explains the abrupt transition from the clear face in f5 (4.5 s) to this luminous chaotic event. Candidate 2 (5.0–5.5 s) is fully supported by these two frames. Candidate 3 (5.041667–6.0 s) extends beyond f7 into f8 (6.0 s), which shows a stable post-blast scene (soldier observing smoke), so only the 5.0–5.5 s portion is verifiable as explosion; thus candidate 3 cannot be merged without overextending the event.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No visible shooting occurs in f0–f5: the man holds a rifle and changes expression (f0–f5), but there is no muzzle flash, recoil displacement, shell ejection, or target impact evidence; vocalization (f3–f5) may indicate shouting, not firing. Shooting requires visible discharge, which is absent.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\"]\n    },\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Same as candidate 0: f4–f5 show facial strain and open mouth, but no evidence of weapon discharge (e.g., muzzle flash, shell ejection, or target reaction); thus 'Shooting' is unsupported.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    },\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"In f8–f11 (6.0–7.5 s), the soldier holds a weapon but does not fire; background smoke and damaged buildings indicate prior destruction, not active shooting. No muzzle flash, bullet trace, or recoil observed.\",\n      \"evidence_frame_ids\": [\"f8\", \"f9\", \"f10\", \"f11\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"Candidate claims explosion from 5.041667–6.0 s, but f8 (6.0 s) shows a stable post-explosion scene (soldier observing distant smoke), so the interval beyond 5.5 s lacks evidence. While f6–f7 confirm an explosion at 5.0–5.5 s, the candidate’s stated end time (6.0 s) exceeds the visible explosive phase; thus the hypothesis as written is not fully supported and is uncertain.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0,
+              "f9": 4.5,
+              "f10": 5.0,
+              "f11": 5.5,
+              "f12": 6.0,
+              "f13": 6.5,
+              "f14": 7.0,
+              "f15": 7.5,
+              "f16": 8.0,
+              "f17": 8.5,
+              "f18": 9.0,
+              "f19": 9.5,
+              "f20": 10.0,
+              "f21": 10.5,
+              "f22": 11.0,
+              "f23": 11.5,
+              "f24": 12.0,
+              "f25": 12.5,
+              "f26": 13.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 4.0,
+                "t_end": 5.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 4.5,
+                "t_end": 5.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 5.0,
+                "t_end": 5.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 5.041667,
+                "t_end": 6.0,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 6.0,
+                "t_end": 7.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1, 2],\n      \"category\": \"Explosion\",\n      \"t_start\": 4.5,\n      \"t_end\": 5.5,\n      \"confidence\": 0.95,\n      \"description\": \"A bright flash at f10 followed immediately by a fireball/blast wave at f11, consistent with an explosion triggered by the sniper’s action.\",\n      \"reason\": \"f10 shows a sudden overexposed flash with motion blur suggesting detonation; f11 is a full-frame fire/explosion. The prior frames (f7–f9) show the sniper’s escalating reaction (shock → scream), implying he just fired and caused an explosion—thus 'Shooting' alone is insufficient; the visible event is the explosion itself. Merged because all three candidates describe overlapping moments of the same blast event.\",\n      \"evidence_frame_ids\": [\"f10\", \"f11\"]\n    },\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"Explosion\",\n      \"t_start\": 5.041667,\n      \"t_end\": 6.0,\n      \"confidence\": 0.85,\n      \"description\": \"Smoke and debris rising from a church steeple in f12–f13, indicating a secondary explosion or structural collapse after the initial blast.\",\n      \"reason\": \"f12–f13 show smoke pluming from a damaged church tower, with no visible fireball; this is consistent with a delayed structural failure or secondary explosion following the primary blast at f10–f11. Since it occurs after the first explosion and involves blast effects (smoke, debris, damage), it qualifies as a separate explosion event. Not merged with prior because it’s spatially and temporally distinct (different location, later onset).\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"No visible shooting occurs in f12–f15: the soldier holds a rifle but does not fire; there is no muzzle flash, recoil, or bullet impact visible. The smoke is from prior explosion, not active gunfire.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\", \"f14\", \"f15\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1,
+                2
+              ],
+              "category": "Explosion",
+              "t_start": 4.5,
+              "t_end": 5.5,
+              "confidence": 0.95,
+              "description": "A bright flash at f10 followed immediately by a fireball/blast wave at f11, consistent with an explosion triggered by the sniper’s action.",
+              "reason": "f10 shows a sudden overexposed flash with motion blur suggesting detonation; f11 is a full-frame fire/explosion. The prior frames (f7–f9) show the sniper’s escalating reaction (shock → scream), implying he just fired and caused an explosion—thus 'Shooting' alone is insufficient; the visible event is the explosion itself. Merged because all three candidates describe overlapping moments of the same blast event.",
+              "evidence_frame_ids": [
+                "f10",
+                "f11"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                3
+              ],
+              "category": "Explosion",
+              "t_start": 5.041667,
+              "t_end": 6.0,
+              "confidence": 0.85,
+              "description": "Smoke and debris rising from a church steeple in f12–f13, indicating a secondary explosion or structural collapse after the initial blast.",
+              "reason": "f12–f13 show smoke pluming from a damaged church tower, with no visible fireball; this is consistent with a delayed structural failure or secondary explosion following the primary blast at f10–f11. Since it occurs after the first explosion and involves blast effects (smoke, debris, damage), it qualifies as a separate explosion event. Not merged with prior because it’s spatially and temporally distinct (different location, later onset).",
+              "evidence_frame_ids": [
+                "f12",
+                "f13"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 4,
+              "reason": "No visible shooting occurs in f12–f15: the soldier holds a rifle but does not fire; there is no muzzle flash, recoil, or bullet impact visible. The smoke is from prior explosion, not active gunfire.",
+              "evidence_frame_ids": [
+                "f12",
+                "f13",
+                "f14",
+                "f15"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": true
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 7.5,
+              "f1": 8.0,
+              "f2": 8.5,
+              "f3": 9.0,
+              "f4": 9.5,
+              "f5": 10.0,
+              "f6": 10.5,
+              "f7": 11.0,
+              "f8": 11.5,
+              "f9": 12.0,
+              "f10": 12.5,
+              "f11": 13.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 5,
+                "t_start": 9.5,
+                "t_end": 11.1,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"No visible muzzle flash, recoil, or bullet impact; the soldier holds a rifle but does not fire in any frame from f4 to f11.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 5,
+              "reason": "No visible muzzle flash, recoil, or bullet impact; the soldier holds a rifle but does not fire in any frame from f4 to f11.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          6
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 10.5,
+              "f1": 11.0,
+              "f2": 11.5,
+              "f3": 12.0,
+              "f4": 12.5,
+              "f5": 13.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 6,
+                "t_start": 12.5,
+                "t_end": 13.041666666666666,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"No visible muzzle flash, recoil, or bullet impact; the rifle is held but not fired in any frame (f4–f5 show weapon at rest or being raised, not discharged).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 6,
+              "reason": "No visible muzzle flash, recoil, or bullet impact; the rifle is held but not fired in any frame (f4–f5 show weapon at rest or being raised, not discharged).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

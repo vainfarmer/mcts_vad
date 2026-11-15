@@ -1,0 +1,266 @@
+{
+  "events": [],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 5,
+      "output_count": 0,
+      "groups": 3,
+      "rejected": 5,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 15.5,
+              "f1": 16.0,
+              "f2": 16.5,
+              "f3": 17.0,
+              "f4": 17.5,
+              "f5": 18.0,
+              "f6": 18.5,
+              "f7": 19.0,
+              "f8": 19.5,
+              "f9": 20.0,
+              "f10": 20.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 17.5,
+                "t_end": 19.0,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Riot\",\n      \"t_start\": 17.5,\n      \"t_end\": 18.5,\n      \"confidence\": 0.8,\n      \"description\": \"A line of police in riot gear faces a crowd with flags and signs; tension is visible but no overt violence occurs in the frames.\",\n      \"reason\": \"Frames f4–f6 show a dense confrontation between uniformed officers in helmets/shields and civilians holding flags (e.g., US flag), consistent with a protest escalation that meets the definition of riot as collective violent unrest—though no active fighting is seen, the posture, equipment, and density indicate imminent or ongoing unrest beyond peaceful assembly. Frame f7 is too obscured to confirm continuation, so event ends at 18.5.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"While f4–f6 support riot conditions, f7–f10 are severely degraded (overexposed, occluded, ground-level only) and do not confirm continuation of unrest; thus the full claimed interval [17.5,19.0] cannot be verified beyond 18.5.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 15.5,
+              "f1": 16.0,
+              "f2": 16.5,
+              "f3": 17.0,
+              "f4": 17.5,
+              "f5": 18.0,
+              "f6": 18.5,
+              "f7": 19.0,
+              "f8": 19.5,
+              "f9": 20.0,
+              "f10": 20.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 17.5,
+                "t_end": 19.0,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"The definition of 'Riot' requires collective violent unrest; frames f4–f6 show a tense standoff between police in riot gear and civilians holding flags, but no violence, destruction, or chaotic collective action is visible. This constitutes a protest or confrontation, not a riot. Frames f7–f10 are too degraded (overexposed, occluded, ground-level) to support any category. No evidence of violence meets the required threshold.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "The definition of 'Riot' requires collective violent unrest; frames f4–f6 show a tense standoff between police in riot gear and civilians holding flags, but no violence, destruction, or chaotic collective action is visible. This constitutes a protest or confrontation, not a riot. Frames f7–f10 are too degraded (overexposed, occluded, ground-level) to support any category. No evidence of violence meets the required threshold.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 28.5,
+              "f1": 29.0,
+              "f2": 29.5,
+              "f3": 30.0,
+              "f4": 30.5,
+              "f5": 31.0,
+              "f6": 31.5,
+              "f7": 32.0,
+              "f8": 32.5,
+              "f9": 33.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 30.5,
+                "t_end": 31.5,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"The frames show a crowd gathered around a white SUV with open doors and people standing nearby, but no collective violent unrest, property destruction, or aggressive group behavior is visible; the scene is consistent with a public gathering or incident response without rioting.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "The frames show a crowd gathered around a white SUV with open doors and people standing nearby, but no collective violent unrest, property destruction, or aggressive group behavior is visible; the scene is consistent with a public gathering or incident response without rioting.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          2,
+          3,
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 38.0,
+              "f1": 38.5,
+              "f2": 39.5,
+              "f3": 40.0,
+              "f4": 41.0,
+              "f5": 41.5,
+              "f6": 42.5,
+              "f7": 43.0,
+              "f8": 44.0,
+              "f9": 44.5,
+              "f10": 45.5,
+              "f11": 46.0,
+              "f12": 47.0,
+              "f13": 47.5,
+              "f14": 48.5,
+              "f15": 49.0,
+              "f16": 50.0,
+              "f17": 50.5,
+              "f18": 51.5,
+              "f19": 52.0,
+              "f20": 53.0,
+              "f21": 53.5,
+              "f22": 54.5,
+              "f23": 55.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 40.0,
+                "t_end": 54.0,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 44.0,
+                "t_end": 45.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 51.0,
+                "t_end": 52.2,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Crowd movement and presence of flags/chanting are visible, but no collective violent unrest (e.g., property destruction, attacks on persons or vehicles) is observed; the scene remains orderly with people walking and standing.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\", \"f23\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"The white vehicle behind the sedan appears to be parked or slowly maneuvering; no impact, deformation, skid marks, or sudden motion indicating a crash is visible in f8–f9.\",\n      \"evidence_frame_ids\": [\"f8\", \"f9\"]\n    },\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"In f18–f20, individuals are near each other but no mutual physical combat (grappling, striking) is visible; movements appear consistent with walking through a crowd.\",\n      \"evidence_frame_ids\": [\"f18\", \"f19\", \"f20\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "Crowd movement and presence of flags/chanting are visible, but no collective violent unrest (e.g., property destruction, attacks on persons or vehicles) is observed; the scene remains orderly with people walking and standing.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22",
+                "f23"
+              ]
+            },
+            {
+              "candidate_id": 3,
+              "reason": "The white vehicle behind the sedan appears to be parked or slowly maneuvering; no impact, deformation, skid marks, or sudden motion indicating a crash is visible in f8–f9.",
+              "evidence_frame_ids": [
+                "f8",
+                "f9"
+              ]
+            },
+            {
+              "candidate_id": 4,
+              "reason": "In f18–f20, individuals are near each other but no mutual physical combat (grappling, striking) is visible; movements appear consistent with walking through a crowd.",
+              "evidence_frame_ids": [
+                "f18",
+                "f19",
+                "f20"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

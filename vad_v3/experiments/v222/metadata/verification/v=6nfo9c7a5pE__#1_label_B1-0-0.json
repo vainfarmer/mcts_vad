@@ -1,0 +1,478 @@
+{
+  "events": [
+    {
+      "t_start": 0.0,
+      "t_end": 6.0,
+      "anomaly_type": "Fighting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "Two players in hockey gear engage in a physical altercation on the ice, grappling, pushing, and one being taken down (f0–f7), followed by separation by a coach (f8–f10).",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          0.0,
+          0.5,
+          1.0,
+          1.5,
+          2.0,
+          2.5,
+          3.0,
+          3.5,
+          4.0,
+          4.5,
+          5.0
+        ],
+        "evidence_frame_ids": [
+          "f0",
+          "f1",
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10"
+        ],
+        "reason": "Mutual physical combat is visible: both individuals actively grapple, strike, and resist (e.g., f2–f5); no clear victim/helplessness; ends when third party intervenes (f8–f10). This satisfies the definition of Fighting.",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 13.0,
+      "t_end": 24.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "Two players in hockey gear (one in white jersey/helmet, one in grey hoodie/helmet) engage in a mutual physical altercation involving grappling, punches, and takedowns on the ice from f3 to f18, ending when a third person intervenes.",
+      "source_candidate_ids": [
+        2,
+        3,
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          13.0,
+          13.5,
+          14.5,
+          15.5,
+          16.0,
+          17.0,
+          18.0,
+          18.5,
+          19.5,
+          20.5,
+          21.5,
+          22.0,
+          23.0,
+          23.5,
+          24.0,
+          24.5
+        ],
+        "evidence_frame_ids": [
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18"
+        ],
+        "reason": "Frames f3–f18 show reciprocal engagement: both individuals throw punches, grapple, and neither is clearly passive or helpless; the fight ends with intervention at f17–f18. This satisfies the definition of Fighting (mutual physical combat). The candidate intervals overlap and describe the same continuous event; merged accordingly.",
+        "source_categories": [
+          "Fighting",
+          "Fighting",
+          "Fighting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 9,
+      "output_count": 2,
+      "groups": 3,
+      "rejected": 5,
+      "uncertain": 0,
+      "merged_sources": 2,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0,
+              "f9": 4.5,
+              "f10": 5.0,
+              "f11": 5.5,
+              "f12": 6.0,
+              "f13": 6.5,
+              "f14": 7.0,
+              "f15": 7.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 0.0,
+                "t_end": 6.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 4.5,
+                "t_end": 5.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Fighting\",\n      \"t_start\": 0.0,\n      \"t_end\": 6.0,\n      \"confidence\": 0.95,\n      \"description\": \"Two players in hockey gear engage in a physical altercation on the ice, grappling, pushing, and one being taken down (f0–f7), followed by separation by a coach (f8–f10).\",\n      \"reason\": \"Mutual physical combat is visible: both individuals actively grapple, strike, and resist (e.g., f2–f5); no clear victim/helplessness; ends when third party intervenes (f8–f10). This satisfies the definition of Fighting.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"At f9–f10, a coach intervenes to separate two players who were fighting; the person in white is not helpless nor being abused—the interaction is part of ending a mutual fight, not unilateral aggression against a defenseless victim.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Fighting",
+              "t_start": 0.0,
+              "t_end": 6.0,
+              "confidence": 0.95,
+              "description": "Two players in hockey gear engage in a physical altercation on the ice, grappling, pushing, and one being taken down (f0–f7), followed by separation by a coach (f8–f10).",
+              "reason": "Mutual physical combat is visible: both individuals actively grapple, strike, and resist (e.g., f2–f5); no clear victim/helplessness; ends when third party intervenes (f8–f10). This satisfies the definition of Fighting.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "At f9–f10, a coach intervenes to separate two players who were fighting; the person in white is not helpless nor being abused—the interaction is part of ending a mutual fight, not unilateral aggression against a defenseless victim.",
+              "evidence_frame_ids": [
+                "f9",
+                "f10"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 10.5,
+              "f1": 11.0,
+              "f2": 12.0,
+              "f3": 13.0,
+              "f4": 13.5,
+              "f5": 14.5,
+              "f6": 15.5,
+              "f7": 16.0,
+              "f8": 17.0,
+              "f9": 18.0,
+              "f10": 18.5,
+              "f11": 19.5,
+              "f12": 20.5,
+              "f13": 21.5,
+              "f14": 22.0,
+              "f15": 23.0,
+              "f16": 23.5,
+              "f17": 24.0,
+              "f18": 24.5,
+              "f19": 25.5,
+              "f20": 26.5,
+              "f21": 27.0,
+              "f22": 28.0,
+              "f23": 30.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 12.5,
+                "t_end": 19.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 16.0,
+                "t_end": 23.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 20.0,
+                "t_end": 27.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 24.5,
+                "t_end": 28.5,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2, 3, 4],\n      \"category\": \"Fighting\",\n      \"t_start\": 13.0,\n      \"t_end\": 24.5,\n      \"confidence\": 0.95,\n      \"description\": \"Two players in hockey gear (one in white jersey/helmet, one in grey hoodie/helmet) engage in a mutual physical altercation involving grappling, punches, and takedowns on the ice from f3 to f18, ending when a third person intervenes.\",\n      \"reason\": \"Frames f3–f18 show reciprocal engagement: both individuals throw punches, grapple, and neither is clearly passive or helpless; the fight ends with intervention at f17–f18. This satisfies the definition of Fighting (mutual physical combat). The candidate intervals overlap and describe the same continuous event; merged accordingly.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"From f17 onward, a third person (coach/staff in dark jacket and cap) intervenes to separate the two fighters; the individual in white is not helpless but is being actively restrained and assisted, and the grey-hooded player shows no sustained aggression toward a defenseless person. No evidence of Abuse (aggression against a helpless victim).\",\n      \"evidence_frame_ids\": [\"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\", \"f23\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2,
+                3,
+                4
+              ],
+              "category": "Fighting",
+              "t_start": 13.0,
+              "t_end": 24.5,
+              "confidence": 0.95,
+              "description": "Two players in hockey gear (one in white jersey/helmet, one in grey hoodie/helmet) engage in a mutual physical altercation involving grappling, punches, and takedowns on the ice from f3 to f18, ending when a third person intervenes.",
+              "reason": "Frames f3–f18 show reciprocal engagement: both individuals throw punches, grapple, and neither is clearly passive or helpless; the fight ends with intervention at f17–f18. This satisfies the definition of Fighting (mutual physical combat). The candidate intervals overlap and describe the same continuous event; merged accordingly.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 5,
+              "reason": "From f17 onward, a third person (coach/staff in dark jacket and cap) intervenes to separate the two fighters; the individual in white is not helpless but is being actively restrained and assisted, and the grey-hooded player shows no sustained aggression toward a defenseless person. No evidence of Abuse (aggression against a helpless victim).",
+              "evidence_frame_ids": [
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22",
+                "f23"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          6,
+          7,
+          8
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 41.5,
+              "f1": 42.0,
+              "f2": 42.5,
+              "f3": 43.0,
+              "f4": 43.5,
+              "f5": 44.0,
+              "f6": 44.5,
+              "f7": 45.0,
+              "f8": 45.5,
+              "f9": 46.0,
+              "f10": 46.5,
+              "f11": 47.0,
+              "f12": 47.5,
+              "f13": 48.0,
+              "f14": 48.5,
+              "f15": 49.0,
+              "f16": 49.5,
+              "f17": 50.0,
+              "f18": 50.5,
+              "f19": 51.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 6,
+                "t_start": 43.5,
+                "t_end": 46.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 46.7,
+                "t_end": 50.2,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 49.5,
+                "t_end": 51.0,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [6, 7, 8],\n      \"category\": \"Normal\",\n      \"t_start\": 43.5,\n      \"t_end\": 51.0,\n      \"confidence\": 0.95,\n      \"description\": \"A coach or staff member in dark clothing is holding and guiding a player in white gear (possibly injured or receiving instruction) across the ice while others observe or skate nearby; no mutual combat or aggression is visible.\",\n      \"reason\": \"The interaction is sustained physical support/guidance, not reciprocal force; other players are stationary or skating normally; no signs of struggle, striking, or defensive postures. The candidate 'Fighting' labels are contradicted by the non-aggressive, assisted movement observed across f4–f19.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"In frames f4–f6, the person in dark jacket is supporting the player in white with arms around torso—consistent with assistance or coaching, not fighting; no resistance or offensive motion from either party.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"Frames f10–f17 show continued guided movement without escalation; surrounding players remain calm and non-confrontational, ruling out fighting.\",\n      \"evidence_frame_ids\": [\"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\"]\n    },\n    {\n      \"candidate_id\": 8,\n      \"reason\": \"Frames f16–f19 depict the same supportive interaction ending near center ice; no new aggressive behavior emerges, contradicting 'Fighting'.\",\n      \"evidence_frame_ids\": [\"f16\", \"f17\", \"f18\", \"f19\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 41.5,
+              "f1": 42.0,
+              "f2": 42.5,
+              "f3": 43.0,
+              "f4": 43.5,
+              "f5": 44.0,
+              "f6": 44.5,
+              "f7": 45.0,
+              "f8": 45.5,
+              "f9": 46.0,
+              "f10": 46.5,
+              "f11": 47.0,
+              "f12": 47.5,
+              "f13": 48.0,
+              "f14": 48.5,
+              "f15": 49.0,
+              "f16": 49.5,
+              "f17": 50.0,
+              "f18": 50.5,
+              "f19": 51.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 6,
+                "t_start": 43.5,
+                "t_end": 46.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 46.7,
+                "t_end": 50.2,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 49.5,
+                "t_end": 51.0,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"In frames f4–f6, the person in dark clothing is holding the player in white with arms around torso and guiding movement—consistent with assistance or coaching; no mutual combat, striking, or defensive postures are visible.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"Frames f10–f17 show continued non-aggressive physical support/guidance; surrounding individuals remain calm and stationary or skating normally, contradicting Fighting.\",\n      \"evidence_frame_ids\": [\"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\"]\n    },\n    {\n      \"candidate_id\": 8,\n      \"reason\": \"Frames f16–f19 depict the same supportive interaction without escalation or aggression; no evidence of fighting occurs.\",\n      \"evidence_frame_ids\": [\"f16\", \"f17\", \"f18\", \"f19\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 6,
+              "reason": "In frames f4–f6, the person in dark clothing is holding the player in white with arms around torso and guiding movement—consistent with assistance or coaching; no mutual combat, striking, or defensive postures are visible.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            },
+            {
+              "candidate_id": 7,
+              "reason": "Frames f10–f17 show continued non-aggressive physical support/guidance; surrounding individuals remain calm and stationary or skating normally, contradicting Fighting.",
+              "evidence_frame_ids": [
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17"
+              ]
+            },
+            {
+              "candidate_id": 8,
+              "reason": "Frames f16–f19 depict the same supportive interaction without escalation or aggression; no evidence of fighting occurs.",
+              "evidence_frame_ids": [
+                "f16",
+                "f17",
+                "f18",
+                "f19"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

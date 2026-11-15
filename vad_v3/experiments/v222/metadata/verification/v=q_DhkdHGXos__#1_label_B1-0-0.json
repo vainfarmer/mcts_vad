@@ -1,0 +1,563 @@
+{
+  "events": [
+    {
+      "t_start": 2.5,
+      "t_end": 22.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "Multiple players from both teams are engaged in a scrum near center ice and later near the net, with referees intervening; sticks are dropped, players grapple, and at least one player is on the ice being restrained or assisted.",
+      "source_candidate_ids": [
+        0,
+        1,
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          2.5,
+          3.5,
+          4.5,
+          5.0,
+          5.5,
+          6.5,
+          9.0,
+          10.0,
+          11.0,
+          11.5,
+          12.0,
+          13.0,
+          14.0,
+          16.0,
+          17.0,
+          17.5,
+          18.5,
+          19.5,
+          20.5,
+          21.5,
+          22.5
+        ],
+        "evidence_frame_ids": [
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18",
+          "f19",
+          "f20",
+          "f21",
+          "f22"
+        ],
+        "reason": "Frames f2–f14 show a cluster of players and refs in close physical contact, some pushing/pulling; f15–f22 show escalation near the goal with players on the ice, grappling, and refs actively separating them—consistent with hockey fighting/scrum, not abuse (no helpless victim targeted) or riot (localized, not crowd-wide). Merged because all candidates describe overlapping phases of the same continuous on-ice altercation.",
+        "source_categories": [
+          "Fighting",
+          "Fighting",
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 18.0,
+      "t_end": 26.0,
+      "anomaly_type": "Fighting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "Multiple players from opposing teams are engaged in a physical scrum near the net, with punches thrown, bodies piled, and referees intervening to separate them.",
+      "source_candidate_ids": [
+        5
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          18.0,
+          18.5,
+          19.5,
+          20.0,
+          21.0,
+          22.0,
+          22.5,
+          23.5,
+          24.5,
+          25.0,
+          26.0
+        ],
+        "evidence_frame_ids": [
+          "f0",
+          "f1",
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10"
+        ],
+        "reason": "Frames f0–f10 show sustained mutual physical combat: players grappling, striking (e.g., f1, f2, f4), one player on ice being struck while others join the pile; referees actively attempt separation starting at f3, confirming it is a fight, not a fall or accidental collision. The event resolves by f11 as players disengage and officials regain control.",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 11,
+      "output_count": 2,
+      "groups": 4,
+      "rejected": 7,
+      "uncertain": 0,
+      "merged_sources": 2,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.5,
+              "f1": 1.5,
+              "f2": 2.5,
+              "f3": 3.5,
+              "f4": 4.5,
+              "f5": 5.0,
+              "f6": 5.5,
+              "f7": 6.5,
+              "f8": 9.0,
+              "f9": 10.0,
+              "f10": 11.0,
+              "f11": 11.5,
+              "f12": 12.0,
+              "f13": 13.0,
+              "f14": 14.0,
+              "f15": 16.0,
+              "f16": 17.0,
+              "f17": 17.5,
+              "f18": 18.5,
+              "f19": 19.5,
+              "f20": 20.5,
+              "f21": 21.5,
+              "f22": 22.5,
+              "f23": 25.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 2.5,
+                "t_end": 7.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 4.0,
+                "t_end": 19.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 15.0,
+                "t_end": 19.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 16.0,
+                "t_end": 23.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 18.0,
+                "t_end": 21.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1, 3],\n      \"category\": \"Fighting\",\n      \"t_start\": 2.5,\n      \"t_end\": 22.5,\n      \"confidence\": 0.95,\n      \"description\": \"Multiple players from both teams are engaged in a scrum near center ice and later near the net, with referees intervening; sticks are dropped, players grapple, and at least one player is on the ice being restrained or assisted.\",\n      \"reason\": \"Frames f2–f14 show a cluster of players and refs in close physical contact, some pushing/pulling; f15–f22 show escalation near the goal with players on the ice, grappling, and refs actively separating them—consistent with hockey fighting/scrum, not abuse (no helpless victim targeted) or riot (localized, not crowd-wide). Merged because all candidates describe overlapping phases of the same continuous on-ice altercation.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"No evidence of abuse: the player on the ice (e.g., f15–f20) is surrounded by opponents and refs in a contested scrum; no sustained targeting of a helpless individual, and referees are actively intervening—this is consistent with fighting, not abuse.\",\n      \"evidence_frame_ids\": [\"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\"]\n    },\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"Same as candidate 2; the interaction remains mutual combat within a scrum, not one-sided aggression against a helpless person. Referees are present and involved, and players are actively resisting/restraining—not passive victims.\",\n      \"evidence_frame_ids\": [\"f18\", \"f19\", \"f20\", \"f21\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1,
+                3
+              ],
+              "category": "Fighting",
+              "t_start": 2.5,
+              "t_end": 22.5,
+              "confidence": 0.95,
+              "description": "Multiple players from both teams are engaged in a scrum near center ice and later near the net, with referees intervening; sticks are dropped, players grapple, and at least one player is on the ice being restrained or assisted.",
+              "reason": "Frames f2–f14 show a cluster of players and refs in close physical contact, some pushing/pulling; f15–f22 show escalation near the goal with players on the ice, grappling, and refs actively separating them—consistent with hockey fighting/scrum, not abuse (no helpless victim targeted) or riot (localized, not crowd-wide). Merged because all candidates describe overlapping phases of the same continuous on-ice altercation.",
+              "evidence_frame_ids": [
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "No evidence of abuse: the player on the ice (e.g., f15–f20) is surrounded by opponents and refs in a contested scrum; no sustained targeting of a helpless individual, and referees are actively intervening—this is consistent with fighting, not abuse.",
+              "evidence_frame_ids": [
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20"
+              ]
+            },
+            {
+              "candidate_id": 4,
+              "reason": "Same as candidate 2; the interaction remains mutual combat within a scrum, not one-sided aggression against a helpless person. Referees are present and involved, and players are actively resisting/restraining—not passive victims.",
+              "evidence_frame_ids": [
+                "f18",
+                "f19",
+                "f20",
+                "f21"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 18.0,
+              "f1": 18.5,
+              "f2": 19.5,
+              "f3": 20.0,
+              "f4": 21.0,
+              "f5": 22.0,
+              "f6": 22.5,
+              "f7": 23.5,
+              "f8": 24.5,
+              "f9": 25.0,
+              "f10": 26.0,
+              "f11": 27.0,
+              "f12": 27.5,
+              "f13": 28.5,
+              "f14": 29.5,
+              "f15": 30.0,
+              "f16": 31.0,
+              "f17": 32.0,
+              "f18": 32.5,
+              "f19": 33.5,
+              "f20": 34.5,
+              "f21": 35.0,
+              "f22": 36.0,
+              "f23": 37.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 5,
+                "t_start": 20.0,
+                "t_end": 35.5,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [5],\n      \"category\": \"Fighting\",\n      \"t_start\": 18.0,\n      \"t_end\": 26.0,\n      \"confidence\": 0.95,\n      \"description\": \"Multiple players from opposing teams are engaged in a physical scrum near the net, with punches thrown, bodies piled, and referees intervening to separate them.\",\n      \"reason\": \"Frames f0–f10 show sustained mutual physical combat: players grappling, striking (e.g., f1, f2, f4), one player on ice being struck while others join the pile; referees actively attempt separation starting at f3, confirming it is a fight, not a fall or accidental collision. The event resolves by f11 as players disengage and officials regain control.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                5
+              ],
+              "category": "Fighting",
+              "t_start": 18.0,
+              "t_end": 26.0,
+              "confidence": 0.95,
+              "description": "Multiple players from opposing teams are engaged in a physical scrum near the net, with punches thrown, bodies piled, and referees intervening to separate them.",
+              "reason": "Frames f0–f10 show sustained mutual physical combat: players grappling, striking (e.g., f1, f2, f4), one player on ice being struck while others join the pile; referees actively attempt separation starting at f3, confirming it is a fight, not a fall or accidental collision. The event resolves by f11 as players disengage and officials regain control.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          6,
+          7,
+          8
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 38.0,
+              "f1": 38.5,
+              "f2": 39.0,
+              "f3": 39.5,
+              "f4": 40.0,
+              "f5": 40.5,
+              "f6": 41.0,
+              "f7": 41.5,
+              "f8": 42.0,
+              "f9": 42.5,
+              "f10": 43.0,
+              "f11": 43.5,
+              "f12": 44.0,
+              "f13": 44.5,
+              "f14": 45.0,
+              "f15": 45.5,
+              "f16": 46.0,
+              "f17": 46.5,
+              "f18": 47.0,
+              "f19": 47.5,
+              "f20": 48.0,
+              "f21": 48.5,
+              "f22": 49.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 6,
+                "t_start": 40.0,
+                "t_end": 42.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 40.0,
+                "t_end": 47.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 42.5,
+                "t_end": 44.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"No mutual physical combat is visible; players and officials are clustered with hands not engaged in striking or grappling—referees and adults appear to be mediating or separating individuals, consistent with post-incident control, not active fighting.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\"]\n    },\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"No collective violent unrest: spectators remain seated, no property damage, no chaotic movement; the group on ice is small, stationary, and supervised by multiple referees—behavior aligns with a controlled stoppage, not a riot.\",\n      \"evidence_frame_ids\": [\"f4\", \"f10\", \"f15\", \"f20\"]\n    },\n    {\n      \"candidate_id\": 8,\n      \"reason\": \"No aggression against a helpless victim is evident; individuals in the central cluster are standing upright, interacting face-to-face, with referees intervening—no one is restrained, struck, or incapacitated.\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\", \"f13\", \"f14\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 6,
+              "reason": "No mutual physical combat is visible; players and officials are clustered with hands not engaged in striking or grappling—referees and adults appear to be mediating or separating individuals, consistent with post-incident control, not active fighting.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9"
+              ]
+            },
+            {
+              "candidate_id": 7,
+              "reason": "No collective violent unrest: spectators remain seated, no property damage, no chaotic movement; the group on ice is small, stationary, and supervised by multiple referees—behavior aligns with a controlled stoppage, not a riot.",
+              "evidence_frame_ids": [
+                "f4",
+                "f10",
+                "f15",
+                "f20"
+              ]
+            },
+            {
+              "candidate_id": 8,
+              "reason": "No aggression against a helpless victim is evident; individuals in the central cluster are standing upright, interacting face-to-face, with referees intervening—no one is restrained, struck, or incapacitated.",
+              "evidence_frame_ids": [
+                "f11",
+                "f12",
+                "f13",
+                "f14"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          9,
+          10
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 86.0,
+              "f1": 86.5,
+              "f2": 87.0,
+              "f3": 87.5,
+              "f4": 88.0,
+              "f5": 88.5,
+              "f6": 89.0,
+              "f7": 89.5,
+              "f8": 90.0,
+              "f9": 90.5,
+              "f10": 91.0,
+              "f11": 91.5,
+              "f12": 92.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 9,
+                "t_start": 88.0,
+                "t_end": 90.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 10,
+                "t_start": 89.0,
+                "t_end": 90.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [9, 10],\n      \"category\": \"Normal\",\n      \"t_start\": 88.0,\n      \"t_end\": 90.5,\n      \"confidence\": 0.0,\n      \"description\": \"A referee and several individuals (including a person in a red cap and dark jacket) interact near the boards; no mutual combat or aggression is visible—gestures appear conversational or directive, with officials maintaining control.\",\n      \"reason\": \"No physical contact indicative of fighting or abuse occurs; individuals remain upright, separated by officials, and no victim appears helpless. The scene resembles a standard stoppage for discussion or penalty enforcement in hockey. Since 'Normal' is not an allowed output category and the candidate hypotheses are unsupported, this event is not listed under any allowed category; thus, candidates are rejected/uncertain per instructions.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 9,\n      \"reason\": \"No mutual physical combat is visible: individuals are standing, gesturing, and being separated by referees; no punches, grappling, or sustained contact occurs across frames f4–f10.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    },\n    {\n      \"candidate_id\": 10,\n      \"reason\": \"No aggression against a helpless victim is observed: the person in the red cap interacts with others while standing, and referees are present and intervening; no restraint, striking, or coercive behavior is evident.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\", \"f9\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 86.0,
+              "f1": 86.5,
+              "f2": 87.0,
+              "f3": 87.5,
+              "f4": 88.0,
+              "f5": 88.5,
+              "f6": 89.0,
+              "f7": 89.5,
+              "f8": 90.0,
+              "f9": 90.5,
+              "f10": 91.0,
+              "f11": 91.5,
+              "f12": 92.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 9,
+                "t_start": 88.0,
+                "t_end": 90.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 10,
+                "t_start": 89.0,
+                "t_end": 90.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 9,\n      \"reason\": \"No mutual physical combat is visible: individuals (including a person in red cap and dark jacket) stand near the boards, gesturing and being managed by referees; no punches, grappling, or sustained contact occurs across f4–f10.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    },\n    {\n      \"candidate_id\": 10,\n      \"reason\": \"No aggression against a helpless victim is observed: the individual in the red cap remains upright, actively interacting, and is not restrained or struck; referees are present and maintaining separation, with no evidence of abuse.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\", \"f9\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 9,
+              "reason": "No mutual physical combat is visible: individuals (including a person in red cap and dark jacket) stand near the boards, gesturing and being managed by referees; no punches, grappling, or sustained contact occurs across f4–f10.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10"
+              ]
+            },
+            {
+              "candidate_id": 10,
+              "reason": "No aggression against a helpless victim is observed: the individual in the red cap remains upright, actively interacting, and is not restrained or struck; referees are present and maintaining separation, with no evidence of abuse.",
+              "evidence_frame_ids": [
+                "f6",
+                "f7",
+                "f8",
+                "f9"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

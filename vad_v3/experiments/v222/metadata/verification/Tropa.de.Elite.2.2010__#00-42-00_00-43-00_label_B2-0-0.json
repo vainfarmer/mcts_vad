@@ -1,0 +1,283 @@
+{
+  "events": [
+    {
+      "t_start": 32.5,
+      "t_end": 39.0,
+      "anomaly_type": "Shooting",
+      "confidence": 1.0,
+      "coarse_score": 1.0,
+      "description": "A hand holds a pistol that discharges with a large muzzle flash expanding over multiple frames (f4–f17), consistent with a single gunshot.",
+      "source_candidate_ids": [
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 1.0,
+        "evidence_times": [
+          32.5,
+          33.0,
+          33.5,
+          34.0,
+          34.5,
+          35.0,
+          35.5,
+          36.0,
+          36.5,
+          37.0,
+          37.5,
+          38.0,
+          38.5,
+          39.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17"
+        ],
+        "reason": "Frames f4–f17 show a handgun being fired: visible muzzle flash begins at f5 and expands through f17, with the gun remaining in frame and no indication of multiple shots or explosion; this satisfies the definition of 'Shooting' (visible shooting).",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 39.5,
+      "t_end": 40.3,
+      "anomaly_type": "Explosion",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "After the muzzle flash subsides, a bright yellow-white blast wave fills the frame and reveals structural debris and a person on a ladder, indicating a secondary explosion or detonation.",
+      "source_candidate_ids": [
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 1,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          39.5,
+          40.0,
+          40.5
+        ],
+        "evidence_frame_ids": [
+          "f18",
+          "f19",
+          "f20"
+        ],
+        "reason": "From f18 onward, the scene is overwhelmed by an intense, rapidly expanding blast front that resolves into a chaotic scene with exposed wires, a utility pole, and a worker on a ladder (f20–f23); this is distinct from the earlier muzzle flash and matches 'Explosion' (a blast, not sustained fire). The candidate’s t_end=40.3 falls within f19 (40.0) and before f20 (40.5), and the blast is clearly present at f18–f19, with aftermath visible at f20+.",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 4,
+      "output_count": 2,
+      "groups": 2,
+      "rejected": 2,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.5,
+              "f1": 1.0,
+              "f2": 1.5,
+              "f3": 2.0,
+              "f4": 2.5,
+              "f5": 3.0,
+              "f6": 3.5,
+              "f7": 4.0,
+              "f8": 4.5,
+              "f9": 5.0,
+              "f10": 5.5,
+              "f11": 6.0,
+              "f12": 6.5,
+              "f13": 7.0,
+              "f14": 7.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 2.5,
+                "t_end": 5.7,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 2.5,
+                "t_end": 3.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No visible aggression toward a helpless victim; the young man holds and points a handgun briefly (f4), then lowers it, and the older man remains standing and unharmed—consistent with a threat or display, not abuse.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    },\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"The handgun is raised and pointed at f4, but no muzzle flash, recoil, or impact is visible; the target remains stationary and unharmed in subsequent frames—no evidence of actual shooting.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "No visible aggression toward a helpless victim; the young man holds and points a handgun briefly (f4), then lowers it, and the older man remains standing and unharmed—consistent with a threat or display, not abuse.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11"
+              ]
+            },
+            {
+              "candidate_id": 1,
+              "reason": "The handgun is raised and pointed at f4, but no muzzle flash, recoil, or impact is visible; the target remains stationary and unharmed in subsequent frames—no evidence of actual shooting.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          2,
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 30.5,
+              "f1": 31.0,
+              "f2": 31.5,
+              "f3": 32.0,
+              "f4": 32.5,
+              "f5": 33.0,
+              "f6": 33.5,
+              "f7": 34.0,
+              "f8": 34.5,
+              "f9": 35.0,
+              "f10": 35.5,
+              "f11": 36.0,
+              "f12": 36.5,
+              "f13": 37.0,
+              "f14": 37.5,
+              "f15": 38.0,
+              "f16": 38.5,
+              "f17": 39.0,
+              "f18": 39.5,
+              "f19": 40.0,
+              "f20": 40.5,
+              "f21": 41.0,
+              "f22": 41.5,
+              "f23": 42.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 32.5,
+                "t_end": 39.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 39.5,
+                "t_end": 40.3,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"Shooting\",\n      \"t_start\": 32.5,\n      \"t_end\": 39.0,\n      \"confidence\": 1.0,\n      \"description\": \"A hand holds a pistol that discharges with a large muzzle flash expanding over multiple frames (f4–f17), consistent with a single gunshot.\",\n      \"reason\": \"Frames f4–f17 show a handgun being fired: visible muzzle flash begins at f5 and expands through f17, with the gun remaining in frame and no indication of multiple shots or explosion; this satisfies the definition of 'Shooting' (visible shooting).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\"]\n    },\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"Explosion\",\n      \"t_start\": 39.5,\n      \"t_end\": 40.3,\n      \"confidence\": 0.9,\n      \"description\": \"After the muzzle flash subsides, a bright yellow-white blast wave fills the frame and reveals structural debris and a person on a ladder, indicating a secondary explosion or detonation.\",\n      \"reason\": \"From f18 onward, the scene is overwhelmed by an intense, rapidly expanding blast front that resolves into a chaotic scene with exposed wires, a utility pole, and a worker on a ladder (f20–f23); this is distinct from the earlier muzzle flash and matches 'Explosion' (a blast, not sustained fire). The candidate’s t_end=40.3 falls within f19 (40.0) and before f20 (40.5), and the blast is clearly present at f18–f19, with aftermath visible at f20+.\",\n      \"evidence_frame_ids\": [\"f18\", \"f19\", \"f20\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2
+              ],
+              "category": "Shooting",
+              "t_start": 32.5,
+              "t_end": 39.0,
+              "confidence": 1.0,
+              "description": "A hand holds a pistol that discharges with a large muzzle flash expanding over multiple frames (f4–f17), consistent with a single gunshot.",
+              "reason": "Frames f4–f17 show a handgun being fired: visible muzzle flash begins at f5 and expands through f17, with the gun remaining in frame and no indication of multiple shots or explosion; this satisfies the definition of 'Shooting' (visible shooting).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                3
+              ],
+              "category": "Explosion",
+              "t_start": 39.5,
+              "t_end": 40.3,
+              "confidence": 0.9,
+              "description": "After the muzzle flash subsides, a bright yellow-white blast wave fills the frame and reveals structural debris and a person on a ladder, indicating a secondary explosion or detonation.",
+              "reason": "From f18 onward, the scene is overwhelmed by an intense, rapidly expanding blast front that resolves into a chaotic scene with exposed wires, a utility pole, and a worker on a ladder (f20–f23); this is distinct from the earlier muzzle flash and matches 'Explosion' (a blast, not sustained fire). The candidate’s t_end=40.3 falls within f19 (40.0) and before f20 (40.5), and the blast is clearly present at f18–f19, with aftermath visible at f20+.",
+              "evidence_frame_ids": [
+                "f18",
+                "f19",
+                "f20"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

@@ -11,7 +11,8 @@ UCF-Crime 评估模块
 
   Level 2 — VadCLIP 方式的时间段级 mAP（IoU 0.1—0.5）
     按类别匹配，AP = sum(Precision@k * TP_k) / N_GT，不做 11 点插值。
-    使用原视频 FPS、整数半开帧区间；主指标对 13 类异常取均值，正常视频单独评价。
+    使用原视频 FPS、整数半开帧区间；主指标对 Normal 与 13 类异常取均值。
+    Normal 预测由保存的正常判断和帧分数生成，GT 为正常视频的完整源帧区间。
     同时保留类别无关的 0.3/0.5/0.7 辅助指标，也使用上述非插值 AP。
 
   Level 3 — 视频级 accuracy / precision / recall / F1 / AUC
@@ -179,6 +180,7 @@ def load_predictions(result_dir: str) -> Dict[str, Dict[str, Any]]:
             'duration': data.get('duration', 0),
             'frame_scores': data.get('frame_scores'),
             'timestamps': data.get('timestamps'),
+            'is_normal': data.get('is_normal'),
         }
     return preds
 
@@ -418,7 +420,7 @@ def _compute_ap(precision, recall):
 
 
 def compute_vadclip_temporal_map(gt, pred, fps=30, iou_thresholds=None,
-                                 include_normal_videos=False, classes=ANOMALY_CLASSES):
+                                 include_normal_videos=True, classes=None):
     """Class-aware primary metric, sharing the web evaluator's exact implementation.
 
     Only the AP/matching protocol is adopted. Existing final detections and
@@ -431,9 +433,10 @@ def compute_vadclip_temporal_map(gt, pred, fps=30, iou_thresholds=None,
         **{f'AP@{t:g}':metrics['values'][f'mAP@{t:.1f}'] for t in thresholds},
         protocol=dict(ap_formula='sum(precision_at_rank * TP) / N_GT',
             interpolation='none',sorting='numpy.argsort(-confidence)',
-            class_aware=True,classes=list(classes),
+            class_aware=True,classes=metrics['classes'],
             iou_thresholds=list(thresholds),include_normal_videos=include_normal_videos,
-            interval='integer source frames [start,end)',proposal_source='existing final detections'))
+            normal_as_class=metrics['normal_as_class'],normal_policy=metrics['normal_policy'],
+            interval='integer source frames [start,end)',proposal_source='existing anomalies plus prediction-derived Normal'))
 
 
 # ---------------------------------------------------------------------------
@@ -556,6 +559,11 @@ def evaluate(label_path, result_dir, fps=30, split="test", *, video_root=None, l
         fps = {k: row['fps'] for k, row in metadata.items()}
         for k, row in metadata.items():
             pred[k]['source_frame_count'] = row['frame_count']
+    else:
+        # Only the explicitly requested historical fixed-FPS mode derives length
+        # from duration. Native evaluation always uses probed source metadata.
+        for k, row in pred.items():
+            row['source_frame_count'] = int(row['duration'] * fps_for_video(fps, k))
     _log.info('FPS source: %s', 'original video files' if metadata else f'explicit fixed {fps}')
     gt_matched = {k: gt[k] for k in matched}
     pred_matched = {k: pred[k] for k in matched}
@@ -573,12 +581,13 @@ def evaluate(label_path, result_dir, fps=30, split="test", *, video_root=None, l
         for cat, cat_auc in sorted(frame_results['per_category_auc'].items()):
             _log.info(f"    {cat:20s}: {cat_auc:.4f}")
 
-    _log.info("--- Level 2: Temporal Segment mAP ---")
+    _log.info("--- Level 2: Temporal Segment mAP (14 classes, includes Normal) ---")
     map_results = compute_vadclip_temporal_map(gt_matched, pred_matched, fps)
     global_map_results = compute_temporal_map(gt_matched, pred_matched, fps)
     _log.info(f"  mAP:    {map_results['mAP']:.4f}")
     for threshold in THRESHOLDS:
         _log.info('  mAP@%.1f: %.4f',threshold,map_results[f'AP@{threshold:g}'])
+    _log.info('  Normal AP@0.5: %.4f', map_results['per_class']['Normal']['AP@0.5'])
 
     _log.info("--- Level 3: Video-level Metrics ---")
     video_results = compute_video_level(gt_matched, pred_matched)

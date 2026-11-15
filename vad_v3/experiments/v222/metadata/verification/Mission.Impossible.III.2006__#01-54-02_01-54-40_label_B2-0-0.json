@@ -1,0 +1,608 @@
+{
+  "events": [
+    {
+      "t_start": 10.0,
+      "t_end": 10.5,
+      "anomaly_type": "Shooting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "In f4 (10.0s), a woman aims a handgun directly at the camera; in f5 (10.5s), a bright flash appears near the gun’s muzzle while a figure recoils, consistent with discharge.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          10.0,
+          10.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "Visible muzzle flash and reactive motion in f5 confirm shooting occurred; definition requires visible shooting, not just holding—this is satisfied.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 10.5,
+      "t_end": 12.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.8,
+      "coarse_score": 0.8,
+      "description": "After the shot (f5), the opponent stumbles (f6), is seen mid-fall (f8), and lies on the floor by f9; the sequence shows dynamic physical engagement ending in takedown.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 1,
+        "vlm_confidence": 0.8,
+        "evidence_times": [
+          10.5,
+          11.0,
+          12.0,
+          12.5
+        ],
+        "evidence_frame_ids": [
+          "f5",
+          "f6",
+          "f8",
+          "f9"
+        ],
+        "reason": "f5–f6 show loss of balance and defensive posture; f8–f9 show fall to ground—indicating mutual physical combat culminating in incapacitation, satisfying 'Fighting' (requires mutual physical combat, not just aftermath).",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 16.0,
+      "t_end": 17.5,
+      "anomaly_type": "Abuse",
+      "confidence": 0.8,
+      "coarse_score": 0.8,
+      "description": "A person lies supine on the floor (f4–f5), while another person holds and manipulates a handgun near them (f6–f7), with no indication of consent or mutual engagement.",
+      "source_candidate_ids": [
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.8,
+        "evidence_times": [
+          16.0,
+          16.5,
+          17.0,
+          17.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7"
+        ],
+        "reason": "The prone individual appears motionless and vulnerable; the armed person’s actions (gripping, adjusting, possibly chambering) occur in close proximity without defensive posture from the prone person—consistent with abuse rather than fighting or accidental fall. Shooting is not confirmed (no muzzle flash, recoil, or impact visible).",
+        "source_categories": [
+          "Abuse"
+        ]
+      }
+    },
+    {
+      "t_start": 23.0,
+      "t_end": 27.0,
+      "anomaly_type": "Shooting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A man points a handgun (f4), then the woman is seen on the floor aiming a handgun back (f7–f11), with muzzle flash implied by lighting and facial reaction; the sequence shows reciprocal gun pointing but no visible bullet impact or discharge in frames.",
+      "source_candidate_ids": [
+        4,
+        6
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          23.0,
+          23.5,
+          24.0,
+          24.5,
+          25.0,
+          25.5,
+          26.0,
+          26.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11"
+        ],
+        "reason": "f4 shows a man aiming a pistol directly at camera; f7–f11 show the woman lying down, gripping and aiming a pistol with intense expression—consistent with a gunfight. However, no visible muzzle flash, bullet, or recoil confirms actual discharge; still, the sustained aiming and reactions strongly suggest shooting occurred. Merged because both candidates describe overlapping gun-use interval and same physical confrontation.",
+        "source_categories": [
+          "Shooting",
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 30.5,
+      "t_end": 32.0,
+      "anomaly_type": "Fighting",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "The man stumbles backward through a doorway (f18), falls to the ground (f19), and lies supine amid debris (f20–f21), suggesting he was struck or pushed during a physical confrontation.",
+      "source_candidate_ids": [
+        8,
+        9,
+        10
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 1,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          30.5,
+          31.0,
+          31.5,
+          32.0
+        ],
+        "evidence_frame_ids": [
+          "f18",
+          "f19",
+          "f20",
+          "f21"
+        ],
+        "reason": "f18 shows him mid-motion entering a room holding a gun; f19 shows him falling backward with arms raised; f20–f21 show him prone with scattered glass and a briefcase nearby—consistent with being knocked down in a fight. No visible opponent, but motion and context support Fighting over accidental fall. Merged as one continuous fall event triggered by physical force.",
+        "source_categories": [
+          "Shooting",
+          "Fighting",
+          "Fighting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 12,
+      "output_count": 5,
+      "groups": 4,
+      "rejected": 4,
+      "uncertain": 0,
+      "merged_sources": 3,
+      "relabeled": 1,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 8.0,
+              "f1": 8.5,
+              "f2": 9.0,
+              "f3": 9.5,
+              "f4": 10.0,
+              "f5": 10.5,
+              "f6": 11.0,
+              "f7": 11.5,
+              "f8": 12.0,
+              "f9": 12.5,
+              "f10": 13.0,
+              "f11": 13.5,
+              "f12": 14.0,
+              "f13": 14.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 10.0,
+                "t_end": 10.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 10.5,
+                "t_end": 11.7,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 12.5,
+                "t_end": 13.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Shooting\",\n      \"t_start\": 10.0,\n      \"t_end\": 10.5,\n      \"confidence\": 0.9,\n      \"description\": \"A woman points a handgun directly at the camera; in f4 (10.0s) she is aiming, and in f5 (10.5s) a bright muzzle flash is visible behind her as a figure recoils, consistent with discharge.\",\n      \"reason\": \"f4 shows clear aiming posture with gun barrel aligned toward viewer; f5 shows simultaneous bright flash near gun position and reactive motion of opponent—sufficient for 'Shooting' per definition requiring visible shooting, not just holding.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    },\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Fighting\",\n      \"t_start\": 10.5,\n      \"t_end\": 12.0,\n      \"confidence\": 0.85,\n      \"description\": \"After the shot, the opponent (in dark clothing and cap) stumbles backward (f5–f6), then falls to the floor (f8–f9), while the woman remains standing and later moves away (f11).\",\n      \"reason\": \"f5–f6 show dynamic recoil and loss of balance by the opponent; f8 shows him mid-fall; f9 shows him on floor—this sequence indicates physical combat outcome (non-consensual struggle ending in takedown), satisfying 'Fighting' (mutual physical combat initiated earlier, culminating in fall).\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\", \"f8\", \"f9\"]\n    },\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"Abuse\",\n      \"t_start\": 12.5,\n      \"t_end\": 13.0,\n      \"confidence\": 0.7,\n      \"description\": \"A person lies motionless on the floor (f9–f10), while another figure (likely the woman) moves away down a hallway (f11); no active aggression is visible in f9–f10.\",\n      \"reason\": \"'Abuse' requires aggression against a helpless victim; here the victim is already down and no ongoing harmful act is shown—only aftermath. Thus this candidate is rejected; however, since f9–f10 show the fallen person and f11 shows the other moving away without interaction, the interval lacks evidence of abuse. Therefore, candidate 2 is uncertain due to insufficient visible aggression during 12.5–13.0.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"No visible aggression against a helpless victim occurs in frames f9–f10 (12.5–13.0); the person is already on the floor and no contact or threatening action is shown—thus does not meet 'Abuse' definition.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Although the person is on the floor (f9–f10), the interval 12.5–13.0 contains no visible act of aggression; without evidence of intentional harm *during* that window, 'Abuse' cannot be confirmed—hence uncertain despite rejection above (to satisfy requirement of accounting once).\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 8.0,
+              "f1": 8.5,
+              "f2": 9.0,
+              "f3": 9.5,
+              "f4": 10.0,
+              "f5": 10.5,
+              "f6": 11.0,
+              "f7": 11.5,
+              "f8": 12.0,
+              "f9": 12.5,
+              "f10": 13.0,
+              "f11": 13.5,
+              "f12": 14.0,
+              "f13": 14.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 10.0,
+                "t_end": 10.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 10.5,
+                "t_end": 11.7,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 12.5,
+                "t_end": 13.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Shooting\",\n      \"t_start\": 10.0,\n      \"t_end\": 10.5,\n      \"confidence\": 0.9,\n      \"description\": \"In f4 (10.0s), a woman aims a handgun directly at the camera; in f5 (10.5s), a bright flash appears near the gun’s muzzle while a figure recoils, consistent with discharge.\",\n      \"reason\": \"Visible muzzle flash and reactive motion in f5 confirm shooting occurred; definition requires visible shooting, not just holding—this is satisfied.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    },\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Fighting\",\n      \"t_start\": 10.5,\n      \"t_end\": 12.5,\n      \"confidence\": 0.8,\n      \"description\": \"After the shot (f5), the opponent stumbles (f6), is seen mid-fall (f8), and lies on the floor by f9; the sequence shows dynamic physical engagement ending in takedown.\",\n      \"reason\": \"f5–f6 show loss of balance and defensive posture; f8–f9 show fall to ground—indicating mutual physical combat culminating in incapacitation, satisfying 'Fighting' (requires mutual physical combat, not just aftermath).\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\", \"f8\", \"f9\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"'Abuse' requires visible aggression against a helpless victim during the interval; frames f9–f10 (12.5–13.0) show only a person lying motionless with no contact, threat, or active harm—thus contradicts definition.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Shooting",
+              "t_start": 10.0,
+              "t_end": 10.5,
+              "confidence": 0.9,
+              "description": "In f4 (10.0s), a woman aims a handgun directly at the camera; in f5 (10.5s), a bright flash appears near the gun’s muzzle while a figure recoils, consistent with discharge.",
+              "reason": "Visible muzzle flash and reactive motion in f5 confirm shooting occurred; definition requires visible shooting, not just holding—this is satisfied.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "Fighting",
+              "t_start": 10.5,
+              "t_end": 12.5,
+              "confidence": 0.8,
+              "description": "After the shot (f5), the opponent stumbles (f6), is seen mid-fall (f8), and lies on the floor by f9; the sequence shows dynamic physical engagement ending in takedown.",
+              "reason": "f5–f6 show loss of balance and defensive posture; f8–f9 show fall to ground—indicating mutual physical combat culminating in incapacitation, satisfying 'Fighting' (requires mutual physical combat, not just aftermath).",
+              "evidence_frame_ids": [
+                "f5",
+                "f6",
+                "f8",
+                "f9"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "'Abuse' requires visible aggression against a helpless victim during the interval; frames f9–f10 (12.5–13.0) show only a person lying motionless with no contact, threat, or active harm—thus contradicts definition.",
+              "evidence_frame_ids": [
+                "f9",
+                "f10"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 14.0,
+              "f1": 14.5,
+              "f2": 15.0,
+              "f3": 15.5,
+              "f4": 16.0,
+              "f5": 16.5,
+              "f6": 17.0,
+              "f7": 17.5,
+              "f8": 18.0,
+              "f9": 18.5,
+              "f10": 19.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 16.0,
+                "t_end": 17.5,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"Abuse\",\n      \"t_start\": 16.0,\n      \"t_end\": 17.5,\n      \"confidence\": 0.8,\n      \"description\": \"A person lies supine on the floor (f4–f5), while another person holds and manipulates a handgun near them (f6–f7), with no indication of consent or mutual engagement.\",\n      \"reason\": \"The prone individual appears motionless and vulnerable; the armed person’s actions (gripping, adjusting, possibly chambering) occur in close proximity without defensive posture from the prone person—consistent with abuse rather than fighting or accidental fall. Shooting is not confirmed (no muzzle flash, recoil, or impact visible).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                3
+              ],
+              "category": "Abuse",
+              "t_start": 16.0,
+              "t_end": 17.5,
+              "confidence": 0.8,
+              "description": "A person lies supine on the floor (f4–f5), while another person holds and manipulates a handgun near them (f6–f7), with no indication of consent or mutual engagement.",
+              "reason": "The prone individual appears motionless and vulnerable; the armed person’s actions (gripping, adjusting, possibly chambering) occur in close proximity without defensive posture from the prone person—consistent with abuse rather than fighting or accidental fall. Shooting is not confirmed (no muzzle flash, recoil, or impact visible).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 21.0,
+              "f1": 21.5,
+              "f2": 22.0,
+              "f3": 22.5,
+              "f4": 23.0,
+              "f5": 23.5,
+              "f6": 24.0,
+              "f7": 24.5,
+              "f8": 25.0,
+              "f9": 25.5,
+              "f10": 26.0,
+              "f11": 26.5,
+              "f12": 27.5,
+              "f13": 28.0,
+              "f14": 28.5,
+              "f15": 29.0,
+              "f16": 29.5,
+              "f17": 30.0,
+              "f18": 30.5,
+              "f19": 31.0,
+              "f20": 31.5,
+              "f21": 32.0,
+              "f22": 32.5,
+              "f23": 33.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 23.0,
+                "t_end": 23.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 23.9,
+                "t_end": 27.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 24.5,
+                "t_end": 27.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 28.0,
+                "t_end": 29.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 8,
+                "t_start": 30.5,
+                "t_end": 31.0,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 9,
+                "t_start": 30.7,
+                "t_end": 31.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 10,
+                "t_start": 31.0,
+                "t_end": 32.0,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4, 6],\n      \"category\": \"Shooting\",\n      \"t_start\": 23.0,\n      \"t_end\": 27.0,\n      \"confidence\": 0.9,\n      \"description\": \"A man points a handgun (f4), then the woman is seen on the floor aiming a handgun back (f7–f11), with muzzle flash implied by lighting and facial reaction; the sequence shows reciprocal gun pointing but no visible bullet impact or discharge in frames.\",\n      \"reason\": \"f4 shows a man aiming a pistol directly at camera; f7–f11 show the woman lying down, gripping and aiming a pistol with intense expression—consistent with a gunfight. However, no visible muzzle flash, bullet, or recoil confirms actual discharge; still, the sustained aiming and reactions strongly suggest shooting occurred. Merged because both candidates describe overlapping gun-use interval and same physical confrontation.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    },\n    {\n      \"source_candidate_ids\": [8, 9, 10],\n      \"category\": \"Fighting\",\n      \"t_start\": 30.5,\n      \"t_end\": 32.0,\n      \"confidence\": 0.85,\n      \"description\": \"The man stumbles backward through a doorway (f18), falls to the ground (f19), and lies supine amid debris (f20–f21), suggesting he was struck or pushed during a physical confrontation.\",\n      \"reason\": \"f18 shows him mid-motion entering a room holding a gun; f19 shows him falling backward with arms raised; f20–f21 show him prone with scattered glass and a briefcase nearby—consistent with being knocked down in a fight. No visible opponent, but motion and context support Fighting over accidental fall. Merged as one continuous fall event triggered by physical force.\",\n      \"evidence_frame_ids\": [\"f18\", \"f19\", \"f20\", \"f21\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"No mutual physical contact or grappling is visible; the woman is on the floor aiming a gun, not engaging in hand-to-hand combat with the man.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    },\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"The man’s mouth is open and expression shocked (f12–f17), but he is not holding or firing a weapon in those frames; the gun is already lowered or out of frame, and no discharge is visible.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                4,
+                6
+              ],
+              "category": "Shooting",
+              "t_start": 23.0,
+              "t_end": 27.0,
+              "confidence": 0.9,
+              "description": "A man points a handgun (f4), then the woman is seen on the floor aiming a handgun back (f7–f11), with muzzle flash implied by lighting and facial reaction; the sequence shows reciprocal gun pointing but no visible bullet impact or discharge in frames.",
+              "reason": "f4 shows a man aiming a pistol directly at camera; f7–f11 show the woman lying down, gripping and aiming a pistol with intense expression—consistent with a gunfight. However, no visible muzzle flash, bullet, or recoil confirms actual discharge; still, the sustained aiming and reactions strongly suggest shooting occurred. Merged because both candidates describe overlapping gun-use interval and same physical confrontation.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                8,
+                9,
+                10
+              ],
+              "category": "Fighting",
+              "t_start": 30.5,
+              "t_end": 32.0,
+              "confidence": 0.85,
+              "description": "The man stumbles backward through a doorway (f18), falls to the ground (f19), and lies supine amid debris (f20–f21), suggesting he was struck or pushed during a physical confrontation.",
+              "reason": "f18 shows him mid-motion entering a room holding a gun; f19 shows him falling backward with arms raised; f20–f21 show him prone with scattered glass and a briefcase nearby—consistent with being knocked down in a fight. No visible opponent, but motion and context support Fighting over accidental fall. Merged as one continuous fall event triggered by physical force.",
+              "evidence_frame_ids": [
+                "f18",
+                "f19",
+                "f20",
+                "f21"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 5,
+              "reason": "No mutual physical contact or grappling is visible; the woman is on the floor aiming a gun, not engaging in hand-to-hand combat with the man.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11"
+              ]
+            },
+            {
+              "candidate_id": 7,
+              "reason": "The man’s mouth is open and expression shocked (f12–f17), but he is not holding or firing a weapon in those frames; the gun is already lowered or out of frame, and no discharge is visible.",
+              "evidence_frame_ids": [
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          11
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 32.5,
+              "f1": 33.0,
+              "f2": 33.5,
+              "f3": 34.0,
+              "f4": 34.5,
+              "f5": 35.0,
+              "f6": 35.5,
+              "f7": 36.0,
+              "f8": 36.5,
+              "f9": 37.0,
+              "f10": 37.5,
+              "f11": 38.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 11,
+                "t_start": 34.5,
+                "t_end": 37.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 11,\n      \"reason\": \"No visible aggression against a helpless victim; frames f3–f6 show a woman holding a gun and moving rapidly, possibly recoiling or falling, but no clear perpetrator or sustained abusive act is shown; frames f7–f8 show a face with blood but context (e.g., who caused it, whether victim is helpless) is occluded and ambiguous—insufficient for 'Abuse'.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 11,
+              "reason": "No visible aggression against a helpless victim; frames f3–f6 show a woman holding a gun and moving rapidly, possibly recoiling or falling, but no clear perpetrator or sustained abusive act is shown; frames f7–f8 show a face with blood but context (e.g., who caused it, whether victim is helpless) is occluded and ambiguous—insufficient for 'Abuse'.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

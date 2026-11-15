@@ -1,0 +1,95 @@
+{
+  "group_id": 0,
+  "calls": [
+    {
+      "pass_id": 0,
+      "frame_times": {
+        "f0": 14.0,
+        "f1": 14.5,
+        "f2": 15.0,
+        "f3": 15.5,
+        "f4": 16.0,
+        "f5": 16.5,
+        "f6": 17.0,
+        "f7": 17.5,
+        "f8": 18.0,
+        "f9": 18.5
+      },
+      "hypotheses": [
+        {
+          "candidate_id": 0,
+          "t_start": 16.0,
+          "t_end": 16.5,
+          "unverified_category": "CarAccident"
+        },
+        {
+          "candidate_id": 1,
+          "t_start": 16.0,
+          "t_end": 17.0,
+          "unverified_category": "Explosion"
+        }
+      ],
+      "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Explosion\",\n      \"t_start\": 16.0,\n      \"t_end\": 16.5,\n      \"confidence\": 1.0,\n      \"description\": \"A car on a rooftop erupts in a large fireball with rapid expansion and debris, consistent with a blast.\",\n      \"reason\": \"f4 shows a car enveloped in an expanding fireball; f5 shows the peak of the blast with violent outward motion and smoke—this satisfies the definition of explosion (blast), not merely a crash or fire. The candidate intervals overlap and are fully covered by f4–f5, so they are merged into one explosion event.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"The event is not a car accident (no collision or crash visible); instead, it is an explosion that destroys the car, which is a distinct category.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+    },
+    {
+      "pass_id": 0,
+      "frame_times": {
+        "f0": 14.0,
+        "f1": 14.5,
+        "f2": 15.0,
+        "f3": 15.5,
+        "f4": 16.0,
+        "f5": 16.5,
+        "f6": 17.0,
+        "f7": 17.5,
+        "f8": 18.0,
+        "f9": 18.5
+      },
+      "hypotheses": [
+        {
+          "candidate_id": 0,
+          "t_start": 16.0,
+          "t_end": 16.5,
+          "unverified_category": "CarAccident"
+        },
+        {
+          "candidate_id": 1,
+          "t_start": 16.0,
+          "t_end": 17.0,
+          "unverified_category": "Explosion"
+        }
+      ],
+      "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Explosion\",\n      \"t_start\": 16.0,\n      \"t_end\": 16.5,\n      \"confidence\": 1.0,\n      \"description\": \"A car on a rooftop is engulfed in a rapidly expanding fireball with violent outward motion and debris, indicating a blast event.\",\n      \"reason\": \"f4 shows the onset of a sudden, volumetric fireball around the car; f5 shows peak expansion with shock-like displacement of air/debris—this satisfies the definition of explosion (a blast), not sustained fire or crash. Candidate 1 (16.0–17.0) is partially supported only within 16.0–16.5 by visible evidence; the interval beyond 16.5 lacks explosion evidence, so t_end is truncated to 16.5. Candidate 0 is rejected separately.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No collision, impact, or vehicle deformation indicative of a car accident is visible; instead, the car is destroyed by a blast, which falls under Explosion, not CarAccident.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"The candidate claims explosion from 16.0–17.0, but visible explosion evidence ends at f5 (16.5); frames f6–f8 (17.0–18.0) show only a person reacting in a room, with no ongoing blast—so the full claimed interval is unsupported, though the 16.0–16.5 portion is confirmed as Explosion.\"\n    }\n  ]\n}"
+    },
+    {
+      "pass_id": 0,
+      "frame_times": {
+        "f0": 14.0,
+        "f1": 14.5,
+        "f2": 15.0,
+        "f3": 15.5,
+        "f4": 16.0,
+        "f5": 16.5,
+        "f6": 17.0,
+        "f7": 17.5,
+        "f8": 18.0,
+        "f9": 18.5
+      },
+      "hypotheses": [
+        {
+          "candidate_id": 0,
+          "t_start": 16.0,
+          "t_end": 16.5,
+          "unverified_category": "CarAccident"
+        },
+        {
+          "candidate_id": 1,
+          "t_start": 16.0,
+          "t_end": 17.0,
+          "unverified_category": "Explosion"
+        }
+      ],
+      "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Explosion\",\n      \"t_start\": 16.0,\n      \"t_end\": 16.5,\n      \"confidence\": 1.0,\n      \"description\": \"A car on a rooftop is suddenly enveloped in a rapidly expanding fireball with violent outward motion and debris, indicating a blast.\",\n      \"reason\": \"f4 shows the onset of a volumetric fireball around the car; f5 shows peak expansion with shock-like displacement—this satisfies the definition of explosion (a blast), not merely fire or crash. The visible evidence fully supports explosion only between 16.0–16.5; candidate 1’s claimed interval (16.0–17.0) extends beyond observable blast evidence, so t_end is truncated to 16.5.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No collision, vehicle deformation, or crash dynamics are visible; the car is destroyed by a sudden blast, which is classified as Explosion, not CarAccident.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"While explosion is confirmed in f4–f5 (16.0–16.5), the candidate claims the event lasts until 17.0; frames f6–f8 (17.0–18.0) show only a person reacting in a bedroom with no ongoing blast, so the full claimed interval is unsupported.\"\n    }\n  ]\n}"
+    }
+  ]
+}

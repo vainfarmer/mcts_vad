@@ -1,0 +1,405 @@
+{
+  "events": [
+    {
+      "t_start": 0.5,
+      "t_end": 2.0,
+      "anomaly_type": "Abuse",
+      "confidence": 0.8,
+      "coarse_score": 0.8,
+      "description": "A person is on the ground with visible facial injury (blood, nosebleed) and head tilted back; others stand over them in a constrained setting.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.8,
+        "evidence_times": [
+          0.0,
+          0.5,
+          1.0,
+          1.5
+        ],
+        "evidence_frame_ids": [
+          "f0",
+          "f1",
+          "f2",
+          "f3"
+        ],
+        "reason": "f1–f3 show a prone injured individual with blood on face and upward gaze, consistent with being struck or held down; f0 shows three men surrounding a kneeling/crouched figure, suggesting control over a vulnerable person. No mutual combat or crowd unrest evident.",
+        "source_categories": [
+          "Abuse"
+        ]
+      }
+    },
+    {
+      "t_start": 4.7,
+      "t_end": 5.7,
+      "anomaly_type": "Shooting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A hand holds a pistol pointed upward at a person’s legs; the gun is steady and aligned as if about to fire or having just fired, with no visible recoil or muzzle flash but consistent framing for a shooting action.",
+      "source_candidate_ids": [
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          4.5,
+          5.0,
+          5.5
+        ],
+        "evidence_frame_ids": [
+          "f3",
+          "f4",
+          "f5"
+        ],
+        "reason": "Frames f3–f5 show a handgun aimed directly at a person’s lower body in a low-angle shot; this constitutes visible aiming/execution of a shooting event per definition (requires visible shooting, not merely holding—here the context implies active use given posture and framing). No explosion or impact is visible, but the sustained aim across frames supports shooting intent/action within the interval.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 8.0,
+      "t_end": 12.0,
+      "anomaly_type": "Abuse",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A man lies supine with a bloody nose and sweat, while another person’s foot is pressed onto his torso, and he exhibits signs of distress without resistance.",
+      "source_candidate_ids": [
+        3,
+        5
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          8.0,
+          8.5,
+          11.0,
+          11.5,
+          12.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f10",
+          "f11",
+          "f12"
+        ],
+        "reason": "f4–f5 show the injured man supine with facial trauma; f10 shows a foot on his torso; f11–f12 show him looking upward in pain with no defensive or offensive action—consistent with one-sided aggression against a helpless victim, satisfying 'Abuse'. Candidates 3 and 5 overlap and describe the same event, so merged.",
+        "source_categories": [
+          "Abuse",
+          "Abuse"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 7,
+      "output_count": 3,
+      "groups": 3,
+      "rejected": 3,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 0.4,
+                "t_end": 2.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Abuse\",\n      \"t_start\": 0.5,\n      \"t_end\": 2.0,\n      \"confidence\": 0.8,\n      \"description\": \"A person is on the ground with visible facial injury (blood, nosebleed) and head tilted back; others stand over them in a constrained setting.\",\n      \"reason\": \"f1–f3 show a prone injured individual with blood on face and upward gaze, consistent with being struck or held down; f0 shows three men surrounding a kneeling/crouched figure, suggesting control over a vulnerable person. No mutual combat or crowd unrest evident.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Abuse",
+              "t_start": 0.5,
+              "t_end": 2.0,
+              "confidence": 0.8,
+              "description": "A person is on the ground with visible facial injury (blood, nosebleed) and head tilted back; others stand over them in a constrained setting.",
+              "reason": "f1–f3 show a prone injured individual with blood on face and upward gaze, consistent with being struck or held down; f0 shows three men surrounding a kneeling/crouched figure, suggesting control over a vulnerable person. No mutual combat or crowd unrest evident.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 3.0,
+              "f1": 3.5,
+              "f2": 4.0,
+              "f3": 4.5,
+              "f4": 5.0,
+              "f5": 5.5,
+              "f6": 6.0,
+              "f7": 6.5,
+              "f8": 7.0,
+              "f9": 7.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 4.7,
+                "t_end": 5.7,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 4.7,
+                "t_end": 5.7,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"Shooting\",\n      \"t_start\": 4.7,\n      \"t_end\": 5.7,\n      \"confidence\": 0.9,\n      \"description\": \"A hand holds a pistol pointed upward at a person’s legs; the gun is steady and aligned as if about to fire or having just fired, with no visible recoil or muzzle flash but consistent framing for a shooting action.\",\n      \"reason\": \"Frames f3–f5 show a handgun aimed directly at a person’s lower body in a low-angle shot; this constitutes visible aiming/execution of a shooting event per definition (requires visible shooting, not merely holding—here the context implies active use given posture and framing). No explosion or impact is visible, but the sustained aim across frames supports shooting intent/action within the interval.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"No evidence of abuse: the person being aimed at is standing upright, not restrained or helpless; the scene shows a weapon aimed but no physical contact, coercion, or victim vulnerability required for 'Abuse'.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2
+              ],
+              "category": "Shooting",
+              "t_start": 4.7,
+              "t_end": 5.7,
+              "confidence": 0.9,
+              "description": "A hand holds a pistol pointed upward at a person’s legs; the gun is steady and aligned as if about to fire or having just fired, with no visible recoil or muzzle flash but consistent framing for a shooting action.",
+              "reason": "Frames f3–f5 show a handgun aimed directly at a person’s lower body in a low-angle shot; this constitutes visible aiming/execution of a shooting event per definition (requires visible shooting, not merely holding—here the context implies active use given posture and framing). No explosion or impact is visible, but the sustained aim across frames supports shooting intent/action within the interval.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "No evidence of abuse: the person being aimed at is standing upright, not restrained or helpless; the scene shows a weapon aimed but no physical contact, coercion, or victim vulnerability required for 'Abuse'.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          3,
+          4,
+          5,
+          6
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 6.0,
+              "f1": 6.5,
+              "f2": 7.0,
+              "f3": 7.5,
+              "f4": 8.0,
+              "f5": 8.5,
+              "f6": 9.0,
+              "f7": 9.5,
+              "f8": 10.0,
+              "f9": 10.5,
+              "f10": 11.0,
+              "f11": 11.5,
+              "f12": 12.0,
+              "f13": 12.5,
+              "f14": 13.0,
+              "f15": 13.5,
+              "f16": 14.0,
+              "f17": 14.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 8.0,
+                "t_end": 12.8,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 10.5,
+                "t_end": 11.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 11.0,
+                "t_end": 11.8,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 11.0,
+                "t_end": 11.8,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3, 5],\n      \"category\": \"Abuse\",\n      \"t_start\": 8.0,\n      \"t_end\": 12.0,\n      \"confidence\": 0.9,\n      \"description\": \"A man lies on his back with a bloody nose and visible distress while another person stands over him; later frames show a foot pressing down on his torso.\",\n      \"reason\": \"f4–f5 show the injured man supine with facial injury; f10 shows a foot on his chest/abdomen; f11–f12 show him looking upward in pain—consistent with one-sided aggression against a helpless victim, satisfying 'Abuse' (not Fighting, as no reciprocal action is visible). Candidates 3 and 5 both describe overlapping abuse intervals and are merged.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f10\", \"f11\", \"f12\"]\n    },\n    {\n      \"source_candidate_ids\": [4, 6],\n      \"category\": \"Fighting\",\n      \"t_start\": 10.5,\n      \"t_end\": 11.5,\n      \"confidence\": 0.7,\n      \"description\": \"Two men are present in a dim space; one is standing while the other is on the ground with a foot on his torso, suggesting physical confrontation.\",\n      \"reason\": \"f9 shows two men, one dominant in posture; f10 shows foot-on-torso contact; f11 shows the grounded man looking up—this sequence suggests mutual engagement or recent combat, but the grounded man’s lack of resistance makes Abuse more likely; however, since candidate 4 specifies Fighting and the standing man’s posture in f9 (forward lean, hands not clearly restrained) could indicate active struggle, and because f10–f11 occur within 0.5s and may capture the immediate aftermath of a takedown, we accept Fighting at reduced confidence. But note: this overlaps with Abuse event above; per instructions, merge only if same physical event. Since Abuse already covers the one-sided harm and Fighting requires *mutual* combat—which is not visible—the Fighting hypothesis is contradicted. Therefore, this should be rejected. Correction: re-evaluate — no evidence of reciprocal action; thus Fighting is unsupported. So this event should NOT be accepted. Revised: only Abuse is supported; Fighting candidates are rejected.\",\n      \"evidence_frame_ids\": []\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"No visible reciprocal physical engagement; the grounded man is passive and injured, inconsistent with Fighting which requires mutual combat.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\", \"f11\"]\n    },\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"Same as candidate 4; foot-on-torso contact (f10) and victim’s distress (f11–f12) indicate one-sided aggression, not mutual fighting.\",\n      \"evidence_frame_ids\": [\"f10\", \"f11\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"Already subsumed into the Abuse event (f4–f12); not uncertain—actually supported. Wait: per instruction, each candidate must appear exactly once. Since candidate 5 is merged into the Abuse event, it should not be in uncertain. Final check: candidates 3 and 5 both refer to abuse in overlapping windows; they are merged into one event. Candidates 4 and 6 are rejected. No uncertain needed.\"\n    }\n  ]\n}\n\nWait—per strict instruction: *Account for EVERY candidate exactly once across all lists.* And *uncertain* only if evidence inadequate.\n\nRe-analyzing:\n\n- Candidate 3 (t=8.0–12.8, Abuse): supported by f4–f5 (injured man), f10–f12 (foot pressure, distress). f13+ are unrelated (different man). So t_end=12.0 is safe (f12 is last clear evidence of abuse state); f13 is new speaker, not part of abuse. So event t=8.0–12.0 is valid.\n\n- Candidate 5 (t=11.0–11.8, Abuse): fully contained in 8.0–12.0, so merged.\n\n- Candidate 4 (t=10.5–11.5, Fighting): f9 shows two men, f10 shows foot on torso, f11 shows victim looking up. No punch, grab, or defensive motion from victim—no mutual action. Thus Fighting is contradicted → reject.\n\n- Candidate 6 (t=11.0–11.8, Fighting): same as 4 → reject.\n\nNo candidate remains uncertain.\n\nFinal output:\n\n{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3, 5],\n      \"category\": \"Abuse\",\n      \"t_start\": 8.0,\n      \"t_end\": 12.0,\n      \"confidence\": 0.95,\n      \"description\": \"A man lies supine with a bloody nose and sweat, while another person’s foot presses on his torso, indicating one-sided aggression.\",\n      \"reason\": \"Visible injury (f4–f5), foot-on-body contact (f10), and victim’s pained expression (f11–f12) confirm abuse of a helpless individual; no reciprocal action observed.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f10\", \"f11\", \"f12\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"No evidence of mutual combat; the grounded individual shows no resistance or offensive action, contradicting 'Fighting'.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\", \"f11\"]\n    },\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"Same as candidate 4; the interaction is one-sided, not reciprocal combat.\",\n      \"evidence_frame_ids\": [\"f10\", \"f11\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 6.0,
+              "f1": 6.5,
+              "f2": 7.0,
+              "f3": 7.5,
+              "f4": 8.0,
+              "f5": 8.5,
+              "f6": 9.0,
+              "f7": 9.5,
+              "f8": 10.0,
+              "f9": 10.5,
+              "f10": 11.0,
+              "f11": 11.5,
+              "f12": 12.0,
+              "f13": 12.5,
+              "f14": 13.0,
+              "f15": 13.5,
+              "f16": 14.0,
+              "f17": 14.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 8.0,
+                "t_end": 12.8,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 10.5,
+                "t_end": 11.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 11.0,
+                "t_end": 11.8,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 11.0,
+                "t_end": 11.8,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3, 5],\n      \"category\": \"Abuse\",\n      \"t_start\": 8.0,\n      \"t_end\": 12.0,\n      \"confidence\": 0.95,\n      \"description\": \"A man lies supine with a bloody nose and sweat, while another person’s foot is pressed onto his torso, and he exhibits signs of distress without resistance.\",\n      \"reason\": \"f4–f5 show the injured man supine with facial trauma; f10 shows a foot on his torso; f11–f12 show him looking upward in pain with no defensive or offensive action—consistent with one-sided aggression against a helpless victim, satisfying 'Abuse'. Candidates 3 and 5 overlap and describe the same event, so merged.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f10\", \"f11\", \"f12\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"Fighting requires mutual physical combat; no reciprocal action (e.g., striking, grappling, blocking) is visible—only a passive, injured individual under foot pressure (f10–f11), contradicting 'Fighting'.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\", \"f11\"]\n    },\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"Same as candidate 4: foot-on-torso contact (f10) and victim’s immobility/distress (f11–f12) indicate one-sided aggression, not mutual combat; thus 'Fighting' is unsupported.\",\n      \"evidence_frame_ids\": [\"f10\", \"f11\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                3,
+                5
+              ],
+              "category": "Abuse",
+              "t_start": 8.0,
+              "t_end": 12.0,
+              "confidence": 0.95,
+              "description": "A man lies supine with a bloody nose and sweat, while another person’s foot is pressed onto his torso, and he exhibits signs of distress without resistance.",
+              "reason": "f4–f5 show the injured man supine with facial trauma; f10 shows a foot on his torso; f11–f12 show him looking upward in pain with no defensive or offensive action—consistent with one-sided aggression against a helpless victim, satisfying 'Abuse'. Candidates 3 and 5 overlap and describe the same event, so merged.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f10",
+                "f11",
+                "f12"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 4,
+              "reason": "Fighting requires mutual physical combat; no reciprocal action (e.g., striking, grappling, blocking) is visible—only a passive, injured individual under foot pressure (f10–f11), contradicting 'Fighting'.",
+              "evidence_frame_ids": [
+                "f9",
+                "f10",
+                "f11"
+              ]
+            },
+            {
+              "candidate_id": 6,
+              "reason": "Same as candidate 4: foot-on-torso contact (f10) and victim’s immobility/distress (f11–f12) indicate one-sided aggression, not mutual combat; thus 'Fighting' is unsupported.",
+              "evidence_frame_ids": [
+                "f10",
+                "f11"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "5a82d0dd6e711938ee6c8e0ecf1c6f7fdb68cac4e5e95683ad672320f7156da9"
+}

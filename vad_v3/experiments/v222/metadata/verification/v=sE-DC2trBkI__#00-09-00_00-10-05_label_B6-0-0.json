@@ -1,0 +1,400 @@
+{
+  "events": [
+    {
+      "t_start": 28.0,
+      "t_end": 31.0,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A white sedan with yellow rear panel is stationary at an intersection with visible damage to its rear right side; other vehicles approach and stop, suggesting a recent collision.",
+      "source_candidate_ids": [
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          28.0,
+          28.5,
+          29.0,
+          29.5,
+          30.0,
+          30.5,
+          31.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10"
+        ],
+        "reason": "In frames f4–f10, the vehicle remains in the same position with consistent deformation (e.g., misaligned rear bumper, possible wheel displacement) and no motion, while traffic reacts—consistent with post-collision immobilization. No explosion or fire origin is seen on the car itself; the distant fire (upper right) is unrelated and persistent across frames.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 60.0,
+      "t_end": 61.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A dark SUV in front suddenly swerves left and collides with a vehicle approaching from the left (partially visible at f5–f6), causing visible lateral displacement and brake lights flaring; debris appears on road at f6.",
+      "source_candidate_ids": [
+        5
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 3,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          60.0,
+          60.5,
+          61.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "At f4, the SUV is centered; at f5, it sharply veers left while another vehicle enters frame from left; at f6, the SUV is sideways with bright brake lights and a small object (likely debris) on road—consistent with impact. The motion and positional change exceed normal lane changes or braking.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 6,
+      "output_count": 2,
+      "groups": 4,
+      "rejected": 4,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 11.5,
+              "f1": 12.0,
+              "f2": 12.5,
+              "f3": 13.0,
+              "f4": 13.5,
+              "f5": 14.0,
+              "f6": 14.5,
+              "f7": 15.0,
+              "f8": 15.5,
+              "f9": 16.0,
+              "f10": 16.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 13.5,
+                "t_end": 15.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No visible crash or vehicle deformation occurs between f4 (13.5s) and f7 (15.0s); the large truck is stationary or moving slowly in traffic, with no impact evidence.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "No visible crash or vehicle deformation occurs between f4 (13.5s) and f7 (15.0s); the large truck is stationary or moving slowly in traffic, with no impact evidence.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 22.0,
+              "f1": 22.5,
+              "f2": 23.0,
+              "f3": 23.5,
+              "f4": 24.0,
+              "f5": 24.5,
+              "f6": 25.0,
+              "f7": 25.5,
+              "f8": 26.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 24.0,
+                "t_end": 24.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 24.0,
+                "t_end": 24.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"CarAccident\",\n      \"t_start\": 22.0,\n      \"t_end\": 23.5,\n      \"confidence\": 0.95,\n      \"description\": \"A yellow car slides sideways across the intersection at high speed, losing control on icy/snowy road and colliding with another vehicle or barrier, producing a spray of snow/ice and visible deformation in f1–f2.\",\n      \"reason\": \"In f0, headlights approach; in f1, the yellow car is mid-skid with snow plume; in f2, it’s sideways and partially obscured by spray—consistent with loss-of-control crash, not explosion or other violence. The candidate’s t_start=24.0 is too late; the crash initiates earlier (f0–f2). Merged into one event covering full visible crash sequence.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"No blast wave, debris cloud, or sudden expansion indicative of explosion; the bright flash in f0 is consistent with headlights reflecting off snow/ice or a momentary glare, and the subsequent frames show a skidding car—not an explosion.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 22.0,
+              "f1": 22.5,
+              "f2": 23.0,
+              "f3": 23.5,
+              "f4": 24.0,
+              "f5": 24.5,
+              "f6": 25.0,
+              "f7": 25.5,
+              "f8": 26.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 24.0,
+                "t_end": 24.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 24.0,
+                "t_end": 24.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"CarAccident\",\n      \"t_start\": 22.0,\n      \"t_end\": 23.5,\n      \"confidence\": 0.9,\n      \"description\": \"A yellow car enters the intersection from the right at speed, loses traction on snow/ice, slides sideways across the road with visible spray and rotation between f0 and f2, consistent with a loss-of-control collision.\",\n      \"reason\": \"In f0 (22.0), headlights appear; in f1 (22.5), the yellow car is mid-skid with snow plume; in f2 (23.0), it is fully sideways and obscured by spray—indicating a crash sequence beginning before t=24.0. Candidate 1 claims t_start=24.0, which misses the onset; the visible crash occurs earlier and is fully captured in f0–f2. No evidence of explosion or other violence.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"No blast, shockwave, rapid expansion, or debris ejection characteristic of an explosion; the bright light in f0 is consistent with headlight glare on snow/ice, and subsequent frames show a skidding vehicle—not an explosive event.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 22.0,
+              "f1": 22.5,
+              "f2": 23.0,
+              "f3": 23.5,
+              "f4": 24.0,
+              "f5": 24.5,
+              "f6": 25.0,
+              "f7": 25.5,
+              "f8": 26.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 24.0,
+                "t_end": 24.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 24.0,
+                "t_end": 24.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Candidate claims CarAccident at [24.0, 24.5], but in f4 (24.0) and f5 (24.5), the yellow car is already past the intersection, moving away without visible collision damage or impact; the skid and spray occur earlier (f1–f2, ~22.5–23.0), outside the candidate’s claimed interval. Since the event does not overlap the candidate’s specified interval, it cannot be accepted as supporting that candidate.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    },\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"No explosion observed: no blast wave, rapid expansion, debris ejection, or structural disintegration; the bright light in f0 is consistent with headlight glare on snow/ice, and subsequent frames show a skidding car—not an explosive event. Candidate’s interval [24.0, 24.5] shows only normal post-skid motion, further contradicting explosion hypothesis.\",\n      \"evidence_frame_ids\": [\"f0\", \"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "Candidate claims CarAccident at [24.0, 24.5], but in f4 (24.0) and f5 (24.5), the yellow car is already past the intersection, moving away without visible collision damage or impact; the skid and spray occur earlier (f1–f2, ~22.5–23.0), outside the candidate’s claimed interval. Since the event does not overlap the candidate’s specified interval, it cannot be accepted as supporting that candidate.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            },
+            {
+              "candidate_id": 2,
+              "reason": "No explosion observed: no blast wave, rapid expansion, debris ejection, or structural disintegration; the bright light in f0 is consistent with headlight glare on snow/ice, and subsequent frames show a skidding car—not an explosive event. Candidate’s interval [24.0, 24.5] shows only normal post-skid motion, further contradicting explosion hypothesis.",
+              "evidence_frame_ids": [
+                "f0",
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          3,
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 26.0,
+              "f1": 26.5,
+              "f2": 27.0,
+              "f3": 27.5,
+              "f4": 28.0,
+              "f5": 28.5,
+              "f6": 29.0,
+              "f7": 29.5,
+              "f8": 30.0,
+              "f9": 30.5,
+              "f10": 31.0,
+              "f11": 31.5,
+              "f12": 32.0,
+              "f13": 32.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 28.0,
+                "t_end": 31.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 28.0,
+                "t_end": 28.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"CarAccident\",\n      \"t_start\": 28.0,\n      \"t_end\": 31.0,\n      \"confidence\": 0.9,\n      \"description\": \"A white sedan with yellow rear panel is stationary at an intersection with visible damage to its rear right side; other vehicles approach and stop, suggesting a recent collision.\",\n      \"reason\": \"In frames f4–f10, the vehicle remains in the same position with consistent deformation (e.g., misaligned rear bumper, possible wheel displacement) and no motion, while traffic reacts—consistent with post-collision immobilization. No explosion or fire origin is seen on the car itself; the distant fire (upper right) is unrelated and persistent across frames.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"No blast wave, rapid expansion, or structural disintegration occurs between f4 and f5; the bright light in upper right is a sustained fire (visible from f0 onward), not an explosion event.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                3
+              ],
+              "category": "CarAccident",
+              "t_start": 28.0,
+              "t_end": 31.0,
+              "confidence": 0.9,
+              "description": "A white sedan with yellow rear panel is stationary at an intersection with visible damage to its rear right side; other vehicles approach and stop, suggesting a recent collision.",
+              "reason": "In frames f4–f10, the vehicle remains in the same position with consistent deformation (e.g., misaligned rear bumper, possible wheel displacement) and no motion, while traffic reacts—consistent with post-collision immobilization. No explosion or fire origin is seen on the car itself; the distant fire (upper right) is unrelated and persistent across frames.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 4,
+              "reason": "No blast wave, rapid expansion, or structural disintegration occurs between f4 and f5; the bright light in upper right is a sustained fire (visible from f0 onward), not an explosion event.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 58.0,
+              "f1": 58.5,
+              "f2": 59.0,
+              "f3": 59.5,
+              "f4": 60.0,
+              "f5": 60.5,
+              "f6": 61.0,
+              "f7": 61.5,
+              "f8": 62.0,
+              "f9": 62.5,
+              "f10": 63.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 5,
+                "t_start": 60.0,
+                "t_end": 61.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [5],\n      \"category\": \"CarAccident\",\n      \"t_start\": 60.0,\n      \"t_end\": 61.5,\n      \"confidence\": 0.95,\n      \"description\": \"A dark SUV in front suddenly swerves left and collides with a vehicle approaching from the left (partially visible at f5–f6), causing visible lateral displacement and brake lights flaring; debris appears on road at f6.\",\n      \"reason\": \"At f4, the SUV is centered; at f5, it sharply veers left while another vehicle enters frame from left; at f6, the SUV is sideways with bright brake lights and a small object (likely debris) on road—consistent with impact. The motion and positional change exceed normal lane changes or braking.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                5
+              ],
+              "category": "CarAccident",
+              "t_start": 60.0,
+              "t_end": 61.5,
+              "confidence": 0.95,
+              "description": "A dark SUV in front suddenly swerves left and collides with a vehicle approaching from the left (partially visible at f5–f6), causing visible lateral displacement and brake lights flaring; debris appears on road at f6.",
+              "reason": "At f4, the SUV is centered; at f5, it sharply veers left while another vehicle enters frame from left; at f6, the SUV is sideways with bright brake lights and a small object (likely debris) on road—consistent with impact. The motion and positional change exceed normal lane changes or braking.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

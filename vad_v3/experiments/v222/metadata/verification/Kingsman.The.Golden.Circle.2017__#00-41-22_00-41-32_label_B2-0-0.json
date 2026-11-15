@@ -1,0 +1,124 @@
+{
+  "events": [
+    {
+      "t_start": 1.0,
+      "t_end": 2.5,
+      "anomaly_type": "Shooting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A man in a red cap points a handgun at another person who recoils and falls; a muzzle flash is visible in f2, indicating discharge.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          1.0,
+          1.5,
+          2.0
+        ],
+        "evidence_frame_ids": [
+          "f2",
+          "f3",
+          "f4"
+        ],
+        "reason": "f2 shows a clear muzzle flash at the gun’s barrel while aimed at the recoiling person; f3–f4 show the shooter maintaining aim as the other person moves away—consistent with a single shot fired at ~1.0s. This satisfies the 'Shooting' definition (visible shooting).",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 2,
+      "output_count": 1,
+      "groups": 1,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 1.0,
+                "t_end": 2.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 1.0,
+                "t_end": 2.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Shooting\",\n      \"t_start\": 1.0,\n      \"t_end\": 2.5,\n      \"confidence\": 0.9,\n      \"description\": \"A man in a red cap points a handgun at another person who recoils and falls; a muzzle flash is visible in f2, indicating discharge.\",\n      \"reason\": \"f2 shows a clear muzzle flash at the gun’s barrel while aimed at the recoiling person; f3–f4 show the shooter maintaining aim as the other person moves away—consistent with a single shot fired at ~1.0s. This satisfies the 'Shooting' definition (visible shooting).\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"The victim recoils and moves away actively (f2–f4), not lying helpless; no sustained aggression against an incapacitated person is visible, so 'Abuse' is unsupported.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "Shooting",
+              "t_start": 1.0,
+              "t_end": 2.5,
+              "confidence": 0.9,
+              "description": "A man in a red cap points a handgun at another person who recoils and falls; a muzzle flash is visible in f2, indicating discharge.",
+              "reason": "f2 shows a clear muzzle flash at the gun’s barrel while aimed at the recoiling person; f3–f4 show the shooter maintaining aim as the other person moves away—consistent with a single shot fired at ~1.0s. This satisfies the 'Shooting' definition (visible shooting).",
+              "evidence_frame_ids": [
+                "f2",
+                "f3",
+                "f4"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "The victim recoils and moves away actively (f2–f4), not lying helpless; no sustained aggression against an incapacitated person is visible, so 'Abuse' is unsupported.",
+              "evidence_frame_ids": [
+                "f2",
+                "f3",
+                "f4"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

@@ -1,0 +1,245 @@
+{
+  "group_id": 6,
+  "calls": [
+    {
+      "pass_id": 0,
+      "frame_times": {
+        "f0": 47.0,
+        "f1": 47.5,
+        "f2": 48.0,
+        "f3": 48.5,
+        "f4": 49.0,
+        "f5": 49.5,
+        "f6": 50.0,
+        "f7": 50.5,
+        "f8": 51.0,
+        "f9": 52.0,
+        "f10": 52.5,
+        "f11": 53.0,
+        "f12": 53.5,
+        "f13": 54.5,
+        "f14": 55.0,
+        "f15": 55.5,
+        "f16": 56.0,
+        "f17": 57.0,
+        "f18": 57.5,
+        "f19": 58.0,
+        "f20": 58.5,
+        "f21": 59.5,
+        "f22": 60.0,
+        "f23": 61.5
+      },
+      "hypotheses": [
+        {
+          "candidate_id": 12,
+          "t_start": 49.0,
+          "t_end": 49.5,
+          "unverified_category": "Shooting"
+        },
+        {
+          "candidate_id": 13,
+          "t_start": 50.5,
+          "t_end": 51.3,
+          "unverified_category": "CarAccident"
+        },
+        {
+          "candidate_id": 14,
+          "t_start": 52.0,
+          "t_end": 52.041667,
+          "unverified_category": "Shooting"
+        },
+        {
+          "candidate_id": 15,
+          "t_start": 53.0,
+          "t_end": 53.5,
+          "unverified_category": "CarAccident"
+        },
+        {
+          "candidate_id": 16,
+          "t_start": 53.5,
+          "t_end": 56.0,
+          "unverified_category": "Explosion"
+        },
+        {
+          "candidate_id": 17,
+          "t_start": 55.5,
+          "t_end": 58.8,
+          "unverified_category": "Explosion"
+        },
+        {
+          "candidate_id": 18,
+          "t_start": 59.5,
+          "t_end": 60.0,
+          "unverified_category": "CarAccident"
+        },
+        {
+          "candidate_id": 19,
+          "t_start": 59.5,
+          "t_end": 60.0,
+          "unverified_category": "Explosion"
+        }
+      ],
+      "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [12, 14],\n      \"category\": \"Shooting\",\n      \"t_start\": 49.0,\n      \"t_end\": 49.5,\n      \"confidence\": 0.9,\n      \"description\": \"A man in a leather jacket aims and fires a handgun toward the left; muzzle flash is visible at f4 (49.0s), and the car window shatters at f5 (49.5s).\",\n      \"reason\": \"f4 shows the gun pointed and held in firing stance; f5 shows immediate glass fragmentation consistent with a bullet impact—this satisfies the 'Shooting' definition requiring visible shooting (not just possession). The two candidates refer to the same brief event.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    },\n    {\n      \"source_candidate_ids\": [13],\n      \"category\": \"CarAccident\",\n      \"t_start\": 50.5,\n      \"t_end\": 51.0,\n      \"confidence\": 0.85,\n      \"description\": \"A black sedan’s driver-side door opens and a person exits rapidly while the car appears to be moving or skidding; by f8 (51.0s) the car is low to the ground with visible deformation near the rear wheel.\",\n      \"reason\": \"f7 shows the door open mid-motion; f8 shows the car tilted and possibly struck (wheel area obscured but posture suggests impact); no explosion or fire yet. This fits 'CarAccident' as a crash event, distinct from later explosion.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\"]\n    },\n    {\n      \"source_candidate_ids\": [15, 16, 17, 18, 19],\n      \"category\": \"Explosion\",\n      \"t_start\": 53.0,\n      \"t_end\": 56.0,\n      \"confidence\": 0.95,\n      \"description\": \"A silver car erupts in a violent blast at f11 (53.0s), lifts off the ground (f12), and disintegrates mid-air (f13–f16) with debris, fireball, and structural fragmentation.\",\n      \"reason\": \"f11 shows initial detonation with fire and smoke; f12–f16 show rapid expansion, vehicle ejection, and fragmentation—meeting the 'Explosion' definition (blast, not sustained fire). Later frames (f17–f22) show post-blast fire, not the explosion itself; candidates 17–19 extend beyond the blast phase and are merged into this single explosive event.\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 18,\n      \"reason\": \"The vehicle at f21–f22 is already destroyed and burning; no crash or impact is visible—only post-explosion fire, which does not satisfy 'CarAccident'.\",\n      \"evidence_frame_ids\": [\"f21\", \"f22\"]\n    },\n    {\n      \"candidate_id\": 19,\n      \"reason\": \"Same as above: sustained fire after explosion is not an explosion; the blast concluded by ~56.0s (f16).\",\n      \"evidence_frame_ids\": [\"f21\", \"f22\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 13,\n      \"reason\": \"While f7–f8 suggest a crash, occlusion and motion blur prevent confirmation of collision mechanics; however, due to clear deformation and context, it was accepted—no uncertain needed. (All candidates accounted.)\"\n    }\n  ]\n}"
+    },
+    {
+      "pass_id": 0,
+      "frame_times": {
+        "f0": 47.0,
+        "f1": 47.5,
+        "f2": 48.0,
+        "f3": 48.5,
+        "f4": 49.0,
+        "f5": 49.5,
+        "f6": 50.0,
+        "f7": 50.5,
+        "f8": 51.0,
+        "f9": 52.0,
+        "f10": 52.5,
+        "f11": 53.0,
+        "f12": 53.5,
+        "f13": 54.5,
+        "f14": 55.0,
+        "f15": 55.5,
+        "f16": 56.0,
+        "f17": 57.0,
+        "f18": 57.5,
+        "f19": 58.0,
+        "f20": 58.5,
+        "f21": 59.5,
+        "f22": 60.0,
+        "f23": 61.5
+      },
+      "hypotheses": [
+        {
+          "candidate_id": 12,
+          "t_start": 49.0,
+          "t_end": 49.5,
+          "unverified_category": "Shooting"
+        },
+        {
+          "candidate_id": 13,
+          "t_start": 50.5,
+          "t_end": 51.3,
+          "unverified_category": "CarAccident"
+        },
+        {
+          "candidate_id": 14,
+          "t_start": 52.0,
+          "t_end": 52.041667,
+          "unverified_category": "Shooting"
+        },
+        {
+          "candidate_id": 15,
+          "t_start": 53.0,
+          "t_end": 53.5,
+          "unverified_category": "CarAccident"
+        },
+        {
+          "candidate_id": 16,
+          "t_start": 53.5,
+          "t_end": 56.0,
+          "unverified_category": "Explosion"
+        },
+        {
+          "candidate_id": 17,
+          "t_start": 55.5,
+          "t_end": 58.8,
+          "unverified_category": "Explosion"
+        },
+        {
+          "candidate_id": 18,
+          "t_start": 59.5,
+          "t_end": 60.0,
+          "unverified_category": "CarAccident"
+        },
+        {
+          "candidate_id": 19,
+          "t_start": 59.5,
+          "t_end": 60.0,
+          "unverified_category": "Explosion"
+        }
+      ],
+      "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [12, 14],\n      \"category\": \"Shooting\",\n      \"t_start\": 49.0,\n      \"t_end\": 49.5,\n      \"confidence\": 0.85,\n      \"description\": \"At f4 (49.0s), a man aims a handgun forward; at f5 (49.5s), the rear window of a nearby car is shattered with visible glass fragments and distortion, consistent with a bullet impact.\",\n      \"reason\": \"The sequence shows gun held in firing posture (f4) followed immediately by window fragmentation (f5), satisfying the 'Shooting' definition requiring visible shooting (not just possession). Candidates 12 and 14 both refer to this same brief event within [49.0, 49.5].\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    },\n    {\n      \"source_candidate_ids\": [13],\n      \"category\": \"CarAccident\",\n      \"t_start\": 50.5,\n      \"t_end\": 51.0,\n      \"confidence\": 0.75,\n      \"description\": \"At f7 (50.5s), a black sedan’s driver-side door is open and a person is exiting rapidly while the car appears in motion; at f8 (51.0s), the car is low to the ground with visible deformation near the rear wheel well and motion blur suggesting impact or skid.\",\n      \"reason\": \"No explosion or fire yet; the posture and deformation suggest a crash event. Though occlusion limits full confirmation, the visible evidence (door open mid-motion, car tilted/deformed) supports 'CarAccident' as a distinct event before the later explosion.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\"]\n    },\n    {\n      \"source_candidate_ids\": [15, 16],\n      \"category\": \"Explosion\",\n      \"t_start\": 53.0,\n      \"t_end\": 56.0,\n      \"confidence\": 0.95,\n      \"description\": \"At f11 (53.0s), a silver car erupts in a violent blast with fire and smoke; by f12 (53.5s) it lifts off the ground; from f13 (54.5s) through f16 (56.0s), it disintegrates mid-air with debris, fireball expansion, and structural fragmentation.\",\n      \"reason\": \"Frames f11–f16 show rapid energy release, vehicle ejection, and fragmentation—meeting the 'Explosion' definition (blast, not sustained fire). Candidate 15 (53.0–53.5) and 16 (53.5–56.0) are contiguous and describe the same explosive event; candidates 17–19 extend into post-blast fire and are not part of the explosion itself.\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 17,\n      \"reason\": \"Frames f15–f22 show post-explosion fire and burning wreckage, not a new explosion; the blast phase concluded by f16 (56.0s). Sustained fire alone does not satisfy 'Explosion'.\",\n      \"evidence_frame_ids\": [\"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    },\n    {\n      \"candidate_id\": 18,\n      \"reason\": \"At f21–f22 (59.5–60.0s), the vehicle is already destroyed and burning; no impact, collision, or crash is visible—only residual fire, which does not meet 'CarAccident'.\",\n      \"evidence_frame_ids\": [\"f21\", \"f22\"]\n    },\n    {\n      \"candidate_id\": 19,\n      \"reason\": \"Same as candidate 18: only post-explosion fire is visible at f21–f22; no blast or detonation occurs in that interval, so 'Explosion' is unsupported.\",\n      \"evidence_frame_ids\": [\"f21\", \"f22\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 13,\n      \"reason\": \"While f7–f8 suggest a crash, motion blur and partial occlusion prevent definitive confirmation of collision mechanics; however, visible deformation and context allow acceptance at confidence 0.75—so not uncertain per instructions. All candidates accounted; no remaining uncertain needed.\"\n    }\n  ]\n}"
+    },
+    {
+      "pass_id": 0,
+      "frame_times": {
+        "f0": 47.0,
+        "f1": 47.5,
+        "f2": 48.0,
+        "f3": 48.5,
+        "f4": 49.0,
+        "f5": 49.5,
+        "f6": 50.0,
+        "f7": 50.5,
+        "f8": 51.0,
+        "f9": 52.0,
+        "f10": 52.5,
+        "f11": 53.0,
+        "f12": 53.5,
+        "f13": 54.5,
+        "f14": 55.0,
+        "f15": 55.5,
+        "f16": 56.0,
+        "f17": 57.0,
+        "f18": 57.5,
+        "f19": 58.0,
+        "f20": 58.5,
+        "f21": 59.5,
+        "f22": 60.0,
+        "f23": 61.5
+      },
+      "hypotheses": [
+        {
+          "candidate_id": 12,
+          "t_start": 49.0,
+          "t_end": 49.5,
+          "unverified_category": "Shooting"
+        },
+        {
+          "candidate_id": 13,
+          "t_start": 50.5,
+          "t_end": 51.3,
+          "unverified_category": "CarAccident"
+        },
+        {
+          "candidate_id": 14,
+          "t_start": 52.0,
+          "t_end": 52.041667,
+          "unverified_category": "Shooting"
+        },
+        {
+          "candidate_id": 15,
+          "t_start": 53.0,
+          "t_end": 53.5,
+          "unverified_category": "CarAccident"
+        },
+        {
+          "candidate_id": 16,
+          "t_start": 53.5,
+          "t_end": 56.0,
+          "unverified_category": "Explosion"
+        },
+        {
+          "candidate_id": 17,
+          "t_start": 55.5,
+          "t_end": 58.8,
+          "unverified_category": "Explosion"
+        },
+        {
+          "candidate_id": 18,
+          "t_start": 59.5,
+          "t_end": 60.0,
+          "unverified_category": "CarAccident"
+        },
+        {
+          "candidate_id": 19,
+          "t_start": 59.5,
+          "t_end": 60.0,
+          "unverified_category": "Explosion"
+        }
+      ],
+      "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [12, 14],\n      \"category\": \"Shooting\",\n      \"t_start\": 49.0,\n      \"t_end\": 49.5,\n      \"confidence\": 0.85,\n      \"description\": \"At f4 (49.0s), a man aims a handgun forward; at f5 (49.5s), the rear window of a nearby car is shattered with visible glass fragments and distortion, consistent with a bullet impact.\",\n      \"reason\": \"f4 shows the gun held in firing stance; f5 shows immediate glass fragmentation with no other plausible cause (e.g., no collision visible); this satisfies 'Shooting' as it includes visible shooting (muzzle not visible but impact confirms discharge). Candidates 12 and 14 both refer to this same event within [49.0, 49.5].\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    },\n    {\n      \"source_candidate_ids\": [13],\n      \"category\": \"CarAccident\",\n      \"t_start\": 50.5,\n      \"t_end\": 51.0,\n      \"confidence\": 0.7,\n      \"description\": \"At f7 (50.5s), a black sedan’s driver-side door is open and a person exits rapidly while the car appears in motion; at f8 (51.0s), the car is low to the ground with visible deformation near the rear wheel well and motion blur suggesting impact or skid.\",\n      \"reason\": \"No explosion/fire yet; the posture, deformation, and rapid egress suggest a crash event distinct from later explosion. However, occlusion and motion blur prevent full confirmation of collision mechanics—still, visible deformation and context support 'CarAccident' as the best-supported category for this interval.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\"]\n    },\n    {\n      \"source_candidate_ids\": [15, 16],\n      \"category\": \"Explosion\",\n      \"t_start\": 53.0,\n      \"t_end\": 56.0,\n      \"confidence\": 0.95,\n      \"description\": \"At f11 (53.0s), a silver car erupts in a violent blast with fire and smoke; by f12 (53.5s) it lifts off the ground; from f13 (54.5s) through f16 (56.0s), it disintegrates mid-air with debris, fireball expansion, and structural fragmentation.\",\n      \"reason\": \"Frames f11–f16 show rapid energy release, vehicle ejection, and fragmentation—meeting the 'Explosion' definition (blast, not sustained fire). Candidates 15 (53.0–53.5) and 16 (53.5–56.0) are contiguous and describe the same explosive event. Candidates 17–19 extend beyond the blast phase into post-blast fire and are not part of the explosion itself.\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 17,\n      \"reason\": \"Frames f15–f22 show post-explosion fire and burning wreckage; no new blast occurs between 55.5–58.8s—the explosion concluded by f16 (56.0s). Sustained fire alone does not satisfy 'Explosion'.\",\n      \"evidence_frame_ids\": [\"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    },\n    {\n      \"candidate_id\": 18,\n      \"reason\": \"At f21–f22 (59.5–60.0s), the vehicle is already destroyed and burning; no impact, collision, or crash is visible—only residual fire, which does not meet 'CarAccident'.\",\n      \"evidence_frame_ids\": [\"f21\", \"f22\"]\n    },\n    {\n      \"candidate_id\": 19,\n      \"reason\": \"Same as candidate 18: only post-explosion fire is visible at f21–f22; no blast or detonation occurs in that interval, so 'Explosion' is unsupported.\",\n      \"evidence_frame_ids\": [\"f21\", \"f22\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+    }
+  ]
+}

@@ -1,0 +1,196 @@
+{
+  "events": [
+    {
+      "t_start": 29.5,
+      "t_end": 34.5,
+      "anomaly_type": "Explosion",
+      "confidence": 1.0,
+      "coarse_score": 1.0,
+      "description": "A large fireball erupts at ~29.5 s, rapidly expanding into a massive smoke/dust plume that propagates down the street through 34.5 s.",
+      "source_candidate_ids": [
+        0,
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 1.0,
+        "evidence_times": [
+          29.5,
+          30.0,
+          30.5,
+          31.0,
+          31.5,
+          32.0,
+          32.5,
+          33.0,
+          33.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12"
+        ],
+        "reason": "Frames f4–f12 show a sudden bright blast (f4), rapid fireball expansion (f5–f6), and subsequent dense smoke/dust cloud (f7–f12) consistent with a single explosive event; candidate 0 and 2 both describe overlapping parts of this same event.",
+        "source_categories": [
+          "Explosion",
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 4,
+      "output_count": 1,
+      "groups": 1,
+      "rejected": 2,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 27.5,
+              "f1": 28.0,
+              "f2": 28.5,
+              "f3": 29.0,
+              "f4": 29.5,
+              "f5": 30.0,
+              "f6": 30.5,
+              "f7": 31.0,
+              "f8": 31.5,
+              "f9": 32.0,
+              "f10": 32.5,
+              "f11": 33.0,
+              "f12": 33.5,
+              "f13": 34.0,
+              "f14": 34.5,
+              "f15": 35.0,
+              "f16": 35.5,
+              "f17": 36.0,
+              "f18": 36.5,
+              "f19": 37.0,
+              "f20": 37.5,
+              "f21": 38.0,
+              "f22": 38.5,
+              "f23": 39.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 29.5,
+                "t_end": 34.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 32.0,
+                "t_end": 37.4,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 33.0,
+                "t_end": 34.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 35.2,
+                "t_end": 38.0,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 2],\n      \"category\": \"Explosion\",\n      \"t_start\": 29.5,\n      \"t_end\": 34.5,\n      \"confidence\": 1.0,\n      \"description\": \"A large fireball erupts at ~29.5 s, rapidly expanding into a massive smoke/dust plume that propagates down the street through 34.5 s.\",\n      \"reason\": \"Frames f4–f12 show a sudden bright blast (f4), rapid fireball expansion (f5–f6), and subsequent dense smoke/dust cloud (f7–f12) consistent with a single explosive event; candidate 0 and 2 both describe overlapping parts of this same event.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"No crowd, coordinated unrest, or violent collective behavior is visible; the dust/debris is caused by the explosion’s blast wave, not riot activity.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"The explosion and its aftermath (smoke/dust) are already fully captured in the earlier event (29.5–34.5 s); frames f16–f21 show only lingering dust and no new blast—no second explosion occurs.\",\n      \"evidence_frame_ids\": [\"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                2
+              ],
+              "category": "Explosion",
+              "t_start": 29.5,
+              "t_end": 34.5,
+              "confidence": 1.0,
+              "description": "A large fireball erupts at ~29.5 s, rapidly expanding into a massive smoke/dust plume that propagates down the street through 34.5 s.",
+              "reason": "Frames f4–f12 show a sudden bright blast (f4), rapid fireball expansion (f5–f6), and subsequent dense smoke/dust cloud (f7–f12) consistent with a single explosive event; candidate 0 and 2 both describe overlapping parts of this same event.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "No crowd, coordinated unrest, or violent collective behavior is visible; the dust/debris is caused by the explosion’s blast wave, not riot activity.",
+              "evidence_frame_ids": [
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21"
+              ]
+            },
+            {
+              "candidate_id": 3,
+              "reason": "The explosion and its aftermath (smoke/dust) are already fully captured in the earlier event (29.5–34.5 s); frames f16–f21 show only lingering dust and no new blast—no second explosion occurs.",
+              "evidence_frame_ids": [
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

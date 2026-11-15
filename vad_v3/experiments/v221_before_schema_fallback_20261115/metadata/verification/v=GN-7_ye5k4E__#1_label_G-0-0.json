@@ -1,0 +1,341 @@
+{
+  "events": [
+    {
+      "t_start": 24.5,
+      "t_end": 37.0,
+      "anomaly_type": "Explosion",
+      "confidence": 1.0,
+      "coarse_score": 1.0,
+      "description": "A large fireball erupts at ~24.5 s, rapidly expanding into a massive smoke plume that rises and billows through 37.0 s.",
+      "source_candidate_ids": [
+        0,
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 1.0,
+        "evidence_times": [
+          24.5,
+          25.0,
+          25.5,
+          26.5,
+          27.0,
+          27.5,
+          28.5,
+          29.0,
+          29.5,
+          30.0,
+          31.0,
+          31.5,
+          32.0,
+          33.0,
+          33.5,
+          34.0,
+          35.0,
+          35.5,
+          36.0,
+          37.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18",
+          "f19",
+          "f20",
+          "f21",
+          "f22",
+          "f23"
+        ],
+        "reason": "Frames f4–f23 show a sudden violent blast with fire, rapid expansion, and characteristic mushrooming smoke—definitive visual evidence of an explosion; the two candidate intervals overlap and describe the same continuous event, so they are merged.",
+        "source_categories": [
+          "Explosion",
+          "Explosion"
+        ]
+      }
+    },
+    {
+      "t_start": 48.5,
+      "t_end": 59.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A large, rapidly expanding white-to-gray plume rises from ground level, transitions to darker smoke, and spreads laterally while a tall thin structure remains visible nearby.",
+      "source_candidate_ids": [
+        2,
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          48.5,
+          49.0,
+          49.5,
+          50.5,
+          51.0,
+          51.5,
+          52.5,
+          53.0,
+          53.5,
+          54.0,
+          55.0,
+          55.5,
+          56.0,
+          57.0,
+          57.5,
+          58.0,
+          59.0,
+          59.5,
+          60.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18",
+          "f19",
+          "f20",
+          "f21",
+          "f22"
+        ],
+        "reason": "The sudden volumetric expansion of dense cloud (f4–f6), ground-level dust kick-up (f7–f16), and sustained rising column (f17–f22) are consistent with a single explosive event; candidate 2 and 3 describe overlapping phases of the same event, so merged.",
+        "source_categories": [
+          "Explosion",
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 4,
+      "output_count": 2,
+      "groups": 2,
+      "rejected": 0,
+      "uncertain": 0,
+      "merged_sources": 2,
+      "relabeled": 0,
+      "context_retries": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 22.0,
+              "f1": 22.5,
+              "f2": 23.0,
+              "f3": 23.5,
+              "f4": 24.5,
+              "f5": 25.0,
+              "f6": 25.5,
+              "f7": 26.5,
+              "f8": 27.0,
+              "f9": 27.5,
+              "f10": 28.5,
+              "f11": 29.0,
+              "f12": 29.5,
+              "f13": 30.0,
+              "f14": 31.0,
+              "f15": 31.5,
+              "f16": 32.0,
+              "f17": 33.0,
+              "f18": 33.5,
+              "f19": 34.0,
+              "f20": 35.0,
+              "f21": 35.5,
+              "f22": 36.0,
+              "f23": 37.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 24.0,
+                "t_end": 30.0,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 28.0,
+                "t_end": 35.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Explosion\",\n      \"t_start\": 24.5,\n      \"t_end\": 37.0,\n      \"confidence\": 1.0,\n      \"description\": \"A large fireball erupts at ~24.5 s, rapidly expanding into a massive smoke plume that rises and billows through 37.0 s.\",\n      \"reason\": \"Frames f4–f23 show a sudden violent blast with fire, rapid expansion, and characteristic mushrooming smoke—definitive visual evidence of an explosion; the two candidate intervals overlap and describe the same continuous event, so they are merged.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\", \"f23\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1
+              ],
+              "category": "Explosion",
+              "t_start": 24.5,
+              "t_end": 37.0,
+              "confidence": 1.0,
+              "description": "A large fireball erupts at ~24.5 s, rapidly expanding into a massive smoke plume that rises and billows through 37.0 s.",
+              "reason": "Frames f4–f23 show a sudden violent blast with fire, rapid expansion, and characteristic mushrooming smoke—definitive visual evidence of an explosion; the two candidate intervals overlap and describe the same continuous event, so they are merged.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22",
+                "f23"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          2,
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 46.0,
+              "f1": 46.5,
+              "f2": 47.0,
+              "f3": 47.5,
+              "f4": 48.5,
+              "f5": 49.0,
+              "f6": 49.5,
+              "f7": 50.5,
+              "f8": 51.0,
+              "f9": 51.5,
+              "f10": 52.5,
+              "f11": 53.0,
+              "f12": 53.5,
+              "f13": 54.0,
+              "f14": 55.0,
+              "f15": 55.5,
+              "f16": 56.0,
+              "f17": 57.0,
+              "f18": 57.5,
+              "f19": 58.0,
+              "f20": 59.0,
+              "f21": 59.5,
+              "f22": 60.0,
+              "f23": 61.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 48.0,
+                "t_end": 55.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 52.0,
+                "t_end": 59.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2, 3],\n      \"category\": \"Explosion\",\n      \"t_start\": 48.5,\n      \"t_end\": 59.5,\n      \"confidence\": 0.9,\n      \"description\": \"A large, rapidly expanding white-to-gray plume rises from ground level, transitions to darker smoke, and spreads laterally while a tall thin structure remains visible nearby.\",\n      \"reason\": \"The sudden volumetric expansion of dense cloud (f4–f6), ground-level dust kick-up (f7–f16), and sustained rising column (f17–f22) are consistent with a single explosive event; candidate 2 and 3 describe overlapping phases of the same event, so merged.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2,
+                3
+              ],
+              "category": "Explosion",
+              "t_start": 48.5,
+              "t_end": 59.5,
+              "confidence": 0.9,
+              "description": "A large, rapidly expanding white-to-gray plume rises from ground level, transitions to darker smoke, and spreads laterally while a tall thin structure remains visible nearby.",
+              "reason": "The sudden volumetric expansion of dense cloud (f4–f6), ground-level dust kick-up (f7–f16), and sustained rising column (f17–f22) are consistent with a single explosive event; candidate 2 and 3 describe overlapping phases of the same event, so merged.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "5a82d0dd6e711938ee6c8e0ecf1c6f7fdb68cac4e5e95683ad672320f7156da9"
+}

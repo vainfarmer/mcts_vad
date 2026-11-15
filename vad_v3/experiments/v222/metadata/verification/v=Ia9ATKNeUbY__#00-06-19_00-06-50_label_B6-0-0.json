@@ -1,0 +1,299 @@
+{
+  "events": [
+    {
+      "t_start": 10.5,
+      "t_end": 11.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "The camera vehicle collides with another car, causing the view to abruptly tilt upward and become obscured by snow/air, then stabilize at a low angle showing road and trees again.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          10.5,
+          11.0,
+          11.5,
+          12.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7"
+        ],
+        "reason": "f4 (10.5 s) shows sudden violent motion and loss of forward view; f5–f6 (11.0–11.5 s) show blank/obscured frame consistent with impact and airbag deployment or windshield obstruction; f7 (12.0 s) shows recovery with skewed perspective and snow-covered roadside—indicating a crash event, not just swerving or braking.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 18.0,
+      "t_end": 19.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A bus veers left across the lane and collides with a red car, causing the bus to spin and debris (including a detached part) to fly into the air; snow and dust obscure the scene afterward.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          18.0,
+          18.5,
+          19.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "Frames f4–f6 show the bus crossing into the oncoming lane, impact at f5 (visible collision, airborne object), and post-impact cloud of snow/dust in f6–f7; this satisfies the definition of a crash (CarAccident).",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 28.0,
+      "t_end": 31.0,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "The dashcam vehicle collides with a white Lada sedan ahead, which then veers left and impacts a blue truck; the windshield shatters at impact.",
+      "source_candidate_ids": [
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          28.0,
+          28.5,
+          29.0,
+          29.5,
+          30.0,
+          30.5,
+          31.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10"
+        ],
+        "reason": "f4–f5 show the white car directly ahead; f6 shows contact (visible deformation and dust); f7–f8 show rapid forward motion into the white car and adjacent truck; f9–f10 show severe windshield cracking from impact force—consistent with a multi-vehicle rear-end/collision event.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 3,
+      "output_count": 3,
+      "groups": 3,
+      "rejected": 0,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 8.5,
+              "f1": 9.0,
+              "f2": 9.5,
+              "f3": 10.0,
+              "f4": 10.5,
+              "f5": 11.0,
+              "f6": 11.5,
+              "f7": 12.0,
+              "f8": 12.5,
+              "f9": 13.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 10.5,
+                "t_end": 11.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"CarAccident\",\n      \"t_start\": 10.5,\n      \"t_end\": 11.5,\n      \"confidence\": 0.95,\n      \"description\": \"The camera vehicle collides with another car, causing the view to abruptly tilt upward and become obscured by snow/air, then stabilize at a low angle showing road and trees again.\",\n      \"reason\": \"f4 (10.5 s) shows sudden violent motion and loss of forward view; f5–f6 (11.0–11.5 s) show blank/obscured frame consistent with impact and airbag deployment or windshield obstruction; f7 (12.0 s) shows recovery with skewed perspective and snow-covered roadside—indicating a crash event, not just swerving or braking.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "CarAccident",
+              "t_start": 10.5,
+              "t_end": 11.5,
+              "confidence": 0.95,
+              "description": "The camera vehicle collides with another car, causing the view to abruptly tilt upward and become obscured by snow/air, then stabilize at a low angle showing road and trees again.",
+              "reason": "f4 (10.5 s) shows sudden violent motion and loss of forward view; f5–f6 (11.0–11.5 s) show blank/obscured frame consistent with impact and airbag deployment or windshield obstruction; f7 (12.0 s) shows recovery with skewed perspective and snow-covered roadside—indicating a crash event, not just swerving or braking.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 16.0,
+              "f1": 16.5,
+              "f2": 17.0,
+              "f3": 17.5,
+              "f4": 18.0,
+              "f5": 18.5,
+              "f6": 19.0,
+              "f7": 19.5,
+              "f8": 20.0,
+              "f9": 20.5,
+              "f10": 21.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 18.0,
+                "t_end": 19.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"CarAccident\",\n      \"t_start\": 18.0,\n      \"t_end\": 19.5,\n      \"confidence\": 0.95,\n      \"description\": \"A bus veers left across the lane and collides with a red car, causing the bus to spin and debris (including a detached part) to fly into the air; snow and dust obscure the scene afterward.\",\n      \"reason\": \"Frames f4–f6 show the bus crossing into the oncoming lane, impact at f5 (visible collision, airborne object), and post-impact cloud of snow/dust in f6–f7; this satisfies the definition of a crash (CarAccident).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "CarAccident",
+              "t_start": 18.0,
+              "t_end": 19.5,
+              "confidence": 0.95,
+              "description": "A bus veers left across the lane and collides with a red car, causing the bus to spin and debris (including a detached part) to fly into the air; snow and dust obscure the scene afterward.",
+              "reason": "Frames f4–f6 show the bus crossing into the oncoming lane, impact at f5 (visible collision, airborne object), and post-impact cloud of snow/dust in f6–f7; this satisfies the definition of a crash (CarAccident).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 26.0,
+              "f1": 26.5,
+              "f2": 27.0,
+              "f3": 27.5,
+              "f4": 28.0,
+              "f5": 28.5,
+              "f6": 29.0,
+              "f7": 29.5,
+              "f8": 30.0,
+              "f9": 30.5,
+              "f10": 31.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 28.0,
+                "t_end": 31.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"CarAccident\",\n      \"t_start\": 28.0,\n      \"t_end\": 31.0,\n      \"confidence\": 0.95,\n      \"description\": \"The dashcam vehicle collides with a white Lada sedan ahead, which then veers left and impacts a blue truck; the windshield shatters at impact.\",\n      \"reason\": \"f4–f5 show the white car directly ahead; f6 shows contact (visible deformation and dust); f7–f8 show rapid forward motion into the white car and adjacent truck; f9–f10 show severe windshield cracking from impact force—consistent with a multi-vehicle rear-end/collision event.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2
+              ],
+              "category": "CarAccident",
+              "t_start": 28.0,
+              "t_end": 31.0,
+              "confidence": 0.95,
+              "description": "The dashcam vehicle collides with a white Lada sedan ahead, which then veers left and impacts a blue truck; the windshield shatters at impact.",
+              "reason": "f4–f5 show the white car directly ahead; f6 shows contact (visible deformation and dust); f7–f8 show rapid forward motion into the white car and adjacent truck; f9–f10 show severe windshield cracking from impact force—consistent with a multi-vehicle rear-end/collision event.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

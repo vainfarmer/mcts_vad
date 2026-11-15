@@ -1,0 +1,387 @@
+{
+  "events": [
+    {
+      "t_start": 2.5,
+      "t_end": 3.0,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "The vehicle's windshield is severely cracked and spiderwebbed at f4 (2.5s), with motion blur indicating sudden deceleration or impact; by f5 (3.0s), the view is obscured by violent motion and shattered glass, consistent with a recent collision.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          2.5,
+          3.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "f4 shows a freshly shattered windshield with debris still in place and a car directly ahead, suggesting an imminent or just-occurred frontal impact; f5 shows extreme motion blur and loss of visual stability, typical of post-collision jolt. No other cause (e.g., projectile) is visible; the sequence fits a low-speed crash into the car ahead.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 7.0,
+      "t_end": 8.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A red truck collides with a white car, lifts it off the ground, and flips onto its side while debris sprays.",
+      "source_candidate_ids": [
+        1,
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          7.0,
+          7.5,
+          8.0,
+          8.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7"
+        ],
+        "reason": "f4 shows pre-impact positioning; f5 captures the moment of collision with visible deformation and spray; f6 shows the truck airborne and overturned; f7 is an under-vehicle view during/after impact—collectively confirming a single crash event spanning 7.0–8.5s.",
+        "source_categories": [
+          "CarAccident",
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 10.5,
+      "t_end": 12.0,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A grey Land Rover with shattered side windows and visible interior damage is shown driving away immediately after a chaotic, dusty impact (f1–f3) that appears to involve a collision or explosion near the vehicle.",
+      "source_candidate_ids": [
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          9.0,
+          9.5,
+          10.0,
+          10.5,
+          11.0,
+          11.5,
+          12.0
+        ],
+        "evidence_frame_ids": [
+          "f1",
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7"
+        ],
+        "reason": "Frames f1–f3 show violent debris and motion blur consistent with an impact; f4–f7 show the same vehicle with broken windows and structural damage while in motion, indicating a recent crash event without evidence of ongoing combat or fire. The sequence supports a single car accident occurring around t=9.0–10.5, with aftermath visible through f7.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 13.5,
+      "t_end": 15.0,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "The vehicle’s windshield is shattered in f4 and f5, and the driver appears distressed while gripping the wheel; the vehicle shows no motion blur or collision contact in these frames, but the damage is consistent with a recent impact.",
+      "source_candidate_ids": [
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 3,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          13.5,
+          14.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "Shattered windshield (f4, f5) and driver’s posture suggest a recent collision; no other vehicle is seen contacting it in the frames, but the damage is acute and localized, supporting CarAccident over normal driving. The event spans from first visible damage (f4 at 13.5s) through continued presence of damage (f5 at 14.0s) and subsequent reaction (f6–f7 show motorcyclist reacting, possibly to the incident).",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 5,
+      "output_count": 4,
+      "groups": 4,
+      "rejected": 0,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.5,
+              "f1": 1.0,
+              "f2": 1.5,
+              "f3": 2.0,
+              "f4": 2.5,
+              "f5": 3.0,
+              "f6": 3.5,
+              "f7": 4.0,
+              "f8": 4.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 2.5,
+                "t_end": 3.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"CarAccident\",\n      \"t_start\": 2.5,\n      \"t_end\": 3.0,\n      \"confidence\": 0.95,\n      \"description\": \"The vehicle's windshield is severely cracked and spiderwebbed at f4 (2.5s), with motion blur indicating sudden deceleration or impact; by f5 (3.0s), the view is obscured by violent motion and shattered glass, consistent with a recent collision.\",\n      \"reason\": \"f4 shows a freshly shattered windshield with debris still in place and a car directly ahead, suggesting an imminent or just-occurred frontal impact; f5 shows extreme motion blur and loss of visual stability, typical of post-collision jolt. No other cause (e.g., projectile) is visible; the sequence fits a low-speed crash into the car ahead.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "CarAccident",
+              "t_start": 2.5,
+              "t_end": 3.0,
+              "confidence": 0.95,
+              "description": "The vehicle's windshield is severely cracked and spiderwebbed at f4 (2.5s), with motion blur indicating sudden deceleration or impact; by f5 (3.0s), the view is obscured by violent motion and shattered glass, consistent with a recent collision.",
+              "reason": "f4 shows a freshly shattered windshield with debris still in place and a car directly ahead, suggesting an imminent or just-occurred frontal impact; f5 shows extreme motion blur and loss of visual stability, typical of post-collision jolt. No other cause (e.g., projectile) is visible; the sequence fits a low-speed crash into the car ahead.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 5.0,
+              "f1": 5.5,
+              "f2": 6.0,
+              "f3": 6.5,
+              "f4": 7.0,
+              "f5": 7.5,
+              "f6": 8.0,
+              "f7": 8.5,
+              "f8": 9.0,
+              "f9": 9.5,
+              "f10": 10.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 7.0,
+                "t_end": 7.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 7.0,
+                "t_end": 8.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1, 2],\n      \"category\": \"CarAccident\",\n      \"t_start\": 7.0,\n      \"t_end\": 8.5,\n      \"confidence\": 0.95,\n      \"description\": \"A red truck collides with a white car, lifts it off the ground, and flips onto its side while debris sprays.\",\n      \"reason\": \"f4 shows pre-impact positioning; f5 captures the moment of collision with visible deformation and spray; f6 shows the truck airborne and overturned; f7 is an under-vehicle view during/after impact—collectively confirming a single crash event spanning 7.0–8.5s.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1,
+                2
+              ],
+              "category": "CarAccident",
+              "t_start": 7.0,
+              "t_end": 8.5,
+              "confidence": 0.95,
+              "description": "A red truck collides with a white car, lifts it off the ground, and flips onto its side while debris sprays.",
+              "reason": "f4 shows pre-impact positioning; f5 captures the moment of collision with visible deformation and spray; f6 shows the truck airborne and overturned; f7 is an under-vehicle view during/after impact—collectively confirming a single crash event spanning 7.0–8.5s.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 8.5,
+              "f1": 9.0,
+              "f2": 9.5,
+              "f3": 10.0,
+              "f4": 10.5,
+              "f5": 11.0,
+              "f6": 11.5,
+              "f7": 12.0,
+              "f8": 12.5,
+              "f9": 13.0,
+              "f10": 13.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 10.5,
+                "t_end": 12.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"CarAccident\",\n      \"t_start\": 10.5,\n      \"t_end\": 12.0,\n      \"confidence\": 0.9,\n      \"description\": \"A grey Land Rover with shattered side windows and visible interior damage is shown driving away immediately after a chaotic, dusty impact (f1–f3) that appears to involve a collision or explosion near the vehicle.\",\n      \"reason\": \"Frames f1–f3 show violent debris and motion blur consistent with an impact; f4–f7 show the same vehicle with broken windows and structural damage while in motion, indicating a recent crash event without evidence of ongoing combat or fire. The sequence supports a single car accident occurring around t=9.0–10.5, with aftermath visible through f7.\",\n      \"evidence_frame_ids\": [\"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                3
+              ],
+              "category": "CarAccident",
+              "t_start": 10.5,
+              "t_end": 12.0,
+              "confidence": 0.9,
+              "description": "A grey Land Rover with shattered side windows and visible interior damage is shown driving away immediately after a chaotic, dusty impact (f1–f3) that appears to involve a collision or explosion near the vehicle.",
+              "reason": "Frames f1–f3 show violent debris and motion blur consistent with an impact; f4–f7 show the same vehicle with broken windows and structural damage while in motion, indicating a recent crash event without evidence of ongoing combat or fire. The sequence supports a single car accident occurring around t=9.0–10.5, with aftermath visible through f7.",
+              "evidence_frame_ids": [
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 11.5,
+              "f1": 12.0,
+              "f2": 12.5,
+              "f3": 13.0,
+              "f4": 13.5,
+              "f5": 14.0,
+              "f6": 14.5,
+              "f7": 15.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 13.5,
+                "t_end": 15.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"CarAccident\",\n      \"t_start\": 13.5,\n      \"t_end\": 15.0,\n      \"confidence\": 0.9,\n      \"description\": \"The vehicle’s windshield is shattered in f4 and f5, and the driver appears distressed while gripping the wheel; the vehicle shows no motion blur or collision contact in these frames, but the damage is consistent with a recent impact.\",\n      \"reason\": \"Shattered windshield (f4, f5) and driver’s posture suggest a recent collision; no other vehicle is seen contacting it in the frames, but the damage is acute and localized, supporting CarAccident over normal driving. The event spans from first visible damage (f4 at 13.5s) through continued presence of damage (f5 at 14.0s) and subsequent reaction (f6–f7 show motorcyclist reacting, possibly to the incident).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                4
+              ],
+              "category": "CarAccident",
+              "t_start": 13.5,
+              "t_end": 15.0,
+              "confidence": 0.9,
+              "description": "The vehicle’s windshield is shattered in f4 and f5, and the driver appears distressed while gripping the wheel; the vehicle shows no motion blur or collision contact in these frames, but the damage is consistent with a recent impact.",
+              "reason": "Shattered windshield (f4, f5) and driver’s posture suggest a recent collision; no other vehicle is seen contacting it in the frames, but the damage is acute and localized, supporting CarAccident over normal driving. The event spans from first visible damage (f4 at 13.5s) through continued presence of damage (f5 at 14.0s) and subsequent reaction (f6–f7 show motorcyclist reacting, possibly to the incident).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

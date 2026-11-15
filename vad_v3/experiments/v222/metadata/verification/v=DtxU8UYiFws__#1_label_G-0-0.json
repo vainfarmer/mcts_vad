@@ -1,0 +1,313 @@
+{
+  "events": [
+    {
+      "t_start": 12.0,
+      "t_end": 13.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A sudden large dust/cloud plume erupts from the road ahead at ~12.0 s, rapidly expanding and rising through f4–f6, consistent with a ground-level blast.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          11.5,
+          12.0,
+          12.5,
+          13.0
+        ],
+        "evidence_frame_ids": [
+          "f3",
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "The abrupt onset of a dense, upward-rising cloud without fire or vehicle impact indicates a blast event; the text overlay referencing 'suspected IED destroyed' supports this interpretation, and the visual evidence (sudden volumetric expansion, no preceding motion) matches explosion criteria.",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    },
+    {
+      "t_start": 14.0,
+      "t_end": 19.0,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A large plume of brownish smoke rises from the roadside embankment and drifts downwind, expanding and dissipating over time without visible fire or debris ejection in frames.",
+      "source_candidate_ids": [
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          14.0,
+          14.5,
+          15.0,
+          15.5,
+          16.0,
+          16.5,
+          17.0,
+          17.5,
+          18.0,
+          18.5,
+          19.0
+        ],
+        "evidence_frame_ids": [
+          "f0",
+          "f1",
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10"
+        ],
+        "reason": "The smoke plume appears suddenly at f0 (14.0 s) and persists through f10 (19.0 s), consistent with a single explosive event (e.g., landmine, IED, or controlled blast); no vehicle impact or collision is visible, ruling out CarAccident; the sustained, billowing nature and lack of ongoing fire or projectiles supports Explosion over Fire or Shooting.",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 5,
+      "output_count": 2,
+      "groups": 3,
+      "rejected": 3,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 10.0,
+              "f1": 10.5,
+              "f2": 11.0,
+              "f3": 11.5,
+              "f4": 12.0,
+              "f5": 12.5,
+              "f6": 13.0,
+              "f7": 13.5,
+              "f8": 14.0,
+              "f9": 14.5,
+              "f10": 15.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 12.0,
+                "t_end": 13.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Explosion\",\n      \"t_start\": 12.0,\n      \"t_end\": 13.5,\n      \"confidence\": 0.95,\n      \"description\": \"A sudden large dust/cloud plume erupts from the road ahead at ~12.0 s, rapidly expanding and rising through f4–f6, consistent with a ground-level blast.\",\n      \"reason\": \"The abrupt onset of a dense, upward-rising cloud without fire or vehicle impact indicates a blast event; the text overlay referencing 'suspected IED destroyed' supports this interpretation, and the visual evidence (sudden volumetric expansion, no preceding motion) matches explosion criteria.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Explosion",
+              "t_start": 12.0,
+              "t_end": 13.5,
+              "confidence": 0.95,
+              "description": "A sudden large dust/cloud plume erupts from the road ahead at ~12.0 s, rapidly expanding and rising through f4–f6, consistent with a ground-level blast.",
+              "reason": "The abrupt onset of a dense, upward-rising cloud without fire or vehicle impact indicates a blast event; the text overlay referencing 'suspected IED destroyed' supports this interpretation, and the visual evidence (sudden volumetric expansion, no preceding motion) matches explosion criteria.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 14.0,
+              "f1": 14.5,
+              "f2": 15.0,
+              "f3": 15.5,
+              "f4": 16.0,
+              "f5": 16.5,
+              "f6": 17.0,
+              "f7": 17.5,
+              "f8": 18.0,
+              "f9": 18.5,
+              "f10": 19.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 16.0,
+                "t_end": 16.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 16.0,
+                "t_end": 17.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"Explosion\",\n      \"t_start\": 14.0,\n      \"t_end\": 19.0,\n      \"confidence\": 0.95,\n      \"description\": \"A large plume of brownish smoke rises from the roadside embankment and drifts downwind, expanding and dissipating over time without visible fire or debris ejection in frames.\",\n      \"reason\": \"The smoke plume appears suddenly at f0 (14.0 s) and persists through f10 (19.0 s), consistent with a single explosive event (e.g., landmine, IED, or controlled blast); no vehicle impact or collision is visible, ruling out CarAccident; the sustained, billowing nature and lack of ongoing fire or projectiles supports Explosion over Fire or Shooting.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"No vehicle crash, deformation, skid marks, or sudden motion indicating collision is visible in any frame; the white SUV and motorcycle are stationary, and the smoke originates from the embankment, not a vehicle.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2
+              ],
+              "category": "Explosion",
+              "t_start": 14.0,
+              "t_end": 19.0,
+              "confidence": 0.95,
+              "description": "A large plume of brownish smoke rises from the roadside embankment and drifts downwind, expanding and dissipating over time without visible fire or debris ejection in frames.",
+              "reason": "The smoke plume appears suddenly at f0 (14.0 s) and persists through f10 (19.0 s), consistent with a single explosive event (e.g., landmine, IED, or controlled blast); no vehicle impact or collision is visible, ruling out CarAccident; the sustained, billowing nature and lack of ongoing fire or projectiles supports Explosion over Fire or Shooting.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "No vehicle crash, deformation, skid marks, or sudden motion indicating collision is visible in any frame; the white SUV and motorcycle are stationary, and the smoke originates from the embankment, not a vehicle.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          3,
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 24.0,
+              "f1": 24.5,
+              "f2": 25.0,
+              "f3": 25.5,
+              "f4": 26.0,
+              "f5": 26.5,
+              "f6": 27.0,
+              "f7": 27.5,
+              "f8": 28.0,
+              "f9": 28.5,
+              "f10": 29.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 26.0,
+                "t_end": 26.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 27.0,
+                "t_end": 27.5,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"No explosion visible: frames f4–f5 show a static roadside scene with no blast, smoke, debris motion, or shockwave; the text overlay appears later and does not depict an explosion in the imagery.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    },\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"No riot visible: frames f6–f7 show a crowd of people and vehicles on the roadside, but no violent unrest, destruction, or collective aggression—consistent with traffic restoration after an incident, as stated in the overlay.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 3,
+              "reason": "No explosion visible: frames f4–f5 show a static roadside scene with no blast, smoke, debris motion, or shockwave; the text overlay appears later and does not depict an explosion in the imagery.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            },
+            {
+              "candidate_id": 4,
+              "reason": "No riot visible: frames f6–f7 show a crowd of people and vehicles on the roadside, but no violent unrest, destruction, or collective aggression—consistent with traffic restoration after an incident, as stated in the overlay.",
+              "evidence_frame_ids": [
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

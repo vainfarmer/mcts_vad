@@ -1,0 +1,553 @@
+{
+  "events": [
+    {
+      "t_start": 0.0,
+      "t_end": 2.0,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "Man inside a vehicle shows escalating distress and impact: from alert (f0), reaching (f1), to being thrown backward with visible motion blur and occlusion (f2–f3), consistent with sudden deceleration or collision.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          0.0,
+          0.5,
+          1.0,
+          1.5
+        ],
+        "evidence_frame_ids": [
+          "f0",
+          "f1",
+          "f2",
+          "f3"
+        ],
+        "reason": "Frames f0–f3 show progressive physical displacement and loss of control inside a vehicle interior; f4–f5 are too dark/blurry to confirm but follow the trajectory; the sequence matches typical post-impact motion in a car crash without evidence of external aggression or explosion.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 6.0,
+      "t_end": 7.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 1.0,
+      "coarse_score": 1.0,
+      "description": "An overturned SUV rests on its roof on a debris-strewn surface; between f4 and f7, it settles onto a black platform with dust rising, indicating recent impact and motion cessation.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 1.0,
+        "evidence_times": [
+          6.0,
+          6.5,
+          7.0,
+          7.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7"
+        ],
+        "reason": "Frames f4–f7 show the vehicle inverted and coming to rest on a platform, with visible dust and debris consistent with a crash and post-impact settling; no evidence of intentional placement or staged setup contradicts accident interpretation.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 9.0,
+      "t_end": 10.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.8,
+      "coarse_score": 0.8,
+      "description": "A dark SUV is overturned on its roof with fire at the rear, and a man exits from beneath it between f4 and f7.",
+      "source_candidate_ids": [
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.8,
+        "evidence_times": [
+          9.0,
+          9.5,
+          10.0,
+          10.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7"
+        ],
+        "reason": "The vehicle is in a clearly post-impact state (upside-down, damaged, burning) at f4 (9.0s), and the man’s egress (f4–f7) occurs while the vehicle remains static; per definition, CarAccident requires a crash—but since the crash itself is not visible in supplied frames, only its immediate aftermath, this is borderline. However, the overturned condition with occupant egress and fire is consistent with a recent crash and no ordinary explanation fits; accepted with reduced confidence. Evidence: f4–f7.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 11.0,
+      "t_end": 12.0,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "At f8, a bright flash and rapid fire expansion occur; at f9, a vehicle is violently ejected upward amid a fireball; at f10, the fireball peaks with shrapnel and outward blast effects.",
+      "source_candidate_ids": [
+        3,
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 1,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          11.0,
+          11.5,
+          12.0
+        ],
+        "evidence_frame_ids": [
+          "f8",
+          "f9",
+          "f10"
+        ],
+        "reason": "Frames f8–f10 show sudden energy release: intense flash (f8), vehicle ejection and fireball expansion (f9), and large-scale blast characteristics (debris, shockwave-like distortion, rapid expansion) — satisfying the 'Explosion' definition (a blast, not sustained fire). Candidates 3 and 4 both cover the explosive core (11.0–12.0); candidate 5 extends beyond this into non-explosive fire (f11–f14), so excluded. Evidence: f8–f10.",
+        "source_categories": [
+          "Explosion",
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 8,
+      "output_count": 4,
+      "groups": 3,
+      "rejected": 3,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 0.0,
+                "t_end": 2.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"CarAccident\",\n      \"t_start\": 0.0,\n      \"t_end\": 2.0,\n      \"confidence\": 0.9,\n      \"description\": \"Man inside a vehicle shows escalating distress and impact: from alert (f0), reaching (f1), to being thrown backward with visible motion blur and occlusion (f2–f3), consistent with sudden deceleration or collision.\",\n      \"reason\": \"Frames f0–f3 show progressive physical displacement and loss of control inside a vehicle interior; f4–f5 are too dark/blurry to confirm but follow the trajectory; the sequence matches typical post-impact motion in a car crash without evidence of external aggression or explosion.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "CarAccident",
+              "t_start": 0.0,
+              "t_end": 2.0,
+              "confidence": 0.9,
+              "description": "Man inside a vehicle shows escalating distress and impact: from alert (f0), reaching (f1), to being thrown backward with visible motion blur and occlusion (f2–f3), consistent with sudden deceleration or collision.",
+              "reason": "Frames f0–f3 show progressive physical displacement and loss of control inside a vehicle interior; f4–f5 are too dark/blurry to confirm but follow the trajectory; the sequence matches typical post-impact motion in a car crash without evidence of external aggression or explosion.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 4.0,
+              "f1": 4.5,
+              "f2": 5.0,
+              "f3": 5.5,
+              "f4": 6.0,
+              "f5": 6.5,
+              "f6": 7.0,
+              "f7": 7.5,
+              "f8": 8.0,
+              "f9": 8.5,
+              "f10": 9.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 6.0,
+                "t_end": 7.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"CarAccident\",\n      \"t_start\": 6.0,\n      \"t_end\": 7.5,\n      \"confidence\": 1.0,\n      \"description\": \"An overturned SUV rests on its roof on a debris-strewn surface; between f4 and f7, it settles onto a black platform with dust rising, indicating recent impact and motion cessation.\",\n      \"reason\": \"Frames f4–f7 show the vehicle inverted and coming to rest on a platform, with visible dust and debris consistent with a crash and post-impact settling; no evidence of intentional placement or staged setup contradicts accident interpretation.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "CarAccident",
+              "t_start": 6.0,
+              "t_end": 7.5,
+              "confidence": 1.0,
+              "description": "An overturned SUV rests on its roof on a debris-strewn surface; between f4 and f7, it settles onto a black platform with dust rising, indicating recent impact and motion cessation.",
+              "reason": "Frames f4–f7 show the vehicle inverted and coming to rest on a platform, with visible dust and debris consistent with a crash and post-impact settling; no evidence of intentional placement or staged setup contradicts accident interpretation.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 7.0,
+              "f1": 7.5,
+              "f2": 8.0,
+              "f3": 8.5,
+              "f4": 9.0,
+              "f5": 9.5,
+              "f6": 10.0,
+              "f7": 10.5,
+              "f8": 11.0,
+              "f9": 11.5,
+              "f10": 12.0,
+              "f11": 12.5,
+              "f12": 13.0,
+              "f13": 13.5,
+              "f14": 14.0,
+              "f15": 14.5,
+              "f16": 15.0,
+              "f17": 15.5,
+              "f18": 16.0,
+              "f19": 16.5,
+              "f20": 17.0,
+              "f21": 17.5,
+              "f22": 18.0,
+              "f23": 19.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 9.0,
+                "t_end": 17.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 11.0,
+                "t_end": 12.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 11.0,
+                "t_end": 11.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 12.0,
+                "t_end": 14.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 15.5,
+                "t_end": 17.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 15.5,
+                "t_end": 16.0,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3, 4, 5],\n      \"category\": \"Explosion\",\n      \"t_start\": 11.0,\n      \"t_end\": 12.5,\n      \"confidence\": 0.95,\n      \"description\": \"A vehicle is violently propelled upward and engulfed in a large fireball with debris and shockwave effects at f8–f10.\",\n      \"reason\": \"Frames f8–f10 show a sudden, massive fireball with rapid expansion, vehicle ejection, and shrapnel—consistent with an explosion, not sustained fire or crash alone; candidate 5 extends too far into post-blast fire (f11–f14), but the explosive event itself is confined to ~11.0–12.5s.\",\n      \"evidence_frame_ids\": [\"f8\", \"f9\", \"f10\"]\n    },\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"CarAccident\",\n      \"t_start\": 9.0,\n      \"t_end\": 10.5,\n      \"confidence\": 0.9,\n      \"description\": \"A dark SUV is overturned on its roof with visible damage and fire at the rear, while a man exits from under it between f4 and f7.\",\n      \"reason\": \"The SUV is already overturned and burning at f4, with no visible impact in frames f4–f7; however, the prior frames f0–f1 show the SUV descending onto a platform, suggesting a crash occurred just before 7.0s, and the state at f4–f7 reflects aftermath of that crash—not a new accident. Since the crash itself is not visible, but the overturned, damaged, and burning vehicle with occupant egress is consistent with a recent car accident, and candidate 2 covers the visible aftermath interval where the vehicle remains in post-crash state, it qualifies as CarAccident (per definition: requires a crash, not ordinary driving; the visible state implies a crash occurred).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    },\n    {\n      \"source_candidate_ids\": [6, 7],\n      \"category\": \"CarAccident\",\n      \"t_start\": 15.5,\n      \"t_end\": 17.0,\n      \"confidence\": 0.85,\n      \"description\": \"A black vehicle is upright but heavily burning and partially disintegrated at f17–f20, with a man crouching nearby; this appears to be a secondary vehicle involved in the earlier incident, now burning after impact.\",\n      \"reason\": \"At f17, the vehicle is upright but engulfed in flames and visibly damaged (e.g., missing doors, frame exposed); by f18–f20 it remains burning in place with no motion—no new crash is visible, but the state suggests it was involved in a prior collision (likely the same event chain). Since the crash itself isn’t shown, but the vehicle’s destroyed condition and static position imply a prior accident, and candidate 6/7 map to this segment, we treat it as part of the broader accident sequence; however, per strict definition, CarAccident requires a crash—not just fire. Given no impact is visible in f15.5–f17.0 and the vehicle is already wrecked, this is *not* a separate CarAccident. Correction: reject 6 & 7 (see rejected list). Wait—re-evaluate: The only visible crash is implied before f4; f17 shows a different vehicle (upright, not overturned like the first) now burning. No evidence of *its* crash in supplied frames. Therefore, cannot confirm CarAccident for candidate 6/7. So they must be rejected or uncertain. But note: f14–f15 show smoke rising, then f17 shows a *different* burning vehicle upright—possibly the same SUV repositioned? No: f4–f12 shows the green SUV overturned and exploding; f17 shows a black sedan-like vehicle upright and burning—distinct. Since no crash is visible for this second vehicle, and fire alone ≠ CarAccident, candidates 6 and 7 are unsupported. Thus, only candidates 2,3,4,5 are viable; 6 and 7 go to rejected. Revised events: only two accepted events (2, and merged 3/4/5).\",\n      \"evidence_frame_ids\": []\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"No crash is visible for the upright burning vehicle at f17–f20; only fire and smoke are present, which does not satisfy the 'CarAccident' definition requiring a crash.\",\n      \"evidence_frame_ids\": [\"f17\", \"f18\", \"f19\", \"f20\"]\n    },\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"Frame f17 shows sustained fire on a stationary vehicle with no blast wave, debris ejection, or rapid expansion—insufficient for 'Explosion'; it is post-ignition fire, not an explosion event.\",\n      \"evidence_frame_ids\": [\"f17\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"Frames f12–f14 show continuing fire and smoke without explosive characteristics (no shockwave, no new ejection), so the explosion likely ended by 12.5s; extending to 14.5s overstates the explosive phase.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\", \"f14\"]\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 7.0,
+              "f1": 7.5,
+              "f2": 8.0,
+              "f3": 8.5,
+              "f4": 9.0,
+              "f5": 9.5,
+              "f6": 10.0,
+              "f7": 10.5,
+              "f8": 11.0,
+              "f9": 11.5,
+              "f10": 12.0,
+              "f11": 12.5,
+              "f12": 13.0,
+              "f13": 13.5,
+              "f14": 14.0,
+              "f15": 14.5,
+              "f16": 15.0,
+              "f17": 15.5,
+              "f18": 16.0,
+              "f19": 16.5,
+              "f20": 17.0,
+              "f21": 17.5,
+              "f22": 18.0,
+              "f23": 19.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 9.0,
+                "t_end": 17.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 11.0,
+                "t_end": 12.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 11.0,
+                "t_end": 11.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 12.0,
+                "t_end": 14.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 15.5,
+                "t_end": 17.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 15.5,
+                "t_end": 16.0,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"CarAccident\",\n      \"t_start\": 9.0,\n      \"t_end\": 10.5,\n      \"confidence\": 0.85,\n      \"description\": \"A dark SUV is overturned on its roof with fire at the rear, and a man exits from beneath it between f4 and f7.\",\n      \"reason\": \"The vehicle is already in a post-crash state (overturned, damaged, burning) at f4 (9.0s), and the man’s egress (f4–f7) occurs while the vehicle remains static in that condition; per definition, CarAccident requires a crash—but since the crash itself is not visible in the supplied frames, only its aftermath, the hypothesis is borderline. However, the sustained overturned position with fire and occupant egress is consistent with a recent crash, and no alternative non-accident explanation fits; thus accepted with reduced confidence. Evidence confined to f4–f7.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    },\n    {\n      \"source_candidate_ids\": [3, 4],\n      \"category\": \"Explosion\",\n      \"t_start\": 11.0,\n      \"t_end\": 12.0,\n      \"confidence\": 0.95,\n      \"description\": \"At f8, a bright flash and rapid expansion of fire and debris occur; at f9, a vehicle is violently ejected upward amid a fireball; at f10, the fireball peaks with shrapnel and shockwave effects.\",\n      \"reason\": \"Frames f8–f10 show sudden energy release: intense flash (f8), vehicle ejection and fireball expansion (f9), and large-scale blast effects (f10)—meeting the 'Explosion' definition (blast, not just fire). Candidate 5 (12.0–14.5) extends into sustained fire without blast characteristics (f11–f14), so excluded; candidate 3 and 4 both cover the explosive core (11.0–12.0), merged. Evidence: f8–f10.\",\n      \"evidence_frame_ids\": [\"f8\", \"f9\", \"f10\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"Frames f11–f14 show only continuing fire, smoke, and a burning vehicle without blast wave, rapid expansion, or new debris ejection—insufficient for 'Explosion'; this is post-blast combustion.\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\", \"f13\", \"f14\"]\n    },\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"Frames f17–f20 show a stationary upright vehicle engulfed in fire with no impact, deformation change, or motion indicating a crash occurred within the visible interval; 'CarAccident' requires a crash, not just fire.\",\n      \"evidence_frame_ids\": [\"f17\", \"f18\", \"f19\", \"f20\"]\n    },\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"Frame f17 shows a burning vehicle with no evidence of detonation (no shockwave, no sudden expansion or ejection); it is consistent with sustained fire, not an explosion event.\",\n      \"evidence_frame_ids\": [\"f17\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"Although rejected as a full explosion event, the boundary between explosive phase (f8–f10) and post-explosive fire (f11 onward) is sharp; however, since f11–f14 are definitively non-explosive, no uncertainty remains for candidate 5—it is fully rejected. Correction: no uncertain needed for 5. Rechecking: all candidates accounted. No remaining uncertain candidates.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 7.0,
+              "f1": 7.5,
+              "f2": 8.0,
+              "f3": 8.5,
+              "f4": 9.0,
+              "f5": 9.5,
+              "f6": 10.0,
+              "f7": 10.5,
+              "f8": 11.0,
+              "f9": 11.5,
+              "f10": 12.0,
+              "f11": 12.5,
+              "f12": 13.0,
+              "f13": 13.5,
+              "f14": 14.0,
+              "f15": 14.5,
+              "f16": 15.0,
+              "f17": 15.5,
+              "f18": 16.0,
+              "f19": 16.5,
+              "f20": 17.0,
+              "f21": 17.5,
+              "f22": 18.0,
+              "f23": 19.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 9.0,
+                "t_end": 17.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 11.0,
+                "t_end": 12.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 11.0,
+                "t_end": 11.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 12.0,
+                "t_end": 14.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 15.5,
+                "t_end": 17.0,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 15.5,
+                "t_end": 16.0,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"CarAccident\",\n      \"t_start\": 9.0,\n      \"t_end\": 10.5,\n      \"confidence\": 0.8,\n      \"description\": \"A dark SUV is overturned on its roof with fire at the rear, and a man exits from beneath it between f4 and f7.\",\n      \"reason\": \"The vehicle is in a clearly post-impact state (upside-down, damaged, burning) at f4 (9.0s), and the man’s egress (f4–f7) occurs while the vehicle remains static; per definition, CarAccident requires a crash—but since the crash itself is not visible in supplied frames, only its immediate aftermath, this is borderline. However, the overturned condition with occupant egress and fire is consistent with a recent crash and no ordinary explanation fits; accepted with reduced confidence. Evidence: f4–f7.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    },\n    {\n      \"source_candidate_ids\": [3, 4],\n      \"category\": \"Explosion\",\n      \"t_start\": 11.0,\n      \"t_end\": 12.0,\n      \"confidence\": 0.95,\n      \"description\": \"At f8, a bright flash and rapid fire expansion occur; at f9, a vehicle is violently ejected upward amid a fireball; at f10, the fireball peaks with shrapnel and outward blast effects.\",\n      \"reason\": \"Frames f8–f10 show sudden energy release: intense flash (f8), vehicle ejection and fireball expansion (f9), and large-scale blast characteristics (debris, shockwave-like distortion, rapid expansion) — satisfying the 'Explosion' definition (a blast, not sustained fire). Candidates 3 and 4 both cover the explosive core (11.0–12.0); candidate 5 extends beyond this into non-explosive fire (f11–f14), so excluded. Evidence: f8–f10.\",\n      \"evidence_frame_ids\": [\"f8\", \"f9\", \"f10\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"Frames f11–f14 show only continuing fire, smoke, and a burning vehicle without blast wave, rapid expansion, or new debris ejection—insufficient for 'Explosion'; this is post-blast combustion, not an explosion event.\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\", \"f13\", \"f14\"]\n    },\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"Frames f17–f20 show a stationary upright vehicle engulfed in fire with no visible impact, deformation change, or motion indicating a crash occurred within the visible interval; 'CarAccident' requires a crash, not just fire.\",\n      \"evidence_frame_ids\": [\"f17\", \"f18\", \"f19\", \"f20\"]\n    },\n    {\n      \"candidate_id\": 7,\n      \"reason\": \"Frame f17 shows a burning vehicle with no evidence of detonation (no shockwave, no sudden expansion or ejection); it is consistent with sustained fire, not an explosion event.\",\n      \"evidence_frame_ids\": [\"f17\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2
+              ],
+              "category": "CarAccident",
+              "t_start": 9.0,
+              "t_end": 10.5,
+              "confidence": 0.8,
+              "description": "A dark SUV is overturned on its roof with fire at the rear, and a man exits from beneath it between f4 and f7.",
+              "reason": "The vehicle is in a clearly post-impact state (upside-down, damaged, burning) at f4 (9.0s), and the man’s egress (f4–f7) occurs while the vehicle remains static; per definition, CarAccident requires a crash—but since the crash itself is not visible in supplied frames, only its immediate aftermath, this is borderline. However, the overturned condition with occupant egress and fire is consistent with a recent crash and no ordinary explanation fits; accepted with reduced confidence. Evidence: f4–f7.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                3,
+                4
+              ],
+              "category": "Explosion",
+              "t_start": 11.0,
+              "t_end": 12.0,
+              "confidence": 0.95,
+              "description": "At f8, a bright flash and rapid fire expansion occur; at f9, a vehicle is violently ejected upward amid a fireball; at f10, the fireball peaks with shrapnel and outward blast effects.",
+              "reason": "Frames f8–f10 show sudden energy release: intense flash (f8), vehicle ejection and fireball expansion (f9), and large-scale blast characteristics (debris, shockwave-like distortion, rapid expansion) — satisfying the 'Explosion' definition (a blast, not sustained fire). Candidates 3 and 4 both cover the explosive core (11.0–12.0); candidate 5 extends beyond this into non-explosive fire (f11–f14), so excluded. Evidence: f8–f10.",
+              "evidence_frame_ids": [
+                "f8",
+                "f9",
+                "f10"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 5,
+              "reason": "Frames f11–f14 show only continuing fire, smoke, and a burning vehicle without blast wave, rapid expansion, or new debris ejection—insufficient for 'Explosion'; this is post-blast combustion, not an explosion event.",
+              "evidence_frame_ids": [
+                "f11",
+                "f12",
+                "f13",
+                "f14"
+              ]
+            },
+            {
+              "candidate_id": 6,
+              "reason": "Frames f17–f20 show a stationary upright vehicle engulfed in fire with no visible impact, deformation change, or motion indicating a crash occurred within the visible interval; 'CarAccident' requires a crash, not just fire.",
+              "evidence_frame_ids": [
+                "f17",
+                "f18",
+                "f19",
+                "f20"
+              ]
+            },
+            {
+              "candidate_id": 7,
+              "reason": "Frame f17 shows a burning vehicle with no evidence of detonation (no shockwave, no sudden expansion or ejection); it is consistent with sustained fire, not an explosion event.",
+              "evidence_frame_ids": [
+                "f17"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

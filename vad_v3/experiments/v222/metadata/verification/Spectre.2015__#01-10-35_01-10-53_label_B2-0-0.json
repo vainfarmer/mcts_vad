@@ -1,0 +1,249 @@
+{
+  "events": [
+    {
+      "t_start": 8.5,
+      "t_end": 9.5,
+      "anomaly_type": "Shooting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A man inside a vehicle aims a handgun through a window, with visible muzzle flash and recoil in f4–f5, consistent with firing.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          8.5,
+          9.0,
+          9.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "Frames f4 (8.5s) and f5 (9.0s) show the man holding a pistol extended forward; f5 shows a bright flash at the muzzle and slight head recoil, indicating discharge. f6 (9.5s) shows the arm still extended but no flash—consistent with post-firing follow-through. This satisfies the definition of 'Shooting' (visible shooting).",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 4,
+      "output_count": 1,
+      "groups": 4,
+      "rejected": 3,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 6.5,
+              "f1": 7.0,
+              "f2": 7.5,
+              "f3": 8.0,
+              "f4": 8.5,
+              "f5": 9.0,
+              "f6": 9.5,
+              "f7": 10.0,
+              "f8": 10.5,
+              "f9": 11.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 8.5,
+                "t_end": 9.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Shooting\",\n      \"t_start\": 8.5,\n      \"t_end\": 9.5,\n      \"confidence\": 0.9,\n      \"description\": \"A man inside a vehicle aims a handgun through a window, with visible muzzle flash and recoil in f4–f5, consistent with firing.\",\n      \"reason\": \"Frames f4 (8.5s) and f5 (9.0s) show the man holding a pistol extended forward; f5 shows a bright flash at the muzzle and slight head recoil, indicating discharge. f6 (9.5s) shows the arm still extended but no flash—consistent with post-firing follow-through. This satisfies the definition of 'Shooting' (visible shooting).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Shooting",
+              "t_start": 8.5,
+              "t_end": 9.5,
+              "confidence": 0.9,
+              "description": "A man inside a vehicle aims a handgun through a window, with visible muzzle flash and recoil in f4–f5, consistent with firing.",
+              "reason": "Frames f4 (8.5s) and f5 (9.0s) show the man holding a pistol extended forward; f5 shows a bright flash at the muzzle and slight head recoil, indicating discharge. f6 (9.5s) shows the arm still extended but no flash—consistent with post-firing follow-through. This satisfies the definition of 'Shooting' (visible shooting).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 9.0,
+              "f1": 9.5,
+              "f2": 10.0,
+              "f3": 10.5,
+              "f4": 11.0,
+              "f5": 11.5,
+              "f6": 12.0,
+              "f7": 12.5,
+              "f8": 13.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 11.0,
+                "t_end": 11.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"No visible muzzle flash, bullet impact, or recoil; the gun is held but not discharged in f4–f5.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "No visible muzzle flash, bullet impact, or recoil; the gun is held but not discharged in f4–f5.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 11.0,
+              "f1": 11.5,
+              "f2": 12.0,
+              "f3": 12.5,
+              "f4": 13.0,
+              "f5": 13.5,
+              "f6": 14.0,
+              "f7": 14.5,
+              "f8": 15.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 13.0,
+                "t_end": 13.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Images f4 and f5 show the interior of a vehicle with light entering through bullet holes in the side, but no crash or collision is visible; the vehicle appears intact and moving, inconsistent with CarAccident.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "Images f4 and f5 show the interior of a vehicle with light entering through bullet holes in the side, but no crash or collision is visible; the vehicle appears intact and moving, inconsistent with CarAccident.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 15.0,
+              "f1": 15.5,
+              "f2": 16.0,
+              "f3": 16.5,
+              "f4": 17.0,
+              "f5": 17.5,
+              "f6": 18.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 16.7,
+                "t_end": 17.7,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"The bright glow near the tail (f3–f6) is consistent with sunlight glint/reflection off metal or ice, not a blast wave, debris, or rapid expansion characteristic of an explosion; no structural disintegration, smoke plume, or shockwave is visible.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 3,
+              "reason": "The bright glow near the tail (f3–f6) is consistent with sunlight glint/reflection off metal or ice, not a blast wave, debris, or rapid expansion characteristic of an explosion; no structural disintegration, smoke plume, or shockwave is visible.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

@@ -1,0 +1,318 @@
+{
+  "events": [
+    {
+      "t_start": 9.0,
+      "t_end": 19.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "Players from both teams (Wizards in red, Warriors in white) engage in a physical altercation near the basket and sideline, with pushing, grabbing, and multiple individuals converging; referees and staff intervene to separate them.",
+      "source_candidate_ids": [
+        0,
+        2,
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          9.0,
+          10.0,
+          11.5,
+          12.5,
+          13.5,
+          14.5,
+          15.5,
+          17.0,
+          18.0
+        ],
+        "evidence_frame_ids": [
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10"
+        ],
+        "reason": "Frames f2–f10 show mutual physical contact among players (e.g., Wall #2, Gortat #13, Durant #35, Iguodala #9), consistent with fighting—not one-sided abuse or riot. The event is continuous across frames and involves reciprocal aggression.",
+        "source_categories": [
+          "Fighting",
+          "Fighting",
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 96.0,
+      "t_end": 98.0,
+      "anomaly_type": "Fighting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "Players in white and red jerseys engage in mutual physical contact near the basket, with multiple individuals grabbing, pushing, and restraining each other while officials and staff intervene.",
+      "source_candidate_ids": [
+        6,
+        7
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          96.0,
+          96.5,
+          97.0,
+          97.5,
+          98.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8"
+        ],
+        "reason": "Frames f4–f8 show reciprocal physical engagement: e.g., f6 shows a white-jersey player (11) and red-jersey player grappling, surrounded by others actively pulling them apart; no one is clearly helpless or passive, ruling out Abuse; the event is localized to a few individuals, not collective unrest, ruling out Riot; no weapons, fire, explosion, or vehicle involved.",
+        "source_categories": [
+          "Fighting",
+          "Abuse"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 8,
+      "output_count": 2,
+      "groups": 2,
+      "rejected": 3,
+      "uncertain": 0,
+      "merged_sources": 3,
+      "relabeled": 1,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 7.0,
+              "f1": 8.0,
+              "f2": 9.0,
+              "f3": 10.0,
+              "f4": 11.5,
+              "f5": 12.5,
+              "f6": 13.5,
+              "f7": 14.5,
+              "f8": 15.5,
+              "f9": 17.0,
+              "f10": 18.0,
+              "f11": 19.0,
+              "f12": 20.5,
+              "f13": 21.0,
+              "f14": 21.5,
+              "f15": 22.5,
+              "f16": 23.5,
+              "f17": 26.0,
+              "f18": 27.0,
+              "f19": 27.5,
+              "f20": 28.0,
+              "f21": 29.5,
+              "f22": 30.5,
+              "f23": 33.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 9.0,
+                "t_end": 14.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 12.0,
+                "t_end": 13.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 12.0,
+                "t_end": 19.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 16.0,
+                "t_end": 18.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 18.5,
+                "t_end": 23.5,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 24.0,
+                "t_end": 31.5,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 2, 3],\n      \"category\": \"Fighting\",\n      \"t_start\": 9.0,\n      \"t_end\": 19.5,\n      \"confidence\": 0.95,\n      \"description\": \"Players from both teams (Wizards in red, Warriors in white) engage in a physical altercation near the basket and sideline, with pushing, grabbing, and multiple individuals converging; referees and staff intervene to separate them.\",\n      \"reason\": \"Frames f2–f10 show mutual physical contact among players (e.g., Wall #2, Gortat #13, Durant #35, Iguodala #9), consistent with fighting—not one-sided abuse or riot. The event is continuous across frames and involves reciprocal aggression.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"No evidence of one-sided aggression against a helpless victim; the interaction is mutual and involves active resistance/engagement by all parties involved.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"The crowd remains seated and nonviolent; the incident is confined to players, coaches, and officials on the court/sideline—does not meet definition of riot (collective violent unrest).\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    },\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"By t=24.0 (f17), the altercation has subsided; players are separated, standing, and being addressed by officials—no ongoing fighting visible.\",\n      \"evidence_frame_ids\": [\"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\", \"f23\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                2,
+                3
+              ],
+              "category": "Fighting",
+              "t_start": 9.0,
+              "t_end": 19.5,
+              "confidence": 0.95,
+              "description": "Players from both teams (Wizards in red, Warriors in white) engage in a physical altercation near the basket and sideline, with pushing, grabbing, and multiple individuals converging; referees and staff intervene to separate them.",
+              "reason": "Frames f2–f10 show mutual physical contact among players (e.g., Wall #2, Gortat #13, Durant #35, Iguodala #9), consistent with fighting—not one-sided abuse or riot. The event is continuous across frames and involves reciprocal aggression.",
+              "evidence_frame_ids": [
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "No evidence of one-sided aggression against a helpless victim; the interaction is mutual and involves active resistance/engagement by all parties involved.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            },
+            {
+              "candidate_id": 4,
+              "reason": "The crowd remains seated and nonviolent; the incident is confined to players, coaches, and officials on the court/sideline—does not meet definition of riot (collective violent unrest).",
+              "evidence_frame_ids": [
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16"
+              ]
+            },
+            {
+              "candidate_id": 5,
+              "reason": "By t=24.0 (f17), the altercation has subsided; players are separated, standing, and being addressed by officials—no ongoing fighting visible.",
+              "evidence_frame_ids": [
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22",
+                "f23"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          6,
+          7
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 94.0,
+              "f1": 94.5,
+              "f2": 95.0,
+              "f3": 95.5,
+              "f4": 96.0,
+              "f5": 96.5,
+              "f6": 97.0,
+              "f7": 97.5,
+              "f8": 98.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 6,
+                "t_start": 96.0,
+                "t_end": 98.083333,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 97.0,
+                "t_end": 98.083333,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [6, 7],\n      \"category\": \"Fighting\",\n      \"t_start\": 96.0,\n      \"t_end\": 98.0,\n      \"confidence\": 0.95,\n      \"description\": \"Players in white and red jerseys engage in mutual physical contact near the basket, with multiple individuals grabbing, pushing, and restraining each other while officials and staff intervene.\",\n      \"reason\": \"Frames f4–f8 show reciprocal physical engagement: e.g., f6 shows a white-jersey player (11) and red-jersey player grappling, surrounded by others actively pulling them apart; no one is clearly helpless or passive, ruling out Abuse; the event is localized to a few individuals, not collective unrest, ruling out Riot; no weapons, fire, explosion, or vehicle involved.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                6,
+                7
+              ],
+              "category": "Fighting",
+              "t_start": 96.0,
+              "t_end": 98.0,
+              "confidence": 0.95,
+              "description": "Players in white and red jerseys engage in mutual physical contact near the basket, with multiple individuals grabbing, pushing, and restraining each other while officials and staff intervene.",
+              "reason": "Frames f4–f8 show reciprocal physical engagement: e.g., f6 shows a white-jersey player (11) and red-jersey player grappling, surrounded by others actively pulling them apart; no one is clearly helpless or passive, ruling out Abuse; the event is localized to a few individuals, not collective unrest, ruling out Riot; no weapons, fire, explosion, or vehicle involved.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

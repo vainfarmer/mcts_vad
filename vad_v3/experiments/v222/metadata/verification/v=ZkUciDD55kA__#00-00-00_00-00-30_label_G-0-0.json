@@ -1,0 +1,391 @@
+{
+  "events": [
+    {
+      "t_start": 4.5,
+      "t_end": 13.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A rapid fireball erupts from the lower-left side of a multi-story building at f5, rapidly expanding upward and across multiple floors through f16–f22, accompanied by dense black smoke—consistent with a high-energy blast initiating a fireball and structural ignition.",
+      "source_candidate_ids": [
+        0,
+        1,
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          5.0,
+          5.5,
+          6.0,
+          6.5,
+          7.0,
+          7.5,
+          8.0,
+          8.5,
+          9.0,
+          9.5,
+          10.0,
+          10.5,
+          11.0,
+          11.5,
+          12.0,
+          12.5,
+          13.0,
+          13.5
+        ],
+        "evidence_frame_ids": [
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18",
+          "f19",
+          "f20",
+          "f21",
+          "f22"
+        ],
+        "reason": "The event begins with a sudden, bright, expanding fireball (f5–f6) not attributable to ordinary fire; it propagates too quickly and violently for a simple fire, matching explosion characteristics (blast wave implied by rapid expansion and smoke plume). All three candidates describe overlapping intervals of the same continuous explosive event; merged into one event spanning from first visible detonation (f5, 5.0 s) through sustained post-blast fire propagation (f22, 13.5 s).",
+        "source_categories": [
+          "Explosion",
+          "Explosion",
+          "Explosion"
+        ]
+      }
+    },
+    {
+      "t_start": 22.0,
+      "t_end": 25.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A multi-story building undergoes rapid, near-simultaneous collapse beginning at f4 (22.0 s), with a large dust and smoke plume expanding outward and engulfing the structure by f11 (25.5 s).",
+      "source_candidate_ids": [
+        3,
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          22.0,
+          22.5,
+          23.0,
+          23.5,
+          24.0,
+          24.5,
+          25.0,
+          25.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11"
+        ],
+        "reason": "The collapse initiates abruptly without visible external mechanical force (e.g., excavator contact) in frames f4–f11; the symmetric, progressive failure and massive dust cloud are consistent with a blast-induced structural failure (explosion), per definition. The event is continuous and fully spans the overlapping interval of candidates 3 and 4; frames f12 onward show post-event demolition work, not ongoing explosion.",
+        "source_categories": [
+          "Explosion",
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 5,
+      "output_count": 2,
+      "groups": 2,
+      "rejected": 0,
+      "uncertain": 0,
+      "merged_sources": 3,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 2.5,
+              "f1": 3.0,
+              "f2": 3.5,
+              "f3": 4.0,
+              "f4": 4.5,
+              "f5": 5.0,
+              "f6": 5.5,
+              "f7": 6.0,
+              "f8": 6.5,
+              "f9": 7.0,
+              "f10": 7.5,
+              "f11": 8.0,
+              "f12": 8.5,
+              "f13": 9.0,
+              "f14": 9.5,
+              "f15": 10.0,
+              "f16": 10.5,
+              "f17": 11.0,
+              "f18": 11.5,
+              "f19": 12.0,
+              "f20": 12.5,
+              "f21": 13.0,
+              "f22": 13.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 4.5,
+                "t_end": 6.9,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 4.5,
+                "t_end": 10.1,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 8.0,
+                "t_end": 12.0,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1, 2],\n      \"category\": \"Explosion\",\n      \"t_start\": 4.5,\n      \"t_end\": 13.5,\n      \"confidence\": 0.95,\n      \"description\": \"A rapid fireball erupts from the lower-left side of a multi-story building at f5, rapidly expanding upward and across multiple floors through f16–f22, accompanied by dense black smoke—consistent with a high-energy blast initiating a fireball and structural ignition.\",\n      \"reason\": \"The event begins with a sudden, bright, expanding fireball (f5–f6) not attributable to ordinary fire; it propagates too quickly and violently for a simple fire, matching explosion characteristics (blast wave implied by rapid expansion and smoke plume). All three candidates describe overlapping intervals of the same continuous explosive event; merged into one event spanning from first visible detonation (f5, 5.0 s) through sustained post-blast fire propagation (f22, 13.5 s).\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1,
+                2
+              ],
+              "category": "Explosion",
+              "t_start": 4.5,
+              "t_end": 13.5,
+              "confidence": 0.95,
+              "description": "A rapid fireball erupts from the lower-left side of a multi-story building at f5, rapidly expanding upward and across multiple floors through f16–f22, accompanied by dense black smoke—consistent with a high-energy blast initiating a fireball and structural ignition.",
+              "reason": "The event begins with a sudden, bright, expanding fireball (f5–f6) not attributable to ordinary fire; it propagates too quickly and violently for a simple fire, matching explosion characteristics (blast wave implied by rapid expansion and smoke plume). All three candidates describe overlapping intervals of the same continuous explosive event; merged into one event spanning from first visible detonation (f5, 5.0 s) through sustained post-blast fire propagation (f22, 13.5 s).",
+              "evidence_frame_ids": [
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          3,
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 20.0,
+              "f1": 20.5,
+              "f2": 21.0,
+              "f3": 21.5,
+              "f4": 22.0,
+              "f5": 22.5,
+              "f6": 23.0,
+              "f7": 23.5,
+              "f8": 24.0,
+              "f9": 24.5,
+              "f10": 25.0,
+              "f11": 25.5,
+              "f12": 26.0,
+              "f13": 26.5,
+              "f14": 27.0,
+              "f15": 27.5,
+              "f16": 28.0,
+              "f17": 28.5,
+              "f18": 29.0,
+              "f19": 29.5,
+              "f20": 30.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 22.0,
+                "t_end": 23.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 22.5,
+                "t_end": 30.0,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3, 4],\n      \"category\": \"Explosion\",\n      \"t_start\": 22.0,\n      \"t_end\": 25.5,\n      \"confidence\": 0.95,\n      \"description\": \"A multi-story building rapidly collapses inward with a large plume of dust and smoke, beginning at f4 (22.0 s) and culminating in near-total obscuration by f11 (25.5 s).\",\n      \"reason\": \"The sudden, symmetric collapse, massive dust cloud, and absence of visible external force (e.g., excavator contact) indicate a controlled demolition via explosive charges; the event is continuous from f4 through f11, merging both candidates.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"Frames f12–f20 show post-collapse demolition work with an excavator, not ongoing explosion; candidate 4’s interval (22.5–30.0) extends beyond the actual explosive event (ends ~25.5 s), but the overlapping portion is covered by the accepted event.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 20.0,
+              "f1": 20.5,
+              "f2": 21.0,
+              "f3": 21.5,
+              "f4": 22.0,
+              "f5": 22.5,
+              "f6": 23.0,
+              "f7": 23.5,
+              "f8": 24.0,
+              "f9": 24.5,
+              "f10": 25.0,
+              "f11": 25.5,
+              "f12": 26.0,
+              "f13": 26.5,
+              "f14": 27.0,
+              "f15": 27.5,
+              "f16": 28.0,
+              "f17": 28.5,
+              "f18": 29.0,
+              "f19": 29.5,
+              "f20": 30.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 22.0,
+                "t_end": 23.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 22.5,
+                "t_end": 30.0,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3, 4],\n      \"category\": \"Explosion\",\n      \"t_start\": 22.0,\n      \"t_end\": 25.5,\n      \"confidence\": 0.9,\n      \"description\": \"A multi-story building collapses rapidly inward starting at f4 (22.0 s), producing a massive dust and smoke plume that engulfs the structure by f11 (25.5 s).\",\n      \"reason\": \"The collapse is sudden, symmetric, and accompanied by an expanding dust cloud without visible external mechanical force (e.g., excavator contact) during f4–f11; this matches the definition of explosion (blast-induced structural failure). The event is continuous across both candidate intervals and ends by f11, before the scene shifts to post-demolition work.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"Candidate 4 claims explosion from 22.5–30.0 s, but frames f12–f20 show only post-collapse demolition with an excavator and no blast activity; however, since the overlapping portion (22.5–25.5 s) is fully covered by the accepted event, and the extension beyond 25.5 s lacks evidence of explosion, it is not a separate event—thus handled via merging, not uncertainty. No remaining unaccounted portion justifies a separate uncertain entry.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 20.0,
+              "f1": 20.5,
+              "f2": 21.0,
+              "f3": 21.5,
+              "f4": 22.0,
+              "f5": 22.5,
+              "f6": 23.0,
+              "f7": 23.5,
+              "f8": 24.0,
+              "f9": 24.5,
+              "f10": 25.0,
+              "f11": 25.5,
+              "f12": 26.0,
+              "f13": 26.5,
+              "f14": 27.0,
+              "f15": 27.5,
+              "f16": 28.0,
+              "f17": 28.5,
+              "f18": 29.0,
+              "f19": 29.5,
+              "f20": 30.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 22.0,
+                "t_end": 23.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 22.5,
+                "t_end": 30.0,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3, 4],\n      \"category\": \"Explosion\",\n      \"t_start\": 22.0,\n      \"t_end\": 25.5,\n      \"confidence\": 0.95,\n      \"description\": \"A multi-story building undergoes rapid, near-simultaneous collapse beginning at f4 (22.0 s), with a large dust and smoke plume expanding outward and engulfing the structure by f11 (25.5 s).\",\n      \"reason\": \"The collapse initiates abruptly without visible external mechanical force (e.g., excavator contact) in frames f4–f11; the symmetric, progressive failure and massive dust cloud are consistent with a blast-induced structural failure (explosion), per definition. The event is continuous and fully spans the overlapping interval of candidates 3 and 4; frames f12 onward show post-event demolition work, not ongoing explosion.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                3,
+                4
+              ],
+              "category": "Explosion",
+              "t_start": 22.0,
+              "t_end": 25.5,
+              "confidence": 0.95,
+              "description": "A multi-story building undergoes rapid, near-simultaneous collapse beginning at f4 (22.0 s), with a large dust and smoke plume expanding outward and engulfing the structure by f11 (25.5 s).",
+              "reason": "The collapse initiates abruptly without visible external mechanical force (e.g., excavator contact) in frames f4–f11; the symmetric, progressive failure and massive dust cloud are consistent with a blast-induced structural failure (explosion), per definition. The event is continuous and fully spans the overlapping interval of candidates 3 and 4; frames f12 onward show post-event demolition work, not ongoing explosion.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

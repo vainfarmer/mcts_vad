@@ -1,0 +1,544 @@
+{
+  "events": [
+    {
+      "t_start": 4.5,
+      "t_end": 5.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 1.0,
+      "coarse_score": 1.0,
+      "description": "A dark sedan collides with a motorcycle at the intersection; the motorcycle and rider are thrown onto the road surface in frames f4–f5.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 1.0,
+        "evidence_times": [
+          4.5,
+          5.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "In f4, the car and motorcycle make contact; in f5, both are on the ground with visible separation and debris, satisfying the definition of a crash (CarAccident). No evidence of fighting, shooting, riot, abuse, or explosion.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 16.0,
+      "t_end": 16.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A motorcycle lies on its side in the intersection near a white car, with a person nearby appearing to get up; this follows a visible trajectory of the motorcycle entering the intersection and falling between f7 and f8.",
+      "source_candidate_ids": [
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 3,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          16.0,
+          16.5
+        ],
+        "evidence_frame_ids": [
+          "f7",
+          "f8"
+        ],
+        "reason": "In f7 (16.0 s), a motorcycle is upright and moving across the intersection; in f8 (16.5 s), it is on its side with debris and a person near it—consistent with a crash. No other vehicle contact is clearly visible, but the sudden fall and static position indicate an accident.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 40.5,
+      "t_end": 42.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A dark sedan collides with a yellow bus on the left, causing the sedan to spin and eject debris (including a blue barrel) across the road.",
+      "source_candidate_ids": [
+        6
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 5,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          40.5,
+          41.0,
+          41.5,
+          42.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7"
+        ],
+        "reason": "Frames f4–f7 show the sedan approaching the bus, then at f5 the sedan impacts the bus’s left side, followed by violent rotation and debris scattering in f6–f7; this satisfies the definition of a crash (CarAccident).",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    },
+    {
+      "t_start": 67.0,
+      "t_end": 69.0,
+      "anomaly_type": "CarAccident",
+      "confidence": 1.0,
+      "coarse_score": 1.0,
+      "description": "A dark sedan collides violently with the rear-left side of a stationary white bus at 67.0 s, causing visible deformation, smoke, and debris; the impact and aftermath persist through 69.0 s.",
+      "source_candidate_ids": [
+        7
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 6,
+        "event_id": 0,
+        "vlm_confidence": 1.0,
+        "evidence_times": [
+          67.0,
+          67.5,
+          68.0,
+          68.5,
+          69.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8"
+        ],
+        "reason": "Frames f4–f8 show a sudden lateral impact of a car into the bus, followed by smoke, structural damage, and vehicle displacement—meeting the definition of a crash (CarAccident). No evidence of fighting, shooting, riot, abuse, or explosion.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 8,
+      "output_count": 4,
+      "groups": 7,
+      "rejected": 4,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 2.5,
+              "f1": 3.0,
+              "f2": 3.5,
+              "f3": 4.0,
+              "f4": 4.5,
+              "f5": 5.0,
+              "f6": 5.5,
+              "f7": 6.0,
+              "f8": 6.5,
+              "f9": 7.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 4.5,
+                "t_end": 5.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"CarAccident\",\n      \"t_start\": 4.5,\n      \"t_end\": 5.5,\n      \"confidence\": 1.0,\n      \"description\": \"A dark sedan collides with a motorcycle at the intersection; the motorcycle and rider are thrown onto the road surface in frames f4–f5.\",\n      \"reason\": \"In f4, the car and motorcycle make contact; in f5, both are on the ground with visible separation and debris, satisfying the definition of a crash (CarAccident). No evidence of fighting, shooting, riot, abuse, or explosion.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "CarAccident",
+              "t_start": 4.5,
+              "t_end": 5.5,
+              "confidence": 1.0,
+              "description": "A dark sedan collides with a motorcycle at the intersection; the motorcycle and rider are thrown onto the road surface in frames f4–f5.",
+              "reason": "In f4, the car and motorcycle make contact; in f5, both are on the ground with visible separation and debris, satisfying the definition of a crash (CarAccident). No evidence of fighting, shooting, riot, abuse, or explosion.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 6.0,
+              "f1": 6.5,
+              "f2": 7.0,
+              "f3": 7.5,
+              "f4": 8.0,
+              "f5": 8.5,
+              "f6": 9.0,
+              "f7": 9.5,
+              "f8": 10.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 8.0,
+                "t_end": 8.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"No visible crash or vehicle collision occurs between 8.0–8.5 s; vehicles move normally, and the dark object on the road (visible from f0 onward) remains stationary and does not interact with traffic.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "No visible crash or vehicle collision occurs between 8.0–8.5 s; vehicles move normally, and the dark object on the road (visible from f0 onward) remains stationary and does not interact with traffic.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 10.0,
+              "f1": 10.5,
+              "f2": 11.0,
+              "f3": 11.5,
+              "f4": 12.0,
+              "f5": 12.5,
+              "f6": 13.0,
+              "f7": 13.5,
+              "f8": 14.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 12.0,
+                "t_end": 12.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"No visible crash or vehicle collision occurs between f4 (12.0s) and f5 (12.5s); vehicles move normally, and no sudden impact, deformation, or skid marks are observed.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "No visible crash or vehicle collision occurs between f4 (12.0s) and f5 (12.5s); vehicles move normally, and no sudden impact, deformation, or skid marks are observed.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          3,
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 12.5,
+              "f1": 13.0,
+              "f2": 13.5,
+              "f3": 14.0,
+              "f4": 14.5,
+              "f5": 15.0,
+              "f6": 15.5,
+              "f7": 16.0,
+              "f8": 16.5,
+              "f9": 17.0,
+              "f10": 17.5,
+              "f11": 18.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 14.5,
+                "t_end": 15.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 16.0,
+                "t_end": 16.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"CarAccident\",\n      \"t_start\": 16.0,\n      \"t_end\": 16.5,\n      \"confidence\": 0.9,\n      \"description\": \"A motorcycle lies on its side in the intersection near a white car, with a person nearby appearing to get up; this follows a visible trajectory of the motorcycle entering the intersection and falling between f7 and f8.\",\n      \"reason\": \"In f7 (16.0 s), a motorcycle is upright and moving across the intersection; in f8 (16.5 s), it is on its side with debris and a person near it—consistent with a crash. No other vehicle contact is clearly visible, but the sudden fall and static position indicate an accident.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"No visible aggression or victim–perpetrator dynamic occurs between 14.5–15.5 s; people are walking normally, and no individual is restrained, struck, or in distress.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                4
+              ],
+              "category": "CarAccident",
+              "t_start": 16.0,
+              "t_end": 16.5,
+              "confidence": 0.9,
+              "description": "A motorcycle lies on its side in the intersection near a white car, with a person nearby appearing to get up; this follows a visible trajectory of the motorcycle entering the intersection and falling between f7 and f8.",
+              "reason": "In f7 (16.0 s), a motorcycle is upright and moving across the intersection; in f8 (16.5 s), it is on its side with debris and a person near it—consistent with a crash. No other vehicle contact is clearly visible, but the sudden fall and static position indicate an accident.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 3,
+              "reason": "No visible aggression or victim–perpetrator dynamic occurs between 14.5–15.5 s; people are walking normally, and no individual is restrained, struck, or in distress.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 4,
+        "source_ids": [
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 16.0,
+              "f1": 16.5,
+              "f2": 17.0,
+              "f3": 17.5,
+              "f4": 18.0,
+              "f5": 18.5,
+              "f6": 19.0,
+              "f7": 19.5,
+              "f8": 20.0,
+              "f9": 20.5,
+              "f10": 21.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 5,
+                "t_start": 17.9,
+                "t_end": 19.1,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"No visible abuse: a person lies on the road near a motorcycle (visible from f0 onward), and several pedestrians approach or stand nearby, but no aggressive physical contact or targeting of a helpless individual is observed; the scene is consistent with a traffic incident aftermath, not abuse.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 5,
+              "reason": "No visible abuse: a person lies on the road near a motorcycle (visible from f0 onward), and several pedestrians approach or stand nearby, but no aggressive physical contact or targeting of a helpless individual is observed; the scene is consistent with a traffic incident aftermath, not abuse.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 5,
+        "source_ids": [
+          6
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 38.5,
+              "f1": 39.0,
+              "f2": 39.5,
+              "f3": 40.0,
+              "f4": 40.5,
+              "f5": 41.0,
+              "f6": 41.5,
+              "f7": 42.0,
+              "f8": 42.5,
+              "f9": 43.0,
+              "f10": 43.5,
+              "f11": 44.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 6,
+                "t_start": 40.5,
+                "t_end": 42.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [6],\n      \"category\": \"CarAccident\",\n      \"t_start\": 40.5,\n      \"t_end\": 42.5,\n      \"confidence\": 0.95,\n      \"description\": \"A dark sedan collides with a yellow bus on the left, causing the sedan to spin and eject debris (including a blue barrel) across the road.\",\n      \"reason\": \"Frames f4–f7 show the sedan approaching the bus, then at f5 the sedan impacts the bus’s left side, followed by violent rotation and debris scattering in f6–f7; this satisfies the definition of a crash (CarAccident).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                6
+              ],
+              "category": "CarAccident",
+              "t_start": 40.5,
+              "t_end": 42.5,
+              "confidence": 0.95,
+              "description": "A dark sedan collides with a yellow bus on the left, causing the sedan to spin and eject debris (including a blue barrel) across the road.",
+              "reason": "Frames f4–f7 show the sedan approaching the bus, then at f5 the sedan impacts the bus’s left side, followed by violent rotation and debris scattering in f6–f7; this satisfies the definition of a crash (CarAccident).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 6,
+        "source_ids": [
+          7
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 65.0,
+              "f1": 65.5,
+              "f2": 66.0,
+              "f3": 66.5,
+              "f4": 67.0,
+              "f5": 67.5,
+              "f6": 68.0,
+              "f7": 68.5,
+              "f8": 69.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 7,
+                "t_start": 67.0,
+                "t_end": 69.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [7],\n      \"category\": \"CarAccident\",\n      \"t_start\": 67.0,\n      \"t_end\": 69.0,\n      \"confidence\": 1.0,\n      \"description\": \"A dark sedan collides violently with the rear-left side of a stationary white bus at 67.0 s, causing visible deformation, smoke, and debris; the impact and aftermath persist through 69.0 s.\",\n      \"reason\": \"Frames f4–f8 show a sudden lateral impact of a car into the bus, followed by smoke, structural damage, and vehicle displacement—meeting the definition of a crash (CarAccident). No evidence of fighting, shooting, riot, abuse, or explosion.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                7
+              ],
+              "category": "CarAccident",
+              "t_start": 67.0,
+              "t_end": 69.0,
+              "confidence": 1.0,
+              "description": "A dark sedan collides violently with the rear-left side of a stationary white bus at 67.0 s, causing visible deformation, smoke, and debris; the impact and aftermath persist through 69.0 s.",
+              "reason": "Frames f4–f8 show a sudden lateral impact of a car into the bus, followed by smoke, structural damage, and vehicle displacement—meeting the definition of a crash (CarAccident). No evidence of fighting, shooting, riot, abuse, or explosion.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

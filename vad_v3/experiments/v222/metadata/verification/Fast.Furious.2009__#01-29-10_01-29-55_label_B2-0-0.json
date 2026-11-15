@@ -1,0 +1,434 @@
+{
+  "events": [
+    {
+      "t_start": 1.0,
+      "t_end": 2.0,
+      "anomaly_type": "Fighting",
+      "confidence": 0.7,
+      "coarse_score": 0.7,
+      "description": "Two birds (roosters) are physically engaged in combat within a chalk-delineated square at f2 and f3, with pecking and grappling observed.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.7,
+        "evidence_times": [
+          1.0,
+          1.5
+        ],
+        "evidence_frame_ids": [
+          "f2",
+          "f3"
+        ],
+        "reason": "f2 shows one bird lunging at another inside the square; f3 shows them in close contact with motion blur suggesting active struggle—this satisfies 'mutual physical combat'. The candidate 'Abuse' is not supported because neither bird appears helpless or passive; both are actively involved.",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 4.5,
+      "t_end": 10.0,
+      "anomaly_type": "Fighting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A muscular man in a black tank top is surrounded by a crowd, visibly straining, grimacing, and being physically restrained or jostled by multiple individuals; his posture and facial expression indicate active physical struggle.",
+      "source_candidate_ids": [
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          4.5,
+          5.0,
+          5.5,
+          6.0,
+          6.5,
+          7.0,
+          7.5,
+          8.0,
+          8.5,
+          9.0,
+          9.5,
+          10.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15"
+        ],
+        "reason": "Frames f4–f15 show sustained close contact, tension, and exertion consistent with mutual physical combat (e.g., f4: man yelling with clenched jaw; f7–f10: arms pressing against him, head turning under force; f13–f15: continued strain and proximity without de-escalation). This meets the definition of Fighting (mutual physical combat), not Abuse (no clear helpless victim) or Riot (localized, not collective unrest).",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 10.5,
+      "t_end": 11.0,
+      "anomaly_type": "Fighting",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "At 10.5s, a man runs toward a green car while another man appears to lunge or push from near the driver’s side door; by 11.0s, the first man is at the car’s front, and the second is stepping back—suggesting a brief physical confrontation near the vehicle.",
+      "source_candidate_ids": [
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 1,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          10.5,
+          11.0
+        ],
+        "evidence_frame_ids": [
+          "f16",
+          "f17"
+        ],
+        "reason": "f16 shows the runner approaching the car while a second man extends an arm toward him; f17 shows the runner now at the car’s hood and the second man stepping away, implying a short physical exchange (e.g., shove or grab) that ends by 11.0s. This is distinct from the earlier crowd fight and qualifies as Fighting (mutual or attempted physical combat), not CarAccident (no collision).",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 43.5,
+      "t_end": 44.0,
+      "anomaly_type": "Shooting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A person in a red car extends an arm holding a firearm and fires toward another vehicle, with visible muzzle flash and dust disturbance consistent with discharge.",
+      "source_candidate_ids": [
+        5,
+        6
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          43.5,
+          44.0
+        ],
+        "evidence_frame_ids": [
+          "f7",
+          "f8"
+        ],
+        "reason": "f7 shows the shooter aiming and firing (muzzle flash visible), f8 shows continued dust and motion consistent with ongoing gunfire; both frames support a single shooting event spanning 43.5–44.0s. Candidate 5 (43.5–43.5417) and 6 (43.5–44.0) describe overlapping intervals of the same action and are merged.",
+        "source_categories": [
+          "Shooting",
+          "Shooting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 7,
+      "output_count": 4,
+      "groups": 3,
+      "rejected": 2,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 1.0,
+                "t_end": 2.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 1.0,
+                "t_end": 2.0,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Fighting\",\n      \"t_start\": 1.0,\n      \"t_end\": 2.0,\n      \"confidence\": 0.8,\n      \"description\": \"Two birds (likely roosters) are engaged in physical combat inside a chalk-delineated square, with one pecking or striking the other while spectators surround the area.\",\n      \"reason\": \"Images f2–f3 show two birds actively grappling and striking each other within a marked arena; this constitutes mutual physical combat, satisfying the definition of Fighting. The candidate 'Abuse' is incorrect because the birds appear to be equally engaged, not one helpless victim being aggressed upon.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"The interaction is mutual combat between two birds, not one-sided aggression against a helpless victim; thus it does not meet the definition of Abuse.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 1.0,
+                "t_end": 2.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 1.0,
+                "t_end": 2.0,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Fighting\",\n      \"t_start\": 1.0,\n      \"t_end\": 2.0,\n      \"confidence\": 0.7,\n      \"description\": \"Two birds (roosters) are physically engaged in combat within a chalk-delineated square at f2 and f3, with pecking and grappling observed.\",\n      \"reason\": \"f2 shows one bird lunging at another inside the square; f3 shows them in close contact with motion blur suggesting active struggle—this satisfies 'mutual physical combat'. The candidate 'Abuse' is not supported because neither bird appears helpless or passive; both are actively involved.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"No evidence of one-sided aggression against a helpless victim; both birds are actively fighting, contradicting the definition of Abuse.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "Fighting",
+              "t_start": 1.0,
+              "t_end": 2.0,
+              "confidence": 0.7,
+              "description": "Two birds (roosters) are physically engaged in combat within a chalk-delineated square at f2 and f3, with pecking and grappling observed.",
+              "reason": "f2 shows one bird lunging at another inside the square; f3 shows them in close contact with motion blur suggesting active struggle—this satisfies 'mutual physical combat'. The candidate 'Abuse' is not supported because neither bird appears helpless or passive; both are actively involved.",
+              "evidence_frame_ids": [
+                "f2",
+                "f3"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "No evidence of one-sided aggression against a helpless victim; both birds are actively fighting, contradicting the definition of Abuse.",
+              "evidence_frame_ids": [
+                "f2",
+                "f3"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          2,
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 2.5,
+              "f1": 3.0,
+              "f2": 3.5,
+              "f3": 4.0,
+              "f4": 4.5,
+              "f5": 5.0,
+              "f6": 5.5,
+              "f7": 6.0,
+              "f8": 6.5,
+              "f9": 7.0,
+              "f10": 7.5,
+              "f11": 8.0,
+              "f12": 8.5,
+              "f13": 9.0,
+              "f14": 9.5,
+              "f15": 10.0,
+              "f16": 10.5,
+              "f17": 11.0,
+              "f18": 11.5,
+              "f19": 12.0,
+              "f20": 12.5,
+              "f21": 13.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 4.5,
+                "t_end": 11.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 10.5,
+                "t_end": 11.3,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"Fighting\",\n      \"t_start\": 4.5,\n      \"t_end\": 10.0,\n      \"confidence\": 0.95,\n      \"description\": \"A muscular man in a black tank top is surrounded by a crowd, visibly straining, grimacing, and being physically restrained or jostled by multiple individuals; his posture and facial expression indicate active physical struggle.\",\n      \"reason\": \"Frames f4–f15 show sustained close contact, tension, and exertion consistent with mutual physical combat (e.g., f4: man yelling with clenched jaw; f7–f10: arms pressing against him, head turning under force; f13–f15: continued strain and proximity without de-escalation). This meets the definition of Fighting (mutual physical combat), not Abuse (no clear helpless victim) or Riot (localized, not collective unrest).\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\"]\n    },\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"Fighting\",\n      \"t_start\": 10.5,\n      \"t_end\": 11.0,\n      \"confidence\": 0.85,\n      \"description\": \"At 10.5s, a man runs toward a green car while another man appears to lunge or push from near the driver’s side door; by 11.0s, the first man is at the car’s front, and the second is stepping back—suggesting a brief physical confrontation near the vehicle.\",\n      \"reason\": \"f16 shows the runner approaching the car while a second man extends an arm toward him; f17 shows the runner now at the car’s hood and the second man stepping away, implying a short physical exchange (e.g., shove or grab) that ends by 11.0s. This is distinct from the earlier crowd fight and qualifies as Fighting (mutual or attempted physical combat), not CarAccident (no collision).\",\n      \"evidence_frame_ids\": [\"f16\", \"f17\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2
+              ],
+              "category": "Fighting",
+              "t_start": 4.5,
+              "t_end": 10.0,
+              "confidence": 0.95,
+              "description": "A muscular man in a black tank top is surrounded by a crowd, visibly straining, grimacing, and being physically restrained or jostled by multiple individuals; his posture and facial expression indicate active physical struggle.",
+              "reason": "Frames f4–f15 show sustained close contact, tension, and exertion consistent with mutual physical combat (e.g., f4: man yelling with clenched jaw; f7–f10: arms pressing against him, head turning under force; f13–f15: continued strain and proximity without de-escalation). This meets the definition of Fighting (mutual physical combat), not Abuse (no clear helpless victim) or Riot (localized, not collective unrest).",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                3
+              ],
+              "category": "Fighting",
+              "t_start": 10.5,
+              "t_end": 11.0,
+              "confidence": 0.85,
+              "description": "At 10.5s, a man runs toward a green car while another man appears to lunge or push from near the driver’s side door; by 11.0s, the first man is at the car’s front, and the second is stepping back—suggesting a brief physical confrontation near the vehicle.",
+              "reason": "f16 shows the runner approaching the car while a second man extends an arm toward him; f17 shows the runner now at the car’s hood and the second man stepping away, implying a short physical exchange (e.g., shove or grab) that ends by 11.0s. This is distinct from the earlier crowd fight and qualifies as Fighting (mutual or attempted physical combat), not CarAccident (no collision).",
+              "evidence_frame_ids": [
+                "f16",
+                "f17"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          4,
+          5,
+          6
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 40.0,
+              "f1": 40.5,
+              "f2": 41.0,
+              "f3": 41.5,
+              "f4": 42.0,
+              "f5": 42.5,
+              "f6": 43.0,
+              "f7": 43.5,
+              "f8": 44.0,
+              "f9": 44.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 42.0,
+                "t_end": 42.5,
+                "unverified_category": "CarAccident"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 43.5,
+                "t_end": 43.541667,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 43.5,
+                "t_end": 44.0,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [5, 6],\n      \"category\": \"Shooting\",\n      \"t_start\": 43.5,\n      \"t_end\": 44.0,\n      \"confidence\": 0.9,\n      \"description\": \"A person in a red car extends an arm holding a firearm and fires toward another vehicle, with visible muzzle flash and dust disturbance consistent with discharge.\",\n      \"reason\": \"f7 shows the shooter aiming and firing (muzzle flash visible), f8 shows continued dust and motion consistent with ongoing gunfire; both frames support a single shooting event spanning 43.5–44.0s. Candidate 5 (43.5–43.5417) and 6 (43.5–44.0) describe overlapping intervals of the same action and are merged.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"f4 and f5 show multiple cars driving on a dusty dirt road with no collision or impact evidence; vehicles maintain separation and control, indicating normal high-speed driving, not a car accident.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                5,
+                6
+              ],
+              "category": "Shooting",
+              "t_start": 43.5,
+              "t_end": 44.0,
+              "confidence": 0.9,
+              "description": "A person in a red car extends an arm holding a firearm and fires toward another vehicle, with visible muzzle flash and dust disturbance consistent with discharge.",
+              "reason": "f7 shows the shooter aiming and firing (muzzle flash visible), f8 shows continued dust and motion consistent with ongoing gunfire; both frames support a single shooting event spanning 43.5–44.0s. Candidate 5 (43.5–43.5417) and 6 (43.5–44.0) describe overlapping intervals of the same action and are merged.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 4,
+              "reason": "f4 and f5 show multiple cars driving on a dusty dirt road with no collision or impact evidence; vehicles maintain separation and control, indicating normal high-speed driving, not a car accident.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

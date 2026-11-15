@@ -1,0 +1,503 @@
+{
+  "events": [
+    {
+      "t_start": 23.0,
+      "t_end": 24.5,
+      "anomaly_type": "Shooting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A man in a dark suit points a handgun at another man in a red coat; muzzle flash and recoil are visible in f5–f6, indicating discharge.",
+      "source_candidate_ids": [
+        0,
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          23.0,
+          23.5,
+          24.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "Frames f4–f6 show the gun aimed and then visibly recoiling with a bright flash near the barrel (f5–f6), consistent with firing; this merges candidates 0 and 1 as the same continuous shooting event.",
+        "source_categories": [
+          "Shooting",
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 28.0,
+      "t_end": 28.5,
+      "anomaly_type": "Shooting",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "A man in a dark suit aims and fires a handgun from behind cover, with visible muzzle flash in f14.",
+      "source_candidate_ids": [
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 1,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          28.0,
+          28.5
+        ],
+        "evidence_frame_ids": [
+          "f14",
+          "f15"
+        ],
+        "reason": "In f14, the man holds a pistol with arm extended, and a bright flash appears at the muzzle; f15 shows him lowering the weapon immediately after—consistent with a single shot.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 43.5,
+      "t_end": 47.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "Two men engage in close physical struggle at a doorway (f4–f10), followed by one man being thrown or moving rapidly backward into a dim room while others draw weapons (f11–f12).",
+      "source_candidate_ids": [
+        5,
+        6
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          43.5,
+          44.0,
+          44.5,
+          45.0,
+          45.5,
+          46.0,
+          46.5,
+          47.0,
+          47.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12"
+        ],
+        "reason": "Frames f4–f10 show mutual grappling, pushing, and facial expressions of exertion and distress; f11 shows motion blur consistent with being shoved or dodging; f12 shows multiple individuals drawing firearms *after* the physical contact ends—so the fighting phase is confined to ~43.5–47.5s. Candidate 5 and 6 both cover overlapping parts of this same continuous physical altercation, so they are merged.",
+        "source_categories": [
+          "Fighting",
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 48.0,
+      "t_end": 48.5,
+      "anomaly_type": "Shooting",
+      "confidence": 0.8,
+      "coarse_score": 0.8,
+      "description": "Multiple individuals aim handguns in a dim industrial space; muzzle flash is not visible, but posture and weapon orientation indicate active aiming/firing.",
+      "source_candidate_ids": [
+        7
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 1,
+        "vlm_confidence": 0.8,
+        "evidence_times": [
+          48.0,
+          48.5
+        ],
+        "evidence_frame_ids": [
+          "f13",
+          "f14"
+        ],
+        "reason": "In f13, four men are in combat stances holding handguns pointed forward; f14 shows a close-up of a man’s face looking upward with mouth open, possibly reacting to gunfire or shouting—though no muzzle flash is seen, the coordinated aiming in f13 and context of prior fight strongly suggest shooting occurred. Since the candidate interval (48.0–49.2) includes f13 (48.0) and f14 (48.5), and no later frames show discharge, the event is limited to 48.0–48.5 where aiming is unambiguous. No explosion or sustained fire is visible, but the posture and context meet the minimal requirement for 'Shooting' (visible shooting action, not just possession).",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 52.5,
+      "t_end": 54.0,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A violent water/liquid eruption from a central point in a confined chamber, with high-velocity spray and debris displacement, consistent with a sudden pressure release or explosive discharge.",
+      "source_candidate_ids": [
+        9
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          52.5,
+          53.0,
+          53.5,
+          54.0
+        ],
+        "evidence_frame_ids": [
+          "f8",
+          "f9",
+          "f10",
+          "f11"
+        ],
+        "reason": "Frames f8–f11 show a rapidly expanding plume of liquid and particulate matter, with radial splash patterns and motion blur indicating high-energy release; no fire or smoke, but the dynamics match a hydraulic explosion (e.g., burst pipe or pressurized tank failure), satisfying the 'Explosion' definition as a blast event.",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 10,
+      "output_count": 5,
+      "groups": 3,
+      "rejected": 3,
+      "uncertain": 0,
+      "merged_sources": 2,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 21.0,
+              "f1": 21.5,
+              "f2": 22.0,
+              "f3": 22.5,
+              "f4": 23.0,
+              "f5": 23.5,
+              "f6": 24.0,
+              "f7": 24.5,
+              "f8": 25.0,
+              "f9": 25.5,
+              "f10": 26.0,
+              "f11": 26.5,
+              "f12": 27.0,
+              "f13": 27.5,
+              "f14": 28.0,
+              "f15": 28.5,
+              "f16": 29.0,
+              "f17": 29.5,
+              "f18": 30.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 23.0,
+                "t_end": 23.5,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 23.3,
+                "t_end": 24.8,
+                "unverified_category": "Shooting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 24.5,
+                "t_end": 27.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 26.5,
+                "t_end": 27.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 28.0,
+                "t_end": 28.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Shooting\",\n      \"t_start\": 23.0,\n      \"t_end\": 24.5,\n      \"confidence\": 0.9,\n      \"description\": \"A man in a dark suit points a handgun at another man in a red coat; muzzle flash and recoil are visible in f5–f6, indicating discharge.\",\n      \"reason\": \"Frames f4–f6 show the gun aimed and then visibly recoiling with a bright flash near the barrel (f5–f6), consistent with firing; this merges candidates 0 and 1 as the same continuous shooting event.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    },\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"Shooting\",\n      \"t_start\": 28.0,\n      \"t_end\": 28.5,\n      \"confidence\": 0.85,\n      \"description\": \"A man in a dark suit aims and fires a handgun from behind cover, with visible muzzle flash in f14.\",\n      \"reason\": \"In f14, the man holds a pistol with arm extended, and a bright flash appears at the muzzle; f15 shows him lowering the weapon immediately after—consistent with a single shot.\",\n      \"evidence_frame_ids\": [\"f14\", \"f15\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Frames f7–f12 show chaotic movement and grappling but no clear mutual combat or sustained physical exchange; motion blur and occlusion prevent confirmation of Fighting, and actions appear more like evasion/collapse after shooting.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"Frames f11–f12 depict indistinct motion and possible falling bodies, but no reciprocal striking or grappling is visible; insufficient evidence for Fighting.\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1
+              ],
+              "category": "Shooting",
+              "t_start": 23.0,
+              "t_end": 24.5,
+              "confidence": 0.9,
+              "description": "A man in a dark suit points a handgun at another man in a red coat; muzzle flash and recoil are visible in f5–f6, indicating discharge.",
+              "reason": "Frames f4–f6 show the gun aimed and then visibly recoiling with a bright flash near the barrel (f5–f6), consistent with firing; this merges candidates 0 and 1 as the same continuous shooting event.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                4
+              ],
+              "category": "Shooting",
+              "t_start": 28.0,
+              "t_end": 28.5,
+              "confidence": 0.85,
+              "description": "A man in a dark suit aims and fires a handgun from behind cover, with visible muzzle flash in f14.",
+              "reason": "In f14, the man holds a pistol with arm extended, and a bright flash appears at the muzzle; f15 shows him lowering the weapon immediately after—consistent with a single shot.",
+              "evidence_frame_ids": [
+                "f14",
+                "f15"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "Frames f7–f12 show chaotic movement and grappling but no clear mutual combat or sustained physical exchange; motion blur and occlusion prevent confirmation of Fighting, and actions appear more like evasion/collapse after shooting.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12"
+              ]
+            },
+            {
+              "candidate_id": 3,
+              "reason": "Frames f11–f12 depict indistinct motion and possible falling bodies, but no reciprocal striking or grappling is visible; insufficient evidence for Fighting.",
+              "evidence_frame_ids": [
+                "f11",
+                "f12"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          5,
+          6,
+          7
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 41.5,
+              "f1": 42.0,
+              "f2": 42.5,
+              "f3": 43.0,
+              "f4": 43.5,
+              "f5": 44.0,
+              "f6": 44.5,
+              "f7": 45.0,
+              "f8": 45.5,
+              "f9": 46.0,
+              "f10": 46.5,
+              "f11": 47.0,
+              "f12": 47.5,
+              "f13": 48.0,
+              "f14": 48.5,
+              "f15": 49.0,
+              "f16": 49.5,
+              "f17": 50.0,
+              "f18": 50.5,
+              "f19": 51.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 5,
+                "t_start": 43.5,
+                "t_end": 47.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 47.0,
+                "t_end": 48.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 7,
+                "t_start": 48.0,
+                "t_end": 49.2,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [5, 6],\n      \"category\": \"Fighting\",\n      \"t_start\": 43.5,\n      \"t_end\": 47.5,\n      \"confidence\": 0.9,\n      \"description\": \"Two men engage in close physical struggle at a doorway (f4–f10), followed by one man being thrown or moving rapidly backward into a dim room while others draw weapons (f11–f12).\",\n      \"reason\": \"Frames f4–f10 show mutual grappling, pushing, and facial expressions of exertion and distress; f11 shows motion blur consistent with being shoved or dodging; f12 shows multiple individuals drawing firearms *after* the physical contact ends—so the fighting phase is confined to ~43.5–47.5s. Candidate 5 and 6 both cover overlapping parts of this same continuous physical altercation, so they are merged.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\"]\n    },\n    {\n      \"source_candidate_ids\": [7],\n      \"category\": \"Shooting\",\n      \"t_start\": 48.0,\n      \"t_end\": 48.5,\n      \"confidence\": 0.8,\n      \"description\": \"Multiple individuals aim handguns in a dim industrial space; muzzle flash is not visible, but posture and weapon orientation indicate active aiming/firing.\",\n      \"reason\": \"In f13, four men are in combat stances holding handguns pointed forward; f14 shows a close-up of a man’s face looking upward with mouth open, possibly reacting to gunfire or shouting—though no muzzle flash is seen, the coordinated aiming in f13 and context of prior fight strongly suggest shooting occurred. Since the candidate interval (48.0–49.2) includes f13 (48.0) and f14 (48.5), and no later frames show discharge, the event is limited to 48.0–48.5 where aiming is unambiguous. No explosion or sustained fire is visible, but the posture and context meet the minimal requirement for 'Shooting' (visible shooting action, not just possession).\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                5,
+                6
+              ],
+              "category": "Fighting",
+              "t_start": 43.5,
+              "t_end": 47.5,
+              "confidence": 0.9,
+              "description": "Two men engage in close physical struggle at a doorway (f4–f10), followed by one man being thrown or moving rapidly backward into a dim room while others draw weapons (f11–f12).",
+              "reason": "Frames f4–f10 show mutual grappling, pushing, and facial expressions of exertion and distress; f11 shows motion blur consistent with being shoved or dodging; f12 shows multiple individuals drawing firearms *after* the physical contact ends—so the fighting phase is confined to ~43.5–47.5s. Candidate 5 and 6 both cover overlapping parts of this same continuous physical altercation, so they are merged.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                7
+              ],
+              "category": "Shooting",
+              "t_start": 48.0,
+              "t_end": 48.5,
+              "confidence": 0.8,
+              "description": "Multiple individuals aim handguns in a dim industrial space; muzzle flash is not visible, but posture and weapon orientation indicate active aiming/firing.",
+              "reason": "In f13, four men are in combat stances holding handguns pointed forward; f14 shows a close-up of a man’s face looking upward with mouth open, possibly reacting to gunfire or shouting—though no muzzle flash is seen, the coordinated aiming in f13 and context of prior fight strongly suggest shooting occurred. Since the candidate interval (48.0–49.2) includes f13 (48.0) and f14 (48.5), and no later frames show discharge, the event is limited to 48.0–48.5 where aiming is unambiguous. No explosion or sustained fire is visible, but the posture and context meet the minimal requirement for 'Shooting' (visible shooting action, not just possession).",
+              "evidence_frame_ids": [
+                "f13",
+                "f14"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          8,
+          9
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 48.5,
+              "f1": 49.0,
+              "f2": 49.5,
+              "f3": 50.0,
+              "f4": 50.5,
+              "f5": 51.0,
+              "f6": 51.5,
+              "f7": 52.0,
+              "f8": 52.5,
+              "f9": 53.0,
+              "f10": 53.5,
+              "f11": 54.0,
+              "f12": 54.5,
+              "f13": 55.0,
+              "f14": 55.5,
+              "f15": 56.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 8,
+                "t_start": 50.3,
+                "t_end": 51.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 9,
+                "t_start": 52.5,
+                "t_end": 54.9,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [9],\n      \"category\": \"Explosion\",\n      \"t_start\": 52.5,\n      \"t_end\": 54.0,\n      \"confidence\": 0.95,\n      \"description\": \"A violent water/liquid eruption from a central point in a confined chamber, with high-velocity spray and debris displacement, consistent with a sudden pressure release or explosive discharge.\",\n      \"reason\": \"Frames f8–f11 show a rapidly expanding plume of liquid and particulate matter, with radial splash patterns and motion blur indicating high-energy release; no fire or smoke, but the dynamics match a hydraulic explosion (e.g., burst pipe or pressurized tank failure), satisfying the 'Explosion' definition as a blast event.\",\n      \"evidence_frame_ids\": [\"f8\", \"f9\", \"f10\", \"f11\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 8,\n      \"reason\": \"Frames f3–f6 show silhouetted figures raising arms in a narrow tunnel, possibly reacting to light or falling debris; no mutual physical contact, aggression, or combat is visible—consistent with panic or evasion, not Fighting.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                9
+              ],
+              "category": "Explosion",
+              "t_start": 52.5,
+              "t_end": 54.0,
+              "confidence": 0.95,
+              "description": "A violent water/liquid eruption from a central point in a confined chamber, with high-velocity spray and debris displacement, consistent with a sudden pressure release or explosive discharge.",
+              "reason": "Frames f8–f11 show a rapidly expanding plume of liquid and particulate matter, with radial splash patterns and motion blur indicating high-energy release; no fire or smoke, but the dynamics match a hydraulic explosion (e.g., burst pipe or pressurized tank failure), satisfying the 'Explosion' definition as a blast event.",
+              "evidence_frame_ids": [
+                "f8",
+                "f9",
+                "f10",
+                "f11"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 8,
+              "reason": "Frames f3–f6 show silhouetted figures raising arms in a narrow tunnel, possibly reacting to light or falling debris; no mutual physical contact, aggression, or combat is visible—consistent with panic or evasion, not Fighting.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

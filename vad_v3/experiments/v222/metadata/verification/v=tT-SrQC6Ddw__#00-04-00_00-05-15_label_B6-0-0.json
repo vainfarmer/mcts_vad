@@ -1,0 +1,246 @@
+{
+  "events": [
+    {
+      "t_start": 62.0,
+      "t_end": 63.5,
+      "anomaly_type": "CarAccident",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A white truck in the middle lane veers sharply left, colliding with or sideswiping a red container truck ahead and to its right, causing visible spray and lateral displacement of the red truck.",
+      "source_candidate_ids": [
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          62.0,
+          62.5,
+          63.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "From f4 (62.0s) to f6 (63.0s), the white truck’s trailer swings left into the path of the red truck; by f5–f6, the red truck is visibly pushed sideways and sprays water, consistent with impact. The motion is abrupt and non-navigational, indicating a collision rather than normal lane change.",
+        "source_categories": [
+          "CarAccident"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 3,
+      "output_count": 1,
+      "groups": 3,
+      "rejected": 2,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 3.5,
+              "f1": 4.0,
+              "f2": 4.5,
+              "f3": 5.0,
+              "f4": 5.5,
+              "f5": 6.0,
+              "f6": 6.5,
+              "f7": 7.0,
+              "f8": 7.5,
+              "f9": 8.0,
+              "f10": 8.5,
+              "f11": 9.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 5.5,
+                "t_end": 7.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"The silver van maneuvers around the cyclist without contact; no collision or damage is visible at any frame (f4–f8). The van’s path is controlled and avoids the cyclist, indicating ordinary driving, not a car accident.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 0,
+              "reason": "The silver van maneuvers around the cyclist without contact; no collision or damage is visible at any frame (f4–f8). The van’s path is controlled and avoids the cyclist, indicating ordinary driving, not a car accident.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 26.0,
+              "f1": 26.5,
+              "f2": 27.0,
+              "f3": 27.5,
+              "f4": 28.0,
+              "f5": 28.5,
+              "f6": 29.0,
+              "f7": 29.5,
+              "f8": 30.0,
+              "f9": 30.5,
+              "f10": 31.0,
+              "f11": 31.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 28.0,
+                "t_end": 30.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"CarAccident\",\n      \"t_start\": 26.0,\n      \"t_end\": 30.0,\n      \"confidence\": 0.9,\n      \"description\": \"A man in a high-visibility vest kneels beside a silver sedan, appears to place or adjust a wheel clamp or tow bar under the front wheel (f0–f3), then stands and walks away as a white tow truck approaches and positions itself behind the car (f4–f7); the car shows no visible damage but is being prepared for towing, suggesting it was involved in an incident requiring immobilization.\",\n      \"reason\": \"The sequence shows deliberate immobilization (clamping/towing setup) of a stationary vehicle by authorized personnel; no crash is visible, but the context (tow truck arrival, clamp placement) strongly implies a prior accident or violation leading to impound—consistent with 'CarAccident' as defined (requires a crash, but here the crash is not shown; however, the candidate explicitly hypothesizes CarAccident at t=28–30, and f6–f7 show the tow truck engaging the car, which only occurs after an accident or illegal parking; yet per strict definition, 'CarAccident requires a crash, not ordinary driving' — and no crash is visible in any frame. Re-evaluation: since no collision, skid marks, or damage are visible, and the car is parked normally, this may be a routine tow (e.g., illegal parking), not a CarAccident. Therefore, the candidate is unsupported. Correction: reject.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"No visible crash, impact damage, skid marks, or post-collision debris; the silver car appears undamaged and parked normally; the man’s actions (placing a device under wheel, then walking away) and arrival of a tow truck are consistent with a routine vehicle removal (e.g., illegal parking), not a CarAccident as strictly defined (requires a crash).\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 26.0,
+              "f1": 26.5,
+              "f2": 27.0,
+              "f3": 27.5,
+              "f4": 28.0,
+              "f5": 28.5,
+              "f6": 29.0,
+              "f7": 29.5,
+              "f8": 30.0,
+              "f9": 30.5,
+              "f10": 31.0,
+              "f11": 31.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 28.0,
+                "t_end": 30.0,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"No visible crash, impact damage, deformation, skid marks, or post-collision debris in any frame; the silver sedan is stationary and appears undamaged; the man’s actions (kneeling, placing a device under the front wheel, then standing) and the subsequent arrival/positioning of a tow truck are consistent with routine vehicle immobilization and towing (e.g., for illegal parking), not a CarAccident as strictly defined (which requires a crash).\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "No visible crash, impact damage, deformation, skid marks, or post-collision debris in any frame; the silver sedan is stationary and appears undamaged; the man’s actions (kneeling, placing a device under the front wheel, then standing) and the subsequent arrival/positioning of a tow truck are consistent with routine vehicle immobilization and towing (e.g., for illegal parking), not a CarAccident as strictly defined (which requires a crash).",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 60.0,
+              "f1": 60.5,
+              "f2": 61.0,
+              "f3": 61.5,
+              "f4": 62.0,
+              "f5": 62.5,
+              "f6": 63.0,
+              "f7": 63.5,
+              "f8": 64.0,
+              "f9": 64.5,
+              "f10": 65.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 62.0,
+                "t_end": 63.5,
+                "unverified_category": "CarAccident"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"CarAccident\",\n      \"t_start\": 62.0,\n      \"t_end\": 63.5,\n      \"confidence\": 0.95,\n      \"description\": \"A white truck in the middle lane veers sharply left, colliding with or sideswiping a red container truck ahead and to its right, causing visible spray and lateral displacement of the red truck.\",\n      \"reason\": \"From f4 (62.0s) to f6 (63.0s), the white truck’s trailer swings left into the path of the red truck; by f5–f6, the red truck is visibly pushed sideways and sprays water, consistent with impact. The motion is abrupt and non-navigational, indicating a collision rather than normal lane change.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                2
+              ],
+              "category": "CarAccident",
+              "t_start": 62.0,
+              "t_end": 63.5,
+              "confidence": 0.95,
+              "description": "A white truck in the middle lane veers sharply left, colliding with or sideswiping a red container truck ahead and to its right, causing visible spray and lateral displacement of the red truck.",
+              "reason": "From f4 (62.0s) to f6 (63.0s), the white truck’s trailer swings left into the path of the red truck; by f5–f6, the red truck is visibly pushed sideways and sprays water, consistent with impact. The motion is abrupt and non-navigational, indicating a collision rather than normal lane change.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

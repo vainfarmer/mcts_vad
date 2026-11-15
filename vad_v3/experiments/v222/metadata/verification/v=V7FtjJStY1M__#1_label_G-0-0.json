@@ -1,0 +1,251 @@
+{
+  "events": [
+    {
+      "t_start": 4.0,
+      "t_end": 8.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A sudden bright flash at f4 (4.0 s) rapidly expands into a fireball with outward-propagating sparks and debris through f10 (7.0 s), peaking around f8–f9 (6.0–6.5 s), then begins to decay by f11 (7.5 s); the rapid onset, symmetric expansion, and ejection of incandescent fragments are consistent with a single explosive blast.",
+      "source_candidate_ids": [
+        0,
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          4.0,
+          4.5,
+          5.0,
+          5.5,
+          6.0,
+          6.5,
+          7.0,
+          7.5,
+          8.0,
+          8.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13"
+        ],
+        "reason": "Frames f4–f10 show the classic progression of an explosion: instantaneous ignition (f4), fireball growth (f5–f7), peak with radial spark ejection (f8–f10). Candidate 0 (4.0–8.5) and candidate 1 (7.0–9.5) both overlap this core phase; however, f11 onward shows diminishing embers without new blast dynamics, so t_end is capped at 8.5 s (f13) to stay within clear explosive behavior—f13 (8.5 s) still shows active spark dispersion, while f14 (9.0 s) is already transitioning to residual plume. Candidates 2 and 3 extend beyond observable blast effects and are not supported as separate explosions.",
+        "source_categories": [
+          "Explosion",
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 4,
+      "output_count": 1,
+      "groups": 1,
+      "rejected": 2,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 2.0,
+              "f1": 2.5,
+              "f2": 3.0,
+              "f3": 3.5,
+              "f4": 4.0,
+              "f5": 4.5,
+              "f6": 5.0,
+              "f7": 5.5,
+              "f8": 6.0,
+              "f9": 6.5,
+              "f10": 7.0,
+              "f11": 7.5,
+              "f12": 8.0,
+              "f13": 8.5,
+              "f14": 9.0,
+              "f15": 9.5,
+              "f16": 10.0,
+              "f17": 10.5,
+              "f18": 11.0,
+              "f19": 11.5,
+              "f20": 12.0,
+              "f21": 12.5,
+              "f22": 13.0,
+              "f23": 14.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 4.0,
+                "t_end": 8.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 7.0,
+                "t_end": 9.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 8.5,
+                "t_end": 11.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 9.5,
+                "t_end": 14.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1, 2, 3],\n      \"category\": \"Explosion\",\n      \"t_start\": 4.0,\n      \"t_end\": 9.5,\n      \"confidence\": 0.95,\n      \"description\": \"A sudden, intense bright flash at ~4.0 s rapidly expands into a fireball with outward-propagating sparks and debris (f4–f10), followed by a decaying plume of glowing embers and smoke (f11–f14); the rapid onset, symmetric expansion, and ejection of incandescent fragments are characteristic of a high-energy explosion.\",\n      \"reason\": \"The event begins with a near-instantaneous luminous surge (f4–f5), peaks with a spherical fireball and radial spark ejection (f6–f10), then transitions to a rising, turbulent plume (f11–f14)—consistent with a single explosive event rather than sustained fire or combustion. All candidate intervals overlap this core sequence; later frames (f15–f23) show only residual glow and smoke, not a new explosion.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"Frames f15–f23 (9.5–14.5 s) show only fading embers and smoke without new blast dynamics; the candidate’s interval extends beyond the observable explosion phase, but the core explosion is already captured in the merged event. Since the hypothesis ‘Explosion’ for t=9.5–14.5 lacks evidence of a *new* explosion, it is subsumed and not independently valid.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 2.0,
+              "f1": 2.5,
+              "f2": 3.0,
+              "f3": 3.5,
+              "f4": 4.0,
+              "f5": 4.5,
+              "f6": 5.0,
+              "f7": 5.5,
+              "f8": 6.0,
+              "f9": 6.5,
+              "f10": 7.0,
+              "f11": 7.5,
+              "f12": 8.0,
+              "f13": 8.5,
+              "f14": 9.0,
+              "f15": 9.5,
+              "f16": 10.0,
+              "f17": 10.5,
+              "f18": 11.0,
+              "f19": 11.5,
+              "f20": 12.0,
+              "f21": 12.5,
+              "f22": 13.0,
+              "f23": 14.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 4.0,
+                "t_end": 8.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 7.0,
+                "t_end": 9.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 8.5,
+                "t_end": 11.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 9.5,
+                "t_end": 14.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Explosion\",\n      \"t_start\": 4.0,\n      \"t_end\": 8.5,\n      \"confidence\": 0.9,\n      \"description\": \"A sudden bright flash at f4 (4.0 s) rapidly expands into a fireball with outward-propagating sparks and debris through f10 (7.0 s), peaking around f8–f9 (6.0–6.5 s), then begins to decay by f11 (7.5 s); the rapid onset, symmetric expansion, and ejection of incandescent fragments are consistent with a single explosive blast.\",\n      \"reason\": \"Frames f4–f10 show the classic progression of an explosion: instantaneous ignition (f4), fireball growth (f5–f7), peak with radial spark ejection (f8–f10). Candidate 0 (4.0–8.5) and candidate 1 (7.0–9.5) both overlap this core phase; however, f11 onward shows diminishing embers without new blast dynamics, so t_end is capped at 8.5 s (f13) to stay within clear explosive behavior—f13 (8.5 s) still shows active spark dispersion, while f14 (9.0 s) is already transitioning to residual plume. Candidates 2 and 3 extend beyond observable blast effects and are not supported as separate explosions.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Frames f14–f19 (9.0–11.5 s) show only a fading, rising plume of glowing embers and smoke without any new blast wave, rapid expansion, or ejection of debris—insufficient for 'Explosion'; this is post-detonation decay, not a distinct explosive event.\",\n      \"evidence_frame_ids\": [\"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\"]\n    },\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"Frames f15–f23 (9.5–14.5 s) depict only dim, slow-decaying glow and smoke with no evidence of a blast; the hypothesis of an explosion in this interval contradicts visible evidence of residual combustion only.\",\n      \"evidence_frame_ids\": [\"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\", \"f23\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1
+              ],
+              "category": "Explosion",
+              "t_start": 4.0,
+              "t_end": 8.5,
+              "confidence": 0.9,
+              "description": "A sudden bright flash at f4 (4.0 s) rapidly expands into a fireball with outward-propagating sparks and debris through f10 (7.0 s), peaking around f8–f9 (6.0–6.5 s), then begins to decay by f11 (7.5 s); the rapid onset, symmetric expansion, and ejection of incandescent fragments are consistent with a single explosive blast.",
+              "reason": "Frames f4–f10 show the classic progression of an explosion: instantaneous ignition (f4), fireball growth (f5–f7), peak with radial spark ejection (f8–f10). Candidate 0 (4.0–8.5) and candidate 1 (7.0–9.5) both overlap this core phase; however, f11 onward shows diminishing embers without new blast dynamics, so t_end is capped at 8.5 s (f13) to stay within clear explosive behavior—f13 (8.5 s) still shows active spark dispersion, while f14 (9.0 s) is already transitioning to residual plume. Candidates 2 and 3 extend beyond observable blast effects and are not supported as separate explosions.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "Frames f14–f19 (9.0–11.5 s) show only a fading, rising plume of glowing embers and smoke without any new blast wave, rapid expansion, or ejection of debris—insufficient for 'Explosion'; this is post-detonation decay, not a distinct explosive event.",
+              "evidence_frame_ids": [
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19"
+              ]
+            },
+            {
+              "candidate_id": 3,
+              "reason": "Frames f15–f23 (9.5–14.5 s) depict only dim, slow-decaying glow and smoke with no evidence of a blast; the hypothesis of an explosion in this interval contradicts visible evidence of residual combustion only.",
+              "evidence_frame_ids": [
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22",
+                "f23"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

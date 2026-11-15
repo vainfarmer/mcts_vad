@@ -1,0 +1,255 @@
+{
+  "events": [
+    {
+      "t_start": 1.3,
+      "t_end": 11.1,
+      "anomaly_type": "Abuse",
+      "confidence": 0.8,
+      "coarse_score": 0.8,
+      "description": "A person in dark clothing repeatedly strikes and restrains a distressed woman on the floor and against furniture; she is seen with hands to head, screaming, and lying motionless while being handled aggressively.",
+      "source_candidate_ids": [
+        0,
+        1,
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.8,
+        "evidence_times": [
+          1.5,
+          2.0,
+          2.5,
+          3.0,
+          3.5,
+          4.5,
+          5.5,
+          6.0,
+          6.5,
+          7.0,
+          7.5,
+          9.0,
+          9.5,
+          10.0,
+          11.0,
+          11.5,
+          12.0
+        ],
+        "evidence_frame_ids": [
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f16",
+          "f17",
+          "f18",
+          "f20",
+          "f21",
+          "f22"
+        ],
+        "reason": "Frames f3–f4 show a broken photo frame (suggesting prior impact); f5–f8, f11–f12, f17–f18 show aggressive physical contact by a dominant figure over a passive/vulnerable person; f10, f13–f14, f16, f20–f22 show the woman’s pained/distressed expressions and defensive postures without reciprocal action—consistent with abuse, not mutual fighting. The sequence spans multiple intervals and merges candidates into one continuous abusive episode.",
+        "source_categories": [
+          "Abuse",
+          "Fighting",
+          "Abuse"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 5,
+      "output_count": 1,
+      "groups": 2,
+      "rejected": 2,
+      "uncertain": 0,
+      "merged_sources": 2,
+      "relabeled": 1,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.5,
+              "f9": 5.0,
+              "f10": 5.5,
+              "f11": 6.0,
+              "f12": 6.5,
+              "f13": 7.0,
+              "f14": 7.5,
+              "f15": 8.0,
+              "f16": 9.0,
+              "f17": 9.5,
+              "f18": 10.0,
+              "f19": 10.5,
+              "f20": 11.0,
+              "f21": 11.5,
+              "f22": 12.0,
+              "f23": 13.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 1.3,
+                "t_end": 8.5,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 5.5,
+                "t_end": 7.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 9.5,
+                "t_end": 11.1,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1, 2],\n      \"category\": \"Abuse\",\n      \"t_start\": 1.3,\n      \"t_end\": 11.1,\n      \"confidence\": 0.8,\n      \"description\": \"A person in dark clothing repeatedly strikes and restrains a distressed woman on the floor and against furniture; she is seen with hands to head, screaming, and lying motionless while being handled aggressively.\",\n      \"reason\": \"Frames f3–f4 show a broken photo frame (suggesting prior impact); f5–f8, f11–f12, f17–f18 show aggressive physical contact by a dominant figure over a passive/vulnerable person; f10, f13–f14, f16, f20–f22 show the woman’s pained/distressed expressions and defensive postures without reciprocal action—consistent with abuse, not mutual fighting. The sequence spans multiple intervals and merges candidates into one continuous abusive episode.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f16\", \"f17\", \"f18\", \"f20\", \"f21\", \"f22\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1,
+                2
+              ],
+              "category": "Abuse",
+              "t_start": 1.3,
+              "t_end": 11.1,
+              "confidence": 0.8,
+              "description": "A person in dark clothing repeatedly strikes and restrains a distressed woman on the floor and against furniture; she is seen with hands to head, screaming, and lying motionless while being handled aggressively.",
+              "reason": "Frames f3–f4 show a broken photo frame (suggesting prior impact); f5–f8, f11–f12, f17–f18 show aggressive physical contact by a dominant figure over a passive/vulnerable person; f10, f13–f14, f16, f20–f22 show the woman’s pained/distressed expressions and defensive postures without reciprocal action—consistent with abuse, not mutual fighting. The sequence spans multiple intervals and merges candidates into one continuous abusive episode.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f16",
+                "f17",
+                "f18",
+                "f20",
+                "f21",
+                "f22"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          3,
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 10.5,
+              "f1": 11.0,
+              "f2": 11.5,
+              "f3": 12.0,
+              "f4": 12.5,
+              "f5": 13.0,
+              "f6": 13.5,
+              "f7": 14.0,
+              "f8": 14.5,
+              "f9": 15.0,
+              "f10": 15.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 12.4,
+                "t_end": 14.0,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 4,
+                "t_start": 12.5,
+                "t_end": 14.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"No mutual physical combat is visible; images show a person lying down with facial expressions of distress and partial occlusion, but no reciprocal engagement or striking motion.\",\n      \"evidence_frame_ids\": [\"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    },\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"While the person appears distressed (e.g., f2, f8), there is no clear evidence of intentional aggression against a helpless victim; the contact could be consensual, medical, or accidental (e.g., f8 shows an arm around torso, not clearly forceful).\",\n      \"evidence_frame_ids\": [\"f2\", \"f4\", \"f8\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 3,
+              "reason": "No mutual physical combat is visible; images show a person lying down with facial expressions of distress and partial occlusion, but no reciprocal engagement or striking motion.",
+              "evidence_frame_ids": [
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            },
+            {
+              "candidate_id": 4,
+              "reason": "While the person appears distressed (e.g., f2, f8), there is no clear evidence of intentional aggression against a helpless victim; the contact could be consensual, medical, or accidental (e.g., f8 shows an arm around torso, not clearly forceful).",
+              "evidence_frame_ids": [
+                "f2",
+                "f4",
+                "f8"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

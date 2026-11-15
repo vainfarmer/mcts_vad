@@ -1,0 +1,745 @@
+{
+  "events": [
+    {
+      "t_start": 6.5,
+      "t_end": 10.0,
+      "anomaly_type": "Riot",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "Large crowd of people in yellow vests and police in riot gear are engaged in chaotic street confrontation with heavy smoke (likely tear gas) obscuring the scene; individuals are moving rapidly, some raising arms, and police lines are advancing or holding position.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          6.5,
+          7.0,
+          7.5,
+          8.0,
+          8.5,
+          9.0,
+          9.5,
+          10.0
+        ],
+        "evidence_frame_ids": [
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18",
+          "f19",
+          "f20"
+        ],
+        "reason": "Images f13–f20 show widespread smoke, dispersed crowd, and coordinated police presence consistent with collective violent unrest (riot), not merely protest or isolated incidents. The scale, smoke, and movement exceed normal demonstration behavior.",
+        "source_categories": [
+          "Riot"
+        ]
+      }
+    },
+    {
+      "t_start": 65.1,
+      "t_end": 68.1,
+      "anomaly_type": "Abuse",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A person lies on the ground with exposed torso showing a large bruise; others kneel beside them, one holding a mask near their face, suggesting restraint or forceful handling.",
+      "source_candidate_ids": [
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          64.5,
+          65.0,
+          65.5,
+          66.0,
+          66.5,
+          67.0,
+          67.5,
+          68.0,
+          68.5
+        ],
+        "evidence_frame_ids": [
+          "f2",
+          "f3",
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10"
+        ],
+        "reason": "The visible bruise on the abdomen, combined with the person being supine while others actively hold their clothing/mask and surround them without apparent medical equipment (e.g., no stretcher, no clear triage), supports non-consensual physical control consistent with abuse rather than consensual aid or accident aftermath. The scene lacks emergency responder insignia beyond ambiguous vests; the red backpack is not clearly medical. Frames f2–f10 show sustained close contact and exposure of injury without intervention that would indicate standard first aid.",
+        "source_categories": [
+          "Abuse"
+        ]
+      }
+    },
+    {
+      "t_start": 100.0,
+      "t_end": 105.0,
+      "anomaly_type": "Riot",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A large crowd of people wearing yellow vests is gathered on a city street with smoke rising, police presence, and some individuals running or moving abruptly; one person holds a French flag amid haze.",
+      "source_candidate_ids": [
+        5
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 4,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          100.0,
+          100.5,
+          101.0,
+          101.5,
+          102.0,
+          102.5,
+          103.0,
+          103.5,
+          104.0,
+          104.5,
+          105.0
+        ],
+        "evidence_frame_ids": [
+          "f11",
+          "f12",
+          "f13",
+          "f14",
+          "f15",
+          "f16",
+          "f17",
+          "f18",
+          "f19",
+          "f20",
+          "f21"
+        ],
+        "reason": "The scene (f11–f21) shows collective unrest: dense crowd in yellow vests, smoke (likely from tear gas), police lines, and chaotic movement consistent with a riot; the candidate’s interval (100.5–105.0) falls within this visible event, and f11–f16 show the broader confrontation while f17–f21 focus on a protester with a flag amid smoke—still part of the same ongoing public disorder.",
+        "source_categories": [
+          "Riot"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 6,
+      "output_count": 3,
+      "groups": 5,
+      "rejected": 3,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 2,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0,
+              "f9": 4.5,
+              "f10": 5.0,
+              "f11": 5.5,
+              "f12": 6.0,
+              "f13": 6.5,
+              "f14": 7.0,
+              "f15": 7.5,
+              "f16": 8.0,
+              "f17": 8.5,
+              "f18": 9.0,
+              "f19": 9.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 0.0,
+                "t_end": 8.0,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 3.7,
+                "t_end": 4.7,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Riot\",\n      \"t_start\": 6.5,\n      \"t_end\": 10.0,\n      \"confidence\": 0.8,\n      \"description\": \"Large crowd of people in yellow vests and police in riot gear are engaged in chaotic street confrontation with heavy smoke (likely tear gas) filling the scene; individuals are moving rapidly, some raising arms, and police lines are advancing/retreating.\",\n      \"reason\": \"The sustained presence of dense smoke, large opposing groups, coordinated police formation, and disordered movement across multiple frames (f13–f19) meets the definition of collective violent unrest (riot), distinct from mere protest or isolated conflict.\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Frames f8–f9 show a woman in a yellow vest being physically guided or restrained by two officers, but no clear aggression toward a helpless victim is visible; the interaction appears controlled and nonviolent (e.g., escorting, not striking or subduing), insufficient for 'Abuse'.\",\n      \"evidence_frame_ids\": [\"f8\", \"f9\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Frames f0–f6 show police holding weapons and forming lines, but no active violence or collective unrest yet; the early segment (0.0–6.0) lacks evidence of riot—only preparation or standoff—so only the later segment (6.5–10.0) is confirmed as riot.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0,
+              "f9": 4.5,
+              "f10": 5.0,
+              "f11": 5.5,
+              "f12": 6.0,
+              "f13": 6.5,
+              "f14": 7.0,
+              "f15": 7.5,
+              "f16": 8.0,
+              "f17": 8.5,
+              "f18": 9.0,
+              "f19": 9.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 0.0,
+                "t_end": 8.0,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 3.7,
+                "t_end": 4.7,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Riot\",\n      \"t_start\": 6.5,\n      \"t_end\": 10.0,\n      \"confidence\": 0.8,\n      \"description\": \"Large groups of people in yellow vests and police in riot gear are engaged in chaotic street confrontation with dense smoke (likely tear gas) filling the scene; individuals scatter, raise arms, and police lines move dynamically across the street.\",\n      \"reason\": \"Frames f13–f19 show sustained collective unrest: opposing mass formations, rapid disordered movement, deployment of irritant agents (smoke), and absence of peaceful resolution—meeting the definition of riot as collective violent unrest, not mere protest or standoff.\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"In frames f8–f9, a woman in a yellow vest is physically guided by two officers, but no aggression toward a helpless victim is visible; her posture remains upright, she is not restrained on the ground or struck, and the interaction resembles controlled escorting—not abuse.\",\n      \"evidence_frame_ids\": [\"f8\", \"f9\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"Frames f0–f6 depict police in formation holding shields and weapons behind barriers, and a woman interacting with officers, but no active violence, collective attack, or destruction occurs; this constitutes a tense standoff, not riot, so the candidate’s full interval (0.0–8.0) is unsupported—only the later segment (6.5–10.0) qualifies as riot.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0,
+              "f9": 4.5,
+              "f10": 5.0,
+              "f11": 5.5,
+              "f12": 6.0,
+              "f13": 6.5,
+              "f14": 7.0,
+              "f15": 7.5,
+              "f16": 8.0,
+              "f17": 8.5,
+              "f18": 9.0,
+              "f19": 9.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 0.0,
+                "t_end": 8.0,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 3.7,
+                "t_end": 4.7,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Riot\",\n      \"t_start\": 6.5,\n      \"t_end\": 9.5,\n      \"confidence\": 0.8,\n      \"description\": \"Large groups of people in yellow vests and police in riot gear are engaged in chaotic street confrontation with dense smoke (likely tear gas) filling the scene; individuals scatter, raise arms, and police lines move dynamically across the street.\",\n      \"reason\": \"Frames f13–f19 show sustained collective violent unrest: opposing mass formations, rapid disordered movement, deployment of irritant agents (smoke), and absence of peaceful resolution—meeting the definition of riot as collective violent unrest, not mere protest or standoff. The event ends at 9.5 s (f19), as no later frames are provided.\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"In frames f8–f9, a woman in a yellow vest is physically guided by officers, but she remains upright, not subdued or struck; no aggression toward a helpless victim is visible—insufficient for 'Abuse'.\",\n      \"evidence_frame_ids\": [\"f8\", \"f9\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 0,\n      \"reason\": \"The candidate claims riot from 0.0–8.0 s, but frames f0–f12 show only police formation, weapon holding, and controlled interaction (e.g., f6–f9), without collective violent unrest; thus the early portion (0.0–6.0 s) lacks evidence for riot and is unsupported.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 0.0,
+              "f1": 0.5,
+              "f2": 1.0,
+              "f3": 1.5,
+              "f4": 2.0,
+              "f5": 2.5,
+              "f6": 3.0,
+              "f7": 3.5,
+              "f8": 4.0,
+              "f9": 4.5,
+              "f10": 5.0,
+              "f11": 5.5,
+              "f12": 6.0,
+              "f13": 6.5,
+              "f14": 7.0,
+              "f15": 7.5,
+              "f16": 8.0,
+              "f17": 8.5,
+              "f18": 9.0,
+              "f19": 9.5,
+              "f20": 10.0,
+              "f21": 10.5,
+              "f22": 11.0,
+              "f23": 11.5,
+              "f24": 12.0,
+              "f25": 12.5,
+              "f26": 13.0,
+              "f27": 13.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 0.0,
+                "t_end": 8.0,
+                "unverified_category": "Riot"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 3.7,
+                "t_end": 4.7,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Riot\",\n      \"t_start\": 6.5,\n      \"t_end\": 10.0,\n      \"confidence\": 0.9,\n      \"description\": \"Large crowd of people in yellow vests and police in riot gear are engaged in chaotic street confrontation with heavy smoke (likely tear gas) obscuring the scene; individuals are moving rapidly, some raising arms, and police lines are advancing or holding position.\",\n      \"reason\": \"Images f13–f20 show widespread smoke, dispersed crowd, and coordinated police presence consistent with collective violent unrest (riot), not merely protest or isolated incidents. The scale, smoke, and movement exceed normal demonstration behavior.\",\n      \"evidence_frame_ids\": [\"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 1,\n      \"reason\": \"Frames f7–f9 show a woman in a yellow vest being physically guided or restrained by two officers, but no clear evidence of abuse (e.g., excessive force, targeting a helpless victim); the interaction appears to be a standard arrest or removal during crowd control, not abuse as defined.\",\n      \"evidence_frame_ids\": [\"f7\", \"f8\", \"f9\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Riot",
+              "t_start": 6.5,
+              "t_end": 10.0,
+              "confidence": 0.9,
+              "description": "Large crowd of people in yellow vests and police in riot gear are engaged in chaotic street confrontation with heavy smoke (likely tear gas) obscuring the scene; individuals are moving rapidly, some raising arms, and police lines are advancing or holding position.",
+              "reason": "Images f13–f20 show widespread smoke, dispersed crowd, and coordinated police presence consistent with collective violent unrest (riot), not merely protest or isolated incidents. The scale, smoke, and movement exceed normal demonstration behavior.",
+              "evidence_frame_ids": [
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 1,
+              "reason": "Frames f7–f9 show a woman in a yellow vest being physically guided or restrained by two officers, but no clear evidence of abuse (e.g., excessive force, targeting a helpless victim); the interaction appears to be a standard arrest or removal during crowd control, not abuse as defined.",
+              "evidence_frame_ids": [
+                "f7",
+                "f8",
+                "f9"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": true
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 52.5,
+              "f1": 53.0,
+              "f2": 53.5,
+              "f3": 54.0,
+              "f4": 54.5,
+              "f5": 55.0,
+              "f6": 55.5,
+              "f7": 56.0,
+              "f8": 56.5,
+              "f9": 57.0,
+              "f10": 57.5,
+              "f11": 58.0,
+              "f12": 58.5,
+              "f13": 59.0,
+              "f14": 59.5,
+              "f15": 60.0,
+              "f16": 60.5,
+              "f17": 61.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 54.5,
+                "t_end": 59.5,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"Riot\",\n      \"t_start\": 54.0,\n      \"t_end\": 58.5,\n      \"confidence\": 0.7,\n      \"description\": \"A dense crowd of people wearing yellow vests raises arms in unison against a graffitied wall, with some individuals wearing gas masks and helmets; movement suggests coordinated protest action but no overt violence is visible.\",\n      \"reason\": \"The collective raising of arms, presence of protective gear (helmets, masks), and graffiti (e.g., 'MACRON') indicate organized protest activity consistent with the Yellow Vests movement; however, no destruction, throwing, or physical assault is visible—so while the event fits the broader definition of riot as collective unrest (per instruction: 'Riot requires collective violent unrest, not just crowds or individual combat'), the visible evidence lacks *violent* unrest. Given the instructions require *violent* unrest for 'Riot', and only nonviolent posturing is seen, this should be rejected. Correction: confidence lowered to 0.3 — actually, per taxonomy strictness, this is *not* a riot without violence. Re-evaluate: no visible violence, so not 'Riot'. Therefore, this candidate must be rejected, not accepted.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"No visible violent unrest (e.g., property destruction, assault, throwing objects); participants are raising hands, some wearing protective gear, but actions appear nonviolent protest/posturing. The definition requires 'collective violent unrest', which is not evidenced.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\"]\n    }\n  ],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Frames f13–f17 show medics attending someone on ground, possibly injured, but cause unknown; could indicate prior violence, but no direct evidence of fighting, abuse, or rioting in those frames. Since candidate’s interval (54.5–59.5) overlaps both protest posture and medical response, and violence is not directly observed, classification remains uncertain if the medical event implies prior riot—but per instructions, we require visible violent unrest, not inference.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 52.5,
+              "f1": 53.0,
+              "f2": 53.5,
+              "f3": 54.0,
+              "f4": 54.5,
+              "f5": 55.0,
+              "f6": 55.5,
+              "f7": 56.0,
+              "f8": 56.5,
+              "f9": 57.0,
+              "f10": 57.5,
+              "f11": 58.0,
+              "f12": 58.5,
+              "f13": 59.0,
+              "f14": 59.5,
+              "f15": 60.0,
+              "f16": 60.5,
+              "f17": 61.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 54.5,
+                "t_end": 59.5,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"The frames from f3 to f12 show a crowd raising hands, some wearing helmets/gas masks and yellow vests, but no visible violent unrest (e.g., property destruction, assault, throwing objects, or coordinated aggression); the definition of 'Riot' explicitly requires *collective violent unrest*, which is absent. Frames f13–f17 show medics attending a person on the ground, but the cause is not visible and cannot be inferred as riot-related without direct evidence.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "The frames from f3 to f12 show a crowd raising hands, some wearing helmets/gas masks and yellow vests, but no visible violent unrest (e.g., property destruction, assault, throwing objects, or coordinated aggression); the definition of 'Riot' explicitly requires *collective violent unrest*, which is absent. Frames f13–f17 show medics attending a person on the ground, but the cause is not visible and cannot be inferred as riot-related without direct evidence.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 63.5,
+              "f1": 64.0,
+              "f2": 64.5,
+              "f3": 65.0,
+              "f4": 65.5,
+              "f5": 66.0,
+              "f6": 66.5,
+              "f7": 67.0,
+              "f8": 67.5,
+              "f9": 68.0,
+              "f10": 68.5,
+              "f11": 69.0,
+              "f12": 69.5,
+              "f13": 70.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 65.1,
+                "t_end": 68.1,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"Abuse\",\n      \"t_start\": 65.1,\n      \"t_end\": 68.1,\n      \"confidence\": 0.9,\n      \"description\": \"A person lies on the ground with exposed torso showing a large bruise; others kneel beside them, one holding a mask near their face, suggesting restraint or forceful handling.\",\n      \"reason\": \"The visible bruise on the abdomen, combined with the person being supine while others actively hold their clothing/mask and surround them without apparent medical equipment (e.g., no stretcher, no clear triage), supports non-consensual physical control consistent with abuse rather than consensual aid or accident aftermath. The scene lacks emergency responder insignia beyond ambiguous vests; the red backpack is not clearly medical. Frames f2–f10 show sustained close contact and exposure of injury without intervention that would indicate standard first aid.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                3
+              ],
+              "category": "Abuse",
+              "t_start": 65.1,
+              "t_end": 68.1,
+              "confidence": 0.9,
+              "description": "A person lies on the ground with exposed torso showing a large bruise; others kneel beside them, one holding a mask near their face, suggesting restraint or forceful handling.",
+              "reason": "The visible bruise on the abdomen, combined with the person being supine while others actively hold their clothing/mask and surround them without apparent medical equipment (e.g., no stretcher, no clear triage), supports non-consensual physical control consistent with abuse rather than consensual aid or accident aftermath. The scene lacks emergency responder insignia beyond ambiguous vests; the red backpack is not clearly medical. Frames f2–f10 show sustained close contact and exposure of injury without intervention that would indicate standard first aid.",
+              "evidence_frame_ids": [
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 93.0,
+              "f1": 93.5,
+              "f2": 94.0,
+              "f3": 94.5,
+              "f4": 95.0,
+              "f5": 95.5,
+              "f6": 96.0,
+              "f7": 96.5,
+              "f8": 97.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 95.0,
+                "t_end": 95.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"No visible discharge, recoil, muzzle flash, or projectile; the firearm is held steady with a red dot sight illuminated, consistent with aiming or demonstration, not shooting.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 4,
+              "reason": "No visible discharge, recoil, muzzle flash, or projectile; the firearm is held steady with a red dot sight illuminated, consistent with aiming or demonstration, not shooting.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 4,
+        "source_ids": [
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 98.5,
+              "f1": 99.0,
+              "f2": 99.5,
+              "f3": 100.0,
+              "f4": 100.5,
+              "f5": 101.0,
+              "f6": 101.5,
+              "f7": 102.0,
+              "f8": 102.5,
+              "f9": 103.0,
+              "f10": 103.5,
+              "f11": 104.0,
+              "f12": 104.5,
+              "f13": 105.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 5,
+                "t_start": 100.5,
+                "t_end": 105.0,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [5],\n      \"category\": \"Riot\",\n      \"t_start\": 100.0,\n      \"t_end\": 102.5,\n      \"confidence\": 0.8,\n      \"description\": \"Large crowd of people wearing yellow vests on a city street, with smoke rising in the background and police presence; individuals are moving rapidly but no clear mutual combat is visible.\",\n      \"reason\": \"The scene shows collective unrest with smoke (likely from tear gas or flares), dense crowd, and apparent confrontation with authorities—consistent with riot conditions per definition requiring collective violent unrest; though no overt violence is captured in frames, the context (yellow vests, smoke, dispersal behavior) supports 'Riot' over 'Normal'.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"Frames f9–f13 show a single person holding a French flag amid haze/smoke, not collective unrest; this portion of the candidate interval (103.0–105.0) lacks evidence of rioting and may be post-event or separate activity.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 98.5,
+              "f1": 99.0,
+              "f2": 99.5,
+              "f3": 100.0,
+              "f4": 100.5,
+              "f5": 101.0,
+              "f6": 101.5,
+              "f7": 102.0,
+              "f8": 102.5,
+              "f9": 103.0,
+              "f10": 103.5,
+              "f11": 104.0,
+              "f12": 104.5,
+              "f13": 105.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 5,
+                "t_start": 100.5,
+                "t_end": 105.0,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [5],\n      \"category\": \"Riot\",\n      \"t_start\": 100.0,\n      \"t_end\": 102.5,\n      \"confidence\": 0.7,\n      \"description\": \"Crowd of people in yellow vests on a city street with smoke plumes, police vehicles, and dispersal behavior; no individual fighting or weapons visible, but collective unrest with apparent confrontation.\",\n      \"reason\": \"Per definition, 'Riot' requires collective violent unrest—not merely crowds. The presence of dense crowd, smoke (likely tear gas), and coordinated movement away from a central point (e.g., f3–f8 showing people retreating while smoke rises) supports collective unrest; however, no overt violence is visible, so confidence is moderate. This interval (100.0–102.5) aligns with frames f3–f8 where the scene is consistent and shows the core event.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"Frames f9–f13 (103.0–105.0) show a single person holding a French flag amid haze, with no crowd, smoke, or signs of collective unrest—this portion of the candidate’s claimed interval (100.5–105.0) lacks evidence for 'Riot'; since the candidate spans both the unrest (f3–f8) and this isolated scene, and the definition requires collective violent unrest, the full candidate interval cannot be accepted as one event. The isolated flag scene is insufficient for any allowed category.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 98.5,
+              "f1": 99.0,
+              "f2": 99.5,
+              "f3": 100.0,
+              "f4": 100.5,
+              "f5": 101.0,
+              "f6": 101.5,
+              "f7": 102.0,
+              "f8": 102.5,
+              "f9": 103.0,
+              "f10": 103.5,
+              "f11": 104.0,
+              "f12": 104.5,
+              "f13": 105.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 5,
+                "t_start": 100.5,
+                "t_end": 105.0,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [5],\n      \"category\": \"Riot\",\n      \"t_start\": 100.0,\n      \"t_end\": 102.5,\n      \"confidence\": 0.7,\n      \"description\": \"Large crowd of people wearing yellow vests on a city street with rising smoke (likely tear gas), police presence, and rapid dispersal movements; no individual fighting or weapons visible.\",\n      \"reason\": \"The definition requires collective violent unrest—not just crowds—but the combination of dense crowd, smoke indicating force deployment, coordinated retreat, and apparent confrontation with authorities in frames f3–f8 satisfies the threshold for 'Riot' as a collective unrest event; visible behavior exceeds 'Normal' and aligns with documented protest escalation contexts.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"Frames f9–f13 (103.0–105.0) show a single person holding a French flag amid haze, with no crowd, no ongoing unrest, and no evidence of collective violence; this portion of the candidate’s claimed interval (100.5–105.0) cannot be classified as 'Riot' under the strict definition, and the isolated scene does not match any allowed category—thus the full candidate interval is not fully supported, warranting uncertainty for the later segment.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 94.5,
+              "f1": 95.0,
+              "f2": 95.5,
+              "f3": 96.0,
+              "f4": 96.5,
+              "f5": 97.0,
+              "f6": 97.5,
+              "f7": 98.0,
+              "f8": 98.5,
+              "f9": 99.0,
+              "f10": 99.5,
+              "f11": 100.0,
+              "f12": 100.5,
+              "f13": 101.0,
+              "f14": 101.5,
+              "f15": 102.0,
+              "f16": 102.5,
+              "f17": 103.0,
+              "f18": 103.5,
+              "f19": 104.0,
+              "f20": 104.5,
+              "f21": 105.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 5,
+                "t_start": 100.5,
+                "t_end": 105.0,
+                "unverified_category": "Riot"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [5],\n      \"category\": \"Riot\",\n      \"t_start\": 100.0,\n      \"t_end\": 105.0,\n      \"confidence\": 0.9,\n      \"description\": \"A large crowd of people wearing yellow vests is gathered on a city street with smoke rising, police presence, and some individuals running or moving abruptly; one person holds a French flag amid haze.\",\n      \"reason\": \"The scene (f11–f21) shows collective unrest: dense crowd in yellow vests, smoke (likely from tear gas), police lines, and chaotic movement consistent with a riot; the candidate’s interval (100.5–105.0) falls within this visible event, and f11–f16 show the broader confrontation while f17–f21 focus on a protester with a flag amid smoke—still part of the same ongoing public disorder.\",\n      \"evidence_frame_ids\": [\"f11\", \"f12\", \"f13\", \"f14\", \"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                5
+              ],
+              "category": "Riot",
+              "t_start": 100.0,
+              "t_end": 105.0,
+              "confidence": 0.9,
+              "description": "A large crowd of people wearing yellow vests is gathered on a city street with smoke rising, police presence, and some individuals running or moving abruptly; one person holds a French flag amid haze.",
+              "reason": "The scene (f11–f21) shows collective unrest: dense crowd in yellow vests, smoke (likely from tear gas), police lines, and chaotic movement consistent with a riot; the candidate’s interval (100.5–105.0) falls within this visible event, and f11–f16 show the broader confrontation while f17–f21 focus on a protester with a flag amid smoke—still part of the same ongoing public disorder.",
+              "evidence_frame_ids": [
+                "f11",
+                "f12",
+                "f13",
+                "f14",
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": true
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

@@ -1,0 +1,438 @@
+{
+  "events": [
+    {
+      "t_start": 24.5,
+      "t_end": 32.5,
+      "anomaly_type": "Abuse",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A person in black is kneeling over a supine individual on the floor, forcibly inserting a metallic tool (possibly a wrench or pipe) into the supine person’s mouth while holding their head and arms; the supine person appears restrained and unresisting.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          24.5,
+          25.0,
+          25.5,
+          27.5,
+          29.5,
+          30.0,
+          30.5,
+          32.5
+        ],
+        "evidence_frame_ids": [
+          "f2",
+          "f3",
+          "f4",
+          "f8",
+          "f12",
+          "f13",
+          "f14",
+          "f18"
+        ],
+        "reason": "The sustained physical control, lack of reciprocity, and coercive use of an object against a prone, non-fighting individual meet the definition of Abuse (aggression against a helpless victim). Frames f2–f4, f8, f12–f14, and f18 show clear restraint and forced insertion; f6–f7 and f11 show the aggressor’s focused, deliberate expression consistent with intentional harm, not medical aid or accident.",
+        "source_categories": [
+          "Abuse"
+        ]
+      }
+    },
+    {
+      "t_start": 36.0,
+      "t_end": 42.5,
+      "anomaly_type": "Abuse",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A man lies on his back while another person forces a metallic object into his mouth, causing liquid (likely blood or fluid) to spill over his face and chest; the victim appears restrained and unable to resist.",
+      "source_candidate_ids": [
+        1,
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          36.0,
+          36.5,
+          37.0,
+          38.0,
+          38.5,
+          39.0,
+          40.0,
+          40.5,
+          41.0,
+          41.5,
+          42.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11",
+          "f12",
+          "f13",
+          "f14"
+        ],
+        "reason": "Frames f4–f14 show a prone individual being subjected to a non-consensual, painful act by another person using a tool; the victim’s facial expression (f7–f10) and body position indicate helplessness, satisfying the definition of Abuse (aggression against a helpless victim). The two candidates overlap in time and depict the same continuous event, so they are merged.",
+        "source_categories": [
+          "Abuse",
+          "Abuse"
+        ]
+      }
+    },
+    {
+      "t_start": 43.5,
+      "t_end": 46.5,
+      "anomaly_type": "Fighting",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "Two men stand close; the foreground man grimaces and shifts posture as if reacting to impact or exertion, while the background man watches intently—suggesting active physical confrontation.",
+      "source_candidate_ids": [
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 1,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          43.0,
+          43.5,
+          44.5,
+          45.0,
+          45.5,
+          46.5
+        ],
+        "evidence_frame_ids": [
+          "f15",
+          "f16",
+          "f17",
+          "f18",
+          "f19",
+          "f20"
+        ],
+        "reason": "Frames f15–f20 show escalating tension and physical strain (grimacing, tensed muscles, dynamic posture change in f20), with no indication of restraint or one-sided victimization; this aligns with Fighting (mutual physical combat), distinct from the earlier Abuse event. The candidate interval matches visible action onset at f15–f16 and resolution at f20.",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 72.5,
+      "t_end": 74.5,
+      "anomaly_type": "Abuse",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A man in a light shirt is on the floor, initially kneeling (f6), then lying prone (f7–f10), while two men stand over him; one gestures aggressively and another watches, with no reciprocal action from the man on the ground.",
+      "source_candidate_ids": [
+        4,
+        5
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          72.5,
+          73.0,
+          73.5,
+          74.0,
+          74.5
+        ],
+        "evidence_frame_ids": [
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10"
+        ],
+        "reason": "The man on the floor shows no resistance or engagement; his posture (bent over, then collapsed) and lack of counter-movement indicate helplessness, satisfying Abuse (aggression against a helpless victim); Fighting requires mutual combat, which is absent. The event begins at f6 (72.5s) when he is first seen on the floor and ends by f10 (74.5s) when he remains motionless on the ground while others observe.",
+        "source_categories": [
+          "Abuse",
+          "Fighting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 6,
+      "output_count": 4,
+      "groups": 3,
+      "rejected": 0,
+      "uncertain": 0,
+      "merged_sources": 2,
+      "relabeled": 1,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 23.5,
+              "f1": 24.0,
+              "f2": 24.5,
+              "f3": 25.0,
+              "f4": 25.5,
+              "f5": 26.0,
+              "f6": 26.5,
+              "f7": 27.0,
+              "f8": 27.5,
+              "f9": 28.0,
+              "f10": 28.5,
+              "f11": 29.0,
+              "f12": 29.5,
+              "f13": 30.0,
+              "f14": 30.5,
+              "f15": 31.0,
+              "f16": 31.5,
+              "f17": 32.0,
+              "f18": 32.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 25.5,
+                "t_end": 31.0,
+                "unverified_category": "Abuse"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Abuse\",\n      \"t_start\": 24.5,\n      \"t_end\": 32.5,\n      \"confidence\": 0.95,\n      \"description\": \"A person in black is kneeling over a supine individual on the floor, forcibly inserting a metallic tool (possibly a wrench or pipe) into the supine person’s mouth while holding their head and arms; the supine person appears restrained and unresisting.\",\n      \"reason\": \"The sustained physical control, lack of reciprocity, and coercive use of an object against a prone, non-fighting individual meet the definition of Abuse (aggression against a helpless victim). Frames f2–f4, f8, f12–f14, and f18 show clear restraint and forced insertion; f6–f7 and f11 show the aggressor’s focused, deliberate expression consistent with intentional harm, not medical aid or accident.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f4\", \"f8\", \"f12\", \"f13\", \"f14\", \"f18\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Abuse",
+              "t_start": 24.5,
+              "t_end": 32.5,
+              "confidence": 0.95,
+              "description": "A person in black is kneeling over a supine individual on the floor, forcibly inserting a metallic tool (possibly a wrench or pipe) into the supine person’s mouth while holding their head and arms; the supine person appears restrained and unresisting.",
+              "reason": "The sustained physical control, lack of reciprocity, and coercive use of an object against a prone, non-fighting individual meet the definition of Abuse (aggression against a helpless victim). Frames f2–f4, f8, f12–f14, and f18 show clear restraint and forced insertion; f6–f7 and f11 show the aggressor’s focused, deliberate expression consistent with intentional harm, not medical aid or accident.",
+              "evidence_frame_ids": [
+                "f2",
+                "f3",
+                "f4",
+                "f8",
+                "f12",
+                "f13",
+                "f14",
+                "f18"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1,
+          2,
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 33.5,
+              "f1": 34.0,
+              "f2": 34.5,
+              "f3": 35.0,
+              "f4": 36.0,
+              "f5": 36.5,
+              "f6": 37.0,
+              "f7": 38.0,
+              "f8": 38.5,
+              "f9": 39.0,
+              "f10": 40.0,
+              "f11": 40.5,
+              "f12": 41.0,
+              "f13": 41.5,
+              "f14": 42.5,
+              "f15": 43.0,
+              "f16": 43.5,
+              "f17": 44.5,
+              "f18": 45.0,
+              "f19": 45.5,
+              "f20": 46.5,
+              "f21": 47.0,
+              "f22": 47.5,
+              "f23": 48.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 35.5,
+                "t_end": 42.4,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 40.5,
+                "t_end": 43.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 43.9,
+                "t_end": 46.6,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1, 2],\n      \"category\": \"Abuse\",\n      \"t_start\": 36.0,\n      \"t_end\": 42.5,\n      \"confidence\": 0.95,\n      \"description\": \"A man lies on his back while another person forces a metallic object into his mouth, causing liquid (likely blood or fluid) to spill over his face and chest; the victim appears restrained and unable to resist.\",\n      \"reason\": \"Frames f4–f14 show a prone individual being subjected to a non-consensual, painful act by another person using a tool; the victim’s facial expression (f7–f10) and body position indicate helplessness, satisfying the definition of Abuse (aggression against a helpless victim). The two candidates overlap in time and depict the same continuous event, so they are merged.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\", \"f13\", \"f14\"]\n    },\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"Fighting\",\n      \"t_start\": 43.5,\n      \"t_end\": 46.5,\n      \"confidence\": 0.85,\n      \"description\": \"Two men stand close; the foreground man grimaces and shifts posture as if reacting to impact or exertion, while the background man watches intently—suggesting active physical confrontation.\",\n      \"reason\": \"Frames f15–f20 show escalating tension and physical strain (grimacing, tensed muscles, dynamic posture change in f20), with no indication of restraint or one-sided victimization; this aligns with Fighting (mutual physical combat), distinct from the earlier Abuse event. The candidate interval matches visible action onset at f15–f16 and resolution at f20.\",\n      \"evidence_frame_ids\": [\"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1,
+                2
+              ],
+              "category": "Abuse",
+              "t_start": 36.0,
+              "t_end": 42.5,
+              "confidence": 0.95,
+              "description": "A man lies on his back while another person forces a metallic object into his mouth, causing liquid (likely blood or fluid) to spill over his face and chest; the victim appears restrained and unable to resist.",
+              "reason": "Frames f4–f14 show a prone individual being subjected to a non-consensual, painful act by another person using a tool; the victim’s facial expression (f7–f10) and body position indicate helplessness, satisfying the definition of Abuse (aggression against a helpless victim). The two candidates overlap in time and depict the same continuous event, so they are merged.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12",
+                "f13",
+                "f14"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                3
+              ],
+              "category": "Fighting",
+              "t_start": 43.5,
+              "t_end": 46.5,
+              "confidence": 0.85,
+              "description": "Two men stand close; the foreground man grimaces and shifts posture as if reacting to impact or exertion, while the background man watches intently—suggesting active physical confrontation.",
+              "reason": "Frames f15–f20 show escalating tension and physical strain (grimacing, tensed muscles, dynamic posture change in f20), with no indication of restraint or one-sided victimization; this aligns with Fighting (mutual physical combat), distinct from the earlier Abuse event. The candidate interval matches visible action onset at f15–f16 and resolution at f20.",
+              "evidence_frame_ids": [
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          4,
+          5
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 69.5,
+              "f1": 70.0,
+              "f2": 70.5,
+              "f3": 71.0,
+              "f4": 71.5,
+              "f5": 72.0,
+              "f6": 72.5,
+              "f7": 73.0,
+              "f8": 73.5,
+              "f9": 74.0,
+              "f10": 74.5,
+              "f11": 75.0,
+              "f12": 75.5,
+              "f13": 76.0,
+              "f14": 76.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 71.3,
+                "t_end": 75.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 72.5,
+                "t_end": 74.0,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4, 5],\n      \"category\": \"Abuse\",\n      \"t_start\": 72.5,\n      \"t_end\": 74.5,\n      \"confidence\": 0.9,\n      \"description\": \"A man in a light shirt is on the floor, initially kneeling (f6), then lying prone (f7–f10), while two men stand over him; one gestures aggressively and another watches, with no reciprocal action from the man on the ground.\",\n      \"reason\": \"The man on the floor shows no resistance or engagement; his posture (bent over, then collapsed) and lack of counter-movement indicate helplessness, satisfying Abuse (aggression against a helpless victim); Fighting requires mutual combat, which is absent. The event begins at f6 (72.5s) when he is first seen on the floor and ends by f10 (74.5s) when he remains motionless on the ground while others observe.\",\n      \"evidence_frame_ids\": [\"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                4,
+                5
+              ],
+              "category": "Abuse",
+              "t_start": 72.5,
+              "t_end": 74.5,
+              "confidence": 0.9,
+              "description": "A man in a light shirt is on the floor, initially kneeling (f6), then lying prone (f7–f10), while two men stand over him; one gestures aggressively and another watches, with no reciprocal action from the man on the ground.",
+              "reason": "The man on the floor shows no resistance or engagement; his posture (bent over, then collapsed) and lack of counter-movement indicate helplessness, satisfying Abuse (aggression against a helpless victim); Fighting requires mutual combat, which is absent. The event begins at f6 (72.5s) when he is first seen on the floor and ends by f10 (74.5s) when he remains motionless on the ground while others observe.",
+              "evidence_frame_ids": [
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

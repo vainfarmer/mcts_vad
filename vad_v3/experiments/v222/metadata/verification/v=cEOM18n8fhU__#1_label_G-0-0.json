@@ -1,0 +1,371 @@
+{
+  "events": [
+    {
+      "t_start": 89.0,
+      "t_end": 92.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.98,
+      "coarse_score": 0.98,
+      "description": "A large fireball and rapidly expanding smoke plume erupt from the left side of the road at f4, peaking in size by f6–f7, then dissipating through f11.",
+      "source_candidate_ids": [
+        0,
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.98,
+        "evidence_times": [
+          89.0,
+          89.5,
+          90.0,
+          90.5,
+          91.0,
+          91.5,
+          92.0,
+          92.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7",
+          "f8",
+          "f9",
+          "f10",
+          "f11"
+        ],
+        "reason": "Frames f4–f7 show a sudden bright flash, fireball, and violent expansion of smoke/dust consistent with a high-energy blast; f8–f11 show the aftermath (rising smoke column, debris airborne), confirming a single explosive event rather than two separate ones; candidate 1’s interval (92.0–95.0) falls within the decay phase of the same explosion, so merged.",
+        "source_categories": [
+          "Explosion",
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 7,
+      "output_count": 1,
+      "groups": 4,
+      "rejected": 5,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0,
+          1
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 87.0,
+              "f1": 87.5,
+              "f2": 88.0,
+              "f3": 88.5,
+              "f4": 89.0,
+              "f5": 89.5,
+              "f6": 90.0,
+              "f7": 90.5,
+              "f8": 91.0,
+              "f9": 91.5,
+              "f10": 92.0,
+              "f11": 92.5,
+              "f12": 93.0,
+              "f13": 93.5,
+              "f14": 94.0,
+              "f15": 94.5,
+              "f16": 95.0,
+              "f17": 95.5,
+              "f18": 96.0,
+              "f19": 96.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 89.0,
+                "t_end": 91.0,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 1,
+                "t_start": 92.0,
+                "t_end": 95.0,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0, 1],\n      \"category\": \"Explosion\",\n      \"t_start\": 89.0,\n      \"t_end\": 92.5,\n      \"confidence\": 0.98,\n      \"description\": \"A large fireball and rapidly expanding smoke plume erupt from the left side of the road at f4, peaking in size by f6–f7, then dissipating through f11.\",\n      \"reason\": \"Frames f4–f7 show a sudden bright flash, fireball, and violent expansion of smoke/dust consistent with a high-energy blast; f8–f11 show the aftermath (rising smoke column, debris airborne), confirming a single explosive event rather than two separate ones; candidate 1’s interval (92.0–95.0) falls within the decay phase of the same explosion, so merged.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0,
+                1
+              ],
+              "category": "Explosion",
+              "t_start": 89.0,
+              "t_end": 92.5,
+              "confidence": 0.98,
+              "description": "A large fireball and rapidly expanding smoke plume erupt from the left side of the road at f4, peaking in size by f6–f7, then dissipating through f11.",
+              "reason": "Frames f4–f7 show a sudden bright flash, fireball, and violent expansion of smoke/dust consistent with a high-energy blast; f8–f11 show the aftermath (rising smoke column, debris airborne), confirming a single explosive event rather than two separate ones; candidate 1’s interval (92.0–95.0) falls within the decay phase of the same explosion, so merged.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 98.0,
+              "f1": 98.5,
+              "f2": 99.0,
+              "f3": 99.5,
+              "f4": 100.0,
+              "f5": 100.5,
+              "f6": 101.0,
+              "f7": 101.5,
+              "f8": 102.0,
+              "f9": 102.5,
+              "f10": 103.0,
+              "f11": 103.5,
+              "f12": 104.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 2,
+                "t_start": 100.0,
+                "t_end": 102.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"No visible blast, shockwave, or sudden expansion; smoke appears to be rising steadily from a stationary source (possibly vehicle exhaust or distant fire), not originating from an instantaneous explosion event.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 2,
+              "reason": "No visible blast, shockwave, or sudden expansion; smoke appears to be rising steadily from a stationary source (possibly vehicle exhaust or distant fire), not originating from an instantaneous explosion event.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 102.0,
+              "f1": 102.5,
+              "f2": 103.0,
+              "f3": 103.5,
+              "f4": 104.0,
+              "f5": 104.5,
+              "f6": 105.0,
+              "f7": 105.5,
+              "f8": 106.0,
+              "f9": 106.5,
+              "f10": 107.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 104.0,
+                "t_end": 105.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"No visible blast, fireball, or sudden expansion; smoke appears to be rising steadily from a distant source without impulsive onset, consistent with burning debris or controlled burn rather than an explosion.\",\n      \"evidence_frame_ids\": [\"f0\", \"f1\", \"f2\", \"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 3,
+              "reason": "No visible blast, fireball, or sudden expansion; smoke appears to be rising steadily from a distant source without impulsive onset, consistent with burning debris or controlled burn rather than an explosion.",
+              "evidence_frame_ids": [
+                "f0",
+                "f1",
+                "f2",
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          4,
+          5,
+          6
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 105.5,
+              "f1": 106.0,
+              "f2": 106.5,
+              "f3": 107.0,
+              "f4": 107.5,
+              "f5": 108.0,
+              "f6": 108.5,
+              "f7": 109.0,
+              "f8": 109.5,
+              "f9": 110.0,
+              "f10": 110.5,
+              "f11": 111.0,
+              "f12": 111.5,
+              "f13": 112.0,
+              "f14": 112.5,
+              "f15": 113.0,
+              "f16": 113.5,
+              "f17": 114.0,
+              "f18": 114.5,
+              "f19": 115.0,
+              "f20": 115.5,
+              "f21": 116.0,
+              "f22": 116.5,
+              "f23": 117.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 107.1,
+                "t_end": 112.5,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 5,
+                "t_start": 110.0,
+                "t_end": 111.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 6,
+                "t_start": 113.1,
+                "t_end": 116.4,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"No visible combatants engaging in mutual physical combat; individuals near vehicle appear to be observing or moving calmly amid smoke, not fighting.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\", \"f6\", \"f7\", \"f8\", \"f9\", \"f10\", \"f11\", \"f12\"]\n    },\n    {\n      \"candidate_id\": 5,\n      \"reason\": \"No blast wave, flash, or sudden expansion indicative of an explosion; smoke appears to be rising steadily from a distant source without impulsive dynamics.\",\n      \"evidence_frame_ids\": [\"f9\", \"f10\", \"f11\", \"f12\"]\n    },\n    {\n      \"candidate_id\": 6,\n      \"reason\": \"Individuals near the vehicle are standing, walking, and interacting non-aggressively; no mutual physical combat or hostile engagement is visible.\",\n      \"evidence_frame_ids\": [\"f15\", \"f16\", \"f17\", \"f18\", \"f19\", \"f20\", \"f21\", \"f22\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 4,
+              "reason": "No visible combatants engaging in mutual physical combat; individuals near vehicle appear to be observing or moving calmly amid smoke, not fighting.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5",
+                "f6",
+                "f7",
+                "f8",
+                "f9",
+                "f10",
+                "f11",
+                "f12"
+              ]
+            },
+            {
+              "candidate_id": 5,
+              "reason": "No blast wave, flash, or sudden expansion indicative of an explosion; smoke appears to be rising steadily from a distant source without impulsive dynamics.",
+              "evidence_frame_ids": [
+                "f9",
+                "f10",
+                "f11",
+                "f12"
+              ]
+            },
+            {
+              "candidate_id": 6,
+              "reason": "Individuals near the vehicle are standing, walking, and interacting non-aggressively; no mutual physical combat or hostile engagement is visible.",
+              "evidence_frame_ids": [
+                "f15",
+                "f16",
+                "f17",
+                "f18",
+                "f19",
+                "f20",
+                "f21",
+                "f22"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

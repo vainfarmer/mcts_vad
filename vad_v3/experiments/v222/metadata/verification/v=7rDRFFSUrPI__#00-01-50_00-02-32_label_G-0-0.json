@@ -1,0 +1,354 @@
+{
+  "events": [
+    {
+      "t_start": 28.5,
+      "t_end": 29.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A small cylindrical device on the lawn rapidly releases a dense white plume (likely compressed gas or powder) at f5 (29.0 s), with debris and the cap visibly ejected upward by f6 (29.5 s).",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          28.5,
+          29.0,
+          29.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6"
+        ],
+        "reason": "The sudden, forceful ejection of material and airborne cap at f5–f6 matches a small-scale explosion (e.g., a pressurized canister rupture), not fire, spray, or impact alone; the event is contained, brief, and consistent across frames.",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    },
+    {
+      "t_start": 34.5,
+      "t_end": 35.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A sudden burst of transparent fragments (likely plastic or glass) erupts upward from ground level at f5, with debris suspended and dispersing in subsequent frames (f6–f7).",
+      "source_candidate_ids": [
+        1,
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          35.0,
+          35.5,
+          36.0
+        ],
+        "evidence_frame_ids": [
+          "f5",
+          "f6",
+          "f7"
+        ],
+        "reason": "The rapid appearance of scattered translucent shards from a point on the grass at f5, followed by visible airborne fragments in f6–f7, matches a small-scale explosion (e.g., bursting container), not fire, impact, or natural event; candidates 1 and 2 describe overlapping intervals of the same event and are merged.",
+        "source_categories": [
+          "Explosion",
+          "Explosion"
+        ]
+      }
+    },
+    {
+      "t_start": 38.0,
+      "t_end": 38.5,
+      "anomaly_type": "Explosion",
+      "confidence": 0.9,
+      "coarse_score": 0.9,
+      "description": "A plastic bottle erupts with a visible burst of white vapor and debris, launching fragments upward in frame f4.",
+      "source_candidate_ids": [
+        3
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.9,
+        "evidence_times": [
+          38.0,
+          38.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "Frame f4 shows a sudden expansion of gas/vapor and flying debris from a container on the ground—consistent with a rapid pressure release (e.g., chemical reaction or compressed gas)—and frame f5 shows the aftermath with the container ruptured and smoke dissipating; this satisfies the definition of an explosion as a blast event.",
+        "source_categories": [
+          "Explosion"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 5,
+      "output_count": 3,
+      "groups": 4,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 1,
+      "relabeled": 0,
+      "context_retries": 0,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 26.5,
+              "f1": 27.0,
+              "f2": 27.5,
+              "f3": 28.0,
+              "f4": 28.5,
+              "f5": 29.0,
+              "f6": 29.5,
+              "f7": 30.0,
+              "f8": 30.5,
+              "f9": 31.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 28.5,
+                "t_end": 29.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Explosion\",\n      \"t_start\": 28.5,\n      \"t_end\": 29.5,\n      \"confidence\": 0.95,\n      \"description\": \"A small cylindrical device on the lawn rapidly releases a dense white plume (likely compressed gas or powder) at f5 (29.0 s), with debris and the cap visibly ejected upward by f6 (29.5 s).\",\n      \"reason\": \"The sudden, forceful ejection of material and airborne cap at f5–f6 matches a small-scale explosion (e.g., a pressurized canister rupture), not fire, spray, or impact alone; the event is contained, brief, and consistent across frames.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Explosion",
+              "t_start": 28.5,
+              "t_end": 29.5,
+              "confidence": 0.95,
+              "description": "A small cylindrical device on the lawn rapidly releases a dense white plume (likely compressed gas or powder) at f5 (29.0 s), with debris and the cap visibly ejected upward by f6 (29.5 s).",
+              "reason": "The sudden, forceful ejection of material and airborne cap at f5–f6 matches a small-scale explosion (e.g., a pressurized canister rupture), not fire, spray, or impact alone; the event is contained, brief, and consistent across frames.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1,
+          2
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 32.5,
+              "f1": 33.0,
+              "f2": 33.5,
+              "f3": 34.0,
+              "f4": 34.5,
+              "f5": 35.0,
+              "f6": 35.5,
+              "f7": 36.0,
+              "f8": 36.5,
+              "f9": 37.0,
+              "f10": 37.5
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 34.5,
+                "t_end": 35.5,
+                "unverified_category": "Explosion"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 35.0,
+                "t_end": 35.8,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1, 2],\n      \"category\": \"Explosion\",\n      \"t_start\": 34.5,\n      \"t_end\": 35.5,\n      \"confidence\": 0.9,\n      \"description\": \"A sudden burst of transparent fragments (likely plastic or glass) erupts upward from ground level at f5, with debris suspended and dispersing in subsequent frames (f6–f7).\",\n      \"reason\": \"The rapid appearance of scattered translucent shards from a point on the grass at f5, followed by visible airborne fragments in f6–f7, matches a small-scale explosion (e.g., bursting container), not fire, impact, or natural event; candidates 1 and 2 describe overlapping intervals of the same event and are merged.\",\n      \"evidence_frame_ids\": [\"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1,
+                2
+              ],
+              "category": "Explosion",
+              "t_start": 34.5,
+              "t_end": 35.5,
+              "confidence": 0.9,
+              "description": "A sudden burst of transparent fragments (likely plastic or glass) erupts upward from ground level at f5, with debris suspended and dispersing in subsequent frames (f6–f7).",
+              "reason": "The rapid appearance of scattered translucent shards from a point on the grass at f5, followed by visible airborne fragments in f6–f7, matches a small-scale explosion (e.g., bursting container), not fire, impact, or natural event; candidates 1 and 2 describe overlapping intervals of the same event and are merged.",
+              "evidence_frame_ids": [
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 36.0,
+              "f1": 36.5,
+              "f2": 37.0,
+              "f3": 37.5,
+              "f4": 38.0,
+              "f5": 38.5,
+              "f6": 39.0,
+              "f7": 39.5,
+              "f8": 40.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 3,
+                "t_start": 38.0,
+                "t_end": 38.5,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [3],\n      \"category\": \"Explosion\",\n      \"t_start\": 38.0,\n      \"t_end\": 38.5,\n      \"confidence\": 0.9,\n      \"description\": \"A plastic bottle erupts with a visible burst of white vapor and debris, launching fragments upward in frame f4.\",\n      \"reason\": \"Frame f4 shows a sudden expansion of gas/vapor and flying debris from a container on the ground—consistent with a rapid pressure release (e.g., chemical reaction or compressed gas)—and frame f5 shows the aftermath with the container ruptured and smoke dissipating; this satisfies the definition of an explosion as a blast event.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                3
+              ],
+              "category": "Explosion",
+              "t_start": 38.0,
+              "t_end": 38.5,
+              "confidence": 0.9,
+              "description": "A plastic bottle erupts with a visible burst of white vapor and debris, launching fragments upward in frame f4.",
+              "reason": "Frame f4 shows a sudden expansion of gas/vapor and flying debris from a container on the ground—consistent with a rapid pressure release (e.g., chemical reaction or compressed gas)—and frame f5 shows the aftermath with the container ruptured and smoke dissipating; this satisfies the definition of an explosion as a blast event.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 3,
+        "source_ids": [
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 39.5,
+              "f1": 40.0,
+              "f2": 40.5,
+              "f3": 41.0,
+              "f4": 41.5,
+              "f5": 42.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 41.5,
+                "t_end": 42.0,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"Explosion\",\n      \"t_start\": 41.0,\n      \"t_end\": 41.5,\n      \"confidence\": 0.95,\n      \"description\": \"A sudden red-orange flash fills the frame, consistent with a rapid energy release (e.g., small explosion or combustion) immediately following the outdoor scene.\",\n      \"reason\": \"Frame f3 (41.0 s) shows a full-frame red/orange blur with no discernible objects—typical of overexposure from a bright transient event like a small explosion; this follows f2 (40.5 s) where a black object (possibly a container) is still visible in grass, and precedes f4 (41.5 s), which cuts to an indoor scene with no continuity, indicating a scene change likely triggered by the event. The timing aligns with candidate 4’s interval but shifted earlier to match the visible flash onset.\",\n      \"evidence_frame_ids\": [\"f3\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 39.5,
+              "f1": 40.0,
+              "f2": 40.5,
+              "f3": 41.0,
+              "f4": 41.5,
+              "f5": 42.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 41.5,
+                "t_end": 42.0,
+                "unverified_category": "Explosion"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [],\n  \"rejected\": [\n    {\n      \"candidate_id\": 4,\n      \"reason\": \"Candidate claims explosion at [41.5, 42.0], but frame f4 (41.5 s) shows a drill penetrating a yellow plastic castle with no blast, fire, or debris; frame f5 (42.0 s) continues the same indoor drilling action. Frame f3 (41.0 s) is a red blur, but it occurs *before* the candidate interval and lacks evidence of an explosion (e.g., shockwave, fragmentation, or context linking it to the later scene); it may be a camera transition, lens flare, or occlusion—not a blast. No frame in [41.5, 42.0] shows explosion.\",\n      \"evidence_frame_ids\": [\"f3\", \"f4\", \"f5\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [],
+          "rejected": [
+            {
+              "candidate_id": 4,
+              "reason": "Candidate claims explosion at [41.5, 42.0], but frame f4 (41.5 s) shows a drill penetrating a yellow plastic castle with no blast, fire, or debris; frame f5 (42.0 s) continues the same indoor drilling action. Frame f3 (41.0 s) is a red blur, but it occurs *before* the candidate interval and lacks evidence of an explosion (e.g., shockwave, fragmentation, or context linking it to the later scene); it may be a camera transition, lens flare, or occlusion—not a blast. No frame in [41.5, 42.0] shows explosion.",
+              "evidence_frame_ids": [
+                "f3",
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

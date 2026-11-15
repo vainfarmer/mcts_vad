@@ -33,10 +33,15 @@ class VideoAnomalyExpert:
     def __init__(self, anomaly_categories: List[str],
                  clip_model_name: str = "ViT-L-14",
                  clip_pretrained: str = "openai",
-                 device: str = "cpu"):
+                 device: str = "cpu", prompt_overrides=None,
+                 normal_prompts=None, use_learned_prompt_weights=True):
         pretrained = clip_pretrained
         self.categories = anomaly_categories
         self.device = device
+        self.CATEGORY_PROMPTS = dict(self.CATEGORY_PROMPTS)
+        self.CATEGORY_PROMPTS.update(prompt_overrides or {})
+        self.NORMAL_PROMPTS = normal_prompts or self.NORMAL_PROMPTS
+        self.use_learned_prompt_weights = use_learned_prompt_weights
         self.model = None
         self.preprocess = None
         self.text_features = None
@@ -198,7 +203,7 @@ class VideoAnomalyExpert:
         from pathlib import Path as _PP
         _weights_path = _PP(__file__).parent / 'prompt_weights.json'
         _learned_weights = {}
-        if _weights_path.exists():
+        if self.use_learned_prompt_weights and _weights_path.exists():
             try:
                 with open(_weights_path) as _wf:
                     _learned_weights = _json.load(_wf)

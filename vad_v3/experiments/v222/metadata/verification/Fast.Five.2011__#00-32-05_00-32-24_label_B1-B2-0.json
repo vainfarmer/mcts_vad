@@ -1,0 +1,536 @@
+{
+  "events": [
+    {
+      "t_start": 5.0,
+      "t_end": 5.5,
+      "anomaly_type": "Shooting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "A person in camouflage holds a submachine gun with visible muzzle flash at f4 (5.0 s), and at f5 (5.5 s) smoke/explosive discharge is seen near the same location, consistent with firing.",
+      "source_candidate_ids": [
+        0
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 0,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          5.0,
+          5.5
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5"
+        ],
+        "reason": "Muzzle flash in f4 and concurrent smoke/blast in f5 confirm discharge of a firearm; this satisfies the 'Shooting' definition requiring visible shooting.",
+        "source_categories": [
+          "Shooting"
+        ]
+      }
+    },
+    {
+      "t_start": 8.3,
+      "t_end": 12.3,
+      "anomaly_type": "Fighting",
+      "confidence": 0.95,
+      "coarse_score": 0.95,
+      "description": "Multiple individuals engage in close-quarters physical combat: one bald man in tactical vest grapples and subdues two masked armed men, with visible strikes, takedowns, and mutual resistance.",
+      "source_candidate_ids": [
+        1
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 0,
+        "vlm_confidence": 0.95,
+        "evidence_times": [
+          7.5,
+          8.0,
+          8.5,
+          10.5,
+          11.0,
+          11.5,
+          12.0
+        ],
+        "evidence_frame_ids": [
+          "f10",
+          "f11",
+          "f12",
+          "f16",
+          "f17",
+          "f18",
+          "f19"
+        ],
+        "reason": "Frames f10–f12 (overhead) and f16–f19 show reciprocal grappling, punches, and takedowns; f17–f18 show the bald man actively engaging two opponents simultaneously, satisfying mutual physical combat definition. Merged across frames as continuous fight sequence.",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    },
+    {
+      "t_start": 12.5,
+      "t_end": 15.0,
+      "anomaly_type": "Abuse",
+      "confidence": 0.85,
+      "coarse_score": 0.85,
+      "description": "The bald man grabs a subdued, masked opponent by the neck/hood and lifts or throws him while the opponent is on the ground and non-resisting.",
+      "source_candidate_ids": [
+        2
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 1,
+        "event_id": 1,
+        "vlm_confidence": 0.85,
+        "evidence_times": [
+          12.5,
+          13.0,
+          13.5,
+          14.0,
+          14.5
+        ],
+        "evidence_frame_ids": [
+          "f20",
+          "f21",
+          "f22",
+          "f23",
+          "f24"
+        ],
+        "reason": "In f20–f22, the opponent is already down and not actively resisting; f20 shows the bald man lifting the opponent by the head/hood; f22–f23 show continued control without reciprocal combat—consistent with aggression against a helpless victim.",
+        "source_categories": [
+          "Abuse"
+        ]
+      }
+    },
+    {
+      "t_start": 16.5,
+      "t_end": 18.0,
+      "anomaly_type": "Fighting",
+      "confidence": 0.8,
+      "coarse_score": 0.8,
+      "description": "Two individuals are engaged in close physical struggle on a narrow walkway, with one person (in blue shirt) appearing to be pushed or thrown down while the other (in black tank top) is actively involved in the motion.",
+      "source_candidate_ids": [
+        4
+      ],
+      "verification": {
+        "status": "verified",
+        "group_id": 2,
+        "event_id": 0,
+        "vlm_confidence": 0.8,
+        "evidence_times": [
+          16.5,
+          17.0,
+          17.5,
+          18.0
+        ],
+        "evidence_frame_ids": [
+          "f4",
+          "f5",
+          "f6",
+          "f7"
+        ],
+        "reason": "Frames f4–f7 show dynamic, overlapping bodies in contact during rapid movement; f5–f6 depict clear mutual physical engagement (one on top of/pressing against the other), satisfying the definition of Fighting as mutual physical combat. The motion blur in f7 confirms continued contact and forceful interaction.",
+        "source_categories": [
+          "Fighting"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "prompt_version": "xd-independent-event-review-v1",
+    "summary": {
+      "input_count": 5,
+      "output_count": 4,
+      "groups": 3,
+      "rejected": 1,
+      "uncertain": 0,
+      "merged_sources": 0,
+      "relabeled": 0,
+      "context_retries": 1,
+      "schema_fallback_groups": 0
+    },
+    "groups": [
+      {
+        "group_id": 0,
+        "source_ids": [
+          0
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 3.0,
+              "f1": 3.5,
+              "f2": 4.0,
+              "f3": 4.5,
+              "f4": 5.0,
+              "f5": 5.5,
+              "f6": 6.0,
+              "f7": 6.5,
+              "f8": 7.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 0,
+                "t_start": 5.0,
+                "t_end": 5.5,
+                "unverified_category": "Shooting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [0],\n      \"category\": \"Shooting\",\n      \"t_start\": 5.0,\n      \"t_end\": 5.5,\n      \"confidence\": 0.95,\n      \"description\": \"A person in camouflage holds a submachine gun with visible muzzle flash at f4 (5.0 s), and at f5 (5.5 s) smoke/explosive discharge is seen near the same location, consistent with firing.\",\n      \"reason\": \"Muzzle flash in f4 and concurrent smoke/blast in f5 confirm discharge of a firearm; this satisfies the 'Shooting' definition requiring visible shooting.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                0
+              ],
+              "category": "Shooting",
+              "t_start": 5.0,
+              "t_end": 5.5,
+              "confidence": 0.95,
+              "description": "A person in camouflage holds a submachine gun with visible muzzle flash at f4 (5.0 s), and at f5 (5.5 s) smoke/explosive discharge is seen near the same location, consistent with firing.",
+              "reason": "Muzzle flash in f4 and concurrent smoke/blast in f5 confirm discharge of a firearm; this satisfies the 'Shooting' definition requiring visible shooting.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      },
+      {
+        "group_id": 1,
+        "source_ids": [
+          1,
+          2,
+          3
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 6.5,
+              "f1": 7.0,
+              "f2": 7.5,
+              "f3": 8.0,
+              "f4": 8.5,
+              "f5": 9.0,
+              "f6": 9.5,
+              "f7": 10.0,
+              "f8": 10.5,
+              "f9": 11.0,
+              "f10": 11.5,
+              "f11": 12.0,
+              "f12": 12.5,
+              "f13": 13.0,
+              "f14": 13.5,
+              "f15": 14.0,
+              "f16": 14.5,
+              "f17": 15.0,
+              "f18": 15.5,
+              "f19": 16.0,
+              "f20": 16.5,
+              "f21": 17.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 8.3,
+                "t_end": 12.3,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 12.5,
+                "t_end": 15.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 14.5,
+                "t_end": 15.3,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Fighting\",\n      \"t_start\": 8.3,\n      \"t_end\": 12.3,\n      \"confidence\": 0.95,\n      \"description\": \"Three men engage in mutual physical combat in an alley: one armed with a rifle is grabbed and disarmed, while others grapple and strike; visible actions include tackling, punching, and weapon seizure.\",\n      \"reason\": \"Images f2–f3 show initial confrontation with gun; f6, f8, f10–f12 show reciprocal grappling, strikes, and takedowns—consistent with mutual combat, not one-sided abuse. No evidence of shooting (gun not fired), riot (only 3–4 individuals), or car accident/explosion.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f6\", \"f8\", \"f10\", \"f11\", \"f12\"]\n    },\n    {\n      \"source_candidate_ids\": [2, 3],\n      \"category\": \"Fighting\",\n      \"t_start\": 12.5,\n      \"t_end\": 15.0,\n      \"confidence\": 0.9,\n      \"description\": \"A bald man in tactical vest physically subdues a masked opponent by grabbing, lifting, and striking him; the opponent actively resists and attempts to counter.\",\n      \"reason\": \"f12–f14 show dynamic struggle: masked man is lifted but still resisting (arms raised, body tensed); f15 shows continued engagement with visible effort from both sides. This is mutual combat, not abuse (victim not helpless). Candidate 3’s ‘Fighting’ overlaps and merges with candidate 2’s interval; abuse hypothesis rejected due to active resistance.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\", \"f14\", \"f15\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"The interaction is not one-sided abuse: the masked individual actively resists (e.g., f12, f14, f15), indicating mutual combat; thus 'Abuse' is incorrect.\",\n      \"evidence_frame_ids\": [\"f12\", \"f14\", \"f15\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 6.5,
+              "f1": 7.0,
+              "f2": 7.5,
+              "f3": 8.0,
+              "f4": 8.5,
+              "f5": 9.0,
+              "f6": 9.5,
+              "f7": 10.0,
+              "f8": 10.5,
+              "f9": 11.0,
+              "f10": 11.5,
+              "f11": 12.0,
+              "f12": 12.5,
+              "f13": 13.0,
+              "f14": 13.5,
+              "f15": 14.0,
+              "f16": 14.5,
+              "f17": 15.0,
+              "f18": 15.5,
+              "f19": 16.0,
+              "f20": 16.5,
+              "f21": 17.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 8.3,
+                "t_end": 12.3,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 12.5,
+                "t_end": 15.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 14.5,
+                "t_end": 15.3,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Fighting\",\n      \"t_start\": 8.0,\n      \"t_end\": 12.0,\n      \"confidence\": 0.95,\n      \"description\": \"Three men engage in mutual physical combat in a narrow alley: one armed with a rifle is tackled and disarmed while others grapple, punch, and execute takedowns.\",\n      \"reason\": \"f2–f3 show initial confrontation with gun; f6, f8, f10–f12 depict reciprocal grappling, strikes, and takedowns (e.g., f11 shows two attackers on one man, all actively engaged); no firing observed, and all participants resist or initiate force—consistent with Fighting, not Abuse or Shooting.\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f6\", \"f8\", \"f10\", \"f11\", \"f12\"]\n    },\n    {\n      \"source_candidate_ids\": [2, 3],\n      \"category\": \"Fighting\",\n      \"t_start\": 12.5,\n      \"t_end\": 14.5,\n      \"confidence\": 0.9,\n      \"description\": \"A bald man in tactical vest physically engages a masked opponent who actively resists: lifting, striking, and struggling occur with visible reciprocal effort.\",\n      \"reason\": \"f12–f15 show continuous dynamic struggle: masked man lifts arm to resist (f12, f14), is lifted but not passive (f13), and both exert force (f15); this is mutual combat, not Abuse (victim not helpless) nor separate Fighting event—candidate 2 and 3 describe the same contiguous fight sequence and are merged.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\", \"f14\", \"f15\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": [\n    {\n      \"candidate_id\": 2,\n      \"reason\": \"Although labeled 'Abuse', the visible evidence (f12–f15) shows active resistance by the masked individual, contradicting helplessness required for Abuse; thus the hypothesis is invalid—but since the same interaction is correctly captured under Fighting in merged event, it is not listed as rejected but subsumed.\"\n    }\n  ]\n}"
+          },
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 6.5,
+              "f1": 7.0,
+              "f2": 7.5,
+              "f3": 8.0,
+              "f4": 8.5,
+              "f5": 9.0,
+              "f6": 9.5,
+              "f7": 10.0,
+              "f8": 10.5,
+              "f9": 11.0,
+              "f10": 11.5,
+              "f11": 12.0,
+              "f12": 12.5,
+              "f13": 13.0,
+              "f14": 13.5,
+              "f15": 14.0,
+              "f16": 14.5,
+              "f17": 15.0,
+              "f18": 15.5,
+              "f19": 16.0,
+              "f20": 16.5,
+              "f21": 17.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 8.3,
+                "t_end": 12.3,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 12.5,
+                "t_end": 15.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 14.5,
+                "t_end": 15.3,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Fighting\",\n      \"t_start\": 7.5,\n      \"t_end\": 12.0,\n      \"confidence\": 0.95,\n      \"description\": \"Three men engage in mutual physical combat: one armed with a rifle is tackled, disarmed, and grappled by two others; all participants actively strike, grab, and resist across multiple frames.\",\n      \"reason\": \"f2 (7.5s) shows initial confrontation with rifle; f3 (8.0s) shows tackle; f6 (9.5s), f8 (10.5s), f10–f12 (11.5–12.0s) show reciprocal grappling, takedowns, and active resistance—no evidence of shooting, abuse (all parties resist), or riot. Candidate 1’s interval [8.3,12.3] is fully covered by visible fighting from f2 (7.5s) to f12 (12.0s); adjusted t_start to earliest supporting frame (f2 at 7.5s) and t_end to last clear fighting frame (f12 at 12.0s).\",\n      \"evidence_frame_ids\": [\"f2\", \"f3\", \"f6\", \"f8\", \"f10\", \"f11\", \"f12\"]\n    },\n    {\n      \"source_candidate_ids\": [2, 3],\n      \"category\": \"Fighting\",\n      \"t_start\": 12.5,\n      \"t_end\": 14.5,\n      \"confidence\": 0.9,\n      \"description\": \"A bald man in tactical vest physically engages a masked opponent who actively resists: lifting, striking, and dynamic struggling occur with visible reciprocal effort; the interaction is continuous and mutual.\",\n      \"reason\": \"f12 (12.5s) shows the bald man grabbing the masked man while the latter lifts an arm to resist; f13–f15 (13.0–14.0s) show sustained struggle with both exerting force; f16 (14.5s) shows separation but no helplessness. Candidate 2 ([12.5,15.0]) and 3 ([14.5,15.3]) describe overlapping parts of the same contiguous fight; merged into one event ending at f16 (14.5s), as f17 onward shows no further engagement. Abuse is invalid due to active resistance; Fighting is correct.\",\n      \"evidence_frame_ids\": [\"f12\", \"f13\", \"f14\", \"f15\", \"f16\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          },
+          {
+            "pass_id": 1,
+            "frame_times": {
+              "f0": 2.5,
+              "f1": 3.0,
+              "f2": 3.5,
+              "f3": 4.0,
+              "f4": 4.5,
+              "f5": 5.0,
+              "f6": 5.5,
+              "f7": 6.0,
+              "f8": 6.5,
+              "f9": 7.0,
+              "f10": 7.5,
+              "f11": 8.0,
+              "f12": 8.5,
+              "f13": 9.0,
+              "f14": 9.5,
+              "f15": 10.0,
+              "f16": 10.5,
+              "f17": 11.0,
+              "f18": 11.5,
+              "f19": 12.0,
+              "f20": 12.5,
+              "f21": 13.0,
+              "f22": 13.5,
+              "f23": 14.0,
+              "f24": 14.5,
+              "f25": 15.0,
+              "f26": 15.5,
+              "f27": 16.0,
+              "f28": 16.5,
+              "f29": 17.0,
+              "f30": 17.5,
+              "f31": 19.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 1,
+                "t_start": 8.3,
+                "t_end": 12.3,
+                "unverified_category": "Fighting"
+              },
+              {
+                "candidate_id": 2,
+                "t_start": 12.5,
+                "t_end": 15.0,
+                "unverified_category": "Abuse"
+              },
+              {
+                "candidate_id": 3,
+                "t_start": 14.5,
+                "t_end": 15.3,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [1],\n      \"category\": \"Fighting\",\n      \"t_start\": 8.3,\n      \"t_end\": 12.3,\n      \"confidence\": 0.95,\n      \"description\": \"Multiple individuals engage in close-quarters physical combat: one bald man in tactical vest grapples and subdues two masked armed men, with visible strikes, takedowns, and mutual resistance.\",\n      \"reason\": \"Frames f10–f12 (overhead) and f16–f19 show reciprocal grappling, punches, and takedowns; f17–f18 show the bald man actively engaging two opponents simultaneously, satisfying mutual physical combat definition. Merged across frames as continuous fight sequence.\",\n      \"evidence_frame_ids\": [\"f10\", \"f11\", \"f12\", \"f16\", \"f17\", \"f18\", \"f19\"]\n    },\n    {\n      \"source_candidate_ids\": [2],\n      \"category\": \"Abuse\",\n      \"t_start\": 12.5,\n      \"t_end\": 15.0,\n      \"confidence\": 0.85,\n      \"description\": \"The bald man grabs a subdued, masked opponent by the neck/hood and lifts or throws him while the opponent is on the ground and non-resisting.\",\n      \"reason\": \"In f20–f22, the opponent is already down and not actively resisting; f20 shows the bald man lifting the opponent by the head/hood; f22–f23 show continued control without reciprocal combat—consistent with aggression against a helpless victim.\",\n      \"evidence_frame_ids\": [\"f20\", \"f21\", \"f22\", \"f23\", \"f24\"]\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidate_id\": 3,\n      \"reason\": \"No visible fighting occurs between 14.5–15.3; f24 shows the bald man releasing the opponent, f25 is an empty alleyway with no persons, and f26 shows the bald man moving away alone—no mutual or aggressive contact.\",\n      \"evidence_frame_ids\": [\"f24\", \"f25\", \"f26\"]\n    }\n  ],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                1
+              ],
+              "category": "Fighting",
+              "t_start": 8.3,
+              "t_end": 12.3,
+              "confidence": 0.95,
+              "description": "Multiple individuals engage in close-quarters physical combat: one bald man in tactical vest grapples and subdues two masked armed men, with visible strikes, takedowns, and mutual resistance.",
+              "reason": "Frames f10–f12 (overhead) and f16–f19 show reciprocal grappling, punches, and takedowns; f17–f18 show the bald man actively engaging two opponents simultaneously, satisfying mutual physical combat definition. Merged across frames as continuous fight sequence.",
+              "evidence_frame_ids": [
+                "f10",
+                "f11",
+                "f12",
+                "f16",
+                "f17",
+                "f18",
+                "f19"
+              ]
+            },
+            {
+              "source_candidate_ids": [
+                2
+              ],
+              "category": "Abuse",
+              "t_start": 12.5,
+              "t_end": 15.0,
+              "confidence": 0.85,
+              "description": "The bald man grabs a subdued, masked opponent by the neck/hood and lifts or throws him while the opponent is on the ground and non-resisting.",
+              "reason": "In f20–f22, the opponent is already down and not actively resisting; f20 shows the bald man lifting the opponent by the head/hood; f22–f23 show continued control without reciprocal combat—consistent with aggression against a helpless victim.",
+              "evidence_frame_ids": [
+                "f20",
+                "f21",
+                "f22",
+                "f23",
+                "f24"
+              ]
+            }
+          ],
+          "rejected": [
+            {
+              "candidate_id": 3,
+              "reason": "No visible fighting occurs between 14.5–15.3; f24 shows the bald man releasing the opponent, f25 is an empty alleyway with no persons, and f26 shows the bald man moving away alone—no mutual or aggressive contact.",
+              "evidence_frame_ids": [
+                "f24",
+                "f25",
+                "f26"
+              ]
+            }
+          ],
+          "uncertain": []
+        },
+        "context_retry": true
+      },
+      {
+        "group_id": 2,
+        "source_ids": [
+          4
+        ],
+        "calls": [
+          {
+            "pass_id": 0,
+            "frame_times": {
+              "f0": 14.5,
+              "f1": 15.0,
+              "f2": 15.5,
+              "f3": 16.0,
+              "f4": 16.5,
+              "f5": 17.0,
+              "f6": 17.5,
+              "f7": 18.0,
+              "f8": 18.5,
+              "f9": 19.0
+            },
+            "hypotheses": [
+              {
+                "candidate_id": 4,
+                "t_start": 16.5,
+                "t_end": 18.1,
+                "unverified_category": "Fighting"
+              }
+            ],
+            "reply": "{\n  \"status\": \"ok\",\n  \"events\": [\n    {\n      \"source_candidate_ids\": [4],\n      \"category\": \"Fighting\",\n      \"t_start\": 16.5,\n      \"t_end\": 18.0,\n      \"confidence\": 0.8,\n      \"description\": \"Two individuals are engaged in close physical struggle on a narrow walkway, with one person (in blue shirt) appearing to be pushed or thrown down while the other (in black tank top) is actively involved in the motion.\",\n      \"reason\": \"Frames f4–f7 show dynamic, overlapping bodies in contact during rapid movement; f5–f6 depict clear mutual physical engagement (one on top of/pressing against the other), satisfying the definition of Fighting as mutual physical combat. The motion blur in f7 confirms continued contact and forceful interaction.\",\n      \"evidence_frame_ids\": [\"f4\", \"f5\", \"f6\", \"f7\"]\n    }\n  ],\n  \"rejected\": [],\n  \"uncertain\": []\n}"
+          }
+        ],
+        "decision": {
+          "status": "ok",
+          "events": [
+            {
+              "source_candidate_ids": [
+                4
+              ],
+              "category": "Fighting",
+              "t_start": 16.5,
+              "t_end": 18.0,
+              "confidence": 0.8,
+              "description": "Two individuals are engaged in close physical struggle on a narrow walkway, with one person (in blue shirt) appearing to be pushed or thrown down while the other (in black tank top) is actively involved in the motion.",
+              "reason": "Frames f4–f7 show dynamic, overlapping bodies in contact during rapid movement; f5–f6 depict clear mutual physical engagement (one on top of/pressing against the other), satisfying the definition of Fighting as mutual physical combat. The motion blur in f7 confirms continued contact and forceful interaction.",
+              "evidence_frame_ids": [
+                "f4",
+                "f5",
+                "f6",
+                "f7"
+              ]
+            }
+          ],
+          "rejected": [],
+          "uncertain": []
+        },
+        "context_retry": false
+      }
+    ]
+  },
+  "experiment_fingerprint": "20f0874972ed29a5278fec2b23646f7e1b75ffb15cac2cda34d6a1ab1ffbfa82"
+}

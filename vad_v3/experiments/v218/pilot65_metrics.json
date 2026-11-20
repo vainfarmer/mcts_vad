@@ -1,0 +1,888 @@
+{
+  "version": "v218",
+  "scope": "pilot65",
+  "counts": {
+    "videos": 65,
+    "normal_videos": 5,
+    "windows": 1728,
+    "exact_pairs": 1728,
+    "bounded_pairs": 0,
+    "prompt_tokens": 2015904,
+    "completion_tokens": 3456
+  },
+  "metrics": {
+    "baseline": {
+      "global_auc": 0.6850781481741697,
+      "ano_auc": 0.681930913804281,
+      "aupr": 0.40933723511650066,
+      "per_category_auc": {
+        "Abuse": 0.7249396855696068,
+        "Arrest": 0.808510813962109,
+        "Arson": 0.4647020196759183,
+        "Assault": 0.8496559409921932,
+        "Burglary": 0.6804174142635071,
+        "Explosion": 0.7894946464105966,
+        "Fighting": 0.7186702994982728,
+        "RoadAccidents": 0.8767120859178718,
+        "Robbery": 0.5387751491871392,
+        "Shooting": 0.9117333278441678,
+        "Shoplifting": 0.22897656798544241,
+        "Stealing": 0.6119232780050822,
+        "Vandalism": 0.8589452672583342
+      }
+    },
+    "yesno_probability": {
+      "global_auc": 0.7766585886887258,
+      "ano_auc": 0.7701074447469334,
+      "aupr": 0.5296007007836696,
+      "per_category_auc": {
+        "Abuse": 0.48043094991913887,
+        "Arrest": 0.7179480961337108,
+        "Arson": 0.5013508418982391,
+        "Assault": 0.9361177104474789,
+        "Burglary": 0.8663599590890262,
+        "Explosion": 0.8339159578792366,
+        "Fighting": 0.7835959351280672,
+        "RoadAccidents": 0.8244552930456696,
+        "Robbery": 0.9211988650623241,
+        "Shooting": 0.9245070225491756,
+        "Shoplifting": 0.409587867019752,
+        "Stealing": 0.8238374171502898,
+        "Vandalism": 0.8602722246648944
+      }
+    },
+    "fusion_50": {
+      "global_auc": 0.7786952825795355,
+      "ano_auc": 0.7719452578411394,
+      "aupr": 0.5163035554102315,
+      "per_category_auc": {
+        "Abuse": 0.5419616108592487,
+        "Arrest": 0.8308401153928037,
+        "Arson": 0.4782750373129453,
+        "Assault": 0.9234641512020724,
+        "Burglary": 0.8118465497665434,
+        "Explosion": 0.8415597413852608,
+        "Fighting": 0.7749505756456616,
+        "RoadAccidents": 0.889869499079288,
+        "Robbery": 0.8669433425820064,
+        "Shooting": 0.9480725560796575,
+        "Shoplifting": 0.2956521461129922,
+        "Stealing": 0.8219699566192383,
+        "Vandalism": 0.8800409702243678
+      }
+    },
+    "yesno_hard_diagnostic": {
+      "global_auc": 0.7387902462451157,
+      "ano_auc": 0.7306854864632802,
+      "aupr": 0.5637591804487676,
+      "per_category_auc": {
+        "Abuse": 0.45268741659817774,
+        "Arrest": 0.6776571372586022,
+        "Arson": 0.4831747655526745,
+        "Assault": 0.8883146677915608,
+        "Burglary": 0.799452505214457,
+        "Explosion": 0.800775620032908,
+        "Fighting": 0.6554606996036869,
+        "RoadAccidents": 0.7690936228778826,
+        "Robbery": 0.9056425620218809,
+        "Shooting": 0.845555506574065,
+        "Shoplifting": 0.3898349575822185,
+        "Stealing": 0.814227009954628,
+        "Vandalism": 0.8508059284953167
+      }
+    }
+  },
+  "gate": {
+    "selected_arm": "fusion_50",
+    "selected_auc": 0.7786952825795355,
+    "threshold": 0.8,
+    "passed": false,
+    "selection_scope": "pilot65",
+    "rule": "v218 full test explicitly authorized by user; primary fusion_50 frozen before full evaluation. Threshold is descriptive only."
+  },
+  "per_video": [
+    {
+      "video_id": "Abuse028_x264",
+      "category": "Abuse",
+      "positive_frames": 76,
+      "frames": 1412,
+      "auc": {
+        "baseline": 0.6664926725496376,
+        "yesno_probability": 0.3250078789788844,
+        "fusion_50": 0.35379569807752914,
+        "yesno_hard_diagnostic": 0.2806295304128585
+      }
+    },
+    {
+      "video_id": "Abuse030_x264",
+      "category": "Abuse",
+      "positive_frames": 86,
+      "frames": 1544,
+      "auc": {
+        "baseline": 0.9896640826873386,
+        "yesno_probability": 0.6179977350304654,
+        "fusion_50": 0.6473825246435065,
+        "yesno_hard_diagnostic": 0.6103813762082496
+      }
+    },
+    {
+      "video_id": "Arrest001_x264",
+      "category": "Arrest",
+      "positive_frames": 301,
+      "frames": 2374,
+      "auc": {
+        "baseline": 0.9969806385853234,
+        "yesno_probability": 0.982270066172735,
+        "fusion_50": 0.9995288257664995,
+        "yesno_hard_diagnostic": 0.9486251808972503
+      }
+    },
+    {
+      "video_id": "Arrest007_x264",
+      "category": "Arrest",
+      "positive_frames": 631,
+      "frames": 3144,
+      "auc": {
+        "baseline": 0.9663064268655607,
+        "yesno_probability": 0.9184522574530034,
+        "fusion_50": 0.9768783939993806,
+        "yesno_hard_diagnostic": 0.8957739879409953
+      }
+    },
+    {
+      "video_id": "Arrest024_x264",
+      "category": "Arrest",
+      "positive_frames": 2101,
+      "frames": 3629,
+      "auc": {
+        "baseline": 0.9461195242355298,
+        "yesno_probability": 0.6253340780132123,
+        "fusion_50": 0.9009552917957293,
+        "yesno_hard_diagnostic": 0.6598592106476346
+      }
+    },
+    {
+      "video_id": "Arrest030_x264",
+      "category": "Arrest",
+      "positive_frames": 1666,
+      "frames": 8642,
+      "auc": {
+        "baseline": 0.6719032653198894,
+        "yesno_probability": 0.5157561304338248,
+        "fusion_50": 0.6082601762035089,
+        "yesno_hard_diagnostic": 0.5335911170660924
+      }
+    },
+    {
+      "video_id": "Arrest039_x264",
+      "category": "Arrest",
+      "positive_frames": 3121,
+      "frames": 15835,
+      "auc": {
+        "baseline": 0.8711359947686004,
+        "yesno_probability": 0.6872554743282034,
+        "fusion_50": 0.8319707838586482,
+        "yesno_hard_diagnostic": 0.6413400280249234
+      }
+    },
+    {
+      "video_id": "Arson007_x264",
+      "category": "Arson",
+      "positive_frames": 3451,
+      "frames": 6252,
+      "auc": {
+        "baseline": 0.340558764716538,
+        "yesno_probability": 0.4308200252610862,
+        "fusion_50": 0.3139281195987979,
+        "yesno_hard_diagnostic": 0.3501301073187526
+      }
+    },
+    {
+      "video_id": "Arson009_x264",
+      "category": "Arson",
+      "positive_frames": 96,
+      "frames": 743,
+      "auc": {
+        "baseline": 0.5,
+        "yesno_probability": 0.6121602910870685,
+        "fusion_50": 0.6169258758371974,
+        "yesno_hard_diagnostic": 0.6528287609479649
+      }
+    },
+    {
+      "video_id": "Arson018_x264",
+      "category": "Arson",
+      "positive_frames": 331,
+      "frames": 842,
+      "auc": {
+        "baseline": 0.7107561147208543,
+        "yesno_probability": 0.7937223972898351,
+        "fusion_50": 0.8066760868151424,
+        "yesno_hard_diagnostic": 0.6430019924205248
+      }
+    },
+    {
+      "video_id": "Arson035_x264",
+      "category": "Arson",
+      "positive_frames": 301,
+      "frames": 1437,
+      "auc": {
+        "baseline": 0.7755281690140845,
+        "yesno_probability": 0.9936859529268635,
+        "fusion_50": 0.9936859529268635,
+        "yesno_hard_diagnostic": 0.9664396261288661
+      }
+    },
+    {
+      "video_id": "Arson041_x264",
+      "category": "Arson",
+      "positive_frames": 1486,
+      "frames": 3754,
+      "auc": {
+        "baseline": 0.877620875377717,
+        "yesno_probability": 0.7510160973317097,
+        "fusion_50": 0.8177148981321255,
+        "yesno_hard_diagnostic": 0.7188209888411772
+      }
+    },
+    {
+      "video_id": "Assault006_x264",
+      "category": "Assault",
+      "positive_frames": 6911,
+      "frames": 8096,
+      "auc": {
+        "baseline": 0.9127984678006749,
+        "yesno_probability": 0.7959067273050302,
+        "fusion_50": 0.9480964425941156,
+        "yesno_hard_diagnostic": 0.6795186784109233
+      }
+    },
+    {
+      "video_id": "Assault010_x264",
+      "category": "Assault",
+      "positive_frames": 1022,
+      "frames": 16177,
+      "auc": {
+        "baseline": 0.7876386924158129,
+        "yesno_probability": 0.9420865989472127,
+        "fusion_50": 0.8977686541097505,
+        "yesno_hard_diagnostic": 0.880134274596295
+      }
+    },
+    {
+      "video_id": "Assault011_x264",
+      "category": "Assault",
+      "positive_frames": 586,
+      "frames": 2288,
+      "auc": {
+        "baseline": 0.8829719502853499,
+        "yesno_probability": 0.900889537705089,
+        "fusion_50": 0.9043792085600959,
+        "yesno_hard_diagnostic": 0.8993770629213573
+      }
+    },
+    {
+      "video_id": "Burglary005_x264",
+      "category": "Burglary",
+      "positive_frames": 331,
+      "frames": 7729,
+      "auc": {
+        "baseline": 0.7275265871644904,
+        "yesno_probability": 0.9751780304793735,
+        "fusion_50": 0.9716760225062869,
+        "yesno_hard_diagnostic": 0.9647700162287677
+      }
+    },
+    {
+      "video_id": "Burglary032_x264",
+      "category": "Burglary",
+      "positive_frames": 2401,
+      "frames": 15795,
+      "auc": {
+        "baseline": 0.7644972663013028,
+        "yesno_probability": 0.7391567192680218,
+        "fusion_50": 0.7835381293332747,
+        "yesno_hard_diagnostic": 0.6923297880524496
+      }
+    },
+    {
+      "video_id": "Burglary037_x264",
+      "category": "Burglary",
+      "positive_frames": 1412,
+      "frames": 1920,
+      "auc": {
+        "baseline": 0.5708800829782963,
+        "yesno_probability": 0.7025147219557895,
+        "fusion_50": 0.6144646003881242,
+        "yesno_hard_diagnostic": 0.5242807711181995
+      }
+    },
+    {
+      "video_id": "Burglary061_x264",
+      "category": "Burglary",
+      "positive_frames": 1501,
+      "frames": 8990,
+      "auc": {
+        "baseline": 0.9835219125292267,
+        "yesno_probability": 0.9757722385459144,
+        "fusion_50": 0.9760675862239524,
+        "yesno_hard_diagnostic": 0.8325299935797464
+      }
+    },
+    {
+      "video_id": "Burglary079_x264",
+      "category": "Burglary",
+      "positive_frames": 2961,
+      "frames": 14853,
+      "auc": {
+        "baseline": 0.7326696630135023,
+        "yesno_probability": 0.9782114227870717,
+        "fusion_50": 0.8678366045279974,
+        "yesno_hard_diagnostic": 0.9412209889001009
+      }
+    },
+    {
+      "video_id": "Explosion002_x264",
+      "category": "Explosion",
+      "positive_frames": 601,
+      "frames": 4013,
+      "auc": {
+        "baseline": 0.9597017865885892,
+        "yesno_probability": 0.8667997651432838,
+        "fusion_50": 0.9101209785176329,
+        "yesno_hard_diagnostic": 0.8471907411055821
+      }
+    },
+    {
+      "video_id": "Explosion004_x264",
+      "category": "Explosion",
+      "positive_frames": 151,
+      "frames": 1902,
+      "auc": {
+        "baseline": 0.8396223917458709,
+        "yesno_probability": 0.43926081973971354,
+        "fusion_50": 0.864232737395093,
+        "yesno_hard_diagnostic": 0.7135922330097088
+      }
+    },
+    {
+      "video_id": "Explosion017_x264",
+      "category": "Explosion",
+      "positive_frames": 451,
+      "frames": 1643,
+      "auc": {
+        "baseline": 0.9006625842646467,
+        "yesno_probability": 0.999223388740904,
+        "fusion_50": 0.9152052113870742,
+        "yesno_hard_diagnostic": 0.8460570469798658
+      }
+    },
+    {
+      "video_id": "Explosion029_x264",
+      "category": "Explosion",
+      "positive_frames": 191,
+      "frames": 2410,
+      "auc": {
+        "baseline": 0.6455256719101335,
+        "yesno_probability": 0.9578355893532533,
+        "fusion_50": 0.837066364028889,
+        "yesno_hard_diagnostic": 0.8557637632158253
+      }
+    },
+    {
+      "video_id": "Explosion035_x264",
+      "category": "Explosion",
+      "positive_frames": 101,
+      "frames": 2865,
+      "auc": {
+        "baseline": 0.9983808800561678,
+        "yesno_probability": 0.9909999140290296,
+        "fusion_50": 0.9983880443037068,
+        "yesno_hard_diagnostic": 0.8815123010130246
+      }
+    },
+    {
+      "video_id": "Fighting003_x264",
+      "category": "Fighting",
+      "positive_frames": 1282,
+      "frames": 3102,
+      "auc": {
+        "baseline": 0.24830128919442496,
+        "yesno_probability": 0.6851386912619362,
+        "fusion_50": 0.47595146663009374,
+        "yesno_hard_diagnostic": 0.5703088837839227
+      }
+    },
+    {
+      "video_id": "Fighting018_x264",
+      "category": "Fighting",
+      "positive_frames": 341,
+      "frames": 1389,
+      "auc": {
+        "baseline": 0.9475190839694657,
+        "yesno_probability": 0.8365158604016029,
+        "fusion_50": 0.9284071321438965,
+        "yesno_hard_diagnostic": 0.7376779678090932
+      }
+    },
+    {
+      "video_id": "Fighting033_x264",
+      "category": "Fighting",
+      "positive_frames": 271,
+      "frames": 1105,
+      "auc": {
+        "baseline": 0.7541214261063474,
+        "yesno_probability": 0.7646229879564983,
+        "fusion_50": 0.7213203606856212,
+        "yesno_hard_diagnostic": 0.8141486810551558
+      }
+    },
+    {
+      "video_id": "Fighting042_x264",
+      "category": "Fighting",
+      "positive_frames": 911,
+      "frames": 2237,
+      "auc": {
+        "baseline": 0.9948128537913519,
+        "yesno_probability": 0.8783557922028898,
+        "fusion_50": 0.9981224947971251,
+        "yesno_hard_diagnostic": 0.6975867269984917
+      }
+    },
+    {
+      "video_id": "Fighting047_x264",
+      "category": "Fighting",
+      "positive_frames": 1631,
+      "frames": 4459,
+      "auc": {
+        "baseline": 0.8187576585897183,
+        "yesno_probability": 0.7983343190673626,
+        "fusion_50": 0.8414686020585942,
+        "yesno_hard_diagnostic": 0.6317343556638224
+      }
+    },
+    {
+      "video_id": "RoadAccidents001_x264",
+      "category": "RoadAccidents",
+      "positive_frames": 91,
+      "frames": 1366,
+      "auc": {
+        "baseline": 0.9990346907993967,
+        "yesno_probability": 0.9847101917690153,
+        "fusion_50": 0.9992415427709546,
+        "yesno_hard_diagnostic": 0.8962508080155138
+      }
+    },
+    {
+      "video_id": "RoadAccidents017_x264",
+      "category": "RoadAccidents",
+      "positive_frames": 71,
+      "frames": 243,
+      "auc": {
+        "baseline": 0.9969701932525386,
+        "yesno_probability": 0.6904683917458238,
+        "fusion_50": 0.897641663937111,
+        "yesno_hard_diagnostic": 0.6904683917458238
+      }
+    },
+    {
+      "video_id": "RoadAccidents019_x264",
+      "category": "RoadAccidents",
+      "positive_frames": 151,
+      "frames": 1314,
+      "auc": {
+        "baseline": 0.9966232568203948,
+        "yesno_probability": 0.8112839026723534,
+        "fusion_50": 0.8978891084373024,
+        "yesno_hard_diagnostic": 0.7342508811990001
+      }
+    },
+    {
+      "video_id": "RoadAccidents123_x264",
+      "category": "RoadAccidents",
+      "positive_frames": 81,
+      "frames": 1005,
+      "auc": {
+        "baseline": 0.4190783496339052,
+        "yesno_probability": 0.7118940730051841,
+        "fusion_50": 0.5974961252739031,
+        "yesno_hard_diagnostic": 0.7310606060606061
+      }
+    },
+    {
+      "video_id": "RoadAccidents125_x264",
+      "category": "RoadAccidents",
+      "positive_frames": 111,
+      "frames": 1771,
+      "auc": {
+        "baseline": 0.9790567676109847,
+        "yesno_probability": 0.807858460870509,
+        "fusion_50": 0.9184413328991642,
+        "yesno_hard_diagnostic": 0.7771030066210789
+      }
+    },
+    {
+      "video_id": "Robbery048_x264",
+      "category": "Robbery",
+      "positive_frames": 481,
+      "frames": 1409,
+      "auc": {
+        "baseline": 0.9999910387841422,
+        "yesno_probability": 0.8846713922144956,
+        "fusion_50": 0.9567778156140225,
+        "yesno_hard_diagnostic": 0.7674250842354291
+      }
+    },
+    {
+      "video_id": "Robbery050_x264",
+      "category": "Robbery",
+      "positive_frames": 916,
+      "frames": 1701,
+      "auc": {
+        "baseline": 0.47183127972630934,
+        "yesno_probability": 0.9139682363085138,
+        "fusion_50": 0.9235696603899536,
+        "yesno_hard_diagnostic": 0.8843413623341585
+      }
+    },
+    {
+      "video_id": "Robbery102_x264",
+      "category": "Robbery",
+      "positive_frames": 481,
+      "frames": 1827,
+      "auc": {
+        "baseline": 0.3391816207566579,
+        "yesno_probability": 0.987729871830912,
+        "fusion_50": 0.943324796965213,
+        "yesno_hard_diagnostic": 0.9923427542298271
+      }
+    },
+    {
+      "video_id": "Robbery106_x264",
+      "category": "Robbery",
+      "positive_frames": 121,
+      "frames": 1197,
+      "auc": {
+        "baseline": 0.7769516728624535,
+        "yesno_probability": 0.8332360441180988,
+        "fusion_50": 0.8491044271713417,
+        "yesno_hard_diagnostic": 0.9163568773234201
+      }
+    },
+    {
+      "video_id": "Robbery137_x264",
+      "category": "Robbery",
+      "positive_frames": 1816,
+      "frames": 2193,
+      "auc": {
+        "baseline": 0.9923725446663317,
+        "yesno_probability": 0.99996932658713,
+        "fusion_50": 0.9999707872258381,
+        "yesno_hard_diagnostic": 0.9998356781453394
+      }
+    },
+    {
+      "video_id": "Shooting002_x264",
+      "category": "Shooting",
+      "positive_frames": 81,
+      "frames": 1206,
+      "auc": {
+        "baseline": 0.5257832647462277,
+        "yesno_probability": 0.9546008230452675,
+        "fusion_50": 0.9660137174211247,
+        "yesno_hard_diagnostic": 0.9017777777777778
+      }
+    },
+    {
+      "video_id": "Shooting018_x264",
+      "category": "Shooting",
+      "positive_frames": 166,
+      "frames": 1799,
+      "auc": {
+        "baseline": 0.3165029991367798,
+        "yesno_probability": 0.8034661610311423,
+        "fusion_50": 0.5340824412161813,
+        "yesno_hard_diagnostic": 0.7287201469687692
+      }
+    },
+    {
+      "video_id": "Shooting019_x264",
+      "category": "Shooting",
+      "positive_frames": 436,
+      "frames": 2756,
+      "auc": {
+        "baseline": 0.8660792668459348,
+        "yesno_probability": 0.8451459190129706,
+        "fusion_50": 0.8550953021195825,
+        "yesno_hard_diagnostic": 0.7155118040177159
+      }
+    },
+    {
+      "video_id": "Shooting032_x264",
+      "category": "Shooting",
+      "positive_frames": 211,
+      "frames": 21681,
+      "auc": {
+        "baseline": 0.9626212702834551,
+        "yesno_probability": 0.9671186732506727,
+        "fusion_50": 0.9808720202553105,
+        "yesno_hard_diagnostic": 0.8694170417445702
+      }
+    },
+    {
+      "video_id": "Shooting034_x264",
+      "category": "Shooting",
+      "positive_frames": 91,
+      "frames": 1409,
+      "auc": {
+        "baseline": 0.8619536760659674,
+        "yesno_probability": 0.9945972085577548,
+        "fusion_50": 0.9948556754323066,
+        "yesno_hard_diagnostic": 0.9524129133385583
+      }
+    },
+    {
+      "video_id": "Shoplifting001_x264",
+      "category": "Shoplifting",
+      "positive_frames": 451,
+      "frames": 4344,
+      "auc": {
+        "baseline": 0.7649166193457699,
+        "yesno_probability": 0.5765880883477821,
+        "fusion_50": 0.6386190917463433,
+        "yesno_hard_diagnostic": 0.7265043915880627
+      }
+    },
+    {
+      "video_id": "Shoplifting004_x264",
+      "category": "Shoplifting",
+      "positive_frames": 2701,
+      "frames": 6673,
+      "auc": {
+        "baseline": 0.21905066304561402,
+        "yesno_probability": 0.37295425624689377,
+        "fusion_50": 0.292022685268557,
+        "yesno_hard_diagnostic": 0.38185518734808976
+      }
+    },
+    {
+      "video_id": "Shoplifting020_x264",
+      "category": "Shoplifting",
+      "positive_frames": 121,
+      "frames": 5770,
+      "auc": {
+        "baseline": 0.8950388352213293,
+        "yesno_probability": 0.7935025434180555,
+        "fusion_50": 0.9289686319088143,
+        "yesno_hard_diagnostic": 0.7843866171003717
+      }
+    },
+    {
+      "video_id": "Shoplifting033_x264",
+      "category": "Shoplifting",
+      "positive_frames": 121,
+      "frames": 899,
+      "auc": {
+        "baseline": 0.794280736790669,
+        "yesno_probability": 0.4386114002846885,
+        "fusion_50": 0.7871847712932079,
+        "yesno_hard_diagnostic": 0.5
+      }
+    },
+    {
+      "video_id": "Shoplifting037_x264",
+      "category": "Shoplifting",
+      "positive_frames": 61,
+      "frames": 1386,
+      "auc": {
+        "baseline": 0.632922981750696,
+        "yesno_probability": 0.9420847510052583,
+        "fusion_50": 0.8374017939993814,
+        "yesno_hard_diagnostic": 0.8871698113207547
+      }
+    },
+    {
+      "video_id": "Stealing019_x264",
+      "category": "Stealing",
+      "positive_frames": 242,
+      "frames": 4911,
+      "auc": {
+        "baseline": 0.6908623610272785,
+        "yesno_probability": 0.8843408874075359,
+        "fusion_50": 0.8282667993040079,
+        "yesno_hard_diagnostic": 0.9372315023125982
+      }
+    },
+    {
+      "video_id": "Stealing036_x264",
+      "category": "Stealing",
+      "positive_frames": 331,
+      "frames": 2503,
+      "auc": {
+        "baseline": 0.4188282062837654,
+        "yesno_probability": 0.7289361163503641,
+        "fusion_50": 0.5244390290041339,
+        "yesno_hard_diagnostic": 0.589403448448532
+      }
+    },
+    {
+      "video_id": "Stealing058_x264",
+      "category": "Stealing",
+      "positive_frames": 3091,
+      "frames": 4991,
+      "auc": {
+        "baseline": 0.5711997479950279,
+        "yesno_probability": 0.8051449028588942,
+        "fusion_50": 0.732469648725502,
+        "yesno_hard_diagnostic": 0.7939490711573498
+      }
+    },
+    {
+      "video_id": "Stealing062_x264",
+      "category": "Stealing",
+      "positive_frames": 691,
+      "frames": 1560,
+      "auc": {
+        "baseline": 0.6916753125421538,
+        "yesno_probability": 0.6646427268896997,
+        "fusion_50": 0.5881854319634825,
+        "yesno_hard_diagnostic": 0.5457509754712487
+      }
+    },
+    {
+      "video_id": "Stealing079_x264",
+      "category": "Stealing",
+      "positive_frames": 1652,
+      "frames": 5846,
+      "auc": {
+        "baseline": 0.7284515034160411,
+        "yesno_probability": 0.8274409221752279,
+        "fusion_50": 0.8666732193228884,
+        "yesno_hard_diagnostic": 0.8070779656398337
+      }
+    },
+    {
+      "video_id": "Vandalism007_x264",
+      "category": "Vandalism",
+      "positive_frames": 511,
+      "frames": 1146,
+      "auc": {
+        "baseline": 0.7401574803149606,
+        "yesno_probability": 0.7932878253232044,
+        "fusion_50": 0.8272277609134475,
+        "yesno_hard_diagnostic": 0.858722283002296
+      }
+    },
+    {
+      "video_id": "Vandalism015_x264",
+      "category": "Vandalism",
+      "positive_frames": 691,
+      "frames": 2982,
+      "auc": {
+        "baseline": 0.8517959599035047,
+        "yesno_probability": 0.8664610338952966,
+        "fusion_50": 0.875470048595113,
+        "yesno_hard_diagnostic": 0.8201086994285194
+      }
+    },
+    {
+      "video_id": "Vandalism017_x264",
+      "category": "Vandalism",
+      "positive_frames": 122,
+      "frames": 1011,
+      "auc": {
+        "baseline": 0.634024230577735,
+        "yesno_probability": 0.6549355510889008,
+        "fusion_50": 0.6769532906747312,
+        "yesno_hard_diagnostic": 0.5763844068671744
+      }
+    },
+    {
+      "video_id": "Vandalism028_x264",
+      "category": "Vandalism",
+      "positive_frames": 422,
+      "frames": 4495,
+      "auc": {
+        "baseline": 0.9706109939108892,
+        "yesno_probability": 0.9561125572054088,
+        "fusion_50": 0.9638563049000294,
+        "yesno_hard_diagnostic": 0.9532757041806929
+      }
+    },
+    {
+      "video_id": "Vandalism036_x264",
+      "category": "Vandalism",
+      "positive_frames": 332,
+      "frames": 1443,
+      "auc": {
+        "baseline": 0.8276951189094814,
+        "yesno_probability": 0.8551383752833115,
+        "fusion_50": 0.8901727522149805,
+        "yesno_hard_diagnostic": 0.823086224285079
+      }
+    },
+    {
+      "video_id": "Normal_Videos_059_x264",
+      "category": "Normal",
+      "positive_frames": 0,
+      "frames": 1835,
+      "auc": {
+        "baseline": null,
+        "yesno_probability": null,
+        "fusion_50": null,
+        "yesno_hard_diagnostic": null
+      }
+    },
+    {
+      "video_id": "Normal_Videos_782_x264",
+      "category": "Normal",
+      "positive_frames": 0,
+      "frames": 5543,
+      "auc": {
+        "baseline": null,
+        "yesno_probability": null,
+        "fusion_50": null,
+        "yesno_hard_diagnostic": null
+      }
+    },
+    {
+      "video_id": "Normal_Videos_801_x264",
+      "category": "Normal",
+      "positive_frames": 0,
+      "frames": 2744,
+      "auc": {
+        "baseline": null,
+        "yesno_probability": null,
+        "fusion_50": null,
+        "yesno_hard_diagnostic": null
+      }
+    },
+    {
+      "video_id": "Normal_Videos_831_x264",
+      "category": "Normal",
+      "positive_frames": 0,
+      "frames": 448,
+      "auc": {
+        "baseline": null,
+        "yesno_probability": null,
+        "fusion_50": null,
+        "yesno_hard_diagnostic": null
+      }
+    },
+    {
+      "video_id": "Normal_Videos_905_x264",
+      "category": "Normal",
+      "positive_frames": 0,
+      "frames": 1196,
+      "auc": {
+        "baseline": null,
+        "yesno_probability": null,
+        "fusion_50": null,
+        "yesno_hard_diagnostic": null
+      }
+    }
+  ],
+  "fingerprint": "242421ca6b916fa63e07406f657908b63e1bd0f71ca71dd18a314718851c7f33",
+  "gt_sha256": "f7a7956c8d4758998f44c44894b3f7dc9be56bc9941f4ad97936d8a85910ea76",
+  "limitations": "Exploratory previously used inputs; full290 includes pilot65. Standalone new scorer has no upstream VideoMAE dependency; baseline and fusion retain its provenance limitations. Top-five censoring explicitly counted."
+}

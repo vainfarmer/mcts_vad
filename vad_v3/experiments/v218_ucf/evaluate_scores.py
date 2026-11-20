@@ -76,8 +76,8 @@ def evaluate(rows,manifest,scope,selected_arm=None):
     chosen=selected_arm or max(candidates,key=lambda x:metrics[x]['global_auc'])
     gate=dict(selected_arm=chosen,selected_auc=metrics[chosen]['global_auc'],threshold=.8,
               passed=metrics[chosen]['global_auc']>.8,selection_scope='pilot65',
-              rule='v218 full test explicitly authorized by user; primary fusion_50 frozen before full evaluation. Threshold is descriptive only.')
-    report=dict(version='v218',scope=scope,counts=totals,metrics=metrics,gate=gate,per_video=per_video,
+              rule='v218_ucf full test explicitly authorized by user; primary fusion_50 frozen before full evaluation. Threshold is descriptive only.')
+    report=dict(version='v218_ucf',scope=scope,counts=totals,metrics=metrics,gate=gate,per_video=per_video,
                 fingerprint=manifest['fingerprint'],gt_sha256=hashlib.sha256(gtpath.read_bytes()).hexdigest(),
                 limitations='Exploratory previously used inputs; full290 includes pilot65. Standalone new scorer has no upstream VideoMAE dependency; baseline and fusion retain its provenance limitations. Top-five censoring explicitly counted.')
     write(HERE/(scope+'_metrics.json'),report)

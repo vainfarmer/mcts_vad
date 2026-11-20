@@ -164,7 +164,7 @@ class DashScopeLLMClient:
             raise
 
     async def score_yesno(self, content, model='qwen3-vl-plus'):
-        """Return actual token log probabilities using the frozen v218 request.
+        """Return actual token log probabilities using the frozen v218_ucf request.
 
         Shares the existing API semaphore, retries and token accounting. The
         payload is already encoded with original-frame OpenCV sampling.

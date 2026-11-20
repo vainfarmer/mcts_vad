@@ -66,7 +66,7 @@ def main():
                   global_auc=actual['auc'], ano_auc=ano['auc'], aupr=actual['aupr'],
                   source_sha256={p.name: hashlib.sha256(p.read_bytes()).hexdigest()
                                  for p in SOURCE.glob('*.py')},
-                  note='Validates production fusion and evaluation against v218; does not rerun upstream detection.')
+                  note='Validates production fusion and evaluation against v218_ucf; does not rerun upstream detection.')
     (HERE/'mainflow_integration_validation.json').write_text(json.dumps(output, indent=2)+'\n', encoding='utf-8')
     print(json.dumps({k: v for k, v in output.items() if k != 'source_sha256'}), flush=True)
 

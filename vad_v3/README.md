@@ -42,7 +42,7 @@ conda run -n common python vad_v3/video_anomaly_detection/run.py --video_path "D
 
 ### v218 Yes/No 帧级评分
 
-`experiments/v218/scoring.py` 是已完成实验的冻结代码；主流程使用
+`experiments/v218_ucf` 是已完成实验的冻结代码；主流程使用
 `video_anomaly_detection/yesno_scoring.py` 中相同的提示词与概率提取函数，
 由 `yesno_frame_scorer.py` 接到 `MultiAnomalyVAD.detect()` 的输出处。
 单视频和批次入口均通过 `--yesno_scoring` 启用；**默认关闭**，

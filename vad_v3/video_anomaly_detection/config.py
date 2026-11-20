@@ -51,7 +51,7 @@ except ImportError:
 @dataclass
 class ScoringConfig:
     """Stage 7b/8 帧级评分 + 边界修正参数（v33 核心参数）。"""
-    # v218 visual likelihood scoring runs after localization, including Normal exits.
+    # v218_ucf visual likelihood scoring runs after localization, including Normal exits.
     yesno_enabled: bool = False
     yesno_model: str = 'qwen3-vl-plus'
     yesno_weight: float = 0.5
@@ -278,13 +278,13 @@ class VADConfig:
 def add_yesno_arguments(parser):
     group = parser.add_mutually_exclusive_group()
     group.add_argument('--yesno_scoring', dest='yesno_enabled', action='store_true',
-                       help='Enable v218 full-video Yes/No likelihood scoring after localization (includes Normal videos)')
+                       help='Enable v218_ucf full-video Yes/No likelihood scoring after localization (includes Normal videos)')
     group.add_argument('--no_yesno_scoring', dest='yesno_enabled', action='store_false',
                        help='Use the original frame scores without extra Yes/No calls (default)')
     parser.set_defaults(yesno_enabled=True)
     parser.add_argument('--yesno_model', default='qwen3-vl-plus')
     parser.add_argument('--yesno_weight', type=float, default=0.5,
-                        help='Probability weight in frame-score fusion; 0.5 matches v218, 1 uses standalone probabilities')
+                        help='Probability weight in frame-score fusion; 0.5 matches v218_ucf, 1 uses standalone probabilities')
 
 
 __all__ = [

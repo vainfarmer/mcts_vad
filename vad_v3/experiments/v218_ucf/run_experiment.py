@@ -1,4 +1,4 @@
-"""v218: frozen visual Yes/No scoring on all 290 videos, two video workers."""
+"""v218_ucf: frozen visual Yes/No scoring on all 290 videos, two video workers."""
 import argparse
 import asyncio
 import base64
@@ -50,7 +50,7 @@ def prepare():
         p=PILOT/'results'/(r['video_id']+'.json');value=read(p)
         assert value['fingerprint']==parent['fingerprint']
         imported[r['video_id']]=dict(path=str(p),sha256=sha(p),fingerprint=parent['fingerprint'])
-    payload=dict(version='v218',settings=parent['settings'],prompt=PROMPT,
+    payload=dict(version='v218_ucf',settings=parent['settings'],prompt=PROMPT,
                  runtime=dict(video_concurrency=VIDEO_CONCURRENCY,api_concurrency=API_CONCURRENCY,
                               api_retry_attempts=3,video_retry_rounds=1),
                  primary_arm='fusion_50',authorization='User explicitly requested full290, overriding prior pilot >80 gate.',
@@ -60,12 +60,12 @@ def prepare():
                  source_sha256={p.name:sha(p) for p in [Path(__file__),HERE/'scoring.py',HERE/'evaluate_scores.py']},
                  dependencies={k:__import__('importlib.metadata',fromlist=['version']).version(k) for k in ['openai','numpy','scikit-learn']}|{'opencv':cv2.__version__})
     payload['fingerprint']=hashlib.sha256(json.dumps(payload,sort_keys=True).encode()).hexdigest()
-    if (HERE/'manifest.json').exists():assert read(HERE/'manifest.json')==payload,'v218 manifest changed'
+    if (HERE/'manifest.json').exists():assert read(HERE/'manifest.json')==payload,'v218_ucf manifest changed'
     else:write(HERE/'manifest.json',payload)
     write(HERE/'selected_290.json',rows)
     write(HERE/'selected_65.json',pilot)
     write(HERE/'protocol.json',dict(
-        version='v218',scope='All 290: 140 abnormal and 150 Normal. User-authorized full test regardless of pilot threshold.',
+        version='v218_ucf',scope='All 290: 140 abnormal and 150 Normal. User-authorized full test regardless of pilot threshold.',
         reuse='65 exact pilot score outputs reused with hashes and original fingerprints; fresh visual inference on remaining225 (80 abnormal,145 Normal). All videos use the identical prompt/model/sampling/scoring settings.',
         concurrency='Two independent video workers; a shared four-request API semaphore, bounded pending work within each video. Each worker owns its own video decoder and request/result paths.',
         primary='fusion_50, chosen before full testing from the frozen pilot. Also report baseline, standalone yesno_probability, and hard Yes/No diagnostic. No selecting fusion weights using full-test labels.',
@@ -119,7 +119,7 @@ async def infer(rows,manifest):
     run_id=str(time.time_ns())
 
     def progress(state='running'):
-        value=dict(version='v218',run_id=run_id,status=state,completed_videos=len(completed),total_videos=290,
+        value=dict(version='v218_ucf',run_id=run_id,status=state,completed_videos=len(completed),total_videos=290,
                    reused_pilot_videos=65,remaining_videos=290-len(completed),active_videos=active,
                    failed_videos=failures,runtime=manifest['runtime'],counts=counts,
                    elapsed_seconds=round(time.time()-started,2))
@@ -192,7 +192,7 @@ async def infer(rows,manifest):
                     prompt_tokens=sum(x['response']['usage']['prompt_tokens'] for x in items),
                     completion_tokens=sum(x['response']['usage']['completion_tokens'] for x in items),processing_seconds=round(time.time()-t0,3))
                 write(HERE/'results'/(n+'.json'),result);completed.add(n);failures.pop(n,None)
-                print(json.dumps(dict(version='v218',worker=worker,video=n,completed=len(completed),total=290,
+                print(json.dumps(dict(version='v218_ucf',worker=worker,video=n,completed=len(completed),total=290,
                     windows=len(clips),exact=result['exact_pairs'],bounded=result['bounded_pairs'],elapsed=round(time.time()-started,1))),flush=True)
             finally:
                 for task in pending:
@@ -218,7 +218,7 @@ async def infer(rows,manifest):
         if failures:
             await round_run([r for r in rows if r['video_id'] in failures])
         if failures:
-            progress('failed');raise RuntimeError('Incomplete v218 videos; resumable caches retained')
+            progress('failed');raise RuntimeError('Incomplete v218_ucf videos; resumable caches retained')
         assert len(completed)==290
         assert counts['max_observed_video_workers']<=2 and counts['max_observed_api_requests']<=4
         progress('completed')
@@ -234,7 +234,7 @@ def main():
     pilot_ids=set(manifest['pilot_ids'])
     evaluate([r for r in rows if r['video_id'] in pilot_ids],manifest,'pilot65',selected_arm=manifest['primary_arm'])
     evaluate([r for r in rows if r['video_id'] not in pilot_ids],manifest,'remaining225',selected_arm=manifest['primary_arm'])
-    write(HERE/'exit_status.json',dict(status='completed',version='v218',videos=290))
+    write(HERE/'exit_status.json',dict(status='completed',version='v218_ucf',videos=290))
 
 
 if __name__=='__main__':main()

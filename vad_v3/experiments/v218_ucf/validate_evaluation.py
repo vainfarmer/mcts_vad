@@ -1,4 +1,4 @@
-"""Independently cross-check completed v218 with the repository evaluator."""
+"""Independently cross-check completed v218_ucf with the repository evaluator."""
 import hashlib
 import json
 from pathlib import Path

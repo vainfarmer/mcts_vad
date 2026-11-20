@@ -1,8 +1,8 @@
-"""Production adapter for the frozen v218 visual likelihood scorer.
+"""Production adapter for the frozen v218_ucf visual likelihood scorer.
 
 Localization finishes first. Every video then receives the same category-blind
 visual pass, including videos with no detected segments. Fusion is performed
-at native frame resolution, exactly as in the v218 experiment.
+at native frame resolution, exactly as in the v218_ucf experiment.
 """
 import asyncio
 import base64
@@ -24,7 +24,7 @@ SETTINGS = dict(temperature=0.0, max_tokens=16, logprobs=True, top_logprobs=5,
 
 
 def sample_content(cap, row, win, settings=SETTINGS):
-    """Keep OpenCV frame selection, JPEG bytes and prompt identical to v218."""
+    """Keep OpenCV frame selection, JPEG bytes and prompt identical to v218_ucf."""
     positions = np.linspace(win['context_start'], win['context_end'], settings['frames_per_clip'])
     indices = np.unique(np.clip(np.rint(positions*row['fps']).astype(int), 0, row['frame_count']-1))
     content = []

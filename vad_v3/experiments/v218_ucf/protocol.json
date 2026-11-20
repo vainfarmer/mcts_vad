@@ -1,0 +1,11 @@
+{
+  "version": "v218",
+  "scope": "All 290: 140 abnormal and 150 Normal. User-authorized full test regardless of pilot threshold.",
+  "reuse": "65 exact pilot score outputs reused with hashes and original fingerprints; fresh visual inference on remaining225 (80 abnormal,145 Normal). All videos use the identical prompt/model/sampling/scoring settings.",
+  "concurrency": "Two independent video workers; a shared four-request API semaphore, bounded pending work within each video. Each worker owns its own video decoder and request/result paths.",
+  "primary": "fusion_50, chosen before full testing from the frozen pilot. Also report baseline, standalone yesno_probability, and hard Yes/No diagnostic. No selecting fusion weights using full-test labels.",
+  "inference": "Category-blind images only: 10-second visual context, 5-second target step, up to10 frames. Same-position logP(Yes)/logP(No) normalization. No filenames, GT labels, VideoMAE labels, or historical captions in prompts.",
+  "evaluation": "Pooled original-frame ROC-AUC with all Normal videos; Ano-AUC excludes pure Normal videos. Same native FPS/frame counts and inclusive annotation convention. Also report pilot65 and remaining225 separately.",
+  "baseline": "Frozen historical MCTS+BUE/CBT frame curves. This is a new frame-scoring experiment, not a rerun or improvement claim for mAP or MCTS boundaries.",
+  "limitations": "Previously used test videos, pilot is part of full290, cloud model alias is not a pinned backend. Historical baseline and fusion retain prior VideoMAE split-provenance concerns."
+}

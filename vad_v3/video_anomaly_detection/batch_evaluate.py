@@ -27,7 +27,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from llm_client import DashScopeLLMClient
 from run import UCF_CRIME_CATEGORIES
-from config import VADConfig
+from config import VADConfig, add_yesno_arguments
 from mcts_config import add_mcts_arguments
 from experiment import prepare_manifest
 from factory import build_vad
@@ -39,6 +39,8 @@ logger = vad_logger.get("vad.batch")
 
 def select_videos(dataset_dir: str, max_per_category: int, split: str = "test",
                   categories=None):
+    if max_per_category is not None and max_per_category < 1:
+        raise ValueError('max_per_category must be positive; use --all_videos for the full test split')
     data_dir = parquet_directory(dataset_dir)
     parquet_files = sorted(data_dir.glob(f"{split}-*.parquet"))
     if not parquet_files:
@@ -53,7 +55,7 @@ def select_videos(dataset_dir: str, max_per_category: int, split: str = "test",
     selected = []
     summary = {}
     for cat, group in df.groupby("category"):
-        n = min(max_per_category, len(group))
+        n = len(group) if max_per_category is None else min(max_per_category, len(group))
         sampled = group.sample(n=n, random_state=42).sort_values("video_path")
         selected.append(sampled)
         summary[cat] = n
@@ -119,16 +121,19 @@ async def run_batch(args):
 
     _cats = getattr(args, "categories", None)
     _cats = _cats.split(",") if _cats else None
+    if getattr(args, 'all_videos', False) and _cats:
+        raise ValueError('--all_videos includes every category, including Normal; omit --categories')
+    limit = None if getattr(args, 'all_videos', False) else args.max_per_category
     dataset = getattr(args, 'dataset', 'ucf_crime')
     if dataset == 'xd_violence':
         from xd_dataset import select_xd_videos, annotation_fingerprint
-        videos = select_xd_videos(dataset_dir,args.max_per_category,
+        videos = select_xd_videos(dataset_dir,limit,
             getattr(args,'xd_annotations',None),getattr(args,'seed',42),_cats)
         (output_dir/'metadata'/'selection.json').write_text(
             json.dumps(videos.attrs['selection'],indent=2,ensure_ascii=False),encoding='utf-8')
         logger.info('[XD-SAMPLE] %s',json.dumps(videos.attrs['selection'],ensure_ascii=False))
     else:
-        videos = select_videos(str(dataset_dir), args.max_per_category, categories=_cats)
+        videos = select_videos(str(dataset_dir), limit, categories=_cats)
     total = len(videos)
 
     retry_rounds=getattr(args,'video_retry_rounds',1)
@@ -267,6 +272,8 @@ if __name__ == "__main__":
     parser.add_argument('--seed',type=int,default=42)
     parser.add_argument("--output_dir", type=str, default="results/batch_eval")
     parser.add_argument("--max_per_category", type=int, default=5)
+    parser.add_argument('--all_videos', action='store_true',
+                        help='Evaluate the entire selected dataset test split, including all Normal videos')
     parser.add_argument("--categories", type=str, default=None,
                         help="Comma-separated category filter (eval harness only), "
                              "e.g. Shooting,RoadAccidents,Shoplifting,Explosion")
@@ -358,6 +365,7 @@ if __name__ == "__main__":
                         help="(deprecated) Use --detect_model and --classify_model instead")
 
     add_api_arguments(parser)
+    add_yesno_arguments(parser)
     parser.add_argument("--video_retry_rounds",type=int,default=1)
     parser.add_argument("--video_retry_min_seconds",type=float,default=5.)
     parser.add_argument("--video_retry_max_seconds",type=float,default=15.)

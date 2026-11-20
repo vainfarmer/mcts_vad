@@ -81,11 +81,11 @@ def load_xd_index(root, annotations=None):
 
 
 def select_xd_videos(root, per_class=5, annotations=None, seed=42, categories=None):
-    """Five designated samples/class; overlap is diagnosed once and disclosed."""
+    """Sample per class, or select the entire split when per_class is None."""
     import pandas as pd
     records = load_xd_index(root, annotations)
     classes = list(categories or (*XD_CLASSES, 'Normal'))
-    if per_class < 1 or set(classes) - set((*XD_CLASSES, 'Normal')):
+    if (per_class is not None and per_class < 1) or set(classes) - set((*XD_CLASSES, 'Normal')):
         raise ValueError('Invalid sample count/categories')
     rng = random.Random(seed)
     selected, slots = set(), {}
@@ -95,16 +95,20 @@ def select_xd_videos(root, per_class=5, annotations=None, seed=42, categories=No
         pool = sorted(name for name, row in records.items() if
                       (category == 'Normal' and row['category'] == 'Normal') or
                       any(e['category'] == category for e in row['events']))
-        if len(pool) < per_class:
+        if per_class is not None and len(pool) < per_class:
             raise ValueError(f'Insufficient videos for {category}: {len(pool)}')
-        slots[category] = sorted(rng.sample(pool, per_class))
+        slots[category] = pool if per_class is None else sorted(rng.sample(pool, per_class))
         selected.update(slots[category])
+    if per_class is None and not categories:
+        selected = set(records)
     rows = [dict(records[name], category=','.join(records[name]['video_labels'])) for name in sorted(selected)]
     df = pd.DataFrame(rows)
     df.attrs['selection'] = dict(seed=seed, per_class=per_class, slots=slots,
         unique_video_count=len(rows), actual_event_class_coverage={c:sum(
             any(e['category']==c for e in records[n]['events']) if c!='Normal'
             else records[n]['category']=='Normal' for n in selected) for c in classes})
+    if per_class is None:
+        df.attrs['selection']['mode'] = 'full_test_split' if not categories else 'full_selected_categories'
     return df
 
 

@@ -196,6 +196,15 @@ class XDMultiAnomalyVAD:
         self.config=config
         self.llm_client=llm_client
         self.classify_llm_client=classify_llm_client or llm_client
+        config.scoring.validate_yesno()
+        self.yesno_scorer = None
+        if config.scoring.yesno_enabled:
+            try:
+                from .yesno_frame_scorer import YesNoFrameScorer
+            except ImportError:
+                from yesno_frame_scorer import YesNoFrameScorer
+            self.yesno_scorer = YesNoFrameScorer(self.classify_llm_client, config.scoring,
+                                               dataset='xd_violence')
         self.anomaly_categories=list(XD_CLASSES)
         if config.mcts.stage4_direct_eval or config.mcts.postprocess_ablation or config.mcts.boundary_guard_enabled:
             raise ValueError('UCF-specific ablation/guard flags are not supported by XD')
@@ -345,6 +354,10 @@ class XDMultiAnomalyVAD:
             result.paired_results={'original_off':dict(video_path=video_path,duration=data['duration'],
                 is_normal=not original_off,anomalies=[AnomalySegment.from_dict(e).to_dict() for e in original_off],
                 frame_scores=frame_scores(original_off),timestamps=times.tolist())}
+        scorer = getattr(self, 'yesno_scorer', None)
+        if scorer is not None:
+            await scorer.apply(result, video_path)
+            result.diagnostics['processing_seconds'] = time.perf_counter()-started
         log.info('[XD-RESULT] raw=%d final=%d classes=%s elapsed=%.1fs',len(raw),len(final),
                  sorted({e['anomaly_type'] for e in final}),time.perf_counter()-started)
         return result

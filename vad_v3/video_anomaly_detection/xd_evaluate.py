@@ -108,7 +108,12 @@ def evaluate_xd(root, result_dir, selected_ids, annotations=None):
                 np.diff(ts) <= 0):
             raise ValueError('Invalid prediction time series: ' + name)
         labels.append(y)
-        scores.append(np.interp(np.arange(n) / fps, ts, fs))
+        if pred.get('frame_score_grid') == 'native_frames':
+            if len(fs) != n:
+                raise ValueError('Native frame score count mismatch: ' + name)
+            scores.append(fs)
+        else:
+            scores.append(np.interp(np.arange(n) / fps, ts, fs))
         expected = sorted({e['category'] for e in r['events']})
         got = sorted({e['anomaly_type'] for e in pred['anomalies']})
         if set(got) - set(XD_CLASSES): raise ValueError('Invalid category')
@@ -133,7 +138,8 @@ def evaluate_xd(root, result_dir, selected_ids, annotations=None):
                                 thresholds=list(THRESHOLDS), interval='source frames [start,end)',
                                 timebase='per-video OpenCV native FPS; variable frame rate not verified',
                                 annotation_sha256=annotation_fingerprint(root, annotations),
-                                scope='selected videos only; not the full 800-video benchmark'))
+                                scope='full test split' if set(records)==set(records_all)
+                                else 'selected videos only; not the full 800-video benchmark'))
     (directory / 'temporal_matching_audit.json').write_text(json.dumps(audit, ensure_ascii=False, indent=2),
                                                             encoding='utf-8')
     return report

@@ -320,6 +320,14 @@ class MultiAnomalyVAD:
         self.config = config
         self.llm_client = llm_client
         self.classify_llm_client = classify_llm_client or llm_client
+        config.scoring.validate_yesno()
+        self.yesno_scorer = None
+        if config.scoring.yesno_enabled:
+            try:
+                from .yesno_frame_scorer import YesNoFrameScorer
+            except ImportError:
+                from yesno_frame_scorer import YesNoFrameScorer
+            self.yesno_scorer = YesNoFrameScorer(self.classify_llm_client, config.scoring)
         self.image_processor = image_processor
         self.anomaly_categories = config.anomaly_categories or self.DEFAULT_ANOMALY_CATEGORIES
 
@@ -714,7 +722,11 @@ class MultiAnomalyVAD:
         _vlm_classify_start = getattr(self.classify_llm_client, 'call_count', 0)
         _clip_start = getattr(self.anomaly_expert, 'clip_call_count', 0)
         try:
-            return await self._detect_impl(video_path, context)
+            result = await self._detect_impl(video_path, context)
+            scorer = getattr(self, 'yesno_scorer', None)
+            if scorer is not None:
+                await scorer.apply(result, video_path)
+            return result
         finally:
             _n_detect = getattr(self.llm_client, 'call_count', 0) - _vlm_detect_start
             if self.classify_llm_client is self.llm_client:

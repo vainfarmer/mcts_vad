@@ -40,6 +40,64 @@ conda run -n common python vad_v3/video_anomaly_detection/run.py --video_path "D
 
 单视频和批次参数均可用 `--help` 查看。批次入口是 `video_anomaly_detection/batch_evaluate.py`。输出包含实验 manifest；配置、代码、模型或视频列表不一致时需使用新的输出目录。
 
+### v218 Yes/No 帧级评分
+
+`experiments/v218_ucf` 是已完成实验的冻结代码；主流程使用
+`video_anomaly_detection/yesno_scoring.py` 中相同的提示词与概率提取函数，
+由 `yesno_frame_scorer.py` 接到 `MultiAnomalyVAD.detect()` 的输出处。
+单视频和批次命令行入口均**默认开启**，也可显式传入 `--yesno_scoring`；
+`--no_yesno_scoring` 保留原评分。旧配置 JSON 和直接构造的 `VADConfig()`
+缺省仍为关闭。配置 JSON 对应
+`scoring.yesno_enabled`、`scoring.yesno_model`、`scoring.yesno_weight`。
+使用 `run.py --config_json` 时，以保存的 JSON 配置为准。
+
+启用后的默认参数与 v218 一致：`qwen3-vl-plus`、每 5 秒一个目标区间、
+10 秒上下文、最多 10 帧、temperature=0、max_tokens=16、top_logprobs=5。
+同一输出位置的 Yes/No log probability 归一化后，先插值到原视频帧，
+再计算 `0.5 × 原帧级分数 + 0.5 × Yes/No 概率`。
+`--yesno_weight 1` 使用独立概率。所有视频都执行该评分，包括提前判为
+Normal 的视频；不根据标签、类别预测或已有异常区间跳过窗口。
+
+运行 UCF-Crime **完整测试集（本机 290 个，含 150 个 Normal）**：
+
+```powershell
+conda run -n common python vad_v3/video_anomaly_detection/batch_evaluate.py --dataset_dir F:/dataset/ucf_crime --output_dir vad_v3/results/ucf_v218_main --all_videos --concurrency 2 --api_concurrency 4 --api_timeout_seconds 90 --device cuda --mcts_mode refine --yesno_scoring
+```
+
+运行前需设置 `DASHSCOPE_API_KEY`。`--all_videos` 覆盖默认的每类 5 个限制，
+不能与 `--categories` 同用。视频并发和 API 请求并发分别由 `--concurrency`
+和 `--api_concurrency` 控制；新评分与检测/分类共享 API 并发池和用量统计。
+请求失败或缺失可靠 logprobs 时，该视频报错，批次不会发布不完整评估。
+
+最终 JSON 的 `frame_scores` / `timestamps` 是原生帧网格；
+`frame_score_grid="native_frames"` 让评估器直接读取这些分数。
+`yesno_scoring` 保存原曲线、概率曲线、每个窗口的 token logprobs、请求哈希
+及评分配置。配对实验各分支使用各自原曲线与同一视觉概率融合。
+新增评分发生在区间定位和 QSCORE/BUE/CBT 之后，不改变异常区间、区间置信度
+或 `is_normal`；本功能针对帧级 AUC，不改变 mAP 的输入。
+
+已报告的 v218 85.17% AUC 来自冻结的历史 MCTS+BUE/CBT 曲线与新概率融合。
+上述命令会重新执行当前完整 v3 流程，其上游配置和预测可能不同，结果需以
+新输出目录中的实际评估为准。该命令不会把历史 v218 结果当成新推理输出。
+
+合并到 `xd-violence` 后，`run.py` / `batch_evaluate.py --dataset xd_violence`
+同样接入新评分。XD 提示词只判断 Fighting、Shooting、Riot、Abuse、
+CarAccident、Explosion 六类事件；UCF 的冻结提示词保持原样。XD 原有模型、
+多标签检测、候选复核和区间定位继续生效；Normal 视频也执行全片评分。
+XD 的帧级 AP 仍为 `average_precision_score`，AUC 仍覆盖正常与异常帧。
+
+在已配置 API key 的环境下，完整 XD 测试集可使用：
+
+```powershell
+conda run -n common python vad_v3/video_anomaly_detection/batch_evaluate.py --dataset xd_violence --dataset_dir F:/dataset/xd_violence --output_dir vad_v3/results/xd_yesno --all_videos --concurrency 2 --api_concurrency 4 --api_timeout_seconds 90 --device cuda --mcts_mode refine --yesno_scoring
+```
+
+将数据路径替换为本机实际目录。`--all_videos` 对 UCF 和 XD 均选择整个测试集，
+XD 的多标签视频只推理一次。独立的 `xd_full_ablation.py`、
+`xd_mcts_ablation.py`、`xd_verification_eval.py` 保留各自的历史消融协议，
+本次未给这些多组实验入口添加新评分。UCF 的历史 85.17% 不是 XD 的测试成绩；
+本次分支合并未启动新的全量模型推理。
+
 ## 实现内容
 
 `mcts_config.py` 定义开关与预算；`mcts_boundary_scorer.py` 提供独立时间加权边界对比、固定核心及变更区域证据校验；`boundary_search.py` 实现三种搜索；`mcts_refiner.py` 控制触发、预算、严格 JSON 解析、按策略接收及回退。默认 force_best 不执行最终 A/B 比较；无有效候选、超时或根评价失败时保留原候选。

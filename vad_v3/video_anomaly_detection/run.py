@@ -34,7 +34,7 @@ import vad_logger
 
 import numpy as np
 
-from config import VADConfig
+from config import VADConfig, add_yesno_arguments
 from mcts_config import add_mcts_arguments
 from factory import build_vad
 # Re-exported for backward compat (batch_evaluate imports it from here)
@@ -223,6 +223,7 @@ if __name__ == "__main__":
     parser.set_defaults(cbt_recal=True)
 
     add_api_arguments(parser)
+    add_yesno_arguments(parser)
     add_mcts_arguments(parser)
     parser.add_argument('--config_json', type=str, help='Frozen VADConfig JSON from local task adapter')
     parser.add_argument('--research_dir', type=str, help='Opt-in local evidence and stage recording')

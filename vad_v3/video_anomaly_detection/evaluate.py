@@ -179,6 +179,8 @@ def load_predictions(result_dir: str) -> Dict[str, Dict[str, Any]]:
             'duration': data.get('duration', 0),
             'frame_scores': data.get('frame_scores'),
             'timestamps': data.get('timestamps'),
+            'source_frame_count': data.get('source_frame_count'),
+            'frame_score_grid': data.get('frame_score_grid'),
         }
     return preds
 
@@ -233,15 +235,20 @@ def compute_frame_auc(
         if pred_entry:
             frame_scores = pred_entry.get('frame_scores')
             pred_timestamps = pred_entry.get('timestamps')
-            if frame_scores is not None and len(frame_scores) > 1:
+            if frame_scores is not None and len(frame_scores) > 0:
                 fs = np.array(frame_scores, dtype=np.float32)
-                if pred_timestamps is not None and len(pred_timestamps) == len(fs):
-                    sample_frames = np.array(pred_timestamps) * video_fps
+                if pred_entry.get('frame_score_grid') == 'native_frames':
+                    if len(fs) != total_frames:
+                        raise ValueError(f'Native frame score count mismatch: {video_id}')
+                    pred_scores = fs
                 else:
-                    sample_frames = np.linspace(0, total_frames - 1, len(fs))
-                pred_scores = np.interp(
-                    np.arange(total_frames), sample_frames, fs
-                ).astype(np.float32)
+                    if pred_timestamps is not None and len(pred_timestamps) == len(fs):
+                        sample_frames = np.array(pred_timestamps) * video_fps
+                    else:
+                        sample_frames = np.linspace(0, total_frames - 1, len(fs))
+                    pred_scores = np.interp(
+                        np.arange(total_frames), sample_frames, fs
+                    ).astype(np.float32)
             else:
                 for anomaly in pred_entry['anomalies']:
                     start_f = int(anomaly['t_start'] * video_fps)

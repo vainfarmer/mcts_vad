@@ -15,6 +15,7 @@ MCTS padding 的 0.75、candidate 截断 3 等），改一个参数要在代码�
 
 from __future__ import annotations
 import json
+import math
 from dataclasses import dataclass, field, asdict
 from pathlib import Path
 from typing import Any, Dict, List, Optional
@@ -50,6 +51,10 @@ except ImportError:
 @dataclass
 class ScoringConfig:
     """Stage 7b/8 帧级评分 + 边界修正参数（v33 核心参数）。"""
+    # v218 visual likelihood scoring runs after localization, including Normal exits.
+    yesno_enabled: bool = False
+    yesno_model: str = 'qwen3-vl-plus'
+    yesno_weight: float = 0.5
     clip_base_weight: float = 0.35     # CLIP base 信号幅度（cat_scores * 0.35）
     gaussian_sigma_factor: float = 1.5  # 平滑核 sigma = factor * fps_est
     gaussian_sigma_min: float = 1.0
@@ -125,6 +130,17 @@ class ScoringConfig:
     # Opt out with --no_classify_skip_class_agnostic.
     classify_skip_class_agnostic: bool = True
 
+    def validate_yesno(self):
+        if not isinstance(self.yesno_enabled, bool):
+            raise ValueError('yesno_enabled must be a boolean')
+        if not self.yesno_model or not isinstance(self.yesno_model, str):
+            raise ValueError('yesno_model must be a nonempty model name')
+        if not math.isfinite(self.yesno_weight) or not 0 <= self.yesno_weight <= 1:
+            raise ValueError('yesno_weight must be finite and between 0 and 1')
+
+    def __post_init__(self):
+        self.validate_yesno()
+
 
 
 
@@ -199,6 +215,9 @@ class VADConfig:
             ),
             mcts=MCTSConfig.from_args(args),
             scoring=ScoringConfig(
+                yesno_enabled=getattr(args, 'yesno_enabled', False),
+                yesno_model=getattr(args, 'yesno_model', 'qwen3-vl-plus'),
+                yesno_weight=getattr(args, 'yesno_weight', 0.5),
                 # v124 BASELINE-FLIP: v114 KEEP-FLAG-ON completed. Q-score
                 # re-rank is now the committed baseline (map=0.15632), so the
                 # from_args default is True. Opt-out via --no_qscore_rerank.
@@ -256,7 +275,19 @@ class VADConfig:
         )
 
 
+def add_yesno_arguments(parser):
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument('--yesno_scoring', dest='yesno_enabled', action='store_true',
+                       help='Enable v218 full-video Yes/No likelihood scoring after localization (includes Normal videos)')
+    group.add_argument('--no_yesno_scoring', dest='yesno_enabled', action='store_false',
+                       help='Use the original frame scores without extra Yes/No calls (default)')
+    parser.set_defaults(yesno_enabled=True)
+    parser.add_argument('--yesno_model', default='qwen3-vl-plus')
+    parser.add_argument('--yesno_weight', type=float, default=0.5,
+                        help='Probability weight in frame-score fusion; 0.5 matches v218, 1 uses standalone probabilities')
+
+
 __all__ = [
     "VADConfig", "PreprocessConfig", "CLIPConfig", "MCTSConfig",
-    "ScoringConfig", "DiscoveryConfig",
+    "ScoringConfig", "DiscoveryConfig", "add_yesno_arguments",
 ]

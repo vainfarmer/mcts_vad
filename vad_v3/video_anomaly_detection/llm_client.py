@@ -163,6 +163,31 @@ class DashScopeLLMClient:
                 research.active.response(record, error=type(exc).__name__)
             raise
 
+    async def score_yesno(self, content, model='qwen3-vl-plus'):
+        """Return actual token log probabilities using the frozen v218 request.
+
+        Shares the existing API semaphore, retries and token accounting. The
+        payload is already encoded with original-frame OpenCV sampling.
+        """
+        self.call_count += 1
+        metrics = request_metrics.get()
+        if metrics is not None:
+            metrics['logical_calls'] += 1
+
+        async def attempt():
+            if metrics is not None:
+                metrics['sdk_attempts'] += 1
+            response = await tracked_completion(self.client, model=model,
+                messages=[{'role': 'user', 'content': content}], temperature=0.0,
+                max_tokens=16, logprobs=True, top_logprobs=5,
+                extra_body={'enable_thinking': False})
+            if metrics is not None and response.usage is not None:
+                metrics['prompt_tokens'] += response.usage.prompt_tokens or 0
+                metrics['completion_tokens'] += response.usage.completion_tokens or 0
+            return response.model_dump()
+
+        return await retry_api(attempt, self.api_semaphore, model=model, **self.retry_settings)
+
     def _sample_frames(self, frames: np.ndarray, n: int) -> np.ndarray:
         """均匀采样 n 帧（首尾必含），作为发送 API 前的帧数保险。"""
         if len(frames) <= n:

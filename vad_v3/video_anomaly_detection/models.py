@@ -153,6 +153,10 @@ class DetectionResult:
     pre_cbt_boundaries: Optional[List[List[float]]] = None
     mcts_trace: Optional[Dict[str, Any]] = None
     paired_results: Optional[Dict[str, Any]] = None
+    yesno_scoring: Optional[Dict[str, Any]] = None
+    source_frame_count: Optional[int] = None
+    source_fps: Optional[float] = None
+    frame_score_grid: Optional[str] = None
 
     def to_dict(self) -> Dict[str, Any]:
         """序列化为 dict，供 batch_evaluate.py 写 JSON。
@@ -177,6 +181,9 @@ class DetectionResult:
             d["paired_results"] = self.paired_results
         if self.token_usage is not None:
             d["token_usage"] = self.token_usage
+        for name in ('yesno_scoring', 'source_frame_count', 'source_fps', 'frame_score_grid'):
+            if getattr(self, name) is not None:
+                d[name] = getattr(self, name)
         return d
 
 
